@@ -11,6 +11,7 @@
  *
  * See https://neil.fraser.name/software/JS-Interpreter/docs.html
  */
+//modified by Andrei Ignat for BlocklyScripts
 Blockly.defineBlocksWithJsonArray([{
   "type": "wait_seconds",
   "message0": " wait %1 seconds",
