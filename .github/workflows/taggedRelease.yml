@@ -26,7 +26,10 @@ jobs:
         cd src
         npm i @angular/cli@13.0.1
         npm run buildAng
-        cp AutoBlocklyApp/dist/AutoBlocklyApp/ ../docs/
+        cd ..
+        rm -r docs/*
+        cp src/AutoBlocklyApp/dist/AutoBlocklyApp/ docs/
+        ls -l docs/
 
 
     - name: Archive production artifacts
