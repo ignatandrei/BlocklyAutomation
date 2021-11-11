@@ -78,7 +78,7 @@ exports.createInterpreter = function(workspace,BlocklyJavaScript){
                       if (hasMore) {
                         // Execution is currently blocked by some async call.
                         // Try again later.
-                        setTimeout(runner, 10);
+                        setTimeout(self.runner, 10);
                       } else {
                         // Program is complete.
                         console.log('\n\n<< Program complete >>');
@@ -87,7 +87,8 @@ exports.createInterpreter = function(workspace,BlocklyJavaScript){
                       }
                     }
                   };
-                  self.runner();
+                  if(self.runner)
+                    self.runner();
                 }, 100);
 
         },

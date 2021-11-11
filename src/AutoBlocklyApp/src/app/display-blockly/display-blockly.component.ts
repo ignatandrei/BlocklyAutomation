@@ -34,10 +34,13 @@ export class DisplayBlocklyComponent implements OnInit {
         
 
     bs.filterBlocks.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
-          
+    bs.waitBlocks.definitionBlocks(Blockly.defineBlocksWithJsonArray, BlocklyJavaScript);          
       var blocks=[
         bs.defaultBlocks.generalBlocks(),
-        bs.filterBlocks.filterXML()
+        bs.filterBlocks.filterXML(),
+        `<category id="catHelpers" colour="160" name="Helpers">
+          ${bs.waitBlocks.waitXml()}
+        </category>`
       ]
       this.initialize(blocks);
       

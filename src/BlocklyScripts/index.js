@@ -12,5 +12,6 @@ module.exports = {
   filterBlocks: require('./filterBlocks'),
   interpreterHelper: require('./interpreterHelper'),
   saveBlocksUrl: require('./saveBlocksUrl'),
+  waitBlocks: require('./wait_block'),
 
 };
