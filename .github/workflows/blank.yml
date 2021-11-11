@@ -32,6 +32,9 @@ jobs:
         run: |
           cd src
           npm i @angular/cli@13.0.1
+          cd AutoBlocklyApp
+          npm i
+          cd ..
           npm i
           npm run buildAng
           ls -l AutoBlocklyApp/dist/AutoBlocklyApp
