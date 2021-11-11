@@ -1,0 +1,15 @@
+
+<a (click)="ShowInnerWorkings()">Show blocks</a> &nbsp; <a (click)="SaveBlocks()">Save Blocks</a>
+<a (click)="RunCode()">Run Code</a>
+
+<span *ngIf="(demoWorkspace == null)">Loading</span>
+<!-- <div id="blocklyDiv" style="position:absolute"></div> -->
+<div style="width: 100%">
+    <div id="blocklyDiv"
+        style="display: inline-block; height: 480px; width: 58%"></div>
+    <textarea id="output" disabled="disabled" [(ngModel)]='showInner'
+        style="display: inline-block; height: 480px; width: 38%;">
+    </textarea>
+  </div>
+
+ 
