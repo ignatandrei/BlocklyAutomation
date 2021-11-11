@@ -31,7 +31,7 @@ jobs:
         npm run buildAng
         cd ..
         rm -r docs/*
-        cp src/AutoBlocklyApp/dist/AutoBlocklyApp/ docs/
+        cp -r src/AutoBlocklyApp/dist/AutoBlocklyApp/ docs/
         ls -l docs/
 
     - name: Archive production artifacts
