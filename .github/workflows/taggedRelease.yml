@@ -1,8 +1,7 @@
 name: "tagged-release"
 
 on:
-  push:
-    branches: [ main ]
+  push:    
     tags:
       - "v*"
   
@@ -41,3 +40,16 @@ jobs:
         path: 'src/AutoBlocklyApp/dist/AutoBlocklyApp'
         retention-days: 1
 
+    - name : AutoDocs
+      uses: stefanzweifel/git-auto-commit-action@v2.3.0
+      with:
+        commit_message: Apply latest in prod
+        branch: ${{ github.head_ref }}
+
+        # Optional git params
+        #commit_options: '--no-verify --signoff'
+
+        # Optional glob pattern of files which should be added to the commit
+        file_pattern: docs/
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
