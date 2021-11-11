@@ -2,8 +2,11 @@ name: "tagged-release"
 
 on:
   push:
+    branches: [ main ]
     tags:
       - "v*"
+  
+  workflow_dispatch:
 
 jobs:
   buildAngular:
