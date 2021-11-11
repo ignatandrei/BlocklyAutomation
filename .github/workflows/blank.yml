@@ -33,5 +33,5 @@ jobs:
           cd src
           npm i @angular/cli@13.0.1
           npm run buildAng
-          ls -l dist\AutoBlocklyApp
+          ls -l dist/AutoBlocklyApp
 
