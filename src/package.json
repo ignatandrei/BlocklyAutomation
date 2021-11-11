@@ -5,7 +5,8 @@
     "BlocklyScripts"
   ],
   "scripts": {
-    "start": "npm run start -w AutoBlocklyApp"
+    "start": "npm run start -w AutoBlocklyApp",
+    "buildAng":"npm run build -w AutoBlocklyApp"
   },
   "dependencies": {
     "@angular/animations": "13.0.0",
