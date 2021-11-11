@@ -32,4 +32,6 @@ jobs:
         run: |
           cd src
           npm run buildAng
-          dir dist\AutoBlocklyApp
+          ls -l dist\AutoBlocklyApp
+
+          
