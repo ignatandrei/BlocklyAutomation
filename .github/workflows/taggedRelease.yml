@@ -31,6 +31,7 @@ jobs:
         cd ..
         rm -r docs/*
         cp -r src/AutoBlocklyApp/dist/AutoBlocklyApp/* docs/
+        cp docs/index.html docs/404.html
         ls -l docs/
 
     - name: Archive production artifacts
