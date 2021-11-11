@@ -1,6 +1,9 @@
 
-<a (click)="ShowInnerWorkings()">Show blocks</a> &nbsp; <a (click)="SaveBlocks()">Save Blocks</a>
-<a (click)="RunCode()">Run Code</a>
+<button mat-raised-button color="primary" (click)="ShowInnerWorkings()">Show blocks</button>
+    
+    &nbsp; <button mat-raised-button color="primary" (click)="SaveBlocks()">Save Blocks</button>
+    &nbsp;
+    <button mat-raised-button color="primary" (click)="RunCode()">Run Code</button>
 
 <span *ngIf="(demoWorkspace == null)">Loading</span>
 <!-- <div id="blocklyDiv" style="position:absolute"></div> -->
