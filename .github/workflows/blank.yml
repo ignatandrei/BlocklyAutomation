@@ -23,7 +23,7 @@ jobs:
           fetch-depth: 0
       - uses: wagoid/commitlint-github-action@v4
       
-      - name: Use Node 12.x
+      - name: Use Node 
         uses: actions/setup-node@v1
         with:
           node-version: '16.13.0'
@@ -33,5 +33,6 @@ jobs:
           cd src
           npm i @angular/cli@13.0.1
           npm run buildAng
-          ls -l dist/AutoBlocklyApp
+          ls -l AutoBlocklyApp/dist/AutoBlocklyApp
+
 

@@ -1,0 +1,38 @@
+name: "tagged-release"
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  buildAngular:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16.13.0]
+
+    steps:
+    - name: 'Checkout Github Action'
+      uses: actions/checkout@master
+
+    - name: Node ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: npm install and npm run build
+      run: |
+        cd src
+        npm i @angular/cli@13.0.1
+        npm run buildAng
+        cp AutoBlocklyApp/dist/AutoBlocklyApp/ ../docs/
+
+
+    - name: Archive production artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: AutoBlocklyApp
+        path: 'src/AutoBlocklyApp/dist/AutoBlocklyApp'
+        retention-days: 1
+
