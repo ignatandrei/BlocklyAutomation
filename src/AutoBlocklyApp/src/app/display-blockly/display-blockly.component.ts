@@ -21,17 +21,27 @@ export class DisplayBlocklyComponent implements OnInit {
     //console.log(bs.filterBlocks.definitionBlocks());
 
   }
+  clearOutput(){
+    this.step  = 0;
+    this.showInner = '';
+  } 
+
+  step:number=0;
   RunCode(){
     
     var f= (latestCode:string, initApi: any)=> {
       return new Interpreter(this.run.latestCode,initApi);
     }
     this.run = bh.interpreterHelper.createInterpreter(this.demoWorkspace,BlocklyJavaScript);
-
+    this.clearOutput();
+    var self=this;
     this.run.runCode(f, (data:any)=>{
-      console.log(`obtained ${data}`);
+      self.step++;
+      self.showInner += `\n ${self.step} : ${data}`; 
+      // console.log(`obtained ${data}`);
     },
     ()=>{
+      self.showInner += `program executed`; 
       console.log("finished");
     });
   }
@@ -67,15 +77,10 @@ export class DisplayBlocklyComponent implements OnInit {
     bh.saveBlocksUrl.saveState(Blockly.Xml,this.demoWorkspace);
   }
   ShowInnerWorkings(){
-    var outputArea = document.getElementById('output');
-        if(outputArea == null){
-          window.alert("outputArea is null");
-          return;
-        }
-      if(this.demoWorkspace == null){
-        window.alert("demoWorkspace is null");
-        return;
-      }
+    if(this.demoWorkspace == null){
+      window.alert("demoWorkspace is null");
+      return;
+    }
     var xml = Blockly.Xml.workspaceToDom(this.demoWorkspace, true);
             var xml_text = Blockly.Xml.domToPrettyText(xml);
             this.showInner = `
