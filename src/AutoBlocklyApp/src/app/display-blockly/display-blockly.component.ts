@@ -75,6 +75,9 @@ export class DisplayBlocklyComponent implements OnInit {
             //outputArea.value += latestCode;
 
   }
+  Download():void{
+    bh.saveLoad.DownloadBlocks(Blockly.Xml,this.demoWorkspace,"aaa.txt");
+  }
   private initialize(defaultBlocks: string[] ){
     const blocklyDiv = document.getElementById('blocklyDiv');
     if(blocklyDiv == null){
