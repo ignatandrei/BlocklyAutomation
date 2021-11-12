@@ -104,6 +104,54 @@ exports.createInterpreter = function(workspace,BlocklyJavaScript){
               });
             interpreter.setProperty(globalObject, 'waitForSeconds', wrapper);
           },
+          doGet : function (href, callback, headers) {
+            console.log(href, callback);
+            let req = new XMLHttpRequest();
+          
+            req.open('GET', href, true);
+          if(headers)
+          if(headers.length>0){
+            //alert(JSON.stringify(headers));
+            for(var iHeader=0;iHeader<headers.length;iHeader++){
+              var head=headers[iHeader];
+              req.setRequestHeader(head.name,head.value);
+            }
+          }
+          
+            req.onreadystatechange = function () {
+                if (req.readyState == 4) {
+                    if (req.status >= 200 && req.status < 300) {
+                        var answer = JSON.stringify({
+                            'origHref': href,
+                            'objectToSend': '',
+                            'status': req.status,
+                            'statusOK': true,
+                            'text': req.responseText
+        
+                        });
+                        return callback(answer);
+        
+        
+                    } else {
+                        var answer = JSON.stringify({
+                            'origHref': href,
+                            'objectToSend': '',
+                            'status': req.status,
+                            'statusOK': false,
+                            'text': req.responseText
+        
+                        });
+                        return callback(answer);
+        
+                    }
+                }
+                else {
+                    //window.alert(`error ${href} ${req.status}`);
+                }
+            };
+            req.send(null);
+        },
+        headersForDomain:'',
         
         initApiJS:function (interpreter, globalObject,thisClass) {
             // Add an API function for the alert() block, generated for "text_print" blocks.
@@ -133,6 +181,22 @@ exports.createInterpreter = function(workspace,BlocklyJavaScript){
                 setTimeout(callback, timeInSeconds * 1000);
               });
             interpreter.setProperty(globalObject, 'waitForSeconds', wrapper);
+
+
+            var wrapper = (href, callback) => {
+              var heads = interpreter.pseudoToNative(thisClass.headersForDomain);
+              var hostname = '(localSite)';
+              if (href.startsWith('http://') || href.startsWith('https://')) {
+                  hostname = (new URL(href)).hostname;
+              }
+              var arrHeaders = [];
+              // if (hostname in heads) {
+              //     arrHeaders = heads[hostname];
+              // }
+              return thisClass.doGet(href, callback, arrHeaders);
+          }
+          interpreter.setProperty(globalObject, 'getXhr',
+              interpreter.createAsyncFunction(wrapper));
 
 
             

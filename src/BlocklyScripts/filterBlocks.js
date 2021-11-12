@@ -69,8 +69,7 @@ exports.definitionBlocks=function(blocks,javaScript){
 }
 exports.filterXML=function(){
     return `
-    <category name="Advanced=>">
-        <category id="catArray" name="Array">
+        <category id="catA" name="Array">
             <block type="filterList">
                 <value name="LIST">
                     <block type="variables_get">
@@ -97,7 +96,6 @@ exports.filterXML=function(){
         </block>
 
         </category>
-    </category>
 
 `
 }

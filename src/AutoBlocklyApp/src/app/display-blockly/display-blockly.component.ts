@@ -26,19 +26,24 @@ export class DisplayBlocklyComponent implements OnInit {
     var f= (latestCode:string, initApi: any)=> {
       return new Interpreter(this.run.latestCode,initApi);
     }
-    // console.log(BlocklyJavaScript);
+    
     this.run = bh.interpreterHelper.createInterpreter(this.demoWorkspace,BlocklyJavaScript);
 
     this.run.runCode(f);
   }
   ngOnInit(): void {
         
-
     bs.filterBlocks.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
-    bs.waitBlocks.definitionBlocks(Blockly.defineBlocksWithJsonArray, BlocklyJavaScript);          
+    bs.waitBlocks.definitionBlocks(Blockly.defineBlocksWithJsonArray, BlocklyJavaScript); 
+    bs.xhrBlocks.definitionBlocks(Blockly.Blocks, BlocklyJavaScript,function (arr:any[][]){return new Blockly.FieldDropdown(arr)});
+     
       var blocks=[
         bs.defaultBlocks.generalBlocks(),
-        bs.filterBlocks.filterXML(),
+        `    <category name="Advanced=>">
+            ${bs.filterBlocks.filterXML()}
+            ${bs.xhrBlocks.xhrXML()}
+            </category>
+        `,
         `<category id="catHelpers" colour="160" name="Helpers">
           ${bs.waitBlocks.waitXml()}
         </category>`
@@ -118,7 +123,7 @@ export class DisplayBlocklyComponent implements OnInit {
       },
        toolbox: toolboxXML
     } as Blockly.BlocklyOptions);
-    console.log(BlocklyJavaScript);
+    // console.log(BlocklyJavaScript);
     this.run = bh.interpreterHelper.createInterpreter(this.demoWorkspace,BlocklyJavaScript);
     var self=this;
     this.demoWorkspace.addChangeListener(function (evt:any) {
