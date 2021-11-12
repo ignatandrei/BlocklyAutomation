@@ -32,22 +32,24 @@ exports.createInterpreter = function(workspace,BlocklyJavaScript){
                 this.runner = null;
             }
         },
-        runnerThis : function () {
-            if (this.myInterpreter) {
-                var hasMore = this.myInterpreter.run();
-                if (hasMore) {
-                    // Execution is currently blocked by some async call.
-                    // Try again later.
-                    setTimeout(this.runner, 10);
-                } else {
-                    // Program is complete.
-                    console.log('\n\n<< Program complete >>');
-                    //FinishGrid();
-                    this.resetInterpreter();
-                    this.resetStepUi(false);
-                }
-            }
-        },
+        // runnerThis : function (callBackProgramComplete) {
+        //     if (this.myInterpreter) {
+        //         var hasMore = this.myInterpreter.run();
+        //         if (hasMore) {
+        //             // Execution is currently blocked by some async call.
+        //             // Try again later.
+        //             setTimeout(this.runner, 10);
+        //         } else {
+        //           if(callBackProgramComplete)
+        //             callBackProgramComplete();
+        //             else
+        //             console.log('\n\n<< Program complete! >>');
+        //             //FinishGrid();
+        //             this.resetInterpreter();
+        //             this.resetStepUi(false);
+        //         }
+        //     }
+        // },
 
         
         highlightBlock: function(id) {
@@ -57,7 +59,7 @@ exports.createInterpreter = function(workspace,BlocklyJavaScript){
 
       
       
-        runCode: function( newInterpreterConstructor){
+        runCode: function( newInterpreterConstructor, callBackData,callBackProgramComplete ) {
             // console.log(this.BlocklyJavaScript);
             if (!this.myInterpreter) {
                 // First statement of this code.
@@ -71,7 +73,7 @@ exports.createInterpreter = function(workspace,BlocklyJavaScript){
                 
                 // console.log(self.latestCode);
                 // console.log(self.BlocklyJavaScript);
-                self.myInterpreter = newInterpreterConstructor(self.latestCode,(G,I)=> self.initApiJS(G,I, self));
+                self.myInterpreter = newInterpreterConstructor(self.latestCode,(G,I)=> self.initApiJS(G,I, self, callBackData,callBackProgramComplete ));
                 self.runner = function() {
                     if (self.myInterpreter) {
                       var hasMore = self.myInterpreter.run();
@@ -80,8 +82,10 @@ exports.createInterpreter = function(workspace,BlocklyJavaScript){
                         // Try again later.
                         setTimeout(self.runner, 10);
                       } else {
-                        // Program is complete.
-                        console.log('\n\n<< Program complete >>');
+                        if(callBackProgramComplete)
+                          callBackProgramComplete();
+                        else
+                          console.log('\n\n<< Program complete >>');
                         self.resetInterpreter();
                         self.resetStepUi(false);
                       }
@@ -153,12 +157,15 @@ exports.createInterpreter = function(workspace,BlocklyJavaScript){
         },
         headersForDomain:'',
         
-        initApiJS:function (interpreter, globalObject,thisClass) {
+        initApiJS:function (interpreter, globalObject,thisClass,callBackData,callBackProgramComplete ) {
             // Add an API function for the alert() block, generated for "text_print" blocks.
             var wrapper = function(text) {
               text = text ? text.toString() : '';
               //outputArea.value = outputArea.value + '\n' + text;
-              console.log(text);
+              if(callBackData)
+                callBackData(text);
+              else
+                console.log(text);
             };
             interpreter.setProperty(globalObject, 'alert',
                 interpreter.createNativeFunction(wrapper));

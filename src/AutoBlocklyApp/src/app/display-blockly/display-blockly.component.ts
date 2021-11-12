@@ -28,7 +28,12 @@ export class DisplayBlocklyComponent implements OnInit {
     }
     this.run = bh.interpreterHelper.createInterpreter(this.demoWorkspace,BlocklyJavaScript);
 
-    this.run.runCode(f);
+    this.run.runCode(f, (data:any)=>{
+      console.log(`obtained ${data}`);
+    },
+    ()=>{
+      console.log("finished");
+    });
   }
   ngOnInit(): void {
         
