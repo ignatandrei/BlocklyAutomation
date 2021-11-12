@@ -27,8 +27,7 @@ jobs:
       run: |
         cd src
         npm i @angular/cli@13.0.1
-        #npm i -g  @angular/cli@13.0.1  
-        cd src                    
+        #npm i -g  @angular/cli@13.0.1
         npm i -ws --include-workspace-root                  
         cp -r node_modules  AutoBlocklyApp/node_modules        
         npm run buildGitHubPages
@@ -37,6 +36,7 @@ jobs:
         cp -r src/AutoBlocklyApp/dist/AutoBlocklyApp/* docs/
         cp docs/index.html docs/404.html
         ls -l docs/
+        
 
     - name: Archive production artifacts
       uses: actions/upload-artifact@v2
