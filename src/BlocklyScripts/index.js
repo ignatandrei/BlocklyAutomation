@@ -12,5 +12,6 @@ module.exports = {
   filterBlocks: require('./filterBlocks'),
   waitBlocks: require('./wait_block'),
   xhrBlocks: require('./xhrblocks'),
+  propBlocks: require('./propBlocks'),
 
 };

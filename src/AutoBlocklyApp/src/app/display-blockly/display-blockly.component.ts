@@ -26,7 +26,6 @@ export class DisplayBlocklyComponent implements OnInit {
     var f= (latestCode:string, initApi: any)=> {
       return new Interpreter(this.run.latestCode,initApi);
     }
-    
     this.run = bh.interpreterHelper.createInterpreter(this.demoWorkspace,BlocklyJavaScript);
 
     this.run.runCode(f);
@@ -36,12 +35,17 @@ export class DisplayBlocklyComponent implements OnInit {
     bs.filterBlocks.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
     bs.waitBlocks.definitionBlocks(Blockly.defineBlocksWithJsonArray, BlocklyJavaScript); 
     bs.xhrBlocks.definitionBlocks(Blockly.Blocks, BlocklyJavaScript,function (arr:any[][]){return new Blockly.FieldDropdown(arr)});
-     
+    bs.propBlocks.definitionBlocks(Blockly.Blocks, BlocklyJavaScript,function (arr:any){return new Blockly.FieldLabelSerializable(arr)});
+    
+
       var blocks=[
         bs.defaultBlocks.generalBlocks(),
         `    <category name="Advanced=>">
             ${bs.filterBlocks.filterXML()}
             ${bs.xhrBlocks.xhrXML()}
+            </category>
+            <category id="catJSBLocks" name="JSBlocks">
+            ${bs.propBlocks.fieldXML()}
             </category>
         `,
         `<category id="catHelpers" colour="160" name="Helpers">

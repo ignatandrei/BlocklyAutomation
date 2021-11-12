@@ -1,1 +1,1 @@
-wt new-tab -p "Windows PowerShell" -d . cmd /k "cd src && npm i && npm run start"  ;split-pane -p "Windows PowerShell" -d . cmd /k "cd src && code ." 
+wt new-tab -p "Windows PowerShell" -d . cmd /k "cd src && npm i && npm run start --watch"  ;split-pane -p "Windows PowerShell" -d . cmd /k "cd src && code ." 
