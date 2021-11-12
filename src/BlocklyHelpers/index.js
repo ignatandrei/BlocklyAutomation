@@ -8,8 +8,7 @@
 
 module.exports = {
   
-  defaultBlocks: require('./defaultBlocks'),
-  filterBlocks: require('./filterBlocks'),
-  waitBlocks: require('./wait_block'),
+  interpreterHelper: require('./interpreterHelper'),
+  saveBlocksUrl: require('./saveBlocksUrl'),
 
 };

@@ -3,6 +3,7 @@ import * as Blockly from 'blockly';
 import * as BlocklyJavaScript from 'blockly/javascript';
 import * as acorn from 'acorn';
 import * as bs from '@blockly/blocklyscripts';
+import * as bh from '@blockly/blocklyhelpers';
 
 declare var Interpreter: any;
 @Component({
@@ -26,7 +27,7 @@ export class DisplayBlocklyComponent implements OnInit {
       return new Interpreter(this.run.latestCode,initApi);
     }
     // console.log(BlocklyJavaScript);
-    this.run = bs.interpreterHelper.createInterpreter(this.demoWorkspace,BlocklyJavaScript);
+    this.run = bh.interpreterHelper.createInterpreter(this.demoWorkspace,BlocklyJavaScript);
 
     this.run.runCode(f);
   }
@@ -44,12 +45,12 @@ export class DisplayBlocklyComponent implements OnInit {
       ]
       this.initialize(blocks);
       
-      bs.saveBlocksUrl.restoreState(Blockly.Xml,this.demoWorkspace);
+      bh.saveBlocksUrl.restoreState(Blockly.Xml,this.demoWorkspace);
     
   }
   showInner:string='';
   SaveBlocks(){
-    bs.saveBlocksUrl.saveState(Blockly.Xml,this.demoWorkspace);
+    bh.saveBlocksUrl.saveState(Blockly.Xml,this.demoWorkspace);
   }
   ShowInnerWorkings(){
     var outputArea = document.getElementById('output');
@@ -98,7 +99,7 @@ export class DisplayBlocklyComponent implements OnInit {
        toolbox: toolboxXML
     } as Blockly.BlocklyOptions);
     console.log(BlocklyJavaScript);
-    this.run = bs.interpreterHelper.createInterpreter(this.demoWorkspace,BlocklyJavaScript);
+    this.run = bh.interpreterHelper.createInterpreter(this.demoWorkspace,BlocklyJavaScript);
     var self=this;
     this.demoWorkspace.addChangeListener(function (evt:any) {
       if (!evt.isUiEvent) {
