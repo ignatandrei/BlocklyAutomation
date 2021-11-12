@@ -4,6 +4,7 @@ import * as BlocklyJavaScript from 'blockly/javascript';
 import * as acorn from 'acorn';
 import * as bs from '@blockly/blocklyscripts';
 import * as bh from '@blockly/blocklyhelpers';
+import { TabulatorHelper } from './tabulator';
 
 declare var Interpreter: any;
 @Component({
@@ -16,7 +17,7 @@ export class DisplayBlocklyComponent implements OnInit {
   
   public demoWorkspace: Blockly.WorkspaceSvg|null = null;
   public run: any;
-  constructor() { 
+  constructor(private tabulator:TabulatorHelper) { 
     
     //console.log(bs.filterBlocks.definitionBlocks());
 
@@ -24,6 +25,7 @@ export class DisplayBlocklyComponent implements OnInit {
   clearOutput(){
     this.step  = 0;
     this.showInner = '';
+    this.tabulator.ClearDataGrid();
   } 
 
   step:number=0;
@@ -39,14 +41,23 @@ export class DisplayBlocklyComponent implements OnInit {
       self.step++;
       self.showInner += `\n ${self.step} : ${data}`; 
       // console.log(`obtained ${data}`);
+      this.tabulator.AddDataToGrid(data);
     },
     ()=>{
-      self.showInner += `program executed`; 
-      // console.log("finished");
+      self.showInner += `\n program executed`; 
+      this.tabulator.FinishGrid();
     });
   }
   ngOnInit(): void {
-        
+      
+    
+    const gridElement = document.getElementById('steps');
+    if(gridElement  == null){
+      window.alert("gridElement is null");
+      return;
+    }
+    this.tabulator.initGrid(gridElement);
+
     bs.filterBlocks.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
     bs.waitBlocks.definitionBlocks(Blockly.defineBlocksWithJsonArray, BlocklyJavaScript); 
     bs.xhrBlocks.definitionBlocks(Blockly.Blocks, BlocklyJavaScript,function (arr:any[][]){return new Blockly.FieldDropdown(arr)});
