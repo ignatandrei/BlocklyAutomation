@@ -42,7 +42,7 @@ export class DisplayBlocklyComponent implements OnInit {
     },
     ()=>{
       self.showInner += `program executed`; 
-      console.log("finished");
+      // console.log("finished");
     });
   }
   ngOnInit(): void {
@@ -95,7 +95,10 @@ export class DisplayBlocklyComponent implements OnInit {
 
   }
   Download():void{
-    bh.saveLoad.DownloadBlocks(Blockly.Xml,this.demoWorkspace,"aaa.txt");
+    var name=window.prompt("Name?","blocks.xml");
+    if(name == null)
+      return;
+    bh.saveLoad.DownloadBlocks(Blockly.Xml,this.demoWorkspace,name);
   }
   changeListener($event: any) : void {
     this.readThis($event.target);

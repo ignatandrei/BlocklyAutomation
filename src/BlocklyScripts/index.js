@@ -11,7 +11,7 @@ module.exports = {
   defaultBlocks: require('./defaultBlocks'),
   filterBlocks: require('./filterBlocks'),
   waitBlocks: require('./wait_block'),
-  xhrBlocks: require('./xhrblocks'),
+  xhrBlocks: require('./xhrBlocks'),
   propBlocks: require('./propBlocks'),
 
 };
