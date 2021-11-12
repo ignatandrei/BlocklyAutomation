@@ -78,6 +78,21 @@ export class DisplayBlocklyComponent implements OnInit {
   Download():void{
     bh.saveLoad.DownloadBlocks(Blockly.Xml,this.demoWorkspace,"aaa.txt");
   }
+  changeListener($event: any) : void {
+    this.readThis($event.target);
+  }
+
+  readThis(inputValue: any) : void {
+    var file:File = inputValue.files[0]; 
+    var myReader:FileReader = new FileReader();
+
+    myReader.onloadend = function(e){
+      // you can perform an action with readed data here
+      console.log(myReader.result);
+    }
+    myReader.readAsText(file);
+    
+  }
   private initialize(defaultBlocks: string[] ){
     const blocklyDiv = document.getElementById('blocklyDiv');
     if(blocklyDiv == null){

@@ -5,8 +5,10 @@
     &nbsp;
     <button mat-raised-button color="primary" (click)="RunCode()">Run Code</button>
 
-
+    &nbsp;
     <button mat-raised-button color="primary" (click)="Download()">Download blocks</button>
+    &nbsp;
+    <input type="file" (change)="changeListener($event)">
 <span *ngIf="(demoWorkspace == null)">Loading</span>
 <!-- <div id="blocklyDiv" style="position:absolute"></div> -->
 <div style="width: 100%">
