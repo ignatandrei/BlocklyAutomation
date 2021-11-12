@@ -85,10 +85,12 @@ export class DisplayBlocklyComponent implements OnInit {
   readThis(inputValue: any) : void {
     var file:File = inputValue.files[0]; 
     var myReader:FileReader = new FileReader();
-
+    var self=this;
     myReader.onloadend = function(e){
       // you can perform an action with readed data here
-      console.log(myReader.result);
+      //console.log(myReader.result);
+      bh.saveLoad.LoadFile(Blockly.Xml,self.demoWorkspace,myReader.result);
+      self.run.resetInterpreter();
     }
     myReader.readAsText(file);
     
