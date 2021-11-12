@@ -38,6 +38,7 @@ jobs:
           ls -l
           cd ..
           npm i
+          npm i -w AutoBlocklyApp        
           pwd
           ls -l           
           npm run buildAng
