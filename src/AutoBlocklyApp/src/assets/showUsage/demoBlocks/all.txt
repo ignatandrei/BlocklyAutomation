@@ -10,5 +10,9 @@
 	{
 		"id":"nasa",
 		"description":"Nasa today image"
+	},
+	{
+		"id":"saveImage",
+		"description":"How to save images"
 	}
 ]

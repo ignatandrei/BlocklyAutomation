@@ -55,7 +55,7 @@ exports.definitionBlocks=function(blocks_defineBlocksWithJsonArray,javaScript){
 //   interpreter.setProperty(globalObject, 'waitForSeconds', wrapper);
 // }
 
-exports.waitXml=function(){
+exports.fieldXML=function(){
   return `
   <block type="wait_seconds"></block>
 `

@@ -72,7 +72,7 @@ exports.definitionBlocks = function (blocks, javaScript, BlocklyFieldDropdown) {
   };
 };
 
-exports.xhrXML =function(){
+exports.fieldXML =function(){
     return `
     <category id="XHR" name="Request">
     <block type="httprequest">

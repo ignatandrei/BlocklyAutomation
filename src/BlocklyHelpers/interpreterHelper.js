@@ -156,6 +156,47 @@ exports.createInterpreter = function(workspace,BlocklyJavaScript){
             req.send(null);
         },
         headersForDomain:'',
+
+        exportToFile : function (nameFile, content, toByte) {
+
+          // try {
+          //     var isFileSaverSupported = !!new Blob;
+          // } catch (e) {
+          //     window.alert('file saving not supported');
+          //     return;
+          // }
+          var FileSaver = require('file-saver');
+      
+          var blob ;
+          
+          if (toByte) {
+              blob = this.b64toBlob(content);
+          }
+          else {
+              blob = new Blob([content], { type: "text/plain;charset=utf-8" });
+          }    
+          FileSaver.saveAs(blob, nameFile);    
+          return nameFile;
+      },
+      b64toBlob : function (b64Data, contentType = '', sliceSize = 512) {
+          const byteCharacters = atob(b64Data);
+          const byteArrays = [];
+      
+          for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+              const slice = byteCharacters.slice(offset, offset + sliceSize);
+      
+              const byteNumbers = new Array(slice.length);
+              for (let i = 0; i < slice.length; i++) {
+                  byteNumbers[i] = slice.charCodeAt(i);
+              }
+      
+              const byteArray = new Uint8Array(byteNumbers);
+              byteArrays.push(byteArray);
+          }
+      
+          const blob = new Blob(byteArrays, { type: contentType });
+          return blob;
+      },
         
         initApiJS:function (interpreter, globalObject,thisClass,callBackData,callBackProgramComplete ) {
             // Add an API function for the alert() block, generated for "text_print" blocks.
@@ -170,6 +211,27 @@ exports.createInterpreter = function(workspace,BlocklyJavaScript){
             interpreter.setProperty(globalObject, 'alert',
                 interpreter.createNativeFunction(wrapper));
 
+            var wrapper = (it, content, toByte) => thisClass.exportToFile(it, content, toByte);
+            interpreter.setProperty(globalObject, 'exportToFile',
+                    interpreter.createNativeFunction(wrapper));
+        
+
+            var wrapper = (item) => {             
+    
+                let arr = typeof arrayOrString != 'object' ? JSON.parse(arrayOrString) : objArray;
+            
+                arr = [Object.keys(arr[0])].concat(arr)
+                var data = arr.map(it => {
+                    return Object.values(it).toString()
+                }).join('\n');
+                console.log(data);
+                return data;
+            
+            }
+            interpreter.setProperty(globalObject, 'convertToCSV',
+                interpreter.createNativeFunction(wrapper));
+
+            
           var wrapper = function (text) {
                   window.open(text);
               };

@@ -67,7 +67,7 @@ exports.definitionBlocks=function(blocks,javaScript){
           return [code, javaScript.ORDER_FUNCTION_CALL];
       };
 }
-exports.filterXML=function(){
+exports.fieldXML=function(){
     return `
         <category id="catA" name="Array">
             <block type="filterList">

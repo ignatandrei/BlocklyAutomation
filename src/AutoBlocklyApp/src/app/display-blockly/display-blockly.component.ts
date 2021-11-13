@@ -57,6 +57,7 @@ export class DisplayBlocklyComponent implements OnInit {
         var xml = Blockly.Xml.textToDom(data);
         if(this.demoWorkspace != null){
           Blockly.Xml.clearWorkspaceAndLoadFromXml(xml, this.demoWorkspace);
+          window.alert('please press run code button');
         }
       }
     );
@@ -80,12 +81,13 @@ export class DisplayBlocklyComponent implements OnInit {
     bs.xhrBlocks.definitionBlocks(Blockly.Blocks, BlocklyJavaScript,function (arr:any[][]){return new Blockly.FieldDropdown(arr)});
     bs.propBlocks.definitionBlocks(Blockly.Blocks, BlocklyJavaScript,function (arr:any){return new Blockly.FieldLabelSerializable(arr)});
     bs.guiBlocks.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
-
+    bs.convertersBlocks.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
+    bs.exportFileBlock.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
       var blocks=[
         bs.defaultBlocks.generalBlocks(),
         `    <category name="Advanced=>">
-            ${bs.filterBlocks.filterXML()}
-            ${bs.xhrBlocks.xhrXML()}
+            ${bs.filterBlocks.fieldXML()}
+            ${bs.xhrBlocks.fieldXML()}
             </category>
             <category id="catJSBLocks" name="JSBlocks">
             ${bs.propBlocks.fieldXML()}
@@ -95,8 +97,16 @@ export class DisplayBlocklyComponent implements OnInit {
             </category>
         `,
         `<category id="catHelpers" colour="160" name="Helpers">
-          ${bs.waitBlocks.waitXml()}
+          ${bs.waitBlocks.fieldXML()}
+        </category>`,
+        `<category id="catConverters" colour="160" name="Converters">
+          ${bs.convertersBlocks.fieldXML()}
+        </category>`,
+        `<category id="catExporter" colour="160" name="Exporter">
+          ${bs.exportFileBlock.fieldXML()}
         </category>`
+        
+
       ]
       this.initialize(blocks);
       
