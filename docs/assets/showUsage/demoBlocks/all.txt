@@ -10,5 +10,18 @@
 	{
 		"id":"nasa",
 		"description":"Nasa today image"
-	}
+	},
+	{
+		"id":"saveImage",
+		"description":"How to save images"
+	},
+
+	{
+		"id":"CSV",
+		"description":"How to export to CSV"
+	},
+{
+	"id":"ObjModif",
+	"description":" work with objects"
+}
 ]
