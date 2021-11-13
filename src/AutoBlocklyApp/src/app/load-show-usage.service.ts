@@ -17,7 +17,7 @@ export class LoadShowUsageService {
 
   public getDemoBlocks(): Observable<DemoBlocks[]> {
   
-    return this.http.get<string>("/assets/showUsage/demoBlocks/_all.json",{ responseType: 'text' as 'json'})
+    return this.http.get<string>("assets/showUsage/demoBlocks/_all.txt",{ responseType: 'text' as 'json'})
     .pipe(
 
       map((res: any) => {
@@ -34,7 +34,7 @@ export class LoadShowUsageService {
 
     
     var q= this.http.get
-      (`/assets/showUsage/demoBlocks/${id}.txt`, {responseType: 'text'})
+      (`assets/showUsage/demoBlocks/${id}.txt`, {responseType: 'text'})
     .pipe(
       tap((res: any) => {
         // console.log(res);
