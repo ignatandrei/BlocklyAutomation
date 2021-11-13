@@ -14,5 +14,10 @@
 	{
 		"id":"saveImage",
 		"description":"How to save images"
+	},
+
+	{
+		"id":"CSV",
+		"description":"How to export to CSV"
 	}
 ]

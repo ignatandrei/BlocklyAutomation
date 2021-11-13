@@ -216,15 +216,14 @@ exports.createInterpreter = function(workspace,BlocklyJavaScript){
                     interpreter.createNativeFunction(wrapper));
         
 
-            var wrapper = (item) => {             
+            var wrapper = (arrayOrString) => {             
     
-                let arr = typeof arrayOrString != 'object' ? JSON.parse(arrayOrString) : objArray;
+                let arr = typeof arrayOrString != 'object' ? JSON.parse(arrayOrString) : {};
             
                 arr = [Object.keys(arr[0])].concat(arr)
                 var data = arr.map(it => {
                     return Object.values(it).toString()
                 }).join('\n');
-                console.log(data);
                 return data;
             
             }
