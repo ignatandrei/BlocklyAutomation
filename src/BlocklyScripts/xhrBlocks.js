@@ -1,5 +1,5 @@
 exports.definitionBlocks = function (blocks, javaScript, BlocklyFieldDropdown) {
-    console.log(BlocklyFieldDropdown);
+    // console.log(BlocklyFieldDropdown);
     const ORDER_ATOMIC = 0;
     const ORDER_NONE=99;
 

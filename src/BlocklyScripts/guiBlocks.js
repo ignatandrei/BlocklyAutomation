@@ -1,5 +1,6 @@
 exports.definitionBlocks=function (blocks, javaScript){
     const ORDER_NONE= 99;
+    const ORDER_ATOMIC= 0;
     blocks['window_open'] = {
   
         init: function() {
@@ -24,8 +25,35 @@ exports.definitionBlocks=function (blocks, javaScript){
       javaScript['window_open'] = function(block) {
         // Print statement.
         var msg = javaScript.valueToCode(block, 'TEXT',
-            /*Blockly.JavaScript.*/ORDER_NONE) || '\'\'';
+            /*javaScript.*/ORDER_NONE) || '\'\'';
         return 'open(' + msg + ');\n';
+      };
+
+
+
+
+      blocks['valuefromtext'] = {
+        init: function() {
+          this.appendDummyInput()
+              .appendField("InputFromText");
+          this.appendValueInput("IdOfText")
+              .setCheck("String")
+              .appendField("Text id");
+        this.appendValueInput("ValueToObtain")
+              .setCheck("String")
+              .appendField("Property");
+          this.setOutput(true, null);
+          this.setColour(230);
+       this.setTooltip("");
+       this.setHelpUrl("");
+        }
+      }
+        
+       javaScript['valuefromtext'] = function(block) {
+        var value_idoftext = javaScript.valueToCode(block, 'IdOfText', /*javaScript.*/ORDER_ATOMIC);
+        var value_valuetoobtain = javaScript.valueToCode(block, 'ValueToObtain', /*javaScript.*/ORDER_ATOMIC)||'"value"';
+        var code = 'getIDProp('+ value_idoftext+','+ value_valuetoobtain+')';
+        return [code, /*javaScript.*/ORDER_NONE];
       };
 }
 
