@@ -88,6 +88,8 @@ export class DisplayBlocklyComponent implements OnInit {
         return new Blockly.FieldTextInput(item);
       }
       );
+    bs.currentDateBlock.definitionBlocks(Blockly.Blocks, BlocklyJavaScript,
+      function (arr:any[][]){return new Blockly.FieldDropdown(arr)});
       var blocks=[
         bs.defaultBlocks.generalBlocks(),
         `    <category name="Advanced=>">

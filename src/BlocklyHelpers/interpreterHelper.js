@@ -198,6 +198,53 @@ exports.createInterpreter = function(workspace,BlocklyJavaScript){
           return blob;
       },
         
+
+      displayDateCurrentAsHuman :function ()  {
+
+        //undefined - get the date format form user browser.
+        let today = new Date().toLocaleDateString(undefined, {
+            day: 'numeric',
+            month: 'numeric',
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+        });
+       
+        return today;
+    },
+    
+    displayDateCurrentAsIso : function () {
+        let today = new Date().toISOString();
+        return today;
+    }
+    ,
+    displayDateCurrentAsUnix : function() {
+        return Date.now();
+    }
+    ,
+    displayDateFormatted: function (format) {
+
+      switch (format) {
+          case 'human':
+              // console.log("calling displayDateCurrentAsHuman")
+              return this.displayDateCurrentAsHuman();
+              break;
+          case 'iso':
+              console.log("calling displayDateCurrentAsIso")
+              return this.displayDateCurrentAsIso();
+              break;
+          case 'unix':
+              // console.log("calling displayDateCurrentAsUnix")
+              return this.displayDateCurrentAsUnix();
+              break;
+          default:
+              console.log('Date time format not suported')
+      }
+  },
+  
+    
+
+
         initApiJS:function (interpreter, globalObject,thisClass,callBackData,callBackProgramComplete ) {
             // Add an API function for the alert() block, generated for "text_print" blocks.
             var wrapper = function(text) {
@@ -211,6 +258,11 @@ exports.createInterpreter = function(workspace,BlocklyJavaScript){
             interpreter.setProperty(globalObject, 'alert',
                 interpreter.createNativeFunction(wrapper));
 
+          var wrapper = (it) => thisClass.displayDateFormatted(it);
+          interpreter.setProperty(globalObject, 'displayDateFormatted',
+                        interpreter.createNativeFunction(wrapper));
+            
+    
             var wrapper = (it, content, toByte) => thisClass.exportToFile(it, content, toByte);
             interpreter.setProperty(globalObject, 'exportToFile',
                     interpreter.createNativeFunction(wrapper));
