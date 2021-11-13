@@ -18,5 +18,6 @@ module.exports = {
   exportFileBlock: require('./exportfileBlock'),
   createObjectBlocks: require('./createObjectBlocks'),
   currentDateBlock: require('./currentDateBlock'),
+  dateFromTextBlock: require('./dateFromTextBlock'),
 
 };

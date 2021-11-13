@@ -10,7 +10,10 @@ exports.definitionBlocks = function (blocks, javaScript,BlocklyFieldDropdown) {
  * @Author: Popescu Ionut Cosmin (cosmin.popescu93@gmail.com)
  * https://github.com/cosminpopescu14
  */
-blocks['displayCurrentDate'] = {
+    const ORDER_NONE=99;
+    blocks['displayCurrentDate'] = {
+
+    
     init: function () {
         this.appendDummyInput()
             .appendField("Current Date");
@@ -56,7 +59,7 @@ javaScript['displayCurrentDate'] = block => {
     }
 
     let code = operation;
-    return [code, javaScript.ORDER_NONE];
+    return [code, /*javaScript.*/ORDER_NONE];
 }
 
 
