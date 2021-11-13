@@ -56,5 +56,9 @@
 {
 	"id":"map",
 	"description":"map list"
+},
+{
+	"id":"comments",
+	"description":"comments"
 }
 ]

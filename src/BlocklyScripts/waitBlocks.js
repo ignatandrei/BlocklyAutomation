@@ -5,8 +5,8 @@
 // }
 
 exports.definitionBlocks = function (blocks, javaScript) {
-
-blocks['wait'] = {
+    const ORDER_ATOMIC = 0;
+    blocks['wait'] = {
     init: function() {
       this
 			.appendValueInput('VALUE')            
@@ -44,7 +44,7 @@ blocks['wait'] = {
   };
 
   javaScript['wait_until'] = function(block) {
-    var number_wait = javaScript.valueToCode(block, 'VALUE', javaScript.ORDER_ATOMIC)|| '';    
+    var number_wait = javaScript.valueToCode(block, 'VALUE', /*javaScript.*/ORDER_ATOMIC)|| '';    
     //console.log(number_wait);
 	
 	var code= 'waitTime(('+ number_wait+'-new Date())/1000);';

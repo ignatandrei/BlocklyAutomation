@@ -93,7 +93,12 @@ export class DisplayBlocklyComponent implements OnInit {
 
     bs.dateFromTextBlock.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
     bs.waitBlocks.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
-
+    bs.commentBlock.definitionBlocks(Blockly.Blocks, BlocklyJavaScript,
+      (item:string)=>{
+        return new Blockly.FieldLabelSerializable(item);
+      }
+      
+      );
     var blocks=[
         bs.defaultBlocks.generalBlocks(),
         `    <category name="Advanced=>">
@@ -122,6 +127,8 @@ export class DisplayBlocklyComponent implements OnInit {
           ${bs.dateFromTextBlock.fieldXML()}
           ${bs.waitBlocks.fieldXML()}
         </category>`,
+        `${bs.commentBlock.fieldXML()}`,
+
 
 
 `${bs.createObjectBlocks.fieldXML()}`

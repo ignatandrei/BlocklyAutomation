@@ -19,6 +19,7 @@ module.exports = {
   createObjectBlocks: require('./createObjectBlocks'),
   currentDateBlock: require('./currentDateBlock'),
   dateFromTextBlock: require('./dateFromTextBlock'),
-  waitBlocks: require('./waitBlocks')
+  waitBlocks: require('./waitBlocks'),
+  commentBlock: require('./commentBlock'),
 
 };
