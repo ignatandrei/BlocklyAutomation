@@ -244,7 +244,7 @@ exports.createInterpreter = function(workspace,BlocklyJavaScript){
     
    doPost : function (href, objectToPost, callback) {
     let data = objectToPost;
-    console.log(`sending ${data}`);
+    // console.log(`sending ${data}`);
     let req = new XMLHttpRequest();
     req.open('POST', href, true);
     req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
@@ -369,7 +369,7 @@ exports.createInterpreter = function(workspace,BlocklyJavaScript){
                   hostname = (new URL(href)).hostname;
               }
               var arrHeaders = [];
-              console.log("heads2",heads);
+              // console.log("heads2",heads);
               if (hostname in heads) {
                    arrHeaders = heads[hostname];
               }
@@ -387,7 +387,7 @@ exports.createInterpreter = function(workspace,BlocklyJavaScript){
                         hostname = (new URL(href)).hostname;
                     }
                     var arrHeaders = [];
-                    console.log("heads1",heads);
+                    // console.log("heads1",heads);
                     if (hostname in heads) {
                         arrHeaders = heads[hostname];
                     }

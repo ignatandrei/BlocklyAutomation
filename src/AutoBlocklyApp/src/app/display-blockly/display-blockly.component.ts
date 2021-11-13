@@ -73,7 +73,9 @@ export class DisplayBlocklyComponent implements OnInit {
       
     this.loadDemo.getDemoBlocks().subscribe(
       (data:DemoBlocks[])=>{
-        this.demos=data.sort((a,b)=> a.description.localeCompare(b.description));
+        this.demos=data
+          
+          .sort((a,b)=> a.description.localeCompare(b.description));
       }
     );
     const gridElement = document.getElementById('steps');
