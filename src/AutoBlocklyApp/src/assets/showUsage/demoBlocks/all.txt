@@ -31,5 +31,9 @@
 {
 	"id":"verifyGrid",
 	"description":"verify multiple objects show in Grid"
+},
+{
+	"id":"filterList",
+	"description":"filter results"
 }
 ]
