@@ -63,11 +63,13 @@
 },
 {
 	"id":"auth0",
-	"description":"AuthZero"
+	"description":"AuthZero",
+	"categories": "authentication"
 }
 ,
 {
 	"id":"jwt",
-	"description":"get JWT and use"
+	"description":"get JWT and use",
+	"categories": "authentication;bearer"
 }
 ]
