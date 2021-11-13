@@ -23,5 +23,17 @@
 {
 	"id":"ObjModif",
 	"description":" work with objects"
+},
+{
+	"id":"currentDate",
+	"description":"work with currentdate"
+},
+{
+	"id":"verifyGrid",
+	"description":"verify multiple objects show in Grid"
+},
+{
+	"id":"filterList",
+	"description":"filter results"
 }
 ]
