@@ -106,6 +106,7 @@ export class DisplayBlocklyComponent implements OnInit {
       }
       
       );
+    bs.auth0Blocks.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
     var blocks=[
         bs.defaultBlocks.generalBlocks(),
         `    <category name="Advanced=>">
@@ -135,10 +136,8 @@ export class DisplayBlocklyComponent implements OnInit {
           ${bs.waitBlocks.fieldXML()}
         </category>`,
         `${bs.commentBlock.fieldXML()}`,
-
-
-
-`${bs.createObjectBlocks.fieldXML()}`
+        `${bs.createObjectBlocks.fieldXML()}`,
+        `${bs.auth0Blocks.fieldXML()}`,
         
 
       ]

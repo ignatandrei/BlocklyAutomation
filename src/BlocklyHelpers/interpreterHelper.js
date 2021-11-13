@@ -155,8 +155,7 @@ exports.createInterpreter = function(workspace,BlocklyJavaScript){
             };
             req.send(null);
         },
-        headersForDomain:'',
-
+        
         exportToFile : function (nameFile, content, toByte) {
 
           // try {
@@ -230,7 +229,7 @@ exports.createInterpreter = function(workspace,BlocklyJavaScript){
               return this.displayDateCurrentAsHuman();
               break;
           case 'iso':
-              console.log("calling displayDateCurrentAsIso")
+              //console.log("calling displayDateCurrentAsIso")
               return this.displayDateCurrentAsIso();
               break;
           case 'unix':
@@ -243,9 +242,53 @@ exports.createInterpreter = function(workspace,BlocklyJavaScript){
   },
   
     
+   doPost : function (href, objectToPost, callback) {
+    let data = objectToPost;
+    console.log(`sending ${data}`);
+    let req = new XMLHttpRequest();
+    req.open('POST', href, true);
+    req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
+    req.onreadystatechange = function () {
+        if (req.readyState == 4) {
+            if (req.status >= 200 && req.status < 300) {
+                var answer = JSON.stringify({
+                    'origHref': href,
+                    'objectToSend': objectToPost,
+                    'status': req.status,
+                    'statusOK': true,
+                    'text': req.responseText
+
+                });
+                return callback(answer);
+
+
+            } else {
+                var answer = JSON.stringify({
+                    'origHref': href,
+                    'objectToSend': objectToPost,
+                    'status': req.status,
+                    'statusOK': false,
+                    'text': req.responseText
+
+                });
+                return callback(answer);
+
+            }
+        }
+        else {
+            //window.alert(`error ${href} ${req.status}`);
+        }
+    };
+    req.send(data);
+  }
+,
 
         initApiJS:function (interpreter, globalObject,thisClass,callBackData,callBackProgramComplete ) {
+            
+          var headersForDomain = interpreter.nativeToPseudo({ '(localSite)': [] });
+          interpreter.setProperty(globalObject, 'headersForDomain',headersForDomain);
+
             // Add an API function for the alert() block, generated for "text_print" blocks.
             var wrapper = function(text) {
               text = text ? text.toString() : '';
@@ -320,20 +363,42 @@ exports.createInterpreter = function(workspace,BlocklyJavaScript){
 
 
             var wrapper = (href, callback) => {
-              var heads = interpreter.pseudoToNative(thisClass.headersForDomain);
+              var heads = interpreter.pseudoToNative(headersForDomain);
               var hostname = '(localSite)';
               if (href.startsWith('http://') || href.startsWith('https://')) {
                   hostname = (new URL(href)).hostname;
               }
               var arrHeaders = [];
-              // if (hostname in heads) {
-              //     arrHeaders = heads[hostname];
-              // }
+              console.log("heads2",heads);
+              if (hostname in heads) {
+                   arrHeaders = heads[hostname];
+              }
               return thisClass.doGet(href, callback, arrHeaders);
           }
           interpreter.setProperty(globalObject, 'getXhr',
               interpreter.createAsyncFunction(wrapper));
 
+
+              var wrapper = (href, objectToPost, callback) => {
+                try {
+                    var heads = interpreter.pseudoToNative(headersForDomain);
+                    var hostname = '(localSite)';
+                    if (href.startsWith('http://') || href.startsWith('https://')) {
+                        hostname = (new URL(href)).hostname;
+                    }
+                    var arrHeaders = [];
+                    console.log("heads1",heads);
+                    if (hostname in heads) {
+                        arrHeaders = heads[hostname];
+                    }
+                    thisClass.doPost(href, objectToPost, callback);
+                }
+                catch (e) {
+                    alert("is an error" + e);
+                }
+            };
+            interpreter.setProperty(globalObject, 'postXhr',
+                interpreter.createAsyncFunction(wrapper));
 
             
             // Add an API function for highlighting blocks.

@@ -2,6 +2,47 @@ exports.definitionBlocks = function (blocks, javaScript, BlocklyFieldDropdown) {
     console.log(BlocklyFieldDropdown);
     const ORDER_ATOMIC = 0;
     const ORDER_NONE=99;
+
+
+    blocks['headersbeforehttp'] = {
+      init: function() {
+        this.appendDummyInput()
+            .appendField("Add Headers");
+        this.appendValueInput("HttpDomain")
+            .setCheck("String")
+            .appendField("Domain");
+        this.appendValueInput("HeaderName")
+            .setCheck("String")
+            .appendField("Header Name");
+        this.appendValueInput("HeaderValue")
+            .setCheck("String")
+            .appendField("Header Value");
+      this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        //this.setColour(230);
+     //this.setTooltip("");
+     //this.setHelpUrl("");
+      }
+    };
+    javaScript['headersbeforehttp'] = function(block) {
+      var value_httpdomain = javaScript.valueToCode(block, 'HttpDomain', /*javaScript.*/ORDER_ATOMIC)||'(localSite)';
+      var value_headername = javaScript.valueToCode(block, 'HeaderName', /*javaScript.*/ORDER_ATOMIC);
+      var value_headervalue = javaScript.valueToCode(block, 'HeaderValue', /*javaScript.*/ORDER_ATOMIC);
+      
+      var code = '\n';//'alert("a" + JSON.stringify(headersForDomain)+"a");\n';
+      code +='{\n';
+      code +='if(!(' + value_httpdomain + ' in headersForDomain))\n';
+      code +='{\n';
+      code +='headersForDomain[' + value_httpdomain +']=[];\n';
+      code +='};\n';
+      code +='var arr = headersForDomain[' + value_httpdomain +'];\n';
+      code +='arr.push({name:' + value_headername +', value:'+value_headervalue+'});\n';
+      code +='//alert("a" + JSON.stringify(arr)+"a");\n';
+      code +='//alert("a" + JSON.stringify(headersForDomain[' + value_httpdomain +'])+"a");\n';
+      code +='};\n';
+      return code;
+    };
+
   blocks["httprequest"] = {
     init: function () {
       this.appendDummyInput()
@@ -42,7 +83,7 @@ exports.definitionBlocks = function (blocks, javaScript, BlocklyFieldDropdown) {
     var value_data = javaScript.valueToCode(
       block,
       "Data",
-      javaScript.ORDER_ATOMIC
+      /*javaScript.*/ORDER_ATOMIC
     );
     var operation = "";
     switch (dropdown_typerequest.toString()) {
@@ -75,6 +116,23 @@ exports.definitionBlocks = function (blocks, javaScript, BlocklyFieldDropdown) {
 exports.fieldXML =function(){
     return `
     <category id="XHR" name="Request">
+    <block type="headersbeforehttp">
+    <value name="HttpDomain">
+        <shadow type="text">
+            <field name="TEXT">(localSite)</field>
+        </shadow>
+    </value>
+    <value name="HeaderName">
+        <shadow type="text">
+            <field name="TEXT">Authorization</field>
+        </shadow>
+    </value>
+    <value name="HeaderValue">
+        <shadow type="text_join">
+
+        </shadow>
+    </value>
+</block>
     <block type="httprequest">
     <value name="TheUrl">
         <shadow type="text">

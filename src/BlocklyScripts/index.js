@@ -21,5 +21,6 @@ module.exports = {
   dateFromTextBlock: require('./dateFromTextBlock'),
   waitBlocks: require('./waitBlocks'),
   commentBlock: require('./commentBlock'),
+  auth0Blocks: require('./auth0Blocks'),
 
 };

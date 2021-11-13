@@ -60,5 +60,9 @@
 {
 	"id":"comments",
 	"description":"comments"
+},
+{
+	"id":"auth0",
+	"description":"AuthZero"
 }
 ]
