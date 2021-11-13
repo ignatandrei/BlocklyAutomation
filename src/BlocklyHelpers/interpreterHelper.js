@@ -286,6 +286,17 @@ exports.createInterpreter = function(workspace,BlocklyJavaScript){
 
         initApiJS:function (interpreter, globalObject,thisClass,callBackData,callBackProgramComplete ) {
             
+          var wrapper = (item) => {
+            if(callBackData)
+              callBackData('\n error --' + '\n' + item + '\n error --');            
+            else
+              console.log(item);
+       
+        };
+
+        interpreter.setProperty(globalObject, 'errHandler',
+            interpreter.createNativeFunction(wrapper));
+
           var headersForDomain = interpreter.nativeToPseudo({ '(localSite)': [] });
           interpreter.setProperty(globalObject, 'headersForDomain',headersForDomain);
 
