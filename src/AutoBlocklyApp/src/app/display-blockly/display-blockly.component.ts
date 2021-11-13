@@ -46,6 +46,7 @@ export class DisplayBlocklyComponent implements OnInit {
     }
     this.run = bh.interpreterHelper.createInterpreter(this.demoWorkspace,BlocklyJavaScript);
     this.clearOutput();
+    this.showInner = 'start program';
     var self=this;
     this.run.runCode(f, (data:any)=>{
       self.step++;
