@@ -35,5 +35,30 @@
 {
 	"id":"filterList",
 	"description":"filter results"
+},
+{
+	"id":"testWait",
+	"description":"wait with dates"
+},
+{
+	"id":"dateFrom",
+	"description": "date from string"
+},
+{
+	"id":"waitForDate",
+	"description":"wait until the date with procedure"
+},
+{
+	"id":"waitForDateSimple",
+	"description":"wait until simple"
+}
+,
+{
+	"id":"map",
+	"description":"map list"
+},
+{
+	"id":"comments",
+	"description":"comments"
 }
 ]
