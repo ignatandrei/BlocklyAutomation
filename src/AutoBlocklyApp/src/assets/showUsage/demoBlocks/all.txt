@@ -19,5 +19,9 @@
 	{
 		"id":"CSV",
 		"description":"How to export to CSV"
-	}
+	},
+{
+	"id":"ObjModif",
+	"description":" work with objects"
+}
 ]

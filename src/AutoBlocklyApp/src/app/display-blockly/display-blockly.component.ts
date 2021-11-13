@@ -83,6 +83,11 @@ export class DisplayBlocklyComponent implements OnInit {
     bs.guiBlocks.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
     bs.convertersBlocks.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
     bs.exportFileBlock.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
+    bs.createObjectBlocks.definitionBlocks(Blockly.Blocks, BlocklyJavaScript, Blockly.Extensions,
+      (item:string)=>{
+        return new Blockly.FieldTextInput(item);
+      }
+      );
       var blocks=[
         bs.defaultBlocks.generalBlocks(),
         `    <category name="Advanced=>">
@@ -104,7 +109,9 @@ export class DisplayBlocklyComponent implements OnInit {
         </category>`,
         `<category id="catExporter" colour="160" name="Exporter">
           ${bs.exportFileBlock.fieldXML()}
-        </category>`
+        </category>`,
+
+`${bs.createObjectBlocks.fieldXML()}`
         
 
       ]
