@@ -169,6 +169,14 @@ exports.createInterpreter = function(workspace,BlocklyJavaScript){
             };
             interpreter.setProperty(globalObject, 'alert',
                 interpreter.createNativeFunction(wrapper));
+
+          var wrapper = function (text) {
+                  window.open(text);
+              };
+          interpreter.setProperty(globalObject, 'open',
+                  interpreter.createNativeFunction(wrapper));
+  
+  
       
             // Add an API function for the prompt() block.
             var wrapper = function(text) {

@@ -6,5 +6,9 @@
 	{
 		"id":"wait",
 		"description":"simple wait"
+	},
+	{
+		"id":"nasa",
+		"description":"Nasa today image"
 	}
 ]

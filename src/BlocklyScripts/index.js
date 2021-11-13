@@ -13,5 +13,6 @@ module.exports = {
   waitBlocks: require('./wait_block'),
   xhrBlocks: require('./xhrBlocks'),
   propBlocks: require('./propBlocks'),
+  guiBlocks: require('./guiBlocks')
 
 };

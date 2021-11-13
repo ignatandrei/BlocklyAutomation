@@ -79,7 +79,7 @@ export class DisplayBlocklyComponent implements OnInit {
     bs.waitBlocks.definitionBlocks(Blockly.defineBlocksWithJsonArray, BlocklyJavaScript); 
     bs.xhrBlocks.definitionBlocks(Blockly.Blocks, BlocklyJavaScript,function (arr:any[][]){return new Blockly.FieldDropdown(arr)});
     bs.propBlocks.definitionBlocks(Blockly.Blocks, BlocklyJavaScript,function (arr:any){return new Blockly.FieldLabelSerializable(arr)});
-    
+    bs.guiBlocks.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
 
       var blocks=[
         bs.defaultBlocks.generalBlocks(),
@@ -89,6 +89,9 @@ export class DisplayBlocklyComponent implements OnInit {
             </category>
             <category id="catJSBLocks" name="JSBlocks">
             ${bs.propBlocks.fieldXML()}
+            </category>
+            <category id="catGUI" name="GUI">
+            ${bs.guiBlocks.fieldXML()}
             </category>
         `,
         `<category id="catHelpers" colour="160" name="Helpers">
