@@ -15,6 +15,6 @@ module.exports = {
   propBlocks: require('./propBlocks'),
   guiBlocks: require('./guiBlocks'),
   convertersBlocks: require('./convertersBlocks'),
-  exportFileBlock: require('./exportFileBlock'),
+  exportFileBlock: require('./exportfileBlock'),
 
 };
