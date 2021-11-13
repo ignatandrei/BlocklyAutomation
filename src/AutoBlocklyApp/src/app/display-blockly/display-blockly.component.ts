@@ -5,6 +5,7 @@ import * as acorn from 'acorn';
 import * as bs from '@blockly/blocklyscripts';
 import * as bh from '@blockly/blocklyhelpers';
 import { TabulatorHelper } from './tabulator';
+import { DemoBlocks, LoadShowUsageService } from '../load-show-usage.service';
 
 declare var Interpreter: any;
 @Component({
@@ -17,7 +18,8 @@ export class DisplayBlocklyComponent implements OnInit {
   
   public demoWorkspace: Blockly.WorkspaceSvg|null = null;
   public run: any;
-  constructor(private tabulator:TabulatorHelper) { 
+  public demos:DemoBlocks[] = [];
+  constructor(private tabulator:TabulatorHelper, private loadDemo: LoadShowUsageService) { 
     
     //console.log(bs.filterBlocks.definitionBlocks());
 
@@ -48,9 +50,24 @@ export class DisplayBlocklyComponent implements OnInit {
       this.tabulator.FinishGrid();
     });
   }
+  public ShowDemo(demo:DemoBlocks){
+    this.loadDemo.getDemoBlock(demo.id).subscribe(
+      data=>{
+
+        var xml = Blockly.Xml.textToDom(data);
+        if(this.demoWorkspace != null){
+          Blockly.Xml.clearWorkspaceAndLoadFromXml(xml, this.demoWorkspace);
+        }
+      }
+    );
+  }
   ngOnInit(): void {
       
-    
+    this.loadDemo.getDemoBlocks().subscribe(
+      (data:DemoBlocks[])=>{
+        this.demos=data;
+      }
+    );
     const gridElement = document.getElementById('steps');
     if(gridElement  == null){
       window.alert("gridElement is null");

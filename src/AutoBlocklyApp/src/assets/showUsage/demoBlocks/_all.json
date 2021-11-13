@@ -1,0 +1,10 @@
+[
+	{
+		"id":"chuck_norris",
+		"description":"joke with Chuck Norris"
+	},
+	{
+		"id":"wait",
+		"description":"simple wait"
+	}
+]

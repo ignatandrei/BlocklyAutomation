@@ -9,7 +9,14 @@
     <button mat-raised-button color="primary" (click)="Download()">Download blocks</button>
     &nbsp;
     <input type="file" (change)="changeListener($event)">
-<span *ngIf="(demoWorkspace == null)">Loading</span>
+    <button mat-raised-button  color="primary" [matMenuTriggerFor]="menu">Demos ({{demos.length}})</button>
+<mat-menu #menu="matMenu">
+    <ng-template ngFor let-demo [ngForOf]="demos">
+  <button mat-menu-item (click)="ShowDemo(demo)">{{demo.id}}</button>
+  </ng-template>
+  
+</mat-menu>
+    <span *ngIf="(demoWorkspace == null)">Loading</span>
 <!-- <div id="blocklyDiv" style="position:absolute"></div> -->
 <div style="width: 100%">
     <div id="blocklyDiv"
