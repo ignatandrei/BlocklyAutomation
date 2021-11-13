@@ -3,7 +3,8 @@
   "workspaces": [
     "AutoBlocklyApp",
     "BlocklyScripts",
-    "BlocklyHelpers"
+    "BlocklyHelpers",
+    "BlocklySwagger"
   ],
   "scripts": {
     "start": "npm run start -w AutoBlocklyApp",

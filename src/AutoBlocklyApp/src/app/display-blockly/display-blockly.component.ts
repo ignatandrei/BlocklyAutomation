@@ -6,7 +6,7 @@ import * as bs from '@blockly/blocklyscripts';
 import * as bh from '@blockly/blocklyhelpers';
 import { TabulatorHelper } from './tabulator';
 import { DemoBlocks, LoadShowUsageService } from '../load-show-usage.service';
-
+import * as SwaggerParser from '@blockly/blocklyswagger';
 declare var Interpreter: any;
 @Component({
   selector: 'app-display-blockly',
@@ -72,7 +72,17 @@ export class DisplayBlocklyComponent implements OnInit {
     );
   }
   ngOnInit(): void {
-      
+    SwaggerParser
+    .parseSwagger
+    .parseSwagger('https://microservicesportchooser.azurewebsites.net/swagger/v1/swagger.json')
+    .then(function(api: any) {
+      console.log(api[0]);
+      api[0](Blockly.Blocks,BlocklyJavaScript);
+      api[1](Blockly.Blocks,BlocklyJavaScript);
+
+      // console.log(api[1](Blockly.Blocks,BlocklyJavaScript));
+    });
+
     this.loadDemo.getDemoBlocks().subscribe(
       (data:DemoBlocks[])=>{
         this.demos=data.sort((a,b)=> a.description.localeCompare(b.description));
@@ -157,7 +167,7 @@ export class DisplayBlocklyComponent implements OnInit {
         `${bs.commentBlock.fieldXML()}`,
         `${bs.createObjectBlocks.fieldXML()}`,
         `${bs.auth0Blocks.fieldXML()}`,
-        
+        `<category name="Swagger" id="catSwagger"><block type="IRegister"></block></category> `
 
       ]
       this.initialize(blocks);
