@@ -92,7 +92,9 @@ export class DisplayBlocklyComponent implements OnInit {
       function (arr:any[][]){return new Blockly.FieldDropdown(arr)});
 
     bs.dateFromTextBlock.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
-      var blocks=[
+    bs.waitBlocks.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
+
+    var blocks=[
         bs.defaultBlocks.generalBlocks(),
         `    <category name="Advanced=>">
             ${bs.filterBlocks.fieldXML()}
@@ -118,6 +120,7 @@ export class DisplayBlocklyComponent implements OnInit {
         `<category id="catDates" colour="160" name="Dates">
           ${bs.currentDateBlock.fieldXML()}
           ${bs.dateFromTextBlock.fieldXML()}
+          ${bs.waitBlocks.fieldXML()}
         </category>`,
 
 

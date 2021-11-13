@@ -43,5 +43,14 @@
 {
 	"id":"dateFrom",
 	"description": "date from string"
+},
+{
+	"id":"waitForDate",
+	"description":"wait until the date with procedure"
+},
+{
+	"id":"waitForDateSimple",
+	"description":"wait until simple"
 }
+
 ]

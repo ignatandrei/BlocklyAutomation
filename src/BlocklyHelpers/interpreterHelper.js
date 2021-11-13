@@ -258,6 +258,14 @@ exports.createInterpreter = function(workspace,BlocklyJavaScript){
             interpreter.setProperty(globalObject, 'alert',
                 interpreter.createNativeFunction(wrapper));
 
+                var wrapper = (nr, callback) => {
+                  console.log(`waiting seconds ${nr}`);
+                  setTimeout(callback, nr * 1000);
+              };
+              interpreter.setProperty(globalObject, 'waitTime',
+                  interpreter.createAsyncFunction(wrapper));
+
+                  
           var wrapper = (it) => thisClass.displayDateFormatted(it);
           interpreter.setProperty(globalObject, 'displayDateFormatted',
                         interpreter.createNativeFunction(wrapper));

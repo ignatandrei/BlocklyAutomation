@@ -38,6 +38,5 @@ exports.fieldXML = function () {
         </shadow>
     </value>
 </block>
-
 `;
 }
