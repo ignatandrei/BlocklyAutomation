@@ -20,24 +20,24 @@ export class TabulatorHelper
 
         throw new Error("hot is null");
     };
-
     initGrid(gridElement: any) {
     //console.log(gridElement); 
     
     this.hotInstance = new Tabulator(gridElement, {
         columns: [{ title: 'Step',field:'id' }],
         layout: "fitColumns",   
-        dataTree: false,
-        dataTreeStartExpanded: false,
-        movableRows: false,
-        movableColumns: true,
-        selectable: false,
-        selectableRangeMode: "click",
-        clipboard: "copy",
+        // dataTree: false,
+        // dataTreeStartExpanded: false,
+        // movableRows: false,
+        // movableColumns: true,
+        // selectable: false,
+        // selectableRangeMode: "click",
+        // clipboard: "copy",
         footerElement: `<div>
-        <a href="javascript:copyClip()">Copy Clipboard</a>
+        <!-- <a href="javascript:copyClip()">Copy Clipboard</a>
         &nbsp;&nbsp;&nbsp;&nbsp;
         <a href="javascript:copyCSV()">CSV</a>
+        -->
     </div>`,
         placeholder: "please press execute button", 
         // tooltips: function (cell:CellComponent) {
@@ -265,7 +265,7 @@ FinishGrid() {
 
     }
 
-    this.hot.clearFilter(true);
+    // this.hot.clearFilter(true);
     this.hot.redraw(true);           
 }
 
