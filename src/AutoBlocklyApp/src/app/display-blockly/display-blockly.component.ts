@@ -19,6 +19,7 @@ export class DisplayBlocklyComponent implements OnInit {
   public demoWorkspace: Blockly.WorkspaceSvg|null = null;
   public run: any;
   public demos:DemoBlocks[] = [];
+  public demosCategories:Map<string,DemoBlocks[]> = new Map<string,DemoBlocks[]>();
   constructor(private tabulator:TabulatorHelper, private loadDemo: LoadShowUsageService) { 
     
     //console.log(bs.filterBlocks.definitionBlocks());
@@ -73,9 +74,24 @@ export class DisplayBlocklyComponent implements OnInit {
       
     this.loadDemo.getDemoBlocks().subscribe(
       (data:DemoBlocks[])=>{
-        this.demos=data
-          
-          .sort((a,b)=> a.description.localeCompare(b.description));
+        this.demos=data.sort((a,b)=> a.description.localeCompare(b.description));
+        var categories=data
+              .map(it=>it.categories)
+              .filter(it=> it?.length>0)
+              .flatMap(it=>it.split(';'))
+              .filter(it=> it?.length>0)              
+              ;
+
+            
+        this.demosCategories.set("All",this.demos);
+        categories.forEach(element => {
+          this.demosCategories.set(element,data
+            .filter(it=>it.categories?.length > 0)
+            .filter(it => (";"+ it.categories +";").indexOf(';'+element+";")>-1)
+            )
+            
+        });
+
       }
     );
     const gridElement = document.getElementById('steps');

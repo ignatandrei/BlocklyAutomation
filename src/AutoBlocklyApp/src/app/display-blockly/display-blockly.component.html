@@ -11,8 +11,14 @@
     <input type="file" (change)="changeListener($event)">
     <button mat-raised-button  color="primary" [matMenuTriggerFor]="menu">Demos ({{demos.length}})</button>
 <mat-menu #menu="matMenu">
-    <ng-template ngFor let-demo [ngForOf]="demos">
-  <button mat-menu-item (click)="ShowDemo(demo)">{{demo.description}}</button>
+    <ng-template ngFor let-demo let-i="index"  [ngForOf]="demosCategories | keyvalue">
+  <button mat-menu-item [matMenuTriggerFor]="menu" >{{i+1}} {{demo.key}} ({{demo.value.length}})</button>
+  <mat-menu #menu="matMenu">
+    <ng-template ngFor let-itemDemo let-iMenu="index"  [ngForOf]="demo.value">
+    <button mat-menu-item (click)="ShowDemo(itemDemo)" >{{iMenu+1}} {{itemDemo.description}}</button>
+    </ng-template>  
+  </mat-menu>
+  
   </ng-template>
   
 </mat-menu>
