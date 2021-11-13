@@ -52,5 +52,9 @@
 	"id":"waitForDateSimple",
 	"description":"wait until simple"
 }
-
+,
+{
+	"id":"map",
+	"description":"map list"
+}
 ]
