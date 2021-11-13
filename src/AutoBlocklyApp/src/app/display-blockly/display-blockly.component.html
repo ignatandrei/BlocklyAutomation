@@ -12,7 +12,7 @@
     <button mat-raised-button  color="primary" [matMenuTriggerFor]="menu">Demos ({{demos.length}})</button>
 <mat-menu #menu="matMenu">
     <ng-template ngFor let-demo [ngForOf]="demos">
-  <button mat-menu-item (click)="ShowDemo(demo)">{{demo.id}}</button>
+  <button mat-menu-item (click)="ShowDemo(demo)">{{demo.description}}</button>
   </ng-template>
   
 </mat-menu>
