@@ -22,7 +22,7 @@
 	},
 {
 	"id":"ObjModif",
-	"description":" work with objects"
+	"description":"work with objects"
 },
 {
 	"id":"currentDate",
@@ -60,5 +60,14 @@
 {
 	"id":"comments",
 	"description":"comments"
+},
+{
+	"id":"auth0",
+	"description":"AuthZero"
+}
+,
+{
+	"id":"jwt",
+	"description":"get JWT and use"
 }
 ]
