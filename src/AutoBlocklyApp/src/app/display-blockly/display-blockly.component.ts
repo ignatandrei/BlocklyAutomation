@@ -32,9 +32,16 @@ export class DisplayBlocklyComponent implements OnInit {
 
   step:number=0;
   RunCode(){
-    
+    var self=this;
     var f= (latestCode:string, initApi: any)=> {
+      try{
       return new Interpreter(this.run.latestCode,initApi);
+      }
+      catch(e){
+        self.ShowInnerWorkings();
+        window.alert('please copy the left output and report there is an error at ' + JSON.stringify(e));
+
+      }
     }
     this.run = bh.interpreterHelper.createInterpreter(this.demoWorkspace,BlocklyJavaScript);
     this.clearOutput();
