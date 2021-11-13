@@ -27,5 +27,9 @@
 {
 	"id":"currentDate",
 	"description":"work with currentdate"
+},
+{
+	"id":"verifyGrid",
+	"description":"verify multiple objects show in Grid"
 }
 ]
