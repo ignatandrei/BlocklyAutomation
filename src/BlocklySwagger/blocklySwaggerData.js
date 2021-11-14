@@ -124,6 +124,8 @@ class BlocklyReturnSwagger {
               op.parameters.forEach(it=>{
 
             console.log(it);
+            this.appendValueInput(`val_${it.name}`)
+                .appendField(`${it.name}`,'aaa');
 
           });
 
