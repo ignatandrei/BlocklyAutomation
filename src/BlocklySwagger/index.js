@@ -9,5 +9,6 @@
 module.exports = {
   
   parseSwagger: require('./parseSwagger'),
+  parseData: require('./blocklySwaggerData')
   
 };

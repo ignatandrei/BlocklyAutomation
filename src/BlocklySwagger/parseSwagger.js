@@ -1,10 +1,12 @@
 // import parseSwaggerDocumentation from '@api-platform/api-doc-parser/lib/swagger/parseSwaggerDocumentation';
 // import parseOpenApi3Documentation from '@api-platform/api-doc-parser/lib/openapi3/parseOpenApi3Documentation';
-
 exports.parseSwagger =async function(swaggerUrl) {
     // const SwaggerParser = require("@apidevtools/swagger-parser");
-var result=[];
-    const SwaggerParser = require('@api-platform/api-doc-parser/lib/openapi3/parseOpenApi3Documentation');
+    const BlocklyReturnSwagger= require('./blocklySwaggerData');
+    var b=new BlocklyReturnSwagger(swaggerUrl);
+    var result=[];
+    
+const SwaggerParser = require('@api-platform/api-doc-parser/lib/openapi3/parseOpenApi3Documentation');
     var q= await SwaggerParser.default(swaggerUrl);
     var r  = q.response;
     // console.log(r.components.schemas);

@@ -72,16 +72,24 @@ export class DisplayBlocklyComponent implements OnInit {
     );
   }
   ngOnInit(): void {
-    SwaggerParser
-    .parseSwagger
-    .parseSwagger('https://microservicesportchooser.azurewebsites.net/swagger/v1/swagger.json')
-    .then(function(api: any) {
-      console.log(api[0]);
-      api[0](Blockly.Blocks,BlocklyJavaScript);
-      api[1](Blockly.Blocks,BlocklyJavaScript);
 
-      // console.log(api[1](Blockly.Blocks,BlocklyJavaScript));
-    });
+    var parser=new SwaggerParser.parseData('https://microservicesportchooser.azurewebsites.net/swagger/v1/swagger.json');
+    parser.ParseSwagger().then(
+      function(api: any) {
+           console.log(api);
+       
+      });
+    
+    // SwaggerParser
+    // .parseSwagger
+    // .parseSwagger('https://microservicesportchooser.azurewebsites.net/swagger/v1/swagger.json')
+    // .then(function(api: any) {
+    //   console.log(api[0]);
+    //   api[0](Blockly.Blocks,BlocklyJavaScript);
+    //   api[1](Blockly.Blocks,BlocklyJavaScript);
+
+    //   // console.log(api[1](Blockly.Blocks,BlocklyJavaScript));
+    // });
 
     this.loadDemo.getDemoBlocks().subscribe(
       (data:DemoBlocks[])=>{
