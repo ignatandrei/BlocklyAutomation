@@ -79,7 +79,7 @@ export class DisplayBlocklyComponent implements OnInit {
   
 
   var xmlList: Element[] = [];
-  xmlList = item.fieldXMLObjects.map((it:any)=>Blockly.Xml.textToDom(it));
+  xmlList = item.fieldXMLObjects.sort().map((it:any)=>Blockly.Xml.textToDom(it));
   // var cat='<category id="microservicesportchooserazurewebsitesnet" name="microservicesportchooserazurewebsitesnet"><block type="IRegister"></block></category>';
   // cat='<block type="IRegister"></block>';
   
@@ -117,7 +117,12 @@ export class DisplayBlocklyComponent implements OnInit {
 
           for(var i=0;i<api.GenerateFunctions.length;i++){
             var e=api.GenerateFunctions[i];
-            e(Blockly.Blocks,BlocklyJavaScript);
+            var image=function (opKey:string){
+              
+              var image =`assets/httpImages/${opKey}.png`;
+              return new Blockly.FieldImage(image, 90, 20, opKey );
+            };
+            e(Blockly.Blocks,BlocklyJavaScript,image);
           }   
         }
       );
