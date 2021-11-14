@@ -75,7 +75,7 @@ export class DisplayBlocklyComponent implements OnInit {
   public swaggerData:any[] = [];
   
   
-  public registerSwaggerBlocks(demoWorkspace:Blockly.Workspace, item:any):Element[]{
+  public registerSwaggerBlocksObjects(demoWorkspace:Blockly.Workspace, item:any):Element[]{
   
 
   var xmlList: Element[] = [];
@@ -94,6 +94,12 @@ export class DisplayBlocklyComponent implements OnInit {
     // var ret= str.map((it:string)=> Blockly.Xml.textToDom(it));
     // return ret;
   }
+  public registerSwaggerBlocksAPI(demoWorkspace:Blockly.Workspace, item:any):Element[]{
+    var xmlList: Element[] = [];
+    xmlList = item.fieldXMLFunctions.map((it:any)=>Blockly.Xml.textToDom(it));
+    return xmlList;  
+  
+  }
   ngOnInit(): void {
     
     var parsers = this.swaggersUrl.map(it=>new  SwaggerParser.parseData(it));
@@ -106,6 +112,11 @@ export class DisplayBlocklyComponent implements OnInit {
           this.swaggerData.push(api);
           for(var i=0;i<api.GenerateBlocks.length;i++){
             var e=api.GenerateBlocks[i];
+            e(Blockly.Blocks,BlocklyJavaScript);
+          }   
+
+          for(var i=0;i<api.GenerateFunctions.length;i++){
+            var e=api.GenerateFunctions[i];
             e(Blockly.Blocks,BlocklyJavaScript);
           }   
         }
@@ -294,12 +305,14 @@ export class DisplayBlocklyComponent implements OnInit {
         if(myComponent?.demoWorkspace == null)
             return;
         var nameCat="objects_"+ item.nameCategSwagger();
+        var nameAPI="api_"+ item.nameCategSwagger();
         // console.log(nameCat);
         // console.log(myComponent.swaggerData);
         // console.log(myComponent.demoWorkspace);
         myComponent.demoWorkspace.registerToolboxCategoryCallback(nameCat,(d: Blockly.Workspace)=>{
 
-              return myComponent.registerSwaggerBlocks(d,item);
+              return myComponent.registerSwaggerBlocksObjects(d,item);
+
               // myComponent.demoWorkspace!.getToolbox().refreshSelection();
               // return d1;
               // try{
@@ -318,6 +331,10 @@ export class DisplayBlocklyComponent implements OnInit {
               
               // myComponent.demoWorkspace!.getToolbox().refreshSelection();
           } );
+          myComponent.demoWorkspace.registerToolboxCategoryCallback(nameAPI,(d: Blockly.Workspace)=>{
+
+            return myComponent.registerSwaggerBlocksAPI(d,item);
+          });
         
      });
      myComponent.restoreBlocks();

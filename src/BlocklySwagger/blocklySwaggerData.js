@@ -87,31 +87,18 @@ class BlocklyReturnSwagger {
     var blocklyTypeName = self.GenerateNameFunction(path, key, operation, operationKey) ;
     var props='';
 
-    console.log(key);
+    console.log(blocklyTypeName);
     console.log(operationKey);
     //console.log(path);        
     console.log(operation);
-    
-    return null;
-  
+    self.fieldXMLFunctions.push(`<block type="${blocklyTypeName}"></block>`);
 
     return function (blocks, javaScript) {
       blocks[blocklyTypeName] = {
         init: function () {
           //this.setInputsInline(true);
-          this.appendDummyInput().appendField(key);
-          //{tooltipAndpropsDef.propsDef}
-          //console.log('init', objPropString);
-            objPropString.forEach((item) => {
-              //var t = self.TranslateToBlocklyType(key.type);
-              
-              this.appendValueInput(`val_${item.key}`)
-            //   .setCheck('{property.PropertyType.TranslateToNewTypeName()}')
-              .appendField(`${item.key}`)
-              ;
-            });                
-          //this.setTooltip(`${this.swaggerUrl}`);
-          this.setOutput(true, blocklyTypeName);
+          this.appendDummyInput().appendField(`${operationKey} ${key}`);
+          this.setOutput(true,'');
         },
       };
     };
