@@ -78,6 +78,9 @@ class BlocklyReturnSwagger {
     self.openApiDocument=r;
     return self;
   }
+  // findPath(key){
+  //   return this.openApiDocument.paths[key];
+  // }
   findProperties(schema){
     var objPropString=[];
     if (schema.properties) {
@@ -123,9 +126,9 @@ class BlocklyReturnSwagger {
           if(op.parameters)
               op.parameters.forEach(it=>{
 
-            console.log(it);
+            //console.log(it);
             this.appendValueInput(`val_${it.name}`)
-                .appendField(`${it.name}`,'aaa');
+                .appendField(`${it.name}`);
 
           });
 
@@ -135,9 +138,36 @@ class BlocklyReturnSwagger {
         },
       };
       javaScript[blocklyTypeName] = function(block) {
+        //https://netcoreblockly.herokuapp.com/blocklyAPIFunctions?v=version
         const ORDER_NONE=99;
         const ORDER_ATOMIC=0;
-        var code ='{ }';
+        var code ='function(';
+        var obj={};
+        var objBody={};
+        var path=self.openApiDocument.paths[key];
+        var operation = path[operationKey];
+        // console.log('a' , key);
+        // console.log('a' , operationKey);
+        // console.log('b',path);
+        // console.log('b',operation);
+        // console.log('c',operation.parameters);        
+        if('parameters' in operation){
+             var parameterFunctionDefinition = operation.parameters.map(it=>it.name +',');
+             code +=parameterFunctionDefinition ;
+             code +="notUsed";
+              operation.parameters.forEach(it=>{
+
+            console.log(it);
+            obj[`val_{it.name}`] = javaScript.valueToCode(block, `val_{it.name}`, /*javaScript.*/ORDER_ATOMIC);
+            
+
+          });
+        }
+          code +="){\n";
+          code +='var strUrl ="'+ self.findRootSite() + key + '";\n';
+          code +='return strUrl;\n';
+          code += '}()';
+        //var code =`{GenerateGet(actionInfo)}({argsXHR})`;
         //console.log(code);
         return [code, /*javaScript.*/ORDER_NONE];
       }
