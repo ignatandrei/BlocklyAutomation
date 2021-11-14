@@ -79,7 +79,7 @@ export class DisplayBlocklyComponent implements OnInit {
   
 
   var xmlList: Element[] = [];
-  xmlList = item.fieldXML.map((it:any)=>Blockly.Xml.textToDom(it));
+  xmlList = item.fieldXMLObjects.map((it:any)=>Blockly.Xml.textToDom(it));
   // var cat='<category id="microservicesportchooserazurewebsitesnet" name="microservicesportchooserazurewebsitesnet"><block type="IRegister"></block></category>';
   // cat='<block type="IRegister"></block>';
   
@@ -98,11 +98,11 @@ export class DisplayBlocklyComponent implements OnInit {
     
     var parsers = this.swaggersUrl.map(it=>new  SwaggerParser.parseData(it));
     var newSwaggerCategories=parsers.map(it=>it.categSwagger());
-    console.log(newSwaggerCategories[0]);
+    //console.log(newSwaggerCategories[0]);
     parsers.forEach((parser:any) => {            
       parser.ParseSwagger()
       .then((api:any)=>{
-          console.log(`parsed  ${api.swaggerUrl}`);
+          //console.log(`parsed  ${api.swaggerUrl}`);
           this.swaggerData.push(api);
           for(var i=0;i<api.GenerateBlocks.length;i++){
             var e=api.GenerateBlocks[i];
@@ -287,16 +287,16 @@ export class DisplayBlocklyComponent implements OnInit {
     } as Blockly.BlocklyOptions);
     var self=this;
     window.setTimeout((myComponent: DisplayBlocklyComponent)=>{
-      console.log('start register');
+      // console.log('start register');
       if(myComponent?.swaggerData == null)
         return;
       myComponent.swaggerData.forEach( (item :any)=>{
         if(myComponent?.demoWorkspace == null)
             return;
         var nameCat="objects_"+ item.nameCategSwagger();
-        console.log(nameCat);
-        console.log(myComponent.swaggerData);
-        console.log(myComponent.demoWorkspace);
+        // console.log(nameCat);
+        // console.log(myComponent.swaggerData);
+        // console.log(myComponent.demoWorkspace);
         myComponent.demoWorkspace.registerToolboxCategoryCallback(nameCat,(d: Blockly.Workspace)=>{
 
               return myComponent.registerSwaggerBlocks(d,item);

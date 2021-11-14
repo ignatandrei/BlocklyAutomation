@@ -4,7 +4,9 @@ class BlocklyReturnSwagger {
     this.swaggerUrl = url;
   }
   GenerateBlocks=[];
-  fieldXML=[];
+  GenerateFunctions=[];
+  fieldXMLObjects=[];
+  fieldXMLFunctions=[];
 
   nameCategSwagger(){
     
@@ -38,17 +40,26 @@ class BlocklyReturnSwagger {
     const SwaggerParser = require("@api-platform/api-doc-parser/lib/openapi3/parseOpenApi3Documentation");
     var q = await SwaggerParser.default(this.swaggerUrl);
     var r = q.response;
-    // console.log(r.components.schemas);
-    self.fieldXML.push(`<label text="${self.swaggerUrl}"></label>`);
+    console.log(r.paths);
+    self.fieldXMLObjects.push(`<label text="${self.swaggerUrl}"></label>`);
     if (r.components?.schemas) {
       Object.keys(r.components.schemas).forEach(function (key) {
         // console.log(key);
         
-        self.fieldXML.push(`<block type="${key}"></block>`);
+        self.fieldXMLObjects.push(`<block type="${key}"></block>`);
         
         var schema = r.components.schemas[key];
         self.GenerateBlocks.push(self.GenerateBlock(schema, key));
         
+      });
+    }
+    if(r.paths){
+      Object.keys(r.paths).forEach(function (key) {
+        var path = r.paths[key]; 
+        Object.keys(path).forEach(function(oo) {  
+          var ops=path[oo];
+          self.GenerateFunctions.push(self.GenerateFunction(path, key, ops,oo));
+        });
       });
     }
     self.openApiDocument=r;
@@ -65,7 +76,46 @@ class BlocklyReturnSwagger {
     }
     return objPropString;
   }
+  GenerateNameFunction(path, key, operation, operationKey){
+    var ret= key.replaceAll("/","_").replaceAll("{","__");
+    return operationKey+"_"+ret;
+    
+  }
+  GenerateFunction(path, key, operation, operationKey) {
   
+    var self=this;
+    var blocklyTypeName = self.GenerateNameFunction(path, key, operation, operationKey) ;
+    var props='';
+
+    console.log(key);
+    console.log(operationKey);
+    //console.log(path);        
+    console.log(operation);
+    
+    return null;
+  
+
+    return function (blocks, javaScript) {
+      blocks[blocklyTypeName] = {
+        init: function () {
+          //this.setInputsInline(true);
+          this.appendDummyInput().appendField(key);
+          //{tooltipAndpropsDef.propsDef}
+          //console.log('init', objPropString);
+            objPropString.forEach((item) => {
+              //var t = self.TranslateToBlocklyType(key.type);
+              
+              this.appendValueInput(`val_${item.key}`)
+            //   .setCheck('{property.PropertyType.TranslateToNewTypeName()}')
+              .appendField(`${item.key}`)
+              ;
+            });                
+          //this.setTooltip(`${this.swaggerUrl}`);
+          this.setOutput(true, blocklyTypeName);
+        },
+      };
+    };
+  }
   GenerateBlock(schema, key) {
       var self=this;
     var blocklyTypeName = key;
@@ -99,14 +149,14 @@ class BlocklyReturnSwagger {
         // var actualSchema = self.openApiDocument.components.schemas[blocklyTypeName];
         // console.log(blocklyTypeName, actualSchema);
         var objPropStringFound=self.findProperties(schema);
-        console.log(blocklyTypeName, objPropStringFound);
+        //console.log(blocklyTypeName, objPropStringFound);
         const ORDER_NONE=99;
         const ORDER_ATOMIC=0;
         var code ='';
         var objPropString=[];
         objPropStringFound.forEach((it) => {
           let val = javaScript.valueToCode(block, `val_${it.key}`, /*javaScript.*/ORDER_ATOMIC);
-          console.log('found ' + val, val);
+          //console.log('found ' + val, val);
           if(val ==='')
           {
             val='null';
@@ -117,7 +167,7 @@ class BlocklyReturnSwagger {
           objPropString.push(`"${it.key}\":${val}`);
         });
         var code ='{ '+ objPropString.join(',') +' }';
-        console.log(code);
+        //console.log(code);
         return [code, /*javaScript.*/ORDER_NONE];
         }};
 
