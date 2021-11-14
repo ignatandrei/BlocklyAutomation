@@ -208,7 +208,7 @@ export class DisplayBlocklyComponent implements OnInit {
         `${bs.commentBlock.fieldXML()}`,
         `${bs.createObjectBlocks.fieldXML()}`,
         `${bs.auth0Blocks.fieldXML()}`,
-        `<category name="Swagger" id="catSwagger" >
+        `<category name="Swagger" id="catSwagger" expanded='true' >
           ${newSwaggerCategories}
         </category> `
 
@@ -293,7 +293,7 @@ export class DisplayBlocklyComponent implements OnInit {
       myComponent.swaggerData.forEach( (item :any)=>{
         if(myComponent?.demoWorkspace == null)
             return;
-        var nameCat=item.nameCategSwagger();
+        var nameCat="objects_"+ item.nameCategSwagger();
         console.log(nameCat);
         console.log(myComponent.swaggerData);
         console.log(myComponent.demoWorkspace);

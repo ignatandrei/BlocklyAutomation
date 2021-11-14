@@ -13,8 +13,13 @@ class BlocklyReturnSwagger {
   categSwagger(){
     var h=this.findHostName();
     h=h.replaceAll('.','');
+    var max= 5;
+    if(h.length>max)
+    var first= h.substring(0,max);
     var categ=this.nameCategSwagger();
-    return '<category name="'+ h+'" custom="'+ categ +'"></category>';
+    return '<category name="obj_'+ first +'" custom="objects_'+ categ +'"></category>' 
+    + '<category name="api_'+ first +'" custom="api_'+ categ +'"></category>' 
+    ;
     
   }
   findHostName(){
@@ -75,7 +80,7 @@ class BlocklyReturnSwagger {
   }
 
   TranslateToBlocklyType(t) {
-    
+
     if (t == "integer") return "Number";
     if (t == "string") return "String";
 
