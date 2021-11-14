@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ɵɵsetComponentScope } from '@angular/core';
 import * as Blockly from 'blockly';
 import * as BlocklyJavaScript from 'blockly/javascript';
 import * as acorn from 'acorn';
@@ -71,15 +71,44 @@ export class DisplayBlocklyComponent implements OnInit {
       }
     );
   }
+  swaggersUrl:string[]=['https://microservicesportchooser.azurewebsites.net/swagger/v1/swagger.json'];
+  public swaggerData:any[] = [];
+  
+  
+  public registerSwaggerBlocks(demoWorkspace:Blockly.Workspace, item:any):Element[]{
+  console.log('in');
+  var cat='<category id="microservicesportchooserazurewebsitesnet" name="microservicesportchooserazurewebsitesnet"><block type="IRegister"></block></category>';
+  cat='<block type="IRegister"></block>';
+  
+  var xmlList: Element[] = [];
+  var block = Blockly.Xml.textToDom(cat);
+  xmlList.push(block);
+  return xmlList;  
+  // console.log(data);
+    // window.alert('a');
+    // var str= data.map((it:any)=>it.categSwagger().toString() as string);
+    // console.log(str);
+    // var ret= str.map((it:string)=> Blockly.Xml.textToDom(it));
+    // return ret;
+  }
   ngOnInit(): void {
-
-    var parser=new SwaggerParser.parseData('https://microservicesportchooser.azurewebsites.net/swagger/v1/swagger.json');
-    parser.ParseSwagger().then(
-      function(api: any) {
-           console.log(api);
-       
-      });
     
+    var parsers = this.swaggersUrl.map(it=>new  SwaggerParser.parseData(it));
+    var newSwaggerCategories=parsers.map(it=>it.categSwagger());
+    console.log(newSwaggerCategories[0]);
+    parsers.forEach((parser:any) => {            
+      parser.ParseSwagger()
+      .then((api:any)=>{
+          console.log(`parsed  ${api.swaggerUrl}`);
+          this.swaggerData.push(api);
+          for(var i=0;i<api.GenerateBlocks.length;i++){
+            var e=api.GenerateBlocks[i];
+            e(Blockly.Blocks,BlocklyJavaScript);
+          }   
+        }
+      );
+    });
+
     // SwaggerParser
     // .parseSwagger
     // .parseSwagger('https://microservicesportchooser.azurewebsites.net/swagger/v1/swagger.json')
@@ -143,6 +172,7 @@ export class DisplayBlocklyComponent implements OnInit {
       }
       
       );
+    
     bs.auth0Blocks.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
     var blocks=[
         bs.defaultBlocks.generalBlocks(),
@@ -175,11 +205,12 @@ export class DisplayBlocklyComponent implements OnInit {
         `${bs.commentBlock.fieldXML()}`,
         `${bs.createObjectBlocks.fieldXML()}`,
         `${bs.auth0Blocks.fieldXML()}`,
-        `<category name="Swagger" id="catSwagger"><block type="IRegister"></block></category> `
+        `<category name="Swagger" id="catSwagger" >
+          ${newSwaggerCategories}
+        </category> `
 
-      ]
+      ]      
       this.initialize(blocks);
-      
       bh.saveBlocksUrl.restoreState(Blockly.Xml,this.demoWorkspace);
     
   }
@@ -251,6 +282,44 @@ export class DisplayBlocklyComponent implements OnInit {
       },
        toolbox: toolboxXML
     } as Blockly.BlocklyOptions);
+    var self=this;
+    window.setTimeout((myComponent: DisplayBlocklyComponent)=>{
+      console.log('start register');
+      if(myComponent?.swaggerData == null)
+        return;
+      myComponent.swaggerData.forEach( (item :any)=>{
+        if(myComponent?.demoWorkspace == null)
+            return;
+        var nameCat=item.nameCategSwagger();
+        console.log(nameCat);
+        console.log(myComponent.swaggerData);
+        console.log(myComponent.demoWorkspace);
+        myComponent.demoWorkspace.registerToolboxCategoryCallback(nameCat,(d: Blockly.Workspace)=>{
+
+              return myComponent.registerSwaggerBlocks(d,item);
+              // myComponent.demoWorkspace!.getToolbox().refreshSelection();
+              // return d1;
+              // try{
+              //   console.log('asd');
+              // var cat='<category id="andre" name="andrei"><block type="controls_if"></block></category>';  
+              // var xmlList: Element[] = [];
+              // var block = Blockly.Xml.textToDom(cat);
+              // xmlList.push(block);
+              // console.log('astttt',xmlList);
+              // return xmlList;  
+              // }
+              // catch(e){
+              //   console.log('error register ',e);
+              //   return [];
+              // }
+              
+              // myComponent.demoWorkspace!.getToolbox().refreshSelection();
+          } );
+        
+     });
+
+  }, 2000, this);
+    ;
     // console.log(BlocklyJavaScript);
     this.run = bh.interpreterHelper.createInterpreter(this.demoWorkspace,BlocklyJavaScript);
     var self=this;
