@@ -208,13 +208,13 @@ export class DisplayBlocklyComponent implements OnInit {
         `${bs.commentBlock.fieldXML()}`,
         `${bs.createObjectBlocks.fieldXML()}`,
         `${bs.auth0Blocks.fieldXML()}`,
-        `<category name="Swagger" id="catSwagger" expanded='true' >
+        `<category name="Swagger" id="catSwagger" expanded='true' >          
           ${newSwaggerCategories}
         </category> `
 
       ]      
       this.initialize(blocks);
-      bh.saveBlocksUrl.restoreState(Blockly.Xml,this.demoWorkspace);
+      
     
   }
   showInner:string='';
@@ -320,6 +320,7 @@ export class DisplayBlocklyComponent implements OnInit {
           } );
         
      });
+     myComponent.restoreBlocks();
 
   }, 2000, this);
     ;
@@ -333,6 +334,9 @@ export class DisplayBlocklyComponent implements OnInit {
           self.ShowInnerWorkings();
       }
     });
+  }
+  public restoreBlocks(){
+    bh.saveBlocksUrl.restoreState(Blockly.Xml,this.demoWorkspace);
   }
 
 }

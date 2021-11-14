@@ -32,50 +32,95 @@ class BlocklyReturnSwagger {
     }
     return hostname.replaceAll('.','');
   }
+  openApiDocument = null;
   async ParseSwagger() {
     var self=this;
     const SwaggerParser = require("@api-platform/api-doc-parser/lib/openapi3/parseOpenApi3Documentation");
     var q = await SwaggerParser.default(this.swaggerUrl);
     var r = q.response;
     // console.log(r.components.schemas);
+    self.fieldXML.push(`<label text="${self.swaggerUrl}"></label>`);
     if (r.components?.schemas) {
       Object.keys(r.components.schemas).forEach(function (key) {
         // console.log(key);
+        
         self.fieldXML.push(`<block type="${key}"></block>`);
+        
         var schema = r.components.schemas[key];
         self.GenerateBlocks.push(self.GenerateBlock(schema, key));
         
       });
     }
+    self.openApiDocument=r;
     return self;
   }
-
+  findProperties(schema){
+    var objPropString=[];
+    if (schema.properties) {
+      Object.keys(schema.properties).forEach((key) => {
+        //var t = self.TranslateToBlocklyType(schema.properties[key].type);
+        // console.log(key, schema.properties[key]);
+        objPropString.push({key:key, value:schema.properties[key]});
+      });
+    }
+    return objPropString;
+  }
+  
   GenerateBlock(schema, key) {
       var self=this;
     var blocklyTypeName = key;
     var props='';
+    var objPropString=self.findProperties(schema);
     
-    return function (blocks, javascript) {
+    return function (blocks, javaScript) {
     //   console.log(blocklyTypeName);
+    
       blocks[blocklyTypeName] = {
         init: function () {
           //this.setInputsInline(true);
           this.appendDummyInput().appendField(key);
           //{tooltipAndpropsDef.propsDef}
-          if (schema.properties) {
-            Object.keys(schema.properties).forEach((key) => {
-              var t = self.TranslateToBlocklyType(schema.properties[key].type);
-              this.appendValueInput(`val_{key}`)
+          //console.log('init', objPropString);
+            objPropString.forEach((item) => {
+              //var t = self.TranslateToBlocklyType(key.type);
+              
+              this.appendValueInput(`val_${item.key}`)
             //   .setCheck('{property.PropertyType.TranslateToNewTypeName()}')
-              .appendField(`${key}`)
+              .appendField(`${item.key}`)
               ;
-            });
-          }      
-          this.setTooltip(`${this.swaggerUrl}`);
-
+            });                
+          //this.setTooltip(`${this.swaggerUrl}`);
           this.setOutput(true, blocklyTypeName);
         },
       };
+
+      javaScript[blocklyTypeName] = function(block) {{
+        //console.log(blocklyTypeName, self.openApiDocument);
+        // var actualSchema = self.openApiDocument.components.schemas[blocklyTypeName];
+        // console.log(blocklyTypeName, actualSchema);
+        var objPropStringFound=self.findProperties(schema);
+        console.log(blocklyTypeName, objPropStringFound);
+        const ORDER_NONE=99;
+        const ORDER_ATOMIC=0;
+        var code ='';
+        var objPropString=[];
+        objPropStringFound.forEach((it) => {
+          let val = javaScript.valueToCode(block, `val_${it.key}`, /*javaScript.*/ORDER_ATOMIC);
+          console.log('found ' + val, val);
+          if(val ==='')
+          {
+            val='null';
+          }
+          if(val == null){
+            val = 'null';
+          }
+          objPropString.push(`"${it.key}\":${val}`);
+        });
+        var code ='{ '+ objPropString.join(',') +' }';
+        console.log(code);
+        return [code, /*javaScript.*/ORDER_NONE];
+        }};
+
     };
   }
 

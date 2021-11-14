@@ -12,7 +12,7 @@ const SwaggerParser = require('@api-platform/api-doc-parser/lib/openapi3/parseOp
     // console.log(r.components.schemas);
     if(r.components?.schemas){
         Object.keys(r.components.schemas).forEach(function(key) {
-            console.log(key);   
+            // console.log(key);   
             var schema = r.components.schemas[key];
             result.push(GenerateBlock(schema,key));
             
@@ -31,7 +31,7 @@ function GenerateBlock(schema,key){
         });
     }
  return function(blocks,javascript){
-    console.log(blocklyTypeName);
+    // console.log(blocklyTypeName);
     blocks[blocklyTypeName] = {
         init: function() {
 //this.setInputsInline(true);
