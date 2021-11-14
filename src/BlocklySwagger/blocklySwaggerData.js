@@ -10,10 +10,10 @@ class BlocklyReturnSwagger {
 
   nameCategSwagger(){
     
-    return `catSwagger${this.findHostName()}`;
+    return `catSwagger${this.findHostNameRegular()}`;
   }
   categSwagger(){
-    var h=this.findHostName();
+    var h=this.findHostNameRegular();
     h=h.replaceAll('.','');
     var max= 5;
     if(h.length>max)
@@ -24,7 +24,20 @@ class BlocklyReturnSwagger {
     ;
     
   }
-  findHostName(){
+  findRootSite(){
+    var href=this.swaggerUrl;
+    var hostname = '';
+    if (href.startsWith('http://') || href.startsWith('https://')) {
+      var url=  (new URL(href));
+      
+      hostname = url.protocol+"//"+url.hostname;
+      if(url.port.length>0)
+      hostname += url.port;
+    }
+    return hostname;
+  }
+  
+  findHostNameRegular(){
     var href=this.swaggerUrl;
     var hostname = '(localSite)';
     if (href.startsWith('http://') || href.startsWith('https://')) {
@@ -87,10 +100,10 @@ class BlocklyReturnSwagger {
     var blocklyTypeName = self.GenerateNameFunction(path, key, operation, operationKey) ;
     var props='';
 
-    // console.log(blocklyTypeName);
-    // console.log(operationKey);
+    console.log(key);
+    console.log(operationKey);
     // console.log(`assets/httpImages/${operationKey}.png`);        
-    // console.log(operation);
+    console.log(operation);
     self.fieldXMLFunctions.push(`<block type="${blocklyTypeName}"></block>`);
 
     return function (blocks, javaScript, BlocklyFieldImage) {
@@ -101,10 +114,19 @@ class BlocklyReturnSwagger {
           this.appendDummyInput()
           .appendField(BlocklyFieldImage(operationKey))
           .appendField(`${operationKey} ${key}`)       
-          ;             
+          ;    
+          var root=self.findRootSite();
+          this.setTooltip(`${operationKey} ${root}${key}`);
           this.setOutput(true,'');
         },
       };
+      javaScript[blocklyTypeName] = function(block) {
+        const ORDER_NONE=99;
+        const ORDER_ATOMIC=0;
+        var code ='{ }';
+        //console.log(code);
+        return [code, /*javaScript.*/ORDER_NONE];
+      }
     };
   }
   GenerateBlock(schema, key) {
