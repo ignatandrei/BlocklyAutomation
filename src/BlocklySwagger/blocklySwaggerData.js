@@ -75,13 +75,14 @@ class BlocklyReturnSwagger {
   }
 
   TranslateToBlocklyType(t) {
+    
     if (t == "integer") return "Number";
     if (t == "string") return "String";
 
     if (t == "bool") return "Boolean";
 
     if (t == "array") return "Array";
-
+    console.error("not found TranslateToBlocklyType item" + t);
     return "not found type" + t;
   }
 }

@@ -76,13 +76,16 @@ export class DisplayBlocklyComponent implements OnInit {
   
   
   public registerSwaggerBlocks(demoWorkspace:Blockly.Workspace, item:any):Element[]{
-  console.log('in');
-  var cat='<category id="microservicesportchooserazurewebsitesnet" name="microservicesportchooserazurewebsitesnet"><block type="IRegister"></block></category>';
-  cat='<block type="IRegister"></block>';
   
+
   var xmlList: Element[] = [];
-  var block = Blockly.Xml.textToDom(cat);
-  xmlList.push(block);
+  xmlList = item.fieldXML.map((it:any)=>Blockly.Xml.textToDom(it));
+  // var cat='<category id="microservicesportchooserazurewebsitesnet" name="microservicesportchooserazurewebsitesnet"><block type="IRegister"></block></category>';
+  // cat='<block type="IRegister"></block>';
+  
+  
+  // var block = Blockly.Xml.textToDom(cat);
+  // xmlList.push(block);
   return xmlList;  
   // console.log(data);
     // window.alert('a');
