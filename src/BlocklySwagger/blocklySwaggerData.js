@@ -130,8 +130,14 @@ class BlocklyReturnSwagger {
           var root = self.findRootSite();
           if (op.parameters)
             op.parameters.forEach((it) => {
-              //console.log(it);
-              this.appendValueInput(`val_${it.name}`).appendField(`${it.name}`);
+              var name= it.name;
+              if(it.required){
+                name +="*"; 
+              }
+              if(it.schema && it.schema.type){
+                name += ":"+it.schema.type;
+              }
+              this.appendValueInput(`val_${it.name}`).appendField(name);
             });
 
           this.setTooltip(`${operationKey} ${root}${key}`);
@@ -141,7 +147,7 @@ class BlocklyReturnSwagger {
       javaScript[blocklyTypeName] = function (block) {
         //https://netcoreblockly.herokuapp.com/blocklyAPIFunctions?v=version
         //https://netcoreblockly.herokuapp.com/blockly.html?dom=20211115121043
-        console.log(blocklyTypeName);
+        // console.log(blocklyTypeName);
         const ORDER_NONE = 99;
         const ORDER_ATOMIC = 0;
         var path = self.openApiDocument.paths[key];
@@ -149,7 +155,7 @@ class BlocklyReturnSwagger {
         // console.log('a' , key);
         // console.log('a' , operationKey);
         // console.log('b',path);
-         console.log('b',operation);
+        //  console.log('b',operation);
         // console.log('c',operation.parameters);
         var parameters = [];
         if ("parameters" in operation) {
@@ -200,10 +206,10 @@ class BlocklyReturnSwagger {
         code +="1)";
         //var code =`{GenerateGet(actionInfo)}({argsXHR})`;
         //console.log(code);
-        if (blocklyTypeName.indexOf("GetDeterministicPortFrom___name") > 0) {
-          console.log(code);
-          // debugger;
-        }
+        // if (blocklyTypeName.indexOf("GetDeterministicPortFrom___name") > 0) {
+        //   console.log(code);
+        //   // debugger;
+        // }
 
         return [code, /*javaScript.*/ ORDER_NONE];
       };
@@ -226,10 +232,21 @@ class BlocklyReturnSwagger {
           //console.log('init', objPropString);
           objPropString.forEach((item) => {
             //var t = self.TranslateToBlocklyType(key.type);
-
+              console.log('aa',item);
+              var name=item.key;
+              if(item.value.nullable && item.value.nullable==false){
+                name +="*";
+              } 
+              if(item.value.type){
+                name+=":"+item.value.type;
+              }
+              if(item.value['$ref']){
+                var nameRef=item.value['$ref'].replaceAll("#/components/schemas/","");
+                name+="->"+nameRef;
+              }
             this.appendValueInput(`val_${item.key}`)
               //   .setCheck('{property.PropertyType.TranslateToNewTypeName()}')
-              .appendField(`${item.key}`);
+              .appendField(`${name}`);
           });
           //this.setTooltip(`${this.swaggerUrl}`);
           this.setOutput(true, blocklyTypeName);
