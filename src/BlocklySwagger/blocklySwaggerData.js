@@ -1,55 +1,59 @@
 class BlocklyReturnSwagger {
   constructor(url) {
-      
     this.swaggerUrl = url;
   }
-  GenerateBlocks=[];
-  GenerateFunctions=[];
-  fieldXMLObjects=[];
-  fieldXMLFunctions=[];
+  GenerateBlocks = [];
+  GenerateFunctions = [];
+  fieldXMLObjects = [];
+  fieldXMLFunctions = [];
 
-  nameCategSwagger(){
-    
+  nameCategSwagger() {
     return `catSwagger${this.findHostNameRegular()}`;
   }
-  categSwagger(){
-    var h=this.findHostNameRegular();
-    h=h.replaceAll('.','');
-    var max= 5;
-    if(h.length>max)
-    var first= h.substring(0,max);
-    var categ=this.nameCategSwagger();
-    return '<category name="obj_'+ first +'" custom="objects_'+ categ +'"></category>' 
-    + '<category name="api_'+ first +'" custom="api_'+ categ +'"></category>' 
-    ;
-    
+  categSwagger() {
+    var h = this.findHostNameRegular();
+    h = h.replaceAll(".", "");
+    var max = 5;
+    if (h.length > max) var first = h.substring(0, max);
+    var categ = this.nameCategSwagger();
+    return (
+      '<category name="obj_' +
+      first +
+      '" custom="objects_' +
+      categ +
+      '"></category>' +
+      '<category name="api_' +
+      first +
+      '" custom="api_' +
+      categ +
+      '"></category>'
+    );
   }
-  findRootSite(){
-    var href=this.swaggerUrl;
-    var hostname = '';
-    if (href.startsWith('http://') || href.startsWith('https://')) {
-      var url=  (new URL(href));
-      
-      hostname = url.protocol+"//"+url.hostname;
-      if(url.port.length>0)
-      hostname += url.port;
+  findRootSite() {
+    var href = this.swaggerUrl;
+    var hostname = "";
+    if (href.startsWith("http://") || href.startsWith("https://")) {
+      var url = new URL(href);
+
+      hostname = url.protocol + "//" + url.hostname;
+      if (url.port.length > 0) hostname += url.port;
     }
     return hostname;
   }
-  
-  findHostNameRegular(){
-    var href=this.swaggerUrl;
-    var hostname = '(localSite)';
-    if (href.startsWith('http://') || href.startsWith('https://')) {
-      var url=  (new URL(href));
-      var port=url.port??80;
-      hostname = url.hostname+port;
+
+  findHostNameRegular() {
+    var href = this.swaggerUrl;
+    var hostname = "(localSite)";
+    if (href.startsWith("http://") || href.startsWith("https://")) {
+      var url = new URL(href);
+      var port = url.port ?? 80;
+      hostname = url.hostname + port;
     }
-    return hostname.replaceAll('.','');
+    return hostname.replaceAll(".", "");
   }
   openApiDocument = null;
   async ParseSwagger() {
-    var self=this;
+    var self = this;
     const SwaggerParser = require("@api-platform/api-doc-parser/lib/openapi3/parseOpenApi3Documentation");
     var q = await SwaggerParser.default(this.swaggerUrl);
     var r = q.response;
@@ -58,196 +62,215 @@ class BlocklyReturnSwagger {
     if (r.components?.schemas) {
       Object.keys(r.components.schemas).forEach(function (key) {
         // console.log(key);
-        
+
         self.fieldXMLObjects.push(`<block type="${key}"></block>`);
-        
+
         var schema = r.components.schemas[key];
         self.GenerateBlocks.push(self.GenerateBlock(schema, key));
-        
       });
     }
-    if(r.paths){
+    if (r.paths) {
       Object.keys(r.paths).forEach(function (key) {
-        var path = r.paths[key]; 
-        Object.keys(path).forEach(function(oo) {  
-          var ops=path[oo];
-          self.GenerateFunctions.push(self.GenerateFunction(path, key, ops,oo));
+        var path = r.paths[key];
+        Object.keys(path).forEach(function (oo) {
+          var ops = path[oo];
+          self.GenerateFunctions.push(
+            self.GenerateFunction(path, key, ops, oo)
+          );
         });
       });
     }
-    self.openApiDocument=r;
+    self.openApiDocument = r;
     return self;
   }
   // findPath(key){
   //   return this.openApiDocument.paths[key];
   // }
-  findProperties(schema){
-    var objPropString=[];
+  findProperties(schema) {
+    var objPropString = [];
     if (schema.properties) {
       Object.keys(schema.properties).forEach((key) => {
         //var t = self.TranslateToBlocklyType(schema.properties[key].type);
         // console.log(key, schema.properties[key]);
-        objPropString.push({key:key, value:schema.properties[key]});
+        objPropString.push({ key: key, value: schema.properties[key] });
       });
     }
     return objPropString;
   }
-  GenerateNameFunction(path, key, operation, operationKey){
-    var ret= key.replaceAll("/","_").replaceAll("{","__");
-    return operationKey+"_"+ret;
-    
+  GenerateNameFunction(path, key, operation, operationKey) {
+    var ret = key.replaceAll("/", "_").replaceAll("{", "__");
+    return operationKey + "_" + ret;
   }
-  
+
   GenerateFunction(path, key, operation, operationKey) {
-  
-    var self=this;
-    var blocklyTypeName = self.GenerateNameFunction(path, key, operation, operationKey) ;
-    var props='';
-    var op= operation;
+    var self = this;
+    var blocklyTypeName = self.GenerateNameFunction(
+      path,
+      key,
+      operation,
+      operationKey
+    );
+    var props = "";
+    var op = operation;
     //console.log(key);
     //console.log(operationKey);
-    // console.log(`assets/httpImages/${operationKey}.png`);        
+    // console.log(`assets/httpImages/${operationKey}.png`);
     // console.log(operation);
     self.fieldXMLFunctions.push(`<block type="${blocklyTypeName}"></block>`);
 
     return function (blocks, javaScript, BlocklyFieldImage) {
-      
       blocks[blocklyTypeName] = {
         init: function () {
           //this.setInputsInline(true);
-          var str=key;
-          if(str.length>15)
-            str=str.substring(0,25)+'...';
+          var str = key;
+          if (str.length > 15) str = str.substring(0, 25) + "...";
           this.appendDummyInput()
-          .appendField(BlocklyFieldImage(operationKey))
-          .appendField(`${operationKey} ${str}`)       
-          ;    
-          var root=self.findRootSite();
-          if(op.parameters)
-              op.parameters.forEach(it=>{
-
-            //console.log(it);
-            this.appendValueInput(`val_${it.name}`)
-                .appendField(`${it.name}`);
-
-          });
-
+            .appendField(BlocklyFieldImage(operationKey))
+            .appendField(`${operationKey} ${str}`);
+          var root = self.findRootSite();
+          if (op.parameters)
+            op.parameters.forEach((it) => {
+              //console.log(it);
+              this.appendValueInput(`val_${it.name}`).appendField(`${it.name}`);
+            });
 
           this.setTooltip(`${operationKey} ${root}${key}`);
-          this.setOutput(true,'');
+          this.setOutput(true, "");
         },
       };
-      javaScript[blocklyTypeName] = function(block) {
+      javaScript[blocklyTypeName] = function (block) {
         //https://netcoreblockly.herokuapp.com/blocklyAPIFunctions?v=version
-        const ORDER_NONE=99;
-        const ORDER_ATOMIC=0;
-        var code ='function(';
-        var path=self.openApiDocument.paths[key];
+        //https://netcoreblockly.herokuapp.com/blockly.html?dom=20211115121043
+        console.log(blocklyTypeName);
+        const ORDER_NONE = 99;
+        const ORDER_ATOMIC = 0;
+        var path = self.openApiDocument.paths[key];
         var operation = path[operationKey];
         // console.log('a' , key);
         // console.log('a' , operationKey);
         // console.log('b',path);
-        // console.log('b',operation);
-        // console.log('c',operation.parameters);        
-        var parameters=[];
-        if('parameters' in operation){
+         console.log('b',operation);
+        // console.log('c',operation.parameters);
+        var parameters = [];
+        if ("parameters" in operation) {
           parameters = operation.parameters;
         }
 
-        var parameterFunctionDefinition = parameters.map(it=>it.name +',');
-        parameterFunctionDefinition+="extraData";
-        var callingFunctionDefinition = parameters.map(it=>`obj['val_${it.name}']` +',');
-        callingFunctionDefinition += "1";//maybe later we use for logging
-        code +=parameterFunctionDefinition ;
-        code +="){\n";
-        code +=`
-        var obj={};
-        var objBody={};
-        `;
-        parameters.forEach(it=>{
-
-          console.log(it);
-          code +='\n';
-          code +=`
-          obj['val_${it.name}'] = javaScript.valueToCode(block, 'val_${it.name}', Blockly.JavaScript.ORDER_ATOMIC);
-          `;
-  
-          });
-          
+        var obj = {};
+        var objBody = {};
         
-        code +='var strUrl ="'+ self.findRootSite() + key + '";\n';
+        parameters.forEach((it) => {
+          //code +=`
+          obj[`val_${it.name}`] = javaScript.valueToCode(
+            block,
+            `val_${it.name}`,
+            /*javascript.*/ ORDER_ATOMIC
+          );
+          //`;
+        });
+
+        var parameterFunctionDefinition = parameters.map((it) => it.name + ",");
+        parameterFunctionDefinition += "extraData";
+        var callingFunctionDefinition = parameters.map(
+          (it) =>"${" + `obj['val_${it.name}']` +"}" + ","
+        );
+        callingFunctionDefinition += "1"; //maybe later we use for logging
+        var code = "function(";
+        code += parameterFunctionDefinition;
+        code += "){\n";
+        code += 'var strUrl ="' + self.findRootSite() + key + '";\n';
         var replaceUrl = parameters
-            .filter(it=>it.in=='path')
-            .map(it=>`strUrl = strUrl.replace("{${it.name}}",${it.name});`);
-        code +=replaceUrl.join('\n');
-        code +='\nreturn strUrl;\n';
-        code += `}(${callingFunctionDefinition})`;
-      //var code =`{GenerateGet(actionInfo)}({argsXHR})`;
+          .filter((it) => it.in == "path")
+          .map((it) => `strUrl = strUrl.replace("{${it.name}}",${it.name});`);
+        code += replaceUrl.join("\n");
+
+        code +=`\n{var res= ${operationKey}Xhr(strUrl);\n`;
+        code +="var resJS=JSON.parse(res);\n";
+        code +="if(resJS.statusOK) return resJS.text;\n"
+        code +="errHandler(res);\n}\n";
+        //code +=";}\n";
+
+        // code += "\nreturn strUrl;\n";
+
+        code += `}`;
+        code +="(";
+        parameters.forEach((it) => {
+          code += obj[`val_${it.name}`]+",";
+        });
+        code +="1)";
+        //var code =`{GenerateGet(actionInfo)}({argsXHR})`;
         //console.log(code);
-        return [code, /*javaScript.*/ORDER_NONE];
-      }
+        if (blocklyTypeName.indexOf("GetDeterministicPortFrom___name") > 0) {
+          console.log(code);
+          // debugger;
+        }
+
+        return [code, /*javaScript.*/ ORDER_NONE];
+      };
     };
   }
   GenerateBlock(schema, key) {
-      var self=this;
+    var self = this;
     var blocklyTypeName = key;
-    var props='';
-    var objPropString=self.findProperties(schema);
-    
+    var props = "";
+    var objPropString = self.findProperties(schema);
+
     return function (blocks, javaScript) {
-    //   console.log(blocklyTypeName);
-    
+      //   console.log(blocklyTypeName);
+
       blocks[blocklyTypeName] = {
         init: function () {
           //this.setInputsInline(true);
           this.appendDummyInput().appendField(key);
           //{tooltipAndpropsDef.propsDef}
           //console.log('init', objPropString);
-            objPropString.forEach((item) => {
-              //var t = self.TranslateToBlocklyType(key.type);
-              
-              this.appendValueInput(`val_${item.key}`)
-            //   .setCheck('{property.PropertyType.TranslateToNewTypeName()}')
-              .appendField(`${item.key}`)
-              ;
-            });                
+          objPropString.forEach((item) => {
+            //var t = self.TranslateToBlocklyType(key.type);
+
+            this.appendValueInput(`val_${item.key}`)
+              //   .setCheck('{property.PropertyType.TranslateToNewTypeName()}')
+              .appendField(`${item.key}`);
+          });
           //this.setTooltip(`${this.swaggerUrl}`);
           this.setOutput(true, blocklyTypeName);
         },
       };
 
-      javaScript[blocklyTypeName] = function(block) {{
-        //console.log(blocklyTypeName, self.openApiDocument);
-        // var actualSchema = self.openApiDocument.components.schemas[blocklyTypeName];
-        // console.log(blocklyTypeName, actualSchema);
-        var objPropStringFound=self.findProperties(schema);
-        //console.log(blocklyTypeName, objPropStringFound);
-        const ORDER_NONE=99;
-        const ORDER_ATOMIC=0;
-        var code ='';
-        var objPropString=[];
-        objPropStringFound.forEach((it) => {
-          let val = javaScript.valueToCode(block, `val_${it.key}`, /*javaScript.*/ORDER_ATOMIC);
-          //console.log('found ' + val, val);
-          if(val ==='')
-          {
-            val='null';
-          }
-          if(val == null){
-            val = 'null';
-          }
-          objPropString.push(`"${it.key}\":${val}`);
-        });
-        var code ='{ '+ objPropString.join(',') +' }';
-        //console.log(code);
-        return [code, /*javaScript.*/ORDER_NONE];
-        }};
-
+      javaScript[blocklyTypeName] = function (block) {
+        {
+          //console.log(blocklyTypeName, self.openApiDocument);
+          // var actualSchema = self.openApiDocument.components.schemas[blocklyTypeName];
+          // console.log(blocklyTypeName, actualSchema);
+          var objPropStringFound = self.findProperties(schema);
+          //console.log(blocklyTypeName, objPropStringFound);
+          const ORDER_NONE = 99;
+          const ORDER_ATOMIC = 0;
+          var code = "";
+          var objPropString = [];
+          objPropStringFound.forEach((it) => {
+            let val = javaScript.valueToCode(
+              block,
+              `val_${it.key}`,
+              /*javaScript.*/ ORDER_ATOMIC
+            );
+            //console.log('found ' + val, val);
+            if (val === "") {
+              val = "null";
+            }
+            if (val == null) {
+              val = "null";
+            }
+            objPropString.push(`"${it.key}\":${val}`);
+          });
+          var code = "{ " + objPropString.join(",") + " }";
+          //console.log(code);
+          return [code, /*javaScript.*/ ORDER_NONE];
+        }
+      };
     };
   }
 
   TranslateToBlocklyType(t) {
-
     if (t == "integer") return "Number";
     if (t == "string") return "String";
 
@@ -259,4 +282,3 @@ class BlocklyReturnSwagger {
   }
 }
 module.exports = BlocklyReturnSwagger;
-
