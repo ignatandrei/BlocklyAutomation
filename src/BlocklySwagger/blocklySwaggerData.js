@@ -142,8 +142,6 @@ class BlocklyReturnSwagger {
         const ORDER_NONE=99;
         const ORDER_ATOMIC=0;
         var code ='function(';
-        var obj={};
-        var objBody={};
         var path=self.openApiDocument.paths[key];
         var operation = path[operationKey];
         // console.log('a' , key);
@@ -151,23 +149,40 @@ class BlocklyReturnSwagger {
         // console.log('b',path);
         // console.log('b',operation);
         // console.log('c',operation.parameters);        
+        var parameters=[];
         if('parameters' in operation){
-             var parameterFunctionDefinition = operation.parameters.map(it=>it.name +',');
-             code +=parameterFunctionDefinition ;
-             code +="notUsed";
-              operation.parameters.forEach(it=>{
-
-            console.log(it);
-            obj[`val_{it.name}`] = javaScript.valueToCode(block, `val_{it.name}`, /*javaScript.*/ORDER_ATOMIC);
-            
-
-          });
+          parameters = operation.parameters;
         }
-          code +="){\n";
-          code +='var strUrl ="'+ self.findRootSite() + key + '";\n';
-          code +='return strUrl;\n';
-          code += '}()';
-        //var code =`{GenerateGet(actionInfo)}({argsXHR})`;
+
+        var parameterFunctionDefinition = parameters.map(it=>it.name +',');
+        parameterFunctionDefinition+="extraData";
+        var callingFunctionDefinition = parameters.map(it=>`obj['val_${it.name}']` +',');
+        callingFunctionDefinition += "1";//maybe later we use for logging
+        code +=parameterFunctionDefinition ;
+        code +="){\n";
+        code +=`
+        var obj={};
+        var objBody={};
+        `;
+        parameters.forEach(it=>{
+
+          console.log(it);
+          code +='\n';
+          code +=`
+          obj['val_${it.name}'] = javaScript.valueToCode(block, 'val_${it.name}', Blockly.JavaScript.ORDER_ATOMIC);
+          `;
+  
+          });
+          
+        
+        code +='var strUrl ="'+ self.findRootSite() + key + '";\n';
+        var replaceUrl = parameters
+            .filter(it=>it.in=='path')
+            .map(it=>`strUrl = strUrl.replace("{${it.name}}",${it.name});`);
+        code +=replaceUrl.join('\n');
+        code +='\nreturn strUrl;\n';
+        code += `}(${callingFunctionDefinition})`;
+      //var code =`{GenerateGet(actionInfo)}({argsXHR})`;
         //console.log(code);
         return [code, /*javaScript.*/ORDER_NONE];
       }

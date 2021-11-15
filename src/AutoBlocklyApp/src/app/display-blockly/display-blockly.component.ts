@@ -245,10 +245,11 @@ export class DisplayBlocklyComponent implements OnInit {
     var xml = Blockly.Xml.workspaceToDom(this.demoWorkspace, true);
             var xml_text = Blockly.Xml.domToPrettyText(xml);
             this.showInner = `
+            ${this.run.latestCode}
             ========
             ${xml_text}
             ========
-            ${this.run.latestCode}
+           
             `
             
             ;
