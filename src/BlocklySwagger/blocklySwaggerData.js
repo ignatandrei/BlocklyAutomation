@@ -54,8 +54,14 @@ class BlocklyReturnSwagger {
   openApiDocument = null;
   async ParseSwagger() {
     var self = this;
+    try{
     const SwaggerParser = require("@api-platform/api-doc-parser/lib/openapi3/parseOpenApi3Documentation");
     var q = await SwaggerParser.default(this.swaggerUrl);
+    }
+    catch(e){
+      console.error("parseSwagger",e);
+      throw e;
+    }
     var r = q.response;
     console.log(r.paths);
     self.fieldXMLObjects.push(`<label text="${self.swaggerUrl}"></label>`);
