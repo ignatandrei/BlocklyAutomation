@@ -71,7 +71,9 @@ export class DisplayBlocklyComponent implements OnInit {
       }
     );
   }
-  swaggersUrl:string[]=['https://microservicesportchooser.azurewebsites.net/swagger/v1/swagger.json'];
+  swaggersUrl:string[]=[
+    'https://microservicesportchooser.azurewebsites.net/swagger/v1/swagger.json',
+    'https://netcoreblockly.herokuapp.com/swagger/v1/swagger.json'];
   public swaggerData:any[] = [];
   
   
