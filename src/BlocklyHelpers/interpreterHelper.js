@@ -240,7 +240,48 @@ exports.createInterpreter = function(workspace,BlocklyJavaScript){
               console.log('Date time format not suported')
       }
   },
-  
+  doPut : (href, objectToPost, callback) => {
+    let data = objectToPost;
+    //console.log(`sending ${data}`);
+    let req = new XMLHttpRequest();
+
+    req.open('PUT', href, true);
+    req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+    req.onreadystatechange = function () {
+        if (req.readyState == 4) {
+            if (req.status >= 200 && req.status < 300) {
+                var answer = JSON.stringify({
+                    'origHref': href,
+                    'objectToSend': objectToPost,
+                    'status': req.status,
+                    'statusOK': true,
+                    'text': req.responseText
+
+                });
+                return callback(answer);
+
+
+            } else {
+                var answer = JSON.stringify({
+                    'origHref': href,
+                    'objectToSend': objectToPost,
+                    'status': req.status,
+                    'statusOK': false,
+                    'text': req.responseText
+
+                });
+                return callback(answer);
+
+            }
+        }
+        else {
+            //window.alert(`error ${href} ${req.status}`);
+        }
+    };
+    req.send(data);
+  }
+,
     
    doPost : function (href, objectToPost, callback) {
     let data = objectToPost;
@@ -410,6 +451,34 @@ exports.createInterpreter = function(workspace,BlocklyJavaScript){
             };
             interpreter.setProperty(globalObject, 'postXhr',
                 interpreter.createAsyncFunction(wrapper));
+
+            
+                var wrapper = (href, objectToPost, callback) => {
+                  try {
+                      // var creds = interpreter.pseudoToNative(withCredsForDomain);
+                      var heads = interpreter.pseudoToNative(headersForDomain);
+                      var hostname = '(localSite)';
+                      if (href.startsWith('http://') || href.startsWith('https://')) {
+                          hostname = (new URL(href)).hostname;
+                      }
+                      var arrHeaders = [];
+                      if (hostname in heads) {
+                          arrHeaders = heads[hostname];
+                      }
+                      var withCreds = false;
+  
+                      // if (hostname in creds) {
+                      //     withCreds = creds[hostname];
+                      // }
+                      thisClass.doPut(href, objectToPost, callback, arrHeaders, withCreds);
+                  }
+                  catch (e) {
+                      alert("is an error" + e);
+                  }
+              };
+              interpreter.setProperty(globalObject, 'putXhr',
+                  interpreter.createAsyncFunction(wrapper));
+  
 
             
             // Add an API function for highlighting blocks.

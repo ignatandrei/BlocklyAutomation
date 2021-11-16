@@ -111,6 +111,12 @@
 	"description": "get and post",
 	"categories":"netcoreblockly"
 }
+,
+{
+	"id":"NetCoreBlockly_PUTPOST",
+	"description": "put and post",
+	"categories":"netcoreblockly"
+}
 
 
 ]
