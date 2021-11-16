@@ -55,6 +55,9 @@ class BlocklyReturnSwagger {
   openApiDocument = null;
   async ParseSwagger() {
     var self = this;
+    self.fieldXMLObjects.push(`<label text="${self.swaggerUrl}"></label>`);
+    self.fieldXMLFunctions.push(`<label text="${self.swaggerUrl}"></label>`);
+    
     try{
     const SwaggerParser = require("@api-platform/api-doc-parser/lib/openapi3/parseOpenApi3Documentation");
     var q = await SwaggerParser.default(this.swaggerUrl);
@@ -66,7 +69,7 @@ class BlocklyReturnSwagger {
     this.hasError = false;
     var r = q.response;
     console.log(r.paths);
-    self.fieldXMLObjects.push(`<label text="${self.swaggerUrl}"></label>`);
+    
     if (r.components?.schemas) {
       Object.keys(r.components.schemas).forEach(function (key) {
         // console.log(key);
@@ -111,7 +114,10 @@ class BlocklyReturnSwagger {
   }
 
   GenerateFunction(path, key, operation, operationKey) {
+    
+    
     var self = this;
+
     var blocklyTypeName = self.GenerateNameFunction(
       path,
       key,
