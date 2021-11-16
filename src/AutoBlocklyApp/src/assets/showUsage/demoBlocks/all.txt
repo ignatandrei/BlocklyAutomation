@@ -71,5 +71,10 @@
 	"id":"jwt",
 	"description":"get JWT and use",
 	"categories": "authentication;bearer"
+},
+{
+	"id":"NetCoreBlockly_DemoImage",
+	"description":"demo image",
+	"categories":"netcoreblockly"
 }
 ]
