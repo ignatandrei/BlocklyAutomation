@@ -76,5 +76,10 @@
 	"id":"NetCoreBlockly_DemoImage",
 	"description":"demo image",
 	"categories":"netcoreblockly"
+},
+{
+	"id":"NetCoreBlockly_CSV",
+	"description":"demo export csv",	
+	"categories":"netcoreblockly"
 }
 ]
