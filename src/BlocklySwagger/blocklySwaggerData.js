@@ -165,10 +165,31 @@ class BlocklyReturnSwagger {
               this.appendValueInput(`val_${it.name}`).appendField(name);
             });
           if (op.requestBody) {
+            var type="";
+            if(op.requestBody.content)
+              {
+                var jsonResp= op.requestBody.content['application/json'];
+                if(jsonResp && jsonResp.schema){
+                  var ref=jsonResp.schema["$$ref"];
+                  if(ref){
+                    type = "=>"+ref.substring(ref.lastIndexOf("/")+1);
+                     //var schema=self.openApiDocument.components.schemas[ref.substring(ref.lastIndexOf("/")+1)];
+                    // if(schema){
+                    //   var properties=self.findProperties(schema);
+                    //   properties.forEach((it)=>{
+                    //     this.appendValueInput(`val_${it.key}`).appendField(it.key);
+                    //   });
+                    // }
+                  }
+
+                }
+              }
             this
               .appendValueInput('val_values')
-              .appendField('values')
+              .appendField('values' + type)
               .setCheck();
+              
+              
           }
 
           this.setTooltip(`${operationKey} ${root}${key}`);
