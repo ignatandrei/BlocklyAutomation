@@ -64,7 +64,11 @@ class BlocklyReturnSwagger {
     //var r = q.response;
     const SwaggerParser  = require('swagger-client');
     var q = await SwaggerParser.default(this.swaggerUrl);
-      console.log(q);
+    if(this.swaggerUrl.indexOf('blockly')>0){
+      console.log("b__",q.spec.paths);
+        console.log("b__",q.spec.paths["MathDivideRest"]);
+        console.log("b__",q.apis["MathDivideRest"]);
+    }
       var r=q.spec;
     }
     catch(e){
@@ -116,7 +120,7 @@ class BlocklyReturnSwagger {
     return objPropString;
   }
   GenerateNameFunction(path, key, operation, operationKey) {
-    var ret = key.replaceAll("/", "_").replaceAll("{", "__");
+    var ret = key.replaceAll("/", "_").replaceAll("{", "__").replaceAll("}","");
     return operationKey + "_" + ret;
   }
 
@@ -160,6 +164,12 @@ class BlocklyReturnSwagger {
               }
               this.appendValueInput(`val_${it.name}`).appendField(name);
             });
+          if (op.requestBody) {
+            this
+              .appendValueInput('val_values')
+              .appendField('values')
+              .setCheck();
+          }
 
           this.setTooltip(`${operationKey} ${root}${key}`);
           this.setOutput(true, "");
@@ -182,10 +192,20 @@ class BlocklyReturnSwagger {
         if ("parameters" in operation) {
           parameters = operation.parameters;
         }
-
+        var hasBody=false;
+        if('requestBody' in operation){
+          hasBody=true;
+        }
+        if (blocklyTypeName.indexOf("MathDivideRest") > 0) {
+          console.log('a___'+blocklyTypeName,operation);
+          console.log(hasBody);
+       }
         var obj = {};
         var objBody = {};
-        
+        if(hasBody){
+          obj['val_values'] = javaScript.valueToCode(block, 'val_values', /*javaScript.*/ORDER_ATOMIC);
+          objBody['val_values'] =obj['val_values'];
+        }
         parameters.forEach((it) => {
           //code +=`
           obj[`val_${it.name}`] = javaScript.valueToCode(
@@ -197,10 +217,15 @@ class BlocklyReturnSwagger {
         });
 
         var parameterFunctionDefinition = parameters.map((it) => it.name + ",");
+        if(hasBody){          
+            parameterFunctionDefinition +="values,";
+        }
         parameterFunctionDefinition += "extraData";
         var callingFunctionDefinition = parameters.map(
           (it) =>"${" + `obj['val_${it.name}']` +"}" + ","
         );
+        
+        
         callingFunctionDefinition += "1"; //maybe later we use for logging
         var code = "function(";
         code += parameterFunctionDefinition;
@@ -211,7 +236,11 @@ class BlocklyReturnSwagger {
           .map((it) => `strUrl = strUrl.replace("{${it.name}}",${it.name});`);
         code += replaceUrl.join("\n");
 
-        code +=`\n{var res= ${operationKey}Xhr(strUrl);\n`;
+        code +=`\n{var res= ${operationKey}Xhr(strUrl`;
+        if(hasBody) {
+          code += `,JSON.stringify(values)`;
+        }
+        code +=`);\n`;
         code +="var resJS=JSON.parse(res);\n";
         code +="if(resJS.statusOK) return resJS.text;\n"
         code +="errHandler(res);\n}\n";
@@ -224,10 +253,19 @@ class BlocklyReturnSwagger {
         parameters.forEach((it) => {
           code += obj[`val_${it.name}`]+",";
         });
-        code +="1)";
+        if(hasBody){
+          code += objBody['val_values']+",";
+        }
+        // if(hasBody)
+        //   code +=`${JSON.stringify(objBody)}`;
+        // else
+        code +="1";//extra parameter for later
+
+        code +=")";
+
         //var code =`{GenerateGet(actionInfo)}({argsXHR})`;
         //console.log(code);
-        // if (blocklyTypeName.indexOf("GetDeterministicPortFrom___name") > 0) {
+        // if (blocklyTypeName.indexOf("MathDivideRest") > 0) {
         //   console.log(code);
         //   // debugger;
         // }

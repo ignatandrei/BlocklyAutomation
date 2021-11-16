@@ -105,6 +105,12 @@
 	"description": "first last in array",
 	"categories":"netcoreblockly"
 }
+,
+{
+	"id": "NetCoreBlockly_GETPOST",
+	"description": "get and post",
+	"categories":"netcoreblockly"
+}
 
 
 ]
