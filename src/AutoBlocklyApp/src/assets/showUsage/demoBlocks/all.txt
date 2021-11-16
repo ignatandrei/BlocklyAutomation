@@ -117,6 +117,12 @@
 	"description": "put and post",
 	"categories":"netcoreblockly"
 }
+,
+{
+	"id":"NetCoreBlockly_dynamicDelete",
+	"description": "delete",
+	"categories":"netcoreblockly"
+}
 
 
 ]
