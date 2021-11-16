@@ -88,6 +88,12 @@
 	"description":"demo save csv",	
 	"categories":"netcoreblockly"
 }
+,
+{
+	"id":"NetCoreBlockly_ModifyProp",
+	"description":"modify prop",	
+	"categories":"netcoreblockly"
+}
 
 
 ]
