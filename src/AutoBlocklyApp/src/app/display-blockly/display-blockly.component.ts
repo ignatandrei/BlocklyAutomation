@@ -73,7 +73,9 @@ export class DisplayBlocklyComponent implements OnInit {
   }
   swaggersUrl:string[]=[
     'https://microservicesportchooser.azurewebsites.net/swagger/v1/swagger.json',
-    'https://netcoreblockly.herokuapp.com/swagger/v1/swagger.json'];
+    'https://netcoreblockly.herokuapp.com/swagger/v1/swagger.json'
+  
+  ];
   public swaggerData:any[] = [];
   
   
@@ -110,8 +112,14 @@ export class DisplayBlocklyComponent implements OnInit {
     parsers.forEach((parser:any) => {            
       parser.ParseSwagger()
       .then((api:any)=>{
-          //console.log(`parsed  ${api.swaggerUrl}`);
+          
+
+          if(api.hasError){
+            console.log('see previous error');
+            return;
+          }
           this.swaggerData.push(api);
+
           for(var i=0;i<api.GenerateBlocks.length;i++){
             var e=api.GenerateBlocks[i];
             e(Blockly.Blocks,BlocklyJavaScript);

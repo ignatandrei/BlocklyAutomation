@@ -6,6 +6,7 @@ class BlocklyReturnSwagger {
   GenerateFunctions = [];
   fieldXMLObjects = [];
   fieldXMLFunctions = [];
+  hasError = true;
 
   nameCategSwagger() {
     return `catSwagger${this.findHostNameRegular()}`;
@@ -59,9 +60,10 @@ class BlocklyReturnSwagger {
     var q = await SwaggerParser.default(this.swaggerUrl);
     }
     catch(e){
-      console.error("parseSwagger",e);
-      throw e;
+      console.error("parseSwagger",e);      
+      return this;
     }
+    this.hasError = false;
     var r = q.response;
     console.log(r.paths);
     self.fieldXMLObjects.push(`<label text="${self.swaggerUrl}"></label>`);
