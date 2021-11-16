@@ -78,8 +78,16 @@
 	"categories":"netcoreblockly"
 },
 {
-	"id":"NetCoreBlockly_CSV",
-	"description":"demo export csv",	
+	"id":"NetCoreBlockly_ConvertCSV",
+	"description":"demo convert csv",	
 	"categories":"netcoreblockly"
 }
+,
+{
+	"id":"NetCoreBlockly_SaveCSV",
+	"description":"demo save csv",	
+	"categories":"netcoreblockly"
+}
+
+
 ]
