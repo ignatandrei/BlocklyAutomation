@@ -83,7 +83,7 @@ export class DisplayBlocklyComponent implements OnInit {
   
 
   var xmlList: Element[] = [];
-  xmlList = item.fieldXMLObjects.sort().map((it:any)=>Blockly.Xml.textToDom(it));
+  xmlList = item.fieldXMLObjects.map((it:any)=>Blockly.Xml.textToDom(it));
   // var cat='<category id="microservicesportchooserazurewebsitesnet" name="microservicesportchooserazurewebsitesnet"><block type="IRegister"></block></category>';
   // cat='<block type="IRegister"></block>';
   
@@ -112,12 +112,7 @@ export class DisplayBlocklyComponent implements OnInit {
     parsers.forEach((parser:any) => {            
       parser.ParseSwagger()
       .then((api:any)=>{
-          
-
-          if(api.hasError){
-            console.log('see previous error');
-            return;
-          }
+                    
           this.swaggerData.push(api);
 
           for(var i=0;i<api.GenerateBlocks.length;i++){

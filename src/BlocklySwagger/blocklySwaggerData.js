@@ -57,21 +57,28 @@ class BlocklyReturnSwagger {
     var self = this;
     self.fieldXMLObjects.push(`<label text="${self.swaggerUrl}"></label>`);
     self.fieldXMLFunctions.push(`<label text="${self.swaggerUrl}"></label>`);
-    
+    var r =null;
     try{
-    const SwaggerParser = require("@api-platform/api-doc-parser/lib/openapi3/parseOpenApi3Documentation");
+    // const SwaggerParser = require("@api-platform/api-doc-parser/lib/openapi3/parseOpenApi3Documentation");
+    // var q = await SwaggerParser.default(this.swaggerUrl);
+    //var r = q.response;
+    const SwaggerParser  = require('swagger-client');
     var q = await SwaggerParser.default(this.swaggerUrl);
+      console.log(q);
+      var r=q.spec;
     }
     catch(e){
-      console.error("parseSwagger",e);      
+      console.error(`parseSwagger ${this.swaggerUrl}`,e);      
+      self.fieldXMLObjects.push(`<label text='Error parsing!'></label>`); 
       return this;
     }
     this.hasError = false;
-    var r = q.response;
+    //var r = q.response;
     console.log(r.paths);
     
     if (r.components?.schemas) {
-      Object.keys(r.components.schemas).forEach(function (key) {
+      var keys = Object.keys(r.components.schemas).sort();
+      keys.forEach(function (key) {
         // console.log(key);
 
         self.fieldXMLObjects.push(`<block type="${key}"></block>`);
@@ -246,7 +253,7 @@ class BlocklyReturnSwagger {
           //console.log('init', objPropString);
           objPropString.forEach((item) => {
             //var t = self.TranslateToBlocklyType(key.type);
-              console.log('aa',item);
+              // console.log('aa',item);
               var name=item.key;
               if(item.value.nullable && item.value.nullable==false){
                 name +="*";
