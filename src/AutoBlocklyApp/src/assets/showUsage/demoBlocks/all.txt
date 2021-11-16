@@ -94,6 +94,17 @@
 	"description":"modify prop",	
 	"categories":"netcoreblockly"
 }
+,
+{
+	"id": "NetCoreBlockly_WeatherSimple",
+	"description": "simple weather test",
+	"categories":"netcoreblockly"
+},
+{
+	"id": "NetCoreBlockly_FirstLastInArray",
+	"description": "first last in array",
+	"categories":"netcoreblockly"
+}
 
 
 ]
