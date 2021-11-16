@@ -64,11 +64,11 @@ class BlocklyReturnSwagger {
     //var r = q.response;
     const SwaggerParser  = require('swagger-client');
     var q = await SwaggerParser.default(this.swaggerUrl);
-    if(this.swaggerUrl.indexOf('blockly')>0){
-      console.log("b__",q.spec.paths);
-        console.log("b__",q.spec.paths["MathDivideRest"]);
-        console.log("b__",q.apis["MathDivideRest"]);
-    }
+    // if(this.swaggerUrl.indexOf('blockly')>0){
+    //   console.log("b__",q.spec.paths);
+    //     console.log("b__",q.spec.paths["MathDivideRest"]);
+    //     console.log("b__",q.apis["MathDivideRest"]);
+    // }
       var r=q.spec;
     }
     catch(e){
@@ -78,7 +78,7 @@ class BlocklyReturnSwagger {
     }
     this.hasError = false;
     //var r = q.response;
-    console.log(r.paths);
+    // console.log(r.paths);
     
     if (r.components?.schemas) {
       var keys = Object.keys(r.components.schemas).sort();
@@ -216,11 +216,12 @@ class BlocklyReturnSwagger {
           //`;
         });
 
-        var parameterFunctionDefinition = parameters.map((it) => it.name + ",");
+        var parameterFunctionDefinition = parameters.map((it) => it.name );
+        console.log(parameterFunctionDefinition);
         if(hasBody){          
-            parameterFunctionDefinition +="values,";
+            parameterFunctionDefinition.push("values");
         }
-        parameterFunctionDefinition += "extraData";
+        parameterFunctionDefinition.push("extraData");
         var callingFunctionDefinition = parameters.map(
           (it) =>"${" + `obj['val_${it.name}']` +"}" + ","
         );
@@ -228,7 +229,7 @@ class BlocklyReturnSwagger {
         
         callingFunctionDefinition += "1"; //maybe later we use for logging
         var code = "function(";
-        code += parameterFunctionDefinition;
+        code += parameterFunctionDefinition.join(",");
         code += "){\n";
         code += 'var strUrl ="' + self.findRootSite() + key + '";\n';
         var replaceUrl = parameters

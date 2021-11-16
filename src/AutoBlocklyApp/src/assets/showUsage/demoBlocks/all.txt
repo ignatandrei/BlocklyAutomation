@@ -122,6 +122,12 @@
 	"id":"NetCoreBlockly_dynamicDelete",
 	"description": "delete",
 	"categories":"netcoreblockly"
+},
+{	
+	"id":"NetCoreBlockly_Multiply",
+	"description": "multiply",
+	"categories":"netcoreblockly"
+
 }
 
 
