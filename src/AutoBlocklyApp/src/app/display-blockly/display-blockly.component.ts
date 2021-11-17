@@ -5,8 +5,10 @@ import * as acorn from 'acorn';
 import * as bs from '@blockly/blocklyscripts';
 import * as bh from '@blockly/blocklyhelpers';
 import { TabulatorHelper } from './tabulator';
-import { DemoBlocks, LoadShowUsageService } from '../load-show-usage.service';
+import { LoadShowUsageService } from '../load-show-usage.service';
+import { DemoBlocks } from "../DemoBlocks";
 import * as SwaggerParser from '@blockly/blocklyswagger';
+import { firstValueFrom } from 'rxjs';
 declare var Interpreter: any;
 @Component({
   selector: 'app-display-blockly',
@@ -71,12 +73,12 @@ export class DisplayBlocklyComponent implements OnInit {
       }
     );
   }
-  swaggersUrl:string[]=[
-    'https://microservicesportchooser.azurewebsites.net/swagger/v1/swagger.json',
-    'https://netcoreblockly.herokuapp.com/swagger/v1/swagger.json',
-    'https://petstore.swagger.io/v2/swagger.json'
+  // swaggersUrl:string[]=[
+  //   'https://microservicesportchooser.azurewebsites.net/swagger/v1/swagger.json',
+  //   'https://netcoreblockly.herokuapp.com/swagger/v1/swagger.json',
+  //   'https://petstore.swagger.io/v2/swagger.json'
   
-  ];
+  // ];
   public swaggerData:any[] = [];
   
   
@@ -106,13 +108,18 @@ export class DisplayBlocklyComponent implements OnInit {
   
   }
   ngOnInit(): void {
+      this.StartRegister();
+  }
+  async StartRegister(): Promise<void> {
     
-    var parsers = this.swaggersUrl.map(it=>new  SwaggerParser.parseData(it));
+    var swaggersUrl= await firstValueFrom( this.loadDemo.getSwaggerLinks());
+    
+    var parsers = swaggersUrl.map(it=>new  SwaggerParser.parseData(it.link));
     var newSwaggerCategories=parsers.map(it=>it.categSwagger());
     //console.log(newSwaggerCategories[0]);
-    parsers.forEach((parser:any) => {            
-      parser.ParseSwagger()
-      .then((api:any)=>{
+    parsers.forEach(async  (parser:any) => {            
+          
+          var api= await parser.ParseSwagger();
                     
           this.swaggerData.push(api);
 
@@ -133,10 +140,7 @@ export class DisplayBlocklyComponent implements OnInit {
             };
             e(Blockly.Blocks,BlocklyJavaScript,image);
           }   
-        }
-      );
-    });
-
+        });
     // SwaggerParser
     // .parseSwagger
     // .parseSwagger('https://microservicesportchooser.azurewebsites.net/swagger/v1/swagger.json')

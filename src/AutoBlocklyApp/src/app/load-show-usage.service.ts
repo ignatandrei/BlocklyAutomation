@@ -2,11 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { map, Observable, of, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
-export class DemoBlocks{
-  public id:string='';
-  public description:string="";
-  public categories:string="";
-}
+import { DemoBlocks } from './DemoBlocks';
+import { LinksSwagger } from './LinksSwagger';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +21,21 @@ export class LoadShowUsageService {
           var r=res;
           // console.log(r);
           var d:DemoBlocks[]=JSON.parse(res);
+          return d;
+    })
+    )
+    ;
+  }
+
+  public getSwaggerLinks(): Observable<LinksSwagger[]> {
+  
+    return this.http.get<string>("assets/loadAtStartup/swaggers.json",{ responseType: 'text' as 'json'})
+    .pipe(
+
+      map((res: any) => {
+          var r=res;
+          // console.log(r);
+          var d:LinksSwagger[]=JSON.parse(res);
           return d;
     })
     )
