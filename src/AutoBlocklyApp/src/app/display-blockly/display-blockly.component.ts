@@ -117,7 +117,10 @@ export class DisplayBlocklyComponent implements OnInit {
 
           for(var i=0;i<api.GenerateBlocks.length;i++){
             var e=api.GenerateBlocks[i];
-            e(Blockly.Blocks,BlocklyJavaScript);
+            e(Blockly.Blocks,BlocklyJavaScript, (arr:any[][])=>{
+              
+              return new Blockly.FieldDropdown(arr);
+            });
           }   
 
           for(var i=0;i<api.GenerateFunctions.length;i++){

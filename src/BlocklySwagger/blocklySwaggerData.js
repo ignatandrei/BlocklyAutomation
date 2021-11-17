@@ -152,7 +152,7 @@ class BlocklyReturnSwagger {
           this.appendDummyInput()
             .appendField(BlocklyFieldImage(operationKey))
             .appendField(`${operationKey} ${str}`);
-          var root = self.findRootSite();
+          var root = self.findRootSite();          
           if (op.parameters)
             op.parameters.forEach((it) => {
               var name= it.name;
@@ -302,13 +302,33 @@ class BlocklyReturnSwagger {
     var props = "";
     var objPropString = self.findProperties(schema);
 
-    return function (blocks, javaScript) {
+    return function (blocks, javaScript, BlocklyFieldDropdown) {
       //   console.log(blocklyTypeName);
 
       blocks[blocklyTypeName] = {
         init: function () {
           //this.setInputsInline(true);
-          this.appendDummyInput().appendField(key);
+         
+          var isEnum=false;
+          var arrValue = [];
+          if(schema.enum){
+            isEnum=true;
+            var keys= Object.keys(schema.enum);
+            arrValue=keys.map((it)=>{
+              return [schema.enum[it],it];
+            });
+           
+          }
+          
+          var b= this.appendDummyInput()
+              .appendField(key);
+          
+          if(isEnum){
+            
+            b.appendField( BlocklyFieldDropdown(arrValue),`val_${key}`);
+            
+          }
+          else{
           //{tooltipAndpropsDef.propsDef}
           //console.log('init', objPropString);
           objPropString.forEach((item) => {
@@ -329,6 +349,7 @@ class BlocklyReturnSwagger {
               //   .setCheck('{property.PropertyType.TranslateToNewTypeName()}')
               .appendField(`${name}`);
           });
+        }
           //this.setTooltip(`${this.swaggerUrl}`);
           this.setOutput(true, blocklyTypeName);
         },
@@ -339,6 +360,13 @@ class BlocklyReturnSwagger {
           //console.log(blocklyTypeName, self.openApiDocument);
           // var actualSchema = self.openApiDocument.components.schemas[blocklyTypeName];
           // console.log(blocklyTypeName, actualSchema);
+          
+          var isEnum=false;
+          
+          if(schema.enum){
+            isEnum=true;
+          }
+          
           var objPropStringFound = self.findProperties(schema);
           //console.log(blocklyTypeName, objPropStringFound);
           const ORDER_NONE = 99;
@@ -361,6 +389,14 @@ class BlocklyReturnSwagger {
             objPropString.push(`"${it.key}\":${val}`);
           });
           var code = "{ " + objPropString.join(",") + " }";
+
+          if(isEnum){
+            console.log(key);
+            console.log(schema);
+            var dropdown_name = block.getFieldValue(`val_${key}`);                    
+            code = dropdown_name;
+            return [code, /*javaScript.*/ORDER_ATOMIC];
+          }
           //console.log(code);
           return [code, /*javaScript.*/ ORDER_NONE];
         }
