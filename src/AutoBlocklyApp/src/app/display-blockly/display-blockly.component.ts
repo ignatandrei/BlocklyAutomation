@@ -101,6 +101,28 @@ export class DisplayBlocklyComponent implements OnInit {
     // var ret= str.map((it:string)=> Blockly.Xml.textToDom(it));
     // return ret;
   }
+  public registerSwaggerBlocksAPIControllers(demoWorkspace:Blockly.Workspace, item:any, controller:string):Element[]{
+    var xmlList: Element[] = [];
+    var urls=item.operations.filter((it:any)=>it.controller==controller);
+    console.log(controller,urls, item.fieldXMLFunctions);
+    
+    xmlList = item.fieldXMLFunctions
+      .filter((it:any)=> {
+        if(it.id =='')
+          return true;
+        var val=it.id +'/';
+        var existInfields=false;
+        urls.forEach( (url:any) => {
+            
+            if(val.startsWith(url.id))
+                existInfields=true;
+        });
+        return existInfields;
+      })
+      .map((it:any)=>Blockly.Xml.textToDom(it.gui));
+    return xmlList;  
+  
+  }
   public registerSwaggerBlocksAPI(demoWorkspace:Blockly.Workspace, item:any):Element[]{
     var xmlList: Element[] = [];
     xmlList = item.fieldXMLFunctions.map((it:any)=>Blockly.Xml.textToDom(it.gui));
@@ -337,7 +359,7 @@ export class DisplayBlocklyComponent implements OnInit {
     myComponent.swaggerData.forEach((item:any)=>
     {
       var newCateg= item.findCategSwaggerFromPaths()
-      .map((it: any)=>`<category name='${it}' id='func_${item.name}_${it}'></category>`)
+      .map((it: any)=>`<category name='${it}' custom='func_${item.name}_${it}'></category>`)
       .join('\n');
       xmlToolbox = xmlToolbox.replace(`<category name='${item.name}'>`,
       `<category name='${item.name}'>
@@ -371,7 +393,7 @@ export class DisplayBlocklyComponent implements OnInit {
         // console.log(nameCat);
         // console.log(myComponent.swaggerData);
         // console.log(myComponent.demoWorkspace);
-          
+        //
 
         myComponent.demoWorkspace.registerToolboxCategoryCallback(nameCat,(d: Blockly.Workspace)=>{
 
@@ -382,6 +404,12 @@ export class DisplayBlocklyComponent implements OnInit {
 
             return myComponent.registerSwaggerBlocksAPI(d,item);
           });
+
+          item.findCategSwaggerFromPaths().forEach((it:any) => {
+            myComponent?.demoWorkspace?.registerToolboxCategoryCallback( `func_${item.name}_${it}`,(d:Blockly.Workspace)=>{
+              return myComponent.registerSwaggerBlocksAPIControllers(d,item,it);
+            } 
+          )});
         
      });
      myComponent.restoreBlocks();

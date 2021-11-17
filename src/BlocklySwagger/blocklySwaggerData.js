@@ -7,15 +7,13 @@ class BlocklyReturnSwagger {
   fieldXMLObjects = [];
   fieldXMLFunctions = [];
   hasError = true;
-  operations=[];
   paths= [];
   name='';
+  operations=[];
   nameCategSwagger() {
     return `catSwagger${this.findHostNameRegular()}`;
   }
   findCategSwaggerFromPaths(){
-    if(this.operations.length>0)
-      return this.operations;
 
     var normalized= this.paths
       .filter(it=> it && it.id && it.id.length >0 )
@@ -34,7 +32,7 @@ class BlocklyReturnSwagger {
        });
       
     ;
-    var operations=normalized
+    this.operations=normalized
           .filter(it=>it.nrOps>1)
           //.map(it=>it.id)
           .map(it=> {
@@ -58,9 +56,9 @@ class BlocklyReturnSwagger {
             return { controller:it.arr[it.arr.length-2], id:it.id};
           })
           ;
-    operations.push(...others);
+          this.operations.push(...others);
     
-    return  [...new Set(operations.map(it=>it.controller))];
+    return  [...new Set(this.operations.map(it=>it.controller))];
 }
   categSwagger() {
     var h = this.findHostNameRegular();
@@ -70,13 +68,11 @@ class BlocklyReturnSwagger {
     var categ = this.nameCategSwagger();
     
     return (
-      '<category name="obj_' +
-      first +
+      '<category name="Objects' +
       '" custom="objects_' +
       categ +
       '"></category>' +
-      '<category name="api_' +
-      first +
+      '<category name="AllApi' +
       '" custom="api_' +
       categ +
       '"></category>'
@@ -196,7 +192,7 @@ class BlocklyReturnSwagger {
     //console.log(operationKey);
     // console.log(`assets/httpImages/${operationKey}.png`);
     // console.log(operation);
-    self.fieldXMLFunctions.push({id:path,gui:`<block type="${blocklyTypeName}"></block>`});
+    self.fieldXMLFunctions.push({id:key,gui:`<block type="${blocklyTypeName}"></block>`});
 
     return function (blocks, javaScript, BlocklyFieldImage) {
       blocks[blocklyTypeName] = {
