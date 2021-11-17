@@ -171,5 +171,12 @@
 	"description": "enum demo",
 	"categories":"netcoreblockly"
 }
+,
+
+{
+"id":"NetCoreBlockly_ThrowError",
+	"description": "see the error",
+	"categories":"netcoreblockly"
+}
 
 ]
