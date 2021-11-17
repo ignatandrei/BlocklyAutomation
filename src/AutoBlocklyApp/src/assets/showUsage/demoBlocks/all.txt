@@ -151,6 +151,19 @@
 	"id":"NetCoreBlockly_ModifyName",
 	"description": "modify name department",
 	"categories":"netcoreblockly"
+},
+
+{
+"id":"NetCoreBlockly_DeleteDepartment",
+	"description": "delete department",
+	"categories":"netcoreblockly"
+}
+,
+
+{
+"id":"NetCoreBlockly_SaveNewDepartment",
+	"description": "save new department",
+	"categories":"netcoreblockly"
 }
 
 ]
