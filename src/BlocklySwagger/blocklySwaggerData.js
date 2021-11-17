@@ -217,10 +217,10 @@ class BlocklyReturnSwagger {
         if('requestBody' in operation){
           hasBody=true;
         }
-        if (blocklyTypeName.indexOf("RestWithArgs") > 0) {
+      //   if (blocklyTypeName.indexOf("RestWithArgs") > 0) {
           
-          console.log(parameters);
-       }
+      //     console.log(parameters);
+      //  }
         var obj = {};
         var objBody = {};
         if(hasBody){
@@ -238,7 +238,7 @@ class BlocklyReturnSwagger {
         });
 
         var parameterFunctionDefinition = parameters.map((it) => it.name );
-        console.log(parameterFunctionDefinition);
+        // console.log(parameterFunctionDefinition);
         if(hasBody){          
             parameterFunctionDefinition.push("values");
         }
@@ -257,8 +257,8 @@ class BlocklyReturnSwagger {
         if(paramsQuery.length>0){
           code += 'strUrl+="?";\n;';
           var data= paramsQuery.map(it=>`${it.name}=`+"{" + it.name+"}") .join("&");
-          console.log(data);
-          console.log('strUrl += "'+data+'";'); 
+          // console.log(data);
+          // console.log('strUrl += "'+data+'";'); 
           code += 'strUrl += "'+data+'";\n;';
         }
 
