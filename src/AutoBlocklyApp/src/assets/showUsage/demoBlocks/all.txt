@@ -140,6 +140,12 @@
 	"description": "create department",
 	"categories":"netcoreblockly"
 
+},
+{
+	"id":"NetCoreBlockly_GetDepartment",
+	"description": "find department",
+	"categories":"netcoreblockly"
+
 }
 
 ]
