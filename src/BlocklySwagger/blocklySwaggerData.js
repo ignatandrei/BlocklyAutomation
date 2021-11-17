@@ -7,29 +7,61 @@ class BlocklyReturnSwagger {
   fieldXMLObjects = [];
   fieldXMLFunctions = [];
   hasError = true;
+  operations=[];
   paths= [];
   nameCategSwagger() {
     return `catSwagger${this.findHostNameRegular()}`;
   }
   findCategSwaggerFromPaths(){
+    if(this.operations.length>0)
+      return this.operations;
+
     var normalized= this.paths
-      .filter(it=> it && it.length >0 )
+      .filter(it=> it && it.id && it.id.length >0 )
       .map(it=>{
-          var i=it.indexOf("{");
-          if(i>0) it=it.substring(0,i);
+          var i=it.id.indexOf("{");
+          if(i>0) 
+            it.id=it.id.substring(0,i);
+          
           return it;
       })
-      .map(it=>{
+       .map(it=>{
+         if(it.id.lastIndexOf("/") != it.id.length-1)
+             it.id +="/";
 
-        if(it.lastIndexOf("/") == it.length-1)
-          return it.substring(0,it.length-1);
-
-        return it;
-
-      });
+         return it;
+       });
       
+    ;
+    var operations=normalized
+          .filter(it=>it.nrOps>1)
+          //.map(it=>it.id)
+          .map(it=> {
+            
+            var ret= {arr :  it.id.split('/').filter(a=>a.length>0),id : it.id};
+            
+            return ret;
+          })          
+          .map(it=>{return { controller:it.arr[it.arr.length-1], id:it.id};} ) ;
+
+    var others = normalized
+          .filter(it=>it.nrOps==1)
+          .map(it=>
+            {
+            return { arr : it.id.split('/').filter(a=>a.length>0), id : it.id}
+            }
+            )
+          .map(it=>{
+             if(it.arr.length ==1)
+                return { controller : it.arr[0], id:it.id};
+            return { controller:it.arr[it.arr.length-2], id:it.id};
+          })
+          ;
+    operations.push(...others);
+    // operations.sort()
+    console.log("B__", others);      
     
-    return  [...new Set(normalized)];
+    return  [...new Set(operations.map(it=>it.controller))];
 }
   categSwagger() {
     var h = this.findHostNameRegular();
@@ -116,7 +148,7 @@ class BlocklyReturnSwagger {
     if (r.paths) {
       Object.keys(r.paths).forEach(function (key) {
         var path = r.paths[key];
-        self.paths.push(key);
+        self.paths.push({id: key, nrOps: Object.keys(path).length});
         Object.keys(path).forEach(function (oo) {
           var ops = path[oo];
           self.GenerateFunctions.push(
