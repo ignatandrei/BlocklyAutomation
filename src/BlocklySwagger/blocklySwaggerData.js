@@ -58,8 +58,6 @@ class BlocklyReturnSwagger {
           })
           ;
     operations.push(...others);
-    // operations.sort()
-    console.log("B__", others);      
     
     return  [...new Set(operations.map(it=>it.controller))];
 }
@@ -110,7 +108,7 @@ class BlocklyReturnSwagger {
   async ParseSwagger() {
     var self = this;
     self.fieldXMLObjects.push(`<label text="${self.swaggerUrl}"></label>`);
-    self.fieldXMLFunctions.push(`<label text="${self.swaggerUrl}"></label>`);
+    self.fieldXMLFunctions.push({id:'',gui:`<label text="${self.swaggerUrl}"></label>`});
     var r =null;
     try{
     // const SwaggerParser = require("@api-platform/api-doc-parser/lib/openapi3/parseOpenApi3Documentation");
@@ -197,7 +195,7 @@ class BlocklyReturnSwagger {
     //console.log(operationKey);
     // console.log(`assets/httpImages/${operationKey}.png`);
     // console.log(operation);
-    self.fieldXMLFunctions.push(`<block type="${blocklyTypeName}"></block>`);
+    self.fieldXMLFunctions.push({id:path,gui:`<block type="${blocklyTypeName}"></block>`});
 
     return function (blocks, javaScript, BlocklyFieldImage) {
       blocks[blocklyTypeName] = {

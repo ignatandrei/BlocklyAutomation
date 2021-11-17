@@ -103,7 +103,7 @@ export class DisplayBlocklyComponent implements OnInit {
   }
   public registerSwaggerBlocksAPI(demoWorkspace:Blockly.Workspace, item:any):Element[]{
     var xmlList: Element[] = [];
-    xmlList = item.fieldXMLFunctions.map((it:any)=>Blockly.Xml.textToDom(it));
+    xmlList = item.fieldXMLFunctions.map((it:any)=>Blockly.Xml.textToDom(it.gui));
     return xmlList;  
   
   }
@@ -342,7 +342,7 @@ var nr=myComponent.swaggerData.length;
         
         //demoWorkspace.updateToolbox(document.getElementById('toolbox'));
 
-        console.log(item.findCategSwaggerFromPaths());
+        console.log(item.swaggerUrl,item.findCategSwaggerFromPaths());
         // console.log(xmlToolbox);
 
         var nameCat="objects_"+ item.nameCategSwagger();
