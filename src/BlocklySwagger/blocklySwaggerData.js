@@ -217,9 +217,9 @@ class BlocklyReturnSwagger {
         if('requestBody' in operation){
           hasBody=true;
         }
-        if (blocklyTypeName.indexOf("MathDivideRest") > 0) {
-          console.log('a___'+blocklyTypeName,operation);
-          console.log(hasBody);
+        if (blocklyTypeName.indexOf("RestWithArgs") > 0) {
+          
+          console.log(parameters);
        }
         var obj = {};
         var objBody = {};
@@ -253,8 +253,17 @@ class BlocklyReturnSwagger {
         code += parameterFunctionDefinition.join(",");
         code += "){\n";
         code += 'var strUrl ="' + self.findRootSite() + key + '";\n';
+        var paramsQuery = parameters.filter((it) => it.in == "query");
+        if(paramsQuery.length>0){
+          code += 'strUrl+="?";\n;';
+          var data= paramsQuery.map(it=>`${it.name}=`+"{" + it.name+"}") .join("&");
+          console.log(data);
+          console.log('strUrl += "'+data+'";'); 
+          code += 'strUrl += "'+data+'";\n;';
+        }
+
         var replaceUrl = parameters
-          .filter((it) => it.in == "path")
+          .filter((it) => it.in == "path" || it.in == "query")
           .map((it) => `strUrl = strUrl.replace("{${it.name}}",${it.name});`);
         code += replaceUrl.join("\n");
 

@@ -178,5 +178,11 @@
 	"description": "see the error",
 	"categories":"netcoreblockly"
 }
+,
+{
+"id":"NetCoreBlockly_SimpleQueryStringPOST",
+	"description": "post with query string",
+	"categories":"netcoreblockly"
+}
 
 ]
