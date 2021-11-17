@@ -7,9 +7,18 @@ class BlocklyReturnSwagger {
   fieldXMLObjects = [];
   fieldXMLFunctions = [];
   hasError = true;
-
+  paths= [];
   nameCategSwagger() {
     return `catSwagger${this.findHostNameRegular()}`;
+  }
+  findCategSwaggerFromPaths(){
+    var existing= this.paths;
+    var normalized= [];
+    for(var i=0;i<existing.length;i++){
+      var p=existing[i];
+      normalized.push(e);
+    }
+    return normalized;
   }
   categSwagger() {
     var h = this.findHostNameRegular();
@@ -17,6 +26,7 @@ class BlocklyReturnSwagger {
     var max = 5;
     if (h.length > max) var first = h.substring(0, max);
     var categ = this.nameCategSwagger();
+    
     return (
       '<category name="obj_' +
       first +
@@ -29,6 +39,7 @@ class BlocklyReturnSwagger {
       categ +
       '"></category>'
     );
+    
   }
   findRootSite() {
     var href = this.swaggerUrl;
@@ -94,6 +105,7 @@ class BlocklyReturnSwagger {
     if (r.paths) {
       Object.keys(r.paths).forEach(function (key) {
         var path = r.paths[key];
+        self.paths.push(key);
         Object.keys(path).forEach(function (oo) {
           var ops = path[oo];
           self.GenerateFunctions.push(
@@ -103,6 +115,7 @@ class BlocklyReturnSwagger {
       });
     }
     self.openApiDocument = r;
+    // console.log(self.openApiDocument);
     return self;
   }
   // findPath(key){

@@ -313,8 +313,7 @@ export class DisplayBlocklyComponent implements OnInit {
     ${blocks}
     </xml>`;
     // console.log(toolboxXML);
-    const toolbox = document.getElementById('toolbox');
-    this.demoWorkspace=Blockly.inject(blocklyDiv, {
+  this.demoWorkspace=Blockly.inject(blocklyDiv, {
       readOnly: false,
        media: 'media/',
       trashcan: true,
@@ -326,39 +325,37 @@ export class DisplayBlocklyComponent implements OnInit {
        toolbox: toolboxXML
     } as Blockly.BlocklyOptions);
     var self=this;
-    window.setTimeout((myComponent: DisplayBlocklyComponent)=>{
+    
+    window.setTimeout((myComponent: DisplayBlocklyComponent, xmlToolbox: string)=>{
       // console.log('start register');
       if(myComponent?.swaggerData == null)
         return;
-      myComponent.swaggerData.forEach( (item :any)=>{
+var nr=myComponent.swaggerData.length;
+    var toolbox = myComponent?.demoWorkspace?.updateToolbox(xmlToolbox.replace('Swagger',`Swagger(${nr})`));
+
+        myComponent.swaggerData.forEach( (item :any)=>{
         if(myComponent?.demoWorkspace == null)
             return;
+
+        console.log(item.paths.length);
+        var xml=self.restoreBlocks;
+        
+        //demoWorkspace.updateToolbox(document.getElementById('toolbox'));
+
+        
+        console.log(xmlToolbox);
+
         var nameCat="objects_"+ item.nameCategSwagger();
         var nameAPI="api_"+ item.nameCategSwagger();
         // console.log(nameCat);
         // console.log(myComponent.swaggerData);
         // console.log(myComponent.demoWorkspace);
+
+
         myComponent.demoWorkspace.registerToolboxCategoryCallback(nameCat,(d: Blockly.Workspace)=>{
 
               return myComponent.registerSwaggerBlocksObjects(d,item);
 
-              // myComponent.demoWorkspace!.getToolbox().refreshSelection();
-              // return d1;
-              // try{
-              //   console.log('asd');
-              // var cat='<category id="andre" name="andrei"><block type="controls_if"></block></category>';  
-              // var xmlList: Element[] = [];
-              // var block = Blockly.Xml.textToDom(cat);
-              // xmlList.push(block);
-              // console.log('astttt',xmlList);
-              // return xmlList;  
-              // }
-              // catch(e){
-              //   console.log('error register ',e);
-              //   return [];
-              // }
-              
-              // myComponent.demoWorkspace!.getToolbox().refreshSelection();
           } );
           myComponent.demoWorkspace.registerToolboxCategoryCallback(nameAPI,(d: Blockly.Workspace)=>{
 
@@ -368,7 +365,7 @@ export class DisplayBlocklyComponent implements OnInit {
      });
      myComponent.restoreBlocks();
 
-  }, 2000, this);
+  }, 2000, this, toolboxXML);
     ;
     // console.log(BlocklyJavaScript);
     this.run = bh.interpreterHelper.createInterpreter(this.demoWorkspace,BlocklyJavaScript);
