@@ -114,9 +114,13 @@ export class DisplayBlocklyComponent implements OnInit {
     
     var swaggersUrl= await firstValueFrom( this.loadDemo.getSwaggerLinks());
     
-    var parsers = swaggersUrl.map(it=>new  SwaggerParser.parseData(it.link));
-    var newSwaggerCategories=parsers.map(it=>it.categSwagger());
+    var swaggersDict: Map<string,any>  = new Map<string,any>();
+    swaggersUrl.forEach(it=>{
+      swaggersDict.set(it.id,new  SwaggerParser.parseData(it.link));
+    });
+        
     //console.log(newSwaggerCategories[0]);
+    var parsers = Array.from(swaggersDict.values());
     parsers.forEach(async  (parser:any) => {            
           
           var api= await parser.ParseSwagger();
@@ -152,6 +156,12 @@ export class DisplayBlocklyComponent implements OnInit {
     //   // console.log(api[1](Blockly.Blocks,BlocklyJavaScript));
     // });
 
+    var newSwaggerCategories=swaggersUrl.map(it=>
+      
+      `<category name='${it.id}'>` +  swaggersDict.get(it.id).categSwagger() +'</category>'
+      );
+    
+      
     this.loadDemo.getDemoBlocks().subscribe(
       (data:DemoBlocks[])=>{
         this.demos=data.sort((a,b)=> a.description.localeCompare(b.description));
