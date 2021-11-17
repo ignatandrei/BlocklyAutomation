@@ -71,5 +71,75 @@
 	"id":"jwt",
 	"description":"get JWT and use",
 	"categories": "authentication;bearer"
+},
+{
+	"id":"NetCoreBlockly_DemoImage",
+	"description":"demo image",
+	"categories":"netcoreblockly"
+},
+{
+	"id":"NetCoreBlockly_ConvertCSV",
+	"description":"demo convert csv",	
+	"categories":"netcoreblockly"
 }
+,
+{
+	"id":"NetCoreBlockly_SaveCSV",
+	"description":"demo save csv",	
+	"categories":"netcoreblockly"
+}
+,
+{
+	"id":"NetCoreBlockly_ModifyProp",
+	"description":"modify prop",	
+	"categories":"netcoreblockly"
+}
+,
+{
+	"id": "NetCoreBlockly_WeatherSimple",
+	"description": "simple weather test",
+	"categories":"netcoreblockly"
+},
+{
+	"id": "NetCoreBlockly_FirstLastInArray",
+	"description": "first last in array",
+	"categories":"netcoreblockly"
+}
+,
+{
+	"id": "NetCoreBlockly_GETPOST",
+	"description": "get and post",
+	"categories":"netcoreblockly"
+}
+,
+{
+	"id":"NetCoreBlockly_PUTPOST",
+	"description": "put and post",
+	"categories":"netcoreblockly"
+}
+,
+{
+	"id":"NetCoreBlockly_dynamicDelete",
+	"description": "delete",
+	"categories":"netcoreblockly"
+},
+{	
+	"id":"NetCoreBlockly_Multiply",
+	"description": "multiply",
+	"categories":"netcoreblockly"
+
+}
+,
+{
+	"id":"NetCoreBlockly_Divide0",
+	"description": "divide by 0",
+	"categories":"netcoreblockly"
+},
+{
+	"id":"NetCoreBlockly_CreateDept",
+	"description": "create department",
+	"categories":"netcoreblockly"
+
+}
+
 ]
