@@ -9,6 +9,7 @@ class BlocklyReturnSwagger {
   hasError = true;
   operations=[];
   paths= [];
+  name='';
   nameCategSwagger() {
     return `catSwagger${this.findHostNameRegular()}`;
   }

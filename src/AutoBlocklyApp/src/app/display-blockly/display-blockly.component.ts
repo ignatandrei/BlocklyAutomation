@@ -120,11 +120,12 @@ export class DisplayBlocklyComponent implements OnInit {
     });
         
     //console.log(newSwaggerCategories[0]);
-    var parsers = Array.from(swaggersDict.values());
-    parsers.forEach(async  (parser:any) => {            
+    // var parsers = Array.from(swaggersDict.values());
+    // parsers.forEach(async  (parser:any) => {           
+    swaggersDict.forEach(async (parser:any,key:string) => { 
           
           var api= await parser.ParseSwagger();
-                    
+          api.name = key;          
           this.swaggerData.push(api);
 
           for(var i=0;i<api.GenerateBlocks.length;i++){
@@ -330,19 +331,39 @@ export class DisplayBlocklyComponent implements OnInit {
       // console.log('start register');
       if(myComponent?.swaggerData == null)
         return;
-var nr=myComponent.swaggerData.length;
-    var toolbox = myComponent?.demoWorkspace?.updateToolbox(xmlToolbox.replace('Swagger',`Swagger(${nr})`));
+    var nr=myComponent.swaggerData.length;
+    xmlToolbox=xmlToolbox.replace('Swagger',`Swagger(${nr})`)
+
+    myComponent.swaggerData.forEach((item:any)=>
+    {
+      var newCateg= item.findCategSwaggerFromPaths()
+      .map((it: any)=>`<category name='${it}' id='func_${item.name}_${it}'></category>`)
+      .join('\n');
+      xmlToolbox = xmlToolbox.replace(`<category name='${item.name}'>`,
+      `<category name='${item.name}'>
+        <category name='API' id='func_${item.name}'>
+        ${newCateg}
+        </category>
+      `
+      
+      );
+      // console.log(item.name);
+    }
+      
+    );
+
+    var toolbox = myComponent?.demoWorkspace?.updateToolbox(xmlToolbox);
 
         myComponent.swaggerData.forEach( (item :any)=>{
         if(myComponent?.demoWorkspace == null)
             return;
 
-        console.log(item.paths.length);
+        
         var xml=self.restoreBlocks;
         
         //demoWorkspace.updateToolbox(document.getElementById('toolbox'));
 
-        console.log(item.swaggerUrl,item.findCategSwaggerFromPaths());
+        //console.log(item.swaggerUrl,item.findCategSwaggerFromPaths());
         // console.log(xmlToolbox);
 
         var nameCat="objects_"+ item.nameCategSwagger();
@@ -350,7 +371,7 @@ var nr=myComponent.swaggerData.length;
         // console.log(nameCat);
         // console.log(myComponent.swaggerData);
         // console.log(myComponent.demoWorkspace);
-
+          
 
         myComponent.demoWorkspace.registerToolboxCategoryCallback(nameCat,(d: Blockly.Workspace)=>{
 
