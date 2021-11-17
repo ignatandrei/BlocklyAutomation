@@ -146,6 +146,11 @@
 	"description": "find department",
 	"categories":"netcoreblockly"
 
+},
+{
+	"id":"NetCoreBlockly_ModifyName",
+	"description": "modify name department",
+	"categories":"netcoreblockly"
 }
 
 ]
