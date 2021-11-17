@@ -164,6 +164,12 @@
 "id":"NetCoreBlockly_SaveNewDepartment",
 	"description": "save new department",
 	"categories":"netcoreblockly"
+},
+
+{
+"id":"NetCoreBlockly_PlayWithEnum",
+	"description": "enum demo",
+	"categories":"netcoreblockly"
 }
 
 ]

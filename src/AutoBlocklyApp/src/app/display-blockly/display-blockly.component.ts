@@ -265,7 +265,7 @@ export class DisplayBlocklyComponent implements OnInit {
 
   }
   Download():void{
-    var name=window.prompt("Name?","blocks.xml");
+    var name=window.prompt("Name?","blocks.txt");
     if(name == null)
       return;
     bh.saveLoad.DownloadBlocks(Blockly.Xml,this.demoWorkspace,name);

@@ -390,12 +390,9 @@ class BlocklyReturnSwagger {
           });
           var code = "{ " + objPropString.join(",") + " }";
 
-          if(isEnum){
-            console.log(key);
-            console.log(schema);
+          if(isEnum){           
             var dropdown_name = block.getFieldValue(`val_${key}`);                    
-            code = dropdown_name;
-            return [code, /*javaScript.*/ORDER_ATOMIC];
+            code = dropdown_name;            
           }
           //console.log(code);
           return [code, /*javaScript.*/ ORDER_NONE];
