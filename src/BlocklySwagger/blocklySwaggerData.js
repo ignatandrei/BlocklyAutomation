@@ -12,14 +12,25 @@ class BlocklyReturnSwagger {
     return `catSwagger${this.findHostNameRegular()}`;
   }
   findCategSwaggerFromPaths(){
-    var existing= this.paths;
-    var normalized= [];
-    for(var i=0;i<existing.length;i++){
-      var p=existing[i];
-      normalized.push(e);
-    }
-    return normalized;
-  }
+    var normalized= this.paths
+      .filter(it=> it && it.length >0 )
+      .map(it=>{
+          var i=it.indexOf("{");
+          if(i>0) it=it.substring(0,i);
+          return it;
+      })
+      .map(it=>{
+
+        if(it.lastIndexOf("/") == it.length-1)
+          return it.substring(0,it.length-1);
+
+        return it;
+
+      });
+      
+    
+    return  [...new Set(normalized)];
+}
   categSwagger() {
     var h = this.findHostNameRegular();
     h = h.replaceAll(".", "");

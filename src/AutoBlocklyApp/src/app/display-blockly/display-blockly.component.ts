@@ -342,8 +342,8 @@ var nr=myComponent.swaggerData.length;
         
         //demoWorkspace.updateToolbox(document.getElementById('toolbox'));
 
-        
-        console.log(xmlToolbox);
+        console.log(item.findCategSwaggerFromPaths());
+        // console.log(xmlToolbox);
 
         var nameCat="objects_"+ item.nameCategSwagger();
         var nameAPI="api_"+ item.nameCategSwagger();
