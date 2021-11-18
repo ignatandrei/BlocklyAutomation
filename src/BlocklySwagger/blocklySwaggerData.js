@@ -424,8 +424,18 @@ class BlocklyReturnSwagger {
               if(item.value.nullable && item.value.nullable==false){
                 name +="*";
               } 
-              if(item.value.type){
-                name+=":"+item.value.type;
+              if(item.value?.type){
+                var val=item.value.type||'';
+                if(val == "object"){
+                  // console.log(item);
+                  var val1= item.value["$$ref"]||'';
+                  if(val1.length>0){
+                    val = val1.substring(val1.lastIndexOf("/")+1);
+                  }
+                }
+
+                name+=":"+val;
+                
               }
               if(item.value['$ref']){
                 var nameRef=item.value['$ref'].replaceAll("#/components/schemas/","");
