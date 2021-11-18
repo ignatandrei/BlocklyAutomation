@@ -3,6 +3,11 @@
 		"id":"chuck_norris",
 		"description":"joke with Chuck Norris"
 	},
+{
+		"id":"petstore",
+		"description":"official pet store swagger",
+		"categories":"swagger;petstore"	
+	},
 	{
 		"id":"wait",
 		"description":"simple wait"

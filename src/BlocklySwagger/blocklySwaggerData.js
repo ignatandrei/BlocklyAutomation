@@ -290,7 +290,8 @@ class BlocklyReturnSwagger {
           parameters = operation.parameters;
         }
         var hasBody=false;
-        if('requestBody' in operation){
+        var hasBodyParameter=parameters.filter(it=>it.in=='body').length>0;
+        if(hasBodyParameter || ('requestBody' in operation)){
           hasBody=true;
         }
       //   if (blocklyTypeName.indexOf("RestWithArgs") > 0) {
@@ -315,7 +316,7 @@ class BlocklyReturnSwagger {
 
         var parameterFunctionDefinition = parameters.map((it) => it.name );
         // console.log(parameterFunctionDefinition);
-        if(hasBody){          
+        if(hasBody & !hasBodyParameter){          
             parameterFunctionDefinition.push("values");
         }
         parameterFunctionDefinition.push("extraData");
@@ -347,7 +348,11 @@ class BlocklyReturnSwagger {
 
         code +=`\n{var res= ${operationKey}Xhr(strUrl`;
         if(hasBody) {
-          code += `,JSON.stringify(values)`;
+          var values="values";
+          if(hasBodyParameter){
+            values= parameters.filter(it=>it.in=='body')[0].name;
+          }
+          code += `,JSON.stringify(${values})`;
         }
         code +=`);\n`;
         code +="var resJS=JSON.parse(res);\n";
@@ -362,7 +367,7 @@ class BlocklyReturnSwagger {
         parameters.forEach((it) => {
           code += obj[`val_${it.name}`]+",";
         });
-        if(hasBody){
+        if(hasBody &!hasBodyParameter){
           code += objBody['val_values']+",";
         }
         // if(hasBody)
