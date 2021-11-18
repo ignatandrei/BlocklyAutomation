@@ -102,6 +102,7 @@ class BlocklyReturnSwagger {
     return hostname.replaceAll(".", "");
   }
   openApiDocument = null;
+  basePath = "";
   async ParseSwagger() {
     var self = this;
     self.fieldXMLObjects.push(`<label text="${self.swaggerUrl}"></label>`);
@@ -125,21 +126,34 @@ class BlocklyReturnSwagger {
       self.fieldXMLObjects.push(`<label text='Error parsing!'></label>`); 
       return this;
     }
+    
     this.hasError = false;
+    
+    this.basePath= r.basePath ||'';
+    console.log("basepath"+ this.swaggerUrl,this.basePath);
     //var r = q.response;
     // console.log(r.paths);
+    var data=r.components?.schemas;
+    if(data == null || data == undefined){
+      console.log(this.swaggerUrl,data);
+      data=r.definitions;
+    }
     
-    if (r.components?.schemas) {
-      var keys = Object.keys(r.components.schemas).sort();
+    if (data) {
+      var keys = Object.keys(data).sort();
       keys.forEach(function (key) {
         // console.log(key);
 
         self.fieldXMLObjects.push(`<block type="${key}"></block>`);
 
-        var schema = r.components.schemas[key];
+        var schema = data[key];
         self.GenerateBlocks.push(self.GenerateBlock(schema, key));
       });
     }
+    else{
+      console.log("_A",r);
+    }
+
     if (r.paths) {
       Object.keys(r.paths).forEach(function (key) {
         var path = r.paths[key];
@@ -303,7 +317,9 @@ class BlocklyReturnSwagger {
         var code = "function(";
         code += parameterFunctionDefinition.join(",");
         code += "){\n";
-        code += 'var strUrl ="' + self.findRootSite() + key + '";\n';
+        
+        console.log("basepath",self.basePath);
+        code += 'var strUrl ="' + self.findRootSite()+ self.basePath  + key + '";\n';
         var paramsQuery = parameters.filter((it) => it.in == "query");
         if(paramsQuery.length>0){
           code += 'strUrl+="?";\n;';

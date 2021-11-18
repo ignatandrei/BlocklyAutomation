@@ -114,7 +114,7 @@ export class DisplayBlocklyComponent implements OnInit {
   public registerSwaggerBlocksAPIControllers(demoWorkspace:Blockly.Workspace, item:any, controller:string):Element[]{
     var xmlList: Element[] = [];
     var urls=item.operations.filter((it:any)=>it.controller==controller);
-    console.log(controller,urls, item.fieldXMLFunctions);
+    // console.log(controller,urls, item.fieldXMLFunctions);
     
     xmlList = item.fieldXMLFunctions
       .filter((it:any)=> {
