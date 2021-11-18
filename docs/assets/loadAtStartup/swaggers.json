@@ -1,0 +1,14 @@
+[{
+		"id":"MSPC",
+		"link":"https://microservicesportchooser.azurewebsites.net/swagger/v1/swagger.json"
+},
+{
+		"id":"TestBlocks",
+		"link":"https://netcoreblockly.herokuapp.com/swagger/v1/swagger.json"
+}
+,{
+		"id":"PetStore",
+		"link":"https://petstore.swagger.io/v2/swagger.json"
+}
+
+]
