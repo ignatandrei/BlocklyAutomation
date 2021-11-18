@@ -142,42 +142,54 @@ export class DisplayBlocklyComponent implements OnInit {
   ngOnInit(): void {
       this.StartRegister();
   }
+  public LoadSwagger(){
+    var json=window.prompt("Swagger url? ")
+    if(!json)
+      return;
+    if(!json.endsWith("json")){
+      window.alert("Swagger should end with .json - see source of html page");
+      return;    
+    }
+    this.LoadSwaggerFromUrl(json);
+  }
+  private async LoadSwaggerFromUrl(url:string, name?:string): Promise<any>{
+    
+    var parser=new  SwaggerParser.parseData(url)
+    var api= await parser.ParseSwagger();
+    
+    api.name = name || url;
+    this.swaggerData.push(api);
+    for(var i=0;i<api.GenerateBlocks.length;i++){
+      var e=api.GenerateBlocks[i];
+      e(Blockly.Blocks,BlocklyJavaScript, (arr:any[][])=>{
+        
+        return new Blockly.FieldDropdown(arr);
+      });
+    }   
+    for(var i=0;i<api.GenerateFunctions.length;i++){
+      var e=api.GenerateFunctions[i];
+      var image=function (opKey:string){
+        
+        var image =`assets/httpImages/${opKey}.png`;
+        return new Blockly.FieldImage(image, 90, 20, opKey );
+      };
+      e(Blockly.Blocks,BlocklyJavaScript,image);
+    };
+    return api;
+  }   
+  
+  
+
+
   async StartRegister(): Promise<void> {
     
     var swaggersUrl= await firstValueFrom( this.loadDemo.getSwaggerLinks());
     
     var swaggersDict: Map<string,any>  = new Map<string,any>();
-    swaggersUrl.forEach(it=>{
-      swaggersDict.set(it.id,new  SwaggerParser.parseData(it.link));
+    swaggersUrl.forEach(async it=>{
+      swaggersDict.set(it.id,await this.LoadSwaggerFromUrl(it.link, it.id));
     });
         
-    //console.log(newSwaggerCategories[0]);
-    // var parsers = Array.from(swaggersDict.values());
-    // parsers.forEach(async  (parser:any) => {           
-    swaggersDict.forEach(async (parser:any,key:string) => { 
-          
-          var api= await parser.ParseSwagger();
-          api.name = key;          
-          this.swaggerData.push(api);
-
-          for(var i=0;i<api.GenerateBlocks.length;i++){
-            var e=api.GenerateBlocks[i];
-            e(Blockly.Blocks,BlocklyJavaScript, (arr:any[][])=>{
-              
-              return new Blockly.FieldDropdown(arr);
-            });
-          }   
-
-          for(var i=0;i<api.GenerateFunctions.length;i++){
-            var e=api.GenerateFunctions[i];
-            var image=function (opKey:string){
-              
-              var image =`assets/httpImages/${opKey}.png`;
-              return new Blockly.FieldImage(image, 90, 20, opKey );
-            };
-            e(Blockly.Blocks,BlocklyJavaScript,image);
-          }   
-        });
     // SwaggerParser
     // .parseSwagger
     // .parseSwagger('https://microservicesportchooser.azurewebsites.net/swagger/v1/swagger.json')
@@ -336,6 +348,7 @@ export class DisplayBlocklyComponent implements OnInit {
   private CategorySwaggerHidden(id:Number): string{
     return `<category name='swagger_hidden_${id}' hidden='true' >${id}</category>`;
   }
+
   private initialize(defaultBlocks: string[] ){
     const blocklyDiv = document.getElementById('blocklyDiv');
     if(blocklyDiv == null){
