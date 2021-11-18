@@ -143,14 +143,18 @@ export class DisplayBlocklyComponent implements OnInit {
       this.StartRegister();
   }
   public LoadSwagger(){
-    var json=window.prompt("Swagger url? ")
+    var json=window.prompt("Swagger url? ",'https://swagger-tax-calc-api.herokuapp.com/api-docs')
     if(!json)
       return;
-    if(!json.endsWith("json")){
+    if(json.endsWith(".html")|| json.endsWith(".htm")){
       window.alert("Swagger should end with .json - see source of html page");
       return;    
     }
-    this.LoadSwaggerFromUrl(json);
+    this.LoadSwaggerFromUrl(json).then(it=>{
+      this.afterTimeout(this,this.toolboxXML)
+      window.alert('done');
+    });
+    
   }
   private async LoadSwaggerFromUrl(url:string, name?:string): Promise<any>{
     
@@ -348,7 +352,7 @@ export class DisplayBlocklyComponent implements OnInit {
   private CategorySwaggerHidden(id:Number): string{
     return `<category name='swagger_hidden_${id}' hidden='true' >${id}</category>`;
   }
-
+  public toolboxXML:string='';
   private initialize(defaultBlocks: string[] ){
     const blocklyDiv = document.getElementById('blocklyDiv');
     if(blocklyDiv == null){
@@ -356,7 +360,7 @@ export class DisplayBlocklyComponent implements OnInit {
       return;
     }
     var blocks=defaultBlocks.map(it=>`<sep></sep>${it}`);
-    var toolboxXML=`<xml xmlns="https://developers.google.com/blockly/xml" id="toolbox-simple" style="display: none">
+    this.toolboxXML=`<xml xmlns="https://developers.google.com/blockly/xml" id="toolbox-simple" style="display: none">
     ${blocks}
     </xml>`;
     // console.log(toolboxXML);
@@ -369,86 +373,12 @@ export class DisplayBlocklyComponent implements OnInit {
         drag: true,
         wheel: true
       },
-       toolbox: toolboxXML
+       toolbox: this.toolboxXML
     } as Blockly.BlocklyOptions);
     var self=this;
     
-    window.setTimeout((myComponent: DisplayBlocklyComponent, xmlToolbox: string)=>{
-      // console.log('start register');
-
-    if( myComponent?.mustLoadDemoBlock != null)
-      myComponent.ShowDemo(myComponent?.mustLoadDemoBlock);
-
-      if(myComponent?.swaggerData == null)
-        return;
-    var nr=myComponent.swaggerData.length;
-    xmlToolbox=xmlToolbox.replace('Swagger',`Swagger(${nr})`)
+    window.setTimeout(self.afterTimeout, 2000, this, this.toolboxXML);
     
-    myComponent.swaggerData.forEach((item:any)=>
-    {
-        
-      var newCateg= item.findCategSwaggerFromPaths()
-      .map((it: any)=>`<category name='${it}' custom='func_${item.name}_${it}'></category>`)
-      .join('\n');
-      var nameExistingCategorySwagger=myComponent?.CategorySwaggerHidden(myComponent?.swaggerLoaded)||'';
-      xmlToolbox = xmlToolbox.replace(nameExistingCategorySwagger,
-      `<category name='${item.name}'>
-        <category name='API' id='func_${item.name}'>
-        ${newCateg}
-        </category>
-        ${item.categSwagger()}
-        </category>
-      `
-      
-      );
-      myComponent.swaggerLoaded++;
-      // console.log(item.name);
-    }
-      
-    );
-
-    var toolbox = myComponent?.demoWorkspace?.updateToolbox(xmlToolbox);
-
-        myComponent.swaggerData.forEach( (item :any)=>{
-        if(myComponent?.demoWorkspace == null)
-            return;
-
-        
-        var xml=self.restoreBlocks;
-        
-        //demoWorkspace.updateToolbox(document.getElementById('toolbox'));
-
-        //console.log(item.swaggerUrl,item.findCategSwaggerFromPaths());
-        // console.log(xmlToolbox);
-
-        var nameCat="objects_"+ item.nameCategSwagger();
-        var nameAPI="api_"+ item.nameCategSwagger();
-        // console.log(nameCat);
-        // console.log(myComponent.swaggerData);
-        // console.log(myComponent.demoWorkspace);
-        //
-
-        myComponent.demoWorkspace.registerToolboxCategoryCallback(nameCat,(d: Blockly.Workspace)=>{
-
-              return myComponent.registerSwaggerBlocksObjects(d,item);
-
-          } );
-          myComponent.demoWorkspace.registerToolboxCategoryCallback(nameAPI,(d: Blockly.Workspace)=>{
-
-            return myComponent.registerSwaggerBlocksAPI(d,item);
-          });
-
-          item.findCategSwaggerFromPaths().forEach((it:any) => {
-            myComponent?.demoWorkspace?.registerToolboxCategoryCallback( `func_${item.name}_${it}`,(d:Blockly.Workspace)=>{
-              return myComponent.registerSwaggerBlocksAPIControllers(d,item,it);
-            } 
-          )});
-        
-     });
-     myComponent.restoreBlocks();
-
-  }, 2000, this, toolboxXML);
-    ;
     // console.log(BlocklyJavaScript);
     this.run = bh.interpreterHelper.createInterpreter(this.demoWorkspace,BlocklyJavaScript);
     var self=this;
@@ -463,7 +393,79 @@ export class DisplayBlocklyComponent implements OnInit {
   public restoreBlocks(){
     bh.saveBlocksUrl.restoreState(Blockly.Xml,this.demoWorkspace);
   }
-  afterTimeout(){
+  afterTimeout(myComponent: DisplayBlocklyComponent, xmlToolbox: string){
+    // console.log('start register');
+
+  if( myComponent?.mustLoadDemoBlock != null)
+    myComponent.ShowDemo(myComponent?.mustLoadDemoBlock);
+
+    if(myComponent?.swaggerData == null)
+      return;
+  var nr=myComponent.swaggerData.length;
+  xmlToolbox=xmlToolbox.replace('Swagger',`Swagger(${nr})`)
+  
+  myComponent.swaggerData.forEach((item:any)=>
+  {
+      
+    var newCateg= item.findCategSwaggerFromPaths()
+    .map((it: any)=>`<category name='${it}' custom='func_${item.name}_${it}'></category>`)
+    .join('\n');
+    var nameExistingCategorySwagger=myComponent?.CategorySwaggerHidden(myComponent?.swaggerLoaded)||'';
+    xmlToolbox = xmlToolbox.replace(nameExistingCategorySwagger,
+    `<category name='${item.name}'>
+      <category name='API' id='func_${item.name}'>
+      ${newCateg}
+      </category>
+      ${item.categSwagger()}
+      </category>
+    `
     
+    );
+    myComponent.swaggerLoaded++;
+    // console.log(item.name);
   }
+    
+  );
+
+  var toolbox = myComponent?.demoWorkspace?.updateToolbox(xmlToolbox);
+
+      myComponent?.swaggerData?.forEach( (item :any)=>{
+      if(myComponent?.demoWorkspace == null)
+          return;
+
+      
+      var xml=myComponent.restoreBlocks;
+      
+      //demoWorkspace.updateToolbox(document.getElementById('toolbox'));
+
+      //console.log(item.swaggerUrl,item.findCategSwaggerFromPaths());
+      // console.log(xmlToolbox);
+
+      var nameCat="objects_"+ item.nameCategSwagger();
+      var nameAPI="api_"+ item.nameCategSwagger();
+      // console.log(nameCat);
+      // console.log(myComponent.swaggerData);
+      // console.log(myComponent.demoWorkspace);
+      //
+
+      myComponent.demoWorkspace.registerToolboxCategoryCallback(nameCat,(d: Blockly.Workspace)=>{
+
+            return myComponent.registerSwaggerBlocksObjects(d,item);
+
+        } );
+        myComponent.demoWorkspace.registerToolboxCategoryCallback(nameAPI,(d: Blockly.Workspace)=>{
+
+          return myComponent.registerSwaggerBlocksAPI(d,item);
+        });
+
+        item.findCategSwaggerFromPaths().forEach((it:any) => {
+          myComponent?.demoWorkspace?.registerToolboxCategoryCallback( `func_${item.name}_${it}`,(d:Blockly.Workspace)=>{
+            return myComponent.registerSwaggerBlocksAPIControllers(d,item,it);
+          } 
+        )});
+      
+   });
+   myComponent.restoreBlocks();
+
+}
 }
