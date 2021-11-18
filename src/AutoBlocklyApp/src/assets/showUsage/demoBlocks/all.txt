@@ -209,5 +209,11 @@
 	 "description": "Rest Functions",
 	"categories":"extensive;functions"
 }
+,
+{
+	"id":"ipecho",
+	"description":"IP Echo",
+	"categories":"http call"
+}
 
 ]
