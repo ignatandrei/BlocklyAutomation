@@ -265,28 +265,26 @@ export class DisplayBlocklyComponent implements OnInit {
     bs.auth0Blocks.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
     var blocks=[
         bs.defaultBlocks.generalBlocks(),
-        `    <category name="Advanced=>">
+        `    
             ${bs.filterBlocks.fieldXML()}
             ${bs.xhrBlocks.fieldXML()}
-            </category>
-            <category id="catJSBLocks" name="JSBlocks">
+            
             ${bs.propBlocks.fieldXML()}
-            </category>
             <category id="catGUI" name="GUI">
             ${bs.guiBlocks.fieldXML()}
             </category>
         `,
-        `<category id="catHelpers" colour="160" name="Helpers">
+        `<category id="catTimers"  name="Timers">
           ${bs.waitBlocks.fieldXML()}
         </category>`,
-        `<category id="catConverters" colour="160" name="Converters">
+        `<category id="catConverters"  name="Converters">
           ${bs.convertersBlocks.fieldXML()}
         </category>`,
-        `<category id="catExporter" colour="160" name="Exporter">
+        `<category id="catExporter"  name="Exporter">
           ${bs.exportFileBlock.fieldXML()}
         </category>`,
 
-        `<category id="catDates" colour="160" name="Dates">
+        `<category id="catDates"  name="Dates">
           ${bs.currentDateBlock.fieldXML()}
           ${bs.dateFromTextBlock.fieldXML()}
           ${bs.waitBlocks.fieldXML()}

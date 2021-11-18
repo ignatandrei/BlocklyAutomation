@@ -70,5 +70,9 @@ exports.fieldXML = function () {
                 <field name="TEXT">value</field>
             </shadow>
         </value>
-    </block>`;
+    </block>
+    <block type="text_print"></block>
+    <block type="text_prompt_ext">
+    </block>
+    `;
 }
