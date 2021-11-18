@@ -22,14 +22,14 @@
   </ng-template>
    
 </mat-menu>
-<a target='_blank' mat-raised-button  color="primary" [routerLink]="['/','automation' ,'loadexample',mustLoadDemoBlock]">Direct link {{mustLoadDemoBlock}}</a>
+<a target='_blank' *ngIf="mustLoadDemoBlock?.length" mat-raised-button  color="primary" [routerLink]="['/','automation' ,'loadexample',mustLoadDemoBlock]">Direct link {{mustLoadDemoBlock}}</a>
     <span *ngIf="(demoWorkspace == null)">Loading</span>
 <!-- <div id="blocklyDiv" style="position:absolute"></div> -->
 <div style="width: 100%">
     <div id="blocklyDiv"
-        style="display: inline-block; height: 480px; width: 58%"></div>
+        style="display: inline-block; height: 750px; width: 58%"></div>
     <textarea id="output" disabled="disabled" [(ngModel)]='showInner'
-        style="display: inline-block; height: 480px; width: 38%;">
+        style="display: inline-block; height: 750px; width: 38%;">
     </textarea>
   </div>
 

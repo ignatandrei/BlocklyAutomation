@@ -183,6 +183,11 @@
 "id":"NetCoreBlockly_SimpleQueryStringPOST",
 	"description": "post with query string",
 	"categories":"netcoreblockly"
+},
+{
+"id": "NetCoreBlockly_Functions",
+	 "description": "Rest Functions",
+	"categories":"netcoreblockly;functions"
 }
 
 ]
