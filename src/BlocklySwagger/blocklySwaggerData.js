@@ -130,12 +130,12 @@ class BlocklyReturnSwagger {
     this.hasError = false;
     
     this.basePath= r.basePath ||'';
-    console.log("basepath"+ this.swaggerUrl,this.basePath);
+    // console.log("basepath"+ this.swaggerUrl,this.basePath);
     //var r = q.response;
     // console.log(r.paths);
     var data=r.components?.schemas;
     if(data == null || data == undefined){
-      console.log(this.swaggerUrl,data);
+      //console.log(this.swaggerUrl,data);
       data=r.definitions;
     }
     
@@ -212,6 +212,7 @@ class BlocklyReturnSwagger {
       blocks[blocklyTypeName] = {
         init: function () {
           //this.setInputsInline(true);
+          
           var str = key;
           if (str.length > 15) str = str.substring(0, 25) + "...";
           this.appendDummyInput()
@@ -225,7 +226,17 @@ class BlocklyReturnSwagger {
                 name +="*"; 
               }
               if(it.schema && it.schema.type){
-                name += ":"+it.schema.type;
+                if(it.schema.type=='object'){
+                  var val = it.schema["$$ref"]||'';
+                  if(val.length>0){
+                    val = val.substring(val.lastIndexOf("/")+1);
+                    name+=":"+ val;
+                  }
+
+                }
+                else{
+                  name += ":"+it.schema.type;
+                }
               }
               this.appendValueInput(`val_${it.name}`).appendField(name);
             });
@@ -318,7 +329,7 @@ class BlocklyReturnSwagger {
         code += parameterFunctionDefinition.join(",");
         code += "){\n";
         
-        console.log("basepath",self.basePath);
+        //  console.log("basepath",self.basePath);
         code += 'var strUrl ="' + self.findRootSite()+ self.basePath  + key + '";\n';
         var paramsQuery = parameters.filter((it) => it.in == "query");
         if(paramsQuery.length>0){
@@ -409,7 +420,6 @@ class BlocklyReturnSwagger {
           //console.log('init', objPropString);
           objPropString.forEach((item) => {
             //var t = self.TranslateToBlocklyType(key.type);
-              // console.log('aa',item);
               var name=item.key;
               if(item.value.nullable && item.value.nullable==false){
                 name +="*";
