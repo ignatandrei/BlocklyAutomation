@@ -3,8 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { DisplayBlocklyComponent } from './display-blockly/display-blockly.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', component:DisplayBlocklyComponent },
+  { path: '', redirectTo: 'automation/main', pathMatch: 'full' },
+  { path: 'automation/main', component:DisplayBlocklyComponent },
+  { path: 'automation/loadexample/:demoblock', component:DisplayBlocklyComponent }
 
 ];
 

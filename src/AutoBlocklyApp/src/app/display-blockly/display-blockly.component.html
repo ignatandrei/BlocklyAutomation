@@ -15,13 +15,14 @@
   <button mat-menu-item [matMenuTriggerFor]="menu" >{{i+1}} {{demo.key}} ({{demo.value.length}})</button>
   <mat-menu #menu="matMenu">
     <ng-template ngFor let-itemDemo let-iMenu="index"  [ngForOf]="demo.value">
-    <button mat-menu-item (click)="ShowDemo(itemDemo)" >{{iMenu+1}} {{itemDemo.description}}</button>
+    <button mat-menu-item (click)="ShowDemo(itemDemo.id)" >{{iMenu+1}} {{itemDemo.description}}</button>
     </ng-template>  
   </mat-menu>
   
   </ng-template>
-  
+   
 </mat-menu>
+<a target='_blank' mat-raised-button  color="primary" [routerLink]="['/','automation' ,'loadexample',mustLoadDemoBlock]">Direct link {{mustLoadDemoBlock}}</a>
     <span *ngIf="(demoWorkspace == null)">Loading</span>
 <!-- <div id="blocklyDiv" style="position:absolute"></div> -->
 <div style="width: 100%">

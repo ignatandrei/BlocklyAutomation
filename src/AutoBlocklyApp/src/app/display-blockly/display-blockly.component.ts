@@ -9,6 +9,7 @@ import { LoadShowUsageService } from '../load-show-usage.service';
 import { DemoBlocks } from "../DemoBlocks";
 import * as SwaggerParser from '@blockly/blocklyswagger';
 import { firstValueFrom } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 declare var Interpreter: any;
 @Component({
   selector: 'app-display-blockly',
@@ -22,9 +23,16 @@ export class DisplayBlocklyComponent implements OnInit {
   public run: any;
   public demos:DemoBlocks[] = [];
   public demosCategories:Map<string,DemoBlocks[]> = new Map<string,DemoBlocks[]>();
-  constructor(private tabulator:TabulatorHelper, private loadDemo: LoadShowUsageService) { 
+  public mustLoadDemoBlock: string='';
+  private directLinkDemo:string='';
+  constructor(private tabulator:TabulatorHelper, private loadDemo: LoadShowUsageService, private ar : ActivatedRoute) { 
     
     //console.log(bs.filterBlocks.definitionBlocks());
+    this.ar.paramMap.subscribe((params:any) => { 
+      this.mustLoadDemoBlock =  params.get('demoblock'); 
+      
+     });
+   
 
   }
   clearOutput(){
@@ -61,13 +69,15 @@ export class DisplayBlocklyComponent implements OnInit {
       this.tabulator.FinishGrid();
     });
   }
-  public ShowDemo(demo:DemoBlocks){
-    this.loadDemo.getDemoBlock(demo.id).subscribe(
+  public ShowDemo(id:string){
+    this.mustLoadDemoBlock=id;
+    this.loadDemo.getDemoBlock(id).subscribe(
       data=>{
 
         var xml = Blockly.Xml.textToDom(data);
         if(this.demoWorkspace != null){
           Blockly.Xml.clearWorkspaceAndLoadFromXml(xml, this.demoWorkspace);
+          
           window.alert('please press run code button');
         }
       }
@@ -351,6 +361,10 @@ export class DisplayBlocklyComponent implements OnInit {
     
     window.setTimeout((myComponent: DisplayBlocklyComponent, xmlToolbox: string)=>{
       // console.log('start register');
+
+    if( myComponent?.mustLoadDemoBlock != null)
+      myComponent.ShowDemo(myComponent?.mustLoadDemoBlock);
+
       if(myComponent?.swaggerData == null)
         return;
     var nr=myComponent.swaggerData.length;
@@ -430,5 +444,7 @@ export class DisplayBlocklyComponent implements OnInit {
   public restoreBlocks(){
     bh.saveBlocksUrl.restoreState(Blockly.Xml,this.demoWorkspace);
   }
-
+  afterTimeout(){
+    
+  }
 }
