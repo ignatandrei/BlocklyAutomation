@@ -18,7 +18,7 @@ declare var Interpreter: any;
 })
 export class DisplayBlocklyComponent implements OnInit {
 
-  
+  public swaggerLoaded: number =0;
   public demoWorkspace: Blockly.WorkspaceSvg|null = null;
   public run: any;
   public demos:DemoBlocks[] = [];
@@ -188,13 +188,11 @@ export class DisplayBlocklyComponent implements OnInit {
 
     //   // console.log(api[1](Blockly.Blocks,BlocklyJavaScript));
     // });
-
-    var newSwaggerCategories=swaggersUrl.map(it=>
+//hidden='true'
+    var newSwaggerCategories=[...Array(10).keys()].map(it=>
       
-      `<category name='${it.id}'>` +  swaggersDict.get(it.id).categSwagger() +'</category>'
+      this.CategorySwaggerHidden(it)
       );
-    
-      
     this.loadDemo.getDemoBlocks().subscribe(
       (data:DemoBlocks[])=>{
         this.demos=data.sort((a,b)=> a.description.localeCompare(b.description));
@@ -335,6 +333,9 @@ export class DisplayBlocklyComponent implements OnInit {
     myReader.readAsText(file);
     
   }
+  private CategorySwaggerHidden(id:Number): string{
+    return `<category name='swagger_hidden_${id}' hidden='true' >${id}</category>`;
+  }
   private initialize(defaultBlocks: string[] ){
     const blocklyDiv = document.getElementById('blocklyDiv');
     if(blocklyDiv == null){
@@ -369,20 +370,25 @@ export class DisplayBlocklyComponent implements OnInit {
         return;
     var nr=myComponent.swaggerData.length;
     xmlToolbox=xmlToolbox.replace('Swagger',`Swagger(${nr})`)
-
+    
     myComponent.swaggerData.forEach((item:any)=>
     {
+        
       var newCateg= item.findCategSwaggerFromPaths()
       .map((it: any)=>`<category name='${it}' custom='func_${item.name}_${it}'></category>`)
       .join('\n');
-      xmlToolbox = xmlToolbox.replace(`<category name='${item.name}'>`,
+      var nameExistingCategorySwagger=myComponent?.CategorySwaggerHidden(myComponent?.swaggerLoaded)||'';
+      xmlToolbox = xmlToolbox.replace(nameExistingCategorySwagger,
       `<category name='${item.name}'>
         <category name='API' id='func_${item.name}'>
         ${newCateg}
         </category>
+        ${item.categSwagger()}
+        </category>
       `
       
       );
+      myComponent.swaggerLoaded++;
       // console.log(item.name);
     }
       
