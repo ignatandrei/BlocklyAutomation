@@ -403,11 +403,15 @@ export class DisplayBlocklyComponent implements OnInit{
        toolbox: this.toolboxXML
     } as Blockly.BlocklyOptions);
     var self=this;
-    if((this.settings.settings?.defaultBlocks.length||0)>0){
-      var xmlBlocks= (this.settings.settings?.defaultBlocks||[]).join("\n");
+    if((this.settings.settings?.defaultBlocks?.length||0)>0){
+      try{
+        var xmlBlocks= (this.settings.settings?.defaultBlocks||[]).join("\n");
         var xml = Blockly.Xml.textToDom(xmlBlocks);      
         Blockly.Xml.clearWorkspaceAndLoadFromXml(xml, this.demoWorkspace);
-      
+      }
+      catch(e){
+        console.error("error when load default blocks",e);
+      }
     }
     window.setTimeout(self.afterTimeout, 2000, this, this.toolboxXML);
     
@@ -428,9 +432,7 @@ export class DisplayBlocklyComponent implements OnInit{
   afterTimeout(myComponent: DisplayBlocklyComponent, xmlToolbox: string){
     // console.log('start register');
 
-  if( myComponent?.mustLoadDemoBlock != null)
-    myComponent.ShowDemo(myComponent?.mustLoadDemoBlock);
-
+  
     if(myComponent?.swaggerData == null)
       return;
   var nr=myComponent.swaggerData.length;
@@ -497,7 +499,30 @@ export class DisplayBlocklyComponent implements OnInit{
         )});
       
    });
-   myComponent.restoreBlocks();
-
+  
+   if( myComponent?.mustLoadDemoBlock != null)
+     myComponent.ShowDemo(myComponent?.mustLoadDemoBlock);
+    else
+    {
+      //from default
+      if((this.settings.settings?.defaultBlocks?.length||0)>0){
+        try{
+          var xml_text= (myComponent.settings.settings?.defaultBlocks||[]).join("\n");
+          //<xml xmlns="https://developers.google.com/blockly/xml"></xml>
+          if(xml_text.length>62){
+          
+                var xml = Blockly.Xml.textToDom(xml_text);      
+                Blockly.Xml.clearWorkspaceAndLoadFromXml(xml, myComponent.demoWorkspace!);
+          }
+        }
+        catch(e){
+          console.error("error when load default blocks",e);
+        }
+      }
+      //from browser cache
+      myComponent.restoreBlocks();
+   
+    }
+      
 }
 }
