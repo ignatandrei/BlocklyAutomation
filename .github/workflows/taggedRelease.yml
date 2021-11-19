@@ -1,5 +1,7 @@
 name: "tagged-release"
-
+env:
+  DOTNET_VERSION: '6.0.x'           # set this to the dot net version to use
+  AZURE_WEBAPP_NAME: 'AutoBlocklyApp'
 on:
   push:    
     tags:
@@ -73,7 +75,53 @@ jobs:
             releaseBlocklyAutomation.zip
         # tag: v${{ env.GITHUB_SHA }}
         # tag_name: v${{ env.GITHUB_SHA }}
-      
+
+
+    - name: Set up .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }} 
+
+    - name: making releases
+      run: |
+        rm -r src/AutoBlocklyApp/dist/AutoBlocklyApp/*
+        cd src
+        npm run buildAng
+        cd Loaders
+        cd SimpleSite
+        cd AutoBlocklySimple
+        rm -r wwwroot/*
+        cp -r AutoBlocklyApp/dist/AutoBlocklyApp/* wwwroot/
+        dotnet publish -r win-x64 -c Release -o ${{env.AZURE_WEBAPP_NAME}}WinX64 --self-contained true -p:PublishSingleFile=true -p:PublishTrimmed=true
+        dotnet publish -r linux-x64 -c Release -o ${{env.AZURE_WEBAPP_NAME}}linX64 --self-contained true -p:PublishSingleFile=true -p:PublishTrimmed=true 
+        dotnet publish -r win-x64 -c Release -o ${{env.AZURE_WEBAPP_NAME}}IISWinX64 --self-contained false -p:PublishSingleFile=false -p:PublishTrimmed=false
+        
+    - name: Archive Release Linux
+      uses: thedoctor0/zip-release@master
+      with:
+        type: 'zip'
+        filename: 'releaseLin.zip'
+        path: '${{github.workspace}}/src/Loaders/SimpleSite/AutoBlocklySimple/${{env.AZURE_WEBAPP_NAME}}linX64/'
+        exclusions: '*.git* /*node_modules/* .editorconfig'       
+
+    - name: Archive Release Windows
+      uses: thedoctor0/zip-release@master
+      with:
+        type: 'zip'
+        filename: 'releaseWin.zip'
+        path: '${{github.workspace}}/src/Loaders/SimpleSite/AutoBlocklySimple/${{env.AZURE_WEBAPP_NAME}}WinX64/'
+        exclusions: '*.git* /*node_modules/* .editorconfig'       
+
+    - name: Archive Release IIS
+      uses: thedoctor0/zip-release@master
+      with:
+        type: 'zip'
+        filename: 'releaseIISWin.zip'
+        path: '${{github.workspace}}/src/Loaders/SimpleSite/AutoBlocklySimple/${{env.AZURE_WEBAPP_NAME}}IISWinX64/'
+        exclusions: '*.git* /*node_modules/* .editorconfig'       
+
+
+
 
     - name: delete older-releases@v0
       uses: dev-drprasad/delete-older-releases@v0.2.0
