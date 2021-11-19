@@ -30,11 +30,11 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Run the build
         run: |
-          npm i -g  @angular/cli@13.0.1  
-          cd src                    
+          cd src
+          npm i -g  @angular/cli@13.0.1                      
           npm i -ws --include-workspace-root                  
           cp -r node_modules  AutoBlocklyApp/node_modules
-          ls -l AutoBlocklyApp/node_modules/*
+          # ls -l AutoBlocklyApp/node_modules/*
           npm run buildAng
           ls -l AutoBlocklyApp/dist/AutoBlocklyApp
           
