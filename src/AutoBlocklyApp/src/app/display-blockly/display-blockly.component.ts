@@ -11,6 +11,11 @@ import * as SwaggerParser from '@blockly/blocklyswagger';
 import { firstValueFrom } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 declare var Interpreter: any;
+import { IntroJs } from 'intro.js';
+import * as introJs from 'intro.js';
+
+
+
 @Component({
   selector: 'app-display-blockly',
   templateUrl: './display-blockly.component.html',
@@ -25,15 +30,24 @@ export class DisplayBlocklyComponent implements OnInit {
   public demosCategories:Map<string,DemoBlocks[]> = new Map<string,DemoBlocks[]>();
   public mustLoadDemoBlock: string='';
   private directLinkDemo:string='';
+  private intro : IntroJs = introJs();
   constructor(private tabulator:TabulatorHelper, private loadDemo: LoadShowUsageService, private ar : ActivatedRoute) { 
     
-    //console.log(bs.filterBlocks.definitionBlocks());
+      //console.log(bs.filterBlocks.definitionBlocks());
     this.ar.paramMap.subscribe((params:any) => { 
       this.mustLoadDemoBlock =  params.get('demoblock'); 
       
      });
-   
+     this.createIntro();
 
+  }
+  createIntro(){
+    this.intro.setOptions({
+      steps: [
+        { 
+          intro: "This is the automation with blockly introduction"
+        }
+      ]});
   }
   clearOutput(){
     this.step  = 0;
@@ -141,6 +155,7 @@ export class DisplayBlocklyComponent implements OnInit {
   }
   ngOnInit(): void {
       this.StartRegister();
+      this.intro.start();
   }
   public LoadSwagger(){
     var json=window.prompt("Swagger url? ",'https://swagger-tax-calc-api.herokuapp.com/api-docs')
