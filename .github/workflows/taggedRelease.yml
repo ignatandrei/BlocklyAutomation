@@ -45,11 +45,9 @@ jobs:
         path: 'src/AutoBlocklyApp/dist/AutoBlocklyApp'
         retention-days: 1
 
-    - name : AutoDocs
-      uses: stefanzweifel/git-auto-commit-action@v2.3.0
-      with:
-        commit_message: Apply latest in prod
-        branch: main
+    - name : autocommit
+      run: |
+        git commit -m "Auto commit from Github Action" --allow-empty
 
         # Optional git params
         #commit_options: '--no-verify --signoff'
