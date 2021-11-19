@@ -1,0 +1,52 @@
+{
+    "title": "Automate Blockly",
+    "defaultBlocks":["<xml xmlns='https://developers.google.com/blockly/xml'>",
+    "<block type='text_print' x='43' y='-326'>",
+    "  <value name='TEXT'>",
+    "    <block type='getproperty'>",
+    "      <field name='objectName'>object</field>",
+    "      <field name='prop'>property</field>",
+    "      <value name='ObjectToChange'>",
+    "        <block type='httprequest'>",
+    "          <field name='TypeOutput'>JSON</field>",
+    "          <field name='TypeRequest'>GET</field>",
+    "          <value name='TheUrl'>",
+    "            <shadow type='text'>",
+    "              <field name='TEXT'>https://api.chucknorris.io/jokes/random</field>",
+    "            </shadow>",
+    "          </value>",
+    "        </block>",
+    "      </value>",
+    "      <value name='PropertyName'>",
+    "        <block type='text'>",
+    "          <field name='TEXT'>value</field>",
+    "        </block>",
+    "      </value>",
+    "    </block>",
+    "  </value>",
+    "</block>",
+  "</xml>"],
+  "tourSteps":
+    [
+      {
+          "text":"This is the introduction to automate",
+          "query":".blocklyWorkspace"
+      },
+      {
+          "text":"Here you will find demos",
+          "query":"#demos"
+      },
+      {
+        "text":"You can download the app from here ",
+        "query":"#download"
+      },
+      {
+          "text":"to reuse you can download the blocks from here",
+          "query":"#downloadBlocks"
+      },
+      {
+          "text":"Press the run button to see the result of blocks",
+          "query":"#runButton"
+      }
+  ]
+}
