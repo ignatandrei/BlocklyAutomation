@@ -226,5 +226,10 @@
 	"id":"ipify",
 	"description":"ipify",
 	"categories":"http call"
+},
+{
+	"id":"ipaddy",
+	"description":"ipaddy",
+	"categories":"http call"
 }
 ]
