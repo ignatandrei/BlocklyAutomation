@@ -13,8 +13,8 @@ export class LoadShowUsageService {
   constructor(private http: HttpClient) { }
 
   public getDemoBlocks(): Observable<DemoBlocks[]> {
-  
-    return this.http.get<string>("assets/showUsage/demoBlocks/all.txt",{ responseType: 'text' as 'json'})
+    var dt=new Date().toISOString();
+    return this.http.get<string>(`assets/showUsage/demoBlocks/all.txt?${dt}`,{ responseType: 'text' as 'json'})
     .pipe(
 
       map((res: any) => {
@@ -28,8 +28,8 @@ export class LoadShowUsageService {
   }
 
   public getSwaggerLinks(): Observable<LinksSwagger[]> {
-  
-    return this.http.get<string>("assets/loadAtStartup/swaggers.json",{ responseType: 'text' as 'json'})
+    var dt=new Date().toISOString();
+    return this.http.get<string>(`assets/loadAtStartup/swaggers.json?${dt}`,{ responseType: 'text' as 'json'})
     .pipe(
 
       map((res: any) => {
@@ -44,9 +44,9 @@ export class LoadShowUsageService {
 
   public getDemoBlock(id:string): Observable<string> {
 
-    
+    var dt=new Date().toISOString();
     var q= this.http.get
-      (`assets/showUsage/demoBlocks/${id}.txt`, {responseType: 'text'})
+      (`assets/showUsage/demoBlocks/${id}.txt?${dt}`, {responseType: 'text'})
     .pipe(
       tap((res: any) => {
         // console.log(res);
