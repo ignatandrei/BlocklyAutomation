@@ -42,7 +42,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: AutoBlocklyApp
-        path: 'src/AutoBlocklyApp/dist/AutoBlocklyApp'
+        path: 'src/AutoBlocklyApp/dist/AutoBlocklyApp/*'
         retention-days: 1
 
     - name : autocommit
