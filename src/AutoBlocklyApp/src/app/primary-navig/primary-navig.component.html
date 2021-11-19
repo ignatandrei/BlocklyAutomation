@@ -18,7 +18,19 @@
           https
         </mat-icon>
         Demo online</a>
-        
+        <mat-divider></mat-divider>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+          <mat-panel-title>
+            Demos {{demoBlocks.length}}
+          </mat-panel-title>
+          </mat-expansion-panel-header>
+        <a mat-list-item *ngFor="let nr=index;let demo of demoBlocks" [routerLink]="['/','automation' ,'loadexample',demo.id]" target="_blank">
+          <mat-icon>
+            https
+          </mat-icon> {{nr+1}} {{demo.description}}</a>
+          
+        </mat-expansion-panel>
     </mat-nav-list>
 
   </mat-sidenav>
