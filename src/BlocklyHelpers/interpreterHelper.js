@@ -108,11 +108,12 @@ exports.createInterpreter = function(workspace,BlocklyJavaScript){
               });
             interpreter.setProperty(globalObject, 'waitForSeconds', wrapper);
           },
-          doGet : function (href, callback, headers) {
+          doGet : function (href, callback, headers, withCreds) {
             console.log(href, callback);
             let req = new XMLHttpRequest();
           
             req.open('GET', href, true);
+            req.withCredentials = withCreds;
           if(headers)
           if(headers.length>0){
             //alert(JSON.stringify(headers));
@@ -376,6 +377,9 @@ doDelete : (href, callback) => {
         interpreter.setProperty(globalObject, 'errHandler',
             interpreter.createNativeFunction(wrapper));
 
+        var withCredsForDomain = interpreter.nativeToPseudo({ '(localSite)': false });
+        interpreter.setProperty(globalObject, 'withCredsForDomain', withCredsForDomain);
+
           var headersForDomain = interpreter.nativeToPseudo({ '(localSite)': [] });
           interpreter.setProperty(globalObject, 'headersForDomain',headersForDomain);
 
@@ -453,17 +457,23 @@ doDelete : (href, callback) => {
 
 
             var wrapper = (href, callback) => {
+
+              var creds = interpreter.pseudoToNative(withCredsForDomain);
               var heads = interpreter.pseudoToNative(headersForDomain);
               var hostname = '(localSite)';
               if (href.startsWith('http://') || href.startsWith('https://')) {
                   hostname = (new URL(href)).hostname;
               }
+              var withCreds=false;
               var arrHeaders = [];
               // console.log("heads2",heads);
               if (hostname in heads) {
                    arrHeaders = heads[hostname];
               }
-              return thisClass.doGet(href, callback, arrHeaders);
+              if (hostname in creds) {
+                withCreds = creds[hostname];
+              }
+              return thisClass.doGet(href, callback, arrHeaders, withCreds);
           }
           interpreter.setProperty(globalObject, 'getXhr',
               interpreter.createAsyncFunction(wrapper));
@@ -516,7 +526,8 @@ doDelete : (href, callback) => {
             
                 var wrapper = (href, objectToPost, callback) => {
                   try {
-                      // var creds = interpreter.pseudoToNative(withCredsForDomain);
+                      
+        
                       var heads = interpreter.pseudoToNative(headersForDomain);
                       var hostname = '(localSite)';
                       if (href.startsWith('http://') || href.startsWith('https://')) {
