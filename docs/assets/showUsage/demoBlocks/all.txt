@@ -1,7 +1,8 @@
 [
 	{
 		"id":"chuck_norris",
-		"description":"joke with Chuck Norris"
+		"description":"joke with Chuck Norris",
+		"categories":"funny;http call"
 	},
 {
 		"id":"petstore",
@@ -11,27 +12,33 @@
 	{
 		"id":"wait",
 		"description":"simple wait"
+		,"categories":"timer"
 	},
 	{
 		"id":"nasa",
-		"description":"Nasa today image"
+		"description":"Nasa today image",
+		"categories":"http call;image"
 	},
 	{
 		"id":"saveImage",
-		"description":"How to save images"
+		"description":"How to save images",
+		"categories":"http call;image"
 	},
 
 	{
 		"id":"CSV",
-		"description":"How to export to CSV"
+		"description":"How to export to CSV",
+		"categories":"export;csv"
 	},
 {
 	"id":"ObjModif",
-	"description":"work with objects"
+	"description":"work with objects",
+		"categories":"programming"
 },
 {
 	"id":"currentDate",
-	"description":"work with currentdate"
+	"description":"work with currentdate",
+		"categories":"programming;dates"
 },
 {
 	"id":"verifyGrid",
@@ -39,32 +46,40 @@
 },
 {
 	"id":"filterList",
-	"description":"filter results"
+	"description":"filter results",
+		"categories":"programming"
+
 },
 {
 	"id":"testWait",
-	"description":"wait with dates"
+	"description":"wait with dates",
+		"categories":"programming;dates"
 },
 {
 	"id":"dateFrom",
-	"description": "date from string"
+	"description": "date from string",
+		"categories":"programming;dates"
 },
 {
 	"id":"waitForDate",
-	"description":"wait until the date with procedure"
+	"description":"wait until the date with procedure",
+		"categories":"programming;dates"
 },
 {
 	"id":"waitForDateSimple",
-	"description":"wait until simple"
+	"description":"wait until simple",
+		"categories":"programming;dates"
 }
 ,
 {
 	"id":"map",
-	"description":"map list"
+	"description":"map list",
+		"categories":"programming;array"
 },
 {
 	"id":"comments",
-	"description":"comments"
+	"description":"comments",
+		"categories":"programming"
 },
 {
 	"id":"auth0",
@@ -75,124 +90,146 @@
 {
 	"id":"jwt",
 	"description":"get JWT and use",
-	"categories": "authentication;bearer"
+	"categories": "authentication"
 },
 {
 	"id":"NetCoreBlockly_DemoImage",
 	"description":"demo image",
-	"categories":"netcoreblockly"
+	"categories":"extensive;image"
 },
 {
 	"id":"NetCoreBlockly_ConvertCSV",
 	"description":"demo convert csv",	
-	"categories":"netcoreblockly"
+	"categories":"extensive;csv"
 }
 ,
 {
 	"id":"NetCoreBlockly_SaveCSV",
 	"description":"demo save csv",	
-	"categories":"netcoreblockly"
+	"categories":"extensive;export;csv"
 }
 ,
 {
 	"id":"NetCoreBlockly_ModifyProp",
 	"description":"modify prop",	
-	"categories":"netcoreblockly"
+	"categories":"extensive;programming;"
 }
 ,
 {
 	"id": "NetCoreBlockly_WeatherSimple",
 	"description": "simple weather test",
-	"categories":"netcoreblockly"
+	"categories":"extensive"
 },
 {
 	"id": "NetCoreBlockly_FirstLastInArray",
 	"description": "first last in array",
-	"categories":"netcoreblockly"
+	"categories":"extensive;programming;array"
 }
 ,
 {
 	"id": "NetCoreBlockly_GETPOST",
 	"description": "get and post",
-	"categories":"netcoreblockly"
+	"categories":"extensive"
 }
 ,
 {
 	"id":"NetCoreBlockly_PUTPOST",
 	"description": "put and post",
-	"categories":"netcoreblockly"
+	"categories":"extensive"
 }
 ,
 {
 	"id":"NetCoreBlockly_dynamicDelete",
 	"description": "delete",
-	"categories":"netcoreblockly"
+	"categories":"extensive"
 },
 {	
 	"id":"NetCoreBlockly_Multiply",
 	"description": "multiply",
-	"categories":"netcoreblockly"
+	"categories":"extensive"
 
 }
 ,
 {
 	"id":"NetCoreBlockly_Divide0",
 	"description": "divide by 0",
-	"categories":"netcoreblockly"
+	"categories":"extensive"
 },
 {
 	"id":"NetCoreBlockly_CreateDept",
 	"description": "create department",
-	"categories":"netcoreblockly"
+	"categories":"extensive"
 
 },
 {
 	"id":"NetCoreBlockly_GetDepartment",
 	"description": "find department",
-	"categories":"netcoreblockly"
+	"categories":"extensive"
 
 },
 {
 	"id":"NetCoreBlockly_ModifyName",
 	"description": "modify name department",
-	"categories":"netcoreblockly"
+	"categories":"extensive"
 },
 
 {
 "id":"NetCoreBlockly_DeleteDepartment",
 	"description": "delete department",
-	"categories":"netcoreblockly"
+	"categories":"extensive"
 }
 ,
 
 {
 "id":"NetCoreBlockly_SaveNewDepartment",
 	"description": "save new department",
-	"categories":"netcoreblockly"
+	"categories":"extensive"
 },
 
 {
 "id":"NetCoreBlockly_PlayWithEnum",
 	"description": "enum demo",
-	"categories":"netcoreblockly"
+	"categories":"extensive"
 }
 ,
 
 {
 "id":"NetCoreBlockly_ThrowError",
 	"description": "see the error",
-	"categories":"netcoreblockly"
+	"categories":"extensive"
 }
 ,
 {
 "id":"NetCoreBlockly_SimpleQueryStringPOST",
 	"description": "post with query string",
-	"categories":"netcoreblockly"
+	"categories":"extensive"
 },
 {
 "id": "NetCoreBlockly_Functions",
 	 "description": "Rest Functions",
-	"categories":"netcoreblockly;functions"
+	"categories":"extensive;functions"
 }
-
+,
+{
+	"id":"ipecho",
+	"description":"IP Echo",
+	"categories":"http call"
+}
+,
+{
+	"id":"identme",
+	"description":"identme",
+	"categories":"http call"
+}
+,
+{
+	"id":"ipify",
+	"description":"ipify",
+	"categories":"http call"
+},
+{
+	"id":"ipaddy",
+	"description":"ipaddy",
+	"categories":"http call"
+}
 ]
