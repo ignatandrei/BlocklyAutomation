@@ -1,4 +1,4 @@
-import { Component, OnInit, ɵɵsetComponentScope } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ɵɵsetComponentScope } from '@angular/core';
 import * as Blockly from 'blockly';
 import * as BlocklyJavaScript from 'blockly/javascript';
 import * as acorn from 'acorn';
@@ -14,6 +14,7 @@ declare var Interpreter: any;
 import { IntroJs } from 'intro.js';
 import * as introJs from 'intro.js';
 import { AppDetails } from '../AppDetails';
+import { TourSteps } from '../TourSteps';
 
 
 
@@ -22,7 +23,7 @@ import { AppDetails } from '../AppDetails';
   templateUrl: './display-blockly.component.html',
   styleUrls: ['./display-blockly.component.css']
 })
-export class DisplayBlocklyComponent implements OnInit {
+export class DisplayBlocklyComponent implements OnInit{
 
   public swaggerLoaded: number =0;
   public demoWorkspace: Blockly.WorkspaceSvg|null = null;
@@ -30,7 +31,7 @@ export class DisplayBlocklyComponent implements OnInit {
   public demos:DemoBlocks[] = [];
   public demosCategories:Map<string,DemoBlocks[]> = new Map<string,DemoBlocks[]>();
   public mustLoadDemoBlock: string='';
-  private directLinkDemo:string='';
+  // private directLinkDemo:string='';
   private intro : IntroJs = introJs();
   constructor(private tabulator:TabulatorHelper,private settings: AppDetails,  private loadDemo: LoadShowUsageService, private ar : ActivatedRoute) { 
     
@@ -39,16 +40,26 @@ export class DisplayBlocklyComponent implements OnInit {
       this.mustLoadDemoBlock =  params.get('demoblock'); 
       
      });
-     this.createIntro();
+     
 
   }
+  
   createIntro(){
+    var title :string = this.settings.settings?.title||'';
+    var steps=this.settings.settings?.tourSteps.map((it:TourSteps)=>{
+      return {
+        title: title,
+        intro: it.text,
+        element: document.querySelector(it.query) || undefined,
+      }
+    })
     this.intro.setOptions({
-      steps: [
-        { 
-          intro: "This is the automation with blockly introduction"
-        }
-      ]});
+      exitOnEsc: true,
+      showStepNumbers:true,
+      doneLabel: 'Exit',
+      steps: steps
+      
+    }).start();
   }
   clearOutput(){
     this.step  = 0;
@@ -156,7 +167,8 @@ export class DisplayBlocklyComponent implements OnInit {
   }
   ngOnInit(): void {
       this.StartRegister();
-      this.intro.start();
+      this.createIntro();
+      
   }
   public LoadSwagger(){
     var json=window.prompt("Swagger url? ",'https://swagger-tax-calc-api.herokuapp.com/api-docs')
@@ -221,7 +233,7 @@ export class DisplayBlocklyComponent implements OnInit {
     //   // console.log(api[1](Blockly.Blocks,BlocklyJavaScript));
     // });
 //hidden='true'
-    var newSwaggerCategories=[...Array(10).keys()].map(it=>
+    var newSwaggerCategories=[...Array(50).keys()].map(it=>
       
       this.CategorySwaggerHidden(it)
       );

@@ -4,6 +4,7 @@ import { delay, map, Observable, of, switchMap, tap, zip, zipAll } from "rxjs";
 import { DemoBlocks } from "./DemoBlocks";
 import { LinksSwagger } from "./LinksSwagger";
 import { LoadShowUsageService } from "./load-show-usage.service";
+import { Settings } from "./Settings";
 
 @Injectable()
 export class AppDetails {
@@ -54,8 +55,3 @@ getSettings(): Observable<Settings> {
 
 }
 
-export class Settings{
-    public title:string='';
-    public defaultBlocks:string[]=[];
-    
-}

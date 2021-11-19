@@ -25,5 +25,28 @@
     "    </block>",
     "  </value>",
     "</block>",
-  "</xml>"]
+  "</xml>"],
+  "tourSteps":
+    [
+      {
+          "text":"This is the introduction to automate",
+          "query":".blocklyWorkspace"
+      },
+      {
+          "text":"Here you will find demos",
+          "query":"#demos"
+      },
+      {
+        "text":"You can download the app from here ",
+        "query":"#download"
+      },
+      {
+          "text":"to reuse you can download the blocks from here",
+          "query":"#downloadBlocks"
+      },
+      {
+          "text":"Press the run button to see the result of blocks",
+          "query":"#runButton"
+      }
+  ]
 }
