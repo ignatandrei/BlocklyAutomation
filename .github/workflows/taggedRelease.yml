@@ -73,6 +73,9 @@ jobs:
       with:
         files:  |
             releaseBlocklyAutomation.zip
+        tag: v${{ env.GITHUB_SHA }}
+        tag_name: v${{ env.GITHUB_SHA }}
+      
 
     - name: delete older-releases@v0
       uses: dev-drprasad/delete-older-releases@v0.2.0
