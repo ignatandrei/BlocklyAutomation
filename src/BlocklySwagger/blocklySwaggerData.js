@@ -86,7 +86,7 @@ class BlocklyReturnSwagger {
       var url = new URL(href);
 
       hostname = url.protocol + "//" + url.hostname;
-      if (url.port.length > 0) hostname += url.port;
+      if (url.port.length > 0) hostname +=":"+ url.port;
     }
     return hostname;
   }
