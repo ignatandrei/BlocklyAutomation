@@ -31,7 +31,7 @@ jobs:
       - name: Run the build
         run: |
           cd src
-          npm i -g  @angular/cli@13.0.1                      
+          npm i @angular/cli@13.0.1                      
           npm i -ws --include-workspace-root                  
           cp -r node_modules  AutoBlocklyApp/node_modules
           # ls -l AutoBlocklyApp/node_modules/*
