@@ -58,3 +58,27 @@ jobs:
         file_pattern: docs/
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+        
+    - name: Archive Release 
+      uses: thedoctor0/zip-release@master
+      with:
+        type: 'zip'
+        filename: 'releaseBlocklyAutomation.zip'
+        path: '${{github.workspace}}/src/AutoBlocklyApp/dist/AutoBlocklyApp'
+        exclusions: '*.git* /*node_modules/* .editorconfig'       
+
+    - name: Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files:  |
+            releaseBlocklyAutomation.zip
+
+    - name: delete older-releases@v0
+      uses: dev-drprasad/delete-older-releases@v0.2.0
+      with:
+        #repo: <owner>/<repoName> # defaults to current repo
+        keep_latest: 2
+        #delete_tag_pattern: beta # defaults to ""
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
