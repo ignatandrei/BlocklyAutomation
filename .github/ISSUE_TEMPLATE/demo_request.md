@@ -8,7 +8,7 @@ assignees: ''
 ---
 
 **What is the demo that you require ? Please describe.**
-A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
+A clear and concise description of what the problem is. I want a http post to this site and collect data
 
 
 **Additional context**
