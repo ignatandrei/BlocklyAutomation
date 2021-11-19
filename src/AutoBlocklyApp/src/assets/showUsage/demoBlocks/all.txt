@@ -218,8 +218,13 @@
 ,
 {
 	"id":"identme",
-	"description":"v4 and v6",
+	"description":"identme",
 	"categories":"http call"
 }
-
+,
+{
+	"id":"ipify",
+	"description":"ipify",
+	"categories":"http call"
+}
 ]
