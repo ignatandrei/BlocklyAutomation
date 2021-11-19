@@ -53,7 +53,7 @@ jobs:
 
         # Optional git params
         #commit_options: '--no-verify --signoff'
-
+        commit_options: '--allow-empty'
         # Optional glob pattern of files which should be added to the commit
         file_pattern: docs/
       env:
