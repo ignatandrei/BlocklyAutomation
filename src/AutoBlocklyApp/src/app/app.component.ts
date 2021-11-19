@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 // import * as b from '@blockly/blocklyscripts';
+import { Title } from '@angular/platform-browser';
+import { AppDetails } from './AppDetails';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,8 +9,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'AutoBlocklyApp';
-  constructor(){
-    // b.printMsg();
-    // window.alert(b.filter1);
+  constructor(private titleService : Title, appDetails: AppDetails) {
+    console.log(appDetails.settings?.title);
+    this.titleService.setTitle((appDetails.settings?.title||''));
   }
 }

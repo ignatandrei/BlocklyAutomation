@@ -16,7 +16,7 @@ export class LoadShowUsageService {
     var dt=new Date().toISOString();
     return this.http.get<string>(`assets/showUsage/demoBlocks/all.txt?${dt}`,{ responseType: 'text' as 'json'})
     .pipe(
-
+ 
       map((res: any) => {
           var r=res;
           // console.log(r);

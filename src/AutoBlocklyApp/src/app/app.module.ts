@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
@@ -41,6 +41,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { PrimaryNavigComponent } from './primary-navig/primary-navig.component';
+import { AppDetails } from './AppDetails';
+import { Observable, ObservableLike } from 'rxjs';
 
 @NgModule({
   declarations: [
@@ -99,7 +101,17 @@ import { PrimaryNavigComponent } from './primary-navig/primary-navig.component';
     MatListModule
 
   ],
-  providers: [],
+  providers: [  AppDetails,
+  
+    { provide: APP_INITIALIZER,useFactory: initializeApp1, deps: [AppDetails], multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+
+export function initializeApp1(appDet: AppDetails) {
+  return (): Observable<string> => { 
+    return appDet.Init();
+  }
+}
+

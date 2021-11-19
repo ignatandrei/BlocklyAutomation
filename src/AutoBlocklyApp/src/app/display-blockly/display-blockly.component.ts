@@ -13,6 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 declare var Interpreter: any;
 import { IntroJs } from 'intro.js';
 import * as introJs from 'intro.js';
+import { AppDetails } from '../AppDetails';
 
 
 
@@ -31,7 +32,7 @@ export class DisplayBlocklyComponent implements OnInit {
   public mustLoadDemoBlock: string='';
   private directLinkDemo:string='';
   private intro : IntroJs = introJs();
-  constructor(private tabulator:TabulatorHelper, private loadDemo: LoadShowUsageService, private ar : ActivatedRoute) { 
+  constructor(private tabulator:TabulatorHelper,private settings: AppDetails,  private loadDemo: LoadShowUsageService, private ar : ActivatedRoute) { 
     
       //console.log(bs.filterBlocks.definitionBlocks());
     this.ar.paramMap.subscribe((params:any) => { 
@@ -202,8 +203,8 @@ export class DisplayBlocklyComponent implements OnInit {
 
   async StartRegister(): Promise<void> {
     
-    var swaggersUrl= await firstValueFrom( this.loadDemo.getSwaggerLinks());
-    
+    // var swaggersUrl= await firstValueFrom( this.loadDemo.getSwaggerLinks());
+    var swaggersUrl = this.settings.links;
     var swaggersDict: Map<string,any>  = new Map<string,any>();
     swaggersUrl.forEach(async it=>{
       swaggersDict.set(it.id,await this.LoadSwaggerFromUrl(it.link, it.id));
@@ -224,8 +225,9 @@ export class DisplayBlocklyComponent implements OnInit {
       
       this.CategorySwaggerHidden(it)
       );
-    this.loadDemo.getDemoBlocks().subscribe(
-      (data:DemoBlocks[])=>{
+    //this.loadDemo.getDemoBlocks().subscribe(
+      var data:DemoBlocks[]=this.settings.demoBlocks;
+      {
         this.demos=data.sort((a,b)=> a.description.localeCompare(b.description));
         var categories=data
               .map(it=>it.categories)
@@ -245,7 +247,7 @@ export class DisplayBlocklyComponent implements OnInit {
         });
 
       }
-    );
+    // );
     const gridElement = document.getElementById('steps');
     if(gridElement  == null){
       window.alert("gridElement is null");
@@ -389,7 +391,12 @@ export class DisplayBlocklyComponent implements OnInit {
        toolbox: this.toolboxXML
     } as Blockly.BlocklyOptions);
     var self=this;
-    
+    if((this.settings.settings?.defaultBlocks.length||0)>0){
+      var xmlBlocks= (this.settings.settings?.defaultBlocks||[]).join("\n");
+        var xml = Blockly.Xml.textToDom(xmlBlocks);      
+        Blockly.Xml.clearWorkspaceAndLoadFromXml(xml, this.demoWorkspace);
+      
+    }
     window.setTimeout(self.afterTimeout, 2000, this, this.toolboxXML);
     
     // console.log(BlocklyJavaScript);
