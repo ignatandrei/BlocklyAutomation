@@ -51,7 +51,7 @@ jobs:
         git config --global user.name "Tagged release"
         git add docs/*
         git commit -am "Auto commit from Github Action" --allow-empty
-        git push origin main
+        git push origin
 
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
