@@ -49,6 +49,7 @@ jobs:
       run: |
         git config --global user.email "taggedrelease@ignatandrei.com"
         git config --global user.name "Tagged release"
+        git add docs/*
         git commit -am "Auto commit from Github Action" --allow-empty
         git push origin main
 
