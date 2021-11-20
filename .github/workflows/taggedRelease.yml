@@ -87,11 +87,12 @@ jobs:
         rm -r src/AutoBlocklyApp/dist/AutoBlocklyApp/*
         cd src
         npm run buildAng
+        rm -r Loaders/SimpleSite/AutoBlocklySimple/wwwroot/*
+        cp -r AutoBlocklyApp/dist/AutoBlocklyApp/* Loaders/SimpleSite/AutoBlocklySimple/wwwroot/
         cd Loaders
         cd SimpleSite
         cd AutoBlocklySimple
-        rm -r wwwroot/*
-        cp -r AutoBlocklyApp/dist/AutoBlocklyApp/* wwwroot/
+        
         dotnet publish -r win-x64 -c Release -o ${{env.AZURE_WEBAPP_NAME}}WinX64 --self-contained true -p:PublishSingleFile=true -p:PublishTrimmed=true
         dotnet publish -r linux-x64 -c Release -o ${{env.AZURE_WEBAPP_NAME}}linX64 --self-contained true -p:PublishSingleFile=true -p:PublishTrimmed=true 
         dotnet publish -r win-x64 -c Release -o ${{env.AZURE_WEBAPP_NAME}}IISWinX64 --self-contained false -p:PublishSingleFile=false -p:PublishTrimmed=false
