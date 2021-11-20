@@ -68,14 +68,6 @@ jobs:
         path: '${{github.workspace}}/src/AutoBlocklyApp/dist/AutoBlocklyApp'
         exclusions: '*.git* /*node_modules/* .editorconfig'       
 
-    - name: Release
-      uses: softprops/action-gh-release@v1
-      with:
-        files:  |
-            releaseBlocklyAutomation.zip
-        # tag: v${{ env.GITHUB_SHA }}
-        # tag_name: v${{ env.GITHUB_SHA }}
-
 
     - name: Set up .NET Core
       uses: actions/setup-dotnet@v1
@@ -120,6 +112,17 @@ jobs:
         filename: 'releaseIISWin.zip'
         path: '${{github.workspace}}/src/Loaders/SimpleSite/AutoBlocklySimple/${{env.AZURE_WEBAPP_NAME}}IISWinX64/'
         exclusions: '*.git* /*node_modules/* .editorconfig'       
+
+    - name: Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files:  |
+            releaseBlocklyAutomation.zip
+            releaseLin.zip
+            releaseWin.zip
+            releaseIISWin.zip
+        # tag: v${{ env.GITHUB_SHA }}
+        # tag_name: v${{ env.GITHUB_SHA }}
 
 
 
