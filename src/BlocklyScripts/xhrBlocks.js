@@ -115,7 +115,7 @@ exports.definitionBlocks = function (blocks, javaScript, BlocklyFieldDropdown) {
 
 exports.fieldXML =function(){
     return `
-    <category id="XHR" name="Request">
+    
     <block type="headersbeforehttp">
     <value name="HttpDomain">
         <shadow type="text">
@@ -142,6 +142,5 @@ exports.fieldXML =function(){
     
 </block>
 
-</category>
 `
 }

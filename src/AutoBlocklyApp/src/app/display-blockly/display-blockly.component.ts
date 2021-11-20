@@ -328,13 +328,16 @@ export class DisplayBlocklyComponent implements OnInit {
     );
 
     bs.auth0Blocks.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
+    bs.windowsCreds.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
     var blocks = [
       bs.defaultBlocks.generalBlocks(),
       `    
         <category name='Blockly Advanced'>
             ${bs.filterBlocks.fieldXML()}
+            <category id="XHR" name="Request">
             ${bs.xhrBlocks.fieldXML()}
-            
+            ${bs.windowsCreds.fieldXML()}
+            </category>
             ${bs.propBlocks.fieldXML()}
             <category id="catGUI" name="GUI">
             ${bs.guiBlocks.fieldXML()}
@@ -366,6 +369,7 @@ export class DisplayBlocklyComponent implements OnInit {
         `,
     ];
     this.initialize(blocks);
+    // console.log('x',bs.windowsCreds.fieldXML());
   }
   showInner: string = '';
   SaveBlocks() {

@@ -23,7 +23,7 @@ exports.definitionBlocks = function (blocks, javaScript) {
         }
     };
     javaScript['credsforhttp'] = function (block) {
-        var value_httpdomain = javaScript.valueToCode(block, 'HttpDomain', Blockly.JavaScript.ORDER_ATOMIC) || '(localSite)';
+        var value_httpdomain = javaScript.valueToCode(block, 'HttpDomain', /*javaScript.*/ORDER_ATOMIC) || '(localSite)';
         var value_headername = javaScript.valueToCode(block, 'WithCreds', /*javaScript.*/ORDER_ATOMIC);
         var code = 'withCredsForDomain[' + value_httpdomain + ']=' + value_headername + ';\n';
         return code;

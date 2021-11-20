@@ -155,9 +155,9 @@ class BlocklyReturnSwagger {
             if(shadow.length>0){
               //xmlBlockShow += `<field name="${prop.key}">${shadow}</field>`;
               var shadowBlock=`<value name="val_${prop.key}">${shadow}</value>`;
-              if(prop.key=='authority'){
-                console.log('z'+prop.key,shadowBlock);
-              }
+              // if(prop.key=='authority'){
+              //   console.log('z'+prop.key,shadowBlock);
+              // }
               xmlBlockShow+=shadowBlock;
             }
           }

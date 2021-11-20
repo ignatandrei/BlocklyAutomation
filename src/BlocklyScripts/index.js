@@ -22,5 +22,6 @@ module.exports = {
   waitBlocks: require('./waitBlocks'),
   commentBlock: require('./commentBlock'),
   auth0Blocks: require('./auth0Blocks'),
+  windowsCreds: require('./WindowsCreds'),
 
 };
