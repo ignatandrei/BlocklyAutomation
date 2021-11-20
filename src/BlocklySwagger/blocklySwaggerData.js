@@ -144,9 +144,28 @@ class BlocklyReturnSwagger {
       keys.forEach(function (key) {
         // console.log(key);
 
-        self.fieldXMLObjects.push(`<block type="${key}"></block>`);
-
         var schema = data[key];
+        var objPropString = self.findProperties(schema);
+        var xmlBlockShow=`<block type="${key}">`;
+        objPropString.forEach(function (prop) {
+          //console.log('y_'+prop.key,prop);
+          if(prop.value && prop.value.type){
+            var shadow=self.GenerateShadowField(prop.value.type, prop.key);
+            
+            if(shadow.length>0){
+              //xmlBlockShow += `<field name="${prop.key}">${shadow}</field>`;
+              var shadowBlock=`<value name="val_${prop.key}">${shadow}</value>`;
+              if(prop.key=='authority'){
+                console.log('z'+prop.key,shadowBlock);
+              }
+              xmlBlockShow+=shadowBlock;
+            }
+          }
+        });
+        xmlBlockShow+='</block>';
+        self.fieldXMLObjects.push(xmlBlockShow);
+
+        
         self.GenerateBlocks.push(self.GenerateBlock(schema, key));
       });
     }
@@ -189,6 +208,29 @@ class BlocklyReturnSwagger {
     return operationKey + "_" + ret;
   }
 
+  GenerateShadowField(blockShadowType,key)
+        {
+            switch (blockShadowType)
+            {
+                case "integer":
+                    
+                    return "<block type='math_number'><field name='NUM'>0</field></block>";
+
+                case "string":
+
+                    return `<block type='text'><field name='TEXT'>please enter ${key}</field></block>`;
+
+                case "boolean":
+                    
+                    return "<block type='logic_boolean'><field name='BOOL'>FALSE</field></block>";
+                case "array":
+                    return '<block type="lists_create_with"> <mutation items="0"></mutation></block>';
+                
+                default:
+                    
+                    return "";
+            }
+        }
   GenerateFunction(path, key, operation, operationKey) {
     
     

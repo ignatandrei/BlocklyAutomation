@@ -474,7 +474,7 @@ export class DisplayBlocklyComponent implements OnInit {
   var nameExistingCategorySwagger =
     myComponent?.CategorySwaggerHidden(myComponent?.swaggerLoaded) || '';
 var xmlToolbox=  myComponent.toolboxXML;
-console.log('a',xmlToolbox);
+// console.log('a',xmlToolbox);
 var replaceCategory=`<category name='${item.name}'>
 <category name='API' id='func_${item.name}'>
 ${newCateg}
@@ -482,9 +482,9 @@ ${newCateg}
 ${item.categSwagger()}
 </category>
 `;
-console.log('x',replaceCategory)
+// console.log('x',replaceCategory)
 xmlToolbox= xmlToolbox.replace(nameExistingCategorySwagger,replaceCategory);  
-console.log('x',xmlToolbox)
+// console.log('x',xmlToolbox)
 
   myComponent.swaggerLoaded++;
   // console.log(item.name);
