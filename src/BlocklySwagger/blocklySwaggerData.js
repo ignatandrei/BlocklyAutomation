@@ -206,7 +206,7 @@ class BlocklyReturnSwagger {
     //console.log(operationKey);
     // console.log(`assets/httpImages/${operationKey}.png`);
     // console.log(operation);
-    self.fieldXMLFunctions.push({id:key,gui:`<block type="${blocklyTypeName}"></block>`});
+    self.fieldXMLFunctions.push({id:key,gui:`<block type="text_print"> <value name="TEXT"><block type="${blocklyTypeName}"></block></value></block>`});
 
     return function (blocks, javaScript, BlocklyFieldImage) {
       blocks[blocklyTypeName] = {
