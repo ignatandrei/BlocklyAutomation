@@ -20,6 +20,8 @@ import { IntroJs } from 'intro.js';
 import * as introJs from 'intro.js';
 import { AppDetails } from '../AppDetails';
 import { TourSteps } from '../TourSteps';
+import { MonacoEditorModule } from 'ngx-monaco-editor';
+
 
 @Component({
   selector: 'app-display-blockly',
@@ -27,6 +29,8 @@ import { TourSteps } from '../TourSteps';
   styleUrls: ['./display-blockly.component.css'],
 })
 export class DisplayBlocklyComponent implements OnInit {
+  editorOptions = {theme: 'vs-dark', language: 'javascript'};
+  code: string= 'function x() {\nconsole.log("Hello world!");\n}';
   public swaggerLoaded: number = 0;
   public demoWorkspace: Blockly.WorkspaceSvg | null = null;
   public run: any;

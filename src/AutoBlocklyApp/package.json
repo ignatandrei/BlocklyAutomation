@@ -26,6 +26,8 @@
     "install": "^0.13.0",
     "intro.js": "4.3.0",
     "js-interpreter": "2.3.1",
+    "monaco-editor": "^0.30.1",
+    "ngx-monaco-editor": "^12.0.0",
     "npm": "^8.1.4",
     "rxjs": "7.4.0",
     "tabulator-tables": "5.0.7",
