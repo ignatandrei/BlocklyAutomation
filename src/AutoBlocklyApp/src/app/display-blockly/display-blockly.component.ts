@@ -536,7 +536,7 @@ xmlToolbox= xmlToolbox.replace(nameExistingCategorySwagger,replaceCategory);
     myComponent.toolboxXML= myComponent.toolboxXML.replace('Swagger', `Swagger(${nr})`);
 
     myComponent.swaggerData.forEach((item: any) => {
-      console.log('a_item', item);
+      // console.log('a_item', item);
       myComponent.addToToolboxSwagger(item,myComponent);
     });
 

@@ -248,7 +248,22 @@ class BlocklyReturnSwagger {
     //console.log(operationKey);
     // console.log(`assets/httpImages/${operationKey}.png`);
     // console.log(operation);
-    self.fieldXMLFunctions.push({id:key,gui:`<block type="text_print"> <value name="TEXT"><block type="${blocklyTypeName}"></block></value></block>`});
+
+    var xmlBlockShow=`<block type="text_print"> <value name="TEXT"><block type="${blocklyTypeName}">`;
+    if (op.parameters){
+      op.parameters.forEach((it) => {
+        if(it.schema && it.schema.type){
+          var shadow=self.GenerateShadowField(it.schema.type, it.name);
+          if(shadow.length>0){
+            xmlBlockShow += `<value name="val_${it.name}">${shadow}</value>`;
+          }
+        };
+      });
+    };
+
+    xmlBlockShow+=`</block></value></block>`;
+    
+    self.fieldXMLFunctions.push({id:key,gui:xmlBlockShow});
 
     return function (blocks, javaScript, BlocklyFieldImage) {
       blocks[blocklyTypeName] = {
