@@ -402,7 +402,7 @@ doDelete : (href, callback) => {
               interpreter.setProperty(globalObject, 'waitTime',
                   interpreter.createAsyncFunction(wrapper));
 
-                  
+                
           var wrapper = (it) => thisClass.displayDateFormatted(it);
           interpreter.setProperty(globalObject, 'displayDateFormatted',
                         interpreter.createNativeFunction(wrapper));
@@ -435,7 +435,32 @@ doDelete : (href, callback) => {
                   interpreter.createNativeFunction(wrapper));
   
   
-      
+        var wrapper = function (url, hostname){
+            var url= new URL(url);
+            console.log(`url ${url.href}`);
+            url.hostname = hostname;
+            console.log(`url ${url.href}`);
+            var ret=url.href;
+            if(ret.endsWith('/'))
+                ret=ret.substring(0,ret.length-1);
+            return ret;
+        }
+        interpreter.setProperty(globalObject, 'changeHost',
+                                interpreter.createNativeFunction(wrapper));
+
+        var wrapper = function (url, port){
+            var url= new URL(url);
+            console.log(`url ${url.href}`);
+            url.port = port;
+            console.log(`url ${url.href}`);
+            var ret=url.href;
+            if(ret.endsWith('/'))
+                ret=ret.substring(0,ret.length-1);
+            return ret;
+        }
+        interpreter.setProperty(globalObject, 'changePort',
+                                interpreter.createNativeFunction(wrapper));
+                            
             // Add an API function for the prompt() block.
             var wrapper = function(text) {
               text = text ? text.toString() : '';

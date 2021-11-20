@@ -324,7 +324,10 @@ class BlocklyReturnSwagger {
               
               
           }
-
+          this.appendValueInput('override_Host') 
+              .appendField("override Host");
+          // this.appendValueInput('override_Port')
+          //     .appendField("override Port");
           this.setTooltip(`${operationKey} ${root}${key}`);
           this.setOutput(true, "");
         },
@@ -387,16 +390,16 @@ class BlocklyReturnSwagger {
         code += parameterFunctionDefinition.join(",");
         code += "){\n";
         code +=`var rootSite="`+self.findRootSite()+`";\n`;
+        // code +="window.alert(JSON.stringify(extraData));\n";
         code +='if(extraData){\n';
         code +='if(extraData.url && extraData.url.host ){\n';
-        code +='rootSite=extraData.url.host;\n';
-        code +='if(extraData.url.port ){\n';
-        code +='rootSite+=":"+extraData.url.port;\n';
-        code +='}\n';
-
-        code +='}\n';
+        code +='rootSite =  changeHost(rootSite, extraData.url.host);\n';//it is  wrapper  for new  url
+        code +="};\n";
+        code +='if(extraData.url && extraData.url.port ){\n';
+        code +='rootSite  =changePort(rootSite , extraData.url.port);\n';
+        code +='};\n';
         
-        code +='}\n';
+        code +='};\n';
         //  console.log("basepath",self.basePath);
         code += 'var strUrl =rootSite +"'+ self.basePath  + key + '";\n';
         var paramsQuery = parameters.filter((it) => it.in == "query");
@@ -440,7 +443,23 @@ class BlocklyReturnSwagger {
         // if(hasBody)
         //   code +=`${JSON.stringify(objBody)}`;
         // else
-        code +="1";//extra parameter for later
+        var urlReplace="url:{notImportant:1";
+        var override_Http = javaScript.valueToCode(block, 'override_Host', /*javascript.*/ ORDER_ATOMIC);
+        override_Http = override_Http||'';
+        //window.alert('x'+override_Http);
+        if(override_Http.length>0)
+          urlReplace+=`,host:${override_Http}`;
+        
+
+        // var override_PortHttp = javaScript.valueToCode(block, 'override_Port ', /*javascript.*/ ORDER_ATOMIC);
+        // window.alert('x'+override_PortHttp);
+        // override_PortHttp= override_PortHttp ||'';
+        // if(override_PortHttp.length>0)
+        //   urlReplace+=`,port:${override_PortHttp}`;//extra parameter for later
+        
+          urlReplace+="}";
+
+          code +=`{${urlReplace}}\n`;
 
         code +=")";
 
