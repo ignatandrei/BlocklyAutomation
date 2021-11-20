@@ -1,7 +1,7 @@
 exports.generalBlocks = function(){
     return    `
     
-    <category name="BlocklyCore=>">
+    <category name="Blockly Core">
 
     <category id="catLogic" colour="210" name="Logic">
         <block type="controls_if"></block>
