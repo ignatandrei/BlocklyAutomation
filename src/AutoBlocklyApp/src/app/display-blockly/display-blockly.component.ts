@@ -63,7 +63,10 @@ export class DisplayBlocklyComponent implements OnInit {
       .setOptions({
         exitOnEsc: true,
         showStepNumbers: true,
+        showButtons: true,
         doneLabel: 'Exit',
+        skipLabel: 'Skip',
+        showProgress:true,
         steps: steps,
       })
       .start();

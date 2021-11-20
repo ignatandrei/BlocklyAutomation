@@ -1,16 +1,28 @@
-<button mat-raised-button color="primary" (click)="LoadSwagger()">Load Swagger</button>
+<button mat-raised-button color="primary" (click)="LoadSwagger()">
+  <mat-icon>file_upload</mat-icon>
+  Load Swagger</button>
 
-<button mat-raised-button color="primary" (click)="ShowInnerWorkings()">Show blocks</button>
+<button mat-raised-button color="primary" (click)="ShowInnerWorkings()">
+  <mat-icon>code</mat-icon>
+  Show blocks</button>
     
-    &nbsp; <button mat-raised-button color="primary" (click)="SaveBlocks()">Persist in browser</button>
+    &nbsp; <button mat-raised-button color="primary" (click)="SaveBlocks()">
+      <mat-icon>save</mat-icon>
+      Persist in browser</button>
     &nbsp;
-    <button mat-raised-button color="primary" id="runButton" (click)="RunCode()">Run Code</button>
+    <button mat-raised-button color="primary" id="runButton" (click)="RunCode()">
+      <mat-icon>play_arrow</mat-icon>
+      Run Code</button>
 
     &nbsp;
-    <button id="downloadBlocks" mat-raised-button color="primary" (click)="Download()">Download blocks</button>
+    <button id="downloadBlocks" mat-raised-button color="primary" (click)="Download()">
+      <mat-icon>download</mat-icon>
+      Download blocks</button>
     &nbsp;
     <input type="file" (change)="changeListener($event)">
-    <button mat-raised-button id="demos" color="primary" [matMenuTriggerFor]="menu">Demos ({{demos.length}})</button>
+    <button mat-raised-button id="demos" color="primary" [matMenuTriggerFor]="menu">
+      <mat-icon>list</mat-icon>
+      Demos ({{demos.length}})</button>
 <mat-menu #menu="matMenu">
     <ng-template ngFor let-demo let-i="index"  [ngForOf]="demosCategories | keyvalue">
   <button mat-menu-item [matMenuTriggerFor]="menu" >{{i+1}} {{demo.key}} ({{demo.value.length}})</button>

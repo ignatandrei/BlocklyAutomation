@@ -386,9 +386,19 @@ class BlocklyReturnSwagger {
         var code = "function(";
         code += parameterFunctionDefinition.join(",");
         code += "){\n";
+        code +=`var rootSite="`+self.findRootSite()+`";\n`;
+        code +='if(extraData){\n';
+        code +='if(extraData.url && extraData.url.host ){\n';
+        code +='rootSite=extraData.url.host;\n';
+        code +='if(extraData.url.port ){\n';
+        code +='rootSite+=":"+extraData.url.port;\n';
+        code +='}\n';
+
+        code +='}\n';
         
+        code +='}\n';
         //  console.log("basepath",self.basePath);
-        code += 'var strUrl ="' + self.findRootSite()+ self.basePath  + key + '";\n';
+        code += 'var strUrl =rootSite +"'+ self.basePath  + key + '";\n';
         var paramsQuery = parameters.filter((it) => it.in == "query");
         if(paramsQuery.length>0){
           code += 'strUrl+="?";\n;';
