@@ -87,7 +87,7 @@ jobs:
         
         dotnet publish -r win-x64 -c Release -o ${{env.AZURE_WEBAPP_NAME}}WinX64 --self-contained true -p:PublishSingleFile=true -p:PublishTrimmed=true
         dotnet publish -r linux-x64 -c Release -o ${{env.AZURE_WEBAPP_NAME}}linX64 --self-contained true -p:PublishSingleFile=true -p:PublishTrimmed=true 
-        dotnet publish -r win-x64 -c Release -o ${{env.AZURE_WEBAPP_NAME}}IISWinX64 --self-contained false -p:PublishSingleFile=false -p:PublishTrimmed=false
+        dotnet publish -r win-x64 -c Release -o ${{env.AZURE_WEBAPP_NAME}}IISWinX64 --self-contained true -p:PublishSingleFile=false -p:PublishTrimmed=false
         
     - name: Archive Release Linux
       uses: thedoctor0/zip-release@master
