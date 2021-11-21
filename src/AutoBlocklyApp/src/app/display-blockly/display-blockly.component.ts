@@ -24,7 +24,8 @@ enum ShowCodeAndXML{
   ShowNone=0,
   ShowCode=1,
   ShowXML=2,
-  All=  3 
+  ShowOutput=3,
+  Stop=  4
 }
 @Component({
   selector: 'app-display-blockly',
@@ -36,7 +37,9 @@ export class DisplayBlocklyComponent implements OnInit {
 
   //monaco settings
   editorXMLOptions = {theme: 'vs-dark', language: 'xml'};
-  editorJSOptions = {theme: 'vs-dark', language: 'javascript'};
+  editorJSOptions = {theme: 'vs-dark', language: 'javascript', lineNumbers: 'on'};
+  editorPlain = {theme: 'vs-dark', language: 'javascript', lineNumbers: 'on'};
+  
   code: string= 'function x() {\nconsole.log("Hello world!");\n}';
   public showCodeAndXML: ShowCodeAndXML = ShowCodeAndXML.ShowNone;
   public swaggerLoaded: number = 0;
@@ -108,6 +111,7 @@ export class DisplayBlocklyComponent implements OnInit {
       BlocklyJavaScript
     );
     this.clearOutput();
+    this.showCodeAndXML = ShowCodeAndXML.ShowOutput;
     this.showInner = 'start program';
     var self = this;
     this.run.runCode(
@@ -394,22 +398,28 @@ export class DisplayBlocklyComponent implements OnInit {
   SaveBlocks() {
     bh.saveBlocksUrl.saveState(Blockly.Xml, this.demoWorkspace);
   }
+  public ShowSomething():boolean{
+    return this.showCodeAndXML !== ShowCodeAndXML.ShowNone;
+  }
+  public ShowOutput():boolean {
+    return (this.showCodeAndXML === ShowCodeAndXML.ShowOutput) ;
+  }
   public ShowCode():boolean{
-    return ((this.showCodeAndXML & ShowCodeAndXML.ShowCode) === ShowCodeAndXML.ShowCode);
+    return (this.showCodeAndXML === ShowCodeAndXML.ShowCode) ;
   }
   public ShowXML():boolean{
-    return ((this.showCodeAndXML & ShowCodeAndXML.ShowXML) === ShowCodeAndXML.ShowXML);
+    return (this.showCodeAndXML === ShowCodeAndXML.ShowXML) ;
   }
   private CalculateXMLAndCode():void{
     var xml = Blockly.Xml.workspaceToDom(this.demoWorkspace!, true);
     var xml_text = Blockly.Xml.domToPrettyText(xml);
-    this.showInner = `
-            ${this.run.latestCode}
-            ========
-            ${xml_text}
-            ========
+    // this.showInner = `
+    //         ${this.run.latestCode}
+    //         ========
+    //         ${xml_text}
+    //         ========
            
-            `;
+    //         `;
     this.showJSCode = this.run.latestCode;
     this.showXMLCode = xml_text;
    
@@ -420,7 +430,7 @@ export class DisplayBlocklyComponent implements OnInit {
       return;
     }
     this.showCodeAndXML++;
-    if(this.showCodeAndXML> ShowCodeAndXML.All)
+    if(this.showCodeAndXML > ShowCodeAndXML.Stop)
       this.showCodeAndXML=0;
     this.CalculateXMLAndCode();
     //outputArea.value += latestCode;

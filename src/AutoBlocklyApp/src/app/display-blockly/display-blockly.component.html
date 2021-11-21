@@ -19,7 +19,7 @@
   
   
   <!-- <div id="blocklyDiv" style="position:absolute"></div> -->
-  <mat-grid-list [cols]="(ShowCode()||ShowXML())?2:1" rowHeight="1:1">
+  <mat-grid-list [cols]="(ShowSomething())?2:1" rowHeight="1:1">
         <mat-grid-tile-header>
           <div style="display: inline-block; height: 100%;width: 100%;">
             <div style="display: inline-block; height: 5%;width: 100%;">
@@ -71,10 +71,12 @@
            >
           </div>
       </mat-grid-tile>
-      <mat-grid-tile *ngIf="ShowCode()||ShowXML()">
-            <ngx-monaco-editor *ngIf="ShowCode()"  style="display: inline-block; height: 100%; width: 100%" [options]="editorXMLOptions" [(ngModel)]="showXMLCode"></ngx-monaco-editor> 
+      <mat-grid-tile *ngIf="ShowSomething()">
+        <ngx-monaco-editor *ngIf="ShowOutput()"   style="display: inline-block; height: 100%; width: 100%" [options]="editorPlain" [(ngModel)]="showInner"></ngx-monaco-editor>   
+        <ngx-monaco-editor *ngIf="ShowCode()"  style="display: inline-block; height: 100%; width: 100%" [options]="editorXMLOptions" [(ngModel)]="showXMLCode"></ngx-monaco-editor> 
             <ngx-monaco-editor *ngIf="ShowXML()"   style="display: inline-block; height: 100%; width: 100%" [options]="editorJSOptions" [(ngModel)]="showJSCode"></ngx-monaco-editor>   
-        </mat-grid-tile>
+
+          </mat-grid-tile>
 
       
       </mat-grid-list>
