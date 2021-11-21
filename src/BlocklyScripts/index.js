@@ -23,5 +23,6 @@ module.exports = {
   commentBlock: require('./commentBlock'),
   auth0Blocks: require('./auth0Blocks'),
   windowsCreds: require('./WindowsCreds'),
+  trycatchFinBlock: require('./tryCatchFinBlock')
 
 };
