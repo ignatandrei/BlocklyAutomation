@@ -4,6 +4,7 @@ env:
   AZURE_WEBAPP_NAME: 'AutoBlocklyApp'
 on:
   push:    
+    branches: [ main ]
     tags:
       - "v*"
   
