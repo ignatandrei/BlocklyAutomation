@@ -38,7 +38,9 @@ jobs:
           cp -r node_modules  AutoBlocklyApp/node_modules
           # ls -l AutoBlocklyApp/node_modules/*
           cd AutoBlocklyApp
-          npm i --force                 
+          echo ' in angular force install '
+          npm i --force   
+          ls node_modules/              
           cd ..
           echo "build"
           npm run buildAng
