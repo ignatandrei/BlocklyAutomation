@@ -1,71 +1,83 @@
-<button mat-raised-button color="primary" (click)="LoadSwagger()">
-  <mat-icon>file_upload</mat-icon>
-  Load Swagger</button>
 
-<button mat-raised-button color="primary" (click)="ShowInnerWorkings()">
-  <mat-icon>code</mat-icon>
-  Show blocks</button>
-    
-    &nbsp; <button mat-raised-button color="primary" (click)="SaveBlocks()">
-      <mat-icon>save</mat-icon>
-      Persist in browser</button>
-    &nbsp;
-    <button mat-raised-button color="primary" id="runButton" (click)="RunCode()">
-      <mat-icon>play_arrow</mat-icon>
-      Run Code</button>
-
-    &nbsp;
-    <button id="downloadBlocks" mat-raised-button color="primary" (click)="Download()">
-      <mat-icon>download</mat-icon>
-      Download blocks</button>
-    &nbsp;
-    <input type="file" (change)="changeListener($event)">
-    <button mat-raised-button id="demos" color="primary" [matMenuTriggerFor]="menu">
-      <mat-icon>list</mat-icon>
-      Demos ({{demos.length}})</button>
-<mat-menu #menu="matMenu">
-    <ng-template ngFor let-demo let-i="index"  [ngForOf]="demosCategories | keyvalue">
-  <button mat-menu-item [matMenuTriggerFor]="menu" >{{i+1}} {{demo.key}} ({{demo.value.length}})</button>
-  <mat-menu #menu="matMenu">
-    <ng-template ngFor let-itemDemo let-iMenu="index"  [ngForOf]="demo.value">
-    <button mat-menu-item (click)="ShowDemo(itemDemo.id)" >{{iMenu+1}} {{itemDemo.description}}</button>
-    </ng-template>  
-  </mat-menu>
-  
-  </ng-template>
   
     
+      
+    
+    
+      <!-- <div
+        id="blocklyDiv"
+        style="display: inline-block; height: 750px; width: 58%"
+      ></div> -->
+      <!-- <textarea
+        id="output"
+        disabled="disabled"
+        [(ngModel)]="showInner"
+        style="display: inline-block; height: 750px; width: 38%"
+      >
+      </textarea> -->
+     
   
   
-    <!-- <div
-      id="blocklyDiv"
-      style="display: inline-block; height: 750px; width: 58%"
-    ></div> -->
-    <!-- <textarea
-      id="output"
-      disabled="disabled"
-      [(ngModel)]="showInner"
-      style="display: inline-block; height: 750px; width: 38%"
-    >
-    </textarea> -->
-   
-</mat-menu>
-<a target='_blank' *ngIf="mustLoadDemoBlock?.length" mat-raised-button  color="primary" [routerLink]="['/','automation' ,'loadexample',mustLoadDemoBlock]">Direct link {{mustLoadDemoBlock}}</a>
-    <span *ngIf="(demoWorkspace == null)">Loading</span>
-<!-- <div id="blocklyDiv" style="position:absolute"></div> -->
-<mat-grid-list cols="2">
-      <mat-grid-tile>
-        <div
-          id="blocklyDiv"
-          style="display: inline-block; height: 100%; width: 100%"
-         >
-        </div>
-    </mat-grid-tile>
-      <mat-grid-tile >
-          <ngx-monaco-editor style="display: inline-block; height: 100%; width: 100%" [options]="editorXMLOptions" [(ngModel)]="showXMLCode"></ngx-monaco-editor> 
-          <ngx-monaco-editor style="display: inline-block; height: 100%; width: 100%" [options]="editorJSOptions" [(ngModel)]="showJSCode"></ngx-monaco-editor>   
+  <!-- <div id="blocklyDiv" style="position:absolute"></div> -->
+  <mat-grid-list cols="2" rowHeight="2:1">
+        <mat-grid-tile-header>
+          <div style="display: inline-block; height: 100%;width: 100%;">
+            <div style="display: inline-block; height: 5%;width: 100%;">
+              <button mat-raised-button color="primary" (click)="LoadSwagger()">
+                <mat-icon>file_upload</mat-icon>
+                Load Swagger</button>
+              
+              <button mat-raised-button color="primary" (click)="ShowInnerWorkings()">
+                <mat-icon>code</mat-icon>
+                Show blocks</button>
+                  
+                  &nbsp; <button mat-raised-button color="primary" (click)="SaveBlocks()">
+                    <mat-icon>save</mat-icon>
+                    Persist in browser</button>
+                  &nbsp;
+                  <button mat-raised-button color="primary" id="runButton" (click)="RunCode()">
+                    <mat-icon>play_arrow</mat-icon>
+                    Run Code</button>
+              
+                  &nbsp;
+                  <button id="downloadBlocks" mat-raised-button color="primary" (click)="Download()">
+                    <mat-icon>download</mat-icon>
+                    Download blocks</button>
+                  &nbsp;
+                  <input type="file" (change)="changeListener($event)">
+                  <button mat-raised-button id="demos" color="primary" [matMenuTriggerFor]="menu">
+                    <mat-icon>list</mat-icon>
+                    Demos ({{demos.length}})</button>
+              <mat-menu #menu="matMenu">
+                  <ng-template ngFor let-demo let-i="index"  [ngForOf]="demosCategories | keyvalue">
+                <button mat-menu-item [matMenuTriggerFor]="menu" >{{i+1}} {{demo.key}} ({{demo.value.length}})</button>
+                <mat-menu #menu="matMenu">
+                  <ng-template ngFor let-itemDemo let-iMenu="index"  [ngForOf]="demo.value">
+                  <button mat-menu-item (click)="ShowDemo(itemDemo.id)" >{{iMenu+1}} {{itemDemo.description}}</button>
+                  </ng-template>  
+                </mat-menu>
+                
+                </ng-template>
+              </mat-menu>
+              <a target='_blank' *ngIf="mustLoadDemoBlock?.length" mat-raised-button  color="primary" [routerLink]="['/','automation' ,'loadexample',mustLoadDemoBlock]">Direct link {{mustLoadDemoBlock}}</a>
+                <span *ngIf="(demoWorkspace == null)">Loading</span>
+            </div>
+          </div>
+        </mat-grid-tile-header>
+        <mat-grid-tile>
+          <div
+            id="blocklyDiv"
+            style="display: inline-block; height: 100%; width: 100%"
+           >
+          </div>
       </mat-grid-tile>
-    </mat-grid-list>
+        <mat-grid-tile >
+            <ngx-monaco-editor style="display: inline-block; height: 100%; width: 100%" [options]="editorXMLOptions" [(ngModel)]="showXMLCode"></ngx-monaco-editor> 
+            <ngx-monaco-editor style="display: inline-block; height: 100%; width: 100%" [options]="editorJSOptions" [(ngModel)]="showJSCode"></ngx-monaco-editor>   
+        </mat-grid-tile>
 
-  <div id="steps" style="display: inline-block; width: 96%;"></div>
- 
+      
+      </mat-grid-list>
+      <div id="steps"></div>
+  
+    

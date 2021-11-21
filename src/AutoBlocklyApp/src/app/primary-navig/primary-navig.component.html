@@ -1,96 +1,126 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport
-      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-      [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="(isHandset$ | async) === false">
-    <mat-toolbar>      
+  <mat-sidenav
+    #drawer
+    class="sidenav"
+    fixedInViewport
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="(isHandset$ | async) === false"
+  >
+    <mat-toolbar>
       <a mat-list-item routerLink="/">Menu</a>
     </mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item href="https://github.com/ignatandrei/BlocklyAutomation" target="_blank">
-        <mat-icon>
-          source
-        </mat-icon>
-        Github</a>
+      <a
+        mat-list-item
+        href="https://github.com/ignatandrei/BlocklyAutomation"
+        target="_blank"
+      >
+        <mat-icon> source </mat-icon>
+        Github</a
+      >
       <mat-divider></mat-divider>
-      <a mat-list-item href="https://ignatandrei.github.io/BlocklyAutomation" target="_blank">
-        <mat-icon>
-          https
-        </mat-icon>
-        Demo online</a>
-        <mat-divider></mat-divider>
-        <mat-expansion-panel>
-          <mat-expansion-panel-header>
-          <mat-panel-title>
-            Demos {{demoBlocks.length}}
-          </mat-panel-title>
-          </mat-expansion-panel-header>
-        <a mat-list-item *ngFor="let nr=index;let demo of demoBlocks" [routerLink]="['/','automation' ,'loadexample',demo.id]" target="_blank">
-          <mat-icon>
-            https
-          </mat-icon> {{nr+1}} {{demo.description}}</a>
-          
-        </mat-expansion-panel>
+      <a
+        mat-list-item
+        href="https://ignatandrei.github.io/BlocklyAutomation"
+        target="_blank"
+      >
+        <mat-icon> https </mat-icon>
+        Demo online</a
+      >
+      <mat-divider></mat-divider>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title> Demos {{ demoBlocks.length }} </mat-panel-title>
+        </mat-expansion-panel-header>
+        <a
+          mat-list-item
+          *ngFor="let nr = index; let demo; of: demoBlocks"
+          [routerLink]="['/', 'automation', 'loadexample', demo.id]"
+          target="_blank"
+        >
+          <mat-icon> https </mat-icon> {{ nr + 1 }} {{ demo.description }}</a
+        >
+      </mat-expansion-panel>
     </mat-nav-list>
-
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-toolbar color="primary">
+    <mat-toolbar color="primary" class="nav-bar">
       <button
         type="button"
         aria-label="Toggle sidenav"
         mat-icon-button
         (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async">
+        *ngIf="isHandset$ | async"
+      >
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>{{title}} </span>
+      <span>{{ title }}</span>
 
       <span class="example-spacer"></span>
 
       <button id="download" mat-button [matMenuTriggerFor]="download">
-        <mat-icon>
-          file_download
-        </mat-icon>
-        </button>
-<mat-menu #download="matMenu">
-  <a mat-list-item href="https://github.com/ignatandrei/BlocklyAutomation/releases/latest/download/releaseBlocklyAutomation.zip/" target="_blank">
-    Download HTML</a>      
+        <mat-icon> file_download </mat-icon>
+      </button>
+      <mat-menu #download="matMenu">
+        <a
+          mat-list-item
+          href="https://github.com/ignatandrei/BlocklyAutomation/releases/latest/download/releaseBlocklyAutomation.zip/"
+          target="_blank"
+        >
+          Download HTML</a
+        >
 
-    <a mat-list-item href="https://github.com/ignatandrei/BlocklyAutomation/releases/latest/download/releaseLin.zip/" target="_blank">
-      Download Linux</a>      
-    <a mat-list-item href="https://github.com/ignatandrei/BlocklyAutomation/releases/latest/download/releaseWin.zip/" target="_blank">    
-      Download Windows</a> 
-      <a mat-list-item href="https://github.com/ignatandrei/BlocklyAutomation/releases/latest/download/releaseIISWin.zip/" target="_blank">
-        Download IIS</a> 
-  
-   
-</mat-menu>
+        <a
+          mat-list-item
+          href="https://github.com/ignatandrei/BlocklyAutomation/releases/latest/download/releaseLin.zip/"
+          target="_blank"
+        >
+          Download Linux</a
+        >
+        <a
+          mat-list-item
+          href="https://github.com/ignatandrei/BlocklyAutomation/releases/latest/download/releaseWin.zip/"
+          target="_blank"
+        >
+          Download Windows</a
+        >
+        <a
+          mat-list-item
+          href="https://github.com/ignatandrei/BlocklyAutomation/releases/latest/download/releaseIISWin.zip/"
+          target="_blank"
+        >
+          Download IIS</a
+        >
+      </mat-menu>
 
+      <button mat-button [matMenuTriggerFor]="examples">
+        <mat-icon> source </mat-icon>
+      </button>
 
-<button mat-button [matMenuTriggerFor]="examples">
-  <mat-icon>
-    source
-  </mat-icon>
-  </button>
-
-<mat-menu #examples="matMenu">
-  <a mat-list-item href="https://github.com/ignatandrei/BlocklyAutomation" target="_blank">
-    <mat-icon>
-      source
-    </mat-icon>
-    Github</a>
-  <mat-divider></mat-divider>
-  <a mat-list-item href="https://ignatandrei.github.io/BlocklyAutomation" target="_blank">
-    <mat-icon>
-      https
-    </mat-icon>
-    Demo online</a>
-  
-</mat-menu>
-
+      <mat-menu #examples="matMenu">
+        <a
+          mat-list-item
+          href="https://github.com/ignatandrei/BlocklyAutomation"
+          target="_blank"
+        >
+          <mat-icon> source </mat-icon>
+          Github</a
+        >
+        <mat-divider></mat-divider>
+        <a
+          mat-list-item
+          href="https://ignatandrei.github.io/BlocklyAutomation"
+          target="_blank"
+        >
+          <mat-icon> https </mat-icon>
+          Demo online</a
+        >
+      </mat-menu>
     </mat-toolbar>
     <!-- Add Content Here -->
-    <router-outlet></router-outlet>
+    <div class="main-content">
+      <router-outlet></router-outlet>
+    </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
