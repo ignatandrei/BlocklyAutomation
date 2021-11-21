@@ -1,0 +1,25 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "arealshadow",
+      "name": "Bogdan Bobe",
+      "avatar_url": "https://avatars.githubusercontent.com/u/33196341?v=4",
+      "profile": "https://aenyx-designs.com/",
+      "contributions": [
+        "design",
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "BlocklyAutomation",
+  "projectOwner": "ignatandrei",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
