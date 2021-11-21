@@ -28,6 +28,7 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Run the build
         run: |
+          echo 'start'
           cd src
           echo 'install angular'
           npm i @angular/cli@13.0.1  --force                 
