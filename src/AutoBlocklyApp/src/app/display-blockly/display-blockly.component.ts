@@ -27,6 +27,11 @@ import { TourSteps } from '../TourSteps';
   styleUrls: ['./display-blockly.component.css'],
 })
 export class DisplayBlocklyComponent implements OnInit {
+  //monaco settings
+  editorXMLOptions = {theme: 'vs-dark', language: 'xml'};
+  editorJSOptions = {theme: 'vs-dark', language: 'javascript'};
+  code: string= 'function x() {\nconsole.log("Hello world!");\n}';
+
   public swaggerLoaded: number = 0;
   public demoWorkspace: Blockly.WorkspaceSvg | null = null;
   public run: any;
@@ -377,6 +382,8 @@ export class DisplayBlocklyComponent implements OnInit {
     // console.log('x',bs.windowsCreds.fieldXML());
   }
   showInner: string = '';
+  showXMLCode: string = '';
+  showJSCode: string = '';
   SaveBlocks() {
     bh.saveBlocksUrl.saveState(Blockly.Xml, this.demoWorkspace);
   }
@@ -394,6 +401,8 @@ export class DisplayBlocklyComponent implements OnInit {
             ========
            
             `;
+    this.showJSCode = this.run.latestCode;
+    this.showXMLCode = xml_text;
     //outputArea.value += latestCode;
   }
   Download(): void {

@@ -33,18 +33,39 @@
   </mat-menu>
   
   </ng-template>
+  
+    
+  
+  
+    <!-- <div
+      id="blocklyDiv"
+      style="display: inline-block; height: 750px; width: 58%"
+    ></div> -->
+    <!-- <textarea
+      id="output"
+      disabled="disabled"
+      [(ngModel)]="showInner"
+      style="display: inline-block; height: 750px; width: 38%"
+    >
+    </textarea> -->
    
 </mat-menu>
 <a target='_blank' *ngIf="mustLoadDemoBlock?.length" mat-raised-button  color="primary" [routerLink]="['/','automation' ,'loadexample',mustLoadDemoBlock]">Direct link {{mustLoadDemoBlock}}</a>
     <span *ngIf="(demoWorkspace == null)">Loading</span>
 <!-- <div id="blocklyDiv" style="position:absolute"></div> -->
-<div style="width: 100%">
-    <div id="blocklyDiv"
-        style="display: inline-block; height: 750px; width: 58%"></div>
-    <textarea id="output" disabled="disabled" [(ngModel)]='showInner'
-        style="display: inline-block; height: 750px; width: 38%;">
-    </textarea>
-  </div>
+<mat-grid-list cols="2">
+      <mat-grid-tile>
+        <div
+          id="blocklyDiv"
+          style="display: inline-block; height: 100%; width: 100%"
+         >
+        </div>
+    </mat-grid-tile>
+      <mat-grid-tile >
+          <ngx-monaco-editor style="display: inline-block; height: 100%; width: 100%" [options]="editorXMLOptions" [(ngModel)]="showXMLCode"></ngx-monaco-editor> 
+          <ngx-monaco-editor style="display: inline-block; height: 100%; width: 100%" [options]="editorJSOptions" [(ngModel)]="showJSCode"></ngx-monaco-editor>   
+      </mat-grid-tile>
+    </mat-grid-list>
 
   <div id="steps" style="display: inline-block; width: 96%;"></div>
  
