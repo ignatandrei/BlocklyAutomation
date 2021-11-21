@@ -7,5 +7,11 @@
   <PublishSingleFile>true</PublishSingleFile>
   <PublishTrimmed>true</PublishTrimmed>
   </PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="AMSWebAPI" Version="2021.7.6.628" />
+		<PackageReference Include="AMS_Base" Version="2021.7.6.628" />
+		<PackageReference Include="RSCG_AMS" Version="2021.7.6.628" ReferenceOutputAssembly="false" OutputItemType="Analyzer" />
+
+	</ItemGroup>
 
 </Project>
