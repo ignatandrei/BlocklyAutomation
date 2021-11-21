@@ -133,14 +133,18 @@ exports.fieldXML =function(){
         </shadow>
     </value>
 </block>
+<block type="text_print">
+<value name="TEXT">
+
     <block type="httprequest">
     <value name="TheUrl">
         <shadow type="text">
             <field name="TEXT">https://httpbin.org/get</field>
         </shadow>
     </value>
-    
 </block>
+</value>
+</block>    
 
 `
 }
