@@ -34,13 +34,14 @@ jobs:
           npm i @angular/cli@13.0.1  --force                 
           echo "install ws"
           npm i -ws --include-workspace-root --force                 
+          ls -l node_modules/
           echo "copy "
           cp -r node_modules  AutoBlocklyApp/node_modules
           # ls -l AutoBlocklyApp/node_modules/*
           cd AutoBlocklyApp
           echo ' in angular force install '
           npm i --force   
-          ls node_modules/              
+          ls -l node_modules/              
           cd ..
           echo "build"
           npm run buildAng
