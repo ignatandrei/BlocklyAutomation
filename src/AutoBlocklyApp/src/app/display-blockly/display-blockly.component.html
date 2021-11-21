@@ -1,4 +1,4 @@
-<div style="height: 100%; width: 100%">
+<div>
   <div>
     <button mat-raised-button color="primary" (click)="LoadSwagger()">
       <mat-icon>file_upload</mat-icon>
@@ -72,18 +72,35 @@
   
   
   <div>
-    <mat-grid-list cols="2" >
-      <mat-grid-tile><div
-        id="blocklyDiv"
-        style="display: inline-block; height: 100%; width: 100%"
-      ></div></mat-grid-tile>
+    <mat-grid-list cols="2">
       <mat-grid-tile>
-        <ngx-monaco-editor [options]="editorOptions" [(ngModel)]="showInner" style="height: 100%; width: 100%"></ngx-monaco-editor>
+        <div
+          id="blocklyDiv"
+          style="display: inline-block; height: 100%; width: 100%"
+         >
+        </div>
+    </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-tab-group animationDuration="0ms">
+          <mat-tab label="XML" style="height: 100%; width: 100%"> 
+            <ngx-monaco-editor [options]="editorXMLOptions" [(ngModel)]="showXMLCode"></ngx-monaco-editor> 
+            <ngx-monaco-editor [options]="editorJSOptions" [(ngModel)]="showJSCode"></ngx-monaco-editor> 
+          </mat-tab>
+
+          <mat-tab label="JavaScript" style="height: 100%; width: 100%">
+                <ngx-monaco-editor style="height: 100%; width: 100%" [options]="editorJSOptions" [(ngModel)]="showJSCode"></ngx-monaco-editor> 
+          </mat-tab>
+
+          <mat-tab label="Result" style="height: 100%; width: 100%"> 
+            <h1>test</h1>
+            <div id="steps" style="display: inline-block;"></div>
+          </mat-tab>
+        </mat-tab-group>
+        <!-- <div id="steps" style="display: inline-block;"></div> -->
       </mat-grid-tile>
-      
     </mat-grid-list>
   
-    <div id="steps" style="display: inline-block; height: 20%;">test</div>
+    <!-- <div id="steps" style="display: inline-block;"></div> -->
   
     <!-- <div
       id="blocklyDiv"
