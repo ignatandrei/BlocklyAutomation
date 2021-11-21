@@ -30,7 +30,7 @@ jobs:
         run: |
           cd src
           npm i @angular/cli@13.0.1                      
-          npm i -ws --include-workspace-root                  
+          npm i -ws --include-workspace-root --force                 
           cp -r node_modules  AutoBlocklyApp/node_modules
           # ls -l AutoBlocklyApp/node_modules/*
           npm run buildAng

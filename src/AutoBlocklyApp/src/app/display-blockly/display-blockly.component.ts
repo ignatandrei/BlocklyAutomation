@@ -38,7 +38,7 @@ export class DisplayBlocklyComponent implements OnInit {
   //monaco settings
   editorXMLOptions = {theme: 'vs-dark', language: 'xml'};
   editorJSOptions = {theme: 'vs-dark', language: 'javascript', lineNumbers: 'on'};
-  editorPlain = {theme: 'vs-dark', language: 'javascript', lineNumbers: 'on'};
+  editorPlain = {theme: 'vs-dark', language: 'plaintext', lineNumbers: 'on'};
   
   code: string= 'function x() {\nconsole.log("Hello world!");\n}';
   public showCodeAndXML: ShowCodeAndXML = ShowCodeAndXML.ShowNone;
@@ -112,18 +112,23 @@ export class DisplayBlocklyComponent implements OnInit {
     );
     this.clearOutput();
     this.showCodeAndXML = ShowCodeAndXML.ShowOutput;
-    this.showInner = 'start program';
+    this.showInner = '{ "step_0": "start program",';
     var self = this;
     this.run.runCode(
       f,
       (data: any) => {
+        // data = data?.toString()?.replace(/\n/g, '')?.replace(/\r/g, '');
         self.step++;
-        self.showInner += `\n ${self.step} : ${data}`;
+        self.showInner += `\n 
+          
+          "step_${self.step}" : "${data}",
+          
+          `;
         // console.log(`obtained ${data}`);
         this.tabulator.AddDataToGrid(data);
       },
       () => {
-        self.showInner += `\n program executed`;
+        self.showInner += `\n "step_${self.step+1}" : "program executed"\n}`;
         this.tabulator.FinishGrid();
       }
     );
