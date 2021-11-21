@@ -36,6 +36,9 @@ jobs:
           echo "copy "
           cp -r node_modules  AutoBlocklyApp/node_modules
           # ls -l AutoBlocklyApp/node_modules/*
+          cd AutoBlocklyApp
+          npm i --force                 
+          cd ..
           echo "build"
           npm run buildAng
           ls -l AutoBlocklyApp/dist/AutoBlocklyApp
