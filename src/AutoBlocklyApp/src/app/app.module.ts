@@ -43,6 +43,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { PrimaryNavigComponent } from './primary-navig/primary-navig.component';
 import { AppDetails } from './AppDetails';
 import { Observable, ObservableLike } from 'rxjs';
+import { MonacoEditorModule } from 'ngx-monaco-editor';
 
 @NgModule({
   declarations: [
@@ -98,7 +99,8 @@ import { Observable, ObservableLike } from 'rxjs';
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    MonacoEditorModule.forRoot()
 
   ],
   providers: [  AppDetails,
