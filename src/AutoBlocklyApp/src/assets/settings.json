@@ -1,31 +1,72 @@
 {
     "title": "Automate Blockly",
-    "defaultBlocks":["<xml xmlns='https://developers.google.com/blockly/xml'>",
-    "<block type='text_print' x='43' y='-326'>",
-    "  <value name='TEXT'>",
-    "    <block type='getproperty'>",
-    "      <field name='objectName'>object</field>",
-    "      <field name='prop'>property</field>",
-    "      <value name='ObjectToChange'>",
-    "        <block type='httprequest'>",
-    "          <field name='TypeOutput'>JSON</field>",
-    "          <field name='TypeRequest'>GET</field>",
-    "          <value name='TheUrl'>",
-    "            <shadow type='text'>",
-    "              <field name='TEXT'>https://api.chucknorris.io/jokes/random</field>",
-    "            </shadow>",
-    "          </value>",
-    "        </block>",
-    "      </value>",
-    "      <value name='PropertyName'>",
-    "        <block type='text'>",
-    "          <field name='TEXT'>value</field>",
-    "        </block>",
-    "      </value>",
-    "    </block>",
-    "  </value>",
-    "</block>",
-  "</xml>"],
+    "defaultBlocks":[
+""    
+,"      <xml xmlns='https://developers.google.com/blockly/xml'>" 
+,"      <block type='trycatchfinally' x='57' y='-277'>" 
+,"        <statement name='TRY'>" 
+,"          <block type='text_print'>" 
+,"            <value name='TEXT'>" 
+,"              <block type='getproperty'>" 
+,"                <field name='objectName'>object</field>" 
+,"                <field name='prop'>property</field>" 
+,"                <value name='ObjectToChange'>" 
+,"                  <block type='httprequest'>" 
+,"                    <field name='TypeOutput'>JSON</field>" 
+,"                    <field name='TypeRequest'>GET</field>" 
+,"                    <value name='TheUrl'>" 
+,"                      <shadow type='text'>" 
+,"                        <field name='TEXT'>https://api.chucknorris.io/jokes/random</field>" 
+,"                      </shadow>"
+,"                    </value>"
+,"                  </block>"
+,"                </value>"
+,"                <value name='PropertyName'>"
+,"                  <block type='text'>"
+,"                    <field name='TEXT'>value</field>"
+,"                  </block>"
+,"                </value>"
+,"              </block>"
+,"            </value>"
+,"          </block>"
+,"        </statement>"
+,"        <statement name='CATCH'>"
+,"          <block type='text_print'>"
+,"            <value name='TEXT'>"
+,"              <block type='text'>"
+,"                <field name='TEXT'>trying something simpler</field>"
+,"              </block>"
+,"            </value>"
+,"            <next>"
+,"              <block type='text_print'>"
+,"                <value name='TEXT'>"
+,"                  <block type='httprequest'>"
+,"                    <field name='TypeOutput'>Text</field>"
+,"                    <field name='TypeRequest'>GET</field>"
+,"                    <value name='TheUrl'>"
+,"                      <shadow type='text'>"
+,"                        <field name='TEXT'>https://httpbin.org/get</field>"
+,"                      </shadow>"
+,"                    </value>"
+,"                  </block>"
+,"                </value>"
+,"              </block>"
+,"            </next>"
+,"          </block>"
+,"        </statement>"
+,"        <statement name='FINALLY'>"
+,"          <block type='text_print'>"
+,"            <value name='TEXT'>"
+,"              <block type='text'>"
+,"                <field name='TEXT'>done</field>"
+,"              </block>"
+,"            </value>"
+,"          </block>"
+,"        </statement>"
+,"      </block>"
+,"    </xml>"
+  
+  ],
   "tourSteps":
     [
       {

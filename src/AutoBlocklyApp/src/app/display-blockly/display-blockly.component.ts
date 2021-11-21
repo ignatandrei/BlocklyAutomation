@@ -326,14 +326,14 @@ export class DisplayBlocklyComponent implements OnInit {
         return new Blockly.FieldLabelSerializable(item);
       }
     );
-
+    bs.trycatchFinBlock.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);  
     bs.auth0Blocks.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
     bs.windowsCreds.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
     var blocks = [
       bs.defaultBlocks.generalBlocks(),
       `    
         <category name='Blockly Advanced'>
-            ${bs.filterBlocks.fieldXML()}
+                ${bs.filterBlocks.fieldXML()}
             <category id="XHR" name="Request">
             ${bs.xhrBlocks.fieldXML()}
             ${bs.windowsCreds.fieldXML()}
@@ -358,7 +358,12 @@ export class DisplayBlocklyComponent implements OnInit {
           ${bs.dateFromTextBlock.fieldXML()}
           ${bs.waitBlocks.fieldXML()}
         </category>`,
-      `${bs.commentBlock.fieldXML()}`,
+        `  <category id="programming" name="programming">
+        ${bs.trycatchFinBlock.fieldXML()}
+        ${bs.commentBlock.fieldXML()}
+          </category>
+        
+      `,
       `${bs.createObjectBlocks.fieldXML()}`,
       `${bs.auth0Blocks.fieldXML()}`,
       `</category>
