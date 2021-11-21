@@ -436,6 +436,9 @@ export class DisplayBlocklyComponent implements OnInit {
       readOnly: false,
       media: 'media/',
       trashcan: true,
+      renderer:'thrasos',
+      theme: "highcontrast",
+      horizontalLayout:	false,
       move: {
         scrollbars: true,
         drag: true,
