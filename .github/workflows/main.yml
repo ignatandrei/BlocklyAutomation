@@ -29,16 +29,16 @@ jobs:
       - name: Run the build
         run: |
           echo 'start'
-          cd src
           echo 'install angular'
-          npm i @angular/cli@13.0.1  --force                 
+          npm i -g @angular/cli@13.0.1
+          cd src
           echo "install ws"
           npm i -ws --include-workspace-root --force                 
           ls -l node_modules/
           echo "copy "
           cp -r node_modules/*  AutoBlocklyApp/node_modules/
           echo 'lets see now the files'
-          ls -l AutoBlocklyApp/node_modules/*
+          ls -l AutoBlocklyApp/node_modules/
           echo "build"
           npm run buildAng
           ls -l AutoBlocklyApp/dist/AutoBlocklyApp
