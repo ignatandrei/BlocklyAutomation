@@ -20,18 +20,25 @@ import { IntroJs } from 'intro.js';
 import * as introJs from 'intro.js';
 import { AppDetails } from '../AppDetails';
 import { TourSteps } from '../TourSteps';
-
+enum ShowCodeAndXML{
+  ShowNone=0,
+  ShowCode=1,
+  ShowXML=2,
+  All=  3 
+}
 @Component({
   selector: 'app-display-blockly',
   templateUrl: './display-blockly.component.html',
   styleUrls: ['./display-blockly.component.css'],
 })
 export class DisplayBlocklyComponent implements OnInit {
+
+
   //monaco settings
   editorXMLOptions = {theme: 'vs-dark', language: 'xml'};
   editorJSOptions = {theme: 'vs-dark', language: 'javascript'};
   code: string= 'function x() {\nconsole.log("Hello world!");\n}';
-
+  public showCodeAndXML: ShowCodeAndXML = ShowCodeAndXML.ShowNone;
   public swaggerLoaded: number = 0;
   public demoWorkspace: Blockly.WorkspaceSvg | null = null;
   public run: any;
@@ -89,7 +96,7 @@ export class DisplayBlocklyComponent implements OnInit {
       try {
         return new Interpreter(this.run.latestCode, initApi);
       } catch (e) {
-        self.ShowInnerWorkings();
+        self.CalculateXMLAndCode();
         window.alert(
           'please copy the left output and report there is an error at ' +
             JSON.stringify(e)
@@ -387,12 +394,14 @@ export class DisplayBlocklyComponent implements OnInit {
   SaveBlocks() {
     bh.saveBlocksUrl.saveState(Blockly.Xml, this.demoWorkspace);
   }
-  ShowInnerWorkings() {
-    if (this.demoWorkspace == null) {
-      window.alert('demoWorkspace is null');
-      return;
-    }
-    var xml = Blockly.Xml.workspaceToDom(this.demoWorkspace, true);
+  public ShowCode():boolean{
+    return ((this.showCodeAndXML & ShowCodeAndXML.ShowCode) === ShowCodeAndXML.ShowCode);
+  }
+  public ShowXML():boolean{
+    return ((this.showCodeAndXML & ShowCodeAndXML.ShowXML) === ShowCodeAndXML.ShowXML);
+  }
+  private CalculateXMLAndCode():void{
+    var xml = Blockly.Xml.workspaceToDom(this.demoWorkspace!, true);
     var xml_text = Blockly.Xml.domToPrettyText(xml);
     this.showInner = `
             ${this.run.latestCode}
@@ -403,7 +412,19 @@ export class DisplayBlocklyComponent implements OnInit {
             `;
     this.showJSCode = this.run.latestCode;
     this.showXMLCode = xml_text;
+   
+  }
+  ShowInnerWorkings() {
+    if (this.demoWorkspace == null) {
+      window.alert('demoWorkspace is null');
+      return;
+    }
+    this.showCodeAndXML++;
+    if(this.showCodeAndXML> ShowCodeAndXML.All)
+      this.showCodeAndXML=0;
+    this.CalculateXMLAndCode();
     //outputArea.value += latestCode;
+    // Blockly.svgResize(this.demoWorkspace);
   }
   Download(): void {
     var name = window.prompt('Name?', 'blocks.txt');
@@ -445,8 +466,8 @@ export class DisplayBlocklyComponent implements OnInit {
       readOnly: false,
       media: 'media/',
       trashcan: true,
-      renderer:'thrasos',
-      theme: "highcontrast",
+      // renderer:'thrasos',
+      // theme: "highcontrast",
       horizontalLayout:	false,
       move: {
         scrollbars: true,
@@ -479,7 +500,8 @@ export class DisplayBlocklyComponent implements OnInit {
       if (!evt.isUiEvent) {
         self.run.resetInterpreter();
         self.run.generateCodeAndLoadIntoInterpreter();
-        self.ShowInnerWorkings();
+        //self.ShowInnerWorkings();
+        self.CalculateXMLAndCode();
       }
     });
   }

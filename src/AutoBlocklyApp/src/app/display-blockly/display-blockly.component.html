@@ -19,7 +19,7 @@
   
   
   <!-- <div id="blocklyDiv" style="position:absolute"></div> -->
-  <mat-grid-list cols="2" rowHeight="2:1">
+  <mat-grid-list [cols]="(ShowCode()||ShowXML())?2:1" rowHeight="1:1">
         <mat-grid-tile-header>
           <div style="display: inline-block; height: 100%;width: 100%;">
             <div style="display: inline-block; height: 5%;width: 100%;">
@@ -29,7 +29,7 @@
               
               <button mat-raised-button color="primary" (click)="ShowInnerWorkings()">
                 <mat-icon>code</mat-icon>
-                Show blocks</button>
+                Show {{showCodeAndXML}} </button>
                   
                   &nbsp; <button mat-raised-button color="primary" (click)="SaveBlocks()">
                     <mat-icon>save</mat-icon>
@@ -71,9 +71,9 @@
            >
           </div>
       </mat-grid-tile>
-        <mat-grid-tile >
-            <ngx-monaco-editor style="display: inline-block; height: 100%; width: 100%" [options]="editorXMLOptions" [(ngModel)]="showXMLCode"></ngx-monaco-editor> 
-            <ngx-monaco-editor style="display: inline-block; height: 100%; width: 100%" [options]="editorJSOptions" [(ngModel)]="showJSCode"></ngx-monaco-editor>   
+      <mat-grid-tile *ngIf="ShowCode()||ShowXML()">
+            <ngx-monaco-editor *ngIf="ShowCode()"  style="display: inline-block; height: 100%; width: 100%" [options]="editorXMLOptions" [(ngModel)]="showXMLCode"></ngx-monaco-editor> 
+            <ngx-monaco-editor *ngIf="ShowXML()"   style="display: inline-block; height: 100%; width: 100%" [options]="editorJSOptions" [(ngModel)]="showJSCode"></ngx-monaco-editor>   
         </mat-grid-tile>
 
       
