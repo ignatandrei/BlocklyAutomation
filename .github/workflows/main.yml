@@ -35,7 +35,7 @@ jobs:
           npm i -ws --include-workspace-root 
           ls -l node_modules/
           echo "copy "
-          cp -r node_modules/*  AutoBlocklyApp/node_modules/
+          cp -r node_modules  AutoBlocklyApp/node_modules
           echo 'lets see now the files'
           ls -l AutoBlocklyApp/node_modules/
           echo "build"
