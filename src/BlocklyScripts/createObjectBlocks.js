@@ -4,7 +4,7 @@
 // exports.fieldXML = function () {
 // }
 //https://gist.github.com/mark-friedman/48f43a9b62b1c8ad029a75d4b4e61f31
-exports.definitionBlocks = function (blocks, javaScript,BlocklyExtensions, BlocklyFieldTextInput) {
+exports.definitionBlocks = function (blocks, javaScript,BlocklyExtensions, BlocklyFieldTextInput, BlocklyMutator) {
 
     const ORDER_ATOMIC = 0;
     const ORDER_NONE=99;
@@ -305,7 +305,7 @@ exports.definitionBlocks = function (blocks, javaScript,BlocklyExtensions, Block
           this.updateShape();
           // Reconnect any child blocks.
           for (let i = 1; i <= this.numFields; i++) {
-            Blockly.Mutator.reconnect(connectionsToRestore[i], this, 'field_input' + i);
+            BlocklyMutator().reconnect(connectionsToRestore[i], this, 'field_input' + i);
           }
         },
       
