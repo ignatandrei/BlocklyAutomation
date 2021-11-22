@@ -5,6 +5,7 @@ import { map, shareReplay } from 'rxjs/operators';
 import { LoadShowUsageService } from '../load-show-usage.service';
 import { DemoBlocks } from '../DemoBlocks';
 import { AppDetails } from '../AppDetails';
+import { Settings } from '../Settings';
 
 @Component({
   selector: 'app-primary-navig',
@@ -19,7 +20,7 @@ export class PrimaryNavigComponent implements OnInit {
       map(result => result.matches),
       shareReplay()
     );
-
+    public version:string=Settings.version;
     public title:string|undefined = "Blockly Automation";
   constructor(private breakpointObserver: BreakpointObserver, private details: AppDetails) {}
   ngOnInit(): void {
