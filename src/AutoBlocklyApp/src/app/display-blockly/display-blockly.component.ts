@@ -328,6 +328,9 @@ export class DisplayBlocklyComponent implements OnInit {
       Blockly.Extensions,
       (item: string) => {
         return new Blockly.FieldTextInput(item);
+      },
+      ()=>{
+        return Blockly.Mutator;
       }
     );
     bs.currentDateBlock.definitionBlocks(
