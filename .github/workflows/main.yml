@@ -27,20 +27,17 @@ jobs:
           node-version: '16.13.0'
       # Runs a set of commands using the runners shell
       - name: Run the build
-        run: |
-          echo 'start'
-          echo 'install angular'
-          npm i -g @angular/cli@13.0.1
+        run: |                
           cd src
+          echo 'install angular'    
+          npm i  @angular/cli@13.0.1
           echo "install ws"
-          npm i -ws --include-workspace-root --force                 
+          npm i -ws --include-workspace-root 
           ls -l node_modules/
           echo "copy "
           cp -r node_modules/*  AutoBlocklyApp/node_modules/
           echo 'lets see now the files'
           ls -l AutoBlocklyApp/node_modules/
-          cd AutoBlocklyApp
-          npx @angular/cli@13 update @angular/core@13 @angular/cli@13
           cd ..          
           echo "build"
           npm run buildAng

@@ -13,7 +13,7 @@ import { TabulatorHelper } from './tabulator';
 import { LoadShowUsageService } from '../load-show-usage.service';
 import { DemoBlocks } from '../DemoBlocks';
 import * as SwaggerParser from '@blockly/blocklyswagger';
-import { firstValueFrom } from 'rxjs';
+// import { firstValueFrom } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
 declare var Interpreter: any;
 import { IntroJs } from 'intro.js';
@@ -492,9 +492,9 @@ export class DisplayBlocklyComponent implements OnInit {
       toolbox: this.toolboxXML,
     } as Blockly.BlocklyOptions);
     var self = this;
-    if ((this.settings.settings?.defaultBlocks?.length || 0) > 0) {
+    if ((this.settings.settings?.startBlocks?.length || 0) > 0) {
       try {
-        var xmlBlocks = (this.settings.settings?.defaultBlocks || []).join(
+        var xmlBlocks = (this.settings.settings?.startBlocks || []).join(
           '\n'
         );
         var xml = Blockly.Xml.textToDom(xmlBlocks);
@@ -605,10 +605,10 @@ xmlToolbox= xmlToolbox.replace(nameExistingCategorySwagger,replaceCategory);
       myComponent.ShowDemo(myComponent?.mustLoadDemoBlock);
     else {
       //from default
-      if ((myComponent.settings.settings?.defaultBlocks?.length || 0) > 0) {
+      if ((myComponent.settings.settings?.startBlocks?.length || 0) > 0) {
         try {
           var xml_text = (
-            myComponent.settings.settings?.defaultBlocks || []
+            myComponent.settings.settings?.startBlocks || []
           ).join('\n');
           //<xml xmlns="https://developers.google.com/blockly/xml"></xml>
           if (xml_text.length > 62) {

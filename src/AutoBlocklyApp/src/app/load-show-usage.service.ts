@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { map, Observable, of, tap } from 'rxjs';
+import {  Observable, of } from 'rxjs';
+import { map,  tap } from 'rxjs/operators';
+
 import { environment } from 'src/environments/environment';
 import { DemoBlocks } from './DemoBlocks';
 import { LinksSwagger } from './LinksSwagger';

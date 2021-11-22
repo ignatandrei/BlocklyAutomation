@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { delay, map, Observable, of, switchMap, tap, zip, zipAll } from "rxjs";
+import {   Observable, of, zip} from "rxjs";
+import { delay, map,  tap ,switchMap,zipAll} from 'rxjs/operators';
 import { DemoBlocks } from "./DemoBlocks";
 import { LinksSwagger } from "./LinksSwagger";
 import { LoadShowUsageService } from "./load-show-usage.service";
@@ -28,7 +29,7 @@ export class AppDetails {
                 this.demoBlocks = demoBlocks;
             })
             ,
-            switchMap(() => "")
+            switchMap(() => of(""))
 
         );
             
