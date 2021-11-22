@@ -403,6 +403,9 @@ export class DisplayBlocklyComponent implements OnInit {
   SaveBlocks() {
     bh.saveBlocksUrl.saveState(Blockly.Xml, this.demoWorkspace);
   }
+  public ShowSelection():string{
+    return ShowCodeAndXML[this.showCodeAndXML];
+  }
   public ShowSomething():boolean{
     return this.showCodeAndXML !== ShowCodeAndXML.ShowNone;
   }
@@ -435,8 +438,9 @@ export class DisplayBlocklyComponent implements OnInit {
       return;
     }
     this.showCodeAndXML++;
-    if(this.showCodeAndXML > ShowCodeAndXML.Stop)
-      this.showCodeAndXML=0;
+    if(this.showCodeAndXML >= ShowCodeAndXML.Stop){ 
+      this.showCodeAndXML=ShowCodeAndXML.ShowNone;
+    }
     this.CalculateXMLAndCode();
     //outputArea.value += latestCode;
     // Blockly.svgResize(this.demoWorkspace);
@@ -611,7 +615,7 @@ xmlToolbox= xmlToolbox.replace(nameExistingCategorySwagger,replaceCategory);
             myComponent.settings.settings?.startBlocks || []
           ).join('\n');
           //<xml xmlns="https://developers.google.com/blockly/xml"></xml>
-          if (xml_text.length > 62) {
+          if (xml_text?.length > 62) {
             var xml = Blockly.Xml.textToDom(xml_text);
             Blockly.Xml.clearWorkspaceAndLoadFromXml(
               xml,
@@ -619,7 +623,7 @@ xmlToolbox= xmlToolbox.replace(nameExistingCategorySwagger,replaceCategory);
             );
           }
         } catch (e) {
-          console.error('error when load default blocks', e);
+          console.log('error when load default blocks', e);
         }
       }
       //from browser cache
