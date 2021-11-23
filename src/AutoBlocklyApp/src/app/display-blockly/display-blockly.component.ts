@@ -119,11 +119,8 @@ export class DisplayBlocklyComponent implements OnInit {
       (data: any) => {
         // data = data?.toString()?.replace(/\n/g, '')?.replace(/\r/g, '');
         self.step++;
-        self.showInner += `\n 
-          
-          "step_${self.step}" : "${data}",
-          
-          `;
+        self.showInner += `\n           
+"step_${self.step}" : "${data}",`;
         // console.log(`obtained ${data}`);
         this.tabulator.AddDataToGrid(data);
       },
