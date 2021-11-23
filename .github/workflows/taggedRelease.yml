@@ -1,3 +1,4 @@
+#please edit  public static version: string = '
 name: "tagged-release"
 env:
   DOTNET_VERSION: '6.0.x'           # set this to the dot net version to use
