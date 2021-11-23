@@ -100,7 +100,7 @@ exports.definitionBlocks = function (blocks, javaScript, fieldLabelSerializable)
 
 exports.fieldXML = function () {
     return `
-    <category name="Objects" id="Objects">
+    
     <block type="modifyproperty">
         <value name="PropertyName">
             <shadow type="text">
@@ -116,6 +116,5 @@ exports.fieldXML = function () {
         </value>
 
     </block>    
-</category>
 `
 }

@@ -362,7 +362,10 @@ export class DisplayBlocklyComponent implements OnInit {
             ${bs.xhrBlocks.fieldXML()}
             ${bs.windowsCreds.fieldXML()}
             </category>
+            <category name="Objects" id="objects">
             ${bs.propBlocks.fieldXML()}
+            ${bs.createObjectBlocks.fieldXML()}
+            </category>
             <category id="catGUI" name="GUI">
             ${bs.guiBlocks.fieldXML()}
             </category>
@@ -382,13 +385,12 @@ export class DisplayBlocklyComponent implements OnInit {
           ${bs.dateFromTextBlock.fieldXML()}
           ${bs.waitBlocks.fieldXML()}
         </category>`,
-        `  <category id="programming" name="programming">
+        `  <category id="programming" name="Programming">
         ${bs.trycatchFinBlock.fieldXML()}
         ${bs.commentBlock.fieldXML()}
           </category>
         
       `,
-      `${bs.createObjectBlocks.fieldXML()}`,
       `${bs.auth0Blocks.fieldXML()}`,
       `</category>
       <category name="Swagger" id="catSwagger" expanded='true' >          

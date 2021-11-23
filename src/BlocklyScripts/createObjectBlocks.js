@@ -381,7 +381,7 @@ exports.definitionBlocks = function (blocks, javaScript,BlocklyExtensions, Block
 }
 
 exports.fieldXML = function () {
-    return `    <category name="Objects" id="Objects">
+    return `    
     <block type="modifyproperty"></block>
     <block type="getproperty"></block>
     <block type="object_create"></block>
@@ -389,6 +389,6 @@ exports.fieldXML = function () {
 <block type="object_to_json"></block>
 <block type="object_get"></block>
 <block type="object_set"></block>-->
-</category>
+
 `;
 }
