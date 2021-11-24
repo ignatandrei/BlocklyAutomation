@@ -4,6 +4,28 @@
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 BLockly for automation
 
+## How to test
+
+Please go to https://ignatandrei.github.io/BlocklyAutomation/ and test various HTTP request, Swaggers and more
+
+## How to install on your PC
+
+See [releases tab](https://github.com/ignatandrei/BlocklyAutomation/releases)
+
+You can find the 
+
+1. Angular site , ready to be deployed to any server
+2. IIS site   , ready to be deployed on IIS
+3. A .NET Core site, ready to be deployed on Linux or Windows, standalone ( as a service )
+
+## How to customize
+
+To customize the title , introduction and start blocks , see assets/settings.json
+
+To load swaggers at startup, see  assets/oadAtStartup/swaggers.json
+
+To customize demo blocks,download your blocks, put the txt file in  assets/showUsage/demoBlocks/ and modify assets/showUsage/demoBlocks/all.txt
+
 ## Contributors ✨
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
