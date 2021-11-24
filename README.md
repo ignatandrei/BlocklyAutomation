@@ -30,8 +30,9 @@ To customize demo blocks,download your blocks, put the txt file in  assets/showU
 
 If you are a beginner to blockly, see 
 
-<a href='
-https://github.com/ignatandrei/BlocklyAutomation/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22'>![GitHub issues by-label](https://img.shields.io/github/issues/ignatandrei/BlocklyAutomation/good%20first%20issue)</a>
+https://github.com/ignatandrei/BlocklyAutomation/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22'
+
+![GitHub issues by-label](https://img.shields.io/github/issues/ignatandrei/BlocklyAutomation/good%20first%20issue)
 
 You will be mentioned below ;-)
 
