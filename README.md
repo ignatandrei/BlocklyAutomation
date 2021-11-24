@@ -2,7 +2,7 @@
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
-BLockly for automation
+Blockly Automation :  is a tool for RPA automation made of Blockly. 
 
 ## How to test
 
@@ -22,9 +22,19 @@ You can find the
 
 To customize the title , introduction and start blocks , see assets/settings.json
 
-To load swaggers at startup, see  assets/oadAtStartup/swaggers.json
+To load swaggers at startup, see  assets/loadAtStartup/swaggers.json
 
 To customize demo blocks,download your blocks, put the txt file in  assets/showUsage/demoBlocks/ and modify assets/showUsage/demoBlocks/all.txt
+
+##  How to contribute
+
+If you are a beginner to blockly, see 
+
+<a href='
+https://github.com/ignatandrei/BlocklyAutomation/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22'>![GitHub issues by-label](https://img.shields.io/github/issues/ignatandrei/BlocklyAutomation/good%20first%20issue)</a>
+
+You will be mentioned below ;-)
+
 
 ## Contributors ✨
 
