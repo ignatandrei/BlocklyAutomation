@@ -44,6 +44,7 @@ import { PrimaryNavigComponent } from './primary-navig/primary-navig.component';
 import { AppDetails } from './AppDetails';
 import { Observable, ObservableLike } from 'rxjs';
 import { MonacoEditorModule } from 'ngx-monaco-editor';
+import { TransmitAction } from './TransmitAction';
 
 @NgModule({
   declarations: [
@@ -103,7 +104,7 @@ import { MonacoEditorModule } from 'ngx-monaco-editor';
     MonacoEditorModule.forRoot()
 
   ],
-  providers: [  AppDetails,
+  providers: [  AppDetails,TransmitAction,
   
     { provide: APP_INITIALIZER,useFactory: initializeApp1, deps: [AppDetails], multi: true}],
   bootstrap: [AppComponent]

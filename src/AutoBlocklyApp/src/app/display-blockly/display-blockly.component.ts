@@ -20,6 +20,7 @@ import { IntroJs } from 'intro.js';
 import * as introJs from 'intro.js';
 import { AppDetails } from '../AppDetails';
 import { TourSteps } from '../TourSteps';
+import { TransmitAction } from '../TransmitAction';
 enum ShowCodeAndXML{
   ShowNone=0,
   ShowCode=1,
@@ -57,11 +58,18 @@ export class DisplayBlocklyComponent implements OnInit {
     private tabulator: TabulatorHelper,
     private settings: AppDetails,
     private loadDemo: LoadShowUsageService,
-    private ar: ActivatedRoute
+    private ar: ActivatedRoute,
+    private ta :TransmitAction
   ) {
     //console.log(bs.filterBlocks.definitionBlocks());
     this.ar.paramMap.subscribe((params: any) => {
       this.mustLoadDemoBlock = params.get('demoblock');
+    });
+
+    this.ta.receiveData().subscribe(it=>{
+      if(it[0]=='DisplayBlocklyComponent'){
+        ((this as any)[it[1]] as any)();
+      }
     });
   }
 

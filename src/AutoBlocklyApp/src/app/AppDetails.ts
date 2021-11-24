@@ -9,7 +9,9 @@ import { Settings } from "./Settings";
 
 @Injectable()
 export class AppDetails {
-  constructor(private http: HttpClient, private loadShowUsageService:LoadShowUsageService ) {
+  constructor(private http: HttpClient, private loadShowUsageService:LoadShowUsageService) {
+    this.Init();
+  
   }
   public settings:Settings|null= null;
   public links:LinksSwagger[]=[];
