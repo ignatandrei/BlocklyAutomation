@@ -26,7 +26,8 @@ enum ShowCodeAndXML{
   ShowCode=1,
   ShowXML=2,
   ShowOutput=3,
-  Stop=  4
+  ShowBlocksDefinition=4,
+  Stop=  100
 }
 @Component({
   selector: 'app-display-blockly',
@@ -410,8 +411,13 @@ export class DisplayBlocklyComponent implements OnInit {
   showInner: string = '';
   showXMLCode: string = '';
   showJSCode: string = '';
+  showBlocksDefinition: string=''
+
   SaveBlocks() {
     bh.saveBlocksUrl.saveState(Blockly.Xml, this.demoWorkspace);
+  }
+  public ShowBlocksDefinition(): boolean{
+    return this.showCodeAndXML === ShowCodeAndXML.ShowBlocksDefinition;
   }
   public ShowSelection():string{
     return ShowCodeAndXML[this.showCodeAndXML];
@@ -440,7 +446,35 @@ export class DisplayBlocklyComponent implements OnInit {
     //         `;
     this.showJSCode = this.run.latestCode;
     this.showXMLCode = xml_text;
-   
+    var blocks= this.parseTextForBlocks(xml_text);
+    this.showBlocksDefinition = blocks
+        .map(it=>
+          {
+            
+            try{
+              
+              var blocks=`Blockly.Blocks['${it}']={ init: \n` + ((Blockly.Blocks[it] as any)['init']).toString() + '};';
+              var js = `Blockly.JavaScript['${it}']=` +  ((BlocklyJavaScript as any)[it]).toString()+';';
+              return blocks + '\n' + js;
+                //console.log('x'+it,(Blockly.Blocks[it] as any)['init']());
+            }
+            catch(e){
+              console.error('parse definition : '+it,e);
+              return '//Error for '+it;
+            }
+          })
+        .join('\n');
+  }
+  private parseTextForBlocks(xml_text:string):string[]{
+    var ret=[];1
+    if(xml_text.indexOf('<block type="')>=0){
+      var blocks=xml_text.split('<block type="');
+      for(var i=1;i<blocks.length;i++){
+        var block=blocks[i].split('"')[0];
+        ret.push(block);
+      }
+    }
+    return ret;
   }
   ShowInnerWorkings() {
     if (this.demoWorkspace == null) {
@@ -448,7 +482,8 @@ export class DisplayBlocklyComponent implements OnInit {
       return;
     }
     this.showCodeAndXML++;
-    if(this.showCodeAndXML >= ShowCodeAndXML.Stop){ 
+    var item=this.ShowSelection();
+    if(!item){ 
       this.showCodeAndXML=ShowCodeAndXML.ShowNone;
     }
     this.CalculateXMLAndCode();
