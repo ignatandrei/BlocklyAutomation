@@ -206,7 +206,7 @@ export class DisplayBlocklyComponent implements OnInit {
       .map((it: any) => Blockly.Xml.textToDom(it.gui));
     return xmlList;
   }
-  public registerSwaggerBlocksAPI(
+  public registerSwaggerBlocksAPIAll(
     demoWorkspace: Blockly.Workspace,
     item: any
   ): Element[] {
@@ -636,7 +636,7 @@ xmlToolbox= xmlToolbox.replace(nameExistingCategorySwagger,replaceCategory);
     myComponent.demoWorkspace.registerToolboxCategoryCallback(
       nameAPI,
       (d: Blockly.Workspace) => {
-        return myComponent.registerSwaggerBlocksAPI(d, cache);
+        return myComponent.registerSwaggerBlocksAPIAll(d, cache);
       }
     );
 

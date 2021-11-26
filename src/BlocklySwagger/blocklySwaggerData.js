@@ -11,7 +11,7 @@ class BlocklyReturnSwagger {
   name='';
   operations=[];
   nameCategSwagger() {
-    return `catSwagger${this.findHostNameRegular()}`;
+    return `catSwagger${this.findHostNameRegular()}_${this.name}`;
   }
   findCategSwaggerFromPaths(){
 
@@ -70,7 +70,6 @@ class BlocklyReturnSwagger {
     var max = 5;
     if (h.length > max) var first = h.substring(0, max);
     var categ = this.nameCategSwagger();
-    
     return (
       '<category name="Objects' +
       '" custom="objects_' +
