@@ -8,12 +8,11 @@ exports.parseSwagger =async function(swaggerUrl) {
     
 const SwaggerParser = require('@api-platform/api-doc-parser/lib/openapi3/parseOpenApi3Documentation');
     var q= await SwaggerParser.default(swaggerUrl);
-    var r  = q.response;
-    console.log(r.components.schemas);
+    var r  = q.response;    
     if(r.components?.schemas){
         Object.keys(r.components.schemas).forEach(function(key) {
             // console.log(key);   
-            var schema = r.components.schemas[key];
+            var schema = r.components.schemas[key];            
             result.push(GenerateBlock(schema,key));
             
         });

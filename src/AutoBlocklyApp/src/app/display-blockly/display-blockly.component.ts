@@ -166,7 +166,7 @@ export class DisplayBlocklyComponent implements OnInit {
     xmlList = item.fieldXMLObjects.map((it: any) => Blockly.Xml.textToDom(it));
     // var cat='<category id="microservicesportchooserazurewebsitesnet" name="microservicesportchooserazurewebsitesnet"><block type="IRegister"></block></category>';
     // cat='<block type="IRegister"></block>';
-
+    
     // var block = Blockly.Xml.textToDom(cat);
     // xmlList.push(block);
     return xmlList;
@@ -184,8 +184,7 @@ export class DisplayBlocklyComponent implements OnInit {
   ): Element[] {
     var xmlList: Element[] = [];
     var urls = item.operations.filter((it: any) => it.controller == controller);
-    // console.log(controller,urls, item.fieldXMLFunctions);
-
+  
     xmlList = item.fieldXMLFunctions
       .filter((it: any) => {
         if (it.id == '') return true;
@@ -194,6 +193,14 @@ export class DisplayBlocklyComponent implements OnInit {
         urls.forEach((url: any) => {
           if (val.startsWith(url.id)) existInfields = true;
         });
+        if(existInfields) return true;
+        
+        urls.forEach((url: any) => {
+          //url has latest / , but can have also {  for parameters
+            var str=url.id.substring(0,url.id.lastIndexOf('/'))+'{';
+          if (val.startsWith(str)) existInfields = true;
+        });
+
         return existInfields;
       })
       .map((it: any) => Blockly.Xml.textToDom(it.gui));
@@ -618,18 +625,18 @@ xmlToolbox= xmlToolbox.replace(nameExistingCategorySwagger,replaceCategory);
 
     
     var nameCat = 'objects_' + item.nameCategSwagger();
-    var nameAPI = 'api_' + item.nameCategSwagger();
-
+    var nameAPI = 'AllApi_' + item.nameCategSwagger();
+    var cache=item;
     myComponent.demoWorkspace.registerToolboxCategoryCallback(
       nameCat,
       (d: Blockly.Workspace) => {
-        return myComponent.registerSwaggerBlocksObjects(d, item);
+        return myComponent.registerSwaggerBlocksObjects(d, cache);
       }
     );
     myComponent.demoWorkspace.registerToolboxCategoryCallback(
       nameAPI,
       (d: Blockly.Workspace) => {
-        return myComponent.registerSwaggerBlocksAPI(d, item);
+        return myComponent.registerSwaggerBlocksAPI(d, cache);
       }
     );
 
@@ -658,7 +665,8 @@ xmlToolbox= xmlToolbox.replace(nameExistingCategorySwagger,replaceCategory);
 
     myComponent.swaggerData.forEach((item: any) => {
       // console.log('a_item', item);
-      myComponent.addToToolboxSwagger(item,myComponent);
+      var cache=item;      
+      myComponent.addToToolboxSwagger(cache,myComponent);
     });
 
     if (myComponent?.mustLoadDemoBlock != null)

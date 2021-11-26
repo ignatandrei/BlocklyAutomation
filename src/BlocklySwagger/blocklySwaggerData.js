@@ -32,6 +32,7 @@ class BlocklyReturnSwagger {
        });
       
     ;
+    
     this.operations=normalized
           .filter(it=>it.nrOps>1)
           //.map(it=>it.id)
@@ -43,6 +44,7 @@ class BlocklyReturnSwagger {
           })          
           .map(it=>{return { controller:it.arr[it.arr.length-1], id:it.id};} ) ;
 
+         
     var others = normalized
           .filter(it=>it.nrOps==1)
           .map(it=>
@@ -57,8 +59,10 @@ class BlocklyReturnSwagger {
           })
           ;
           this.operations.push(...others);
-    
-    return  [...new Set(this.operations.map(it=>it.controller))];
+          
+          var ret= [...new Set(this.operations.map(it=>it.controller))];
+         
+    return  ret;
 }
   categSwagger() {
     var h = this.findHostNameRegular();
@@ -73,7 +77,7 @@ class BlocklyReturnSwagger {
       categ +
       '"></category>' +
       '<category name="AllApi' +
-      '" custom="api_' +
+      '" custom="AllApi_' +
       categ +
       '"></category>'
     );
@@ -232,8 +236,7 @@ class BlocklyReturnSwagger {
             }
         }
   GenerateFunction(path, key, operation, operationKey) {
-    
-    
+   
     var self = this;
 
     var blocklyTypeName = self.GenerateNameFunction(
@@ -260,7 +263,7 @@ class BlocklyReturnSwagger {
         };
       });
     };
-
+   
     xmlBlockShow+=`</block></value></block>`;
     
     self.fieldXMLFunctions.push({id:key,gui:xmlBlockShow});
