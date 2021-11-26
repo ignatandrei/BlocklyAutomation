@@ -586,6 +586,7 @@ export class DisplayBlocklyComponent implements OnInit {
 
     var newCateg = item
     .findCategSwaggerFromPaths()
+    .sort()
     .map(
       (it: any) =>
         `<category name='${it}' custom='func_${item.name}_${it}'></category>`
