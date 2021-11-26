@@ -495,9 +495,15 @@ class BlocklyReturnSwagger {
           if(schema.enum){
             isEnum=true;
             var keys= Object.keys(schema.enum);
-            arrValue=keys.map((it)=>{
-              return [schema.enum[it],it];
-            });
+            if(schema['x-enumNames']){
+              arrValue = keys.map((it)=>{
+                return [schema['x-enumNames'][it],it];
+              });
+            }
+            else
+              arrValue=keys.map((it)=>{
+                return [schema.enum[it],it];
+              });
            
           }
           
@@ -505,7 +511,7 @@ class BlocklyReturnSwagger {
               .appendField(key);
           
           if(isEnum){
-            
+            arrValue= arrValue.map((it)=>[it[0].toString(),it[1].toString()]);                     
             b.appendField( BlocklyFieldDropdown(arrValue),`val_${key}`);
             
           }
