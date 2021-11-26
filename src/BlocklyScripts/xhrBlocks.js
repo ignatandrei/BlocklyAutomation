@@ -94,7 +94,7 @@ exports.definitionBlocks = function (blocks, javaScript, BlocklyFieldDropdown) {
           ") )";
         break;
       case "POST":
-        console.log('x',value_data)
+        // console.log('x',value_data)
         operation =
           "(function(url,data){ var res=JSON.parse(postXhr(url,JSON.stringify(data))); if(res.statusOK) return res.text;errHandler(JSON.stringify(res)); throw res;}(" +
           value_theurl ;
