@@ -75,6 +75,7 @@ export class DisplayBlocklyComponent implements OnInit {
   }
 
   createIntro() {
+    
     var title: string = this.settings.settings?.title || '';
     var steps = this.settings.settings?.tourSteps.map((it: TourSteps) => {
       return {
@@ -84,6 +85,7 @@ export class DisplayBlocklyComponent implements OnInit {
       };
     });
     this.intro
+      
       .setOptions({
         exitOnEsc: true,
         showStepNumbers: true,
@@ -218,7 +220,7 @@ export class DisplayBlocklyComponent implements OnInit {
   }
   ngOnInit(): void {
     this.StartRegister();
-    this.createIntro();
+    //this.createIntro();
   }
   public LoadSwagger() {
     var json = window.prompt(

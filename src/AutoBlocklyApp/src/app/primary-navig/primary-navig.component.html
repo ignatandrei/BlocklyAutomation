@@ -62,7 +62,11 @@
        -->
       
       <span class="example-spacer"></span>
-
+      <button mat-raised-button color="primary" (click)="executeOnDisplayBlockly('createIntro')">
+        <mat-icon>
+            help_outline            
+        </mat-icon>
+        Help</button>
       <button id="download" mat-button [matMenuTriggerFor]="download">
         <mat-icon> file_download </mat-icon>
       </button>
