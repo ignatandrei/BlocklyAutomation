@@ -442,6 +442,15 @@ doDelete : (href, callback) => {
             {
                 return url;
             }
+            
+            url=url?url:'';
+            url=url.trim();
+            if(url.length == 0){
+                url=hostname;
+                if(!url.startsWith("http")){
+                    throw `please put in front of ${hostname} http:// or https://`;
+                }
+            }
             var url= new URL(url);
             console.log(`url ${url.hostname} to ${hostname}`);
             url.hostname = hostname.replace('https://','').replace('http://','');
