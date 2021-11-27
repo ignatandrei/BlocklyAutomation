@@ -3,7 +3,7 @@ import { TourSteps } from "./TourSteps";
 
 export class Settings {
     public title: string = '';
-    public static version: string = '2021.11.27.2031';
+    public static version: string = '2021.11.27.2138';
     public startBlocks: string[] = [];
     public tourSteps: TourSteps[] = [];
 
