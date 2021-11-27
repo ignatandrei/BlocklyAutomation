@@ -263,7 +263,17 @@ class BlocklyReturnSwagger {
       });
     };
    // add override host
-   var shadow=self.GenerateShadowField('string', 'override_host',self.findRootSite());
+   var host="";
+   try{
+    var url = new URL(self.findRootSite());
+    host=url.hostname;
+
+   }
+   catch(e){
+     //do nothing
+   }
+   
+   var shadow=self.GenerateShadowField('string', 'override_host',host);
   //  console.log('X_override_host',shadow);
     xmlBlockShow += `<value name="override_Host">${shadow}</value>`;          
     xmlBlockShow+=`</block></value></block>`;
