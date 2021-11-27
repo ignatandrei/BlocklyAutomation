@@ -436,6 +436,12 @@ doDelete : (href, callback) => {
   
   
         var wrapper = function (url, hostname){
+            hostname = hostname ? hostname.toString() : '';
+            hostname=hostname.trim();
+            if(hostname.length == 0)
+            {
+                return url;
+            }
             var url= new URL(url);
             console.log(`url ${url.hostname} to ${hostname}`);
             url.hostname = hostname.replace('https://','').replace('http://','');

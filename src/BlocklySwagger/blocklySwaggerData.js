@@ -272,7 +272,7 @@ class BlocklyReturnSwagger {
    catch(e){
      //do nothing
    }
-   
+   host=host?host:" ";
    var shadow=self.GenerateShadowField('string', 'override_host',host);
   //  console.log('X_override_host',shadow);
     xmlBlockShow += `<value name="override_Host">${shadow}</value>`;          
