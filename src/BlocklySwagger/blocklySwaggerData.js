@@ -254,12 +254,21 @@ class BlocklyReturnSwagger {
     var xmlBlockShow=`<block type="text_print"> <value name="TEXT"><block type="${blocklyTypeName}">`;
     if (op.parameters){
       op.parameters.forEach((it) => {        
-        if(it.schema && it.schema.type){
-          var shadow=self.GenerateShadowField(it.schema.type, it.name);
+        if(it.type){
+          var shadow=self.GenerateShadowField(it.type, it.name);
           if(shadow.length>0){
             xmlBlockShow += `<value name="val_${it.name}">${shadow}</value>`;
           }
-        };
+
+        }
+        else{
+          if(it.schema && it.schema.type){
+            var shadow=self.GenerateShadowField(it.schema.type, it.name);
+            if(shadow.length>0){
+              xmlBlockShow += `<value name="val_${it.name}">${shadow}</value>`;
+            }
+          };
+      }
       });
     };
    // add override host
@@ -297,17 +306,22 @@ class BlocklyReturnSwagger {
               if(it.required){
                 name +="*"; 
               }
-              if(it.schema && it.schema.type){
-                if(it.schema.type=='object'){
-                  var val = it.schema["$$ref"]||'';
-                  if(val.length>0){
-                    val = val.substring(val.lastIndexOf("/")+1);
-                    name+=":"+ val;
-                  }
+              if(it.type){
+                name += ":"+it.type;
+              }
+              else{
+                if(it.schema && it.schema.type){
+                  if(it.schema.type=='object'){
+                    var val = it.schema["$$ref"]||'';
+                    if(val.length>0){
+                      val = val.substring(val.lastIndexOf("/")+1);
+                      name+=":"+ val;
+                    }
 
-                }
-                else{
-                  name += ":"+it.schema.type;
+                  }
+                  else{
+                    name += ":"+it.schema.type;
+                  }
                 }
               }
               this.appendValueInput(`val_${it.name}`).appendField(name);
