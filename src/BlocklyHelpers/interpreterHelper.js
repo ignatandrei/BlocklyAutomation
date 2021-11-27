@@ -452,9 +452,9 @@ doDelete : (href, callback) => {
                 }
             }
             var url= new URL(url);
-            console.log(`url ${url.hostname} to ${hostname}`);
+            //console.log(`url ${url.hostname} to ${hostname}`);
             url.hostname = hostname.replace('https://','').replace('http://','');
-            console.log(`url ${url.href}`);
+            //console.log(`url ${url.href}`);
             var ret=url.href;
             if(ret.endsWith('/'))
                 ret=ret.substring(0,ret.length-1);

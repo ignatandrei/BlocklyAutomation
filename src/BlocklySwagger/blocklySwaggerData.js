@@ -273,20 +273,29 @@ class BlocklyReturnSwagger {
     };
    // add override host
    var host="";
+   var port="";
    try{
     var url = new URL(self.findRootSite());
     host=url.hostname;
-
+    port= url.port;
    }
    catch(e){
      //do nothing
    }
    host=host?host:" ";
+   
    var shadow=self.GenerateShadowField('string', 'override_host',host);
   //  console.log('X_override_host',shadow);
     xmlBlockShow += `<value name="override_Host">${shadow}</value>`;          
-    xmlBlockShow+=`</block></value></block>`;
-    
+   
+    port=port?port:"80";
+    var shadow=self.GenerateShadowField('integer', 'override_port',port);
+    //  console.log('X_override_host',shadow);
+      xmlBlockShow+= `<value name="override_Port">${shadow}</value>`;          
+   
+      xmlBlockShow+=`</block></value>`;
+      
+      xmlBlockShow+=`</block>`;
     self.fieldXMLFunctions.push({id:key,gui:xmlBlockShow});
 
     return function (blocks, javaScript, BlocklyFieldImage) {
@@ -355,6 +364,9 @@ class BlocklyReturnSwagger {
           }
           this.appendValueInput('override_Host') 
               .appendField("override Host");
+          
+          this.appendValueInput('override_Port') 
+              .appendField("override Port");
           // this.appendValueInput('override_Port')
           //     .appendField("override Port");
           this.setTooltip(`${operationKey} ${root}${key}`);
@@ -424,7 +436,10 @@ class BlocklyReturnSwagger {
         code +='if(extraData.url && extraData.url.host && extraData.url.host.length>0 ){\n';
         code +='rootSite =  changeHost(rootSite, extraData.url.host);\n';//it is  wrapper  for new  url
         code +="};\n";
-        code +='if(extraData.url && extraData.url.port && extraData.url.port.length>0 ){\n';
+        // code +="\n";
+        // code +="window.alert('a'+extraData.url.port.toString().length);";
+        // code +="\n";
+        code +='if(extraData.url && extraData.url.port && extraData.url.port.toString().length>0 ){\n';
         code +='rootSite  =changePort(rootSite , extraData.url.port);\n';
         code +='};\n';
         
@@ -479,6 +494,12 @@ class BlocklyReturnSwagger {
         if(override_Http.length>0)
           urlReplace+=`,host:${override_Http}`;
         
+        var override_Port = javaScript.valueToCode(block, 'override_Port', /*javascript.*/ ORDER_ATOMIC);
+        override_Port= override_Port||'';
+        //window.alert('x'+override_Http);
+        if(override_Port.length>0)
+          urlReplace+=`,port:${override_Port}`;
+  
 
         // var override_PortHttp = javaScript.valueToCode(block, 'override_Port ', /*javascript.*/ ORDER_ATOMIC);
         // window.alert('x'+override_PortHttp);
