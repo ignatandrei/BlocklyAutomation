@@ -437,8 +437,8 @@ doDelete : (href, callback) => {
   
         var wrapper = function (url, hostname){
             var url= new URL(url);
-            console.log(`url ${url.href}`);
-            url.hostname = hostname;
+            console.log(`url ${url.hostname} to ${hostname}`);
+            url.hostname = hostname.replace('https://','').replace('http://','');
             console.log(`url ${url.href}`);
             var ret=url.href;
             if(ret.endsWith('/'))

@@ -211,21 +211,21 @@ class BlocklyReturnSwagger {
     return operationKey + "_" + ret;
   }
 
-  GenerateShadowField(blockShadowType,key)
-        {
+  GenerateShadowField(blockShadowType,key, defaultValue) {
+         
             switch (blockShadowType)
             {
                 case "integer":
-                    
-                    return "<block type='math_number'><field name='NUM'>0</field></block>";
+                    var val=defaultValue?defaultValue:0;            
+                    return `<block type='math_number'><field name='NUM'>${val}</field></block>`;
 
                 case "string":
-
-                    return `<block type='text'><field name='TEXT'>please enter ${key}</field></block>`;
+                    var val = defaultValue?defaultValue:`please enter ${key}`;
+                    return `<block type='text'><field name='TEXT'>${val}</field></block>`;
 
                 case "boolean":
-                    
-                    return "<block type='logic_boolean'><field name='BOOL'>FALSE</field></block>";
+                    var val= defaultValue?defaultValue:"FALSE";
+                    return `<block type='logic_boolean'><field name='BOOL'>${val}</field></block>`;
                 case "array":
                     return '<block type="lists_create_with"> <mutation items="0"></mutation></block>';
                 
@@ -253,7 +253,7 @@ class BlocklyReturnSwagger {
 
     var xmlBlockShow=`<block type="text_print"> <value name="TEXT"><block type="${blocklyTypeName}">`;
     if (op.parameters){
-      op.parameters.forEach((it) => {
+      op.parameters.forEach((it) => {        
         if(it.schema && it.schema.type){
           var shadow=self.GenerateShadowField(it.schema.type, it.name);
           if(shadow.length>0){
@@ -262,7 +262,10 @@ class BlocklyReturnSwagger {
         };
       });
     };
-   
+   // add override host
+   var shadow=self.GenerateShadowField('string', 'override_host',self.findRootSite());
+  //  console.log('X_override_host',shadow);
+    xmlBlockShow += `<value name="override_Host">${shadow}</value>`;          
     xmlBlockShow+=`</block></value></block>`;
     
     self.fieldXMLFunctions.push({id:key,gui:xmlBlockShow});
@@ -394,10 +397,10 @@ class BlocklyReturnSwagger {
         code +=`var rootSite="`+self.findRootSite()+`";\n`;
         // code +="window.alert(JSON.stringify(extraData));\n";
         code +='if(extraData){\n';
-        code +='if(extraData.url && extraData.url.host ){\n';
+        code +='if(extraData.url && extraData.url.host && extraData.url.host.length>0 ){\n';
         code +='rootSite =  changeHost(rootSite, extraData.url.host);\n';//it is  wrapper  for new  url
         code +="};\n";
-        code +='if(extraData.url && extraData.url.port ){\n';
+        code +='if(extraData.url && extraData.url.port && extraData.url.port.length>0 ){\n';
         code +='rootSite  =changePort(rootSite , extraData.url.port);\n';
         code +='};\n';
         
