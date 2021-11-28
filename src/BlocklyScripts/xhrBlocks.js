@@ -20,7 +20,7 @@ exports.definitionBlocks = function (blocks, javaScript, BlocklyFieldDropdown) {
       this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
         //this.setColour(230);
-     //this.setTooltip("");
+     this.setTooltip("at domain put (localSite) or *");
      //this.setHelpUrl("");
       }
     };

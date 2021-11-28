@@ -510,9 +510,18 @@ doDelete : (href, callback) => {
               if (hostname in heads) {
                    arrHeaders = heads[hostname];
               }
+              else if("*" in heads){
+                arrHeaders = heads["*"];
+              }
               if (hostname in creds) {
                 withCreds = creds[hostname];
               }
+              else if("*" in creds){
+                withCreds = creds["*"]; 
+              }
+              console.log(`x_`,heads );
+              console.log(`y_`,arrHeaders);
+              
               return thisClass.doGet(href, callback, arrHeaders, withCreds);
           }
           interpreter.setProperty(globalObject, 'getXhr',

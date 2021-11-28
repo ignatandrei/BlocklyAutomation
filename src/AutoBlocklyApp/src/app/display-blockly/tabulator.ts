@@ -187,55 +187,55 @@ Headers(allHeaders:string[]): Tabulator.ColumnDefinition[] {
     return allHeaders.map(it => {
         return {
 
-            cellClick: function (e:any, cell:any) {
-                var row = cell.getRow().getData().Nr;
-                var col = cell.getColumn().getField();
-                alert(`The row at : ${row} , col: ${row} has value :\n ` + cell.getValue()); //display the cells value
-            },
+            // cellClick: function (e:any, cell:any) {
+            //     var row = cell.getRow().getData().Nr;
+            //     var col = cell.getColumn().getField();
+            //     alert(`The row at : ${row} , col: ${row} has value :\n ` + cell.getValue()); //display the cells value
+            // },
             title: it,
             field: this.goodNameForKey(it),
-            headerFilter: true,
-            formatter: function (cell:any, formatterParams:any, onRendered:any) {
-                //cell - the cell component
-                //formatterParams - parameters set for the column
-                //onRendered - function to call when the formatter has been rendered
-                try {
-                    var value = cell.getValue().toString();
-                    //return value;
-                    if (value.length < 2)
-                        return value;
-                    if (value.startsWith("[") && value.endsWith("]")) {
-                        try {
-                            var arr = JSON.parse(value);
-                            var row = cell.getRow().getData().Nr;
-                            var col = cell.getColumn().getField();
-                            var id = col + "_" + row;
-                            onRendered(function () {
-                                //window.alert('test');
-                                var table = new Tabulator("#" + id, {
-                                    data: arr,
-                                    autoColumns: true,
-                                    layout: "fitDataFill",
-                                    headerSort: false,
-                                    // tooltips: function (cell:CellComponent) {
-                                    //     return cell.getColumn().getField() + " - " + JSON.stringify(cell.getValue()); //return cells "field - value";
-                                    // }
-                                });
-                            });
-                            return "<div id='" + id + "'>" + value + "</div>";
+            // headerFilter: true,
+            // formatter: function (cell:any, formatterParams:any, onRendered:any) {
+            //     //cell - the cell component
+            //     //formatterParams - parameters set for the column
+            //     //onRendered - function to call when the formatter has been rendered
+            //     try {
+            //         var value = cell.getValue().toString();
+            //         //return value;
+            //         if (value.length < 2)
+            //             return value;
+            //         if (value.startsWith("[") && value.endsWith("]")) {
+            //             try {
+            //                 var arr = JSON.parse(value);
+            //                 var row = cell.getRow().getData().Nr;
+            //                 var col = cell.getColumn().getField();
+            //                 var id = col + "_" + row;
+            //                 onRendered(function () {
+            //                     //window.alert('test');
+            //                     var table = new Tabulator("#" + id, {
+            //                         data: arr,
+            //                         autoColumns: true,
+            //                         layout: "fitDataFill",
+            //                         headerSort: false,
+            //                         // tooltips: function (cell:CellComponent) {
+            //                         //     return cell.getColumn().getField() + " - " + JSON.stringify(cell.getValue()); //return cells "field - value";
+            //                         // }
+            //                     });
+            //                 });
+            //                 return "<div id='" + id + "'>" + value + "</div>";
 
-                        }
-                        catch (err) {
-                            return value;
-                        }
+            //             }
+            //             catch (err) {
+            //                 return value;
+            //             }
 
-                    };
-                }
-                catch (e) {
-                    return value;
-                }
-                return cell.getValue();
-            }
+            //         };
+            //     }
+            //     catch (e) {
+            //         return value;
+            //     }
+            //     return cell.getValue();
+            // }
         }
     });
 }
