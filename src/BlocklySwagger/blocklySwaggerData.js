@@ -312,17 +312,22 @@ class BlocklyReturnSwagger {
       blocks[blocklyTypeName] = {
         init: function () {
           //this.setInputsInline(true);
+          var displayOpKey=operationKey;
           switch(operationKey.toString().toLowerCase()){
             case "get":
+              displayOpKey="";
               this.setColour(210);
               break;
             case "post":
+              displayOpKey="";
               this.setColour(165);
               break;
             case "put":
+              displayOpKey="";
               this.setColour(40);
               break;
             case "delete":
+              displayOpKey="";
               this.setColour(10);
               break;
             default:
@@ -330,10 +335,25 @@ class BlocklyReturnSwagger {
               this.setColour(10);
           }
           var str = key;
-          if (str.length > 15) str = str.substring(0, 25) + "...";
+
+          var categs = self.findCategSwaggerFromPaths();
+          for(var i=0;i<categs.length;i++){
+            var find='/'+categs[i]+'/';
+            var whereFind=key.indexOf(find);
+            if(whereFind>-1){
+              var remains=key.substring(whereFind+ find.length);
+              if(remains.length< str.length){
+                str=remains;
+              }
+            }
+
+          }
+
+          
+          if (str.length > 25) str = str.substring(0, 25) + "...";
           this.appendDummyInput()
             .appendField(BlocklyFieldImage(operationKey))
-            .appendField(`${operationKey} ${str}`);
+            .appendField(`${displayOpKey} ${str}`);
           var root = self.findRootSite();          
           if (op.parameters)
             op.parameters.forEach((it) => {
