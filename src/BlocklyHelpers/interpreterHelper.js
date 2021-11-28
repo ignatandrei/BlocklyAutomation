@@ -279,15 +279,21 @@ exports.createInterpreter = function(workspace,BlocklyJavaScript){
     let req = new XMLHttpRequest();
 
     req.open('PUT', href, true);
-    req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    req.withCredentials = withCreds;
-    if(headers)
-    if(headers.length>0){
-      //alert(JSON.stringify(headers));
-      for(var iHeader=0;iHeader<headers.length;iHeader++){
-        var head=headers[iHeader];
-        req.setRequestHeader(head.name,head.value);
-      }
+    if(withCreds){
+        req.withCredentials = withCreds;
+    }
+    else{
+    // req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        if(headers && headers.length>0){
+        //alert(JSON.stringify(headers));
+            for(var iHeader=0;iHeader<headers.length;iHeader++){
+                var head=headers[iHeader];
+                req.setRequestHeader(head.name,head.value);
+            }
+        }
+        else{
+            req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        }
     }
     req.onreadystatechange = function () {
         if (req.readyState == 4) {
@@ -329,16 +335,21 @@ doDelete : (href, objectToDelete ,callback, headers,withCreds) => {
 
   req.open('DELETE', href, true);
   //req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+  if(withCreds){
   req.withCredentials = withCreds;
-  if(headers)
-  if(headers.length>0){
-    //alert(JSON.stringify(headers));
-    for(var iHeader=0;iHeader<headers.length;iHeader++){
-      var head=headers[iHeader];
-      req.setRequestHeader(head.name,head.value);
+  }
+  else{
+    if(headers && headers.length>0){
+        //alert(JSON.stringify(headers));
+        for(var iHeader=0;iHeader<headers.length;iHeader++){
+        var head=headers[iHeader];
+        req.setRequestHeader(head.name,head.value);
+        }
+    }
+    else{
+        req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     }
   }
-
   req.onreadystatechange = function () {
       if (req.readyState == 4) {
           if (req.status >= 200 && req.status < 300) {
@@ -377,19 +388,21 @@ doDelete : (href, objectToDelete ,callback, headers,withCreds) => {
     // console.log(`sending ${data}`);
     let req = new XMLHttpRequest();
     req.open('POST', href, true);
-    req.withCredentials = withCreds;
-
-    req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-
-    if(headers)
-    if(headers.length>0){
-      //alert(JSON.stringify(headers));
-      for(var iHeader=0;iHeader<headers.length;iHeader++){
-        var head=headers[iHeader];
-        req.setRequestHeader(head.name,head.value);
-      }
+    if(withCreds)
+        req.withCredentials = withCreds;
+    else{
+        // 
+        if(headers && headers.length>0){        
+        //alert(JSON.stringify(headers));
+            for(var iHeader=0;iHeader<headers.length;iHeader++){
+                var head=headers[iHeader];
+                req.setRequestHeader(head.name,head.value);
+            }
+        }
+        else{
+            req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        }
     }
-    
 
     req.onreadystatechange = function () {
         if (req.readyState == 4) {
