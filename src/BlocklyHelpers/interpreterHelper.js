@@ -141,7 +141,7 @@ exports.createInterpreter = function(workspace,BlocklyJavaScript){
           },
 
           doGet : function (href, callback, headers, withCreds) {
-            console.log(href, callback);
+            // console.log(href, callback);
             let req = new XMLHttpRequest();
           
             req.open('GET', href, true);
@@ -273,14 +273,22 @@ exports.createInterpreter = function(workspace,BlocklyJavaScript){
               console.log('Date time format not suported')
       }
   },
-  doPut : (href, objectToPost, callback) => {
+  doPut : (href, objectToPost, callback,headers,withCreds) => {
     let data = objectToPost;
     //console.log(`sending ${data}`);
     let req = new XMLHttpRequest();
 
     req.open('PUT', href, true);
     req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-
+    req.withCredentials = withCreds;
+    if(headers)
+    if(headers.length>0){
+      //alert(JSON.stringify(headers));
+      for(var iHeader=0;iHeader<headers.length;iHeader++){
+        var head=headers[iHeader];
+        req.setRequestHeader(head.name,head.value);
+      }
+    }
     req.onreadystatechange = function () {
         if (req.readyState == 4) {
             if (req.status >= 200 && req.status < 300) {
@@ -315,11 +323,20 @@ exports.createInterpreter = function(workspace,BlocklyJavaScript){
     req.send(data);
   }
 ,
-doDelete : (href, callback) => {
+doDelete : (href, objectToDelete ,callback, headers,withCreds) => {
   var req = new XMLHttpRequest();
 
   req.open('DELETE', href, true);
   //req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+  req.withCredentials = withCreds;
+  if(headers)
+  if(headers.length>0){
+    //alert(JSON.stringify(headers));
+    for(var iHeader=0;iHeader<headers.length;iHeader++){
+      var head=headers[iHeader];
+      req.setRequestHeader(head.name,head.value);
+    }
+  }
 
   req.onreadystatechange = function () {
       if (req.readyState == 4) {
@@ -354,12 +371,24 @@ doDelete : (href, callback) => {
   };
   req.send(null);
 }, 
-   doPost : function (href, objectToPost, callback) {
+   doPost : function (href, objectToPost, callback, headers, withCreds) {
     let data = objectToPost;
     // console.log(`sending ${data}`);
     let req = new XMLHttpRequest();
     req.open('POST', href, true);
+    req.withCredentials = withCreds;
+
     req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+    if(headers)
+    if(headers.length>0){
+      //alert(JSON.stringify(headers));
+      for(var iHeader=0;iHeader<headers.length;iHeader++){
+        var head=headers[iHeader];
+        req.setRequestHeader(head.name,head.value);
+      }
+    }
+    
 
     req.onreadystatechange = function () {
         if (req.readyState == 4) {
@@ -542,17 +571,9 @@ doDelete : (href, callback) => {
 
               var wrapper = (href, objectToPost, callback) => {
                 try {
-                    var heads = interpreter.pseudoToNative(headersForDomain);
-                    var hostname = '(localSite)';
-                    if (href.startsWith('http://') || href.startsWith('https://')) {
-                        hostname = (new URL(href)).hostname;
-                    }
-                    var arrHeaders = [];
-                    // console.log("heads1",heads);
-                    if (hostname in heads) {
-                        arrHeaders = heads[hostname];
-                    }
-                    thisClass.doPost(href, objectToPost, callback);
+                    var arrHeaders = thisClass.getHeaders(interpreter, headersForDomain, href);
+                    var withCreds = thisClass.getCreds(interpreter, withCredsForDomain, href);
+                    thisClass.doPost(href, objectToPost, callback, arrHeaders, withCreds);
                 }
                 catch (e) {
                     alert("is an error" + e);
@@ -563,16 +584,9 @@ doDelete : (href, callback) => {
 
                 var wrapper = (href, callback) => {
                   try {
-                      var heads = interpreter.pseudoToNative(headersForDomain);
-                      var hostname = '(localSite)';
-                      if (href.startsWith('http://') || href.startsWith('https://')) {
-                          hostname = (new URL(href)).hostname;
-                      }
-                      var arrHeaders = [];
-                      if (hostname in heads) {
-                          arrHeaders = heads[hostname];
-                      }
-                      thisClass.doDelete(href, callback);
+                    var arrHeaders = thisClass.getHeaders(interpreter, headersForDomain, href);
+                    var withCreds = thisClass.getCreds(interpreter, withCredsForDomain, href);                      
+                    thisClass.doDelete(href, null,callback,arrHeaders, withCreds);
                   }
                   catch (e) {
                       alert("is an error" + e);
