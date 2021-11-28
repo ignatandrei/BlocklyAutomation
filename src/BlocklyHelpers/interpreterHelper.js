@@ -580,13 +580,13 @@ doDelete : (href, objectToDelete ,callback, headers,withCreds) => {
                 }
             };
             interpreter.setProperty(globalObject, 'postXhr',
-                interpreter.createAsyncFunction(wrapper));
+                interpreter.createAsyncFunction(wrapper)); 
 
-                var wrapper = (href, callback) => {
+                var wrapper = (href, objectToDelete, callback) => {
                   try {
                     var arrHeaders = thisClass.getHeaders(interpreter, headersForDomain, href);
                     var withCreds = thisClass.getCreds(interpreter, withCredsForDomain, href);                      
-                    thisClass.doDelete(href, null,callback,arrHeaders, withCreds);
+                    thisClass.doDelete(href, objectToDelete,callback,arrHeaders, withCreds);
                   }
                   catch (e) {
                       alert("is an error" + e);
