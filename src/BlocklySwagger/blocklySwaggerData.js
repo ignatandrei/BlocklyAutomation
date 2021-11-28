@@ -13,14 +13,25 @@ class BlocklyReturnSwagger {
   nameCategSwagger() {
     return `catSwagger${this.findHostNameRegular()}_${this.name}`;
   }
-  findCategSwaggerFromPaths(){
+  cacheCategSwaggerFromPaths = [];
 
+  findCategSwaggerFromPaths(){
+    if(this.cacheCategSwaggerFromPaths.length>0) return this.cacheCategSwaggerFromPaths;
     var normalized= this.paths
       .filter(it=> it && it.id && it.id.length >0 )
       .map(it=>{
+          var len=it.id.length;
           var i=it.id.indexOf("{");
-          if(i>0) 
-            it.id=it.id.substring(0,i);
+          while(i>0) {
+            // /api/v{version}
+            var closing=it.id.indexOf("}",i);
+            if(len-closing<2) {
+              it.id=it.id.substring(0,i); 
+              break;
+            }
+            i=it.id.indexOf("{",closing);
+          }
+            
           
           return it;
       })
@@ -32,7 +43,6 @@ class BlocklyReturnSwagger {
        });
       
     ;
-    
     this.operations=normalized
           .filter(it=>it.nrOps>1)
           //.map(it=>it.id)
@@ -60,9 +70,9 @@ class BlocklyReturnSwagger {
           ;
           this.operations.push(...others);
           
-          var ret= [...new Set(this.operations.map(it=>it.controller))];
+          this.cacheCategSwaggerFromPaths= [...new Set(this.operations.map(it=>it.controller))];
          
-    return  ret;
+    return  this.cacheCategSwaggerFromPaths;
 }
   categSwagger() {
     var h = this.findHostNameRegular();
