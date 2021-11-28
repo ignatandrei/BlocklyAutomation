@@ -324,7 +324,8 @@ exports.createInterpreter = function(workspace,BlocklyJavaScript){
   }
 ,
 doDelete : (href, objectToDelete ,callback, headers,withCreds) => {
-  var req = new XMLHttpRequest();
+    let data = objectToDelete;
+    var req = new XMLHttpRequest();
 
   req.open('DELETE', href, true);
   //req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
@@ -369,7 +370,7 @@ doDelete : (href, objectToDelete ,callback, headers,withCreds) => {
           //window.alert(`error ${href} ${req.status}`);
       }
   };
-  req.send(null);
+  req.send(data);
 }, 
    doPost : function (href, objectToPost, callback, headers, withCreds) {
     let data = objectToPost;

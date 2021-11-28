@@ -60,6 +60,8 @@ exports.definitionBlocks = function (blocks, javaScript, BlocklyFieldDropdown) {
           /*new*/ BlocklyFieldDropdown([
             ["GET", "GET"],
             ["POST", "POST"],
+            ["PUT", "PUT"],
+            ["DELETE", "DELETE"],
           ]),
           "TypeRequest"
         )
@@ -102,6 +104,27 @@ exports.definitionBlocks = function (blocks, javaScript, BlocklyFieldDropdown) {
           operation+="," +value_data           
         }
         operation += ") )";
+        break;
+      case "DELETE":
+        operation =
+          "(function(url,data){ var res=JSON.parse(deleteXhr(url,JSON.stringify(data))); if(res.statusOK) return res.text;errHandler(JSON.stringify(res)); throw res;}(" +
+          value_theurl ;
+        if (value_data) {
+          operation+="," +value_data           
+        }
+        operation += ") )";
+        break;
+      case "PUT":
+        operation =
+          "(function(url,data){ var res=JSON.parse(putXhr(url,JSON.stringify(data))); if(res.statusOK) return res.text;errHandler(JSON.stringify(res)); throw res;}(" +
+          value_theurl ;
+        if (value_data) {
+          operation+="," +value_data           
+        }
+        operation += ") )";
+        break;
+      default:
+        alert("Do not understand : " + dropdown_typerequest.toString());
         break;
     }
 
