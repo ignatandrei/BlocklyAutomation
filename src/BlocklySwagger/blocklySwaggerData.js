@@ -302,7 +302,23 @@ class BlocklyReturnSwagger {
       blocks[blocklyTypeName] = {
         init: function () {
           //this.setInputsInline(true);
-          
+          switch(operationKey.toString().toLowerCase()){
+            case "get":
+              this.setColour(210);
+              break;
+            case "post":
+              this.setColour(165);
+              break;
+            case "put":
+              this.setColour(40);
+              break;
+            case "delete":
+              this.setColour(10);
+              break;
+            default:
+              console.log(`not found ${operationKey}`);
+              this.setColour(10);
+          }
           var str = key;
           if (str.length > 15) str = str.substring(0, 25) + "...";
           this.appendDummyInput()
