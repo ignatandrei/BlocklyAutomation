@@ -108,6 +108,38 @@ exports.createInterpreter = function(workspace,BlocklyJavaScript){
               });
             interpreter.setProperty(globalObject, 'waitForSeconds', wrapper);
           },
+          getCreds: function(interpreter, withCredsForDomain,href) {
+            var creds = interpreter.pseudoToNative(withCredsForDomain);
+            var hostname = '(localSite)';
+            if (href.startsWith('http://') || href.startsWith('https://')) {
+                hostname = (new URL(href)).hostname;
+            }
+            var withCreds=false;
+            if (hostname in creds) {
+              withCreds = creds[hostname];
+            }
+            else if("*" in creds){
+              withCreds = creds["*"]; 
+            }  
+            return withCreds;
+        },
+              getHeaders:function(interpreter,headersForDomain, href){
+            var heads = interpreter.pseudoToNative(headersForDomain);
+            var hostname = '(localSite)';
+            if (href.startsWith('http://') || href.startsWith('https://')) {
+                hostname = (new URL(href)).hostname;
+            }
+            var arrHeaders = [];
+            // console.log("heads2",heads);
+            if (hostname in heads) {
+                 arrHeaders = heads[hostname];
+            }
+            else if("*" in heads){
+              arrHeaders = heads["*"];
+            }
+            return arrHeaders;            
+          },
+
           doGet : function (href, callback, headers, withCreds) {
             console.log(href, callback);
             let req = new XMLHttpRequest();
@@ -498,29 +530,9 @@ doDelete : (href, callback) => {
 
             var wrapper = (href, callback) => {
 
-              var creds = interpreter.pseudoToNative(withCredsForDomain);
-              var heads = interpreter.pseudoToNative(headersForDomain);
-              var hostname = '(localSite)';
-              if (href.startsWith('http://') || href.startsWith('https://')) {
-                  hostname = (new URL(href)).hostname;
-              }
-              var withCreds=false;
-              var arrHeaders = [];
-              // console.log("heads2",heads);
-              if (hostname in heads) {
-                   arrHeaders = heads[hostname];
-              }
-              else if("*" in heads){
-                arrHeaders = heads["*"];
-              }
-              if (hostname in creds) {
-                withCreds = creds[hostname];
-              }
-              else if("*" in creds){
-                withCreds = creds["*"]; 
-              }
-              console.log(`x_`,heads );
-              console.log(`y_`,arrHeaders);
+              
+              var arrHeaders = thisClass.getHeaders(interpreter, headersForDomain, href);
+              var withCreds = thisClass.getCreds(interpreter, withCredsForDomain, href);
               
               return thisClass.doGet(href, callback, arrHeaders, withCreds);
           }
