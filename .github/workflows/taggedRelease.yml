@@ -106,7 +106,10 @@ jobs:
         filename: 'releaseWin.zip'
         path: '${{github.workspace}}/src/Loaders/SimpleSite/AutoBlocklySimple/${{env.AZURE_WEBAPP_NAME}}WinX64/'
         exclusions: '*.git* /*node_modules/* .editorconfig'       
-
+    
+    - name: copy release is
+      run: |
+        find ${{github.workspace}} -type f -name "*.zip"
     - name: Archive Release IIS
       uses: thedoctor0/zip-release@master
       with:
