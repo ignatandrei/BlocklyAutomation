@@ -109,7 +109,9 @@ jobs:
     
     - name: copy release is
       run: |
+        cp ${{github.workspace}}/src/Loaders/SimpleSite/AutoBlocklySimple/releaseLin.zip ${{github.workspace}}/releaseLin.zip
         find ${{github.workspace}} -type f -name "*.zip"
+                
     - name: Archive Release IIS
       uses: thedoctor0/zip-release@master
       with:

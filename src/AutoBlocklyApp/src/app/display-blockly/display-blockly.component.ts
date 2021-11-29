@@ -123,7 +123,7 @@ export class DisplayBlocklyComponent implements OnInit {
     );
     this.clearOutput();
     this.showCodeAndXML = ShowCodeAndXML.ShowOutput;
-    this.showInner = '{ "step_0": "start program",';
+    this.showInner = '{ "step_start": "start program",';
     var self = this;
     this.run.runCode(
       f,
@@ -136,7 +136,7 @@ export class DisplayBlocklyComponent implements OnInit {
         this.tabulator.AddDataToGrid(data);
       },
       () => {
-        self.showInner += `\n "step_${self.step+1}" : "program executed"\n}`;
+        self.showInner += `\n "step_end" : "program executed; see results below"\n}`;
         this.tabulator.FinishGrid();
       }
     );
