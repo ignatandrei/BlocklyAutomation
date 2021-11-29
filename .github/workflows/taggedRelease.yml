@@ -95,7 +95,8 @@ jobs:
       with:
         type: 'zip'
         filename: 'releaseLin.zip'
-        path: '${{github.workspace}}/src/Loaders/SimpleSite/AutoBlocklySimple/${{env.AZURE_WEBAPP_NAME}}linX64/'
+        path: '${{env.AZURE_WEBAPP_NAME}}linX64/'
+        directory: '${{github.workspace}}/src/Loaders/SimpleSite/AutoBlocklySimple/'
         exclusions: '*.git* /*node_modules/* .editorconfig'       
 
     - name: Archive Release Windows
