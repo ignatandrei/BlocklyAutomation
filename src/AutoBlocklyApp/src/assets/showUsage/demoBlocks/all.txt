@@ -1,4 +1,9 @@
 [
+{
+		"id":"data_io",
+		"description":"USA population from data.io",
+		"categories":"http call"
+	},
 	{
 		"id":"chuck_norris",
 		"description":"joke with Chuck Norris",
