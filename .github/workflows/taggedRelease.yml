@@ -119,13 +119,14 @@ jobs:
         path: '${{env.AZURE_WEBAPP_NAME}}IISWinX64/'
         exclusions: '*.git* /*node_modules/* .editorconfig'       
 
-    - name: copy release is
+    - name: copy release 
       run: |
         find ${{github.workspace}} -type f -name "*.zip"
         cp ${{github.workspace}}/src/Loaders/SimpleSite/AutoBlocklySimple/releaseLin.zip ${{github.workspace}}/releaseLin.zip
         cp ${{github.workspace}}/src/Loaders/SimpleSite/AutoBlocklySimple/releaseWin.zip ${{github.workspace}}/releaseWin.zip
         cp ${{github.workspace}}/src/Loaders/SimpleSite/AutoBlocklySimple/releaseIISWin.zip ${{github.workspace}}/releaseIISWin.zip
         cp ${{github.workspace}}/src/AutoBlocklyApp/dist/releaseBlocklyAutomation.zip ${{github.workspace}}/releaseBlocklyAutomation.zip
+        echo 'copied'
         find ${{github.workspace}} -type f -name "*.zip"
 
     - name: Release
