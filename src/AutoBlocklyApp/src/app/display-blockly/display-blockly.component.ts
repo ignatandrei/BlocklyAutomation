@@ -374,6 +374,13 @@ export class DisplayBlocklyComponent implements OnInit {
     bs.trycatchFinBlock.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);  
     bs.auth0Blocks.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
     bs.windowsCreds.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
+    bs.chartBlock.definitionBlocks(Blockly.Blocks, BlocklyJavaScript,       
+      function (arr: any[][]) {
+        return new Blockly.FieldDropdown(arr);
+      },
+      (item: string) => {
+        return new Blockly.FieldLabelSerializable(item);
+      });
     var blocks = [
       bs.defaultBlocks.generalBlocks(),
       `    
@@ -389,6 +396,7 @@ export class DisplayBlocklyComponent implements OnInit {
             </category>
             <category id="catGUI" name="GUI">
             ${bs.guiBlocks.fieldXML()}
+            ${bs.chartBlock.fieldXML()}
             </category>
         `,
       `<category id="catTimers"  name="Timers">
