@@ -21,6 +21,7 @@ import * as introJs from 'intro.js';
 import { AppDetails } from '../AppDetails';
 import { TourSteps } from '../TourSteps';
 import { TransmitAction } from '../TransmitAction';
+import { MatSnackBar } from '@angular/material/snack-bar';
 enum ShowCodeAndXML{
   ShowNone=0,
   ShowCode=1,
@@ -60,7 +61,8 @@ export class DisplayBlocklyComponent implements OnInit {
     private settings: AppDetails,
     private loadDemo: LoadShowUsageService,
     private ar: ActivatedRoute,
-    private ta :TransmitAction
+    private ta :TransmitAction,
+    private snackBar: MatSnackBar
   ) {
     //console.log(bs.filterBlocks.definitionBlocks());
     this.ar.paramMap.subscribe((params: any) => {
@@ -105,6 +107,7 @@ export class DisplayBlocklyComponent implements OnInit {
 
   step: number = 0;
   RunCode() {
+    this.snackBar.open('Program start', 'Executing...');
     var self = this;
     var f = (latestCode: string, initApi: any) => {
       try {
@@ -136,6 +139,9 @@ export class DisplayBlocklyComponent implements OnInit {
         this.tabulator.AddDataToGrid(data);
       },
       () => {
+        this.snackBar.open('Program end', 'Done!', {
+          duration: 3000
+        });
         self.showInner += `\n "step_end" : "program executed; see results below"\n}`;
         this.tabulator.FinishGrid();
       }
