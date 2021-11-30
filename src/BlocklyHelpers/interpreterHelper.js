@@ -458,6 +458,14 @@ doDelete : (href, objectToDelete ,callback, headers,withCreds) => {
           var headersForDomain = interpreter.nativeToPseudo({ '(localSite)': [] });
           interpreter.setProperty(globalObject, 'headersForDomain',headersForDomain);
 
+          var wrapper = function(text) {
+            text = text ? text.toString() : '';
+            window.alert(text);
+          };
+          interpreter.setProperty(globalObject, 'alert1',
+              interpreter.createNativeFunction(wrapper));
+
+
             // Add an API function for the alert() block, generated for "text_print" blocks.
             var wrapper = function(text) {
               text = text ? text.toString() : '';

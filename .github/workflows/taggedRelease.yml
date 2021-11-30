@@ -67,7 +67,7 @@ jobs:
         type: 'zip'
         filename: 'releaseBlocklyAutomation.zip'
         path: 'AutoBlocklyApp/'
-        directory: '${{github.workspace}}/AutoBlocklyApp/dist/'
+        directory: '${{github.workspace}}/src/AutoBlocklyApp/dist/'
         exclusions: '*.git* /*node_modules/* .editorconfig'       
 
 

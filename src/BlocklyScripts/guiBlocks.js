@@ -29,6 +29,32 @@ exports.definitionBlocks=function (blocks, javaScript,BlocklyFieldLabelSerializa
         return 'open(' + msg + ');\n';
       };
 
+      blocks['text_message'] = {
+        init: function() {
+          this.jsonInit({
+            "message0": 'alert %1',
+            "args0": [
+              {
+                "type": "input_value",
+                "name": "TEXT"
+              }
+            ],
+            "previousStatement": null,
+            "nextStatement": null,
+            "style": "text_blocks"
+            
+          });
+        }
+      };
+      javaScript['text_message'] = function(block) {
+        // Print statement.
+        var msg = javaScript.valueToCode(block, 'TEXT',
+        /*javaScript.*/ORDER_NONE) || '\'\'';
+        
+        var code= 'alert1(' + msg + ');\n';
+        return code;
+      };
+      
 
       blocks['text_print_return'] = {
         init: function() {
@@ -94,7 +120,8 @@ exports.fieldXML = function () {
     </block>
     <block type="text_print"></block>
     <block type="text_print_return"></block>  
-    <block type="text_prompt_ext">
-    </block>
+    <block type="text_prompt_ext"></block>
+    <block type="text_message"></block>
+    
     `;
 }
