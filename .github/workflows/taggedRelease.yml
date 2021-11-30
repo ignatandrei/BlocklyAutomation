@@ -66,7 +66,8 @@ jobs:
       with:
         type: 'zip'
         filename: 'releaseBlocklyAutomation.zip'
-        path: '${{github.workspace}}/src/AutoBlocklyApp/dist/AutoBlocklyApp'
+        path: 'AutoBlocklyApp/'
+        directory: '${{github.workspace}}/AutoBlocklyApp/dist/'
         exclusions: '*.git* /*node_modules/* .editorconfig'       
 
 
@@ -104,21 +105,28 @@ jobs:
       with:
         type: 'zip'
         filename: 'releaseWin.zip'
-        path: '${{github.workspace}}/src/Loaders/SimpleSite/AutoBlocklySimple/${{env.AZURE_WEBAPP_NAME}}WinX64/'
+        path: '${{env.AZURE_WEBAPP_NAME}}WinX64/'
+        directory: '${{github.workspace}}/src/Loaders/SimpleSite/AutoBlocklySimple/'
         exclusions: '*.git* /*node_modules/* .editorconfig'       
     
-    - name: copy release is
-      run: |
-        cp ${{github.workspace}}/src/Loaders/SimpleSite/AutoBlocklySimple/releaseLin.zip ${{github.workspace}}/releaseLin.zip
-        find ${{github.workspace}} -type f -name "*.zip"
-                
+
     - name: Archive Release IIS
       uses: thedoctor0/zip-release@master
       with:
         type: 'zip'
         filename: 'releaseIISWin.zip'
-        path: '${{github.workspace}}/src/Loaders/SimpleSite/AutoBlocklySimple/${{env.AZURE_WEBAPP_NAME}}IISWinX64/'
+        directory: '${{github.workspace}}/src/Loaders/SimpleSite/AutoBlocklySimple/'
+        path: '${{env.AZURE_WEBAPP_NAME}}IISWinX64/'
         exclusions: '*.git* /*node_modules/* .editorconfig'       
+
+    - name: copy release is
+      run: |
+        find ${{github.workspace}} -type f -name "*.zip"
+        cp ${{github.workspace}}/src/Loaders/SimpleSite/AutoBlocklySimple/releaseLin.zip ${{github.workspace}}/releaseLin.zip
+        cp ${{github.workspace}}/src/Loaders/SimpleSite/AutoBlocklySimple/releaseWin.zip ${{github.workspace}}/releaseLin.zip
+        cp ${{github.workspace}}/src/Loaders/SimpleSite/AutoBlocklySimple/releaseIISWin.zip ${{github.workspace}}/releaseLin.zip
+        cp ${{github.workspace}}/AutoBlocklyApp/dist/releaseBlocklyAutomation.zip ${{github.workspace}}/releaseBlocklyAutomation.zip
+        find ${{github.workspace}} -type f -name "*.zip"
 
     - name: Release
       uses: softprops/action-gh-release@v1
