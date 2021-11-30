@@ -70,7 +70,7 @@ export class TabulatorHelper
         try {
             var arr = JSON.parse(value);
             for (var i = 0; i < arr.length; i++) {
-                this.objectsForGrid.push(arr[i]);
+                this.objectsForGrid.push(arr[i]?.toString());   
             };
             return;
         }
@@ -80,22 +80,29 @@ export class TabulatorHelper
 
     };
     this.stringsForGrid.push(value);
+    //console.log(this.stringsForGrid);
     //window.alert('length:'+stringsForGrid.length);
 }
     AddDataToGrid(value:any) {
-        this.dataObject.push([value]);
+        
     //gridElement.innerHTML = '';
     //hot.addData([dataObject]);
     //hot.redraw(true);
     //window.alert(JSON.stringify(value) + typeof value);
     if (typeof value === 'string') {
-        this.AddStringToGrid(value);
+        // console.log("adding string to grid");
+        this.AddStringToGrid(value?.toString());
+        this.dataObject.push([value?.toString()]);
         return;
     }
     if (typeof value === 'object') {
+        console.log("adding object to grid");
         this.AddStringToGrid(JSON.stringify(value));
+        this.dataObject.push([value]);
         return;
     }
+    // console.log("adding data to grid");
+    this.dataObject.push([value.ToString()]);
     this.AddStringToGrid(value.toString());
 }
     ClearDataGrid() {
