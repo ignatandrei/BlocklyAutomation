@@ -80,7 +80,7 @@ jobs:
       run: |
         rm -r src/AutoBlocklyApp/dist/AutoBlocklyApp/*
         cd src
-        npm run buildAng
+        npm run buildGitHubPages
         rm -r Loaders/SimpleSite/AutoBlocklySimple/wwwroot/BlocklyAutomation/*
         cp -r AutoBlocklyApp/dist/AutoBlocklyApp/* Loaders/SimpleSite/AutoBlocklySimple/wwwroot/BlocklyAutomation/
         cd Loaders
