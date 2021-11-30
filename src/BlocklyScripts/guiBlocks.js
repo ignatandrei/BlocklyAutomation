@@ -1,4 +1,4 @@
-exports.definitionBlocks=function (blocks, javaScript){
+exports.definitionBlocks=function (blocks, javaScript,BlocklyFieldLabelSerializable){
     const ORDER_NONE= 99;
     const ORDER_ATOMIC= 0;
     blocks['window_open'] = {
@@ -30,7 +30,28 @@ exports.definitionBlocks=function (blocks, javaScript){
       };
 
 
-
+      blocks['text_print_return'] = {
+        init: function() {
+          this.appendValueInput("TEXT")
+              .setCheck(null)
+              .appendField("print return")
+              .appendField(BlocklyFieldLabelSerializable(""), "NAME");
+          this.setOutput(true, null);
+          
+       this.setTooltip("");
+       this.setHelpUrl("");
+        }
+      };
+      
+      javaScript['text_print_return'] = function(block) {
+        // Print statement.
+        var msg = javaScript.valueToCode(block, 'TEXT',
+        /*javaScript.*/ORDER_ATOMIC) || '\'\'';
+        
+        var code= '(function(){window.alert(' + msg + ');\n;return (' + msg + ');}())\n';
+        return [code, /*javaScript.*/ORDER_NONE];
+      };
+      
 
       blocks['valuefromtext'] = {
         init: function() {
@@ -72,6 +93,7 @@ exports.fieldXML = function () {
         </value>
     </block>
     <block type="text_print"></block>
+    <block type="text_print_return"></block>  
     <block type="text_prompt_ext">
     </block>
     `;

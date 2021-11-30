@@ -334,7 +334,7 @@ export class DisplayBlocklyComponent implements OnInit {
         return new Blockly.FieldLabelSerializable(arr);
       }
     );
-    bs.guiBlocks.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
+    bs.guiBlocks.definitionBlocks(Blockly.Blocks, BlocklyJavaScript, (s:string)=> new Blockly.FieldLabelSerializable(s));
     bs.convertersBlocks.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
     bs.exportFileBlock.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
     bs.createObjectBlocks.definitionBlocks(
