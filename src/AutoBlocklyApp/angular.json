@@ -41,7 +41,8 @@
             ],
             "scripts": [
               "src/assets/acorn_interpreter.js",
-              "./node_modules/intro.js/intro.js"
+              "./node_modules/intro.js/intro.js",
+              "./node_modules/chart.js/dist/Chart.js"
             ]
           },
           "configurations": {
@@ -121,6 +122,7 @@
             "scripts": [
               "src/assets/acorn_interpreter.js",
               "./node_modules/intro.js/intro.js",
+              "./node_modules/chart.js/dist/Chart.js"
               
             ]
           }

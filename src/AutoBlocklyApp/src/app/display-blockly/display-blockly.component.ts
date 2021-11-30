@@ -22,6 +22,8 @@ import { AppDetails } from '../AppDetails';
 import { TourSteps } from '../TourSteps';
 import { TransmitAction } from '../TransmitAction';
 import { MatSnackBar } from '@angular/material/snack-bar';
+// import { Chart , registerables } from 'chart.js';
+import Chart from 'chart.js/auto';
 enum ShowCodeAndXML{
   ShowNone=0,
   ShowCode=1,
@@ -104,9 +106,44 @@ export class DisplayBlocklyComponent implements OnInit {
     this.showInner = '';
     this.tabulator.ClearDataGrid();
   }
-
+  myChart:Chart| null = null;
+  ShowChart(data: any){
+    
+    var e:HTMLCanvasElement = (document.getElementById('barchart') as any)?.getContext('2d') as HTMLCanvasElement;
+    if(e == null)
+    {
+      console.log("not canvas available for chart!");
+      return;
+    }
+    
+    if(this.myChart !=null){
+      this.myChart.clear();
+    };
+      try{
+        var st=data?.toString();
+        var dt=JSON.parse(st);
+        if(dt && dt.type){
+          this.myChart = new Chart(e!, dt);
+          console.log('make chart',data);
+        }
+      }
+      catch(e){
+        //console.log(e);
+        this.myChart = null;
+      }
+    }
+    
+  //   this.myChart = new Chart(e!,
+  //   {"type":"bar","data":
+  //   {"labels":["2019","2018","2017","2016","2015","2014","2013"],
+    
+  //   "datasets":[{"label":"Population",
+  //   "data":[328239523/10000000,327167439/10000000,325719178/10000000,323127515/10000000,321418821/10000000,318857056/10000000,316128839/10000000]}]}
+  // });
+  
   step: number = 0;
   RunCode() {
+    
     this.snackBar.open('Program start', 'Executing...');
     var self = this;
     var f = (latestCode: string, initApi: any) => {
@@ -136,7 +173,8 @@ export class DisplayBlocklyComponent implements OnInit {
         self.showInner += `\n           
 "step_${self.step}" : "${data}",`;
         // console.log(`obtained ${data}`);
-        this.tabulator.AddDataToGrid(data);
+        self.tabulator.AddDataToGrid(data);
+        self.ShowChart(data);
       },
       () => {
         this.snackBar.open('Program end', 'Done!', {
