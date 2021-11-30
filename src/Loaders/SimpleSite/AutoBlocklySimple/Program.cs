@@ -8,7 +8,7 @@ app.UseRouting();
 app.UseEndpoints(endpoints =>
 {
     endpoints.UseAMS();
-    endpoints.MapFallbackToFile("/automation/{**slug}", "index.html");
+    endpoints.MapFallbackToFile("/BlocklyAutomation/{**slug}", "BlocklyAutomation/index.html");
 });
 app.Run();
 
