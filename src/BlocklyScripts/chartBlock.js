@@ -42,9 +42,11 @@ exports.definitionBlocks = function (blocks, javaScript,BlocklyFieldDropdown , B
         var value_dataset1data = javaScript.valueToCode(block, 'DataSet1Data', javaScript.ORDER_ATOMIC);
         //var backgroundColor: ["red", "blue", "green", "blue", "red", "blue"],
         var barType= "";
+        var indexAxis='x';
         switch (dropdown_charttypevalue) {
             case "HBar":
                 barType="bar";
+                indexAxis='y';
                 break;
             case "VBar":
                 barType="bar";
@@ -52,7 +54,8 @@ exports.definitionBlocks = function (blocks, javaScript,BlocklyFieldDropdown , B
             default:
                 throw "Unknown chart type:"+dropdown_charttypevalue;
         }
-        var code = `JSON.stringify({ 'type': '${barType}', 'data': {  'labels': ${value_labelsvalue}, 'datasets': [{ 'backgroundColor': ['green','blue'],'label': ${value_dataset1label}, 'data': ${value_dataset1data} }] } })`;
+        // window.alert(indexAxis);
+        var code = `JSON.stringify({ 'type': '${barType}', 'options':{ 'indexAxis':'${indexAxis}'},  'data': {  'labels': ${value_labelsvalue}, 'datasets': [{ 'backgroundColor': ['green','blue'],'label': ${value_dataset1label}, 'data': ${value_dataset1data} }] } })`;
         
         return [code, javaScript.ORDER_NONE];
       };

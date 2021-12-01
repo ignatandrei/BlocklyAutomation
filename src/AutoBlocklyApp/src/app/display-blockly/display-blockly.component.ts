@@ -118,6 +118,7 @@ export class DisplayBlocklyComponent implements OnInit {
     
     if(this.myChart !=null){
       this.myChart.clear();
+      this.myChart.destroy();
     };
       try{
         var st=data?.toString();

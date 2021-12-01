@@ -9,6 +9,14 @@
 ,{
 		"id":"PetStore",
 		"link":"https://petstore.swagger.io/v2/swagger.json"
+},
+{
+	"id":"Xa1",
+	"link":"/assets/a.json"
 }
-
+,
+{
+	"id":"Xb1",
+	"link":"/assets/b.json"
+}
 ]
