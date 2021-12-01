@@ -1,5 +1,10 @@
 [
 {
+	"id":"chart",
+	"description":"show chart usage",
+	"categories":"http call;chart"
+},
+{
 		"id":"data_io",
 		"description":"USA population from data.io",
 		"categories":"http call"
