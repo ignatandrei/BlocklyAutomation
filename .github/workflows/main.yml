@@ -42,6 +42,7 @@ jobs:
           npm i
           ls -l node_modules/          
           echo "build"
+          cd ..
           npm run buildAng
           ls -l AutoBlocklyApp/dist/AutoBlocklyApp
           
