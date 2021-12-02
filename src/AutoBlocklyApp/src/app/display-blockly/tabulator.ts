@@ -20,9 +20,10 @@ export class TabulatorHelper
 
         throw new Error("hot is null");
     };
+
     initGrid(gridElement: any) {
     //console.log(gridElement); 
-    Tabulator.registerModule([FormatModule, ClipboardModule,DownloadModule]);
+    Tabulator.registerModule([FormatModule, ClipboardModule,DownloadModule,SelectRowModule]);
     this.hotInstance = new Tabulator(gridElement, {
         columns: [{ title: 'Step',field:'id' }],
         layout: "fitColumns",   
@@ -32,20 +33,21 @@ export class TabulatorHelper
         // movableColumns: true,
         // selectable: false,
         // selectableRangeMode: "click",
-        // clipboard: "copy",
+        clipboard: "copy",
         footerElement: `<div>
-        <!-- <a href="javascript:copyClip()">Copy Clipboard</a>
+        <!-- <a href="javascript:{var event = new Event('TabCopy'); window.dispatchEvent(event);}">Copy Clipboard</a>
         &nbsp;&nbsp;&nbsp;&nbsp;
-        <a href="javascript:copyCSV()">CSV</a>
+        <a href="javascript:{var event = new Event('TabDownload'); window.dispatchEvent(event);}">CSV</a>
         -->
+        
     </div>`,
         placeholder: "please press execute button", 
-        // tooltips: function (cell:CellComponent) {
-        //     //cell - cell component
+        tooltips: function (cell:Tabulator.CellComponent) {
+            //cell - cell component
 
-        //     //function should return a string for the tooltip of false to hide the tooltip
-        //     return cell.getColumn().getField() + " - " + cell.getValue(); //return cells "field - value";
-        // },
+            //function should return a string for the tooltip of false to hide the tooltip
+            return cell.getColumn().getField() + " - " + cell.getValue(); //return cells "field - value";
+        },
 
     } as Tabulator.Options);
 
@@ -225,10 +227,10 @@ Headers(allHeaders:string[]): Tabulator.ColumnDefinition[] {
                                     autoColumns: true,
                                     layout: "fitDataFill",
                                     headerSort: false,
-                                    // tooltips: function (cell:CellComponent) {
-                                    //     return cell.getColumn().getField() + " - " + JSON.stringify(cell.getValue()); //return cells "field - value";
-                                    // }
-                                });
+                                    tooltips: function (cell:Tabulator.CellComponent) {
+                                        return cell.getColumn().getField() + " - " + JSON.stringify(cell.getValue()); //return cells "field - value";
+                                    }
+                                } as Tabulator.Options);
                             });
                             return "<div id='" + id + "'>" + value + "</div>";
 
@@ -283,7 +285,7 @@ goodNameForKey(key:string) {
     return ret;
 }
 copyClip() {
-    this.hot.copyToClipboard("all");
+    this.hot.copyToClipboard();
 }
 copyCSV() {
     this.hot.download("csv", "data.csv", { bom: true });
