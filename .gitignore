@@ -348,5 +348,6 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
-src/package-lock.json
-src/AutoBlocklyApp/package-lock.json
+
+#src/package-lock.json
+#src/AutoBlocklyApp/package-lock.json
