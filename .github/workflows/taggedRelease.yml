@@ -33,6 +33,9 @@ jobs:
         #npm i -g  @angular/cli@13.0.1
         npm i -ws --include-workspace-root 
         cp -r node_modules  AutoBlocklyApp/node_modules        
+        cd AutoBlocklyApp
+        npm i
+        cd ..
         npm run buildGitHubPages
         cd ..
         rm -r docs/*
