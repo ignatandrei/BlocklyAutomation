@@ -24,6 +24,7 @@ import { TransmitAction } from '../TransmitAction';
 import { MatSnackBar } from '@angular/material/snack-bar';
 // import { Chart , registerables } from 'chart.js';
 import Chart from 'chart.js/auto';
+import { fromEvent } from 'rxjs';
 enum ShowCodeAndXML{
   ShowNone=0,
   ShowCode=1,
@@ -266,6 +267,8 @@ export class DisplayBlocklyComponent implements OnInit {
   ngOnInit(): void {
     this.StartRegister();
     //this.createIntro();
+    fromEvent(window, 'TabDownload').subscribe(it=>this.tabulator.copyCSV());
+    fromEvent(window, 'TabCopy').subscribe(it=>this.tabulator.copyClip());
   }
   public LoadSwagger() {
     var json = window.prompt(
