@@ -298,7 +298,7 @@ class BlocklyReturnSwagger {
   //  console.log('X_override_host',shadow);
     xmlBlockShow += `<value name="override_Host">${shadow}</value>`;          
    
-    port=port?port:"80";
+    port=port?port:"0";
     var shadow=self.GenerateShadowField('integer', 'override_port',port);
     //  console.log('X_override_host',shadow);
       xmlBlockShow+= `<value name="override_Port">${shadow}</value>`;          
