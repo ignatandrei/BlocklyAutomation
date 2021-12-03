@@ -109,7 +109,9 @@ export class DisplayBlocklyComponent implements OnInit {
   }
   myChart:Chart| null = null;
   ShowChart(data: any){
-    
+    if(this.myChart !=null){
+      this.myChart.destroy();
+    };
     var e:HTMLCanvasElement = (document.getElementById('barchart') as any)?.getContext('2d') as HTMLCanvasElement;
     if(e == null)
     {
@@ -117,10 +119,7 @@ export class DisplayBlocklyComponent implements OnInit {
       return;
     }
     
-    if(this.myChart !=null){
-      this.myChart.clear();
-      this.myChart.destroy();
-    };
+    
       try{
         var st=data?.toString();
         var dt=JSON.parse(st);
