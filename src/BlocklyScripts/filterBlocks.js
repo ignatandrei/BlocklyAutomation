@@ -66,6 +66,39 @@ exports.definitionBlocks=function(blocks,javaScript){
       
           return [code, javaScript.ORDER_FUNCTION_CALL];
       };
+
+      blocks['reduceList'] = {
+        init: function () {
+            this.appendDummyInput()
+                .appendField("reduceList");
+            this.appendValueInput("LIST")
+                .setCheck("Array");
+    
+            this.appendValueInput("Logic")
+                .setCheck("String")
+                .appendField("callback(acc,curVal,index, array)=>");
+            this.setInputsInline(true);
+            this.setOutput(true, null);
+            this.setColour(230);
+            this.setTooltip("");
+            this.setHelpUrl("");
+        }
+    };
+    
+    javaScript['reduceList'] = function (block) {
+        var list = javaScript.valueToCode(block, 'LIST',
+        javaScript.ORDER_MEMBER) || '[]';
+    
+        var value_logic = javaScript.valueToCode(block, 'Logic', javaScript.ORDER_ATOMIC);
+        if (typeof value_logic === 'string')// remove '
+            value_logic = value_logic.substr(1, value_logic.length - 2);
+    
+        var code = '';
+        code += '(function(t){ if (typeof t === "string") return JSON.parse(t);  return t;}(' + list +')).reduce(function (acc,curVal,index,array){ return ' + value_logic + ';},"")';
+        code += '';
+    
+        return [code, javaScript.ORDER_FUNCTION_CALL];
+    };
 }
 exports.fieldXML=function(){
     return `
@@ -94,7 +127,18 @@ exports.fieldXML=function(){
                 </shadow>
             </value>
         </block>
-
+        <block type="reduceList">
+        <value name="LIST">
+        <block type="variables_get">
+                <field name="VAR">list</field>
+            </block>
+            </value>
+            <value name="Logic">
+                <shadow type="text">
+                    <field name="TEXT">...</field>
+                </shadow>
+            </value>
+        </block>
         </category>
 
 `
