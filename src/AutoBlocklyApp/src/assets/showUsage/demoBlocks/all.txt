@@ -1,7 +1,12 @@
 [
 {
+	"id":"weatherChart",
+	"description":"show fake weather chart",
+	"categories":"http call;chart"
+},
+{
 	"id":"chart",
-	"description":"show chart usage",
+	"description":"show chart USA population",
 	"categories":"http call;chart"
 },
 {
