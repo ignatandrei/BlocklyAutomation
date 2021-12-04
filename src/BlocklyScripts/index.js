@@ -24,6 +24,7 @@ module.exports = {
   auth0Blocks: require('./auth0Blocks'),
   windowsCreds: require('./WindowsCreds'),
   trycatchFinBlock: require('./tryCatchFinBlock'),
-  chartBlock: require('./chartBlock')
+  chartBlock: require('./chartBlock'),
+  emailBlocks: require('./emailBlocks'),
 
 };

@@ -422,6 +422,14 @@ export class DisplayBlocklyComponent implements OnInit {
       (item: string) => {
         return new Blockly.FieldLabelSerializable(item);
       });
+
+      bs.emailBlocks.definitionBlocks(
+        Blockly.Blocks,
+        BlocklyJavaScript,
+        function (arr: any[][]) {
+          return new Blockly.FieldDropdown(arr);
+        }
+      );
     var blocks = [
       bs.defaultBlocks.generalBlocks(),
       `    
@@ -455,7 +463,10 @@ export class DisplayBlocklyComponent implements OnInit {
           ${bs.dateFromTextBlock.fieldXML()}
           ${bs.waitBlocks.fieldXML()}
         </category>`,
-        `  <category id="programming" name="Programming">
+        `<category id="catEmail"  name="Email">
+        ${bs.emailBlocks.fieldXML()}
+      </category>`,
+      `  <category id="programming" name="Programming">
         ${bs.trycatchFinBlock.fieldXML()}
         ${bs.commentBlock.fieldXML()}
           </category>
