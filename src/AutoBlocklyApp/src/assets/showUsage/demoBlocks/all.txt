@@ -1,5 +1,10 @@
 [
 {
+	"id":"reduce",
+	"description":"show reduce usage",
+	"categories":"http call;reduce;array"
+},
+{
 	"id":"weatherChart",
 	"description":"show fake weather chart",
 	"categories":"http call;chart"

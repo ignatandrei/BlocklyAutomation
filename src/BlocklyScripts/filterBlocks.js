@@ -71,12 +71,18 @@ exports.definitionBlocks=function(blocks,javaScript){
         init: function () {
             this.appendDummyInput()
                 .appendField("reduceList");
+
             this.appendValueInput("LIST")
                 .setCheck("Array");
-    
+        
+            this.appendValueInput("initValue")
+                .setCheck(null)
+                .appendField("initialValue");
+
             this.appendValueInput("Logic")
                 .setCheck("String")
                 .appendField("callback(acc,curVal,index, array)=>");
+            
             this.setInputsInline(true);
             this.setOutput(true, null);
             this.setColour(230);
@@ -86,15 +92,29 @@ exports.definitionBlocks=function(blocks,javaScript){
     };
     
     javaScript['reduceList'] = function (block) {
+        
         var list = javaScript.valueToCode(block, 'LIST',
         javaScript.ORDER_MEMBER) || '[]';
     
+        var value_initvalue = '';
+        try{
+            value_initvalue  = javaScript.valueToCode(block, 'initValue', javaScript.ORDER_ATOMIC);
+        }
+        catch(e){
+            window.alert(e);
+        }
+        
         var value_logic = javaScript.valueToCode(block, 'Logic', javaScript.ORDER_ATOMIC);
         if (typeof value_logic === 'string')// remove '
             value_logic = value_logic.substr(1, value_logic.length - 2);
-    
+ 
+        
         var code = '';
-        code += '(function(t){ if (typeof t === "string") return JSON.parse(t);  return t;}(' + list +')).reduce(function (acc,curVal,index,array){ return ' + value_logic + ';},"")';
+        code += '(function(t){ if (typeof t === "string") return JSON.parse(t);  return t;}(' + list +')).reduce(function (acc,curVal,index,array){ ' + value_logic + ';}';
+        if(value_initvalue && value_initvalue.toString().length>0){
+            code+=','+value_initvalue;   
+        }
+        code+=')';
         code += '';
     
         return [code, javaScript.ORDER_FUNCTION_CALL];
@@ -108,6 +128,11 @@ exports.fieldXML=function(){
                     <block type="variables_get">
                         <field name="VAR">list</field>
                     </block>
+                </value>
+                <value name="initValue">
+                    <shadow type="text">
+                        <field name="TEXT"> </field>
+                    </shadow>
                 </value>
                 <value name="Logic">
                     <shadow type="text">
