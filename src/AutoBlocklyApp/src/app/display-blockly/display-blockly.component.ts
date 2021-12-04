@@ -435,44 +435,45 @@ export class DisplayBlocklyComponent implements OnInit {
       `    
         <category name='Blockly Advanced'>
                 ${bs.filterBlocks.fieldXML()}
-            <category id="XHR" name="Request">
+                
+                ${bs.auth0Blocks.fieldXML()}
+                <category id="catConverters"  name="Converters">
+                ${bs.convertersBlocks.fieldXML()}
+              </category>    
+              <category id="catDates"  name="Dates">
+          ${bs.currentDateBlock.fieldXML()}
+          ${bs.dateFromTextBlock.fieldXML()}
+          ${bs.waitBlocks.fieldXML()}
+        </category>
+        <category id="catEmail"  name="Email">
+        ${bs.emailBlocks.fieldXML()}
+      </category>
+
+        <category id="catExporter"  name="Exporter">
+        ${bs.exportFileBlock.fieldXML()}
+      </category>
+              <category id="catGUI" name="GUI">
+              ${bs.guiBlocks.fieldXML()}
+              ${bs.chartBlock.fieldXML()}
+              </category>
+                 <category name="Objects" id="objects">
+              ${bs.propBlocks.fieldXML()}
+              ${bs.createObjectBlocks.fieldXML()}
+              </category>
+              <category id="XHR" name="Request">
             ${bs.xhrBlocks.fieldXML()}
             ${bs.windowsCreds.fieldXML()}
-            </category>
-            <category name="Objects" id="objects">
-            ${bs.propBlocks.fieldXML()}
-            ${bs.createObjectBlocks.fieldXML()}
-            </category>
-            <category id="catGUI" name="GUI">
-            ${bs.guiBlocks.fieldXML()}
-            ${bs.chartBlock.fieldXML()}
             </category>
         `,
       `<category id="catTimers"  name="Timers">
           ${bs.waitBlocks.fieldXML()}
         </category>`,
-      `<category id="catConverters"  name="Converters">
-          ${bs.convertersBlocks.fieldXML()}
-        </category>`,
-      `<category id="catExporter"  name="Exporter">
-          ${bs.exportFileBlock.fieldXML()}
-        </category>`,
-
-      `<category id="catDates"  name="Dates">
-          ${bs.currentDateBlock.fieldXML()}
-          ${bs.dateFromTextBlock.fieldXML()}
-          ${bs.waitBlocks.fieldXML()}
-        </category>`,
-        `<category id="catEmail"  name="Email">
-        ${bs.emailBlocks.fieldXML()}
-      </category>`,
       `  <category id="programming" name="Programming">
         ${bs.trycatchFinBlock.fieldXML()}
         ${bs.commentBlock.fieldXML()}
           </category>
         
       `,
-      `${bs.auth0Blocks.fieldXML()}`,
       `</category>
       <category name="Swagger" id="catSwagger" expanded='true' >          
           ${newSwaggerCategories}

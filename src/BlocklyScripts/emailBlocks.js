@@ -47,8 +47,8 @@ exports.definitionBlocks = function (blocks, javaScript,BlocklyFieldDropdown ) {
         //   this.setPreviousStatement(true, null);
         //   this.setNextStatement(true, null);
           this.setColour(230);
-       this.setTooltip("");
-       this.setHelpUrl("");
+       this.setTooltip("Please see https://account.sendinblue.com/advanced/api");
+       this.setHelpUrl("https://account.sendinblue.com/advanced/api");
        this.setOutput(true, null);
 
         }
