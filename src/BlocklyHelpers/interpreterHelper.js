@@ -145,16 +145,7 @@ exports.createInterpreter = function(workspace,BlocklyJavaScript){
             let req = new XMLHttpRequest();
           
             req.open('GET', href, true);
-            req.withCredentials = withCreds;
-          if(headers)
-          if(headers.length>0){
-            //alert(JSON.stringify(headers));
-            for(var iHeader=0;iHeader<headers.length;iHeader++){
-              var head=headers[iHeader];
-              req.setRequestHeader(head.name,head.value);
-            }
-          }
-          
+            this.generateDataAndCreds(req, headers, withCreds);          
             req.onreadystatechange = function () {
                 if (req.readyState == 4) {
                     if (req.status >= 200 && req.status < 300) {
@@ -273,28 +264,35 @@ exports.createInterpreter = function(workspace,BlocklyJavaScript){
               console.log('Date time format not suported')
       }
   },
+  generateDataAndCreds(req,headers,withCreds){
+//read https://developer.mozilla.org/en-US/docs/Glossary/CORS-safelisted_request_header
+    if(withCreds)
+        req.withCredentials = withCreds;
+    else{
+        var hasContentType=false;
+        // 
+        if(headers && headers.length>0){        
+        //alert(JSON.stringify(headers));
+            for(var iHeader=0;iHeader<headers.length;iHeader++){
+                var head=headers[iHeader];
+                if(head.name=="Content-Type"){
+                    hasContentType=true;
+                }
+                req.setRequestHeader(head.name,head.value);
+            }
+        };
+        if(!hasContentType){
+            req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        }
+    }
+  },
   doPut : (href, objectToPost, callback,headers,withCreds) => {
     let data = objectToPost;
     //console.log(`sending ${data}`);
     let req = new XMLHttpRequest();
 
     req.open('PUT', href, true);
-    if(withCreds){
-        req.withCredentials = withCreds;
-    }
-    else{
-    // req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-        if(headers && headers.length>0){
-        //alert(JSON.stringify(headers));
-            for(var iHeader=0;iHeader<headers.length;iHeader++){
-                var head=headers[iHeader];
-                req.setRequestHeader(head.name,head.value);
-            }
-        }
-        else{
-            req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-        }
-    }
+    this.generateDataAndCreds(req,headers,withCreds);
     req.onreadystatechange = function () {
         if (req.readyState == 4) {
             if (req.status >= 200 && req.status < 300) {
@@ -329,27 +327,13 @@ exports.createInterpreter = function(workspace,BlocklyJavaScript){
     req.send(data);
   }
 ,
-doDelete : (href, objectToDelete ,callback, headers,withCreds) => {
+doDelete : function (href, objectToDelete ,callback, headers,withCreds) {
     let data = objectToDelete;
     var req = new XMLHttpRequest();
 
   req.open('DELETE', href, true);
   //req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-  if(withCreds){
-  req.withCredentials = withCreds;
-  }
-  else{
-    if(headers && headers.length>0){
-        //alert(JSON.stringify(headers));
-        for(var iHeader=0;iHeader<headers.length;iHeader++){
-        var head=headers[iHeader];
-        req.setRequestHeader(head.name,head.value);
-        }
-    }
-    else{
-        req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    }
-  }
+  this.generateDataAndCreds(req,headers,withCreds); 
   req.onreadystatechange = function () {
       if (req.readyState == 4) {
           if (req.status >= 200 && req.status < 300) {
@@ -385,24 +369,12 @@ doDelete : (href, objectToDelete ,callback, headers,withCreds) => {
 }, 
    doPost : function (href, objectToPost, callback, headers, withCreds) {
     let data = objectToPost;
-    // console.log(`sending ${data}`);
+    console.log(`sending `, data);
     let req = new XMLHttpRequest();
     req.open('POST', href, true);
-    if(withCreds)
-        req.withCredentials = withCreds;
-    else{
-        // 
-        if(headers && headers.length>0){        
-        //alert(JSON.stringify(headers));
-            for(var iHeader=0;iHeader<headers.length;iHeader++){
-                var head=headers[iHeader];
-                req.setRequestHeader(head.name,head.value);
-            }
-        }
-        else{
-            req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-        }
-    }
+    this.generateDataAndCreds(req,headers,withCreds);
+    
+    //req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
     req.onreadystatechange = function () {
         if (req.readyState == 4) {
