@@ -1,5 +1,11 @@
 [
 {
+	"id":"sendinblue",
+	"description":"send in blue email",
+	"categories":"email;http call"
+
+},
+{
 	"id":"reduce",
 	"description":"show reduce usage",
 	"categories":"http call;reduce;array"
