@@ -1,5 +1,11 @@
 [
 {
+	"id":"header",
+	"description":"header and meta swagger",
+	"categories":"swagger;meta"
+
+},
+{
 	"id":"sendinblue",
 	"description":"send in blue email",
 	"categories":"email;http call"

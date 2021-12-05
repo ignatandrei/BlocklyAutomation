@@ -26,5 +26,6 @@ module.exports = {
   trycatchFinBlock: require('./tryCatchFinBlock'),
   chartBlock: require('./chartBlock'),
   emailBlocks: require('./emailBlocks'),
+  htmlblocks: require('./HTMLBlocks'),
 
 };

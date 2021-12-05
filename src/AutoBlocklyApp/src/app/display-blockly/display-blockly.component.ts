@@ -412,6 +412,13 @@ export class DisplayBlocklyComponent implements OnInit {
           return new Blockly.FieldDropdown(arr);
         }
       );
+      bs.htmlblocks.definitionBlocks(
+        Blockly.Blocks,
+        BlocklyJavaScript,
+        function (arr: any[][]) {
+          return new Blockly.FieldDropdown(arr);
+        }
+      );
     var blocks = [
       bs.defaultBlocks.generalBlocks(),
       `    
@@ -438,7 +445,10 @@ export class DisplayBlocklyComponent implements OnInit {
               ${bs.guiBlocks.fieldXML()}
               ${bs.chartBlock.fieldXML()}
               </category>
-                 <category name="Objects" id="objects">
+              <category id="catHTML" name="HTML">
+              ${bs.htmlblocks.fieldXML()}
+              </category>
+              <category name="Objects" id="objects">
               ${bs.propBlocks.fieldXML()}
               ${bs.createObjectBlocks.fieldXML()}
               </category>
