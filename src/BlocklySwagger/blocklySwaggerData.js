@@ -40,7 +40,31 @@ class BlocklyReturnSwagger {
         });
       var code = JSON.stringify(obj);
       return [code, javaScript.ORDER_NONE];
-    }        
+    } ;
+    
+    var nameBlock =`meta_swagger_controllers_actions_${self.name}`;
+      blocks[nameBlock] = {
+        init: function() {
+          this.appendDummyInput()
+              .appendField("categories_actions"+self.name);
+          this.setOutput(true, null);
+          this.setColour(30);
+          this.setTooltip("");
+          this.setHelpUrl(self.swaggerUrl);
+      }
+    };
+      javaScript[nameBlock] = function(block) {
+
+        var categ=self.findCategSwaggerFromPaths();
+        var obj= categ.map(it=>{
+          return {
+            name:it,
+            ops:self.findfieldXMLFunctions(it).map(op=>op.id).filter(op=>op.length>0)
+          }
+        });
+      var code = JSON.stringify(obj);
+      return [code, javaScript.ORDER_NONE];
+    } ;
    };
 
   }

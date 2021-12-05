@@ -662,6 +662,7 @@ ${item.categSwagger()}
 
 <category name='meta' id='meta_${item.name}'>
 <block type='meta_swagger_controllers_${item.name}'></block>
+<block type='meta_swagger_controllers_actions_${item.name}'></block>
 </category>
 
 </category>
