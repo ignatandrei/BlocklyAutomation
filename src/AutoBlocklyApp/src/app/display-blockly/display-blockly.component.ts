@@ -137,7 +137,7 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
 
   myChart:Chart| null = null;
   ShowChart(data: any){
-    var e:HTMLCanvasElement = (document.getElementById('barchart') as any)?.getContext('2d') as HTMLCanvasElement;
+    var e:HTMLCanvasElement = (document.getElementById('barchart'+this.myId) as any)?.getContext('2d') as HTMLCanvasElement;
     if(e == null)
     {
       console.log("not canvas available for chart!");
