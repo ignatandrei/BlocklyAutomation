@@ -230,26 +230,7 @@ export class DisplayBlocklyComponent implements OnInit {
     controller: string
   ): Element[] {
     var xmlList: Element[] = [];
-    var urls = item.operations.filter((it: any) => it.controller == controller);
-  
-    xmlList = item.fieldXMLFunctions
-      .filter((it: any) => {
-        if (it.id == '') return true;
-        var val = it.id + '/';
-        var existInfields = false;
-        urls.forEach((url: any) => {
-          if (val.startsWith(url.id)) existInfields = true;
-        });
-        if(existInfields) return true;
-        
-        urls.forEach((url: any) => {
-          //url has latest / , but can have also {  for parameters
-            var str=url.id.substring(0,url.id.lastIndexOf('/'))+'{';
-          if (val.startsWith(str)) existInfields = true;
-        });
-
-        return existInfields;
-      })
+    xmlList= item.findfieldXMLFunctions(controller)
       .map((it: any) => Blockly.Xml.textToDom(it.gui));
     return xmlList;
   }

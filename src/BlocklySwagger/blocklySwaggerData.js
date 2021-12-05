@@ -30,14 +30,45 @@ class BlocklyReturnSwagger {
       }
     };
       javaScript[nameBlock] = function(block) {
-      var code = '[{name:"Hello World",actions:["asdsad"]}]';
+
+        var categ=self.findCategSwaggerFromPaths();
+        var obj= categ.map(it=>{
+          return {
+            name:it
+            //ops:self.operations.filter(op=>op.controller==it).map(op=>op.id)
+          }
+        });
+      var code = JSON.stringify(obj);
       return [code, javaScript.ORDER_NONE];
     }        
    };
 
   }
   cacheCategSwaggerFromPaths = [];
+  findfieldXMLFunctions(controllerName){
+    var urls = this.operations.filter((it) => it.controller == controllerName);
+  
+    var xmlList = this.fieldXMLFunctions
+      .filter((it) => {
+        if (it.id == '') return true;
+        var val = it.id + '/';
+        var existInfields = false;
+        urls.forEach((url) => {
+          if (val.startsWith(url.id)) existInfields = true;
+        });
+        if(existInfields) return true;
+        
+        urls.forEach((url) => {
+          //url has latest / , but can have also {  for parameters
+            var str=url.id.substring(0,url.id.lastIndexOf('/'))+'{';
+          if (val.startsWith(str)) existInfields = true;
+        });
 
+        return existInfields;
+      });
+      // console.log('x',xmlList);
+      return xmlList;
+  }
   findCategSwaggerFromPaths(){
     if(this.cacheCategSwaggerFromPaths.length>0) return this.cacheCategSwaggerFromPaths;
     var normalized= this.paths
