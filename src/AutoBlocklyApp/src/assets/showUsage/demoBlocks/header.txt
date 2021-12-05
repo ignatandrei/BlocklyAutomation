@@ -13,7 +13,7 @@
     <next>
       <block type="text_print">
         <value name="TEXT">
-          <block type="headers">
+          <block type="HTMLheaders">
             <field name="NAME">H1</field>
             <value name="NAME">
               <shadow type="text">
@@ -31,7 +31,7 @@
             <statement name="DO">
               <block type="text_print">
                 <value name="TEXT">
-                  <block type="headers">
+                  <block type="HTMLheaders">
                     <field name="NAME">H2</field>
                     <value name="NAME">
                       <shadow type="text">

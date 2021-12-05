@@ -109,16 +109,26 @@ export class DisplayBlocklyComponent implements OnInit {
     if(this.myChart !=null){
       this.myChart.destroy();
     };
-    var el=document.getElementById('htmlOutput')!;
+    var el=this.theHtmlOutput();
     el.innerHTML = '';
+    this.fullHtmlData='';
     
+  }
+
+  fullHtmlData:string='';
+  finishHTMLOutput(){
+    this.theHtmlOutput().innerHTML = this.fullHtmlData;
   }
   ShowHTML(data: any) {
     if(data == null)
       return;
     var dt= data.toString();
-    var el=document.getElementById('htmlOutput')!;
+    this.fullHtmlData+=dt;
+    var el=this.theHtmlOutput();
     el.innerHTML += dt;
+  }
+  public theHtmlOutput() : HTMLElement{
+    return document.getElementById('htmlOutput')!;
   }
 
   myChart:Chart| null = null;
@@ -167,6 +177,7 @@ export class DisplayBlocklyComponent implements OnInit {
           'please copy the left output and report there is an error at ' +
             JSON.stringify(e)
         );
+        this.showCodeAndXML = ShowCodeAndXML.ShowCode;
       }
     };
     this.run = bh.interpreterHelper.createInterpreter(
@@ -195,6 +206,7 @@ export class DisplayBlocklyComponent implements OnInit {
         });
         self.showInner += `\n "step_end" : "program executed; see results below"\n}`;
         this.tabulator.FinishGrid();
+        this.finishHTMLOutput();
       }
     );
   }
