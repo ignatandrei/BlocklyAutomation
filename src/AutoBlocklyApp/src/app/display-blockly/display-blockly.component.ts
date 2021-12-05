@@ -71,18 +71,46 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
   ) {
 
     this.myId=++DisplayBlocklyComponent.id;
+    console.log('x_',this.myId);
+    
     //console.log(bs.filterBlocks.definitionBlocks());
     this.ar.paramMap.subscribe((params: any) => {
       this.mustLoadDemoBlock = params.get('demoblock');
     });
-
+    this. InitiateDemos();
     this.ta.receiveData().subscribe(it=>{
       if(it[0]=='DisplayBlocklyComponent'){
         ((this as any)[it[1]] as any)();
       }
     });
   }
+  InitiateDemos(){
+    var data: DemoBlocks[] = this.settings.demoBlocks;
+    
+    this.demos = data.sort((a, b) =>
+      a.description.localeCompare(b.description)
+    );
 
+    
+      var categories = data
+        .map((it) => it.categories)
+        .filter((it) => it?.length > 0)
+        .flatMap((it) => it.split(';'))
+        .filter((it) => it?.length > 0);
+      this.demosCategories.set('All', this.demos);
+      categories.forEach((element) => {
+        this.demosCategories.set(
+          element,
+          data
+            .filter((it) => it.categories?.length > 0)
+            .filter(
+              (it) =>
+                (';' + it.categories + ';').indexOf(';' + element + ';') > -1
+            )
+        );
+      });
+    
+  }
   createIntro() {
     
     var title: string = this.settings.settings?.title || '';
@@ -343,29 +371,7 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
       this.CategorySwaggerHidden(it)
     ).join('');
     //this.loadDemo.getDemoBlocks().subscribe(
-    var data: DemoBlocks[] = this.settings.demoBlocks;
-    {
-      this.demos = data.sort((a, b) =>
-        a.description.localeCompare(b.description)
-      );
-      var categories = data
-        .map((it) => it.categories)
-        .filter((it) => it?.length > 0)
-        .flatMap((it) => it.split(';'))
-        .filter((it) => it?.length > 0);
-      this.demosCategories.set('All', this.demos);
-      categories.forEach((element) => {
-        this.demosCategories.set(
-          element,
-          data
-            .filter((it) => it.categories?.length > 0)
-            .filter(
-              (it) =>
-                (';' + it.categories + ';').indexOf(';' + element + ';') > -1
-            )
-        );
-      });
-    }
+    
     // );
     const gridElement = document.getElementById('steps'+this.myId);
     if (gridElement == null) {

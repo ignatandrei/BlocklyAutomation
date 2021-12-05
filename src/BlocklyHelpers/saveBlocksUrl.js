@@ -18,7 +18,7 @@ exports.restoreState = function(BLocklyXML,workspace, id){
     var cname= 'BlocklyState'+(id?id:"");
     var xml_text = window.localStorage.getItem(cname);
     //<xml xmlns="https://developers.google.com/blockly/xml"></xml>
-    if(xml_text.length>62){
+    if(xml_text?.length>62){
         var xml = BLocklyXML.textToDom(xml_text);
         BLocklyXML.clearWorkspaceAndLoadFromXml(xml, workspace);
     }
