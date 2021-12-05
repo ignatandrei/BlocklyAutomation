@@ -1,7 +1,29 @@
 [
 {
+	"id":"header",
+	"description":"header and meta swagger",
+	"categories":"swagger;meta;html"
+
+},
+{
+	"id":"sendinblue",
+	"description":"send in blue email",
+	"categories":"email;http call"
+
+},
+{
+	"id":"reduce",
+	"description":"show reduce usage",
+	"categories":"http call;reduce;array"
+},
+{
+	"id":"weatherChart",
+	"description":"show fake weather chart",
+	"categories":"http call;chart"
+},
+{
 	"id":"chart",
-	"description":"show chart usage",
+	"description":"show chart USA population",
 	"categories":"http call;chart"
 },
 {
