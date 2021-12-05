@@ -7,15 +7,15 @@ function formatDate(date) {
         `${formatInt(date.getHours())}${formatInt(date.getMinutes())}${formatInt(date.getSeconds())}`;
 
 }
-exports.saveState = function(BLocklyXML, Workspace){
-    var cname= 'BlocklyState';
+exports.saveState = function(BLocklyXML, Workspace, id){
+    var cname= 'BlocklyState'+(id?id:"");
     var xml = BLocklyXML.workspaceToDom(Workspace, true);
     var xml_text = BLocklyXML.domToPrettyText(xml);
     window.localStorage.setItem(cname, xml_text);
 }
-exports.restoreState = function(BLocklyXML,workspace){
+exports.restoreState = function(BLocklyXML,workspace, id){
     
-    var cname= 'BlocklyState';
+    var cname= 'BlocklyState'+(id?id:"");
     var xml_text = window.localStorage.getItem(cname);
     //<xml xmlns="https://developers.google.com/blockly/xml"></xml>
     if(xml_text.length>62){

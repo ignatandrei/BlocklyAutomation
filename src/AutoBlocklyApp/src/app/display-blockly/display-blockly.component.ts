@@ -38,7 +38,7 @@ enum ShowCodeAndXML{
   templateUrl: './display-blockly.component.html',
   styleUrls: ['./display-blockly.component.css'],
 })
-export class DisplayBlocklyComponent implements OnInit {
+export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
 
 
   //monaco settings
@@ -59,6 +59,8 @@ export class DisplayBlocklyComponent implements OnInit {
   public mustLoadDemoBlock: string = '';
   // private directLinkDemo:string='';
   private intro: IntroJs = introJs();
+  static id:number=0;
+  myId:number=0;
   constructor(
     private tabulator: TabulatorHelper,
     private settings: AppDetails,
@@ -67,6 +69,8 @@ export class DisplayBlocklyComponent implements OnInit {
     private ta :TransmitAction,
     private snackBar: MatSnackBar
   ) {
+
+    this.myId=++DisplayBlocklyComponent.id;
     //console.log(bs.filterBlocks.definitionBlocks());
     this.ar.paramMap.subscribe((params: any) => {
       this.mustLoadDemoBlock = params.get('demoblock');
@@ -128,7 +132,7 @@ export class DisplayBlocklyComponent implements OnInit {
     el.innerHTML += dt;
   }
   public theHtmlOutput() : HTMLElement{
-    return document.getElementById('htmlOutput')!;
+    return document.getElementById('htmlOutput'+this.myId)!;
   }
 
   myChart:Chart| null = null;
@@ -269,6 +273,8 @@ export class DisplayBlocklyComponent implements OnInit {
     return xmlList;
   }
   ngOnInit(): void {
+  }
+  ngAfterViewInit(): void {
     this.StartRegister();
     //this.createIntro();
     fromEvent(window, 'TabDownload').subscribe(it=>this.tabulator.copyCSV());
@@ -361,7 +367,7 @@ export class DisplayBlocklyComponent implements OnInit {
       });
     }
     // );
-    const gridElement = document.getElementById('steps');
+    const gridElement = document.getElementById('steps'+this.myId);
     if (gridElement == null) {
       window.alert('gridElement is null');
       return;
@@ -506,7 +512,7 @@ export class DisplayBlocklyComponent implements OnInit {
   showBlocksDefinition: string=''
 
   SaveBlocks() {
-    bh.saveBlocksUrl.saveState(Blockly.Xml, this.demoWorkspace);
+    bh.saveBlocksUrl.saveState(Blockly.Xml, this.demoWorkspace, this.myId);
   }
   public ShowBlocksDefinition(): boolean{
     return this.showCodeAndXML === ShowCodeAndXML.ShowBlocksDefinition;
@@ -608,7 +614,7 @@ export class DisplayBlocklyComponent implements OnInit {
   }
   public toolboxXML: string = '';
   private initialize(defaultBlocks: string[]) {
-    const blocklyDiv = document.getElementById('blocklyDiv');
+    const blocklyDiv = document.getElementById('blocklyDiv'+this.myId);
     if (blocklyDiv == null) {
       window.alert('blocklyDiv is null');
       return;
@@ -672,7 +678,7 @@ export class DisplayBlocklyComponent implements OnInit {
     });
   }
   public restoreBlocks() {
-    bh.saveBlocksUrl.restoreState(Blockly.Xml, this.demoWorkspace);
+    bh.saveBlocksUrl.restoreState(Blockly.Xml, this.demoWorkspace,this.myId);
   }
   public addToToolboxSwagger(item:any,myComponent: DisplayBlocklyComponent){
 

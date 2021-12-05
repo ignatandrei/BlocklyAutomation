@@ -45,12 +45,14 @@ import { AppDetails } from './AppDetails';
 import { Observable, ObservableLike } from 'rxjs';
 import { MonacoEditorModule } from 'ngx-monaco-editor';
 import { TransmitAction } from './TransmitAction';
+import { BlocklyStudioComponent } from './blockly-studio/blockly-studio.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DisplayBlocklyComponent,
     PrimaryNavigComponent,
+    BlocklyStudioComponent,
   ],
   imports: [
 

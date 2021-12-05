@@ -66,7 +66,7 @@
         </mat-grid-tile-header>
         <mat-grid-tile>
           <div
-            id="blocklyDiv"
+            [id]="'blocklyDiv'+this.myId"
             style="display: inline-block; height: 100%; width: 100%"
            >
           </div>
@@ -85,13 +85,13 @@
         <mat-expansion-panel >
           <mat-expansion-panel-header>
             <mat-panel-title>
-              Output
+              Output Grid
             </mat-panel-title>
             <mat-panel-description>
               Click to see grid of output values
             </mat-panel-description>
           </mat-expansion-panel-header>
-          <div id="steps"></div>
+          My Text <div [id]="'steps'+myId"></div>
         </mat-expansion-panel>
         <mat-expansion-panel >
           <mat-expansion-panel-header>
@@ -116,7 +116,7 @@
               Click to see output as HTML
             </mat-panel-description>
           </mat-expansion-panel-header>
-          <div id="htmlOutput">
+          <div [id]="'htmlOutput'+myId">
           </div>
         </mat-expansion-panel>
       </mat-accordion>  

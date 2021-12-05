@@ -375,9 +375,12 @@ exports.definitionBlocks = function (blocks, javaScript,BlocklyExtensions, Block
         },
       
       };
-      
+      try{
       BlocklyExtensions.registerMutator('controls_create_mutator', objectCreateMutator, null, ['object_field']);
-
+      }
+      catch(e){
+        //already registered
+      }
 }
 
 exports.fieldXML = function () {
