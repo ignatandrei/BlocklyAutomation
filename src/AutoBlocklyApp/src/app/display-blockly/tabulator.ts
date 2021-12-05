@@ -226,10 +226,10 @@ Headers(allHeaders:string[]): Tabulator.ColumnDefinition[] {
                                     data: arr,
                                     autoColumns: true,
                                     layout: "fitDataFill",
-                                    headerSort: false,
-                                    tooltips: function (cell:Tabulator.CellComponent) {
-                                        return cell.getColumn().getField() + " - " + JSON.stringify(cell.getValue()); //return cells "field - value";
-                                    }
+                                    // headerSort: false,
+                                    // tooltips: function (cell:Tabulator.CellComponent) {
+                                    //     return cell.getColumn().getField() + " - " + JSON.stringify(cell.getValue()); //return cells "field - value";
+                                    // }
                                 } as Tabulator.Options);
                             });
                             return "<div id='" + id + "'>" + value + "</div>";

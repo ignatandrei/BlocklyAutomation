@@ -13,6 +13,29 @@ class BlocklyReturnSwagger {
   nameCategSwagger() {
     return `catSwagger${this.findHostNameRegular()}_${this.name}`;
   }
+
+
+  metaBlocks(){
+    var self=this;
+    return function (blocks, javaScript) {
+      var nameBlock =`meta_swagger_controllers_${self.name}`;
+      blocks[nameBlock] = {
+        init: function() {
+          this.appendDummyInput()
+              .appendField("categories_"+self.name);
+          this.setOutput(true, null);
+          this.setColour(30);
+          this.setTooltip("");
+          this.setHelpUrl(self.swaggerUrl);
+      }
+    };
+      javaScript[nameBlock] = function(block) {
+      var code = '[{name:"Hello World",actions:["asdsad"]}]';
+      return [code, javaScript.ORDER_NONE];
+    }        
+   };
+
+  }
   cacheCategSwaggerFromPaths = [];
 
   findCategSwaggerFromPaths(){

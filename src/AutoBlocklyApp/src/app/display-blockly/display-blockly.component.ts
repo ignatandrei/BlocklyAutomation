@@ -305,6 +305,7 @@ export class DisplayBlocklyComponent implements OnInit {
       };
       e(Blockly.Blocks, BlocklyJavaScript, image);
     }
+    api.metaBlocks()(Blockly.Blocks, BlocklyJavaScript);
     return api;
   }
 
@@ -677,6 +678,11 @@ var replaceCategory=`<category name='${item.name}'>
 ${newCateg}
 </category>
 ${item.categSwagger()}
+
+<category name='meta' id='meta_${item.name}'>
+<block type='meta_swagger_controllers_${item.name}'></block>
+</category>
+
 </category>
 `;
 // console.log('x',replaceCategory)
