@@ -106,12 +106,23 @@ export class DisplayBlocklyComponent implements OnInit {
     this.step = 0;
     this.showInner = '';
     this.tabulator.ClearDataGrid();
-  }
-  myChart:Chart| null = null;
-  ShowChart(data: any){
     if(this.myChart !=null){
       this.myChart.destroy();
     };
+    var el=document.getElementById('htmlOutput')!;
+    el.innerHTML = '';
+    
+  }
+  ShowHTML(data: any) {
+    if(data == null)
+      return;
+    var dt= data.toString();
+    var el=document.getElementById('htmlOutput')!;
+    el.innerHTML += dt;
+  }
+
+  myChart:Chart| null = null;
+  ShowChart(data: any){
     var e:HTMLCanvasElement = (document.getElementById('barchart') as any)?.getContext('2d') as HTMLCanvasElement;
     if(e == null)
     {
@@ -176,6 +187,7 @@ export class DisplayBlocklyComponent implements OnInit {
         // console.log(`obtained ${data}`);
         self.tabulator.AddDataToGrid(data);
         self.ShowChart(data);
+        self.ShowHTML(data);
       },
       () => {
         this.snackBar.open('Program end', 'Done!', {

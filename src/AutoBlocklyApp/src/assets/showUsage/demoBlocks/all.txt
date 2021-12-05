@@ -2,7 +2,7 @@
 {
 	"id":"header",
 	"description":"header and meta swagger",
-	"categories":"swagger;meta"
+	"categories":"swagger;meta;html"
 
 },
 {
