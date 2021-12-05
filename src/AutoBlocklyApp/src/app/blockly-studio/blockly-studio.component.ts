@@ -9,31 +9,37 @@ import { DisplayBlocklyComponent } from '../display-blockly/display-blockly.comp
 export class BlocklyStudioComponent implements OnInit,AfterViewInit {
 
   data:number[]=[];
-  
+  selectedTabIndex:number=0;
 
   @ViewChildren('vcr', { read: ViewContainerRef }) components?:QueryList<ViewContainerRef>;
-  nrTabs: number=3;
-  numbers:number[]=[];
+ 
+  numbers:number[]=[0];
 
   constructor(public fooInjector: Injector, private resolver: ComponentFactoryResolver) { 
-    this.numbers = Array(this.nrTabs).fill(1).map((x,i)=>i); // [0,1,2,3,4]
+    
+  }
+  addTab(){
+    console.log('x',this.selectedTabIndex);
+    this.numbers.push(this.numbers.length);
+    console.log('y',this.numbers.length-1);
+    this.selectedTabIndex=this.numbers.length-1;
   }
   changeSelected(index:number){
     if(this.data.filter(it=>it == index).length>0)
       return;
     this.data.push(index);
-    this.loadBar(index).then(()=>{
-      console.log('loaded'+ index);
+    this.loadBar(index).then((it)=>{
+      console.log('loaded'+ it);
     });
   }
   ngAfterViewInit(): void {
     this.data.push(0);
-    this.loadBar(0).then(()=>{
-      console.log('loaded');
+    this.loadBar(0).then((it)=>{
+      console.log('loaded tab' +it);
     });
     
   }
-  async loadBar(index:number) {
+  async loadBar(index:number): Promise<number> {
     try{     
      
       const b = await import(`../display-blockly/display-blockly.component`);
@@ -47,6 +53,7 @@ export class BlocklyStudioComponent implements OnInit,AfterViewInit {
     catch(e){
       console.error("loading"+index,e);
     }
+    return index;
   }
   ngOnInit(): void {
 
