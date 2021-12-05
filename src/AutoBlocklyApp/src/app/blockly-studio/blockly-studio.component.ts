@@ -8,8 +8,8 @@ import { DisplayBlocklyComponent } from '../display-blockly/display-blockly.comp
 })
 export class BlocklyStudioComponent implements OnInit,AfterViewInit {
 
-  data:Type<DisplayBlocklyComponent>[]=[];
-  barRef: ComponentRef<DisplayBlocklyComponent>[]=[];
+  data:number[]=[];
+  
 
   @ViewChildren('vcr', { read: ViewContainerRef }) components?:QueryList<ViewContainerRef>;
   nrTabs: number=3;
@@ -19,25 +19,29 @@ export class BlocklyStudioComponent implements OnInit,AfterViewInit {
     this.numbers = Array(this.nrTabs).fill(1).map((x,i)=>i); // [0,1,2,3,4]
   }
   changeSelected(index:number){
+    if(this.data.filter(it=>it == index).length>0)
+      return;
+    this.data.push(index);
     this.loadBar(index).then(()=>{
       console.log('loaded'+ index);
     });
   }
   ngAfterViewInit(): void {
+    this.data.push(0);
     this.loadBar(0).then(()=>{
       console.log('loaded');
     });
     
   }
   async loadBar(index:number) {
-    try{
+    try{     
+     
       const b = await import(`../display-blockly/display-blockly.component`);
       const factory = this.resolver.resolveComponentFactory(b.DisplayBlocklyComponent);
-      console.log('X',this.components?.length);
       var vcr=this.components?.get(index);
       
       if(vcr != null)
-        this.barRef.push( vcr.createComponent(factory));
+        ( vcr.createComponent(factory));
     
     }
     catch(e){

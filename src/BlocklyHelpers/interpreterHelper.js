@@ -145,7 +145,7 @@ exports.createInterpreter = function(workspace,BlocklyJavaScript){
             let req = new XMLHttpRequest();
           
             req.open('GET', href, true);
-            this.generateDataAndCreds(req, headers, withCreds);          
+            this.generateDataAndCreds(req, headers, withCreds,false);          
             req.onreadystatechange = function () {
                 if (req.readyState == 4) {
                     if (req.status >= 200 && req.status < 300) {
@@ -161,6 +161,7 @@ exports.createInterpreter = function(workspace,BlocklyJavaScript){
         
         
                     } else {
+                        
                         var answer = JSON.stringify({
                             'origHref': href,
                             'objectToSend': '',
@@ -264,7 +265,7 @@ exports.createInterpreter = function(workspace,BlocklyJavaScript){
               console.log('Date time format not suported')
       }
   },
-  generateDataAndCreds(req,headers,withCreds){
+  generateDataAndCreds(req,headers,withCreds,hasSomethingToSend){
 //read https://developer.mozilla.org/en-US/docs/Glossary/CORS-safelisted_request_header
     if(withCreds)
         req.withCredentials = withCreds;
@@ -281,9 +282,9 @@ exports.createInterpreter = function(workspace,BlocklyJavaScript){
                 req.setRequestHeader(head.name,head.value);
             }
         };
-        if(!hasContentType){
-            req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-        }
+         if(hasSomethingToSend && !hasContentType){
+             req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+         }
     }
   },
   doPut : (href, objectToPost, callback,headers,withCreds) => {
@@ -292,7 +293,7 @@ exports.createInterpreter = function(workspace,BlocklyJavaScript){
     let req = new XMLHttpRequest();
 
     req.open('PUT', href, true);
-    this.generateDataAndCreds(req,headers,withCreds);
+    this.generateDataAndCreds(req,headers,withCreds,objectToPost?true:false);
     req.onreadystatechange = function () {
         if (req.readyState == 4) {
             if (req.status >= 200 && req.status < 300) {
@@ -333,7 +334,7 @@ doDelete : function (href, objectToDelete ,callback, headers,withCreds) {
 
   req.open('DELETE', href, true);
   //req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-  this.generateDataAndCreds(req,headers,withCreds); 
+  this.generateDataAndCreds(req,headers,withCreds,objectToDelete?true:false); 
   req.onreadystatechange = function () {
       if (req.readyState == 4) {
           if (req.status >= 200 && req.status < 300) {
@@ -372,7 +373,7 @@ doDelete : function (href, objectToDelete ,callback, headers,withCreds) {
     console.log(`sending `, data);
     let req = new XMLHttpRequest();
     req.open('POST', href, true);
-    this.generateDataAndCreds(req,headers,withCreds);
+    this.generateDataAndCreds(req,headers,withCreds, objectToPost?true:false);
     
     //req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
