@@ -18,7 +18,7 @@ export class PrimaryNavigComponent implements OnInit {
   demoBlocks: DemoBlocks[]=[];
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
-      map(result => result.matches),
+      map(result => result.matches || true ),
       shareReplay()
     );
     public version:string=Settings.version;
