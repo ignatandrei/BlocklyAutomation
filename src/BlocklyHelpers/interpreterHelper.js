@@ -57,8 +57,26 @@ exports.createInterpreter = function(workspace,BlocklyJavaScript){
             highlightPause = true;
           },
 
-      
-      
+          nextStep: function(self,callBackProgramComplete) {
+            console.log('next step');
+
+            if (self.myInterpreter.step()) {
+                // var s1=self;
+                // var s2= callBackProgramComplete;
+                // console.log('s1',s1);
+              setTimeout((a,b)=>{a.nextStep(a,b);}, 10,self,callBackProgramComplete);
+            }
+            else
+                {
+                    if(callBackProgramComplete)
+                          callBackProgramComplete();
+                        else
+                          console.log('\n\n<< Program complete >>');
+                        self.resetInterpreter();
+                        self.resetStepUi(false);
+                }
+          }
+        ,
         runCode: function( newInterpreterConstructor, callBackData,callBackProgramComplete , code) {
             console.log('z',code);
             if(code == ''){
@@ -71,12 +89,19 @@ exports.createInterpreter = function(workspace,BlocklyJavaScript){
             }
             this.generateCodeAndLoadIntoInterpreter();
             var self=this;
+            self.myInterpreter = newInterpreterConstructor(code,(G,I)=> self.initApiJS(G,I, self, callBackData,callBackProgramComplete ));
+            if(window["runOneByOne"]==1){
+                this.nextStep(self,callBackProgramComplete);
+                return;
+            }
+            
             setTimeout(function () {
                 this.highlightPause=false;
                 
                 // console.log(self.latestCode);
                 // console.log(self.BlocklyJavaScript);
-                self.myInterpreter = newInterpreterConstructor(code,(G,I)=> self.initApiJS(G,I, self, callBackData,callBackProgramComplete ));
+                
+                
                 self.runner = function() {
                     if (self.myInterpreter) {
                         // debugger;
