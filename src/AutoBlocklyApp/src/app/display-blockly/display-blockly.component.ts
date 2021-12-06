@@ -356,7 +356,9 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
         var image = `assets/httpImages/${opKey}.png`;
         return new Blockly.FieldImage(image, 90, 20, opKey);
       };
-      e(Blockly.Blocks, BlocklyJavaScript, image);
+      e(Blockly.Blocks, BlocklyJavaScript, image,(arr: any[][]) => {
+        return new Blockly.FieldDropdown(arr);
+      });
     }
     api.metaBlocks()(Blockly.Blocks, BlocklyJavaScript);
     return api;

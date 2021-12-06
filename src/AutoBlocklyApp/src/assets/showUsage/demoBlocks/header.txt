@@ -19,6 +19,18 @@
               <shadow type="text">
                 <field name="TEXT">MSPC</field>
               </shadow>
+              <block type="getproperty">
+                <field name="objectName">object</field>
+                <field name="prop">property</field>
+                <value name="ObjectToChange">
+                  <block type="meta_swagger_controllers_MSPC"></block>
+                </value>
+                <value name="PropertyName">
+                  <shadow type="text">
+                    <field name="TEXT">name</field>
+                  </shadow>
+                </value>
+              </block>
             </value>
           </block>
         </value>
@@ -26,7 +38,18 @@
           <block type="controls_forEach">
             <field name="VAR" id="9]SFc)y}%}W9;2r02Mcu">i</field>
             <value name="LIST">
-              <block type="meta_swagger_controllers_MSPC"></block>
+              <block type="getproperty">
+                <field name="objectName">object</field>
+                <field name="prop">property</field>
+                <value name="ObjectToChange">
+                  <block type="meta_swagger_controllers_MSPC"></block>
+                </value>
+                <value name="PropertyName">
+                  <shadow type="text">
+                    <field name="TEXT">categories</field>
+                  </shadow>
+                </value>
+              </block>
             </value>
             <statement name="DO">
               <block type="text_print">

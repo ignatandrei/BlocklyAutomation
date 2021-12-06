@@ -38,6 +38,7 @@ class BlocklyReturnSwagger {
             //ops:self.operations.filter(op=>op.controller==it).map(op=>op.id)
           }
         });
+      obj ={'name':self.name,'categories':obj};
       var code = JSON.stringify(obj);
       return [code, javaScript.ORDER_NONE];
     } ;
@@ -62,6 +63,7 @@ class BlocklyReturnSwagger {
             ops:self.findfieldXMLFunctions(it).map(op=>op.id).filter(op=>op.length>0)
           }
         });
+      obj ={'name':self.name,'categories':obj};
       var code = JSON.stringify(obj);
       return [code, javaScript.ORDER_NONE];
     } ;

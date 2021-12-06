@@ -19,9 +19,9 @@ export class BlocklyStudioComponent implements OnInit,AfterViewInit {
     
   }
   addTab(){
-    console.log('x',this.selectedTabIndex);
+    // console.log('x',this.selectedTabIndex);
     this.numbers.push(this.numbers.length);
-    console.log('y',this.numbers.length-1);
+    // console.log('y',this.numbers.length-1);
     this.selectedTabIndex=this.numbers.length-1;
   }
   changeSelected(index:number){
