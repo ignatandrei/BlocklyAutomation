@@ -27,10 +27,10 @@ import Chart from 'chart.js/auto';
 import { fromEvent } from 'rxjs';
 enum ShowCodeAndXML{
   ShowNone=0,
-  ShowCode=1,
+  ShowBlocksDefinition=1,
   ShowXML=2,
   ShowOutput=3,
-  ShowBlocksDefinition=4,
+  ShowCode=4,
   Stop=  100
 }
 @Component({
@@ -213,9 +213,12 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
     
     this.snackBar.open('Program start', 'Executing...');
     var self = this;
+    var code=this.run.latestCode;
+    var jsCode=this.showJSCode;
+    self.CalculateXMLAndCode();
     var f = (latestCode: string, initApi: any) => {
       try {
-        return new Interpreter(this.run.latestCode, initApi);
+        return new Interpreter(latestCode, initApi);
       } catch (e) {
         self.CalculateXMLAndCode();
         window.alert(
@@ -232,7 +235,14 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
     this.clearOutput();
     this.showCodeAndXML = ShowCodeAndXML.ShowOutput;
     this.showInner = '{ "step_start": "start program",';
-    var self = this;
+    
+    console.log('x',code);
+    console.log('y',jsCode);
+    if(code !=  jsCode){
+      if(window.confirm('Do you want to run the code modified by you ?'))
+        code = jsCode;
+        this.showJSCode=jsCode;
+    }
     this.run.runCode(
       f,
       (data: any) => {
@@ -253,7 +263,8 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
         self.showInner += `\n "step_end" : "program executed; see results below"\n}`;
         this.tabulator.FinishGrid();
         this.finishHTMLOutput();
-      }
+      },
+      code
     );
   }
   public ShowDemo(id: string) {

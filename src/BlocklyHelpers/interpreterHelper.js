@@ -59,8 +59,11 @@ exports.createInterpreter = function(workspace,BlocklyJavaScript){
 
       
       
-        runCode: function( newInterpreterConstructor, callBackData,callBackProgramComplete ) {
-            // console.log(this.BlocklyJavaScript);
+        runCode: function( newInterpreterConstructor, callBackData,callBackProgramComplete , code) {
+            console.log('z',code);
+            if(code == ''){
+                code = this.latestCode;
+            }
             if (!this.myInterpreter) {
                 // First statement of this code.
                 // Clear the program output.
@@ -73,9 +76,10 @@ exports.createInterpreter = function(workspace,BlocklyJavaScript){
                 
                 // console.log(self.latestCode);
                 // console.log(self.BlocklyJavaScript);
-                self.myInterpreter = newInterpreterConstructor(self.latestCode,(G,I)=> self.initApiJS(G,I, self, callBackData,callBackProgramComplete ));
+                self.myInterpreter = newInterpreterConstructor(code,(G,I)=> self.initApiJS(G,I, self, callBackData,callBackProgramComplete ));
                 self.runner = function() {
                     if (self.myInterpreter) {
+                        // debugger;
                       var hasMore = self.myInterpreter.run();
                       if (hasMore) {
                         // Execution is currently blocked by some async call.
