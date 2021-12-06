@@ -496,7 +496,7 @@ doDelete : function (href, objectToDelete ,callback, headers,withCreds) {
 
             
           var wrapper = function (text) {
-                  window.open(text);
+                  window.open(text,'_blank');
               };
           interpreter.setProperty(globalObject, 'open',
                   interpreter.createNativeFunction(wrapper));

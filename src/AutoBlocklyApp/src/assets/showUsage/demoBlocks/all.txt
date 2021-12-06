@@ -6,6 +6,12 @@
 
 },
 {
+	"id":"emailOpen",
+	"description":"open local email",
+	"categories":"email"
+
+},
+{
 	"id":"sendinblue",
 	"description":"send in blue email",
 	"categories":"email;http call"

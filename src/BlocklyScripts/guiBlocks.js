@@ -26,7 +26,9 @@ exports.definitionBlocks=function (blocks, javaScript,BlocklyFieldLabelSerializa
         // Print statement.
         var msg = javaScript.valueToCode(block, 'TEXT',
             /*javaScript.*/ORDER_NONE) || '\'\'';
-        return 'open(' + msg + ');\n';
+
+        
+        return 'if((typeof '+msg+' == "object") && ("to" in '+msg+')){open("mailto:'+ msg.to+'")}else{ open(' + msg + ')};\n';
       };
 
       blocks['text_message'] = {
