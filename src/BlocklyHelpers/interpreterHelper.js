@@ -167,7 +167,9 @@ exports.createInterpreter = function(workspace,BlocklyJavaScript){
                             'objectToSend': '',
                             'status': req.status,
                             'statusOK': false,
-                            'text': req.responseText
+                            'text': req.responseText,
+                            'headers' : req.getAllResponseHeaders()
+        
         
                         });
                         return callback(answer);
@@ -314,7 +316,10 @@ exports.createInterpreter = function(workspace,BlocklyJavaScript){
                     'objectToSend': objectToPost,
                     'status': req.status,
                     'statusOK': false,
-                    'text': req.responseText
+                    'text': req.responseText,
+                    'objectToSend': objectToPost,
+                    'headers' : req.getAllResponseHeaders()
+
 
                 });
                 return callback(answer);
@@ -355,7 +360,10 @@ doDelete : function (href, objectToDelete ,callback, headers,withCreds) {
                   'objectToSend': '',
                   'status': req.status,
                   'statusOK': false,
-                  'text': req.responseText
+                  'text': req.responseText,
+                  'objectToSend': objectToDelete,
+                  'headers' : req.getAllResponseHeaders()
+
 
               });
               return callback(answer);
@@ -392,12 +400,15 @@ doDelete : function (href, objectToDelete ,callback, headers,withCreds) {
 
 
             } else {
+                console.log('x_',req);
                 var answer = JSON.stringify({
                     'origHref': href,
                     'objectToSend': objectToPost,
                     'status': req.status,
                     'statusOK': false,
-                    'text': req.responseText
+                    'text': req.responseText,
+                    'objectToSend': objectToPost,
+                    'headers' : req.getAllResponseHeaders()
 
                 });
                 return callback(answer);

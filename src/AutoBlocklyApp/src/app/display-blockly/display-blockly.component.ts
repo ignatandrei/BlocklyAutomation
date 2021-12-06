@@ -71,7 +71,7 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
   ) {
 
     this.myId=++DisplayBlocklyComponent.id;
-    console.log('x_',this.myId);
+//    console.log('x_',this.myId);
     
     //console.log(bs.filterBlocks.definitionBlocks());
     this.ar.paramMap.subscribe((params: any) => {
