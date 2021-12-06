@@ -445,17 +445,25 @@ class BlocklyReturnSwagger {
                 name += ":"+it.type;
               }
               else{
-                if(it.schema && it.schema.type){
-                  if(it.schema.type=='object'){
-                    var val = it.schema["$$ref"]||'';
-                    if(val.length>0){
-                      val = val.substring(val.lastIndexOf("/")+1);
-                      name+=":"+ val;
-                    }
 
+                if(it.schema ){
+                  
+                  if(it.schema.enum && ("$$ref" in it.schema)){
+                    var s=it.schema["$$ref"].split("/");
+                    name += "=>"+s[s.length-1];
                   }
-                  else{
-                    name += ":"+it.schema.type;
+                  else if(it.schema.type){
+                    if(it.schema.type=='object'){
+                      var val = it.schema["$$ref"]||'';
+                      if(val.length>0){
+                        val = val.substring(val.lastIndexOf("/")+1);
+                        name+=":"+ val;
+                      }
+
+                    }
+                    else{
+                      name += ":"+it.schema.type;
+                    }
                   }
                 }
               }
