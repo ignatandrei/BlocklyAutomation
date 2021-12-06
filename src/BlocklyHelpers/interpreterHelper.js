@@ -440,6 +440,10 @@ doDelete : function (href, objectToDelete ,callback, headers,withCreds) {
         interpreter.setProperty(globalObject, 'errHandler',
             interpreter.createNativeFunction(wrapper));
 
+
+           
+                
+
         var withCredsForDomain = interpreter.nativeToPseudo({ '(localSite)': false });
         interpreter.setProperty(globalObject, 'withCredsForDomain', withCredsForDomain);
 
@@ -454,6 +458,15 @@ doDelete : function (href, objectToDelete ,callback, headers,withCreds) {
               interpreter.createNativeFunction(wrapper));
 
 
+              var wrapper = function(msg, id, item) {
+                thisClass.highlightBlock(id);
+                console.log(msg, id,item);
+                debugger;
+              };
+              interpreter.setProperty(globalObject, 'startDebugger',
+                  interpreter.createNativeFunction(wrapper));
+    
+    
             // Add an API function for the alert() block, generated for "text_print" blocks.
             var wrapper = function(text) {
               text = text ? text.toString() : '';
