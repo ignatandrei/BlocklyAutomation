@@ -583,7 +583,20 @@ class BlocklyReturnSwagger {
 
         var replaceUrl = parameters
           .filter((it) => it.in == "path" || it.in == "query")
-          .map((it) => `strUrl = strUrl.replace("{${it.name}}",${it.name});`);
+          //.map((it) => `strUrl = strUrl.replace("{${it.name}}",${it.name});`)
+          .map((it) => `
+          //this gives error cannot read property 'call' of undefined in acorn
+          //strUrl = strUrl.replace("{${it.name}}",${it.name});
+          {
+            var replaceFInd = "{${it.name}}";
+            var index= strUrl.indexOf(replaceFInd);
+            if(index>=0){
+              var strUrlReplace = strUrl.substring(0,index)+ ${it.name} + strUrl.substring(index+replaceFInd.length);
+              strUrl = strUrlReplace;
+            }
+
+          };`)
+          ;
         code += replaceUrl.join("\n");
 
         code +=`\n{var res= ${operationKey}Xhr(strUrl`;
