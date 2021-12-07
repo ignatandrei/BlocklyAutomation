@@ -17,14 +17,10 @@
       <div style="display: inline-block; height: 5%; width: 100%">
         <button mat-raised-button color="primary" (click)="LoadSwagger()">
           <mat-icon>file_upload</mat-icon>
-          Load Swagger
+          Load Swagger/OpenAPI
         </button>
 
-        <button mat-raised-button color="primary" (click)="ShowInnerWorkings()">
-          <mat-icon>code</mat-icon>
-          {{ ShowSelection() }}
-        </button>
-
+        
         &nbsp;
         <button mat-raised-button color="primary" (click)="SaveBlocks()">
           <mat-icon>save</mat-icon>
@@ -53,6 +49,11 @@
         </button>
         &nbsp;
         <input type="file" (change)="changeListener($event)" />
+
+        <button mat-raised-button color="primary" (click)="ShowInnerWorkings()">
+          <mat-icon>code</mat-icon>
+          {{ ShowSelection() }}
+        </button>
 
         <button
           mat-raised-button

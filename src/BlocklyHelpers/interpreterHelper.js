@@ -429,7 +429,7 @@ doDelete : function (href, objectToDelete ,callback, headers,withCreds) {
 
 
             } else {
-                console.log('x_',req);
+                // console.log('x_',req);
                 var answer = JSON.stringify({
                     'origHref': href,
                     'objectToSend': objectToPost,

@@ -121,7 +121,7 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
       .flatMap((it) => it.split(';'))
       .filter((it) => it?.length > 0)
       .sort((a,b)=>a.toLowerCase().localeCompare(b.toLowerCase()));
-      console.log('x_',blockNames);
+      // console.log('x_',blockNames);
       blockNames.forEach((element) => {
         this.demosBlocks.set(
           element.toLowerCase(),
@@ -133,7 +133,7 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
             )
         );
       });
-      console.log('y_',this.demosBlocks);
+      // console.log('y_',this.demosBlocks);
 
     
   }
