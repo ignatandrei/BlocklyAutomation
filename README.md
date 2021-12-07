@@ -22,11 +22,16 @@ You can find the
 
 Download from [releases tab](https://github.com/ignatandrei/BlocklyAutomation/releases) the Angular site. Put index.html and all other files into a BLocklyAutomation folder inside your wwwroot  folder ( or in your project root ) and you are good to go.
 
-( It could be an idea to map everything that start with /BlocklyAutomation to /BlocklyAutomation/index.html - see src\Loaders\SimpleSite to have an C# example )
+1. It could be an idea to map everything that start with /BlocklyAutomation to /BlocklyAutomation/index.html - see src\Loaders\SimpleSite to have an C# example 
+   
+2. Modify assets/settings.json to change the name and the starting blocks
+   
+3. Modify assets/loadAtStartup/swaggers.json to add your swaggers
 
+4. Modify assets/showUsage/demoBlocks/all.txt to add your demo for the blocks . 
+   ( You can construct and then download and save as files)
 
-
-
+5. Send me an email to help you  if something  is not working.
 ## How to customize
 
 To customize the title , introduction and start blocks , see assets/settings.json
