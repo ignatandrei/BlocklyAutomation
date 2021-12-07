@@ -56,6 +56,10 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
     string,
     DemoBlocks[]
   >();
+
+  public demosBlocks:Map<string,DemoBlocks[]>= new Map<string,DemoBlocks[]>();
+
+
   public mustLoadDemoBlock: string = '';
   // private directLinkDemo:string='';
   private intro: IntroJs = introJs();
@@ -109,6 +113,28 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
             )
         );
       });
+
+
+      var blockNames= data
+      .map((it) => it.blocks)
+      .filter((it) => it?.length > 0)
+      .flatMap((it) => it.split(';'))
+      .filter((it) => it?.length > 0)
+      .sort((a,b)=>a.toLowerCase().localeCompare(b.toLowerCase()));
+      console.log('x_',blockNames);
+      blockNames.forEach((element) => {
+        this.demosBlocks.set(
+          element.toLowerCase(),
+          data
+            .filter((it) => it.blocks?.length > 0)
+            .filter(
+              (it) =>
+                (';' + it.blocks + ';').indexOf(';' + element + ';') > -1
+            )
+        );
+      });
+      console.log('y_',this.demosBlocks);
+
     
   }
   createIntro() {

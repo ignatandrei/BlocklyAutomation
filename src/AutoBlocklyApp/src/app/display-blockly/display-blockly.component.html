@@ -1,137 +1,213 @@
-
-  
-    
-      
-    
-    
-      <!-- <div
+<!-- <div
         id="blocklyDiv"
         style="display: inline-block; height: 750px; width: 58%"
       ></div> -->
-      <!-- <textarea
+<!-- <textarea
         id="output"
         disabled="disabled"
         [(ngModel)]="showInner"
         style="display: inline-block; height: 750px; width: 38%"
       >
       </textarea> -->
-     
-  
-  
-  <!-- <div id="blocklyDiv" style="position:absolute"></div> -->
-  <mat-grid-list [cols]="(ShowSomething())?2:1" rowHeight="1:1">
-        <mat-grid-tile-header>
-          <div style="display: inline-block; height: 100%;width: 100%;">
-            <div style="display: inline-block; height: 5%;width: 100%;">
-              <button mat-raised-button color="primary" (click)="LoadSwagger()">
-                <mat-icon>file_upload</mat-icon>
-                Load Swagger</button>
-              
-              <button mat-raised-button color="primary" (click)="ShowInnerWorkings()">
-                <mat-icon>code</mat-icon>
-                 {{ShowSelection()}} </button>
-                  
-                  &nbsp; <button mat-raised-button color="primary" (click)="SaveBlocks()">
-                    <mat-icon>save</mat-icon>
-                    Persist in browser</button>
-                  &nbsp;
-                  <button mat-raised-button color="primary" id="runButton" (click)="RunCode()">
-                    <mat-icon>play_arrow</mat-icon>
-                    Run Code</button>
-              
-                  &nbsp;
-                  <button id="downloadBlocks" mat-raised-button color="primary" (click)="Download()">
-                    <mat-icon>download</mat-icon>
-                    Download blocks</button>
-                  &nbsp;
-                  <input type="file" (change)="changeListener($event)">
-                  <button mat-raised-button id="demos" color="primary" [matMenuTriggerFor]="menu">
-                    <mat-icon>list</mat-icon>
-                    Demos ({{demos.length}})</button>
+
+<!-- <div id="blocklyDiv" style="position:absolute"></div> -->
+<mat-grid-list [cols]="ShowSomething() ? 2 : 1" rowHeight="1:1">
+  <mat-grid-tile-header>
+    <div style="display: inline-block; height: 100%; width: 100%">
+      <div style="display: inline-block; height: 5%; width: 100%">
+        <button mat-raised-button color="primary" (click)="LoadSwagger()">
+          <mat-icon>file_upload</mat-icon>
+          Load Swagger
+        </button>
+
+        <button mat-raised-button color="primary" (click)="ShowInnerWorkings()">
+          <mat-icon>code</mat-icon>
+          {{ ShowSelection() }}
+        </button>
+
+        &nbsp;
+        <button mat-raised-button color="primary" (click)="SaveBlocks()">
+          <mat-icon>save</mat-icon>
+          Persist in browser
+        </button>
+        &nbsp;
+        <button
+          mat-raised-button
+          color="primary"
+          id="runButton"
+          (click)="RunCode()"
+        >
+          <mat-icon>play_arrow</mat-icon>
+          Run Code
+        </button>
+
+        &nbsp;
+        <button
+          id="downloadBlocks"
+          mat-raised-button
+          color="primary"
+          (click)="Download()"
+        >
+          <mat-icon>download</mat-icon>
+          Download blocks
+        </button>
+        &nbsp;
+        <input type="file" (change)="changeListener($event)" />
+
+        <button
+          mat-raised-button
+          id="demos"
+          color="primary"
+          [matMenuTriggerFor]="menuDiff"
+        >
+          <mat-icon>list</mat-icon>
+          Demos ({{ demos.length }})
+        </button>
+        <mat-menu #menuDiff="matMenu">
+          <button mat-menu-item [matMenuTriggerFor]="menuByName">
+            By Name 
+          </button>
+
+          <mat-menu #menuByName="matMenu">
+            <ng-template
+              ngFor
+              let-demo
+              let-i="index"
+              [ngForOf]="demosCategories | keyvalue"
+            >
+              <button mat-menu-item [matMenuTriggerFor]="menu">
+                {{ i + 1 }} {{ demo.key }} ({{ demo.value.length }})
+              </button>
               <mat-menu #menu="matMenu">
-                  <ng-template ngFor let-demo let-i="index"  [ngForOf]="demosCategories | keyvalue">
-                <button mat-menu-item [matMenuTriggerFor]="menu" >{{i+1}} {{demo.key}} ({{demo.value.length}})</button>
-                <mat-menu #menu="matMenu">
-                  <ng-template ngFor let-itemDemo let-iMenu="index"  [ngForOf]="demo.value">
-                  <button mat-menu-item (click)="ShowDemo(itemDemo.id)" >{{iMenu+1}} {{itemDemo.description}}</button>
-                  </ng-template>  
-                </mat-menu>
-                
+                <ng-template
+                  ngFor
+                  let-itemDemo
+                  let-iMenu="index"
+                  [ngForOf]="demo.value"
+                >
+                  <button mat-menu-item (click)="ShowDemo(itemDemo.id)">
+                    {{ iMenu + 1 }} {{ itemDemo.description }}
+                  </button>
                 </ng-template>
               </mat-menu>
-              <a target='_blank' *ngIf="mustLoadDemoBlock?.length" mat-raised-button  color="primary" [routerLink]="['/','automation' ,'loadexample',mustLoadDemoBlock]">Direct link {{mustLoadDemoBlock}}</a>
-                <span *ngIf="(demoWorkspace == null)">Loading</span>
-            </div>
-          </div>
-        </mat-grid-tile-header>
-        <mat-grid-tile>
-          <div
-            [id]="'blocklyDiv'+this.myId"
-            style="display: inline-block; height: 100%; width: 100%"
-           >
-          </div>
-      </mat-grid-tile>
-      <mat-grid-tile *ngIf="ShowSomething()">
-        <ngx-monaco-editor *ngIf="ShowOutput()"   style="display: inline-block; height: 100%; width: 100%" [options]="editorPlain" [(ngModel)]="showInner"></ngx-monaco-editor>   
-        <ngx-monaco-editor *ngIf="ShowCode()"  style="display: inline-block; height: 100%; width: 100%" [options]="editorXMLOptions" [(ngModel)]="showJSCode"></ngx-monaco-editor> 
-        <ngx-monaco-editor *ngIf="ShowXML()"   style="display: inline-block; height: 100%; width: 100%" [options]="editorJSOptions" [(ngModel)]="showXMLCode"></ngx-monaco-editor>   
+            </ng-template>
+          </mat-menu>
 
-        <ngx-monaco-editor *ngIf="ShowBlocksDefinition()"   style="display: inline-block; height: 100%; width: 100%" [options]="editorJSOptions" [(ngModel)]="showBlocksDefinition"></ngx-monaco-editor>   
+          <button mat-menu-item [matMenuTriggerFor]="menuByBlocks">
+            By Blocks 
+          </button>
+          <mat-menu #menuByBlocks="matMenu"> 
+            <ng-template
+            ngFor
+            let-demo
+            let-i="index"
+            [ngForOf]="demosBlocks | keyvalue"
+          >
+            <button mat-menu-item [matMenuTriggerFor]="menuBlock">
+              {{ i + 1 }} {{ demo.key.toLowerCase() }} ({{ demo.value.length }})
+            </button>
+            <mat-menu #menuBlock="matMenu">
+              <ng-template
+                ngFor
+                let-itemDemo
+                let-iMenu="index"
+                [ngForOf]="demo.value"
+              >
+                <button mat-menu-item (click)="ShowDemo(itemDemo.id)">
+                  {{ iMenu + 1 }} {{ itemDemo.description }}
+                </button>
+              </ng-template>
+            </mat-menu>
+          </ng-template>
+        
+
+
+          </mat-menu>
+        </mat-menu>
+        <a
+          target="_blank"
+          *ngIf="mustLoadDemoBlock?.length"
+          mat-raised-button
+          color="primary"
+          [routerLink]="['/', 'automation', 'loadexample', mustLoadDemoBlock]"
+          >Direct link {{ mustLoadDemoBlock }}</a
+        >
+        <span *ngIf="demoWorkspace == null">Loading</span>
+      </div>
+    </div>
+  </mat-grid-tile-header>
+  <mat-grid-tile>
+    <div
+      [id]="'blocklyDiv' + this.myId"
+      style="display: inline-block; height: 100%; width: 100%"
+    ></div>
   </mat-grid-tile>
+  <mat-grid-tile *ngIf="ShowSomething()">
+    <ngx-monaco-editor
+      *ngIf="ShowOutput()"
+      style="display: inline-block; height: 100%; width: 100%"
+      [options]="editorPlain"
+      [(ngModel)]="showInner"
+    ></ngx-monaco-editor>
+    <ngx-monaco-editor
+      *ngIf="ShowCode()"
+      style="display: inline-block; height: 100%; width: 100%"
+      [options]="editorXMLOptions"
+      [(ngModel)]="showJSCode"
+    ></ngx-monaco-editor>
+    <ngx-monaco-editor
+      *ngIf="ShowXML()"
+      style="display: inline-block; height: 100%; width: 100%"
+      [options]="editorJSOptions"
+      [(ngModel)]="showXMLCode"
+    ></ngx-monaco-editor>
 
-      
-      </mat-grid-list>
-      <mat-accordion>
-        <mat-expansion-panel >
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              Output Grid
-            </mat-panel-title>
-            <mat-panel-description>
-              Click to see grid of output values
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-          My Text <div [id]="'steps'+myId"></div>
-        </mat-expansion-panel>
-        <mat-expansion-panel >
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              Chart
-            </mat-panel-title>
-            <mat-panel-description>
-              Click to see chart of output values
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-          <p>
-            <canvas [id]="'barchart'+myId" width="800" height="450">
-            </canvas>
-          </p>
-        </mat-expansion-panel>
-        <mat-expansion-panel >
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              HTML
-            </mat-panel-title>
-            <mat-panel-description>
-              Click to see output as HTML
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-          <div [id]="'htmlOutput'+myId">
-          </div>
-        </mat-expansion-panel>
-        <mat-expansion-panel >
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              Text
-            </mat-panel-title>
-            <mat-panel-description>
-              Click to see output as Text
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-          <div [id]="'htmlText'+myId">
-          </div>
-        </mat-expansion-panel>
-      </mat-accordion>  
-    
-   
-    
+    <ngx-monaco-editor
+      *ngIf="ShowBlocksDefinition()"
+      style="display: inline-block; height: 100%; width: 100%"
+      [options]="editorJSOptions"
+      [(ngModel)]="showBlocksDefinition"
+    ></ngx-monaco-editor>
+  </mat-grid-tile>
+</mat-grid-list>
+<mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title> Output Grid </mat-panel-title>
+      <mat-panel-description>
+        Click to see grid of output values
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    My Text
+    <div [id]="'steps' + myId"></div>
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title> Chart </mat-panel-title>
+      <mat-panel-description>
+        Click to see chart of output values
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <p>
+      <canvas [id]="'barchart' + myId" width="800" height="450"> </canvas>
+    </p>
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title> HTML </mat-panel-title>
+      <mat-panel-description>
+        Click to see output as HTML
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div [id]="'htmlOutput' + myId"></div>
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title> Text </mat-panel-title>
+      <mat-panel-description>
+        Click to see output as Text
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div [id]="'htmlText' + myId"></div>
+  </mat-expansion-panel>
+</mat-accordion>
