@@ -485,8 +485,8 @@ doDelete : function (href, objectToDelete ,callback, headers,withCreds) {
 
               var wrapper = function(msg, id, item) {
                 thisClass.highlightBlock(id);
-                console.log(msg, id,item);
                 debugger;
+                console.log(msg, id,item);                
               };
               interpreter.setProperty(globalObject, 'startDebugger',
                   interpreter.createNativeFunction(wrapper));

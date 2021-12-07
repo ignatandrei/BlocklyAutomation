@@ -377,7 +377,7 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
 
   async StartRegister(): Promise<void> {
     // var swaggersUrl= await firstValueFrom( this.loadDemo.getSwaggerLinks());
-    var swaggersUrl = this.settings.links;
+    var swaggersUrl = this.settings.linksSwagger;
     var swaggersDict: Map<string, any> = new Map<string, any>();
     swaggersUrl.forEach(async (it) => {
       swaggersDict.set(it.id, await this.LoadSwaggerFromUrl(it.link, it.id));
