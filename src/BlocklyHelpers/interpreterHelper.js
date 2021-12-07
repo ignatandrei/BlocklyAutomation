@@ -78,7 +78,7 @@ exports.createInterpreter = function(workspace,BlocklyJavaScript){
           }
         ,
         runCode: function( newInterpreterConstructor, callBackData,callBackProgramComplete , code) {
-            console.log('z',code);
+            // console.log('z',code);
             if(code == ''){
                 code = this.latestCode;
             }
@@ -407,7 +407,7 @@ doDelete : function (href, objectToDelete ,callback, headers,withCreds) {
 }, 
    doPost : function (href, objectToPost, callback, headers, withCreds) {
     let data = objectToPost;
-    console.log(`sending `, data);
+    // console.log(`sending `, data);
     let req = new XMLHttpRequest();
     req.open('POST', href, true);
     this.generateDataAndCreds(req,headers,withCreds, objectToPost?true:false);

@@ -147,15 +147,19 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
 
     el=this.theTextOutput();
     el.innerText = '';
+    this.fullTextData='';
+
 
     
   }
+  fullTextData:string='';
   ShowText(data: any){
     if(data == null)
       return;
     var dt= data.toString();
+    this.fullTextData+=dt;
     var el=this.theTextOutput();
-    el.innerText += dt;
+    el.innerText = this.fullTextData;
   }
   fullHtmlData:string='';
   finishHTMLOutput(){
@@ -236,8 +240,8 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
     this.showCodeAndXML = ShowCodeAndXML.ShowOutput;
     this.showInner = '{ "step_start": "start program",';
     
-    console.log('x',code);
-    console.log('y',jsCode);
+    // console.log('x',code);
+    // console.log('y',jsCode);
     if(code !=  jsCode){
       if(window.confirm('Do you want to run the code modified by you ?'))
         code = jsCode;
