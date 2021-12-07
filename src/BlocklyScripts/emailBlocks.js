@@ -57,7 +57,6 @@ exports.definitionBlocks = function (blocks, javaScript,BlocklyFieldDropdown ) {
       javaScript['sendinblue'] = function(block) {
         var value_apikey = javaScript.valueToCode(block, 'APIKey', javaScript.ORDER_ATOMIC);
         var value_email = javaScript.valueToCode(block, 'email', javaScript.ORDER_ATOMIC);
-        // TODO: Assemble JavaScript into code variable.
         var code = 'window.alert("SendInBlue");\n';
         // "(function(url,data){ var res=JSON.parse(postXhr(url,JSON.stringify(data))); if(res.statusOK) return res.text;errHandler(JSON.stringify(res)); throw res;}(" +
         //   value_theurl ;
