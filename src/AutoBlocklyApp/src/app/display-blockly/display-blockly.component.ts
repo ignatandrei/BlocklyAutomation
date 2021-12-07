@@ -384,6 +384,11 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
     var api = await parser.ParseSwagger();
 
     api.name = name || url;
+    return this.LoadSwaggerFromAPI(api); 
+
+  }
+  LoadSwaggerFromAPI(api: any): any {
+
     this.swaggerData.push(api);
     for (var i = 0; i < api.GenerateBlocks.length; i++) {
       var e = api.GenerateBlocks[i];
@@ -407,11 +412,14 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
 
   async StartRegister(): Promise<void> {
     // var swaggersUrl= await firstValueFrom( this.loadDemo.getSwaggerLinks());
-    var swaggersUrl = this.settings.linksSwagger;
-    var swaggersDict: Map<string, any> = new Map<string, any>();
-    swaggersUrl.forEach(async (it) => {
-      swaggersDict.set(it.id, await this.LoadSwaggerFromUrl(it.link, it.id));
+    var swaggersUrl = this.settings.swaggersDict;
+    var swaggersDict: Map<string, any> = new Map<string, any>();    
+    swaggersUrl.forEach((it, key) => {
+      swaggersDict.set(key, this.LoadSwaggerFromAPI(it));
     });
+    // swaggersUrl.forEach(async (it) => {
+    //   swaggersDict.set(it.id, await this.LoadSwaggerFromUrl(it.link, it.id));
+    // });
 
     // SwaggerParser
     // .parseSwagger

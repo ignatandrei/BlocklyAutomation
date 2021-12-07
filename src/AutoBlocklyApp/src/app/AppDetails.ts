@@ -17,6 +17,7 @@ export class AppDetails {
   public settings:Settings|null= null;
   public linksSwagger:LinksSwagger[]=[];
   public demoBlocks:DemoBlocks[]=[];
+  public swaggersDict: Map<string, any> = new Map<string, any>();
   Init(): Observable<string> {
 
     return zip(
@@ -45,16 +46,19 @@ export class AppDetails {
   }
   obtainSwaggers(l :LinksSwagger[] ): Observable<LinksSwagger[]> {
 
-    var allSwaggers= l.map(link => this.LoadSwaggersFromUrl(link.link));
+    var allSwaggers= l.map(link => this.LoadSwaggersFromUrl(link));
     var arr= forkJoin(allSwaggers);
     return arr;
   }
-LoadSwaggersFromUrl(url:string): Observable<any> {
-    var cacheUrl = url;
-    var parser = new SwaggerParser.parseData(url);
+LoadSwaggersFromUrl(l:LinksSwagger): Observable<any> {
+    var cacheUrl = l.link;
+    var name= l.id || l.link;
+    var parser = new SwaggerParser.parseData(cacheUrl);
     var api= from(parser.ParseSwagger() as Promise<any>)
       .pipe(tap((it:any)=>{
         console.log('swagger loaded:' +cacheUrl, it);
+        it.name = name;
+        this.swaggersDict.set(cacheUrl, it);
       }
       ,(err:any)=>{
         console.error('swagger error:' +cacheUrl, err);
