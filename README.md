@@ -18,6 +18,15 @@ You can find the
 2. IIS site   , ready to be deployed on IIS
 3. A .NET Core site, ready to be deployed on Linux or Windows, standalone ( as a service )
 
+# You have a site with OpenAPI / Swagger. What should I do  ?
+
+Download from [releases tab](https://github.com/ignatandrei/BlocklyAutomation/releases) the Angular site. Put index.html and all other files into a BLocklyAutomation folder inside your wwwroot  folder ( or in your project root ) and you are good to go.
+
+( It could be an idea to map everything that start with /BlocklyAutomation to /BlocklyAutomation/index.html - see src\Loaders\SimpleSite to have an C# example )
+
+
+
+
 ## How to customize
 
 To customize the title , introduction and start blocks , see assets/settings.json
