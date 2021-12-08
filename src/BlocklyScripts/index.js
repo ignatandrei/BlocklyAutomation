@@ -28,5 +28,6 @@ module.exports = {
   emailBlocks: require('./emailBlocks'),
   htmlblocks: require('./HTMLBlocks'),
   ttsBlock: require('./TTSBlock'),
+  pianoBlock: require('./pianoBlock')
 
 };

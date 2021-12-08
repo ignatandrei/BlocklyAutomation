@@ -1,3 +1,4 @@
+const synthPiano = require('./js/audioTest.js');
 
 exports.createInterpreter = function(workspace,BlocklyJavaScript){
     return {
@@ -482,7 +483,14 @@ doDelete : function (href, objectToDelete ,callback, headers,withCreds) {
           interpreter.setProperty(globalObject, 'alert1',
               interpreter.createNativeFunction(wrapper));
 
-
+              var wrapper = function(note, octave, duration) {
+                var piano = synthPiano.Synth.createInstrument('piano');
+                piano.play(note,octave,duration);
+                //window.alert(text);
+              };
+              interpreter.setProperty(globalObject, 'playPiano',
+                  interpreter.createNativeFunction(wrapper));
+    
               var wrapper = function(msg, id, item) {
                 thisClass.highlightBlock(id);
                 debugger;

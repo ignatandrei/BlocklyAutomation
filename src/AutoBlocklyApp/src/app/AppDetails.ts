@@ -37,7 +37,7 @@ export class AppDetails {
                 this.linksSwagger = links;
                 this.demoBlocks = demoBlocks;
                 this.customCategories = categs;
-                console.log('settings loaded', this.customCategories);
+                //console.log('settings loaded', this.customCategories);
             })
             ,
             switchMap(() => 

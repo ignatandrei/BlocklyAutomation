@@ -1,9 +1,15 @@
 ﻿[
- {
+    {
+        "id":  "piano",
+        "description":  "piano test",
+        "categories":  "audio",
+        "blocks":  "pianoBlock;controls_forEach;cmajor;text_print;wait"
+    },
+    {
         "id":  "voice",
         "description":  "text to speech",
         "categories":  "audio",
-        "blocks":  ""
+        "blocks":  "ttsBlock"
     },
     {
         "id":  "header",

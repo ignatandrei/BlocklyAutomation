@@ -491,6 +491,7 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
       );
         console.log('z',window.speechSynthesis.getVoices());
       bs.ttsBlock.definitionBlocks(Blockly.Blocks,BlocklyJavaScript);
+      bs.pianoBlock.definitionBlocks(Blockly.Blocks,BlocklyJavaScript);
 var customCategs=this.DetailsApp.customCategories;
     var blocks = [
       bs.defaultBlocks.generalBlocks(),
@@ -498,6 +499,7 @@ var customCategs=this.DetailsApp.customCategories;
         <category name='Blockly Advanced'>
         <category id="Audio" name="Audio">
         ${bs.ttsBlock.fieldXML()}
+        ${bs.pianoBlock.fieldXML()}
         </category>  
             ${bs.filterBlocks.fieldXML()}
                 
