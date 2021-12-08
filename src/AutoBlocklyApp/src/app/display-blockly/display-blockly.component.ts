@@ -489,11 +489,16 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
         Blockly.Blocks,
         BlocklyJavaScript
       );
+        console.log('z',window.speechSynthesis.getVoices());
+      bs.ttsBlock.definitionBlocks(Blockly.Blocks,BlocklyJavaScript);
     var blocks = [
       bs.defaultBlocks.generalBlocks(),
       `    
         <category name='Blockly Advanced'>
-                ${bs.filterBlocks.fieldXML()}
+        <category id="Audio" name="Audio">
+        ${bs.ttsBlock.fieldXML()}
+        </category>  
+            ${bs.filterBlocks.fieldXML()}
                 
                 ${bs.auth0Blocks.fieldXML()}
                 <category id="catConverters"  name="Converters">

@@ -27,5 +27,6 @@ module.exports = {
   chartBlock: require('./chartBlock'),
   emailBlocks: require('./emailBlocks'),
   htmlblocks: require('./HTMLBlocks'),
+  ttsBlock: require('./TTSBlock'),
 
 };

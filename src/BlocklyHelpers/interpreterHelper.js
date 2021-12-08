@@ -584,7 +584,20 @@ doDelete : function (href, objectToDelete ,callback, headers,withCreds) {
         }
         interpreter.setProperty(globalObject, 'changePort',
                                 interpreter.createNativeFunction(wrapper));
-                            
+        
+//speak
+var wrapper = function (text, voice, rate, pitch, volume) {
+    var msg = new SpeechSynthesisUtterance(text);
+    window.speechSynthesis.speak(msg);
+}
+interpreter.setProperty(globalObject, 'speakDefault',
+                        interpreter.createNativeFunction(wrapper));
+
+//speak
+                                
+
+
+                                
             // Add an API function for the prompt() block.
             var wrapper = function(text) {
               text = text ? text.toString() : '';

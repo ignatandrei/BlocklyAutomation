@@ -1,3 +1,4 @@
+const Blockly=require('blockly');
 exports.definitionBlocks=function (blocks, javaScript){
     const ORDER_NONE= 99;
     const ORDER_ATOMIC= 0;
