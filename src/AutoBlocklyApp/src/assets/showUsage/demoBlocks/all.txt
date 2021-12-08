@@ -1,5 +1,11 @@
 ﻿[
     {
+        "id":  "TTS",
+        "description":  "text to speech",
+        "categories":  "audio",
+        "blocks":  "ttsBlock;text_prompt_ext;text"
+    },
+    {
         "id":  "piano",
         "description":  "piano test",
         "categories":  "audio",
