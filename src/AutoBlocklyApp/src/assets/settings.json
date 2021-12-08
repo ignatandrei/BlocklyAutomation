@@ -57,7 +57,7 @@
 ,"      <block type='text_print'>"
 ,"        <value name='TEXT'>"
 ,"          <block type='text'>"
-,"            <field name='TEXT'>done</field>"
+,"            <field name='TEXT'>Sources at https://github.com/ignatandrei/BlocklyAutomation</field>"
 ,"          </block>"
 ,"        </value>"
 ,"        <next>"
