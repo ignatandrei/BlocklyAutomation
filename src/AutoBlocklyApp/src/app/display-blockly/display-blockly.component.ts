@@ -474,32 +474,20 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
     bs.waitBlocks.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
     bs.commentBlock.definitionBlocks(
       Blockly.Blocks,
-      BlocklyJavaScript,
-      (item: string) => {
-        return new Blockly.FieldLabelSerializable(item);
-      }
+      BlocklyJavaScript
     );
     bs.trycatchFinBlock.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);  
     bs.auth0Blocks.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
     bs.windowsCreds.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
-    bs.chartBlock.definitionBlocks(Blockly.Blocks, BlocklyJavaScript,
-      (item: string) => {
-        return new Blockly.FieldLabelSerializable(item);
-      });
+    bs.chartBlock.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
 
       bs.emailBlocks.definitionBlocks(
         Blockly.Blocks,
-        BlocklyJavaScript,
-        function (arr: any[][]) {
-          return new Blockly.FieldDropdown(arr);
-        }
+        BlocklyJavaScript
       );
       bs.htmlblocks.definitionBlocks(
         Blockly.Blocks,
-        BlocklyJavaScript,
-        function (arr: any[][]) {
-          return new Blockly.FieldDropdown(arr);
-        }
+        BlocklyJavaScript
       );
     var blocks = [
       bs.defaultBlocks.generalBlocks(),
