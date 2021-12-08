@@ -3,6 +3,7 @@
 
 // exports.fieldXML = function () {
 // }
+const Blockly =require('blockly');
 
 exports.definitionBlocks = function (blocks, javaScript,BlocklyFieldDropdown ) {
     const ORDER_NONE=99;
@@ -26,7 +27,7 @@ exports.definitionBlocks = function (blocks, javaScript,BlocklyFieldDropdown ) {
           this.appendValueInput("body")
               .setCheck(null)
               .appendField("Body:")
-              .appendField(new BlocklyFieldDropdown ([["HTML","Html"], ["TEXT","Text"]]), "NAME");
+              .appendField(new Blockly.FieldDropdown ([["HTML","Html"], ["TEXT","Text"]]), "NAME");
           this.setOutput(true, null);
           this.setColour(230);
        this.setTooltip("");

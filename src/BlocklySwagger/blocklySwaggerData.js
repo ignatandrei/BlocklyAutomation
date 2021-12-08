@@ -679,7 +679,7 @@ class BlocklyReturnSwagger {
 
     return function (blocks, javaScript, BlocklyFieldDropdown) {
       //   console.log(blocklyTypeName);
-
+      
       blocks[blocklyTypeName] = {
         init: function () {
           //this.setInputsInline(true);
@@ -706,7 +706,7 @@ class BlocklyReturnSwagger {
           
           if(isEnum){
             arrValue= arrValue.map((it)=>[it[0].toString(),it[1].toString()]);                     
-            b.appendField( BlocklyFieldDropdown(arrValue),`val_${key}`);
+            b.appendField( new Blockly.FieldDropdown(arrValue),`val_${key}`);
             
           }
           else{

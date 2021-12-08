@@ -1,3 +1,5 @@
+const Blockly =require('blockly');
+
 exports.definitionBlocks = function (blocks, javaScript, BlocklyFieldDropdown) {
     // console.log(BlocklyFieldDropdown);
     const ORDER_ATOMIC = 0;
@@ -47,7 +49,7 @@ exports.definitionBlocks = function (blocks, javaScript, BlocklyFieldDropdown) {
     init: function () {
       this.appendDummyInput()
         .appendField(
-          /*new*/ BlocklyFieldDropdown([
+          /*new*/ new Blockly.FieldDropdown([
             ["JSON", "JSON"],
             ["Text", "Text"],
           ]),
@@ -57,7 +59,7 @@ exports.definitionBlocks = function (blocks, javaScript, BlocklyFieldDropdown) {
       this.appendValueInput("TheUrl")
         .setCheck(null)
         .appendField(
-          /*new*/ BlocklyFieldDropdown([
+          /*new*/ new Blockly.FieldDropdown([
             ["GET", "GET"],
             ["POST", "POST"],
             ["PUT", "PUT"],

@@ -1,10 +1,12 @@
+const Blockly =require('blockly');
+
 exports.definitionBlocks = function (blocks, javaScript, BlocklyFieldDropdown) {
   blocks['HTMLheaders'] = {
     init: function() {
       this.appendValueInput("NAME")
           .setCheck(null)
           .appendField("Header")
-          .appendField(new BlocklyFieldDropdown([["H1","H1"], ["H2","H2"], ["H3","H3"]]), "NAME");
+          .appendField(new  Blockly.FieldDropdown([["H1","H1"], ["H2","H2"], ["H3","H3"]]), "NAME");
       this.setOutput(true, null);
       this.setColour(240);
    this.setTooltip("string to Header ");
@@ -28,7 +30,7 @@ exports.definitionBlocks = function (blocks, javaScript, BlocklyFieldDropdown) {
     init: function() {
       this.appendDummyInput()
         .appendField("List ")
-        .appendField(BlocklyFieldDropdown([["OL","ol"],["UL","ul"] ]), "listType");
+        .appendField(new Blockly.FieldDropdown([["OL","ol"],["UL","ul"] ]), "listType");
       this.appendStatementInput("Content")
           .setCheck(null);
       this.setPreviousStatement(true, null);

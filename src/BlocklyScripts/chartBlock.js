@@ -1,3 +1,5 @@
+const Blockly =require('blockly');
+
 // exports.definitionBlocks = function (blocks, javaScript) {
 // }
 
@@ -9,12 +11,11 @@ exports.definitionBlocks = function (blocks, javaScript,BlocklyFieldDropdown , B
     // const value_json = javaScript.valueToCode(block, 'JSON', ORDER_ATOMIC);
     //     const code = `JSON.parse(${value_json})`;
     //     return [code, ORDER_NONE];
-
     blocks['chart_js'] = {
         init: function() {
           this.appendDummyInput()
               .appendField("ChartType")
-              .appendField(BlocklyFieldDropdown ([["HBar","HBar"], ["VBar","VBar"]]), "ChartTypeValue");
+              .appendField(new Blockly.FieldDropdown ([["HBar","HBar"], ["VBar","VBar"]]), "ChartTypeValue");
           this.appendValueInput("ChartTitleValue")
               .setCheck(null)
               .appendField(BlocklyFieldLabelSerializable("Title"), "ChartTitle");

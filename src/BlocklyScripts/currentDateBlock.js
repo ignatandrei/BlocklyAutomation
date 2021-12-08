@@ -3,6 +3,8 @@
 
 // exports.fieldXML = function () {
 // }
+const Blockly =require('blockly');
+
 
 exports.definitionBlocks = function (blocks, javaScript,BlocklyFieldDropdown) {
     /*
@@ -19,7 +21,7 @@ exports.definitionBlocks = function (blocks, javaScript,BlocklyFieldDropdown) {
             .appendField("Current Date");
         this.appendDummyInput()
             .appendField('Pick date format:')
-            .appendField(new BlocklyFieldDropdown([
+            .appendField(new Blockly.FieldDropdown([
                 ['Unix format', 'unix'],
                 ['ISO format', 'iso'],
                 ['Human format', 'human']
