@@ -4,7 +4,7 @@
 // exports.fieldXML = function () {
 // }
 const Blockly =require('blockly');
-
+// const a = require('./audioTest.js');
 exports.definitionBlocks = function (blocks, javaScript) {
     
     blocks['ttsBlock'] = {
@@ -23,6 +23,9 @@ exports.definitionBlocks = function (blocks, javaScript) {
         // var dropdown_voice = block.getFieldValue('Voice');
         var value_name = javaScript.valueToCode(block, 'NAME', javaScript.ORDER_ATOMIC);
         var code = 'speakDefault('+ value_name+');\n';
+        // console.log(a);
+        // var piano = a.Synth.createInstrument('piano');
+        // piano.play('C', 4, 2);
         return code;
       };
       

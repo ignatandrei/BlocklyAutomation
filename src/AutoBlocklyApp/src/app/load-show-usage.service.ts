@@ -28,7 +28,13 @@ export class LoadShowUsageService {
     )
     ;
   }
-
+  public getCustomCategories(): Observable<string> {
+    var dt=new Date().toISOString();
+    return this.http.get<string>(`assets/loadAtStartup/customCategories.txt?${dt}` ,{ responseType: 'text' as 'json'})
+          .pipe(
+            map(res=> res.toString())
+          );
+  }
   public getSwaggerLinks(): Observable<LinksSwagger[]> {
     var dt=new Date().toISOString();
     return this.http.get<string>(`assets/loadAtStartup/swaggers.json?${dt}`,{ responseType: 'text' as 'json'})

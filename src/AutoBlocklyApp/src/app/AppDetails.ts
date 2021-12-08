@@ -8,6 +8,7 @@ import { LoadShowUsageService } from "./load-show-usage.service";
 import { Settings } from "./Settings";
 import * as SwaggerParser from '@blockly/blocklyswagger';
 
+
 @Injectable()
 export class AppDetails {
   constructor(private http: HttpClient, private loadShowUsageService:LoadShowUsageService) {
@@ -18,19 +19,25 @@ export class AppDetails {
   public linksSwagger:LinksSwagger[]=[];
   public demoBlocks:DemoBlocks[]=[];
   public swaggersDict: Map<string, any> = new Map<string, any>();
+  public customCategories: string='';
   Init(): Observable<string> {
 
     return zip(
-        this.getSettings(), this.loadShowUsageService.getSwaggerLinks(), this.loadShowUsageService.getDemoBlocks()
+        this.getSettings(), 
+        this.loadShowUsageService.getSwaggerLinks(), 
+        this.loadShowUsageService.getDemoBlocks(),
+        this.loadShowUsageService.getCustomCategories()
     
         )
 
         .pipe(
             delay(2000),
-            tap(([settings, links, demoBlocks]) => {                
+            tap(([settings, links, demoBlocks, categs]) => {                
                 this.settings = settings;
                 this.linksSwagger = links;
                 this.demoBlocks = demoBlocks;
+                this.customCategories = categs;
+                console.log('settings loaded', this.customCategories);
             })
             ,
             switchMap(() => 

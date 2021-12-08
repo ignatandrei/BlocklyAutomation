@@ -68,7 +68,7 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
   myId:number=0;
   constructor(
     private tabulator: TabulatorHelper,
-    private settings: AppDetails,
+    private DetailsApp: AppDetails,
     private loadDemo: LoadShowUsageService,
     private ar: ActivatedRoute,
     private ta :TransmitAction,
@@ -90,7 +90,7 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
     });
   }
   InitiateDemos(){
-    var data: DemoBlocks[] = this.settings.demoBlocks;
+    var data: DemoBlocks[] = this.DetailsApp.demoBlocks;
     
     this.demos = data.sort((a, b) =>
       a.description.localeCompare(b.description)
@@ -140,8 +140,8 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
   }
   createIntro() {
     
-    var title: string = this.settings.settings?.title || '';
-    var steps = this.settings.settings?.tourSteps.map((it: TourSteps) => {
+    var title: string = this.DetailsApp.settings?.title || '';
+    var steps = this.DetailsApp.settings?.tourSteps.map((it: TourSteps) => {
       return {
         title: title,
         intro: it.text,
@@ -409,7 +409,7 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
 
   async StartRegister(): Promise<void> {
     // var swaggersUrl= await firstValueFrom( this.loadDemo.getSwaggerLinks());
-    var swaggersUrl = this.settings.swaggersDict;
+    var swaggersUrl = this.DetailsApp.swaggersDict;
     var swaggersDict: Map<string, any> = new Map<string, any>();    
     swaggersUrl.forEach((it, key) => {
       swaggersDict.set(key, this.LoadSwaggerFromAPI(it));
@@ -491,9 +491,10 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
       );
         console.log('z',window.speechSynthesis.getVoices());
       bs.ttsBlock.definitionBlocks(Blockly.Blocks,BlocklyJavaScript);
+var customCategs=this.DetailsApp.customCategories;
     var blocks = [
       bs.defaultBlocks.generalBlocks(),
-      `    
+      ` 
         <category name='Blockly Advanced'>
         <category id="Audio" name="Audio">
         ${bs.ttsBlock.fieldXML()}
@@ -542,6 +543,7 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
         
       `,
       `</category>
+      ${customCategs}
       <category name="Swagger" id="catSwagger" expanded='true' >          
           ${newSwaggerCategories}
         </category> 
@@ -695,9 +697,9 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
     const contentHighlight = new ContentHighlight(this.demoWorkspace);
     contentHighlight.init();
     var self = this;
-    if ((this.settings.settings?.startBlocks?.length || 0) > 0) {
+    if ((this.DetailsApp.settings?.startBlocks?.length || 0) > 0) {
       try {
-        var xmlBlocks = (this.settings.settings?.startBlocks || []).join(
+        var xmlBlocks = (this.DetailsApp.settings?.startBlocks || []).join(
           '\n'
         );
         var xml = Blockly.Xml.textToDom(xmlBlocks);
@@ -816,10 +818,10 @@ xmlToolbox= xmlToolbox.replace(nameExistingCategorySwagger,replaceCategory);
       myComponent.ShowDemo(myComponent?.mustLoadDemoBlock);
     else {
       //from default
-      if ((myComponent.settings.settings?.startBlocks?.length || 0) > 0) {
+      if ((myComponent.DetailsApp.settings?.startBlocks?.length || 0) > 0) {
         try {
           var xml_text = (
-            myComponent.settings.settings?.startBlocks || []
+            myComponent.DetailsApp.settings?.startBlocks || []
           ).join('\n');
           //<xml xmlns="https://developers.google.com/blockly/xml"></xml>
           if (xml_text?.length > 62) {
