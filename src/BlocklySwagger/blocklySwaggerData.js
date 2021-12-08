@@ -1,3 +1,4 @@
+const Blockly=require('blockly');
 class BlocklyReturnSwagger {
   constructor(url) {
     this.swaggerUrl = url;
@@ -388,7 +389,7 @@ class BlocklyReturnSwagger {
       xmlBlockShow+=`</block>`;
     self.fieldXMLFunctions.push({id:key,gui:xmlBlockShow});
 
-    return function (blocks, javaScript, BlocklyFieldImage) {
+    return function (blocks, javaScript) {
       blocks[blocklyTypeName] = {
         init: function () {
           //this.setInputsInline(true);
@@ -432,7 +433,7 @@ class BlocklyReturnSwagger {
           
           if (str.length > 25) str = str.substring(0, 25) + "...";
           this.appendDummyInput()
-            .appendField(BlocklyFieldImage(operationKey))
+            .appendField(new Blockly.FieldImage(`assets/httpImages/${operationKey}.png`,90,20,operationKey))
             .appendField(`${displayOpKey} ${str}`);
           var root = self.findRootSite();          
           if (op.parameters)
@@ -677,7 +678,7 @@ class BlocklyReturnSwagger {
     var props = "";
     var objPropString = self.findProperties(schema);
 
-    return function (blocks, javaScript, BlocklyFieldDropdown) {
+    return function (blocks, javaScript) {
       //   console.log(blocklyTypeName);
       
       blocks[blocklyTypeName] = {

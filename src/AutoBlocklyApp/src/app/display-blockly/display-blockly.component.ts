@@ -393,9 +393,7 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
     this.swaggerData.push(api);
     for (var i = 0; i < api.GenerateBlocks.length; i++) {
       var e = api.GenerateBlocks[i];
-      e(Blockly.Blocks, BlocklyJavaScript, (arr: any[][]) => {
-        return new Blockly.FieldDropdown(arr);
-      });
+      e(Blockly.Blocks, BlocklyJavaScript);
     }
     for (var i = 0; i < api.GenerateFunctions.length; i++) {
       var e = api.GenerateFunctions[i];
@@ -403,9 +401,7 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
         var image = `assets/httpImages/${opKey}.png`;
         return new Blockly.FieldImage(image, 90, 20, opKey);
       };
-      e(Blockly.Blocks, BlocklyJavaScript, image,(arr: any[][]) => {
-        return new Blockly.FieldDropdown(arr);
-      });
+      e(Blockly.Blocks, BlocklyJavaScript);
     }
     api.metaBlocks()(Blockly.Blocks, BlocklyJavaScript);
     return api;
@@ -453,38 +449,25 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
     );
     bs.xhrBlocks.definitionBlocks(
       Blockly.Blocks,
-      BlocklyJavaScript,
-      function (arr: any[][]) {
-        return new Blockly.FieldDropdown(arr);
-      }
+      BlocklyJavaScript
     );
     bs.propBlocks.definitionBlocks(
       Blockly.Blocks,
-      BlocklyJavaScript,
-      function (arr: any) {
-        return new Blockly.FieldLabelSerializable(arr);
-      }
+      BlocklyJavaScript
     );
-    bs.guiBlocks.definitionBlocks(Blockly.Blocks, BlocklyJavaScript, (s:string)=> new Blockly.FieldLabelSerializable(s));
+    bs.guiBlocks.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
     bs.convertersBlocks.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
     bs.exportFileBlock.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
     bs.createObjectBlocks.definitionBlocks(
       Blockly.Blocks,
       BlocklyJavaScript,
       Blockly.Extensions,
-      (item: string) => {
-        return new Blockly.FieldTextInput(item);
-      },
-      ()=>{
-        return Blockly.Mutator;
-      }
+      Blockly.Mutator
+      
     );
     bs.currentDateBlock.definitionBlocks(
       Blockly.Blocks,
-      BlocklyJavaScript,
-      function (arr: any[][]) {
-        return new Blockly.FieldDropdown(arr);
-      }
+      BlocklyJavaScript
     );
 
     bs.dateFromTextBlock.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
@@ -499,10 +482,7 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
     bs.trycatchFinBlock.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);  
     bs.auth0Blocks.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
     bs.windowsCreds.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
-    bs.chartBlock.definitionBlocks(Blockly.Blocks, BlocklyJavaScript,       
-      function (arr: any[][]) {
-        return new Blockly.FieldDropdown(arr);
-      },
+    bs.chartBlock.definitionBlocks(Blockly.Blocks, BlocklyJavaScript,
       (item: string) => {
         return new Blockly.FieldLabelSerializable(item);
       });

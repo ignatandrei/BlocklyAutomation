@@ -1,7 +1,6 @@
 const Blockly =require('blockly');
 
-exports.definitionBlocks = function (blocks, javaScript, BlocklyFieldDropdown) {
-    // console.log(BlocklyFieldDropdown);
+exports.definitionBlocks = function (blocks, javaScript) {
     const ORDER_ATOMIC = 0;
     const ORDER_NONE=99;
 

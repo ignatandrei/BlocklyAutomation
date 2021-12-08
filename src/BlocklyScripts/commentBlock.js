@@ -3,14 +3,14 @@
 
 // exports.fieldXML = function () {
 // }
- exports.definitionBlocks = function (blocks, javaScript, BlocklyFieldLabelSerializable) {
+ exports.definitionBlocks = function (blocks, javaScript) {
     const ORDER_ATOMIC = 0;
     blocks['comment'] = {
         init: function() {
           this.appendValueInput("TEXT")
               .setCheck(null)
               .appendField("comment /* */")
-              .appendField(BlocklyFieldLabelSerializable(""), "NAME");
+              .appendField(new Blockly.FieldLabelSerializable(""), "NAME");
           //this.setOutput(true, null);
             this.setPreviousStatement(true, null);
           this.setNextStatement(true, null);
@@ -32,7 +32,7 @@
           this.appendValueInput("TEXT")
               .setCheck(null)
               .appendField("debugger")
-              .appendField(BlocklyFieldLabelSerializable(""), "NAME");
+              .appendField(new Blockly.FieldLabelSerializable(""), "NAME");
           //this.setOutput(true, null);
             this.setPreviousStatement(true, null);
           this.setNextStatement(true, null);

@@ -1,4 +1,5 @@
-exports.definitionBlocks = function (blocks, javaScript, fieldLabelSerializable) {
+const Blockly=require('blockly');
+exports.definitionBlocks = function (blocks, javaScript) {
     const ALIGN_RIGHT=1;
     const ALIGN_CENTRE=0;
     const ORDER_ATOMIC = 0;
@@ -10,17 +11,17 @@ exports.definitionBlocks = function (blocks, javaScript, fieldLabelSerializable)
         .setCheck(null)
         .setAlign(/*Blockly.*/ALIGN_CENTRE)
         .appendField(
-            fieldLabelSerializable("object"),
+          new Blockly.FieldLabelSerializable("object"),
           "objectName"
         );
       this.appendValueInput("PropertyName")
         .setCheck(null)
         .setAlign(/*Blockly.*/ALIGN_RIGHT)
-        .appendField(fieldLabelSerializable(",property"), "prop");
+        .appendField(new Blockly.FieldLabelSerializable(",property"), "prop");
       this.appendValueInput("NewValue")
         .setCheck(null)
         .setAlign(/*Blockly.*/ALIGN_RIGHT)
-        .appendField(fieldLabelSerializable("toValue"), "newValue");
+        .appendField(new Blockly.FieldLabelSerializable("toValue"), "newValue");
       this.setInputsInline(true);
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
@@ -60,13 +61,13 @@ exports.definitionBlocks = function (blocks, javaScript, fieldLabelSerializable)
         .setCheck(null)
         .setAlign(/*Blockly.*/ALIGN_CENTRE)
         .appendField(
-          fieldLabelSerializable("object"),
+          new Blockly.FieldLabelSerializable("object"),
           "objectName"
         );
       this.appendValueInput("PropertyName")
         .setCheck(null)
         .setAlign(/*Blockly.*/ALIGN_RIGHT)
-        .appendField(fieldLabelSerializable("property"), "prop");
+        .appendField(new Blockly.FieldLabelSerializable("property"), "prop");
       this.setInputsInline(true);
       this.setOutput(true, null);
       //this.setTooltip("");

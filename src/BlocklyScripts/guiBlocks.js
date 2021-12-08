@@ -1,4 +1,4 @@
-exports.definitionBlocks=function (blocks, javaScript,BlocklyFieldLabelSerializable){
+exports.definitionBlocks=function (blocks, javaScript){
     const ORDER_NONE= 99;
     const ORDER_ATOMIC= 0;
     blocks['window_open'] = {
@@ -63,7 +63,7 @@ exports.definitionBlocks=function (blocks, javaScript,BlocklyFieldLabelSerializa
           this.appendValueInput("TEXT")
               .setCheck(null)
               .appendField("print return")
-              .appendField(BlocklyFieldLabelSerializable(""), "NAME");
+              .appendField(new Blockly.FieldLabelSerializable(""), "NAME");
           this.setOutput(true, null);
           
        this.setTooltip("");

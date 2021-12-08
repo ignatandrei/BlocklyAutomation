@@ -5,7 +5,7 @@ const Blockly =require('blockly');
 
 // exports.fieldXML = function () {
 // }
-exports.definitionBlocks = function (blocks, javaScript,BlocklyFieldDropdown , BlocklyFieldLabelSerializable) {
+exports.definitionBlocks = function (blocks, javaScript) {
 
 
     // const value_json = javaScript.valueToCode(block, 'JSON', ORDER_ATOMIC);
@@ -18,16 +18,16 @@ exports.definitionBlocks = function (blocks, javaScript,BlocklyFieldDropdown , B
               .appendField(new Blockly.FieldDropdown ([["HBar","HBar"], ["VBar","VBar"]]), "ChartTypeValue");
           this.appendValueInput("ChartTitleValue")
               .setCheck(null)
-              .appendField(BlocklyFieldLabelSerializable("Title"), "ChartTitle");
+              .appendField(new Blockly.FieldLabelSerializable("Title"), "ChartTitle");
           this.appendValueInput("LabelsValue")
               .setCheck("Array")
-              .appendField(BlocklyFieldLabelSerializable("Labels"), "ChartLabels");
+              .appendField(new Blockly.FieldLabelSerializable("Labels"), "ChartLabels");
           this.appendValueInput("DataSet1Label")
               .setCheck("String")
-              .appendField(BlocklyFieldLabelSerializable("DataSet1 Label"), "DataSetLabel1");
+              .appendField(new Blockly.FieldLabelSerializable("DataSet1 Label"), "DataSetLabel1");
           this.appendValueInput("DataSet1Data")
               .setCheck("Array")
-              .appendField(BlocklyFieldLabelSerializable("DataSet1 Data"), "DataSetData1");
+              .appendField(new Blockly.FieldLabelSerializable("DataSet1 Data"), "DataSetData1");
           this.setOutput(true, null);
           this.setColour(230);
        this.setTooltip("");
