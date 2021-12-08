@@ -1,4 +1,10 @@
 ﻿[
+ {
+        "id":  "voice",
+        "description":  "text to speech",
+        "categories":  "audio",
+        "blocks":  ""
+    },
     {
         "id":  "header",
         "description":  "header and meta swagger",
