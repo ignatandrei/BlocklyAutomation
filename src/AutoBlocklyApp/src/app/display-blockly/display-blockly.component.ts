@@ -6,6 +6,7 @@ import {
 } from '@angular/core';
 import * as Blockly from 'blockly';
 import * as BlocklyJavaScript from 'blockly/javascript';
+import {ContentHighlight} from '@blockly/workspace-content-highlight';
 import * as acorn from 'acorn';
 import * as bs from '@blockly/blocklyscripts';
 import * as bh from '@blockly/blocklyhelpers';
@@ -718,7 +719,8 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
       toolbox: this.toolboxXML,
     } as Blockly.BlocklyOptions);
     
-    
+    const contentHighlight = new ContentHighlight(this.demoWorkspace);
+    contentHighlight.init();
     var self = this;
     if ((this.settings.settings?.startBlocks?.length || 0) > 0) {
       try {
