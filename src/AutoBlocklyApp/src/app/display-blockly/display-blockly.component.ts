@@ -631,6 +631,9 @@ var customCategs=this.DetailsApp.customCategories;
     var item=this.ShowSelection();
     if(!item){ 
       this.showCodeAndXML=ShowCodeAndXML.ShowNone;
+      setTimeout((d: Blockly.WorkspaceSvg) => {
+        Blockly.svgResize(d);        
+      }, 1000, this.demoWorkspace);
     }
     this.CalculateXMLAndCode();
     //outputArea.value += latestCode;
