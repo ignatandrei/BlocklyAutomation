@@ -804,10 +804,10 @@ xmlToolbox= xmlToolbox.replace(nameExistingCategorySwagger,replaceCategory);
   }
 }
   
-
+loadedCompletely: boolean = false;
   afterTimeout(myComponent: DisplayBlocklyComponent) {
     // console.log('start register');
-
+    myComponent.loadedCompletely=true;
     if (myComponent?.swaggerData == null) return;
     var nr = myComponent.swaggerData.length;
     myComponent.toolboxXML= myComponent.toolboxXML.replace('Swagger', `Swagger(${nr})`);

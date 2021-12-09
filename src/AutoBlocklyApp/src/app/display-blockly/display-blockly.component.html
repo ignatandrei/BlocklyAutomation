@@ -1,16 +1,5 @@
-<!-- <div
-        id="blocklyDiv"
-        style="display: inline-block; height: 750px; width: 58%"
-      ></div> -->
-<!-- <textarea
-        id="output"
-        disabled="disabled"
-        [(ngModel)]="showInner"
-        style="display: inline-block; height: 750px; width: 38%"
-      >
-      </textarea> -->
 
-<!-- <div id="blocklyDiv" style="position:absolute"></div> -->
+<mat-spinner *ngIf="!loadedCompletely"></mat-spinner>
 <mat-grid-list [cols]="ShowSomething() ? 2 : 1" rowHeight="1:1">
   <mat-grid-tile-header>
     <div style="display: inline-block; height: 100%; width: 100%">
