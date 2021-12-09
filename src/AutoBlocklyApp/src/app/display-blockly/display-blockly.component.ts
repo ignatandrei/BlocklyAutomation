@@ -140,10 +140,9 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
   }
   createIntro() {
     
-    var title: string = this.DetailsApp.settings?.title || '';
     var steps = this.DetailsApp.settings?.tourSteps.map((it: TourSteps) => {
       return {
-        title: title,
+        title: this.DetailsApp.settings?.title|| 'Blockly Automation',
         intro: it.text,
         element: document.querySelector(it.query) || undefined,
       };

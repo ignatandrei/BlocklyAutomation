@@ -1,5 +1,6 @@
 {
     "title": "Automate Blockly",
+    "footer": "Automate Blockly",
     "startBlocks":[
 "<xml xmlns='https://developers.google.com/blockly/xml'>"
 ,"  <block type='trycatchfinally' x='57' y='-277'>"
