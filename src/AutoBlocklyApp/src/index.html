@@ -12,6 +12,16 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
-  <app-root></app-root>
+  <script >
+    window.setTimeout(() => {
+      document.getElementById('loadingFirstTime').style.display = 'none';
+    }, 5000);
+  </script>
+ <app-root></app-root>
+ <div id="loadingFirstTime" style="display: block;">
+ <h1 >Loading blocks, swaggers and data .... please wait </h1>
+  When the site is loaded , please click Run Code button
+
+</div> 
 </body>
 </html>
