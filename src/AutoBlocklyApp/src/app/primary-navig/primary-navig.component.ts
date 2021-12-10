@@ -22,11 +22,12 @@ export class PrimaryNavigComponent implements OnInit {
       shareReplay()
     );
     public version:string=Settings.version;
+    public latestVersion:string|undefined='';
     public title:string = "Blockly Automation";
     public footer:string = '';
   constructor(private breakpointObserver: BreakpointObserver, private details: AppDetails, private ta :TransmitAction) {}
   ngOnInit(): void {
-    
+      this.latestVersion = this.details.settings?.latestVersion;
       this.demoBlocks =this.details.demoBlocks.sort((a, b) => a.description.localeCompare(b.description));
       this.title=this.details?.settings?.title ||'Blockly Automation';
       this.footer = this.details?.settings?.footer || '';

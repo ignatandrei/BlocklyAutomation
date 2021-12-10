@@ -81,18 +81,18 @@ LoadSwaggersFromUrl(l:LinksSwagger): Observable<any> {
 }
 getLatestVersion(): Observable<string> {
   //var dt=new Date().toISOString();  
-  return this.http.get<string>(`https://github.com/ignatandrei/BlocklyAutomation/releases/latest/download/version.txt`,{ responseType: 'text' as 'json'})
+  return this.http.get<string>(`https://ignatandrei.github.io/BlocklyAutomation/version.txt`,{ responseType: 'text' as 'json'})
     .pipe(
       
     catchError(err => {
       console.error('error getting latest version', err);
-      return of("v");
+      return of('v'+"cannot get latest version");
     }
       )
       ,
       map((res: any) => {
-          return res.toString().substr(1);//remove first char v
-    }
+          return res.toString().trim().substr(1);//remove first char v
+      }
     )
     )  
 }
