@@ -39,6 +39,8 @@ jobs:
           cd ..
           echo "copy "
           cp -r node_modules  AutoBlocklyApp/node_modules          
+          echo "find"
+          find . -type d -name "vex-js" -print
           echo "build"
           npm run buildAng
           ls -l AutoBlocklyApp/dist/AutoBlocklyApp
