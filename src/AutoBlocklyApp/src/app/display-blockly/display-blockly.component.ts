@@ -488,7 +488,7 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
         Blockly.Blocks,
         BlocklyJavaScript
       );
-        console.log('z',window.speechSynthesis.getVoices());
+        // console.log('z',window.speechSynthesis.getVoices());
       bs.ttsBlock.definitionBlocks(Blockly.Blocks,BlocklyJavaScript);
       bs.pianoBlock.definitionBlocks(Blockly.Blocks,BlocklyJavaScript);
 var customCategs=this.DetailsApp.customCategories;

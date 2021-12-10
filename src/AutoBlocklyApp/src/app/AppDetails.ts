@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import {   forkJoin, from, merge, Observable, of, zip} from "rxjs";
-import { delay, map,  tap ,switchMap,zipAll, switchMapTo} from 'rxjs/operators';
+import { delay, map,  tap ,switchMap,zipAll, switchMapTo, catchError} from 'rxjs/operators';
 import { DemoBlocks } from "./DemoBlocks";
 import { LinksSwagger } from "./LinksSwagger";
 import { LoadShowUsageService } from "./load-show-usage.service";
@@ -26,14 +26,16 @@ export class AppDetails {
         this.getSettings(), 
         this.loadShowUsageService.getSwaggerLinks(), 
         this.loadShowUsageService.getDemoBlocks(),
-        this.loadShowUsageService.getCustomCategories()
+        this.loadShowUsageService.getCustomCategories(),
+        this.getLatestVersion()
     
         )
 
         .pipe(
             delay(2000),
-            tap(([settings, links, demoBlocks, categs]) => {                
+            tap(([settings, links, demoBlocks, categs, lv]) => {                
                 this.settings = settings;
+                this.settings.latestVersion=lv;
                 this.linksSwagger = links;
                 this.demoBlocks = demoBlocks;
                 this.customCategories = categs;
@@ -76,6 +78,23 @@ LoadSwaggersFromUrl(l:LinksSwagger): Observable<any> {
 
     return api;
 
+}
+getLatestVersion(): Observable<string> {
+  //var dt=new Date().toISOString();  
+  return this.http.get<string>(`https://github.com/ignatandrei/BlocklyAutomation/releases/latest/download/version.txt`,{ responseType: 'text' as 'json'})
+    .pipe(
+      
+    catchError(err => {
+      console.error('error getting latest version', err);
+      return of("v");
+    }
+      )
+      ,
+      map((res: any) => {
+          return res.toString().substr(1);//remove first char v
+    }
+    )
+    )  
 }
 getSettings(): Observable<Settings> {
     var dt=new Date().toISOString();

@@ -47,6 +47,9 @@ jobs:
         rm -r docs/*
         cp -r src/AutoBlocklyApp/dist/AutoBlocklyApp/* docs/
         cp docs/index.html docs/404.html
+        cd docs
+        echo "${{github.ref_name}}" > version.txt
+        cd ..
         ls -l docs/
         
 
