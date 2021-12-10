@@ -34,16 +34,12 @@ jobs:
           npm i  @angular/cli@12.2.13
           echo "install ws"
           npm i -ws --include-workspace-root 
-          ls -l node_modules/
-          echo "copy "
-          cp -r node_modules  AutoBlocklyApp/node_modules
-          echo 'lets see now the folders'
-          ls -l AutoBlocklyApp/node_modules/
           cd AutoBlocklyApp
           npm i
-          ls -l node_modules/          
-          echo "build"
           cd ..
+          echo "copy "
+          cp -r node_modules  AutoBlocklyApp/node_modules          
+          echo "build"
           npm run buildAng
           ls -l AutoBlocklyApp/dist/AutoBlocklyApp
           
