@@ -1,5 +1,6 @@
 const synthPiano = require('./js/audioTest.js');
-
+const vex = require('vex-js');
+vex.registerPlugin(require('vex-dialog'));
 exports.createInterpreter = function(workspace,BlocklyJavaScript){
     return {
         latestCode : '',
@@ -607,12 +608,20 @@ interpreter.setProperty(globalObject, 'speakDefault',
 
                                 
             // Add an API function for the prompt() block.
-            var wrapper = function(text) {
-              text = text ? text.toString() : '';
-              return interpreter.createPrimitive(prompt(text));
-            };
-            interpreter.setProperty(globalObject, 'prompt',
-                interpreter.createNativeFunction(wrapper));
+            // var wrapper = function(text) {
+            //   text = text ? text.toString() : '';
+            //   return interpreter.createPrimitive(prompt(text));
+            // };
+            // interpreter.setProperty(globalObject, 'prompt',
+            //     interpreter.createNativeFunction(wrapper));
+      
+            var wrapper = interpreter.createAsyncFunction(
+              function(text, callback) {
+                vex.defaultOptions.className = 'vex-theme-os';
+                text = text ? text.toString() : '';
+              return vex.dialog.prompt( { message:text,callback: callback});
+            });
+            interpreter.setProperty(globalObject, 'prompt',wrapper);
       
             // Add an API for the wait block.  See wait_block.js
             // this.initInterpreterWaitForSeconds(interpreter, globalObject);

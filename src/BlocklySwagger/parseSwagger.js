@@ -1,5 +1,7 @@
 // import parseSwaggerDocumentation from '@api-platform/api-doc-parser/lib/swagger/parseSwaggerDocumentation';
 // import parseOpenApi3Documentation from '@api-platform/api-doc-parser/lib/openapi3/parseOpenApi3Documentation';
+
+
 exports.parseSwagger =async function(swaggerUrl) {
     // const SwaggerParser = require("@apidevtools/swagger-parser");
     const BlocklyReturnSwagger= require('./blocklySwaggerData');

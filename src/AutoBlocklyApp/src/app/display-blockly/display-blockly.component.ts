@@ -364,22 +364,44 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
     fromEvent(window, 'TabCopy').subscribe(it=>this.tabulator.copyClip());
   }
   public LoadSwagger() {
-    var json = window.prompt(
-      'Swagger url? ',
-      'https://swagger-tax-calc-api.herokuapp.com/api-docs'
-    );
-    if (!json) return;
-    if (json.endsWith('.html') || json.endsWith('.htm')) {
-      window.alert('Swagger should end with .json - see source of html page');
-      return;
-    }
-    this.LoadSwaggerFromUrl(json).then((it) => {
-      // this.afterTimeout(this);
-      this.addToToolboxSwagger(it,this);
-      window.alert('done');
+    //https://swagger-tax-calc-api.herokuapp.com/api-docs
+    var self=this;
+    var parser = new SwaggerParser.parseData("");
+    parser.showWindowToLoad('',
+    (json:string)=>{
+      if (!json) return;
+      if (json.endsWith('.html') || json.endsWith('.htm')) {
+        window.alert('Swagger should end with .json - see source of html page');
+        return;
+      }
+      self.loadedCompletely=false;
+      self.LoadSwaggerFromUrl(json).then((it) => {
+        // this.afterTimeout(this);
+        self.loadedCompletely=true;
+        this.addToToolboxSwagger(it,this);
+        window.alert('done');
+      
+
     });
-  }
-  private async LoadSwaggerFromUrl(url: string, name?: string): Promise<any> {
+    });
+   }
+
+    // var json = window.prompt(
+    //   'Swagger url? ',
+    //   'https://swagger-tax-calc-api.herokuapp.com/api-docs'
+    // );
+    // if (!json) return;
+    // if (json.endsWith('.html') || json.endsWith('.htm')) {
+    //   window.alert('Swagger should end with .json - see source of html page');
+    //   return;
+    // }
+    // this.LoadSwaggerFromUrl(json).then((it) => {
+    //   // this.afterTimeout(this);
+    //   this.addToToolboxSwagger(it,this);
+    //   window.alert('done');
+    // });
+  
+  public async LoadSwaggerFromUrl(url: string, name?: string): Promise<any> {
     var parser = new SwaggerParser.parseData(url);
     var api = await parser.ParseSwagger();
 
@@ -640,6 +662,7 @@ var customCategs=this.DetailsApp.customCategories;
     // Blockly.svgResize(this.demoWorkspace);
   }
   Download(): void {
+    //todo: use vex as for others - electron compatibility
     var name = window.prompt('Name?', 'blocks.txt');
     if (name == null) return;
     bh.saveLoad.DownloadBlocks(Blockly.Xml, this.demoWorkspace, name);

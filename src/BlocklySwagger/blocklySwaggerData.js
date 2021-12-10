@@ -1,4 +1,6 @@
 const Blockly=require('blockly');
+const vex = require('vex-js');
+
 class BlocklyReturnSwagger {
   constructor(url) {
     this.swaggerUrl = url;
@@ -197,6 +199,21 @@ class BlocklyReturnSwagger {
   }
   openApiDocument = null;
   basePath = "";
+  showWindowToLoad(defaultPrompt, callback) { 
+    var self = this;
+    try{
+      vex.registerPlugin(require('vex-dialog'));
+
+    }
+    catch(e){
+      //do nothing
+    }
+    vex.defaultOptions.className = 'vex-theme-os';
+    vex.dialog.prompt( { message:"Swagger url?",placeholder:  defaultPrompt,callback: callback } );
+
+  }
+
+
   async ParseSwagger() {
     var self = this;
     self.fieldXMLObjects.push(`<label text="${self.swaggerUrl}"></label>`);

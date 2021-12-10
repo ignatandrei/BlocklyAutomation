@@ -37,6 +37,8 @@
               "./node_modules/tabulator-tables/dist/css/tabulator.css",
               "./node_modules/intro.js/introjs.css",
               "./node_modules/intro.js/themes/introjs-nassim.css",
+              "./node_modules/vex-js/dist/css/vex.css",
+              "./node_modules/vex-js/dist/css/vex-theme-os.css",
               "src/styles.css"
             ],
             "scripts": [
@@ -117,7 +119,9 @@
               "src/styles.css",
               "./node_modules/tabulator-tables/dist/css/tabulator.css",
               "./node_modules/intro.js/introjs.css",
-              "./node_modules/intro.js/themes/introjs-nassim.css"
+              "./node_modules/intro.js/themes/introjs-nassim.css",
+              "./node_modules/vex-js/dist/css/vex.css",
+              "./node_modules/vex-js/dist/css/vex-theme-os.css" 
             ],
             "scripts": [
               "src/assets/acorn_interpreter.js",
