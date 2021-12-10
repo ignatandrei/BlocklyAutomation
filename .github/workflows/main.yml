@@ -24,7 +24,7 @@ jobs:
       - name: Use Node 
         uses: actions/setup-node@v1
         with:
-          node-version: '12.14.0'
+          node-version: '14.15.0'
           #https://gist.github.com/LayZeeDK/c822cc812f75bb07b7c55d07ba2719b3
       # Runs a set of commands using the runners shell
       - name: Run the build
