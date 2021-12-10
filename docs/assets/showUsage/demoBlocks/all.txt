@@ -13,7 +13,7 @@
     },
     {
         "id":  "voice",
-        "description":  "text to speech",
+        "description":  "simple speech",
         "categories":  "audio",
         "blocks":  "ttsBlock"
     },
