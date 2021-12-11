@@ -31,7 +31,7 @@ jobs:
         run: |                
           cd src
           echo 'install angular'    
-          npm i  @angular/cli@12.2.13
+          npm i  @angular/cli@12.2.14
           echo "install ws"
           npm i -ws --include-workspace-root 
           cd AutoBlocklyApp
