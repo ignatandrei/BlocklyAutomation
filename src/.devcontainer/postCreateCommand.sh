@@ -6,4 +6,5 @@ cd ./AutoBlocklyApp/
 npm i -force
 cd ..
 npm install --global http-server
+npm install -g ngx-pwa-icons
 echo 'now : npm run start'
