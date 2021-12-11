@@ -365,6 +365,7 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
   }
   public LoadSwagger() {
     //https://swagger-tax-calc-api.herokuapp.com/api-docs
+    //cors: https://humorapi.com/downloads/humorapi-openapi-3.json
     var self=this;
     var parser = new SwaggerParser.parseData("");
     parser.showWindowToLoad('',
