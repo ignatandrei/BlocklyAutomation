@@ -34,13 +34,14 @@ jobs:
 
     - name: npm modify docs
       run: |
+        npm i -g npm@8.3.0               
         cd src
-        npm i @angular/cli@12.2.13
-        #npm i -g  @angular/cli@13.0.1
-        npm i -ws --include-workspace-root 
-        cp -r node_modules  AutoBlocklyApp/node_modules        
+        echo 'install angular'    
+        npm i  @angular/cli@13
+        echo "install ws"
+        npm i -force
         cd AutoBlocklyApp
-        npm i
+        npm i -force
         cd ..
         npm run buildGitHubPages
         cd ..
