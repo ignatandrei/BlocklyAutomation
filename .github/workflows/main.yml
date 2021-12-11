@@ -28,7 +28,8 @@ jobs:
           #https://gist.github.com/LayZeeDK/c822cc812f75bb07b7c55d07ba2719b3
       # Runs a set of commands using the runners shell
       - name: Run the build
-        run: |                
+        run: | 
+          npm i -g npm@latest               
           cd src
           echo 'install angular'    
           npm i  @angular/cli@12.2.14
@@ -38,7 +39,7 @@ jobs:
           npm i
           cd ..
           echo "copy "
-          cp -rn node_modules/  AutoBlocklyApp/          
+          cp -r node_modules/  AutoBlocklyApp/          
           echo "find"
           find . -type d -name "vex-js" -print
           echo "build"
