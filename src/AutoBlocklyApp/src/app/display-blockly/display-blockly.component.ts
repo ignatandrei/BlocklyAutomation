@@ -304,7 +304,7 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
       if (this.demoWorkspace != null) {
         Blockly.Xml.clearWorkspaceAndLoadFromXml(xml, this.demoWorkspace);
 
-        window.alert('please press run code button');
+        window.alert('please press execute button');
       }
     });
   }
