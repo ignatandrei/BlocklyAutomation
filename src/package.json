@@ -11,7 +11,7 @@
     "start": "npm run start -w AutoBlocklyApp",
     "buildAng": "npm run build -w AutoBlocklyApp",
     "buildGitHubPages": "npm run buildGitHubPages -w AutoBlocklyApp",
-    "pwaRun":"npm run pwaRun -w AutoBlocklyApp",
+    "pwaRun": "npm run pwaRun -w AutoBlocklyApp",
     "addPWA": "npm run addPWA -w AutoBlocklyApp"
   },
   "dependencies": {
