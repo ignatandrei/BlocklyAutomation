@@ -1,6 +1,7 @@
 {
-  "name": "AutoBlocklyWorkspace",
+  "name": "auto_blockly_workspace",
   "workspaces": [
+    "AutoBlocklyApp",
     "AutoBlocklyApp",
     "BlocklyScripts",
     "BlocklyHelpers",

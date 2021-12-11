@@ -29,17 +29,17 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Run the build
         run: | 
-          npm i -g npm@latest               
+          npm i -g npm@8.3.0               
           cd src
           echo 'install angular'    
-          npm i  @angular/cli@12.2.14
+          npm i  @angular/cli@13
           echo "install ws"
-          npm i -ws --include-workspace-root 
+          npm i -force
           cd AutoBlocklyApp
-          npm i
+          npm i -force
           cd ..
-          echo "copy "
-          cp -r node_modules/  AutoBlocklyApp/          
+          # echo "copy "
+          #cp -r node_modules/  AutoBlocklyApp/          
           echo "find"
           find . -type d -name "vex-js" -print
           echo "build"
