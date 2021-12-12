@@ -89,7 +89,7 @@ jobs:
       with:
         dotnet-version: ${{ env.DOTNET_VERSION }} 
 
-    - name: making releases
+    - name: making releases of loaders
       run: |
         rm -r src/AutoBlocklyApp/dist/AutoBlocklyApp/*
         cd src
@@ -103,7 +103,23 @@ jobs:
         dotnet publish -r win-x64 -c Release -o ${{env.AZURE_WEBAPP_NAME}}WinX64 --self-contained true -p:PublishSingleFile=true -p:PublishTrimmed=true
         dotnet publish -r linux-x64 -c Release -o ${{env.AZURE_WEBAPP_NAME}}linX64 --self-contained true -p:PublishSingleFile=true -p:PublishTrimmed=true 
         dotnet publish -r win-x64 -c Release -o ${{env.AZURE_WEBAPP_NAME}}IISWinX64 --self-contained true -p:PublishSingleFile=false -p:PublishTrimmed=false
-        
+
+    - name: making releases of localApi
+      run: |
+        cd Local
+        cd LocalAPI
+        cd LocalAPI
+        dotnet publish -r win-x64 -c Release --self-contained -o ${{env.AZURE_WEBAPP_NAME}}LocalAPI 
+
+    - name: Archive LocalAPI
+      uses: thedoctor0/zip-release@master
+      with:
+        type: 'zip'
+        filename: 'releaseIISWin.zip'
+        directory: '${{github.workspace}}/Local/LocalAPI/LocalAPI/'
+        path: '${{env.AZURE_WEBAPP_NAME}}LocalAPI/'
+        exclusions: '*.git* /*node_modules/* .editorconfig'       
+
     - name: Archive Release Linux
       uses: thedoctor0/zip-release@master
       with:
