@@ -9,7 +9,7 @@
     "test": "ng test",
     "buildGitHubPages": "ng build --base-href /BlocklyAutomation/" ,
     "addPWA" :"ng add @angular/pwa  --defaults true --skip-confirmation true",
-    "pwaRun":"ng build --output pwa"
+    "pwaRun":"ng build --output-path pwa"
    },
   "private": true,
   "dependencies": {
