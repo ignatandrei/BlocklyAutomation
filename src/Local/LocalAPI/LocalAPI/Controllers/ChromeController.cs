@@ -1,7 +1,7 @@
 ﻿namespace LocalAPI.Controllers;
 
 [ApiController]
-[Route("[controller]/[action]")]
+[Route("api/[controller]/[action]")]
 [AutoActions(template = TemplateIndicator.AllPost, FieldsName = new[] { "*" }, ExcludeFields = new[] { "_logger" })]
 public partial class ChromeController : ControllerBase
 {
@@ -11,5 +11,16 @@ public partial class ChromeController : ControllerBase
     {
         this.chromeBookmarks = chromeBookmarks;
     }
+
+    //[HttpGet]
+    //public IAsyncEnumerable<ChromeBookmark> ChromeBookmarks()
+    //{
+    //    return this.chromeBookmarks.GetUrlsEnumerable();
+    //}
+    //[HttpGet]
+    //public  Task<ChromeBookmark[]> ChromeBookmarks1()
+    //{
+    //    return this.chromeBookmarks.GetUrls();
+    //}
 }
 

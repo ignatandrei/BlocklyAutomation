@@ -1,17 +1,18 @@
 ﻿namespace LocalAPIChrome;
 public class ChromeData
 {
-    public async Task<ChromeBookmark[]?> GetUrls()
+    public async IAsyncEnumerable<ChromeBookmark> GetUrlsEnumerable()
     {
+
         switch (Environment.OSVersion.Platform)
         {
             case PlatformID.Win32NT:
                 break;
             default:
-                throw new ArgumentException($"not yet ready for "+Environment.OSVersion.Platform);
+                throw new ArgumentException($"not yet ready for " + Environment.OSVersion.Platform);
         }
 
-        var local= Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+        var local = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
         var chromePathBookmark = Path.Combine(local, "Google", "Chrome", "User Data", "Default");
         chromePathBookmark = Path.Combine(chromePathBookmark, "Bookmarks");
         if (!File.Exists(chromePathBookmark))
@@ -21,15 +22,27 @@ public class ChromeData
         var node = JsonNode.Parse(data);
         JsonNode? roots = node["roots"];
         if (roots == null)
-            return null;
+            yield break ;
         JsonNode? bookmark_bar = roots["bookmark_bar"];
         if (bookmark_bar == null)
-            return null;
-        return parseRecursive(bookmark_bar);
+            yield break;
+        foreach(var item in parseRecursive(bookmark_bar))
+        {
+            await Task.Delay(2000);
+            yield return item;
+        }
+        
+    }
+    public async Task<ChromeBookmark[]?> GetUrls()
+    {
+        var result = new List<ChromeBookmark>();
+        await foreach (var item in GetUrlsEnumerable())                                       
+            result.Add(item);
 
-     }
-
-    private ChromeBookmark[] parseRecursive(JsonNode node)
+        return result.ToArray();
+        
+    }
+    private IEnumerable< ChromeBookmark> parseRecursive(JsonNode node)
     {
         var result = new List<ChromeBookmark>();
         if (node is JsonArray )
@@ -40,11 +53,16 @@ public class ChromeData
             {
                 foreach (var child in arr)
                 {
+                    if (child == null)
+                        continue;
                     var data = parseRecursive(child);
-                    result.AddRange(data.Where(it => it != null).ToArray());
+                    foreach (var item in data.Where(it => it != null).ToArray())
+                        yield return item;
+                    
                 }
-                return result.ToArray();
+                
             }
+            yield break;
         }
 
         
@@ -53,21 +71,25 @@ public class ChromeData
         if(children != null)
         {
             var data=parseRecursive(children);
-            result.AddRange(data.Where(it=>it != null).ToArray());
-            return result.ToArray();
+            foreach (var item in data.Where(it => it != null).ToArray())
+                yield return item;
+
+            yield break;
         }
-        
+
         //try to deserialize 
+        ChromeBookmark? res = null;
         try
         {
-            var res= node.Deserialize<ChromeBookmark>();
-            result.Add(res);
-            return result.ToArray();
+            res= node.Deserialize<ChromeBookmark>();
         }
         catch (Exception ex)
         {
             //todo: log
         }
-        return result.ToArray();
+        if(res != null)
+            yield return res;
+        else
+            yield break;
     }
 }
