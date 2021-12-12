@@ -15,7 +15,7 @@ builder.Services.AddTransient<ChromeData>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+//if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
@@ -25,7 +25,7 @@ app.UseHttpsRedirection();
 app.UseDefaultFiles();
 app.UseStaticFiles();
 app.UseAuthorization();
-
+//later: use versioning
 app.MapControllers();
 
 app.Run();
