@@ -1,5 +1,5 @@
 ﻿namespace LocalAPIChrome;
-public class ChromeBookmarks
+public class ChromeData
 {
     public async Task<ChromeBookmark[]?> GetUrls()
     {
