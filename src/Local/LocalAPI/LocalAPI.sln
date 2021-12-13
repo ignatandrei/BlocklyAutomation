@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocalAPI", "LocalAPI\LocalA
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocalAPIChrome", "LocalAPIChrome\LocalAPIChrome.csproj", "{1458D132-44B9-41AF-9A90-26ACF6B6F111}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocalAPIEmail", "LocalAPIEmail\LocalAPIEmail.csproj", "{1B90D851-D44E-4710-980E-FD455C8ED712}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocalAPIEmail", "LocalAPIEmail\LocalAPIEmail.csproj", "{1B90D851-D44E-4710-980E-FD455C8ED712}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BE92B469-0D32-4A1E-AD72-DAB1AF556F83}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

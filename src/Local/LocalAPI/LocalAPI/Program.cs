@@ -10,10 +10,19 @@ builder.Services.AddVersionedApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddTransient<ChromeData>();
 builder.Services.AddTransient<EmailSender>();
-builder.Services
-    .AddFluentEmail("fromemail@test.test")
+//builder.Configuration.GetDebugView();
+EmailConfig cfgEmail=new ();
+builder.Configuration.GetSection("plugins:email").Bind(cfgEmail);
+cfgEmail.from = string.IsNullOrWhiteSpace(cfgEmail.from) ? "fromemail@test.test" : cfgEmail.from;
+var b= builder.Services
+    .AddFluentEmail(cfgEmail.from)
     .AddLiquidRenderer()
-    .AddSmtpSender("host",23)    
+    ;
+
+if (string.IsNullOrWhiteSpace(cfgEmail.username))
+    b.AddSmtpSender(cfgEmail.host, cfgEmail.port);
+else
+    b.AddSmtpSender(cfgEmail.host, cfgEmail.port, cfgEmail.username, cfgEmail.password);
     ;
 builder.Services.AddApiVersioning(options =>
 {
