@@ -9,5 +9,8 @@
   <ItemGroup>
     <PackageReference Include="FluentEmail.Smtp" Version="3.0.0" />
   </ItemGroup>
+	<PropertyGroup >
+		<TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+	</PropertyGroup>
 
 </Project>

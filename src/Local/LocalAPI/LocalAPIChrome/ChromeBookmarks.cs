@@ -20,6 +20,8 @@ public class ChromeData
 
         var data = await File.ReadAllTextAsync(chromePathBookmark);
         var node = JsonNode.Parse(data);
+        if (node == null)
+            yield break;
         JsonNode? roots = node["roots"];
         if (roots == null)
             yield break ;
@@ -28,7 +30,8 @@ public class ChromeData
             yield break;
         foreach(var item in parseRecursive(bookmark_bar))
         {
-            yield return item;
+            if(item?.type=="url")
+                yield return item;
         }
         
     }
@@ -82,7 +85,7 @@ public class ChromeData
         {
             res= node.Deserialize<ChromeBookmark>();
         }
-        catch (Exception ex)
+        catch (Exception)
         {
             //todo: log
         }
