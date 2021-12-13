@@ -1,6 +1,3 @@
-//var bc = new ChromeBookmarks();
-//var x = await bc.GetUrls();
-//Console.WriteLine(x.Length);
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +9,12 @@ builder.Services.AddVersionedApiExplorer();
 //builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddTransient<ChromeData>();
+builder.Services.AddTransient<EmailSender>();
+builder.Services
+    .AddFluentEmail("fromemail@test.test")
+    .AddLiquidRenderer()
+    .AddSmtpSender("host",23)    
+    ;
 builder.Services.AddApiVersioning(options =>
 {
     options.DefaultApiVersion = new ApiVersion(1, 0);
