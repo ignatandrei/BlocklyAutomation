@@ -28,7 +28,6 @@ public class ChromeData
             yield break;
         foreach(var item in parseRecursive(bookmark_bar))
         {
-            await Task.Delay(2000);
             yield return item;
         }
         

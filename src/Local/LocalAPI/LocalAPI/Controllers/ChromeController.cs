@@ -1,8 +1,9 @@
 ﻿namespace LocalAPI.Controllers;
 
 [ApiController]
-[Route("api/[controller]/[action]")]
-[AutoActions(template = TemplateIndicator.AllPost, FieldsName = new[] { "*" }, ExcludeFields = new[] { "_logger" })]
+[ApiVersion("1.0")]
+[Route("api/v{version:apiVersion}/[controller]/[action]")]
+[AutoActions(template = TemplateIndicator.NoArgs_Is_Get_Else_Post, FieldsName = new[] { "*" }, ExcludeFields = new[] { "_logger" })]
 public partial class ChromeController : ControllerBase
 {
     private readonly ChromeData chromeBookmarks;
