@@ -10,6 +10,8 @@ builder.Services.AddVersionedApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddTransient<ChromeData>();
 builder.Services.AddTransient<EmailSender>();
+builder.Services.AddTransient<FS>();
+builder.Services.AddTransient<IFileSystem>((sp) => new FileSystem());
 //builder.Configuration.GetDebugView();
 EmailConfig cfgEmail=new ();
 builder.Configuration.GetSection("plugins:email").Bind(cfgEmail);
