@@ -1,6 +1,9 @@
 const Blockly=require('blockly');
 const vex = require('vex-js');
-
+class TagsFunctions{
+  functionName= '';
+  tags=[];
+}
 class BlocklyReturnSwagger {
   constructor(url) {
     this.swaggerUrl = url;
@@ -13,6 +16,9 @@ class BlocklyReturnSwagger {
   paths= [];
   name='';
   operations=[];
+
+  tagsSwagger=[];
+
   nameCategSwagger() {
     return `catSwagger${this.findHostNameRegular()}_${this.name}`;
   }
@@ -75,6 +81,19 @@ class BlocklyReturnSwagger {
   }
   cacheCategSwaggerFromPaths = [];
   findfieldXMLFunctions(controllerName){
+    var allPaths=this.openApiDocument.paths;
+    var keys= Object.keys(allPaths);
+    
+    keys.forEach(function (key) {
+      var path= allPaths[key];
+      if(path && path.tags && path.tags.length>0){
+        var tags=path.tags;
+        if(tags.includes(controllerName)){
+
+        }
+      }
+    });
+
     var urls = this.operations.filter((it) => it.controller == controllerName);
   
     var xmlList = this.fieldXMLFunctions
@@ -98,8 +117,39 @@ class BlocklyReturnSwagger {
       // console.log('x',xmlList);
       return xmlList;
   }
+  findCategsFromTags(){
+    
+    var allPaths=this.openApiDocument.paths;
+    var keys= Object.keys(allPaths);
+    var self=this;
+    keys.forEach(function (key) {
+      var path= allPaths[key];
+      console.log('x',path);
+
+      if(path ){
+        var objKeys= Object.keys(path);
+        objKeys.forEach(function (objKey) {
+          console.log('z',path[objKey]);
+
+          var tags=path[objKey].tags;
+        if(tags && tags.length>0)
+        tags.forEach(function (tag) {
+          if(!self.cacheCategSwaggerFromPaths.includes(tag)){
+            self.cacheCategSwaggerFromPaths.push(tag);
+            self.operations.push({ controller:tag, id:key})
+          }
+            });
+        });
+        
+      }
+    });
+  }
   findCategSwaggerFromPaths(){
+    
+    this.findCategsFromTags();
     if(this.cacheCategSwaggerFromPaths.length>0) return this.cacheCategSwaggerFromPaths;
+    
+
     var normalized= this.paths
       .filter(it=> it && it.id && it.id.length >0 )
       .map(it=>{
@@ -290,6 +340,9 @@ class BlocklyReturnSwagger {
         self.paths.push({id: key, nrOps: Object.keys(path).length});
         Object.keys(path).forEach(function (oo) {
           var ops = path[oo];
+          // if(ops && ops["tags"]){
+          //     console.log('z_',ops["tags"]);0
+          // }
           self.GenerateFunctions.push(
             self.GenerateFunction(path, key, ops, oo)
           );
