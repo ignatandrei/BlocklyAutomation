@@ -4,7 +4,7 @@ import { TourSteps } from "./TourSteps";
 export class Settings {
     public title: string = '';
     public footer: string = '';
-    public static version: string = '2021.12.11.1217';
+    public static version: string = '2021.12.15.2017';
     public startBlocks: string[] = [];
     public tourSteps: TourSteps[] = [];
     public latestVersion: string = '';
