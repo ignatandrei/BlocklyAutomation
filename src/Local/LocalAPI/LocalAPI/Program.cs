@@ -1,9 +1,13 @@
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(c =>
+
+    {
+        c.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;       
+    });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddVersionedApiExplorer();
 //builder.Services.AddEndpointsApiExplorer();
@@ -12,8 +16,10 @@ builder.Services.AddTransient<ChromeData>();
 builder.Services.AddTransient<EmailSender>();
 builder.Services.AddTransient<FS>();
 builder.Services.AddTransient<IFileSystem>((sp) => new FileSystem());
+builder.Services.AddTransient<IFile>((sp) => new FileSystem().File);
+builder.Services.AddTransient<IDirectory>((sp) => new FileSystem().Directory);
 //builder.Configuration.GetDebugView();
-EmailConfig cfgEmail=new ();
+EmailConfig cfgEmail =new ();
 builder.Configuration.GetSection("plugins:email").Bind(cfgEmail);
 cfgEmail.from = string.IsNullOrWhiteSpace(cfgEmail.from) ? "fromemail@test.test" : cfgEmail.from;
 var b= builder.Services

@@ -19,8 +19,8 @@
   <ItemGroup>
     <PackageReference Include="FluentEmail.Liquid" Version="3.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.0.0" />
-    <PackageReference Include="SkinnyControllersCommon" Version="2021.25.5.1355" />
-    <PackageReference Include="SkinnyControllersGenerator" Version="2021.25.5.1355" />
+    <PackageReference Include="SkinnyControllersCommon" Version="2021.25.6.855" />
+    <PackageReference Include="SkinnyControllersGenerator" Version="2021.25.6.855" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
@@ -29,7 +29,12 @@
     <ProjectReference Include="..\LocalAPIEmail\LocalAPIEmail.csproj" />
     <ProjectReference Include="..\LocalFS\LocalFS.csproj" />
   </ItemGroup>
-	
+
+	<PropertyGroup>
+		<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+		<CompilerGeneratedFilesOutputPath>$(BaseIntermediateOutputPath)Generated</CompilerGeneratedFilesOutputPath>
+
+	</PropertyGroup>
 	<!--<PropertyGroup >
 		<TreatWarningsAsErrors>True</TreatWarningsAsErrors>
 	</PropertyGroup>-->
