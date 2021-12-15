@@ -118,7 +118,7 @@ jobs:
       uses: thedoctor0/zip-release@master
       with:
         type: 'zip'
-        filename: 'releaseIISWin.zip'
+        filename: 'releaseLocalAPI.zip'
         directory: '${{github.workspace}}/src/Local/LocalAPI/LocalAPI/'
         path: '${{env.AZURE_WEBAPP_NAME}}LocalAPI/'
         exclusions: '*.git* /*node_modules/* .editorconfig'       
@@ -169,6 +169,7 @@ jobs:
             releaseLin.zip
             releaseWin.zip
             releaseIISWin.zip
+            releaseLocalAPI.zip
             version.txt
         # tag: v${{ env.GITHUB_SHA }}
         # tag_name: v${{ env.GITHUB_SHA }}

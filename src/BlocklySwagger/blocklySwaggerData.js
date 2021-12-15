@@ -84,18 +84,8 @@ class BlocklyReturnSwagger {
     var allPaths=this.openApiDocument.paths;
     var keys= Object.keys(allPaths);
     
-    keys.forEach(function (key) {
-      var path= allPaths[key];
-      if(path && path.tags && path.tags.length>0){
-        var tags=path.tags;
-        if(tags.includes(controllerName)){
-
-        }
-      }
-    });
-
     var urls = this.operations.filter((it) => it.controller == controllerName);
-  
+    //console.log(urls);
     var xmlList = this.fieldXMLFunctions
       .filter((it) => {
         if (it.id == '') return true;
@@ -124,20 +114,21 @@ class BlocklyReturnSwagger {
     var self=this;
     keys.forEach(function (key) {
       var path= allPaths[key];
-      console.log('x',path);
+      // console.log('x',path);
 
       if(path ){
         var objKeys= Object.keys(path);
         objKeys.forEach(function (objKey) {
-          console.log('z',path[objKey]);
+          //console.log('z',path[objKey]);
 
           var tags=path[objKey].tags;
         if(tags && tags.length>0)
         tags.forEach(function (tag) {
           if(!self.cacheCategSwaggerFromPaths.includes(tag)){
             self.cacheCategSwaggerFromPaths.push(tag);
-            self.operations.push({ controller:tag, id:key})
+            
           }
+          self.operations.push({ controller:tag, id:key});
             });
         });
         
