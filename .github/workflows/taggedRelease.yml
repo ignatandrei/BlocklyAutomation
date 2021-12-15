@@ -108,6 +108,7 @@ jobs:
 
     - name: making releases of localApi
       run: |
+        cd src
         cd Local
         cd LocalAPI
         cd LocalAPI
