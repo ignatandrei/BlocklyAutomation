@@ -96,6 +96,8 @@ jobs:
         npm run buildGitHubPages
         rm -r Loaders/SimpleSite/AutoBlocklySimple/wwwroot/BlocklyAutomation/*
         cp -r AutoBlocklyApp/dist/AutoBlocklyApp/* Loaders/SimpleSite/AutoBlocklySimple/wwwroot/BlocklyAutomation/
+        rm -r Local/LocalAPI/LocalAPI/wwwroot/BlocklyAutomation/*
+        cp -r AutoBlocklyApp/dist/AutoaBlocklyApp/* Local/LocalAPI/LocalAPI/wwwroot/BlocklyAutomation/
         cd Loaders
         cd SimpleSite
         cd AutoBlocklySimple
