@@ -6,7 +6,9 @@ builder.Services.AddControllers()
     .AddJsonOptions(c =>
 
     {
-        c.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;       
+        c.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+        c.JsonSerializerOptions.IgnoreReadOnlyFields = true;
+        c.JsonSerializerOptions.IgnoreReadOnlyProperties = true;//directory info
     });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddVersionedApiExplorer();
