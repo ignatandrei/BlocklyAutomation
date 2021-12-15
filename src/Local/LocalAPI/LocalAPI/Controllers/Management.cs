@@ -5,7 +5,8 @@
 public class ManagementController : ControllerBase
 {
     public static CancellationTokenSource cts;
-    public void Restart()
+    [HttpPost]
+    public void Stop()
     {
         cts.Cancel();
     }

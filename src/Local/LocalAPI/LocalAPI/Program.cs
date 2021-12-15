@@ -73,9 +73,16 @@ app.MapControllers();
 
 ManagementController.cts = new();
 
-while (true)
+//while (true)
 {//37283
-    app.StartAsync(ManagementController.cts.Token);
-    Console.WriteLine("restarted");
+    try
+    {
+        await app.RunAsync(ManagementController.cts.Token);
+    }
+    catch (OperationCanceledException)
+    {
+        //ManagementController.cts = new();
+        Console.WriteLine("restarted");
+    }
 }
 
