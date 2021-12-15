@@ -119,7 +119,7 @@ jobs:
       with:
         type: 'zip'
         filename: 'releaseIISWin.zip'
-        directory: '${{github.workspace}}/Local/LocalAPI/LocalAPI/'
+        directory: '${{github.workspace}}/src/Local/LocalAPI/LocalAPI/'
         path: '${{env.AZURE_WEBAPP_NAME}}LocalAPI/'
         exclusions: '*.git* /*node_modules/* .editorconfig'       
 

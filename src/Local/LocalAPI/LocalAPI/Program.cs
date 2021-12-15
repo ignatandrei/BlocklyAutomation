@@ -1,3 +1,5 @@
+using LocalAPI.Controllers;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -69,4 +71,11 @@ app.UseAuthorization();
 //later: use versioning
 app.MapControllers();
 
-app.Run();
+ManagementController.cts = new();
+
+while (true)
+{//37283
+    app.StartAsync(ManagementController.cts.Token);
+    Console.WriteLine("restarted");
+}
+
