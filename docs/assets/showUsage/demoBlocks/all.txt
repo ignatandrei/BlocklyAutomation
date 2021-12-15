@@ -1,5 +1,17 @@
 ﻿[
     {
+        "id":  "chuckStart",
+        "description":  "chuck norris voice",
+        "categories":  "funny",
+        "blocks":  "text;getproperty;httprequest;text_print;ttsBlock"
+    },
+    {
+        "id":  "chucktry",
+        "description":  "chuck norris try catch",
+        "categories":  "funny",
+        "blocks":  "text;trycatchfinally;getproperty;httprequest;text_print;ttsBlock"
+    },
+    {
         "id":  "TTS",
         "description":  "text to speech",
         "categories":  "audio",
