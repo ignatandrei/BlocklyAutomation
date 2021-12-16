@@ -47,6 +47,12 @@ builder.Services.AddVersionedApiExplorer(setup =>
 });
 var app = builder.Build();
 
+app.UseCors(it => it
+.AllowAnyHeader()
+.AllowCredentials()
+.AllowAnyMethod()
+.SetIsOriginAllowed(it => true)
+);
 // Configure the HTTP request pipeline.
 //if (app.Environment.IsDevelopment())
 {
