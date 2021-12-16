@@ -6,7 +6,7 @@
     <value name="TEXT">
       <block type="converttostring">
         <value name="ValueToConvert">
-          <block type="meta_swagger_controllers_MSPC"></block>
+          <block type="meta_swagger_controllers_Demo_MSPC"></block>
         </value>
       </block>
     </value>
@@ -23,7 +23,7 @@
                 <field name="objectName">object</field>
                 <field name="prop">property</field>
                 <value name="ObjectToChange">
-                  <block type="meta_swagger_controllers_MSPC"></block>
+                  <block type="meta_swagger_controllers_Demo_MSPC"></block>
                 </value>
                 <value name="PropertyName">
                   <shadow type="text">
@@ -42,7 +42,7 @@
                 <field name="objectName">object</field>
                 <field name="prop">property</field>
                 <value name="ObjectToChange">
-                  <block type="meta_swagger_controllers_MSPC"></block>
+                  <block type="meta_swagger_controllers_Demo_MSPC"></block>
                 </value>
                 <value name="PropertyName">
                   <shadow type="text">
