@@ -119,8 +119,8 @@ jobs:
       with:
         type: 'zip'
         filename: 'releaseLocalAPI.zip'
-        directory: '${{github.workspace}}/src/Local/LocalAPI/LocalAPI/'
         path: '${{env.AZURE_WEBAPP_NAME}}LocalAPI/'
+        directory: '${{github.workspace}}/src/Local/LocalAPI/LocalAPI/'
         exclusions: '*.git* /*node_modules/* .editorconfig'       
 
     - name: Archive Release Linux
@@ -158,6 +158,7 @@ jobs:
         cp ${{github.workspace}}/src/Loaders/SimpleSite/AutoBlocklySimple/releaseWin.zip ${{github.workspace}}/releaseWin.zip
         cp ${{github.workspace}}/src/Loaders/SimpleSite/AutoBlocklySimple/releaseIISWin.zip ${{github.workspace}}/releaseIISWin.zip
         cp ${{github.workspace}}/src/AutoBlocklyApp/dist/releaseBlocklyAutomation.zip ${{github.workspace}}/releaseBlocklyAutomation.zip
+        cp ${{github.workspace}}/src/Local/LocalAPI/LocalAPI/releaseLocalAPI.zip ${{github.workspace}}/releaseLocalAPI.zip
         echo 'copied'
         find ${{github.workspace}} -type f -name "*.zip"
 
