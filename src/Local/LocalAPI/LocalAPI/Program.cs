@@ -62,7 +62,7 @@ var app = builder.Build();
     });
 }
 app.UseApiVersioning();
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 app.UseDefaultFiles();
 app.UseStaticFiles();
 app.UseAuthorization();
@@ -70,9 +70,9 @@ app.UseAuthorization();
 app.MapControllers();
 app.UseAMS();
 ManagementController.cts = new();
-
+app.Urls.Add("http://localhost:37283");
 //while (true)
-{//37283
+{//
     try
     {
         await app.RunAsync(ManagementController.cts.Token);
