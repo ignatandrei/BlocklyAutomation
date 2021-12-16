@@ -1,8 +1,7 @@
 {
   "name": "auto_blockly_workspace",
   "workspaces": [
-    "AutoBlocklyApp",
-    "AutoBlocklyApp",
+    "AutoBlocklyApp",    
     "BlocklyScripts",
     "BlocklyHelpers",
     "BlocklySwagger"

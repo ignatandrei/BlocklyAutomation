@@ -3,6 +3,8 @@
 
 // exports.fieldXML = function () {
 // }
+
+const Blockly =require('blockly');
  exports.definitionBlocks = function (blocks, javaScript) {
     const ORDER_ATOMIC = 0;
     blocks['comment'] = {

@@ -26,6 +26,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 // import { Chart , registerables } from 'chart.js';
 import Chart from 'chart.js/auto';
 import { fromEvent } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { FindSavedBlocksComponent } from '../find-saved-blocks/find-saved-blocks.component';
 enum ShowCodeAndXML{
   ShowNone=0,
   ShowBlocksDefinition=1,
@@ -72,7 +74,8 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
     private loadDemo: LoadShowUsageService,
     private ar: ActivatedRoute,
     private ta :TransmitAction,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    public dialog: MatDialog
   ) {
 
     this.myId=++DisplayBlocklyComponent.id;
@@ -356,12 +359,27 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
     return xmlList;
   }
   ngOnInit(): void {
+    this.ShowBlocks();
   }
   ngAfterViewInit(): void {
     this.StartRegister();
     //this.createIntro();
     fromEvent(window, 'TabDownload').subscribe(it=>this.tabulator.copyCSV());
     fromEvent(window, 'TabCopy').subscribe(it=>this.tabulator.copyClip());
+  }
+  public ShowBlocks(){
+    const dialogRef = this.dialog.open(FindSavedBlocksComponent, {
+      //width: '250px',
+      //data: {name: this.name, animal: this.animal},
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed', result);
+      if(result){
+        this.ShowDemo(result.id);
+      }
+      
+    });
   }
   public LoadSwagger() {
     //https://swagger-tax-calc-api.herokuapp.com/api-docs

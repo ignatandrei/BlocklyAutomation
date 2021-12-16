@@ -1,5 +1,5 @@
 import { APP_INITIALIZER, NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule , ReactiveFormsModule} from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -46,6 +46,7 @@ import { Observable, ObservableLike } from 'rxjs';
 import { MonacoEditorModule } from 'ngx-monaco-editor';
 import { TransmitAction } from './TransmitAction';
 import { BlocklyStudioComponent } from './blockly-studio/blockly-studio.component';
+import { FindSavedBlocksComponent } from './find-saved-blocks/find-saved-blocks.component';
 
 @NgModule({
   declarations: [
@@ -53,12 +54,14 @@ import { BlocklyStudioComponent } from './blockly-studio/blockly-studio.componen
     DisplayBlocklyComponent,
     PrimaryNavigComponent,
     BlocklyStudioComponent,
+    FindSavedBlocksComponent,
   ],
   imports: [
 
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     MatSliderModule,
     MatButtonModule,

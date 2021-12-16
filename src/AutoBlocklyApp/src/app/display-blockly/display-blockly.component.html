@@ -57,7 +57,16 @@
           <mat-icon>code</mat-icon>
           {{ ShowSelection() }}
         </button>
-
+        <button
+        mat-raised-button
+        id="blocks"
+        color="accent"
+        (click)="ShowBlocks()"
+      >
+        <mat-icon>list</mat-icon>
+        Load Saved Blocks 
+      </button>
+      
         <button
           mat-raised-button
           id="demos"
