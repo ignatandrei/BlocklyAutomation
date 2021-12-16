@@ -69,7 +69,7 @@ app.UseAuthorization();
 //later: use versioning
 app.MapControllers();
 app.UseAMS();
-app.MapFallbackToFile("/BlocklyAutomation/{**slug}", "BlocklyAutomation/index.html");
+app.MapFallbackToFile("/BlocklyAutomation/{**slug:nonfile}", "BlocklyAutomation/index.html");
 ManagementController.cts = new();
 app.Urls.Add("http://localhost:37283");
 //while (true)

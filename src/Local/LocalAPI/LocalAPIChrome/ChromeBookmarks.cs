@@ -1,6 +1,7 @@
 ﻿namespace LocalAPIChrome;
 public class ChromeData
 {
+
     public async IAsyncEnumerable<ChromeBookmark> GetUrlsEnumerable()
     {
 
@@ -35,7 +36,13 @@ public class ChromeData
         }
         
     }
-    public async Task<ChromeBookmark[]?> GetUrls()
+    public async Task<ChromeBookmark[]?> GetUrlsYear(int year)
+    {
+        var url = await GetUrlsEnumerable().ToArrayAsync();
+        return url.Where(it => it.TheDateAdded?.Year == year)
+            .ToArray();
+    }
+        public async Task<ChromeBookmark[]?> GetUrls()
     {
         var result = new List<ChromeBookmark>();
         await foreach (var item in GetUrlsEnumerable())                                       
