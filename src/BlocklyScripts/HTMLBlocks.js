@@ -106,9 +106,39 @@ exports.definitionBlocks = function (blocks, javaScript) {
   javaScript['HTMLliStop'] = function(block) {
     var dropdown_name = block.getFieldValue('NAME');
     var code = `'/<${dropdown_name}>'`;
-    return  [code, javaScript.ORDER_NONE];;
+    return  [code, javaScript.ORDER_NONE];
   };
 
+  blocks['HTMLlink'] =  {
+    init: function() {
+      this.appendDummyInput()
+          .appendField("A")
+          .appendField("target")
+          .appendField(new Blockly.FieldDropdown([["_blank","_blank"], ["_self","_self"], ["_parent","_parent"], ["_top","_top"]]), "targetDrop");
+      this.appendValueInput("HREF")
+          .setCheck(null)
+          .appendField("href");
+      this.appendValueInput("text")
+          .setCheck(null)
+          .appendField("text");
+      this.setOutput(true, null);
+      this.setColour(230);
+   this.setTooltip("");
+   this.setHelpUrl("");
+    }
+  };
+
+  javaScript['HTMLlink'] = function(block) {
+    var dropdown_targetdrop = block.getFieldValue('targetDrop');
+    var value_href = javaScript.valueToCode(block, 'HREF', javaScript.ORDER_ATOMIC);
+    var value_text = javaScript.valueToCode(block, 'text', javaScript.ORDER_ATOMIC);
+    value_text = value_text || value_href;
+    var code = `'<a href="'+`+  value_href ;
+    code  +=`+ '" target="${dropdown_targetdrop}"'`;
+    code+=`+ '>'+` + value_text  + `+ '</a> '`;
+    // code= javaScript.quote_(code);
+    return [code, javaScript.ORDER_NONE];
+  };
 
 
 };
@@ -155,6 +185,14 @@ exports.fieldXML = function () {
 <value name='TEXT'>" 
 
 <block type="HTMLliStop"></block>
+
+</value>
+</block>    
+
+<block type='text_print'>" 
+<value name='TEXT'>" 
+
+<block type="HTMLlink"></block>
 
 </value>
 </block>    
