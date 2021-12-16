@@ -29,13 +29,13 @@ export class BlocklyStudioComponent implements OnInit,AfterViewInit {
       return;
     this.data.push(index);
     this.loadBar(index).then((it)=>{
-      console.log('loaded'+ it);
+      // console.log('loaded'+ it);
     });
   }
   ngAfterViewInit(): void {
     this.data.push(0);
     this.loadBar(0).then((it)=>{
-      console.log('loaded tab' +it);
+      // console.log('loaded tab' +it);
     });
     
   }

@@ -4,11 +4,12 @@
 [ApiController]
 public class ManagementController : ControllerBase
 {
-    public static CancellationTokenSource cts;
+    internal static CancellationTokenSource? cts;
+
     [HttpPost]
     public void Stop()
     {
-        cts.Cancel();
+        cts?.Cancel();
     }
 }
 

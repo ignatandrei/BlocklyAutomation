@@ -1,5 +1,3 @@
-using LocalAPI.Controllers;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -70,7 +68,7 @@ app.UseStaticFiles();
 app.UseAuthorization();
 //later: use versioning
 app.MapControllers();
-
+app.UseAMS();
 ManagementController.cts = new();
 
 //while (true)
