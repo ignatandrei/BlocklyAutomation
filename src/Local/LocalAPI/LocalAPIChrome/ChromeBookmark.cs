@@ -18,5 +18,9 @@ public class ChromeBookmark
             var date = long.Parse(date_added);
             return new DateTime(tickFirst+ 10L* date, DateTimeKind.Utc);
         }
+        set
+        {
+            //do nothing for the moment
+        }
     }
 }

@@ -98,6 +98,8 @@ jobs:
         cp -r AutoBlocklyApp/dist/AutoBlocklyApp/* Loaders/SimpleSite/AutoBlocklySimple/wwwroot/BlocklyAutomation/
         rm -r Local/LocalAPI/LocalAPI/wwwroot/BlocklyAutomation/*
         cp -r AutoBlocklyApp/dist/AutoBlocklyApp/* Local/LocalAPI/LocalAPI/wwwroot/BlocklyAutomation/
+        cp -r Local/LocalAPI/LocalAPI/wwwroot/customBlocklyAutomation/ Local/LocalAPI/LocalAPI/wwwroot/BlocklyAutomation/
+        rm -r Local/LocalAPI/LocalAPI/wwwroot/customBlocklyAutomation/*
         cd Loaders
         cd SimpleSite
         cd AutoBlocklySimple
