@@ -75,6 +75,40 @@ exports.definitionBlocks = function (blocks, javaScript) {
   };
 
 
+  blocks['HTMLliStart'] = {
+    init: function() {
+      this.appendDummyInput()
+          .appendField("List")
+          .appendField(new Blockly.FieldDropdown([["OL","OL"], ["LI","LI"]]), "NAME");
+      this.setColour(240);
+      this.setOutput(true, null);
+      this.setTooltip("LI start");
+   this.setHelpUrl("");
+    }
+  };
+  javaScript['HTMLliStart'] = function(block) {
+    var dropdown_name = block.getFieldValue('NAME');
+    var code = `'<${dropdown_name}>'`;
+    return  [code, javaScript.ORDER_NONE];;
+  };
+
+  blocks['HTMLliStop'] = {
+    init: function() {
+      this.appendDummyInput()
+          .appendField("/List")
+          .appendField(new Blockly.FieldDropdown([["OL","OL"], ["LI","LI"]]), "NAME");
+      this.setColour(240);
+      this.setOutput(true, null);
+      this.setTooltip("LI stop");
+   this.setHelpUrl("");
+    }
+  };
+  javaScript['HTMLliStop'] = function(block) {
+    var dropdown_name = block.getFieldValue('NAME');
+    var code = `'<${dropdown_name}>'`;
+    return  [code, javaScript.ORDER_NONE];;
+  };
+
 
 
 };
@@ -110,9 +144,20 @@ exports.fieldXML = function () {
 </value>
 </block>    
 </value>
-
-
 </block>
+<block type='text_print'>" 
+<value name='TEXT'>" 
+
+<block type="HTMLliStart"></block>
+</value>
+</block>    
+<block type='text_print'>" 
+<value name='TEXT'>" 
+
+<block type="HTMLliStop"></block>
+
+</value>
+</block>    
 
 
 `
