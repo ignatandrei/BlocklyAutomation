@@ -105,7 +105,7 @@ exports.definitionBlocks = function (blocks, javaScript) {
   };
   javaScript['HTMLliStop'] = function(block) {
     var dropdown_name = block.getFieldValue('NAME');
-    var code = `'<${dropdown_name}>'`;
+    var code = `'/<${dropdown_name}>'`;
     return  [code, javaScript.ORDER_NONE];;
   };
 
