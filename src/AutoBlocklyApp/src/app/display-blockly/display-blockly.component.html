@@ -11,10 +11,33 @@
 
         
         &nbsp;
+        <button
+          mat-raised-button
+          id="demos"
+          color="primary"
+          [matMenuTriggerFor]="menuSave"
+        >
+          <mat-icon>save</mat-icon>
+          Save =>
+        </button>
+        <mat-menu #menuSave="matMenu">
+        
         <button mat-raised-button color="primary" (click)="SaveBlocks()">
           <mat-icon>save</mat-icon>
           Persist in browser
         </button>
+        <mat-divider  [inset]="true"></mat-divider>
+        <button
+          id="downloadBlocks"
+          mat-raised-button
+          color="primary"
+          (click)="Download()"
+        >
+          <mat-icon>download</mat-icon>
+          Download blocks
+        </button>
+        
+        </mat-menu>
         &nbsp;
         <button
           mat-raised-button
@@ -27,15 +50,6 @@
         </button>
 
         &nbsp;
-        <button
-          id="downloadBlocks"
-          mat-raised-button
-          color="primary"
-          (click)="Download()"
-        >
-          <mat-icon>download</mat-icon>
-          Download blocks
-        </button>
         &nbsp;
         <input type="file" (change)="changeListener($event)" />
 
