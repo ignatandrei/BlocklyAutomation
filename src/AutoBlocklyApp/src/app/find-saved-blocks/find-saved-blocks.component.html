@@ -1,6 +1,26 @@
 <mat-tab-group>
   <mat-tab label="Demos">
     <form class="example-form">
+      
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Categories</mat-label>
+        <input
+          type="text"
+          placeholder="Pick one"
+          aria-label="Categories"
+          matInput
+          [formControl]="myCategories"
+          [matAutocomplete]="autoCategories"
+        />
+        <mat-autocomplete #autoCategories="matAutocomplete">
+          <mat-option
+            *ngFor="let option of filteredOptionsCategories | async"
+            [value]="option"
+          >
+            {{ option }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Blocks</mat-label>
         <input
@@ -21,25 +41,6 @@
         </mat-autocomplete>
       </mat-form-field>
 
-      <mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>Categories</mat-label>
-        <input
-          type="text"
-          placeholder="Pick one"
-          aria-label="Categories"
-          matInput
-          [formControl]="myCategories"
-          [matAutocomplete]="autoCategories"
-        />
-        <mat-autocomplete #autoCategories="matAutocomplete">
-          <mat-option
-            *ngFor="let option of filteredOptionsCategories | async"
-            [value]="option"
-          >
-            {{ option }}
-          </mat-option>
-        </mat-autocomplete>
-      </mat-form-field>
     </form>
     
     <table>

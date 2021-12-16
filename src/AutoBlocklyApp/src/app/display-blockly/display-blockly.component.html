@@ -67,76 +67,6 @@
         Load Saved Blocks 
       </button>
       
-        <button
-          mat-raised-button
-          id="demos"
-          color="accent"
-          [matMenuTriggerFor]="menuDiff"
-        >
-          <mat-icon>list</mat-icon>
-          Demos ({{ demos.length }})
-        </button>
-        <mat-menu #menuDiff="matMenu">
-          <button mat-menu-item [matMenuTriggerFor]="menuByName">
-            By Name 
-          </button>
-
-          <mat-menu #menuByName="matMenu">
-            <ng-template
-              ngFor
-              let-demo
-              let-i="index"
-              [ngForOf]="demosCategories | keyvalue"
-            >
-              <button mat-menu-item [matMenuTriggerFor]="menu">
-                {{ i + 1 }} {{ demo.key }} ({{ demo.value.length }})
-              </button>
-              <mat-menu #menu="matMenu">
-                <ng-template
-                  ngFor
-                  let-itemDemo
-                  let-iMenu="index"
-                  [ngForOf]="demo.value"
-                >
-                  <button mat-menu-item (click)="ShowDemo(itemDemo.id)">
-                    {{ iMenu + 1 }} {{ itemDemo.description }}
-                  </button>
-                </ng-template>
-              </mat-menu>
-            </ng-template>
-          </mat-menu>
-
-          <button mat-menu-item [matMenuTriggerFor]="menuByBlocks">
-            By Blocks 
-          </button>
-          <mat-menu #menuByBlocks="matMenu"> 
-            <ng-template
-            ngFor
-            let-demo
-            let-i="index"
-            [ngForOf]="demosBlocks | keyvalue"
-          >
-            <button mat-menu-item [matMenuTriggerFor]="menuBlock">
-              {{ i + 1 }} {{ demo.key.toLowerCase() }} ({{ demo.value.length }})
-            </button>
-            <mat-menu #menuBlock="matMenu">
-              <ng-template
-                ngFor
-                let-itemDemo
-                let-iMenu="index"
-                [ngForOf]="demo.value"
-              >
-                <button mat-menu-item (click)="ShowDemo(itemDemo.id)">
-                  {{ iMenu + 1 }} {{ itemDemo.description }}
-                </button>
-              </ng-template>
-            </mat-menu>
-          </ng-template>
-        
-
-
-          </mat-menu>
-        </mat-menu>
         <a
           target="_blank"
           *ngIf="mustLoadDemoBlock?.length"
@@ -145,7 +75,6 @@
           [routerLink]="['/', 'automation', 'loadexample', mustLoadDemoBlock]"
           >Direct link {{ mustLoadDemoBlock }}</a
         >
-        <span *ngIf="demoWorkspace == null">Loading</span>
       </div>
     </div>
   </mat-grid-tile-header>

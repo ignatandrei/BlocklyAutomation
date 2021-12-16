@@ -54,15 +54,7 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
   public swaggerLoaded: number = 0;
   public demoWorkspace: Blockly.WorkspaceSvg | null = null;
   public run: any;
-  public demos: DemoBlocks[] = [];
-  public demosCategories: Map<string, DemoBlocks[]> = new Map<
-    string,
-    DemoBlocks[]
-  >();
-
-  public demosBlocks:Map<string,DemoBlocks[]>= new Map<string,DemoBlocks[]>();
-
-
+  
   public mustLoadDemoBlock: string = '';
   // private directLinkDemo:string='';
   private intro: IntroJs = introJs();
@@ -85,62 +77,13 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
     this.ar.paramMap.subscribe((params: any) => {
       this.mustLoadDemoBlock = params.get('demoblock');
     });
-    this. InitiateDemos();
     this.ta.receiveData().subscribe(it=>{
       if(it[0]=='DisplayBlocklyComponent'){
         ((this as any)[it[1]] as any)();
       }
     });
   }
-  InitiateDemos(){
-    var data: DemoBlocks[] = this.DetailsApp.demoBlocks;
-    
-    this.demos = data.sort((a, b) =>
-      a.description.localeCompare(b.description)
-    );
-
-    
-      var categories = data
-        .map((it) => it.categories)
-        .filter((it) => it?.length > 0)
-        .flatMap((it) => it.split(';'))
-        .filter((it) => it?.length > 0);
-      this.demosCategories.set('All', this.demos);
-      categories.forEach((element) => {
-        this.demosCategories.set(
-          element,
-          data
-            .filter((it) => it.categories?.length > 0)
-            .filter(
-              (it) =>
-                (';' + it.categories + ';').indexOf(';' + element + ';') > -1
-            )
-        );
-      });
-
-
-      var blockNames= data
-      .map((it) => it.blocks)
-      .filter((it) => it?.length > 0)
-      .flatMap((it) => it.split(';'))
-      .filter((it) => it?.length > 0)
-      .sort((a,b)=>a.toLowerCase().localeCompare(b.toLowerCase()));
-      // console.log('x_',blockNames);
-      blockNames.forEach((element) => {
-        this.demosBlocks.set(
-          element.toLowerCase(),
-          data
-            .filter((it) => it.blocks?.length > 0)
-            .filter(
-              (it) =>
-                (';' + it.blocks + ';').indexOf(';' + element + ';') > -1
-            )
-        );
-      });
-      // console.log('y_',this.demosBlocks);
-
-    
-  }
+  
   createIntro() {
     
     var steps = this.DetailsApp.settings?.tourSteps.map((it: TourSteps) => {
@@ -359,7 +302,7 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
     return xmlList;
   }
   ngOnInit(): void {
-    this.ShowBlocks();
+    //this.ShowBlocks();
   }
   ngAfterViewInit(): void {
     this.StartRegister();
