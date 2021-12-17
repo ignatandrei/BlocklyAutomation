@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { map, Observable } from "rxjs";
 
 export class LocalAPI{
-    constructor(private urL:string, private http: HttpClient){
+    constructor(public urL:string, private http: HttpClient){
 
     }
     public WasAlive: boolean = false;

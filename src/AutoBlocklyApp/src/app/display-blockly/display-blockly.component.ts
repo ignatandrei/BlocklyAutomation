@@ -732,6 +732,9 @@ var customCategs=this.DetailsApp.customCategories;
         console.error('error when load default blocks', e);
       }
     }
+    if(this.DetailsApp.LocalAPI?.WasAlive){
+      this.LoadSwaggerFromUrl(this.DetailsApp.LocalAPI.urL+"swagger/v1/swagger.json","LocalAutomation");
+    }
     window.setTimeout(self.afterTimeout, 2000, this, );
 
     // console.log(BlocklyJavaScript);
