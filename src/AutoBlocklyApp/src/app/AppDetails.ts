@@ -7,6 +7,7 @@ import { LinksSwagger } from "./LinksSwagger";
 import { LoadShowUsageService } from "./load-show-usage.service";
 import { Settings } from "./Settings";
 import * as SwaggerParser from '@blockly/blocklyswagger';
+import { LocalAPI } from "./LocalApi";
 
 
 @Injectable()
@@ -20,6 +21,11 @@ export class AppDetails {
   public demoBlocks:DemoBlocks[]=[];
   public swaggersDict: Map<string, any> = new Map<string, any>();
   public customCategories: string='';
+  public LocalAPI: LocalAPI| null=null;
+  public CreateLocalApis( http : HttpClient , url: string): LocalAPI {
+    return new LocalAPI(url, http); 
+  }
+
   Init(): Observable<string> {
 
     return zip(
@@ -32,13 +38,14 @@ export class AppDetails {
         )
 
         .pipe(
-            delay(2000),
+            delay(1000),
             tap(([settings, links, demoBlocks, categs, lv]) => {                
                 this.settings = settings;
                 this.settings.latestVersion=lv;
                 this.linksSwagger = links;
                 this.demoBlocks = demoBlocks;
                 this.customCategories = categs;
+                this.LocalAPI= this.CreateLocalApis(this.http, this.settings.localAPI);
                 //console.log('settings loaded', this.customCategories);
             })
             ,
