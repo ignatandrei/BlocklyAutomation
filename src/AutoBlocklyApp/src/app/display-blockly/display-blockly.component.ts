@@ -368,11 +368,15 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
     var api = await parser.ParseSwagger();
 
     api.name = name || url;
-    return this.LoadSwaggerFromAPI(api); 
+    if(!api.hasError)
+      return this.LoadSwaggerFromAPI(api); 
 
   }
   LoadSwaggerFromAPI(api: any): any {
-
+    if(api.hasError){
+      console.error("error in swagger", api);
+      return api;
+    }
     this.swaggerData.push(api);
     for (var i = 0; i < api.GenerateBlocks.length; i++) {
       var e = api.GenerateBlocks[i];
@@ -395,6 +399,7 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
     var swaggersUrl = this.DetailsApp.swaggersDict;
     var swaggersDict: Map<string, any> = new Map<string, any>();    
     swaggersUrl.forEach((it, key) => {
+      if(!it.hasError)
       swaggersDict.set(key, this.LoadSwaggerFromAPI(it));
     });
     // swaggersUrl.forEach(async (it) => {
@@ -718,7 +723,7 @@ var customCategs=this.DetailsApp.customCategories;
     bh.saveBlocksUrl.restoreState(Blockly.Xml, this.demoWorkspace,this.myId);
   }
   public addToToolboxSwagger(item:any,myComponent: DisplayBlocklyComponent){
-
+    
     var newCateg = item
     .findCategSwaggerFromPaths()
     .sort()
