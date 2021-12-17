@@ -13,6 +13,12 @@ public class ManagementController : ControllerBase
     {
         return DateTime.UtcNow.ToString("u");
     }
+    [HttpGet]
+    public string MachineName()
+    {
+        return Environment.MachineName;
+    }
+
     [HttpPost]
     public void Stop()
     {

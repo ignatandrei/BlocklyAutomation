@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="RSCG_Static" Version="2021.8.31.2037" />
     <PackageReference Include="System.IO.Abstractions" Version="14.0.13" />
   </ItemGroup>
 
