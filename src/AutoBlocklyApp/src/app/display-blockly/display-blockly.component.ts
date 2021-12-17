@@ -664,7 +664,7 @@ var customCategs=this.DetailsApp.customCategories;
     return `<category name='swagger_hidden_${id}' hidden='true' >${id}</category>`;
   }
   public LoadLocalAPI(self:DisplayBlocklyComponent):any{
-    console.log('x_',self);
+    // console.log('x_',self);
     var swaggerUrl=self.DetailsApp?.settings?.localAPI||'';
     swaggerUrl+="swagger/v1/swagger.json";
     //window.alert(swaggerUrl);
