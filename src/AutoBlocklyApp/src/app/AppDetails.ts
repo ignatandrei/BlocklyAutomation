@@ -47,6 +47,10 @@ export class AppDetails {
                 this.customCategories = categs;
                 this.LocalAPI= this.CreateLocalApis(this.http, this.settings.localAPI);
                 //console.log('settings loaded', this.customCategories);
+                this.LocalAPI.IsAlive().subscribe(it=>
+                  {
+                    console.log('LocalAPI is alive', it);
+                  })
             })
             ,
             switchMap(() => 
