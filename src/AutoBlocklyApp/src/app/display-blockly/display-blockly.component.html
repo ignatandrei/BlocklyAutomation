@@ -23,7 +23,7 @@
         <mat-menu #menuSave="matMenu">
         
         <button mat-raised-button color="primary" (click)="SaveBlocks()">
-          <mat-icon>save</mat-icon>
+          <mat-icon>save_alt</mat-icon>
           Persist in browser
         </button>
         <mat-divider  [inset]="true"></mat-divider>
@@ -36,7 +36,17 @@
           <mat-icon>download</mat-icon>
           Download blocks
         </button>
-        
+        <mat-divider  [inset]="true"></mat-divider>
+        <button
+          mat-raised-button
+          [color]='DetailsApp.LocalAPI?.WasAlive ?"primary":"warn"'
+          
+          (click)="LoadLocalAPI()"
+        >
+          <mat-icon>save</mat-icon>
+          Save Local
+        </button>
+          
         </mat-menu>
         &nbsp;
         <button

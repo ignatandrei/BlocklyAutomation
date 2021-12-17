@@ -62,7 +62,7 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
   myId:number=0;
   constructor(
     private tabulator: TabulatorHelper,
-    private DetailsApp: AppDetails,
+    public DetailsApp: AppDetails,
     private loadDemo: LoadShowUsageService,
     private ar: ActivatedRoute,
     private ta :TransmitAction,
@@ -540,10 +540,7 @@ var customCategs=this.DetailsApp.customCategories;
       `,
       `</category>
       ${customCategs}
-      <category name="LocalAPI" id="localAPI" expanded='false' >
-        <button text="LoadLocalAPI" callbackKey="LoadLocalAPI"></button>
-      </category>
-  
+      
       <category name="Swagger" id="catSwagger" expanded='false' >          
           ${newSwaggerCategories}
         </category> 
@@ -663,9 +660,15 @@ var customCategs=this.DetailsApp.customCategories;
   private CategorySwaggerHidden(id: Number): string {
     return `<category name='swagger_hidden_${id}' hidden='true' >${id}</category>`;
   }
-  public LoadLocalAPI(self:DisplayBlocklyComponent):any{
+  public LoadLocalAPI():any{
     // console.log('x_',self);
-    var swaggerUrl=self.DetailsApp?.settings?.localAPI||'';
+    var self=this;
+    self.DetailsApp.LocalAPI?.IsAlive()?.subscribe((it)=>{
+      if(!it){
+        window.alert('Local API is not alive');
+        return;
+      }
+    var swaggerUrl=self.DetailsApp.LocalAPI?.urL||'';
     swaggerUrl+="swagger/v1/swagger.json";
     //window.alert(swaggerUrl);
 
@@ -681,7 +684,7 @@ var customCategs=this.DetailsApp.customCategories;
         window.alert("loaded successfully");
       }
     });  
-
+  });
     }
   public toolboxXML: string = '';
   private initialize(defaultBlocks: string[]) {
@@ -717,7 +720,7 @@ var customCategs=this.DetailsApp.customCategories;
           pinch: true},
       toolbox: this.toolboxXML,
     } as Blockly.BlocklyOptions);
-    this.demoWorkspace.registerButtonCallback("LoadLocalAPI",()=>this.LoadLocalAPI(this));
+    // this.demoWorkspace.registerButtonCallback("LoadLocalAPI",()=>this.LoadLocalAPI(this));
     const contentHighlight = new ContentHighlight(this.demoWorkspace);
     contentHighlight.init();
     var self = this;
