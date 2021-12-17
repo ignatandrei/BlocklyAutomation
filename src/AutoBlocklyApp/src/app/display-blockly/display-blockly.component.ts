@@ -337,11 +337,16 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
         return;
       }
       self.loadedCompletely=false;
-      self.LoadSwaggerFromUrl(json).then((it) => {
+      self.LoadSwaggerFromUrl(json).then((api) => {
         // this.afterTimeout(this);
+        if(api.hasError)
+        window.alert("error loading local api");
+      else{
+        
+        self.addToToolboxSwagger(api,this);      
         self.loadedCompletely=true;
-        this.addToToolboxSwagger(it,this);
-        window.alert('done');
+        window.alert("loaded successfully");
+      }
       
 
     });
@@ -662,14 +667,22 @@ var customCategs=this.DetailsApp.customCategories;
     console.log('x_',self);
     var swaggerUrl=self.DetailsApp?.settings?.localAPI||'';
     swaggerUrl+="swagger/v1/swagger.json";
-    window.alert(swaggerUrl);
-    self.LoadSwaggerFromUrl(swaggerUrl,"LocalAPI").then((api)=>{
-      if(api.hasError)
+    //window.alert(swaggerUrl);
+
+    self.loadedCompletely=false;
+    self.LoadSwaggerFromUrl(swaggerUrl).then((api) => {
+        // this.afterTimeout(this);
+        if(api.hasError)
         window.alert("error loading local api");
-      else
+      else{
+        api.name= "LocalAPI";
+        self.addToToolboxSwagger(api,this);      
+        self.loadedCompletely=true;
         window.alert("loaded successfully");
-    });
-  }
+      }
+    });  
+
+    }
   public toolboxXML: string = '';
   private initialize(defaultBlocks: string[]) {
     const blocklyDiv = document.getElementById('blocklyDiv'+this.myId);
