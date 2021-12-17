@@ -8,4 +8,5 @@ export class Settings {
     public startBlocks: string[] = [];
     public tourSteps: TourSteps[] = [];
     public latestVersion: string = '';
+    public localAPI: string = '';
 }

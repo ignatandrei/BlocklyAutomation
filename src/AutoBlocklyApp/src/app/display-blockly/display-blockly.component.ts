@@ -370,7 +370,8 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
     api.name = name || url;
     if(!api.hasError)
       return this.LoadSwaggerFromAPI(api); 
-
+    else
+      return api;
   }
   LoadSwaggerFromAPI(api: any): any {
     if(api.hasError){
@@ -534,10 +535,14 @@ var customCategs=this.DetailsApp.customCategories;
       `,
       `</category>
       ${customCategs}
-      <category name="Swagger" id="catSwagger" expanded='true' >          
+      <category name="LocalAPI" id="localAPI" expanded='false' >
+        <button text="LoadLocalAPI" callbackKey="LoadLocalAPI"></button>
+      </category>
+  
+      <category name="Swagger" id="catSwagger" expanded='false' >          
           ${newSwaggerCategories}
         </category> 
-        
+       
         `,
     ];
     this.initialize(blocks);
@@ -653,6 +658,18 @@ var customCategs=this.DetailsApp.customCategories;
   private CategorySwaggerHidden(id: Number): string {
     return `<category name='swagger_hidden_${id}' hidden='true' >${id}</category>`;
   }
+  public LoadLocalAPI(self:DisplayBlocklyComponent):any{
+    console.log('x_',self);
+    var swaggerUrl=self.DetailsApp?.settings?.localAPI||'';
+    swaggerUrl+="swagger/v1/swagger.json";
+    window.alert(swaggerUrl);
+    self.LoadSwaggerFromUrl(swaggerUrl,"LocalAPI").then((api)=>{
+      if(api.hasError)
+        window.alert("error loading local api");
+      else
+        window.alert("loaded successfully");
+    });
+  }
   public toolboxXML: string = '';
   private initialize(defaultBlocks: string[]) {
     const blocklyDiv = document.getElementById('blocklyDiv'+this.myId);
@@ -661,7 +678,7 @@ var customCategs=this.DetailsApp.customCategories;
       return;
     }
     var blocks = defaultBlocks.map((it) => `<sep></sep>${it}`);
-    this.toolboxXML = `<xml xmlns="https://developers.google.com/blockly/xml" id="toolbox-simple" style="display: none">
+    this.toolboxXML = `<xml xmlns="https://developers.google.com/blockly/xml" id="toolbox-simple" style="display: none">    
     ${blocks}
     </xml>`;
     // console.log(toolboxXML);
@@ -687,7 +704,7 @@ var customCategs=this.DetailsApp.customCategories;
           pinch: true},
       toolbox: this.toolboxXML,
     } as Blockly.BlocklyOptions);
-    
+    this.demoWorkspace.registerButtonCallback("LoadLocalAPI",()=>this.LoadLocalAPI(this));
     const contentHighlight = new ContentHighlight(this.demoWorkspace);
     contentHighlight.init();
     var self = this;

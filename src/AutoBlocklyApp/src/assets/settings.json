@@ -1,6 +1,7 @@
 {
     "title": "Automate Blockly -  https://github.com/ignatandrei/BlocklyAutomation",
     "footer": "Please give us a star on https://github.com/ignatandrei/BlocklyAutomation",
+    "localAPI": "http://localhost:37283/",
     "startBlocks":[
 
 "      <xml xmlns='https://developers.google.com/blockly/xml'>",
