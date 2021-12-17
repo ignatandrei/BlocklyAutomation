@@ -14,6 +14,7 @@ builder.Services.AddControllers()
 builder.Services.AddVersionedApiExplorer();
 //builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddTransient<RepoBlocksSimple>();
 builder.Services.AddTransient<ChromeData>();
 builder.Services.AddTransient<EmailSender>();
 builder.Services.AddTransient<ISystem_Environment>(_=>new clsISystem_Environment());

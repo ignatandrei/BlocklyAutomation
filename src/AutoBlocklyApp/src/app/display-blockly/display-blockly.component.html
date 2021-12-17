@@ -23,7 +23,7 @@
         <mat-menu #menuSave="matMenu">
         
         <button mat-raised-button color="primary" (click)="SaveBlocks()">
-          <mat-icon>save_alt</mat-icon>
+          <mat-icon>web</mat-icon>
           Persist in browser
         </button>
         <mat-divider  [inset]="true"></mat-divider>
@@ -41,7 +41,7 @@
           mat-raised-button
           [color]='DetailsApp.LocalAPI?.WasAlive ?"primary":"warn"'
           
-          (click)="LoadLocalAPI()"
+          (click)="SaveToLocalAPI()"
         >
           <mat-icon>save</mat-icon>
           Save Local

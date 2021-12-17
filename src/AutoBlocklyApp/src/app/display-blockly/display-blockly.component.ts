@@ -25,9 +25,10 @@ import { TransmitAction } from '../TransmitAction';
 import { MatSnackBar } from '@angular/material/snack-bar';
 // import { Chart , registerables } from 'chart.js';
 import Chart from 'chart.js/auto';
-import { fromEvent } from 'rxjs';
+import { catchError, fromEvent, throwError } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { FindSavedBlocksComponent } from '../find-saved-blocks/find-saved-blocks.component';
+import { error } from '@angular/compiler/src/util';
 enum ShowCodeAndXML{
   ShowNone=0,
   ShowBlocksDefinition=1,
@@ -660,10 +661,40 @@ var customCategs=this.DetailsApp.customCategories;
   private CategorySwaggerHidden(id: Number): string {
     return `<category name='swagger_hidden_${id}' hidden='true' >${id}</category>`;
   }
+  public SaveToLocalAPI():void{
+    if((this.DetailsApp?.LocalAPI?.WasAlive||false) == false){
+      this.LoadLocalAPI();
+      window.alert("local api it is not yet loaded - please try again after loading");
+      return;
+    }
+    var xml = Blockly.Xml.workspaceToDom(this.demoWorkspace!, true);
+    var xml_text = Blockly.Xml.domToPrettyText(xml);    
+    var db= new DemoBlocks();
+    var name=window.prompt("name of the blocks?");
+    if(name == null)
+      return;
+    db.id = name;
+    db.blocks="";
+    db.categories="";
+    db.description="";
+    this.DetailsApp.LocalAPI?.SaveBlock(db,xml_text).subscribe(
+      it=>{
+        console.log("number blocks",it);
+        window.alert("saved !")
+      }
+    );
+   
+  }
   public LoadLocalAPI():any{
     // console.log('x_',self);
     var self=this;
-    self.DetailsApp.LocalAPI?.IsAlive()?.subscribe((it)=>{
+    return self.DetailsApp.LocalAPI?.IsAlive()?.pipe(
+        catchError((err)=>{
+          window.alert(`cannot load ${self.DetailsApp.LocalAPI?.urL}`)
+          throw err;
+        })
+      )
+      .subscribe((it)=>{
       if(!it){
         window.alert('Local API is not alive');
         return;
