@@ -69,7 +69,47 @@
     </table>
   </mat-tab>
 
-  <mat-tab label="Saved on local" disabled="disabled"> Saved on local</mat-tab>
+  <mat-tab label="Saved on local" > 
+    <button
+    mat-raised-button
+    color='primary'
+    *ngIf="!DetailsApp.LocalAPI?.WasAlive"
+    (click)="Verify()"
+  >
+    <mat-icon>save</mat-icon>
+    Verify LocalAPI
+   
+
+  </button>
+{{demoBlocksLocal.length}}
+  <table>
+    <thead>
+      <tr>
+        <th>Number</th>
+        <th>Name</th>
+        <th>Details</th>
+        
+      </tr>
+    </thead>
+    <tr *ngFor="let demo of demoBlocksLocal; let i = index">
+      <td>
+        {{ i + 1 }}
+      </td>
+      <td>
+        <button mat-raised-button color="primary" (click)="chooseDemo(demo)">            
+        {{ demo.description }}
+        </button>
+      </td>
+      <td>
+        <b>{{ demo.categories?.split(';')?.join(', ') }}</b>          
+        {{ demo.blocks?.split(';')?.join(', ') }}
+      </td>
+    </tr>
+  </table>
+
+
+
+  </mat-tab>
   <mat-tab label="CLOUD" disabled="disabled"> Saved on Cloud </mat-tab>
 </mat-tab-group>
 

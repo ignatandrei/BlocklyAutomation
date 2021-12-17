@@ -13,6 +13,7 @@ import { DemoBlocks } from '../DemoBlocks';
 })
 export class FindSavedBlocksComponent implements OnInit {
 
+  public demoBlocksLocal: DemoBlocks[] = [];
   public demos: DemoBlocks[] = [];
   public demosCategories: Map<string, DemoBlocks[]> = new Map<
     string,
@@ -21,11 +22,26 @@ export class FindSavedBlocksComponent implements OnInit {
 
   public demosBlocks:Map<string,DemoBlocks[]>= new Map<string,DemoBlocks[]>();
 
-  constructor(public dialogRef: MatDialogRef<FindSavedBlocksComponent >,private DetailsApp: AppDetails) { 
+  constructor(public dialogRef: MatDialogRef<FindSavedBlocksComponent >,public DetailsApp: AppDetails) { 
     this.InitiateDemos();
-
+    this.loadFromLocalAPI();
   }
-
+  public loadFromLocalAPI(){
+    if(this.DetailsApp.LocalAPI?.WasAlive){
+      this.DetailsApp.LocalAPI?.LoadBlocks().subscribe(
+        it=>{
+            this.demoBlocksLocal=it;
+        }
+      )
+    }
+  }
+  public Verify(){
+    this.DetailsApp.LocalAPI?.IsAlive().subscribe(it=>{
+      if(it){
+        this.loadFromLocalAPI();
+      }
+    })
+  }
   InitiateDemos(){
     var data: DemoBlocks[] = this.DetailsApp.demoBlocks;
     
@@ -44,18 +60,7 @@ export class FindSavedBlocksComponent implements OnInit {
         
 
         
-      //this.demosCategories.set('All', this.demos);
-      // categories.forEach((element) => {
-      //   this.demosCategories.set(
-      //     element,
-      //     data
-      //       .filter((it) => it.categories?.length > 0)
-      //       .filter(
-      //         (it) =>
-      //           (';' + it.categories + ';').indexOf(';' + element + ';') > -1
-      //       )
-      //   );
-      // });
+      
 
 
       this.optionsBlocks=[...new Set(data
@@ -66,20 +71,7 @@ export class FindSavedBlocksComponent implements OnInit {
       .sort((a,b)=>a.toLowerCase().localeCompare(b.toLowerCase()))
       )];
       ;
-      // console.log('x_',blockNames);
-      // blockNames.forEach((element) => {
-      //   this.demosBlocks.set(
-      //     element.toLowerCase(),
-      //     data
-      //       .filter((it) => it.blocks?.length > 0)
-      //       .filter(
-      //         (it) =>
-      //           (';' + it.blocks + ';').indexOf(';' + element + ';') > -1
-      //       )
-      //   );
-      // });
-      // console.log('y_',this.demosBlocks);
-
+      
       this.filteredOptionsBlocks = this.myBlocks.valueChanges.pipe(
         startWith(''),
         map(value =>{

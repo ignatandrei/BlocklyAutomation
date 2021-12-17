@@ -1,5 +1,5 @@
 import { HttpClient } from "@angular/common/http";
-import { map, Observable } from "rxjs";
+import { catchError, map, Observable, of } from "rxjs";
 import { DemoBlocks } from "./DemoBlocks";
 
 export class LocalAPI{
@@ -14,6 +14,7 @@ export class LocalAPI{
         var dt=new Date().toISOString();
         return this.http.get<string>(this.urL + `api/v1/Management/CurrentDate?${dt}`,{ responseType: 'text' as 'json'})
             .pipe(
+                catchError((err)=> of(false.toString())),
                 map(res => {
                     if(res){
                         var dt=Date.parse(res);
@@ -28,9 +29,15 @@ export class LocalAPI{
         ;
     }
 
+    public LoadBlocks():Observable<DemoBlocks[]>{
+        var dt=new Date().toISOString();
+        return this.http.post<DemoBlocks[]>(this.urL + `api/v1/BASave/GetBlocks`,null);
+        
+    }
+
     public SaveBlock(db:DemoBlocks, content: string):Observable<number>{
         
-        return this.http.post<string>(this.urL + 'api/v1.0/BASave/SaveNewBlock',{b: db,content:content},{ responseType: 'text' as 'json'})
+        return this.http.post<string>(this.urL + 'api/v1/BASave/SaveNewBlock',{b: db,content:content},{ responseType: 'text' as 'json'})
         .pipe(map(res=>Number.parseInt(res?.toString(),10)));
 
         
