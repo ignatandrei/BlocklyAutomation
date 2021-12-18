@@ -43,7 +43,12 @@ export class AppDetails {
                 this.settings = settings;
                 this.settings.latestVersion=lv;
                 this.linksSwagger = links;
-                this.demoBlocks = demoBlocks;
+                this.demoBlocks = demoBlocks.map(it=>{
+                  var n= new DemoBlocks(it);
+                  n.Source = "Demos";
+                  return n;
+                });
+                
                 this.customCategories = categs;
                 this.LocalAPI= this.CreateLocalApis(this.http, this.settings.localAPI);
                 //console.log('settings loaded', this.customCategories);

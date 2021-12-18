@@ -13,7 +13,7 @@ import { DemoBlocks } from '../DemoBlocks';
 })
 export class FindSavedBlocksComponent implements OnInit {
 
-  public demoBlocksLocal: DemoBlocks[] = [];
+  public BlocksLocal: DemoBlocks[] = [];
   public demos: DemoBlocks[] = [];
   public demosCategories: Map<string, DemoBlocks[]> = new Map<
     string,
@@ -30,7 +30,7 @@ export class FindSavedBlocksComponent implements OnInit {
     if(this.DetailsApp.LocalAPI?.WasAlive){
       this.DetailsApp.LocalAPI?.LoadBlocks().subscribe(
         it=>{
-            this.demoBlocksLocal=it;
+            this.BlocksLocal=it;
         }
       )
     }
@@ -88,7 +88,7 @@ export class FindSavedBlocksComponent implements OnInit {
           
         } ),
       );
-      console.log('x',this.demos);
+      // console.log('x',this.demos);
       this.demosArray= combineLatest([
         this.myBlocks.valueChanges.pipe(startWith(''))
         ,this.myCategories.valueChanges.pipe(startWith(''))
@@ -103,13 +103,13 @@ export class FindSavedBlocksComponent implements OnInit {
 
             block=(block||'').trim().toLowerCase();
             category=(category||'').trim().toLowerCase();
-            console.log('search for ',block,category);
+            // console.log('search for ',block,category);
             var ret= this.demos.filter(it=>{
              return (block.length==0 ||  it.blocks?.toLowerCase().indexOf(block)>-1) 
                 &&
               (category.length==0 ||  it.categories?.toLowerCase().indexOf(category)>-1)
             });
-            console.log('ret',ret);
+            // console.log('ret',ret);
             return ret;
         })
       );

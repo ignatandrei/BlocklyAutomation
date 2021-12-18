@@ -81,7 +81,7 @@
    
 
   </button>
-{{demoBlocksLocal.length}}
+
   <table>
     <thead>
       <tr>
@@ -91,13 +91,13 @@
         
       </tr>
     </thead>
-    <tr *ngFor="let demo of demoBlocksLocal; let i = index">
+    <tr *ngFor="let demo of BlocksLocal; let i = index">
       <td>
         {{ i + 1 }}
       </td>
       <td>
         <button mat-raised-button color="primary" (click)="chooseDemo(demo)">            
-        {{ demo.description }}
+        {{ demo.description || demo.id }}
         </button>
       </td>
       <td>

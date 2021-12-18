@@ -28,10 +28,27 @@ export class LocalAPI{
             )
         ;
     }
+    public LoadBlockContent(id: string): Observable<string>{
+        var dt=new Date().toISOString();
+        return this.http.post<string>(this.urL + `api/v1/BASave/GetBlocksContent`,{id:id},{responseType:'text'as 'json'})
+        .pipe(
+            map(it=>it?.toString())
+        );
 
+    }
     public LoadBlocks():Observable<DemoBlocks[]>{
         var dt=new Date().toISOString();
-        return this.http.post<DemoBlocks[]>(this.urL + `api/v1/BASave/GetBlocks`,null);
+        return this.http.post<DemoBlocks[]>(this.urL + `api/v1/BASave/GetBlocks`,null)
+        .pipe(
+            map(it=>{
+                var q= it.map(d=>{
+                    var n=new DemoBlocks(d);
+                    n.Source= "LocalAPI";
+                    return n;
+                });
+                return q;
+            })
+        )
         
     }
 

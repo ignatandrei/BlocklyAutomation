@@ -244,6 +244,16 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
       code
     );
   }
+  public ShowLocalAPI(id:string){
+    this.DetailsApp.LocalAPI?.LoadBlockContent(id).subscribe((data)=>{
+      var xml = Blockly.Xml.textToDom(data);
+      if (this.demoWorkspace != null) {
+        Blockly.Xml.clearWorkspaceAndLoadFromXml(xml, this.demoWorkspace);
+
+        window.alert('please press execute button');
+      };
+    });
+  }
   public ShowDemo(id: string) {
     this.mustLoadDemoBlock = id;
     this.loadDemo.getDemoBlock(id).subscribe((data) => {
@@ -252,7 +262,7 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
         Blockly.Xml.clearWorkspaceAndLoadFromXml(xml, this.demoWorkspace);
 
         window.alert('please press execute button');
-      }
+      };
     });
   }
   // swaggersUrl:string[]=[
@@ -320,7 +330,19 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed', result);
       if(result){
-        this.ShowDemo(result.id);
+        var d= result as DemoBlocks ;
+        switch(d.Source){
+          case "Demos":
+            this.ShowDemo(result.id);
+            break;
+          case "LocalAPI":
+            this.ShowLocalAPI(result.id);
+            break;
+          default:
+            window.alert(d.Source);
+            break;   
+        }  
+        
       }
       
     });
