@@ -1,1 +1,1 @@
-wt new-tab -p "Windows PowerShell" -d . cmd /k "cd src &&  npm run start --watch && powershell"  ;split-pane -p "Windows PowerShell" -d . cmd /k "cd src && code . && powershell" 
+wt new-tab -p "Windows PowerShell" -d . cmd /k "cd src &&  npm run start --watch && powershell"  ;split-pane -p "Windows PowerShell" -d . cmd /k "cd src && code . && powershell" ;split-pane -p "Windows PowerShell" -d . cmd /k "cd src/Local/LocalAPI/LocalAPI && dotnet watch run" 
