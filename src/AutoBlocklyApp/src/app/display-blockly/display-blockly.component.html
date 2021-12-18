@@ -39,12 +39,12 @@
         <mat-divider  [inset]="true"></mat-divider>
         <button
           mat-raised-button
-          [color]='DetailsApp.LocalAPI?.WasAlive ?"primary":"warn"'
+          [color]='(DetailsApp.LocalAPI?.WasAlive||false) ?"primary":"warn"'
           
           (click)="SaveToLocalAPI()"
         >
           <mat-icon>save</mat-icon>
-          Save Local
+          Save Local 
         </button>
           
         </mat-menu>

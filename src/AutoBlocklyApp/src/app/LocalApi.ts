@@ -9,14 +9,14 @@ export class LocalAPI{
     public WasAlive: boolean = false;
 
     public IsAlive(): Observable<boolean> {
-        var self=this;
         this.WasAlive = false;
+        var self=this;        
         var dt=new Date().toISOString();
         return this.http.get<string>(this.urL + `api/v1/Management/CurrentDate?${dt}`,{ responseType: 'text' as 'json'})
             .pipe(
-                catchError((err)=> of(false.toString())),
+                catchError((err)=> of('')),
                 map(res => {
-                    if(res){
+                    if(res?.length>0){
                         var dt=Date.parse(res);
                         //console.log(dt);
                         self.WasAlive = true;

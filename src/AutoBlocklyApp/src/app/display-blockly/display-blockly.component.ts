@@ -83,6 +83,7 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
         ((this as any)[it[1]] as any)();
       }
     });
+    this.DetailsApp.LocalAPI?.IsAlive().subscribe();
   }
   
   createIntro() {
