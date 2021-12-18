@@ -360,7 +360,7 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
         window.alert('Swagger should end with .json - see source of html page');
         return;
       }
-      self.loadedCompletely=false;
+      //self.loadedCompletely=false;
       self.LoadSwaggerFromUrl(json).then((api) => {
         // this.afterTimeout(this);
         if(api.hasError)
@@ -368,7 +368,7 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
       else{
         
         self.addToToolboxSwagger(api,this);      
-        self.loadedCompletely=true;
+        //self.loadedCompletely=true;
         window.alert("loaded successfully");
       }
       
@@ -719,14 +719,16 @@ var customCategs=this.DetailsApp.customCategories;
       )
       .subscribe((it)=>{
       if(!it){
-        window.alert('Local API is not alive');
-        return;
+        if(!window.confirm('LocalAPI is not alive.\n Do you want to downlod and run ?'))
+          return;
+
+          self.DetailsApp.LocalAPI!.download();
       }
     var swaggerUrl=self.DetailsApp.LocalAPI?.urL||'';
     swaggerUrl+="swagger/v1/swagger.json";
     //window.alert(swaggerUrl);
 
-    self.loadedCompletely=false;
+    //self.loadedCompletely=false;
     self.LoadSwaggerFromUrl(swaggerUrl).then((api) => {
         // this.afterTimeout(this);
         if(api.hasError)
@@ -734,7 +736,7 @@ var customCategs=this.DetailsApp.customCategories;
       else{
         api.name= "LocalAPI";
         self.addToToolboxSwagger(api,this);      
-        self.loadedCompletely=true;
+        // self.loadedCompletely=true;
         window.alert("loaded successfully");
       }
     });  

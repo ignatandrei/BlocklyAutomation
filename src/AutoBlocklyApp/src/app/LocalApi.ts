@@ -7,7 +7,9 @@ export class LocalAPI{
 
     }
     public WasAlive: boolean = false;
-
+    public download(){
+        window.location.href='https://github.com/ignatandrei/BlocklyAutomation/releases/latest/download/releaseLocalAPI.zip';
+    }
     public IsAlive(): Observable<boolean> {
         this.WasAlive = false;
         var self=this;        
