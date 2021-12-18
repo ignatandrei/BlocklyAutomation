@@ -10,9 +10,4 @@
 		"id":"Demo_PetStore",
 		"link":"https://petstore.swagger.io/v2/swagger.json"
 }
-,
-{
-	"id":"LocalAPI",
-	"link":"http://localhost:37283/swagger/v1/swagger.json"
-}
 ]
