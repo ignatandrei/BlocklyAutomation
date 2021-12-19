@@ -104,13 +104,13 @@
     <ngx-monaco-editor
       *ngIf="ShowCode()"
       style="display: inline-block; height: 100%; width: 100%"
-      [options]="editorXMLOptions"
+      [options]="editorJSOptions"
       [(ngModel)]="showJSCode"
     ></ngx-monaco-editor>
     <ngx-monaco-editor
       *ngIf="ShowXML()"
       style="display: inline-block; height: 100%; width: 100%"
-      [options]="editorJSOptions"
+      [options]="editorXMLOptions"
       [(ngModel)]="showXMLCode"
     ></ngx-monaco-editor>
 
