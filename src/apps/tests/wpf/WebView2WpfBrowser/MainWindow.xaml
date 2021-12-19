@@ -1,0 +1,148 @@
+﻿<!--
+Copyright (C) Microsoft Corporation. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<Window x:Class="WebView2WpfBrowser.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:wv2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
+        xmlns:local="clr-namespace:WebView2WpfBrowser"
+        x:Name="MyWindow"
+        Title="MainWindow"
+        Height="450"
+        Width="800" Loaded="MyWindow_Loaded"
+    >
+    <Window.Resources>
+    </Window.Resources>
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.New" Executed="NewCmdExecuted"/>
+        <CommandBinding Command="ApplicationCommands.Close" Executed="CloseCmdExecuted"/>
+        <CommandBinding Command="NavigationCommands.BrowseBack" Executed="BackCmdExecuted" CanExecute="BackCmdCanExecute"/>
+        <CommandBinding Command="NavigationCommands.BrowseForward" Executed="ForwardCmdExecuted" CanExecute="ForwardCmdCanExecute"/>
+        <CommandBinding Command="NavigationCommands.Refresh" Executed="RefreshCmdExecuted" CanExecute="RefreshCmdCanExecute"/>
+        <CommandBinding Command="NavigationCommands.BrowseStop" Executed="BrowseStopCmdExecuted" CanExecute="BrowseStopCmdCanExecute"/>
+        <CommandBinding Command="NavigationCommands.GoToPage" Executed="GoToPageCmdExecuted" CanExecute="GoToPageCmdCanExecute"/>
+        <CommandBinding Command="NavigationCommands.IncreaseZoom" Executed="IncreaseZoomCmdExecuted" CanExecute="WebViewRequiringCmdsCanExecute"/>
+        <CommandBinding Command="NavigationCommands.DecreaseZoom" Executed="DecreaseZoomCmdExecuted" CanExecute="DecreaseZoomCmdCanExecute"/>
+        <CommandBinding Command="{x:Static local:MainWindow.InjectScriptCommand}" Executed="InjectScriptCmdExecuted" CanExecute="CoreWebView2RequiringCmdsCanExecute"/>
+        <CommandBinding Command="{x:Static local:MainWindow.InjectScriptIFrameCommand}" Executed="InjectScriptIFrameCmdExecuted" CanExecute="CoreWebView2RequiringCmdsCanExecute"/>
+        <CommandBinding Command="{x:Static local:MainWindow.SetUserAgentCommand}" Executed="SetUserAgentCmdExecuted" CanExecute="CoreWebView2RequiringCmdsCanExecute"/>
+        <CommandBinding Command="{x:Static local:MainWindow.GetCookiesCommand}" Executed="GetCookiesCmdExecuted" CanExecute="CoreWebView2RequiringCmdsCanExecute"/>
+        <CommandBinding Command="{x:Static local:MainWindow.DOMContentLoadedCommand}" Executed="DOMContentLoadedCmdExecuted" CanExecute="CoreWebView2RequiringCmdsCanExecute"/>
+        <CommandBinding Command="{x:Static local:MainWindow.WebMessagesCommand}" Executed="WebMessagesCmdExecuted" CanExecute="CoreWebView2RequiringCmdsCanExecute"/>
+        <CommandBinding Command="{x:Static local:MainWindow.NavigateWithWebResourceRequestCommand}" Executed="NavigateWithWebResourceRequestCmdExecuted" CanExecute="CoreWebView2RequiringCmdsCanExecute"/>
+        <CommandBinding Command="{x:Static local:MainWindow.AddOrUpdateCookieCommand}" Executed="AddOrUpdateCookieCmdExecuted" CanExecute="CoreWebView2RequiringCmdsCanExecute"/>
+        <CommandBinding Command="{x:Static local:MainWindow.DeleteCookiesCommand}" Executed="DeleteCookiesCmdExecuted" CanExecute="CoreWebView2RequiringCmdsCanExecute"/>
+        <CommandBinding Command="{x:Static local:MainWindow.DeleteAllCookiesCommand}" Executed="DeleteAllCookiesCmdExecuted" CanExecute="CoreWebView2RequiringCmdsCanExecute"/>
+        <CommandBinding Command="{x:Static local:MainWindow.CustomContextMenuCommand}" Executed="CustomContextMenuCmdExecuted" CanExecute="CoreWebView2RequiringCmdsCanExecute"/>
+        <CommandBinding Command="{x:Static local:MainWindow.PasswordAutosaveCommand}" Executed="PasswordAutosaveCmdExecuted" CanExecute="CoreWebView2RequiringCmdsCanExecute"/>
+        <CommandBinding Command="{x:Static local:MainWindow.GeneralAutofillCommand}" Executed="GeneralAutofillCmdExecuted" CanExecute="CoreWebView2RequiringCmdsCanExecute"/>
+        <CommandBinding Command="{x:Static local:MainWindow.NewBrowserVersionCommand}" Executed="NewBrowserVersionCmdExecuted" CanExecute="CoreWebView2RequiringCmdsCanExecute"/>
+        <CommandBinding Command="{x:Static local:MainWindow.SwipeNavigationCommand}" Executed="SwipeNavigationCmdExecuted" CanExecute="CoreWebView2RequiringCmdsCanExecute"/>
+        <CommandBinding Command="{x:Static local:MainWindow.PdfToolbarSaveCommand}" Executed="PdfToolbarSaveCmdExecuted" CanExecute="CoreWebView2RequiringCmdsCanExecute"/>
+        <CommandBinding Command="{x:Static local:MainWindow.CreateDownloadsButtonCommand}" Executed="CreateDownloadsButtonCmdExecuted" CanExecute="CoreWebView2RequiringCmdsCanExecute"/>
+        <CommandBinding Command="{x:Static local:MainWindow.ToggleMuteStateCommand}" Executed="ToggleMuteStateCmdExecuted" CanExecute="CoreWebView2RequiringCmdsCanExecute"/>
+        <CommandBinding Command="{x:Static local:MainWindow.PrintToPdfCommand}" Executed="PrintToPdfCmdExecuted" CanExecute="CoreWebView2RequiringCmdsCanExecute"/>
+        <CommandBinding Command="{x:Static local:MainWindow.PinchZoomCommand}" Executed="PinchZoomCmdExecuted" CanExecute="CoreWebView2RequiringCmdsCanExecute"/>
+        <CommandBinding Command="{x:Static local:MainWindow.CustomClientCertificateSelectionCommand}" Executed="CustomClientCertificateSelectionCmdExecuted" CanExecute="CoreWebView2RequiringCmdsCanExecute"/>
+        <CommandBinding Command="{x:Static local:MainWindow.DeferredCustomCertificateDialogCommand}" Executed="DeferredCustomCertificateDialogCmdExecuted" CanExecute="CoreWebView2RequiringCmdsCanExecute"/>
+        <CommandBinding Command="{x:Static local:MainWindow.DownloadStartingCommand}" Executed="DownloadStartingCmdExecuted" CanExecute="CoreWebView2RequiringCmdsCanExecute"/>
+        <CommandBinding Command="{x:Static local:MainWindow.BackgroundColorCommand}" Executed="BackgroundColorCmdExecuted" CanExecute="WebViewRequiringCmdsCanExecute"/>
+        <CommandBinding Command="{x:Static local:MainWindow.SuspendCommand}" Executed="SuspendCmdExecuted" CanExecute="CoreWebView2RequiringCmdsCanExecute"/>
+        <CommandBinding Command="{x:Static local:MainWindow.ResumeCommand}" Executed="ResumeCmdExecuted" CanExecute="CoreWebView2RequiringCmdsCanExecute"/>
+        <CommandBinding Command="{x:Static local:MainWindow.CheckUpdateCommand}" Executed="CheckUpdateCmdExecuted" CanExecute="CoreWebView2RequiringCmdsCanExecute"/>
+        <CommandBinding Command="{x:Static local:MainWindow.ModifySettingsWebCommand}" Executed="ModifySettingsWebExecuted" />
+    </Window.CommandBindings>
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="_File">
+                <MenuItem Header="_New Window" Command="ApplicationCommands.New"/>
+                <MenuItem Header="_Close" Command="ApplicationCommands.Close"/>
+                <MenuItem Header="Open Web Settings" Command="{x:Static local:MainWindow.ModifySettingsWebCommand}"   />
+                <MenuItem Header="_Inject Script..." Command="{x:Static local:MainWindow.InjectScriptCommand}"  Visibility="Collapsed" />
+                <MenuItem Header="_Inject Script Into IFrame..." Command="{x:Static local:MainWindow.InjectScriptIFrameCommand}" Visibility="Collapsed"/>
+                <MenuItem Header="_Print to PDF">
+                    <MenuItem Header="Portrait" Command="{x:Static local:MainWindow.PrintToPdfCommand}" CommandParameter="Portrait"/>
+                    <MenuItem Header="Landscape" Command="{x:Static local:MainWindow.PrintToPdfCommand}" CommandParameter="Landscape"/>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="_View" >
+                <MenuItem Header="_Increase Zoom" Command="NavigationCommands.IncreaseZoom"/>
+                <MenuItem Header="_Decrease Zoom" Command="NavigationCommands.DecreaseZoom"/>
+                <MenuItem Header="_BackgroundColor" Visibility="Collapsed">
+                    <MenuItem Header="White" Command="{x:Static local:MainWindow.BackgroundColorCommand}" CommandParameter="White"/>
+                    <MenuItem Header="Red" Command="{x:Static local:MainWindow.BackgroundColorCommand}" CommandParameter="Red"/>
+                    <MenuItem Header="Blue" Command="{x:Static local:MainWindow.BackgroundColorCommand}" CommandParameter="Blue"/>
+                    <MenuItem Header="Transparent" Command="{x:Static local:MainWindow.BackgroundColorCommand}" CommandParameter="Transparent"/>
+                </MenuItem>
+                <MenuItem Header="_Create Downloads Button" Command="{x:Static local:MainWindow.CreateDownloadsButtonCommand}" Visibility="Collapsed"/>
+            </MenuItem>
+            <MenuItem Header="S_ettings" Visibility="Hidden">
+                <MenuItem Header="WebView _userAgent" Command="{x:Static local:MainWindow.SetUserAgentCommand}"/>
+                <MenuItem Header="Password _autosave enabled" Name="passwordAutosaveEnabled" IsCheckable="True" IsChecked="False" Command="{x:Static local:MainWindow.PasswordAutosaveCommand}"/>
+                <MenuItem Header="General _autofill enabled" Name ="generalAutofillEnabled" IsCheckable="True" IsChecked="True" Command="{x:Static local:MainWindow.GeneralAutofillCommand}"/>
+                <MenuItem Header="Disable Pinch Zoom" Command="{x:Static local:MainWindow.PinchZoomCommand}"/>
+                <MenuItem Header="Disable Swipe to Navigate" Command="{x:Static local:MainWindow.SwipeNavigationCommand}"/>
+                <MenuItem Header="Toggle PDF toolbar save button" Command="{x:Static local:MainWindow.PdfToolbarSaveCommand}"/>
+                <MenuItem Header="WebView _muted" IsCheckable="True" IsChecked="False" Command="{x:Static local:MainWindow.ToggleMuteStateCommand}"/>
+            </MenuItem>
+            <MenuItem Header="S_cenario" Visibility="Collapsed">
+                <MenuItem Header="Suspend" Command="{x:Static local:MainWindow.SuspendCommand}"/>
+                <MenuItem Header="Resume" Command="{x:Static local:MainWindow.ResumeCommand}"/>
+                <MenuItem Header="Check Update" Command="{x:Static local:MainWindow.CheckUpdateCommand}"/>
+                <MenuItem Header="_DOM Content Loaded" Command="{x:Static local:MainWindow.DOMContentLoadedCommand}"/>
+                <MenuItem Header="_Web Messages" Command="{x:Static local:MainWindow.WebMessagesCommand}"/>
+                <MenuItem Header="_NavigateWithWebResourceRequest" Command="{x:Static local:MainWindow.NavigateWithWebResourceRequestCommand}"/>
+                <MenuItem x:Name="newVersionMenuItem" Header="New Browser _Version" Command="{x:Static local:MainWindow.NewBrowserVersionCommand}"/>
+                <MenuItem Header="_Client Certificate Requested">
+                    <MenuItem Header="_Custom Client Certificate Selection" Command="{x:Static local:MainWindow.CustomClientCertificateSelectionCommand}"/>
+                    <MenuItem Header="_Deferred Custom Client Certificate Selection Dialog" Command="{x:Static local:MainWindow.DeferredCustomCertificateDialogCommand}"/>
+                </MenuItem>
+                <MenuItem Header="_Custom Context Menu" Command="{x:Static local:MainWindow.CustomContextMenuCommand}"/>
+                <MenuItem Header="D_ownload Starting">
+                <MenuItem Header="_Start Deferred Download" Command="{x:Static local:MainWindow.DownloadStartingCommand}"/>
+                </MenuItem>
+                <MenuItem Header="_Cookie Management">
+                    <MenuItem Header="_Get Cookies" Command="{x:Static local:MainWindow.GetCookiesCommand}"/>
+                    <MenuItem Header="_Add Or Update Cookie" Command="{x:Static local:MainWindow.AddOrUpdateCookieCommand}"/>
+                    <MenuItem Header="_Delete Cookie" Command="{x:Static local:MainWindow.DeleteCookiesCommand}"/>
+                    <MenuItem Header="D_elete All Cookies" Command="{x:Static local:MainWindow.DeleteAllCookiesCommand}"/>
+                </MenuItem>
+                <MenuItem Header="Intercept _Response" IsCheckable="True" IsChecked="{Binding ElementName=MyWindow, Path=ShowNextWebResponse, Mode=TwoWay}"/>
+            </MenuItem>
+        </Menu>
+        <DockPanel Name="dockPanel" DockPanel.Dock="Top">
+            <Button DockPanel.Dock="Left" Command="NavigationCommands.BrowseBack" Visibility="Collapsed">Back</Button>
+            <Button DockPanel.Dock="Left" Command="NavigationCommands.BrowseForward" Visibility="Collapsed">Forward</Button>
+            <Button DockPanel.Dock="Left" Command="NavigationCommands.Refresh" Visibility="Collapsed">Refresh</Button>
+            <Button DockPanel.Dock="Left" Command="NavigationCommands.BrowseStop" Visibility="Collapsed">Stop</Button>
+            <Button DockPanel.Dock="Right" Command="NavigationCommands.GoToPage" Visibility="Collapsed" CommandParameter="{Binding ElementName=url,Path=Text}">Go</Button>
+            <!-- We want the address bar to update based on the WebView's Source, but we don't want the WebView to navigate just from the user typing into the address bar.   Therefore we use the OneWay binding mode. -->
+            <TextBox x:Name="url" Text="{Binding ElementName=webView,Path=Source,Mode=OneWay}" Visibility="Collapsed">
+                <TextBox.InputBindings>
+                    <KeyBinding Key="Return" Command="NavigationCommands.GoToPage" CommandParameter="{Binding ElementName=url,Path=Text}" />
+                </TextBox.InputBindings>
+            </TextBox>
+        </DockPanel>
+        <Grid x:Name="Layout">
+            <Grid.Background>
+                <ImageBrush ImageSource="/assets/EdgeWebView2-80.jpg"></ImageBrush>
+            </Grid.Background>
+
+            <!-- If you want to use a specific version of WebView2 Runtime change EvergreenWebView2CreationProperties
+            to BYOWebView2CreationProperties and follow the steps in MainWindow.xaml
+            -->
+            <wv2:WebView2
+                x:Name="webView"
+                CreationProperties="{StaticResource EvergreenWebView2CreationProperties}"
+                
+            />
+            <!-- The control event handlers are set in code behind so they can be reused when replacing the control after
+            a WebView2 Runtime's browser process failure
+            -->
+        </Grid>
+    </DockPanel>
+</Window>
