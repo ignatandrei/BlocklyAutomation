@@ -223,9 +223,9 @@ jobs:
         dir
         dir AllReleases/*
         Expand-Archive -LiteralPath "AllReleases/releaseBlocklyAutomation.zip" -DestinationPath "releaseBlocklyAutomation"
-  
+        dir AllReleases/*
     - name: build wpf
       shell: pwsh
       run: |        
         cd src\apps\tests\wpf\WebView2WpfBrowser
-        dotnet publish -r win-x64 -c Release -o ${{env.AZURE_WEBAPP_NAME}}WPF64 --self-contained -o wpfApp
+        dotnet publish -r win-x64 -c Release -o ${{env.AZURE_WEBAPP_NAME}}WPF64 --self-contained 
