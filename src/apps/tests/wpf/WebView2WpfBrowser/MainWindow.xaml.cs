@@ -402,7 +402,8 @@ namespace WebView2WpfBrowser
         void ModifySettingsWebExecuted(object target, ExecutedRoutedEventArgs e)
         {
             var path = Environment.CurrentDirectory;
-            path = System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+            //path = System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+            path = System.AppContext.BaseDirectory;
             var file = System.IO.Path.Combine(path, "dist", "assets","loadAtStartup");
             Process.Start("explorer.exe", "/e," + file);
 
@@ -1480,7 +1481,8 @@ namespace WebView2WpfBrowser
         private async void MyWindow_Loaded(object sender, RoutedEventArgs e)
         {
             var path = Environment.CurrentDirectory;
-            path = System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+            //path = System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+            path = System.AppContext.BaseDirectory;
             var file = System.IO.Path.Combine(path,"dist", "index.html");
 
             
