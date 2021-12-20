@@ -194,11 +194,37 @@ jobs:
 
 
 
-    - name: delete older-releases@v0
-      uses: dev-drprasad/delete-older-releases@v0.2.0
+    # - name: delete older-releases@v0
+    #   uses: dev-drprasad/delete-older-releases@v0.2.0
+    #   with:
+    #     #repo: <owner>/<repoName> # defaults to current repo
+    #     keep_latest: 2
+    #     #delete_tag_pattern: beta # defaults to ""
+    #   env:
+    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
+  buildDesktop:
+    needs: buildAngular
+    runs-on: windows-latest
+
+    steps:
+    - name: 'Checkout Github Action'
+      uses: actions/checkout@master
+    
+    - name: Download artifact
+      uses: actions/download-artifact@v1
       with:
-        #repo: <owner>/<repoName> # defaults to current repo
-        keep_latest: 2
-        #delete_tag_pattern: beta # defaults to ""
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        name: AllReleases
+  
+    - name: unzip ang archive
+      shell: pwsh
+      run: |
+        dir
+        Expand-Archive -LiteralPath "releaseBlocklyAutomation.zip" -DestinationPath "releaseBlocklyAutomation"
+  
+    - name: build wpf
+      shell: pwsh
+      run: |        
+        cd src\apps\tests\wpf\WebView2WpfBrowser
+        dotnet publish -r win-x64 -c Release -o ${{env.AZURE_WEBAPP_NAME}}WPF64 --self-contained -o wpfApp
