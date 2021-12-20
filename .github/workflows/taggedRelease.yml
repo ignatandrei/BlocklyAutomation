@@ -41,9 +41,9 @@ jobs:
         npm i  @angular/cli@13
         echo "install ws"
         npm i -force
-        cd AutoBlocklyApp
-        npm i -force
-        cd ..
+        # cd AutoBlocklyApp
+        # npm i -force
+        # cd ..
         npm run buildGitHubPages
         cd ..
         rm -r docs/*
