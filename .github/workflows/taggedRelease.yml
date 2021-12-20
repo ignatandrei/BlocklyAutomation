@@ -258,6 +258,7 @@ jobs:
       run: |
         # find ${{github.workspace}} -type f -name "*.zip"
         cp ${{github.workspace}}\src\apps\tests\wpf\WebView2WpfBrowser\releaseWPF64.zip ${{github.workspace}}/releaseWPF64.zip 
+        cp -r AllReleases/* .
         echo 'copied'
         # find ${{github.workspace}} -type f -name "*.zip"
 
@@ -275,15 +276,16 @@ jobs:
             # version.txt
         retention-days: 1
 
-    # - name: Release
-    #   uses: softprops/action-gh-release@v1
-    #   with:
-    #     files:  |
-    #         releaseBlocklyAutomation.zip
-    #         releaseLin.zip
-    #         releaseWin.zip
-    #         releaseIISWin.zip
-    #         releaseLocalAPI.zip
-    #         version.txt
+    - name: Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files:  |
+            releaseWPF64.zip
+            releaseBlocklyAutomation.zip
+            releaseLin.zip
+            releaseWin.zip
+            releaseIISWin.zip
+            releaseLocalAPI.zip
+            version.txt
         # tag: v${{ env.GITHUB_SHA }}
         # tag_name: v${{ env.GITHUB_SHA }}
