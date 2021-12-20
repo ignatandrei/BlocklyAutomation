@@ -11,8 +11,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  buildAngular:
-    runs-on: ubuntu-latest
+  buildAngular: 
+    runs-on: windows-latest #ubuntu-latest  - linux cannot build wpf app
     strategy:
       matrix:
         node-version: [16.13.0]
@@ -33,6 +33,7 @@ jobs:
 
 
     - name: npm modify docs
+      shell: pwsh
       run: |
         npm i -g npm@8.3.0               
         cd src
@@ -51,7 +52,7 @@ jobs:
         cd docs
         echo "${{github.ref_name}}" > version.txt
         cd ..
-        ls -l docs/
+        # ls -l docs/
         
 
     - name: Archive production artifacts
@@ -190,7 +191,7 @@ jobs:
         cp ${{github.workspace}}/src/Local/LocalAPI/LocalAPI/releaseLocalAPI.zip ${{github.workspace}}/releaseLocalAPI.zip
         cp ${{github.workspace}}/src/apps/tests/wpf/WebView2WpfBrowser/releaseWPF.zip ${{github.workspace}}/releaseWPF.zip
         echo 'copied'
-        find ${{github.workspace}} -type f -name "*.zip"
+        # find ${{github.workspace}} -type f -name "*.zip"
 
     - name: Release
       uses: softprops/action-gh-release@v1
