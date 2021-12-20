@@ -11,8 +11,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  buildAngular: 
-    runs-on: ubuntu-latest 
+  buildAngular:
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [16.13.0]
@@ -33,7 +33,6 @@ jobs:
 
 
     - name: npm modify docs
-      shell: pwsh
       run: |
         npm i -g npm@8.3.0               
         cd src
@@ -52,7 +51,7 @@ jobs:
         cd docs
         echo "${{github.ref_name}}" > version.txt
         cd ..
-        # ls -l docs/
+        ls -l docs/
         
 
     - name: Archive production artifacts
@@ -90,18 +89,17 @@ jobs:
       with:
         dotnet-version: ${{ env.DOTNET_VERSION }} 
 
-    - name: making releases of loaders of simple  .NET Core sites
+    - name: making releases of loaders
       run: |
-        echo 'assuming buildGitHubPages was already done'
-        # rm -r src/AutoBlocklyApp/dist/AutoBlocklyApp/*
+        rm -r src/AutoBlocklyApp/dist/AutoBlocklyApp/*
         cd src
-        # npm run buildGitHubPages
+        npm run buildGitHubPages
         rm -r Loaders/SimpleSite/AutoBlocklySimple/wwwroot/BlocklyAutomation/*
         cp -r AutoBlocklyApp/dist/AutoBlocklyApp/* Loaders/SimpleSite/AutoBlocklySimple/wwwroot/BlocklyAutomation/
         rm -r Local/LocalAPI/LocalAPI/wwwroot/BlocklyAutomation/*
         cp -r AutoBlocklyApp/dist/AutoBlocklyApp/* Local/LocalAPI/LocalAPI/wwwroot/BlocklyAutomation/
+        cp -r Local/LocalAPI/LocalAPI/wwwroot/customBlocklyAutomation/* Local/LocalAPI/LocalAPI/wwwroot/BlocklyAutomation/
         rm -r Local/LocalAPI/LocalAPI/wwwroot/customBlocklyAutomation/*
-        cp -r AutoBlocklyApp/dist/AutoBlocklyApp/* Local/LocalAPI/LocalAPI/wwwroot/BlocklyAutomation/
         cd Loaders
         cd SimpleSite
         cd AutoBlocklySimple
@@ -117,32 +115,6 @@ jobs:
         cd LocalAPI
         cd LocalAPI
         dotnet publish -r win-x64 -c Release --self-contained -o ${{env.AZURE_WEBAPP_NAME}}LocalAPI 
-
-    - name: build desktop Angular
-      run: |
-        rm -r src/AutoBlocklyApp/dist/*
-        cd src
-        npm run buildDesktop
-
-    - name: build desktop apps
-      run: |
-        cd src
-        rm -r apps/tests/wpf/WebView2WpfBrowser/dist/*
-        cp -r AutoBlocklyApp/dist/AutoBlocklyApp/* apps/tests/wpf/WebView2WpfBrowser/dist/        
-        cd apps
-        cd tests
-        cd wpf
-        cd WebView2WpfBrowser
-        # dotnet publish -r win-x64 -o wpfAPP --self-contained 
-
-    # - name: Archive WPF
-    #   uses: thedoctor0/zip-release@master
-    #   with:
-    #     type: 'zip'
-    #     filename: 'releaseWPF.zip'
-    #     path: '${{env.AZURE_WEBAPP_NAME}}WPF/'
-    #     directory: '${{github.workspace}}/src/apps/tests/wpf/WebView2WpfBrowser/wpfApp/'
-    #     exclusions: '*.git* /*node_modules/* .editorconfig'       
 
     - name: Archive LocalAPI
       uses: thedoctor0/zip-release@master
@@ -189,9 +161,8 @@ jobs:
         cp ${{github.workspace}}/src/Loaders/SimpleSite/AutoBlocklySimple/releaseIISWin.zip ${{github.workspace}}/releaseIISWin.zip
         cp ${{github.workspace}}/src/AutoBlocklyApp/dist/releaseBlocklyAutomation.zip ${{github.workspace}}/releaseBlocklyAutomation.zip
         cp ${{github.workspace}}/src/Local/LocalAPI/LocalAPI/releaseLocalAPI.zip ${{github.workspace}}/releaseLocalAPI.zip
-        # cp ${{github.workspace}}/src/apps/tests/wpf/WebView2WpfBrowser/releaseWPF.zip ${{github.workspace}}/releaseWPF.zip
         echo 'copied'
-        # find ${{github.workspace}} -type f -name "*.zip"
+        find ${{github.workspace}} -type f -name "*.zip"
 
     - name: Release
       uses: softprops/action-gh-release@v1
@@ -201,7 +172,7 @@ jobs:
             releaseLin.zip
             releaseWin.zip
             releaseIISWin.zip
-            releaseLocalAPI.zip            
+            releaseLocalAPI.zip
             version.txt
         # tag: v${{ env.GITHUB_SHA }}
         # tag_name: v${{ env.GITHUB_SHA }}
