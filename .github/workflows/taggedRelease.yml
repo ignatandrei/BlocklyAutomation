@@ -211,6 +211,11 @@ jobs:
     steps:
     - name: 'Checkout Github Action'
       uses: actions/checkout@master
+
+    - name: Set up .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }} 
     
     - name: Download artifact
       uses: actions/download-artifact@v1
@@ -220,9 +225,14 @@ jobs:
     - name: unzip ang archive
       shell: pwsh
       run: |
+        echo 'root'
         dir
+        echo 'All releases'
         dir AllReleases/*
         Expand-Archive -LiteralPath "AllReleases/releaseBlocklyAutomation.zip" -DestinationPath "releaseBlocklyAutomation"
+        echo 'root'
+        dir
+        echo 'All releases'
         dir AllReleases/*
     - name: build wpf
       shell: pwsh
