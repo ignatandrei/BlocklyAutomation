@@ -164,16 +164,30 @@ jobs:
         echo 'copied'
         find ${{github.workspace}} -type f -name "*.zip"
 
-    - name: Release
-      uses: softprops/action-gh-release@v1
+    - name: Archive production artifacts
+      uses: actions/upload-artifact@v2
       with:
-        files:  |
+        name: AutoBlocklyApp
+        path: |
             releaseBlocklyAutomation.zip
             releaseLin.zip
             releaseWin.zip
             releaseIISWin.zip
             releaseLocalAPI.zip
             version.txt
+        retention-days: 1
+
+
+    # - name: Release
+    #   uses: softprops/action-gh-release@v1
+    #   with:
+    #     files:  |
+    #         releaseBlocklyAutomation.zip
+    #         releaseLin.zip
+    #         releaseWin.zip
+    #         releaseIISWin.zip
+    #         releaseLocalAPI.zip
+    #         version.txt
         # tag: v${{ env.GITHUB_SHA }}
         # tag_name: v${{ env.GITHUB_SHA }}
 # 
