@@ -118,11 +118,13 @@ jobs:
         dotnet publish -r win-x64 -c Release --self-contained -o ${{env.AZURE_WEBAPP_NAME}}LocalAPI 
 
     - name: build desktop Angular
+      run: |
         rm -r src/AutoBlocklyApp/dist/*
         cd src
         npm run buildDesktop
 
     - name: build desktop apps
+      run: |
         cd src
         rm -r apps/tests/wpf/WebView2WpfBrowser/dist/*
         cp -r AutoBlocklyApp/dist/AutoBlocklyApp/* apps/tests/wpf/WebView2WpfBrowser/dist/        
