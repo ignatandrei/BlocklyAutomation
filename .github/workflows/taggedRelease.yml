@@ -221,7 +221,8 @@ jobs:
       shell: pwsh
       run: |
         dir
-        Expand-Archive -LiteralPath "releaseBlocklyAutomation.zip" -DestinationPath "releaseBlocklyAutomation"
+        dir AllReleases/*
+        Expand-Archive -LiteralPath "AllReleases/releaseBlocklyAutomation.zip" -DestinationPath "releaseBlocklyAutomation"
   
     - name: build wpf
       shell: pwsh
