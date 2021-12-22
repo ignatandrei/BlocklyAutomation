@@ -11,21 +11,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "AppDetails": () => (/* binding */ AppDetails)
 /* harmony export */ });
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs */ 83575);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! rxjs */ 10745);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! rxjs */ 91640);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! rxjs */ 59346);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/operators */ 21339);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs/operators */ 19337);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! rxjs/operators */ 32673);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! rxjs/operators */ 53158);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! rxjs/operators */ 50635);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs */ 65448);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! rxjs */ 21788);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! rxjs */ 22570);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! rxjs */ 25874);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/operators */ 98018);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs/operators */ 15904);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! rxjs/operators */ 60604);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! rxjs/operators */ 28804);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! rxjs/operators */ 16064);
 /* harmony import */ var _DemoBlocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DemoBlocks */ 43787);
-/* harmony import */ var _blockly_blocklyswagger__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @blockly/blocklyswagger */ 46935);
+/* harmony import */ var _blockly_blocklyswagger__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @blockly/blocklyswagger */ 59729);
 /* harmony import */ var _blockly_blocklyswagger__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_blockly_blocklyswagger__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _LocalApi__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./LocalApi */ 57857);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/core */ 3184);
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @angular/common/http */ 28784);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/core */ 63763);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @angular/common/http */ 83142);
 /* harmony import */ var _load_show_usage_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./load-show-usage.service */ 16335);
 
 
@@ -152,9 +152,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "LocalAPI": () => (/* binding */ LocalAPI)
 /* harmony export */ });
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ 53158);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ 10745);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ 50635);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ 28804);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ 21788);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ 16064);
 /* harmony import */ var _DemoBlocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DemoBlocks */ 43787);
 
 
@@ -229,7 +229,7 @@ class Settings {
         this.localAPI = '';
     }
 }
-Settings.version = '2021.12.22.1612';
+Settings.version = '2021.12.22.1648';
 
 
 /***/ }),
@@ -245,8 +245,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "TransmitAction": () => (/* binding */ TransmitAction)
 /* harmony export */ });
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs */ 80228);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 3184);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs */ 78351);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 63763);
 
 
 class TransmitAction {
@@ -278,10 +278,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "AppRoutingModule": () => (/* binding */ AppRoutingModule)
 /* harmony export */ });
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ 52816);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ 60944);
 /* harmony import */ var _blockly_studio_blockly_studio_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./blockly-studio/blockly-studio.component */ 99795);
 /* harmony import */ var _display_blockly_display_blockly_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./display-blockly/display-blockly.component */ 74801);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 3184);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 63763);
 
 
 
@@ -314,8 +314,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "AppComponent": () => (/* binding */ AppComponent)
 /* harmony export */ });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 3184);
-/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/platform-browser */ 50318);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 63763);
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/platform-browser */ 8568);
 /* harmony import */ var _AppDetails__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AppDetails */ 79945);
 /* harmony import */ var _primary_navig_primary_navig_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./primary-navig/primary-navig.component */ 35582);
 
@@ -351,51 +351,51 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "AppModule": () => (/* binding */ AppModule),
 /* harmony export */   "initializeApp1": () => (/* binding */ initializeApp1)
 /* harmony export */ });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/core */ 3184);
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/forms */ 90587);
-/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/platform-browser */ 50318);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/core */ 63763);
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/forms */ 1247);
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/platform-browser */ 8568);
 /* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./app-routing.module */ 90158);
 /* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./app.component */ 55041);
 /* harmony import */ var _display_blockly_display_blockly_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./display-blockly/display-blockly.component */ 74801);
-/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/platform-browser/animations */ 73598);
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @angular/common/http */ 28784);
-/* harmony import */ var _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(/*! @angular/material/toolbar */ 19946);
-/* harmony import */ var _angular_material_autocomplete__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @angular/material/autocomplete */ 43188);
-/* harmony import */ var _angular_material_badge__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @angular/material/badge */ 70178);
-/* harmony import */ var _angular_material_bottom_sheet__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @angular/material/bottom-sheet */ 43672);
-/* harmony import */ var _angular_material_button__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/material/button */ 87317);
-/* harmony import */ var _angular_material_button_toggle__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @angular/material/button-toggle */ 31959);
-/* harmony import */ var _angular_material_card__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @angular/material/card */ 11961);
-/* harmony import */ var _angular_material_checkbox__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @angular/material/checkbox */ 61534);
-/* harmony import */ var _angular_material_chips__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @angular/material/chips */ 81196);
-/* harmony import */ var _angular_material_stepper__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @angular/material/stepper */ 7650);
-/* harmony import */ var _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! @angular/material/datepicker */ 5818);
-/* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! @angular/material/dialog */ 95758);
-/* harmony import */ var _angular_material_divider__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! @angular/material/divider */ 19975);
-/* harmony import */ var _angular_material_expansion__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! @angular/material/expansion */ 12928);
-/* harmony import */ var _angular_material_grid_list__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! @angular/material/grid-list */ 63346);
-/* harmony import */ var _angular_material_icon__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! @angular/material/icon */ 65590);
-/* harmony import */ var _angular_material_input__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! @angular/material/input */ 43365);
-/* harmony import */ var _angular_material_list__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! @angular/material/list */ 26131);
-/* harmony import */ var _angular_material_menu__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! @angular/material/menu */ 82796);
-/* harmony import */ var _angular_material_core__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! @angular/material/core */ 88133);
-/* harmony import */ var _angular_material_paginator__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! @angular/material/paginator */ 26439);
-/* harmony import */ var _angular_material_progress_bar__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! @angular/material/progress-bar */ 60833);
-/* harmony import */ var _angular_material_progress_spinner__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! @angular/material/progress-spinner */ 74742);
-/* harmony import */ var _angular_material_radio__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! @angular/material/radio */ 68390);
-/* harmony import */ var _angular_material_select__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! @angular/material/select */ 91434);
-/* harmony import */ var _angular_material_slider__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/material/slider */ 61859);
-/* harmony import */ var _angular_material_slide_toggle__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! @angular/material/slide-toggle */ 6623);
-/* harmony import */ var _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! @angular/material/snack-bar */ 32528);
-/* harmony import */ var _angular_material_sort__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! @angular/material/sort */ 64316);
-/* harmony import */ var _angular_material_table__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! @angular/material/table */ 97217);
-/* harmony import */ var _angular_material_tabs__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! @angular/material/tabs */ 12379);
-/* harmony import */ var _angular_material_tooltip__WEBPACK_IMPORTED_MODULE_45__ = __webpack_require__(/*! @angular/material/tooltip */ 40089);
-/* harmony import */ var _angular_material_tree__WEBPACK_IMPORTED_MODULE_46__ = __webpack_require__(/*! @angular/material/tree */ 34972);
-/* harmony import */ var _angular_material_sidenav__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! @angular/material/sidenav */ 7216);
+/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/platform-browser/animations */ 8252);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @angular/common/http */ 83142);
+/* harmony import */ var _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(/*! @angular/material/toolbar */ 60001);
+/* harmony import */ var _angular_material_autocomplete__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @angular/material/autocomplete */ 84034);
+/* harmony import */ var _angular_material_badge__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @angular/material/badge */ 16011);
+/* harmony import */ var _angular_material_bottom_sheet__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @angular/material/bottom-sheet */ 67974);
+/* harmony import */ var _angular_material_button__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/material/button */ 43054);
+/* harmony import */ var _angular_material_button_toggle__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @angular/material/button-toggle */ 62285);
+/* harmony import */ var _angular_material_card__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @angular/material/card */ 60041);
+/* harmony import */ var _angular_material_checkbox__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @angular/material/checkbox */ 43548);
+/* harmony import */ var _angular_material_chips__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @angular/material/chips */ 30726);
+/* harmony import */ var _angular_material_stepper__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @angular/material/stepper */ 78587);
+/* harmony import */ var _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! @angular/material/datepicker */ 33428);
+/* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! @angular/material/dialog */ 74808);
+/* harmony import */ var _angular_material_divider__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! @angular/material/divider */ 26909);
+/* harmony import */ var _angular_material_expansion__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! @angular/material/expansion */ 36050);
+/* harmony import */ var _angular_material_grid_list__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! @angular/material/grid-list */ 15408);
+/* harmony import */ var _angular_material_icon__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! @angular/material/icon */ 29352);
+/* harmony import */ var _angular_material_input__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! @angular/material/input */ 86234);
+/* harmony import */ var _angular_material_list__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! @angular/material/list */ 41696);
+/* harmony import */ var _angular_material_menu__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! @angular/material/menu */ 78441);
+/* harmony import */ var _angular_material_core__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! @angular/material/core */ 74498);
+/* harmony import */ var _angular_material_paginator__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! @angular/material/paginator */ 30068);
+/* harmony import */ var _angular_material_progress_bar__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! @angular/material/progress-bar */ 8932);
+/* harmony import */ var _angular_material_progress_spinner__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! @angular/material/progress-spinner */ 44834);
+/* harmony import */ var _angular_material_radio__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! @angular/material/radio */ 44233);
+/* harmony import */ var _angular_material_select__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! @angular/material/select */ 81934);
+/* harmony import */ var _angular_material_slider__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/material/slider */ 41535);
+/* harmony import */ var _angular_material_slide_toggle__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! @angular/material/slide-toggle */ 21152);
+/* harmony import */ var _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! @angular/material/snack-bar */ 7088);
+/* harmony import */ var _angular_material_sort__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! @angular/material/sort */ 82126);
+/* harmony import */ var _angular_material_table__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! @angular/material/table */ 94841);
+/* harmony import */ var _angular_material_tabs__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! @angular/material/tabs */ 98899);
+/* harmony import */ var _angular_material_tooltip__WEBPACK_IMPORTED_MODULE_45__ = __webpack_require__(/*! @angular/material/tooltip */ 89565);
+/* harmony import */ var _angular_material_tree__WEBPACK_IMPORTED_MODULE_46__ = __webpack_require__(/*! @angular/material/tree */ 31847);
+/* harmony import */ var _angular_material_sidenav__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! @angular/material/sidenav */ 62776);
 /* harmony import */ var _primary_navig_primary_navig_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./primary-navig/primary-navig.component */ 35582);
 /* harmony import */ var _AppDetails__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./AppDetails */ 79945);
-/* harmony import */ var ngx_monaco_editor__WEBPACK_IMPORTED_MODULE_47__ = __webpack_require__(/*! ngx-monaco-editor */ 66218);
+/* harmony import */ var ngx_monaco_editor__WEBPACK_IMPORTED_MODULE_47__ = __webpack_require__(/*! ngx-monaco-editor */ 39806);
 /* harmony import */ var _TransmitAction__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./TransmitAction */ 68260);
 /* harmony import */ var _blockly_studio_blockly_studio_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./blockly-studio/blockly-studio.component */ 99795);
 /* harmony import */ var _find_saved_blocks_find_saved_blocks_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./find-saved-blocks/find-saved-blocks.component */ 23920);
@@ -577,12 +577,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "BlocklyStudioComponent": () => (/* binding */ BlocklyStudioComponent)
 /* harmony export */ });
-/* harmony import */ var _home_runner_work_BlocklyAutomation_BlocklyAutomation_src_AutoBlocklyApp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 71670);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 3184);
-/* harmony import */ var _angular_material_button__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material/button */ 87317);
-/* harmony import */ var _angular_material_icon__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/material/icon */ 65590);
-/* harmony import */ var _angular_material_tabs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/material/tabs */ 12379);
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common */ 36362);
+/* harmony import */ var _home_runner_work_BlocklyAutomation_BlocklyAutomation_src_AutoBlocklyApp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 10398);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 63763);
+/* harmony import */ var _angular_material_button__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material/button */ 43054);
+/* harmony import */ var _angular_material_icon__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/material/icon */ 29352);
+/* harmony import */ var _angular_material_tabs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/material/tabs */ 98899);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common */ 71723);
 
 
 
@@ -767,43 +767,43 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "DisplayBlocklyComponent": () => (/* binding */ DisplayBlocklyComponent)
 /* harmony export */ });
-/* harmony import */ var _home_runner_work_BlocklyAutomation_BlocklyAutomation_src_AutoBlocklyApp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 71670);
-/* harmony import */ var blockly__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! blockly */ 62266);
+/* harmony import */ var _home_runner_work_BlocklyAutomation_BlocklyAutomation_src_AutoBlocklyApp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 10398);
+/* harmony import */ var blockly__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! blockly */ 87809);
 /* harmony import */ var blockly__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(blockly__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var blockly_javascript__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! blockly/javascript */ 21269);
+/* harmony import */ var blockly_javascript__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! blockly/javascript */ 25469);
 /* harmony import */ var blockly_javascript__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(blockly_javascript__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _blockly_workspace_content_highlight__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @blockly/workspace-content-highlight */ 41051);
-/* harmony import */ var _blockly_blocklyscripts__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @blockly/blocklyscripts */ 73134);
+/* harmony import */ var _blockly_workspace_content_highlight__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @blockly/workspace-content-highlight */ 14874);
+/* harmony import */ var _blockly_blocklyscripts__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @blockly/blocklyscripts */ 92415);
 /* harmony import */ var _blockly_blocklyscripts__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_blockly_blocklyscripts__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _blockly_blocklyhelpers__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @blockly/blocklyhelpers */ 75774);
+/* harmony import */ var _blockly_blocklyhelpers__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @blockly/blocklyhelpers */ 31206);
 /* harmony import */ var _blockly_blocklyhelpers__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_blockly_blocklyhelpers__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _DemoBlocks__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../DemoBlocks */ 43787);
-/* harmony import */ var _blockly_blocklyswagger__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @blockly/blocklyswagger */ 46935);
+/* harmony import */ var _blockly_blocklyswagger__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @blockly/blocklyswagger */ 59729);
 /* harmony import */ var _blockly_blocklyswagger__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_blockly_blocklyswagger__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var intro_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! intro.js */ 97958);
+/* harmony import */ var intro_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! intro.js */ 21876);
 /* harmony import */ var intro_js__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(intro_js__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var chart_js_auto__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! chart.js/auto */ 93566);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! rxjs */ 23280);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! rxjs */ 53158);
+/* harmony import */ var chart_js_auto__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! chart.js/auto */ 46653);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! rxjs */ 61275);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! rxjs */ 28804);
 /* harmony import */ var _find_saved_blocks_find_saved_blocks_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../find-saved-blocks/find-saved-blocks.component */ 23920);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @angular/core */ 3184);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @angular/core */ 63763);
 /* harmony import */ var _tabulator__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./tabulator */ 69233);
 /* harmony import */ var _AppDetails__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../AppDetails */ 79945);
 /* harmony import */ var _load_show_usage_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../load-show-usage.service */ 16335);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @angular/router */ 52816);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @angular/router */ 60944);
 /* harmony import */ var _TransmitAction__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../TransmitAction */ 68260);
-/* harmony import */ var _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @angular/material/snack-bar */ 32528);
-/* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @angular/material/dialog */ 95758);
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @angular/common */ 36362);
-/* harmony import */ var _angular_material_grid_list__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @angular/material/grid-list */ 63346);
-/* harmony import */ var _angular_material_button__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! @angular/material/button */ 87317);
-/* harmony import */ var _angular_material_icon__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! @angular/material/icon */ 65590);
-/* harmony import */ var _angular_material_menu__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! @angular/material/menu */ 82796);
-/* harmony import */ var _angular_material_divider__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! @angular/material/divider */ 19975);
-/* harmony import */ var _angular_material_expansion__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! @angular/material/expansion */ 12928);
-/* harmony import */ var _angular_material_progress_spinner__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! @angular/material/progress-spinner */ 74742);
-/* harmony import */ var ngx_monaco_editor__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ngx-monaco-editor */ 66218);
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! @angular/forms */ 90587);
+/* harmony import */ var _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @angular/material/snack-bar */ 7088);
+/* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @angular/material/dialog */ 74808);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @angular/common */ 71723);
+/* harmony import */ var _angular_material_grid_list__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @angular/material/grid-list */ 15408);
+/* harmony import */ var _angular_material_button__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! @angular/material/button */ 43054);
+/* harmony import */ var _angular_material_icon__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! @angular/material/icon */ 29352);
+/* harmony import */ var _angular_material_menu__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! @angular/material/menu */ 78441);
+/* harmony import */ var _angular_material_divider__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! @angular/material/divider */ 26909);
+/* harmony import */ var _angular_material_expansion__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! @angular/material/expansion */ 36050);
+/* harmony import */ var _angular_material_progress_spinner__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! @angular/material/progress-spinner */ 44834);
+/* harmony import */ var ngx_monaco_editor__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ngx-monaco-editor */ 39806);
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! @angular/forms */ 1247);
 
 
 
@@ -2011,8 +2011,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "TabulatorHelper": () => (/* binding */ TabulatorHelper)
 /* harmony export */ });
-/* harmony import */ var tabulator_tables__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tabulator-tables */ 48060);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 3184);
+/* harmony import */ var tabulator_tables__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tabulator-tables */ 51234);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 63763);
 
 
 class TabulatorHelper {
@@ -2299,21 +2299,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "FindSavedBlocksComponent": () => (/* binding */ FindSavedBlocksComponent)
 /* harmony export */ });
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ 90587);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ 44874);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs */ 50635);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs */ 26562);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 3184);
-/* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/material/dialog */ 95758);
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ 1247);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ 16049);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs */ 16064);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs */ 88896);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 63763);
+/* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/material/dialog */ 74808);
 /* harmony import */ var _AppDetails__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../AppDetails */ 79945);
-/* harmony import */ var _angular_material_tabs__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/material/tabs */ 12379);
-/* harmony import */ var _angular_material_form_field__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/material/form-field */ 44770);
-/* harmony import */ var _angular_material_input__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/material/input */ 43365);
-/* harmony import */ var _angular_material_autocomplete__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/material/autocomplete */ 43188);
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/common */ 36362);
-/* harmony import */ var _angular_material_button__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/material/button */ 87317);
-/* harmony import */ var _angular_material_icon__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/material/icon */ 65590);
-/* harmony import */ var _angular_material_core__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @angular/material/core */ 88133);
+/* harmony import */ var _angular_material_tabs__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/material/tabs */ 98899);
+/* harmony import */ var _angular_material_form_field__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/material/form-field */ 87392);
+/* harmony import */ var _angular_material_input__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/material/input */ 86234);
+/* harmony import */ var _angular_material_autocomplete__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/material/autocomplete */ 84034);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/common */ 71723);
+/* harmony import */ var _angular_material_button__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/material/button */ 43054);
+/* harmony import */ var _angular_material_icon__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/material/icon */ 29352);
+/* harmony import */ var _angular_material_core__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @angular/material/core */ 74498);
 
 
 
@@ -2684,11 +2684,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "LoadShowUsageService": () => (/* binding */ LoadShowUsageService)
 /* harmony export */ });
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ 10745);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs/operators */ 50635);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs/operators */ 19337);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 3184);
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common/http */ 28784);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ 21788);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs/operators */ 16064);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs/operators */ 15904);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 63763);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common/http */ 83142);
 
 
 
@@ -2751,23 +2751,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "PrimaryNavigComponent": () => (/* binding */ PrimaryNavigComponent)
 /* harmony export */ });
-/* harmony import */ var _angular_cdk_layout__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/cdk/layout */ 39910);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/operators */ 50635);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs/operators */ 89196);
+/* harmony import */ var _angular_cdk_layout__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/cdk/layout */ 93301);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/operators */ 16064);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs/operators */ 81768);
 /* harmony import */ var _Settings__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Settings */ 14095);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 3184);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 63763);
 /* harmony import */ var _AppDetails__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../AppDetails */ 79945);
 /* harmony import */ var _TransmitAction__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../TransmitAction */ 68260);
-/* harmony import */ var _angular_material_sidenav__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/material/sidenav */ 7216);
-/* harmony import */ var _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/material/toolbar */ 19946);
-/* harmony import */ var _angular_material_list__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/material/list */ 26131);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/router */ 52816);
-/* harmony import */ var _angular_material_icon__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/material/icon */ 65590);
-/* harmony import */ var _angular_material_divider__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/material/divider */ 19975);
-/* harmony import */ var _angular_material_expansion__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/material/expansion */ 12928);
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @angular/common */ 36362);
-/* harmony import */ var _angular_material_button__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @angular/material/button */ 87317);
-/* harmony import */ var _angular_material_menu__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @angular/material/menu */ 82796);
+/* harmony import */ var _angular_material_sidenav__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/material/sidenav */ 62776);
+/* harmony import */ var _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/material/toolbar */ 60001);
+/* harmony import */ var _angular_material_list__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/material/list */ 41696);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/router */ 60944);
+/* harmony import */ var _angular_material_icon__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/material/icon */ 29352);
+/* harmony import */ var _angular_material_divider__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/material/divider */ 26909);
+/* harmony import */ var _angular_material_expansion__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/material/expansion */ 36050);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @angular/common */ 71723);
+/* harmony import */ var _angular_material_button__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @angular/material/button */ 43054);
+/* harmony import */ var _angular_material_menu__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @angular/material/menu */ 78441);
 
 
 
@@ -3070,7 +3070,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "environment": () => (/* binding */ environment)
 /* harmony export */ });
-/* harmony import */ var zone_js_plugins_zone_error__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! zone.js/plugins/zone-error */ 15856);
+/* harmony import */ var zone_js_plugins_zone_error__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! zone.js/plugins/zone-error */ 46339);
 /* harmony import */ var zone_js_plugins_zone_error__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(zone_js_plugins_zone_error__WEBPACK_IMPORTED_MODULE_0__);
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
@@ -3098,8 +3098,8 @@ const environment = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/platform-browser */ 50318);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 3184);
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/platform-browser */ 8568);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 63763);
 /* harmony import */ var _app_app_module__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./app/app.module */ 36747);
 /* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./environments/environment */ 92340);
 
@@ -3115,7 +3115,7 @@ _angular_platform_browser__WEBPACK_IMPORTED_MODULE_3__.platformBrowser().bootstr
 
 /***/ }),
 
-/***/ 75774:
+/***/ 31206:
 /*!**********************************!*\
   !*** ../BlocklyHelpers/index.js ***!
   \**********************************/
@@ -3131,21 +3131,21 @@ _angular_platform_browser__WEBPACK_IMPORTED_MODULE_3__.platformBrowser().bootstr
 
 module.exports = {
   
-  interpreterHelper: __webpack_require__(/*! ./interpreterHelper */ 61079),
-  saveBlocksUrl: __webpack_require__(/*! ./saveBlocksUrl */ 65562),
-  saveLoad: __webpack_require__(/*! ./saveLoad */ 57672),
+  interpreterHelper: __webpack_require__(/*! ./interpreterHelper */ 99504),
+  saveBlocksUrl: __webpack_require__(/*! ./saveBlocksUrl */ 91274),
+  saveLoad: __webpack_require__(/*! ./saveLoad */ 69244),
 
 };
 
 /***/ }),
 
-/***/ 61079:
+/***/ 99504:
 /*!**********************************************!*\
   !*** ../BlocklyHelpers/interpreterHelper.js ***!
   \**********************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
-const synthPiano = __webpack_require__(/*! ./js/audioTest.js */ 99765); // const vex = require('vex-js');
+const synthPiano = __webpack_require__(/*! ./js/audioTest.js */ 6907); // const vex = require('vex-js');
 // vex.registerPlugin(require('vex-dialog'));
 
 
@@ -3349,7 +3349,7 @@ exports.createInterpreter = function (workspace, BlocklyJavaScript) {
       //     window.alert('file saving not supported');
       //     return;
       // }
-      var FileSaver = __webpack_require__(/*! file-saver */ 75536);
+      var FileSaver = __webpack_require__(/*! file-saver */ 24095);
 
       var blob;
 
@@ -3787,7 +3787,7 @@ exports.createInterpreter = function (workspace, BlocklyJavaScript) {
 
 /***/ }),
 
-/***/ 99765:
+/***/ 6907:
 /*!*****************************************!*\
   !*** ../BlocklyHelpers/js/audioTest.js ***!
   \*****************************************/
@@ -4152,7 +4152,7 @@ Synth.loadSoundProfile({
 
 /***/ }),
 
-/***/ 65562:
+/***/ 91274:
 /*!******************************************!*\
   !*** ../BlocklyHelpers/saveBlocksUrl.js ***!
   \******************************************/
@@ -4187,13 +4187,13 @@ exports.restoreState = function(BLocklyXML,workspace, id){
 
 /***/ }),
 
-/***/ 57672:
+/***/ 69244:
 /*!*************************************!*\
   !*** ../BlocklyHelpers/saveLoad.js ***!
   \*************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
-var FileSaver = __webpack_require__(/*! file-saver */ 75536);
+var FileSaver = __webpack_require__(/*! file-saver */ 24095);
 exports.DownloadBlocks = function(BlocklyXML, workspace, filename) {
     var xml = BlocklyXML.workspaceToDom(workspace, true);
     var xml_text = BlocklyXML.domToPrettyText(xml);    
@@ -4209,13 +4209,13 @@ exports.LoadFile = function(BlocklyXML,workspace,content) {
 
 /***/ }),
 
-/***/ 32253:
+/***/ 65844:
 /*!***************************************!*\
   !*** ../BlocklyScripts/HTMLBlocks.js ***!
   \***************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
-const Blockly =__webpack_require__(/*! blockly */ 5912);
+const Blockly =__webpack_require__(/*! blockly */ 87809);
 
 exports.definitionBlocks = function (blocks, javaScript) {
   blocks['HTMLheaders'] = {
@@ -4422,7 +4422,7 @@ exports.fieldXML = function () {
 
 /***/ }),
 
-/***/ 61096:
+/***/ 66647:
 /*!*************************************!*\
   !*** ../BlocklyScripts/TTSBlock.js ***!
   \*************************************/
@@ -4433,7 +4433,7 @@ exports.fieldXML = function () {
 
 // exports.fieldXML = function () {
 // }
-const Blockly =__webpack_require__(/*! blockly */ 5912);
+const Blockly =__webpack_require__(/*! blockly */ 87809);
 // const a = require('./audioTest.js');
 exports.definitionBlocks = function (blocks, javaScript) {
     
@@ -4473,7 +4473,7 @@ exports.fieldXML = function () {
 
 /***/ }),
 
-/***/ 16537:
+/***/ 34175:
 /*!*****************************************!*\
   !*** ../BlocklyScripts/WindowsCreds.js ***!
   \*****************************************/
@@ -4529,7 +4529,7 @@ exports.fieldXML =function(){
 
 /***/ }),
 
-/***/ 30101:
+/***/ 6684:
 /*!****************************************!*\
   !*** ../BlocklyScripts/auth0Blocks.js ***!
   \****************************************/
@@ -4621,13 +4621,13 @@ exports.fieldXML = function () {
 
 /***/ }),
 
-/***/ 77868:
+/***/ 27158:
 /*!***************************************!*\
   !*** ../BlocklyScripts/chartBlock.js ***!
   \***************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
-const Blockly =__webpack_require__(/*! blockly */ 5912);
+const Blockly =__webpack_require__(/*! blockly */ 87809);
 
 // exports.definitionBlocks = function (blocks, javaScript) {
 // }
@@ -4700,7 +4700,7 @@ exports.fieldXML = function () {
 
 /***/ }),
 
-/***/ 66737:
+/***/ 38322:
 /*!*****************************************!*\
   !*** ../BlocklyScripts/commentBlock.js ***!
   \*****************************************/
@@ -4712,7 +4712,7 @@ exports.fieldXML = function () {
 // exports.fieldXML = function () {
 // }
 
-const Blockly =__webpack_require__(/*! blockly */ 5912);
+const Blockly =__webpack_require__(/*! blockly */ 87809);
  exports.definitionBlocks = function (blocks, javaScript) {
     const ORDER_ATOMIC = 0;
     blocks['comment'] = {
@@ -4781,7 +4781,7 @@ exports.fieldXML = function () {
 
 /***/ }),
 
-/***/ 84591:
+/***/ 36411:
 /*!*********************************************!*\
   !*** ../BlocklyScripts/convertersBlocks.js ***!
   \*********************************************/
@@ -4878,7 +4878,7 @@ exports.fieldXML = function () {
 
 /***/ }),
 
-/***/ 53160:
+/***/ 73259:
 /*!***********************************************!*\
   !*** ../BlocklyScripts/createObjectBlocks.js ***!
   \***********************************************/
@@ -4890,7 +4890,7 @@ exports.fieldXML = function () {
 // exports.fieldXML = function () {
 // }
 
-const Blockly=__webpack_require__(/*! blockly */ 5912);
+const Blockly=__webpack_require__(/*! blockly */ 87809);
 //https://gist.github.com/mark-friedman/48f43a9b62b1c8ad029a75d4b4e61f31
 exports.definitionBlocks = function (blocks, javaScript,BlocklyExtensions,  BlocklyMutator) {
 
@@ -5286,7 +5286,7 @@ exports.fieldXML = function () {
 
 /***/ }),
 
-/***/ 83761:
+/***/ 36332:
 /*!*********************************************!*\
   !*** ../BlocklyScripts/currentDateBlock.js ***!
   \*********************************************/
@@ -5297,7 +5297,7 @@ exports.fieldXML = function () {
 
 // exports.fieldXML = function () {
 // }
-const Blockly =__webpack_require__(/*! blockly */ 5912);
+const Blockly =__webpack_require__(/*! blockly */ 87809);
 
 
 exports.definitionBlocks = function (blocks, javaScript) {
@@ -5370,7 +5370,7 @@ return `<block type="displayCurrentDate"></block>`;
 
 /***/ }),
 
-/***/ 99225:
+/***/ 15058:
 /*!**********************************************!*\
   !*** ../BlocklyScripts/dateFromTextBlock.js ***!
   \**********************************************/
@@ -5421,7 +5421,7 @@ exports.fieldXML = function () {
 
 /***/ }),
 
-/***/ 24534:
+/***/ 85929:
 /*!******************************************!*\
   !*** ../BlocklyScripts/defaultBlocks.js ***!
   \******************************************/
@@ -5741,7 +5741,7 @@ exports.generalBlocks = function(){
 
 /***/ }),
 
-/***/ 21816:
+/***/ 40166:
 /*!****************************************!*\
   !*** ../BlocklyScripts/emailBlocks.js ***!
   \****************************************/
@@ -5752,7 +5752,7 @@ exports.generalBlocks = function(){
 
 // exports.fieldXML = function () {
 // }
-const Blockly =__webpack_require__(/*! blockly */ 5912);
+const Blockly =__webpack_require__(/*! blockly */ 87809);
 
 exports.definitionBlocks = function (blocks, javaScript) {
     const ORDER_NONE=99;
@@ -5904,7 +5904,7 @@ exports.fieldXML = function () {
 
 /***/ }),
 
-/***/ 26577:
+/***/ 67033:
 /*!********************************************!*\
   !*** ../BlocklyScripts/exportfileBlock.js ***!
   \********************************************/
@@ -5972,7 +5972,7 @@ exports.fieldXML = function () {
 
 /***/ }),
 
-/***/ 67650:
+/***/ 3457:
 /*!*****************************************!*\
   !*** ../BlocklyScripts/filterBlocks.js ***!
   \*****************************************/
@@ -6152,13 +6152,13 @@ exports.fieldXML=function(){
 
 /***/ }),
 
-/***/ 4184:
+/***/ 65135:
 /*!**************************************!*\
   !*** ../BlocklyScripts/guiBlocks.js ***!
   \**************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
-const Blockly=__webpack_require__(/*! blockly */ 5912);
+const Blockly=__webpack_require__(/*! blockly */ 87809);
 exports.definitionBlocks=function (blocks, javaScript){
     const ORDER_NONE= 99;
     const ORDER_ATOMIC= 0;
@@ -6291,7 +6291,7 @@ exports.fieldXML = function () {
 
 /***/ }),
 
-/***/ 73134:
+/***/ 92415:
 /*!**********************************!*\
   !*** ../BlocklyScripts/index.js ***!
   \**********************************/
@@ -6307,33 +6307,33 @@ exports.fieldXML = function () {
 
 module.exports = {
   
-  defaultBlocks: __webpack_require__(/*! ./defaultBlocks */ 24534),
-  filterBlocks: __webpack_require__(/*! ./filterBlocks */ 67650),
-  waitBlocks: __webpack_require__(/*! ./wait_block */ 33206),
-  xhrBlocks: __webpack_require__(/*! ./xhrBlocks */ 77768),
-  propBlocks: __webpack_require__(/*! ./propBlocks */ 86958),
-  guiBlocks: __webpack_require__(/*! ./guiBlocks */ 4184),
-  convertersBlocks: __webpack_require__(/*! ./convertersBlocks */ 84591),
-  exportFileBlock: __webpack_require__(/*! ./exportfileBlock */ 26577),
-  createObjectBlocks: __webpack_require__(/*! ./createObjectBlocks */ 53160),
-  currentDateBlock: __webpack_require__(/*! ./currentDateBlock */ 83761),
-  dateFromTextBlock: __webpack_require__(/*! ./dateFromTextBlock */ 99225),
-  waitBlocks: __webpack_require__(/*! ./waitBlocks */ 60797),
-  commentBlock: __webpack_require__(/*! ./commentBlock */ 66737),
-  auth0Blocks: __webpack_require__(/*! ./auth0Blocks */ 30101),
-  windowsCreds: __webpack_require__(/*! ./WindowsCreds */ 16537),
-  trycatchFinBlock: __webpack_require__(/*! ./tryCatchFinBlock */ 78639),
-  chartBlock: __webpack_require__(/*! ./chartBlock */ 77868),
-  emailBlocks: __webpack_require__(/*! ./emailBlocks */ 21816),
-  htmlblocks: __webpack_require__(/*! ./HTMLBlocks */ 32253),
-  ttsBlock: __webpack_require__(/*! ./TTSBlock */ 61096),
-  pianoBlock: __webpack_require__(/*! ./pianoBlock */ 41450)
+  defaultBlocks: __webpack_require__(/*! ./defaultBlocks */ 85929),
+  filterBlocks: __webpack_require__(/*! ./filterBlocks */ 3457),
+  waitBlocks: __webpack_require__(/*! ./wait_block */ 82749),
+  xhrBlocks: __webpack_require__(/*! ./xhrBlocks */ 52767),
+  propBlocks: __webpack_require__(/*! ./propBlocks */ 81121),
+  guiBlocks: __webpack_require__(/*! ./guiBlocks */ 65135),
+  convertersBlocks: __webpack_require__(/*! ./convertersBlocks */ 36411),
+  exportFileBlock: __webpack_require__(/*! ./exportfileBlock */ 67033),
+  createObjectBlocks: __webpack_require__(/*! ./createObjectBlocks */ 73259),
+  currentDateBlock: __webpack_require__(/*! ./currentDateBlock */ 36332),
+  dateFromTextBlock: __webpack_require__(/*! ./dateFromTextBlock */ 15058),
+  waitBlocks: __webpack_require__(/*! ./waitBlocks */ 1942),
+  commentBlock: __webpack_require__(/*! ./commentBlock */ 38322),
+  auth0Blocks: __webpack_require__(/*! ./auth0Blocks */ 6684),
+  windowsCreds: __webpack_require__(/*! ./WindowsCreds */ 34175),
+  trycatchFinBlock: __webpack_require__(/*! ./tryCatchFinBlock */ 17304),
+  chartBlock: __webpack_require__(/*! ./chartBlock */ 27158),
+  emailBlocks: __webpack_require__(/*! ./emailBlocks */ 40166),
+  htmlblocks: __webpack_require__(/*! ./HTMLBlocks */ 65844),
+  ttsBlock: __webpack_require__(/*! ./TTSBlock */ 66647),
+  pianoBlock: __webpack_require__(/*! ./pianoBlock */ 44796)
 
 };
 
 /***/ }),
 
-/***/ 41450:
+/***/ 44796:
 /*!***************************************!*\
   !*** ../BlocklyScripts/pianoBlock.js ***!
   \***************************************/
@@ -6344,7 +6344,7 @@ module.exports = {
 
 // exports.fieldXML = function () {
 // }
-const Blockly = __webpack_require__(/*! blockly */ 5912);
+const Blockly = __webpack_require__(/*! blockly */ 87809);
 // const a = require('./audioTest.js');
 exports.definitionBlocks = function (blocks, javaScript) {
   blocks["pianoBlock"] = {
@@ -6426,13 +6426,13 @@ exports.fieldXML = function () {
 
 /***/ }),
 
-/***/ 86958:
+/***/ 81121:
 /*!***************************************!*\
   !*** ../BlocklyScripts/propBlocks.js ***!
   \***************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
-const Blockly=__webpack_require__(/*! blockly */ 5912);
+const Blockly=__webpack_require__(/*! blockly */ 87809);
 exports.definitionBlocks = function (blocks, javaScript) {
     const ALIGN_RIGHT=1;
     const ALIGN_CENTRE=0;
@@ -6556,7 +6556,7 @@ exports.fieldXML = function () {
 
 /***/ }),
 
-/***/ 78639:
+/***/ 17304:
 /*!*********************************************!*\
   !*** ../BlocklyScripts/tryCatchFinBlock.js ***!
   \*********************************************/
@@ -6606,7 +6606,7 @@ exports.fieldXML =function(){
 
 /***/ }),
 
-/***/ 60797:
+/***/ 1942:
 /*!***************************************!*\
   !*** ../BlocklyScripts/waitBlocks.js ***!
   \***************************************/
@@ -6686,7 +6686,7 @@ exports.fieldXML = function () {
 
 /***/ }),
 
-/***/ 33206:
+/***/ 82749:
 /*!***************************************!*\
   !*** ../BlocklyScripts/wait_block.js ***!
   \***************************************/
@@ -6757,13 +6757,13 @@ exports.fieldXML = function () {
 
 /***/ }),
 
-/***/ 77768:
+/***/ 52767:
 /*!**************************************!*\
   !*** ../BlocklyScripts/xhrBlocks.js ***!
   \**************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
-const Blockly =__webpack_require__(/*! blockly */ 5912);
+const Blockly =__webpack_require__(/*! blockly */ 87809);
 
 exports.definitionBlocks = function (blocks, javaScript) {
     const ORDER_ATOMIC = 0;
@@ -6942,15 +6942,15 @@ exports.fieldXML =function(){
 
 /***/ }),
 
-/***/ 43453:
+/***/ 56773:
 /*!***********************************************!*\
   !*** ../BlocklySwagger/blocklySwaggerData.js ***!
   \***********************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-var _asyncToGenerator = (__webpack_require__(/*! ./node_modules/@babel/runtime/helpers/asyncToGenerator.js */ 63752)["default"]);
+var _asyncToGenerator = (__webpack_require__(/*! ./node_modules/@babel/runtime/helpers/asyncToGenerator.js */ 26212)["default"]);
 
-const Blockly = __webpack_require__(/*! blockly */ 5912); // const vex = require('vex-js');
+const Blockly = __webpack_require__(/*! blockly */ 87809); // const vex = require('vex-js');
 
 
 class TagsFunctions {
@@ -7215,7 +7215,7 @@ class BlocklyReturnSwagger {
         // const SwaggerParser = require("@api-platform/api-doc-parser/lib/openapi3/parseOpenApi3Documentation");
         // var q = await SwaggerParser.default(this.swaggerUrl);
         //var r = q.response;
-        const SwaggerParser = __webpack_require__(/*! swagger-client */ 75682);
+        const SwaggerParser = __webpack_require__(/*! swagger-client */ 42984);
 
         var q = yield SwaggerParser.default(_this.swaggerUrl); // if(this.swaggerUrl.indexOf('blockly')>0){
         //   console.log("b__",q.spec.paths);
@@ -7815,7 +7815,7 @@ module.exports = BlocklyReturnSwagger;
 
 /***/ }),
 
-/***/ 46935:
+/***/ 59729:
 /*!**********************************!*\
   !*** ../BlocklySwagger/index.js ***!
   \**********************************/
@@ -7831,32 +7831,32 @@ module.exports = BlocklyReturnSwagger;
 
 module.exports = {
   
-  parseSwagger: __webpack_require__(/*! ./parseSwagger */ 18518),
-  parseData: __webpack_require__(/*! ./blocklySwaggerData */ 43453)
+  parseSwagger: __webpack_require__(/*! ./parseSwagger */ 60007),
+  parseData: __webpack_require__(/*! ./blocklySwaggerData */ 56773)
   
 };
 
 /***/ }),
 
-/***/ 18518:
+/***/ 60007:
 /*!*****************************************!*\
   !*** ../BlocklySwagger/parseSwagger.js ***!
   \*****************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
-var _asyncToGenerator = (__webpack_require__(/*! ./node_modules/@babel/runtime/helpers/asyncToGenerator.js */ 63752)["default"]);
+var _asyncToGenerator = (__webpack_require__(/*! ./node_modules/@babel/runtime/helpers/asyncToGenerator.js */ 26212)["default"]);
 
 // import parseSwaggerDocumentation from '@api-platform/api-doc-parser/lib/swagger/parseSwaggerDocumentation';
 // import parseOpenApi3Documentation from '@api-platform/api-doc-parser/lib/openapi3/parseOpenApi3Documentation';
 exports.parseSwagger = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator(function* (swaggerUrl) {
     // const SwaggerParser = require("@apidevtools/swagger-parser");
-    const BlocklyReturnSwagger = __webpack_require__(/*! ./blocklySwaggerData */ 43453);
+    const BlocklyReturnSwagger = __webpack_require__(/*! ./blocklySwaggerData */ 56773);
 
     var b = new BlocklyReturnSwagger(swaggerUrl);
     var result = [];
 
-    const SwaggerParser = __webpack_require__(/*! @api-platform/api-doc-parser/lib/openapi3/parseOpenApi3Documentation */ 80746);
+    const SwaggerParser = __webpack_require__(/*! @api-platform/api-doc-parser/lib/openapi3/parseOpenApi3Documentation */ 25100);
 
     var q = yield SwaggerParser.default(swaggerUrl);
     var r = q.response;
@@ -7912,7 +7912,7 @@ function TranslateToBlocklyType(t) {
 
 exports.parseSwagger1 = function (swaggerUrl) {
   // const SwaggerParser = require("@apidevtools/swagger-parser");
-  const SwaggerParser = __webpack_require__(/*! @api-platform/api-doc-parser/lib/openapi3/parseOpenApi3Documentation */ 80746);
+  const SwaggerParser = __webpack_require__(/*! @api-platform/api-doc-parser/lib/openapi3/parseOpenApi3Documentation */ 25100);
 
   return SwaggerParser.default(swaggerUrl);
 };
