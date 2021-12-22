@@ -229,7 +229,7 @@ class Settings {
         this.localAPI = '';
     }
 }
-Settings.version = '2021.12.22.1505';
+Settings.version = '2021.12.22.1612';
 
 
 /***/ }),
@@ -1280,23 +1280,22 @@ class DisplayBlocklyComponent {
     //cors: https://humorapi.com/downloads/humorapi-openapi-3.json
     var self = this;
     var parser = new _blockly_blocklyswagger__WEBPACK_IMPORTED_MODULE_7__.parseData("");
-    parser.showWindowToLoad('', json => {
-      if (!json) return;
+    var json = window.prompt("Swagger/OpenAPI ? ");
+    if (!json) return;
 
-      if (json.endsWith('.html') || json.endsWith('.htm')) {
-        window.alert('Swagger should end with .json - see source of html page');
-        return;
-      } //self.loadedCompletely=false;
+    if (json.endsWith('.html') || json.endsWith('.htm')) {
+      window.alert('Swagger should end with .json - see source of html page');
+      return;
+    } //self.loadedCompletely=false;
 
 
-      self.LoadSwaggerFromUrl(json).then(api => {
-        // this.afterTimeout(this);
-        if (api.hasError) window.alert("error loading local api");else {
-          self.addToToolboxSwagger(api, this); //self.loadedCompletely=true;
+    self.LoadSwaggerFromUrl(json).then(api => {
+      // this.afterTimeout(this);
+      if (api.hasError) window.alert("error loading local api");else {
+        self.addToToolboxSwagger(api, this); //self.loadedCompletely=true;
 
-          window.alert("loaded successfully");
-        }
-      });
+        window.alert("loaded successfully");
+      }
     });
   } // var json = window.prompt(
   //   'Swagger url? ',
@@ -3146,11 +3145,9 @@ module.exports = {
   \**********************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
-const synthPiano = __webpack_require__(/*! ./js/audioTest.js */ 99765);
+const synthPiano = __webpack_require__(/*! ./js/audioTest.js */ 99765); // const vex = require('vex-js');
+// vex.registerPlugin(require('vex-dialog'));
 
-const vex = __webpack_require__(/*! vex-js */ 77249);
-
-vex.registerPlugin(__webpack_require__(/*! vex-dialog */ 22853));
 
 exports.createInterpreter = function (workspace, BlocklyJavaScript) {
   return {
@@ -3695,16 +3692,21 @@ exports.createInterpreter = function (workspace, BlocklyJavaScript) {
       // };
       // interpreter.setProperty(globalObject, 'prompt',
       //     interpreter.createNativeFunction(wrapper));
+      // var wrapper = interpreter.createAsyncFunction(
+      //   function(text, callback) {
+      //     vex.defaultOptions.className = 'vex-theme-os';
+      //     text = text ? text.toString() : '';
+      //   return vex.dialog.prompt( { message:text,callback: callback});
+      // });
 
-      var wrapper = interpreter.createAsyncFunction(function (text, callback) {
-        vex.defaultOptions.className = 'vex-theme-os';
-        text = text ? text.toString() : '';
-        return vex.dialog.prompt({
-          message: text,
-          callback: callback
-        });
-      });
-      interpreter.setProperty(globalObject, 'prompt', wrapper); // Add an API for the wait block.  See wait_block.js
+      var wrapper = function (message, defaultPrompt, callback) {
+        message = message ? message.toString() : '';
+        defaultPrompt = defaultPrompt ? defaultPrompt.toString() : '';
+        var res = window.prompt(message, defaultPrompt);
+        callback(res);
+      };
+
+      interpreter.setProperty(globalObject, 'prompt', interpreter.createAsyncFunction(wrapper)); // Add an API for the wait block.  See wait_block.js
       // this.initInterpreterWaitForSeconds(interpreter, globalObject);
 
       thisClass.BlocklyJavaScript.addReservedWords('waitForSeconds');
@@ -6948,9 +6950,8 @@ exports.fieldXML =function(){
 
 var _asyncToGenerator = (__webpack_require__(/*! ./node_modules/@babel/runtime/helpers/asyncToGenerator.js */ 63752)["default"]);
 
-const Blockly = __webpack_require__(/*! blockly */ 5912);
+const Blockly = __webpack_require__(/*! blockly */ 5912); // const vex = require('vex-js');
 
-const vex = __webpack_require__(/*! vex-js */ 77249);
 
 class TagsFunctions {
   functionName = '';
@@ -7188,16 +7189,14 @@ class BlocklyReturnSwagger {
     var self = this;
 
     try {
-      vex.registerPlugin(__webpack_require__(/*! vex-dialog */ 22853));
+      vex.registerPlugin(__webpack_require__(Object(function webpackMissingModule() { var e = new Error("Cannot find module 'vex-dialog'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())));
     } catch (e) {//do nothing
-    }
+    } //vex.defaultOptions.className = 'vex-theme-os';
+    //vex.dialog.prompt( { message:"Swagger url?",placeholder:  defaultPrompt,callback: callback } );
 
-    vex.defaultOptions.className = 'vex-theme-os';
-    vex.dialog.prompt({
-      message: "Swagger url?",
-      placeholder: defaultPrompt,
-      callback: callback
-    });
+
+    var res = window.prompt("Swagger url", defaultPrompt);
+    callback(res);
   }
 
   ParseSwagger() {
