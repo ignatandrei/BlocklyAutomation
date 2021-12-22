@@ -92,22 +92,33 @@ export class FindSavedBlocksComponent implements OnInit {
       this.demosArray= combineLatest([
         this.myBlocks.valueChanges.pipe(startWith(''))
         ,this.myCategories.valueChanges.pipe(startWith(''))
+        ,this.mySearchText.valueChanges.pipe(startWith(''))
       ])
       .pipe(
         startWith(this.demos),
-        map(([block,category])=>{
+        map(([block,category, searchText])=>{
           if(Array.isArray(block) || typeof block === 'object')
             block='';
           if(Array.isArray(category) || typeof category === 'object')
             category='';
+            if(Array.isArray(searchText ) || typeof searchText === 'object')
+              searchText ='';
 
             block=(block||'').trim().toLowerCase();
             category=(category||'').trim().toLowerCase();
+            searchText = searchText?.trim().toLowerCase()||'';
             // console.log('search for ',block,category);
             var ret= this.demos.filter(it=>{
              return (block.length==0 ||  it.blocks?.toLowerCase().indexOf(block)>-1) 
                 &&
               (category.length==0 ||  it.categories?.toLowerCase().indexOf(category)>-1)
+                && 
+              (searchText.length==0 
+                || it.description?.toLowerCase().indexOf(searchText)>-1
+                || it.blocks?.toLowerCase().indexOf(searchText)>-1
+                || it.categories?.toLowerCase().indexOf(searchText)>-1
+                || it.id?.toLowerCase().indexOf(searchText)>-1
+                )
             });
             // console.log('ret',ret);
             return ret;
@@ -123,6 +134,7 @@ export class FindSavedBlocksComponent implements OnInit {
 
 
   myCategories = new FormControl();
+  mySearchText=new FormControl();
   optionsCategories: string[] = [];
   filteredOptionsCategories: Observable<string[]> | null = null;
 

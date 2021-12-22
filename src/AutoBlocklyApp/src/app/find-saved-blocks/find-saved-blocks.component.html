@@ -41,6 +41,16 @@
         </mat-autocomplete>
       </mat-form-field>
 
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Search</mat-label>
+        <input
+          type="text"
+          placeholder="enter text to search"
+          matInput
+          [formControl]="mySearchText"
+        />
+      </mat-form-field>
+
     </form>
     
     <table>
