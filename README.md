@@ -6,7 +6,10 @@ Blockly Automation :  is a tool for RPA automation made of Blockly.
 
 ## How to test
 
-Please go to https://ignatandrei.github.io/BlocklyAutomation/ and test various HTTP request, Swaggers and more
+
+To see the whole potential , please go to http://ba.serviciipeweb.ro/ and click Launch .
+
+If you want to see some web Demo , please go to https://ignatandrei.github.io/BlocklyAutomation/ and test various HTTP request, Swaggers and more
 
 ## How to install on your PC
 
