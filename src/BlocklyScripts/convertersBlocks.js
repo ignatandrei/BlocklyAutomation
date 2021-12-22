@@ -48,7 +48,7 @@ exports.definitionBlocks = function (blocks, javaScript) {
     blocks['convertcsv'] = {
         init: function () {
             this.appendDummyInput()
-                .appendField("Convert CSV");
+                .appendField("Convert To CSV");
             this.appendValueInput("ArrayToConvert")
                 .setCheck(null)
                 .appendField("Array to convert");
