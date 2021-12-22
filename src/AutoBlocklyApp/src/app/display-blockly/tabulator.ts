@@ -42,19 +42,23 @@ export class TabulatorHelper
         
     </div>`,
         placeholder: "please press execute button", 
-        tooltips: function (cell:Tabulator.CellComponent) {
-            //cell - cell component
+        // tooltips: function (cell:Tabulator.CellComponent) {
+        //     //cell - cell component
 
-            //function should return a string for the tooltip of false to hide the tooltip
-            return cell.getColumn().getField() + " - " + cell.getValue(); //return cells "field - value";
-        },
+        //     //function should return a string for the tooltip of false to hide the tooltip
+        //     return cell.getColumn().getField() + " - " + cell.getValue(); //return cells "field - value";
+        // },
 
     } as Tabulator.Options);
-
-    this.hot.replaceData([]);
-    // this.hot.clearFilter(true);
-    // this.hot.clearHeaderFilter();
-    this.hot.redraw(true);
+    // try{
+    // this.hot.replaceData([]);
+    // // this.hot.clearFilter(true);
+    // // this.hot.clearHeaderFilter();
+    // this.hot.redraw(true);
+    // }
+    // catch(e){
+    //     //do nothing
+    // }
 }
     AddStringToGrid(value:string) {
     //window.alert(value);
