@@ -34,15 +34,15 @@ jobs:
 
     - name: npm modify docs
       run: |
-        npm i -g npm@8.3.0               
         cd src
+        npm i -g npm@8.3.0                       
         echo 'install angular'    
         npm i  @angular/cli@13
         echo "install ws"
-        npm i -force
-        cd AutoBlocklyApp
-        npm i -force
-        cd ..
+        # npm i -force
+        # cd AutoBlocklyApp
+        # npm i -force
+        # cd ..
         npm run buildGitHubPages
         cd ..
         rm -r docs/*
