@@ -19,8 +19,6 @@
     "js-interpreter": "^2.3.1",
     "rxjs": "~6.6.0",
     "tslib": "2.3.0",
-    "vex": "0.0.4",
-    "vex-js": "4.1.0",
     "vm": "0.1.0"
   },
   "devDependencies": {

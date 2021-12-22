@@ -353,30 +353,26 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
     //cors: https://humorapi.com/downloads/humorapi-openapi-3.json
     var self=this;
     var parser = new SwaggerParser.parseData("");
-    parser.showWindowToLoad('',
-    (json:string)=>{
-      if (!json) return;
-      if (json.endsWith('.html') || json.endsWith('.htm')) {
-        window.alert('Swagger should end with .json - see source of html page');
-        return;
-      }
-      //self.loadedCompletely=false;
-      self.LoadSwaggerFromUrl(json).then((api) => {
-        // this.afterTimeout(this);
-        if(api.hasError)
-        window.alert("error loading local api");
+    var json = window.prompt("Swagger/OpenAPI ? ");
+    
+    if (!json) return;
+    if (json.endsWith('.html') || json.endsWith('.htm')) {
+      window.alert('Swagger should end with .json - see source of html page');
+      return;
+    }
+    //self.loadedCompletely=false;
+    self.LoadSwaggerFromUrl(json).then((api) => {
+      // this.afterTimeout(this);
+      if(api.hasError)
+      window.alert("error loading local api");
       else{
         
         self.addToToolboxSwagger(api,this);      
         //self.loadedCompletely=true;
         window.alert("loaded successfully");
       }
-      
-
     });
-    });
-   }
-
+    }
     // var json = window.prompt(
     //   'Swagger url? ',
     //   'https://swagger-tax-calc-api.herokuapp.com/api-docs'

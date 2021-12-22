@@ -1,5 +1,5 @@
 const Blockly=require('blockly');
-const vex = require('vex-js');
+// const vex = require('vex-js');
 class TagsFunctions{
   functionName= '';
   tags=[];
@@ -249,8 +249,10 @@ class BlocklyReturnSwagger {
     catch(e){
       //do nothing
     }
-    vex.defaultOptions.className = 'vex-theme-os';
-    vex.dialog.prompt( { message:"Swagger url?",placeholder:  defaultPrompt,callback: callback } );
+    //vex.defaultOptions.className = 'vex-theme-os';
+    //vex.dialog.prompt( { message:"Swagger url?",placeholder:  defaultPrompt,callback: callback } );
+    var res= window.prompt("Swagger url",defaultPrompt);
+    callback(res);
 
   }
 
