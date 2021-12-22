@@ -33,15 +33,15 @@ jobs:
           cd src
           echo 'install angular'    
           npm i  @angular/cli@13
-          echo "install ws"
-          npm i -force
-          cd AutoBlocklyApp
-          npm i -force
-          cd ..
+          # echo "install ws"
+          #npm i -force
+          #cd AutoBlocklyApp
+          #npm i -force
+          #cd ..
           # echo "copy "
           #cp -r node_modules/  AutoBlocklyApp/          
-          echo "find"
-          find . -type d -name "vex-js" -print
+          # echo "find"
+          # find . -type d -name "vex-js" -print
           echo "build"
           npm run buildAng
           ls -l AutoBlocklyApp/dist/AutoBlocklyApp
