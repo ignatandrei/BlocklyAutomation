@@ -777,8 +777,8 @@ var customCategs=this.DetailsApp.customCategories;
       toolbox: this.toolboxXML,
     } as Blockly.BlocklyOptions);
     // this.demoWorkspace.registerButtonCallback("LoadLocalAPI",()=>this.LoadLocalAPI(this));
-    const contentHighlight = new ContentHighlight(this.demoWorkspace);
-    contentHighlight.init();
+    // const contentHighlight = new ContentHighlight(this.demoWorkspace);
+    // contentHighlight.init();
     var self = this;
     if ((this.DetailsApp.settings?.startBlocks?.length || 0) > 0) {
       try {
