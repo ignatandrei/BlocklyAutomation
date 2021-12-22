@@ -8,7 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "buildDesktop":"ng build --base-href .", 
-    "buildGitHubPages": "ng build -c development --base-href /BlocklyAutomation/" ,
+    "buildGitHubPages": "ng build --base-href /BlocklyAutomation/" ,
     "addPWA" :"ng add @angular/pwa  --defaults true --skip-confirmation true",
     "pwaRun":"ng build --output-path pwa"
    },
