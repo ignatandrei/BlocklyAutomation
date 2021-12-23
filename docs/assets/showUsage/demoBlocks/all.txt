@@ -1,5 +1,11 @@
 ﻿[
     {
+        "id":  "parser",
+        "description":  "parse tables, links, images , headers",
+        "categories":  "parser",
+        "blocks":  "window_open;text;comment;text_print;httprequest;simpleHtmlparser;convertcsv;exportfile"
+    },
+    {
         "id":  "chuckStart",
         "description":  "chuck norris voice",
         "categories":  "funny",
