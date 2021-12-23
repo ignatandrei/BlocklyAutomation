@@ -18,7 +18,7 @@ exports.definitionBlocks = function (blocks, javaScript) {
     var dropdown_to = block.getFieldValue('To');
     var value_name = javaScript.valueToCode(block, 'NAME', javaScript.ORDER_ATOMIC);
     var code = '(function(value){ \n';    
-    code +='var doc  = parseDOMFromStringElements(value,"text/html","table");\n';        
+    code +=`var doc  = parseDOMFromStringElements(value,"text/html","${dropdown_to}");\n`;        
     // code +='consoleLog("x",doc)\n';      
     code += 'return doc;\n';
     code += '})('+ value_name+')';

@@ -484,9 +484,22 @@ parseDOMFromStringElements : function(htmlString, type, tagName){
         return ret;
     switch(tagName){
         case "table":
+            ret={};
             for(var i=0;i<elements.length;i++){
                 ret["table"+i]= this.table2array(elements[i]);     
             }             
+            break;
+        case "a":
+            ret=[];
+            for(var i=0;i<elements.length;i++){
+                ret.push({ "href" : elements[i].href});     
+            }
+            break;
+        case "img":
+            ret=[];
+            for(var i=0;i<elements.length;i++){
+                ret.push({ "src" : elements[i].src});     
+            }
             break;
         default:
             throw new Error(`tag !${tagName}! not supported`);
