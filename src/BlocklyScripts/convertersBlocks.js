@@ -66,18 +66,18 @@ exports.definitionBlocks = function (blocks, javaScript) {
         return [code, /*javaScript.*/ORDER_NONE];
     };
     
-    const convertCSV = function (arrayOrString) {
+    // const convertCSV = function (arrayOrString) {
         
         
-        let arr = typeof arrayOrString != 'object' ? JSON.parse(arrayOrString) : objArray;
+    //     let arr = typeof arrayOrString != 'object' ? JSON.parse(arrayOrString) : objArray;
     
-        arr = [Object.keys(arr[0])].concat(arr)
-        var data = arr.map(it => {
-            return Object.values(it).toString()
-        }).join('\n');
-        // console.log(data);
-        return data;
-    }
+    //     arr = [Object.keys(arr[0])].concat(arr)
+    //     var data = arr.map(it => {
+    //         return Object.values(it).toString()
+    //     }).join('\n');
+    //     // console.log(data);
+    //     return data;
+    // }
 }
 
 exports.fieldXML = function () {

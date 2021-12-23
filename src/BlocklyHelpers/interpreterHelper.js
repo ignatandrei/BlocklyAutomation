@@ -476,7 +476,7 @@ table2array: function(table) {
 parseDOMFromStringElements : function(htmlString, type, tagName){
     var doc = new DOMParser().parseFromString(htmlString, type);
     var elements=doc.getElementsByTagName(tagName);
-    var ret=[];
+    var ret={};
     // console.log('a',elements);
     // console.log('b',elements[0]);
     
@@ -484,12 +484,14 @@ parseDOMFromStringElements : function(htmlString, type, tagName){
         return ret;
     switch(tagName){
         case "table":
-            ret= this.table2array(elements[0]);
+            for(var i=0;i<elements.length;i++){
+                ret["table"+i]= this.table2array(elements[i]);     
+            }             
             break;
         default:
             throw new Error(`tag !${tagName}! not supported`);
     }
-    // console.log('a',ret); 
+    console.log('a',ret); 
     return JSON.stringify(ret);
 },
 consoleLog: function(arg1,arg2){
@@ -593,9 +595,12 @@ consoleLog: function(arg1,arg2){
                 if(Array.isArray(arrayOrString)){
                     arr = arrayOrString;
                 }
-                else
+                else{
                     arr = typeof arrayOrString != 'object' ? JSON.parse(arrayOrString) : {};
-                
+                    if(arr && arr.table0){//combatibility with table parser blocks
+                        arr = arr.table0;
+                    }
+                }
                 if(arr.length == 0)
                     return "";
 
