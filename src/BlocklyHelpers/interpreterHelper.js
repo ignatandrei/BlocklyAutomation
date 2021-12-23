@@ -453,7 +453,48 @@ doDelete : function (href, objectToDelete ,callback, headers,withCreds) {
     req.send(data);
   }
 ,
+table2array: function(table) {
+    var rows = table.rows;
+    //console.log(myData)
+    var ret = [];
+    if(rows.length==0){
+        return [];
+    }
+    //first row is header
+    var cols = Array.from(rows[0].children).map(it=>it.innerText);
+    for (var i = 1; i < rows.length; i++) {
+            var elemes = rows[i].children;
+            var my_rowArr = {};
+            for (var j = 0; j < elemes.length; j++) {
+                my_rowArr[cols[j]] = elemes[j].innerText;
+            }
+            ret.push(my_rowArr);
 
+    }
+    return ret;
+},
+parseDOMFromStringElements : function(htmlString, type, tagName){
+    var doc = new DOMParser().parseFromString(htmlString, type);
+    var elements=doc.getElementsByTagName(tagName);
+    var ret=[];
+    // console.log('a',elements);
+    // console.log('b',elements[0]);
+    
+    if(elements.length == 0)
+        return ret;
+    switch(tagName){
+        case "table":
+            ret= this.table2array(elements[0]);
+            break;
+        default:
+            throw new Error(`tag !${tagName}! not supported`);
+    }
+    // console.log('a',ret); 
+    return JSON.stringify(ret);
+},
+consoleLog: function(arg1,arg2){
+    return console.log(arg1,arg2);
+},
         initApiJS:function (interpreter, globalObject,thisClass,callBackData,callBackProgramComplete ) {
             
           var wrapper = (item) => {
@@ -467,9 +508,24 @@ doDelete : function (href, objectToDelete ,callback, headers,withCreds) {
         interpreter.setProperty(globalObject, 'errHandler',
             interpreter.createNativeFunction(wrapper));
 
+            var wrapper = function(arg1,arg2) {                
+                return interpreter.createPrimitive(thisClass.consoleLog(arg1,arg2));
+              };
+              interpreter.setProperty(globalObject, 'consoleLog',
+                  interpreter.createNativeFunction(wrapper));
 
-           
-                
+
+            var wrapper = function(html,type, tagName) {                
+                html= html ? html.toString() : '';
+                return interpreter.createPrimitive(thisClass.parseDOMFromStringElements(html,type,tagName));
+              };
+              interpreter.setProperty(globalObject, 'parseDOMFromStringElements',
+                  interpreter.createNativeFunction(wrapper));
+            
+
+  
+        interpreter.setProperty(globalObject, 'parseDomNative',interpreter.createNativeFunction(wrapper));
+
 
         var withCredsForDomain = interpreter.nativeToPseudo({ '(localSite)': false });
         interpreter.setProperty(globalObject, 'withCredsForDomain', withCredsForDomain);
@@ -532,9 +588,17 @@ doDelete : function (href, objectToDelete ,callback, headers,withCreds) {
         
 
             var wrapper = (arrayOrString) => {             
-    
-                let arr = typeof arrayOrString != 'object' ? JSON.parse(arrayOrString) : {};
-            
+                //console.log('z',arrayOrString,typeof arrayOrString);
+                var arr= null;
+                if(Array.isArray(arrayOrString)){
+                    arr = arrayOrString;
+                }
+                else
+                    arr = typeof arrayOrString != 'object' ? JSON.parse(arrayOrString) : {};
+                
+                if(arr.length == 0)
+                    return "";
+
                 arr = [Object.keys(arr[0])].concat(arr)
                 var data = arr.map(it => {
                     return Object.values(it).toString()

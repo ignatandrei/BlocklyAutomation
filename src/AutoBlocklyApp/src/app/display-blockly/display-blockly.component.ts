@@ -503,6 +503,10 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
         Blockly.Blocks,
         BlocklyJavaScript
       );
+      bs.HTMLParserBlocks.definitionBlocks(
+        Blockly.Blocks,
+        BlocklyJavaScript
+      );
         // console.log('z',window.speechSynthesis.getVoices());
       bs.ttsBlock.definitionBlocks(Blockly.Blocks,BlocklyJavaScript);
       bs.pianoBlock.definitionBlocks(Blockly.Blocks,BlocklyJavaScript);
@@ -538,11 +542,17 @@ var customCategs=this.DetailsApp.customCategories;
               ${bs.chartBlock.fieldXML()}
               </category>
               <category id="catHTML" name="HTML">
+              <category name="GenHTML" id="Generate">
               ${bs.htmlblocks.fieldXML()}
+              </category>
+              <category name="Parser" id="parseHTML">
+              ${bs.HTMLParserBlocks.fieldXML()}
+              </category>
               </category>
               <category name="Objects" id="objects">
               ${bs.propBlocks.fieldXML()}
               ${bs.createObjectBlocks.fieldXML()}
+              
               </category>
               <category id="XHR" name="Request">
             ${bs.xhrBlocks.fieldXML()}
