@@ -473,11 +473,33 @@ table2array: function(table) {
     }
     return ret;
 },
+
+list2array: function(list) {
+    var rows =   list.getElementsByTagName('li');;
+    //console.log(myData)
+    var ret = [];
+    if(rows.length==0){
+        return [];
+    }
+    for (var i = 0; i < rows.length; i++) {
+            ret.push({"li": rows[i].innerText});
+    }
+    return ret;
+},
 parseDOMFromStringElements : function(htmlString, type, tagName){
     var doc = new DOMParser().parseFromString(htmlString, type);
-    var elements=doc.getElementsByTagName(tagName);
+    var elements=[];
+    if(tagName.toString().indexOf(",")>-1){
+        var arrTags= tagName.split(",");
+        for(var i=0;i<arrTags.length;i++){
+            elements=elements.concat(Array.from(doc.getElementsByTagName(arrTags[i])));
+        }
+    }
+    else{
+        elements=doc.getElementsByTagName(tagName);
+    }
     var ret={};
-    // console.log('a',elements);
+    console.log('a',elements);
     // console.log('b',elements[0]);
     
     if(elements.length == 0)
@@ -500,11 +522,18 @@ parseDOMFromStringElements : function(htmlString, type, tagName){
             for(var i=0;i<elements.length;i++){
                 ret.push({ "src" : elements[i].src});     
             }
+            break;    
+        case "ul,ol":
+            ret={};
+            for(var i=0;i<elements.length;i++){
+                ret["list"+i]= this.list2array(elements[i]);     
+            }      
+            
             break;
         default:
             throw new Error(`tag !${tagName}! not supported`);
     }
-    console.log('a',ret); 
+    // console.log('a',ret); 
     return JSON.stringify(ret);
 },
 consoleLog: function(arg1,arg2){
@@ -610,8 +639,11 @@ consoleLog: function(arg1,arg2){
                 }
                 else{
                     arr = typeof arrayOrString != 'object' ? JSON.parse(arrayOrString) : {};
-                    if(arr && arr.table0){//combatibility with table parser blocks
+                    if(arr && arr.table0){//compatibility with table parser blocks
                         arr = arr.table0;
+                    }
+                    if(arr && arr.list0){//compatibility with list parser blocks
+                        arr = arr.list0;
                     }
                 }
                 if(arr.length == 0)
