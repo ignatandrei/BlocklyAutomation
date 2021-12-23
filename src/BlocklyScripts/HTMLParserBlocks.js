@@ -6,7 +6,7 @@ exports.definitionBlocks = function (blocks, javaScript) {
       this.appendValueInput("NAME")
           .setCheck(null)
           .appendField("Find ")
-          .appendField(new Blockly.FieldDropdown([["Tables","table"], ["Links","a"], ["Images","img"], ["List","ul,ol"]]), "To");
+          .appendField(new Blockly.FieldDropdown([["Tables","table"], ["Links","a"], ["Images","img"], ["List","ul,ol"],["Headers","h1,h2,h3,h4,h5,h6"]]), "To");
       this.setOutput(true, null);
       this.setColour(230);
    this.setTooltip("");

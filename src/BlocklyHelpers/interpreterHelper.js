@@ -530,6 +530,12 @@ parseDOMFromStringElements : function(htmlString, type, tagName){
             }      
             
             break;
+        case "h1,h2,h3,h4,h5,h6":
+            ret=[];
+            for(var i=0;i<elements.length;i++){
+                ret.push({ "header" : elements[i].innerText});     
+            }
+            break;
         default:
             throw new Error(`tag !${tagName}! not supported`);
     }
