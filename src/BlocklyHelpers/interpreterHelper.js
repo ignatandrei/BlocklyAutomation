@@ -715,8 +715,12 @@ consoleLog: function(arg1,arg2){
                                 interpreter.createNativeFunction(wrapper));
         
 //speak
-var wrapper = function (text, voice, rate, pitch, volume) {
+var wrapper = function (text, voiceNr, rate, pitch, volume) {
     var msg = new SpeechSynthesisUtterance(text);
+    var nr = parseInt(voiceNr);
+    var voice= window.speechSynthesis.getVoices()[nr];
+    //window.alert(nr);
+    msg.voice = voice;
     window.speechSynthesis.speak(msg);
 }
 interpreter.setProperty(globalObject, 'speakDefault',
