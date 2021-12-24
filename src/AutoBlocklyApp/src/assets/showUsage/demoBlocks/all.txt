@@ -1,5 +1,11 @@
 ﻿[
     {
+        "id":  "joy",
+        "description":  "ode to joy",
+        "categories":  "audio",
+        "blocks":  "lists_split;text;controls_forEach;pianoBlock;wait"
+    },
+    {
         "id":  "parser",
         "description":  "parse tables, links, images , headers",
         "categories":  "parser",
