@@ -700,7 +700,14 @@ consoleLog: function(arg1,arg2){
             }
             var url= new URL(url);
             //console.log(`url ${url.hostname} to ${hostname}`);
-            url.hostname = hostname.replace('https://','').replace('http://','');
+            if(hostname.startsWith("http")){
+                var replace = new URL(hostname);                
+                url.hostname = replace.hostname;
+                url.protocol = replace.protocol
+            }
+            else{
+                url.hostname = hostname.replace('https://','').replace('http://','');
+            }
             //console.log(`url ${url.href}`);
             var ret=url.href;
             if(ret.endsWith('/'))
