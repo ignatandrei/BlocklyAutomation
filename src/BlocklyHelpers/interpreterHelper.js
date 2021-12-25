@@ -499,7 +499,7 @@ parseDOMFromStringElements : function(htmlString, type, tagName){
         elements=doc.getElementsByTagName(tagName);
     }
     var ret={};
-    console.log('a',elements);
+    // console.log('a',elements);
     // console.log('b',elements[0]);
     
     if(elements.length == 0)
@@ -513,8 +513,17 @@ parseDOMFromStringElements : function(htmlString, type, tagName){
             break;
         case "a":
             ret=[];
+            var loc= window?.location?.host || "";
+            if(loc.length>0){
+                loc=window.location.protocol+"//"+loc;
+            }
+            // console.log('x',loc);
             for(var i=0;i<elements.length;i++){
-                ret.push({ "href" : elements[i].href});     
+                var href=elements[i].href;
+                if(loc.length>0 && href.startsWith(loc)){
+                    href= href.substring(loc.length);
+                }
+                ret.push({ "href" : href, 'text': elements[i].innerText});    
             }
             break;
         case "img":
