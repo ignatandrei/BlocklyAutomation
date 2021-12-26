@@ -260,8 +260,19 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
     this.loadDemo.getDemoBlock(id).subscribe((data) => {
       var xml = Blockly.Xml.textToDom(data);
       if (this.demoWorkspace != null) {
+        try{
         Blockly.Xml.clearWorkspaceAndLoadFromXml(xml, this.demoWorkspace);
-
+        }
+        catch(e){
+          if(id?.toString().indexOf("docker")>-1){
+            if(window.confirm("This demo must run with Desktop App.\nDo you want to go to download page?")){
+              window.open('http://ba.serviciipeweb.ro/');
+            }
+            return;
+          }
+          window.alert('error' + id);
+          return;
+        }
         window.alert('please press execute button');
       };
     });
@@ -329,12 +340,19 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed', result);
+      console.log('The dialog was closed with ', result);
       if(result){
         var d= result as DemoBlocks ;
         switch(d.Source){
           case "Demos":
-            this.ShowDemo(result.id);
+            try{
+              console.log('into try');
+              this.ShowDemo(result.id);
+            }
+            catch(e){
+              window.alert(result.id);
+              window.alert(e);
+            }
             break;
           case "LocalAPI":
             this.ShowLocalAPI(result.id);

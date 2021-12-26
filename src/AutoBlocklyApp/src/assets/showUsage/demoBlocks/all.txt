@@ -1,5 +1,11 @@
 ﻿[
     {
+        "id":  "dockerImagesList",
+        "description":  "docker images",
+        "categories":  "docker",
+        "blocks":  "trycatchfinally;get__images_json;logic_boolean;text;math_number;text_print;controls_forEach;mapList;HTMLheaders;window_open"
+    },
+    {
         "id":  "joy",
         "description":  "ode to joy",
         "categories":  "audio",
