@@ -217,7 +217,21 @@ class BlocklyReturnSwagger {
     
   }
   findRootSite() {
-    var href = this.swaggerUrl;
+    var href = "";
+    // console.log('in find root ', this.openApiDocument)
+    if(this.openApiDocument?.host?.length>0){
+      var hostData=this.openApiDocument.host;
+      if(Array.isArray(hostData))
+        href=this.openApiDocument.schemes[0]+"://"+hostData[0];
+      else
+        href=this.openApiDocument.schemes[0]+"://"+hostData;
+      // console.log('yyy',href);
+    }
+    else
+    {
+      href = this.swaggerUrl;
+    }
+    
     var hostname = "";
     if (href.startsWith("http://") || href.startsWith("https://")) {
       var url = new URL(href);
@@ -229,7 +243,22 @@ class BlocklyReturnSwagger {
   }
 
   findHostNameRegular() {
-    var href = this.swaggerUrl;
+    var href="";
+    if(this.openApiDocument?.host?.length>0){
+      
+      var hostData=this.openApiDocument.host;
+      if(Array.isArray(hostData))
+        href=this.openApiDocument.schemes[0]+"://"+hostData[0];
+      else
+        href=this.openApiDocument.schemes[0]+"://"+hostData;
+      
+      // href=this.openApiDocument.schemes[0]+"://"+this.openApiDocument.host[0];
+      // console.log('xxx',href);
+    }
+    else
+    {
+      href = this.swaggerUrl;
+    }
     var hostname = "(localSite)";
     if (href.startsWith("http://") || href.startsWith("https://")) {
       var url = new URL(href);
@@ -429,12 +458,17 @@ class BlocklyReturnSwagger {
    var host="";
    var port="";
    try{
-    var url = new URL(self.findRootSite());
-    host=url.hostname;
-    port= url.port;
+     var root=self.findRootSite();
+     if((root||'').length>0){
+      var url = new URL(root);
+      host=url.hostname;
+      port= url.port;
+      // console.log('find root', url, host , port);
+     }
    }
    catch(e){
      //do nothing
+     console.log('find root error',e);
    }
    host=host?host:" ";
    
