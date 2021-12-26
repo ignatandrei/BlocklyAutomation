@@ -9,9 +9,5 @@
 ,{
 		"id":"Demo_PetStore",
 		"link":"https://petstore.swagger.io/v2/swagger.json"
-},
-{
-	"id":"Docker 1.41",
-	"link":"https://docs.docker.com/engine/api/v1.41.yaml"
 }
 ]
