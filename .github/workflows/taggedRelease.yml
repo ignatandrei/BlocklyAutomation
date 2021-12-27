@@ -250,7 +250,7 @@ jobs:
       with:
         type: 'zip'
         filename: 'releaseWPF64.zip'
-        directory: '${{github.workspace}}/src/apps/tests/wpf/WebView2WpfBrowser'
+        directory: '${{github.workspace}}/src/apps/wpf/WebView2WpfBrowser'
         path: '${{env.AZURE_WEBAPP_NAME}}WPF64/'
         exclusions: '*.git* /*node_modules/* .editorconfig'       
 
