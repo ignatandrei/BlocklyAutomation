@@ -272,7 +272,7 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
           }
           if(id?.toString().indexOf("chrome")>-1){
             if(window.confirm("This demo must run with MyPC swagger.\nDo you want to go to download page?")){
-              window.open('http://ba.serviciipeweb.ro/');
+              window.open('https://github.com/ignatandrei/BlocklyAutomation/wiki/MyPC');
             }
             return;
           }
