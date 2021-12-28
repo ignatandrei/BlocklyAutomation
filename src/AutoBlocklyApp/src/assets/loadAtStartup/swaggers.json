@@ -14,4 +14,9 @@
 	"id":"Docker 1.41",
 	"link":"https://docs.docker.com/engine/api/v1.41.yaml"
 }
+,
+{
+	"id":"localApi",
+	"link":"http://localhost:37283/swagger/v1/swagger.json"
+}
 ]

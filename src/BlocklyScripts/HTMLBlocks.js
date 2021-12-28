@@ -79,7 +79,7 @@ exports.definitionBlocks = function (blocks, javaScript) {
     init: function() {
       this.appendDummyInput()
           .appendField("List")
-          .appendField(new Blockly.FieldDropdown([["OL","OL"], ["LI","LI"]]), "NAME");
+          .appendField(new Blockly.FieldDropdown([["OL","OL"], ["UL","UL"]]), "NAME");
       this.setColour(240);
       this.setOutput(true, null);
       this.setTooltip("LI start");
@@ -96,7 +96,7 @@ exports.definitionBlocks = function (blocks, javaScript) {
     init: function() {
       this.appendDummyInput()
           .appendField("/List")
-          .appendField(new Blockly.FieldDropdown([["OL","OL"], ["LI","LI"]]), "NAME");
+          .appendField(new Blockly.FieldDropdown([["OL","OL"], ["UL","UL"]]), "NAME");
       this.setColour(240);
       this.setOutput(true, null);
       this.setTooltip("LI stop");
