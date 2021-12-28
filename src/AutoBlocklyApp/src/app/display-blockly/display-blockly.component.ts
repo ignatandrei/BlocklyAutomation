@@ -270,7 +270,13 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
             }
             return;
           }
-          window.alert('error' + id);
+          if(id?.toString().indexOf("chrome")>-1){
+            if(window.confirm("This demo must run with MyPC swagger.\nDo you want to go to download page?")){
+              window.open('http://ba.serviciipeweb.ro/');
+            }
+            return;
+          }
+          window.alert('error ' + id);
           return;
         }
         window.alert('please press execute button');
@@ -382,7 +388,7 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
     self.LoadSwaggerFromUrl(json).then((api) => {
       // this.afterTimeout(this);
       if(api.hasError)
-      window.alert("error loading local api");
+        window.alert("error loading swagger");
       else{
         
         self.addToToolboxSwagger(api,this);      
@@ -418,7 +424,7 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
   }
   LoadSwaggerFromAPI(api: any): any {
     if(api.hasError){
-      console.error("error in swagger", api);
+      console.error("error in swagger", api.name);
       return api;
     }
     this.swaggerData.push(api);
@@ -443,8 +449,11 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
     var swaggersUrl = this.DetailsApp.swaggersDict;
     var swaggersDict: Map<string, any> = new Map<string, any>();    
     swaggersUrl.forEach((it, key) => {
-      if(!it.hasError)
-      swaggersDict.set(key, this.LoadSwaggerFromAPI(it));
+      var show = !it.hasError;
+      //special condition for local api
+      console.log("show swagger: "+ key +":"+show);
+      if(show)
+        swaggersDict.set(key, this.LoadSwaggerFromAPI(it));
     });
     // swaggersUrl.forEach(async (it) => {
     //   swaggersDict.set(it.id, await this.LoadSwaggerFromUrl(it.link, it.id));
@@ -919,7 +928,7 @@ loadedCompletely: boolean = false;
     myComponent.toolboxXML= myComponent.toolboxXML.replace('Swagger', `Swagger(${nr})`);
 
     myComponent.swaggerData.forEach((item: any) => {
-      // console.log('a_item', item);
+      //  console.log('a_item', item);
       var cache=item;      
       myComponent.addToToolboxSwagger(cache,myComponent);
     });
