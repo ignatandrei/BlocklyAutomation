@@ -39,9 +39,9 @@ jobs:
           #npm i -force
           #cd ..
           # echo "copy "
-          cp -Rvn node_modules/  AutoBlocklyApp/          
+          cp -rn node_modules/  AutoBlocklyApp/          
           # echo "find"
-          # find . -type d -name "vex-js" -print
+          find . -type d -name "codemirror" -print
           echo "build"
           npm run buildAng
           ls -l AutoBlocklyApp/dist/AutoBlocklyApp
