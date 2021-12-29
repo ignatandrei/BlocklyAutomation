@@ -39,7 +39,8 @@ jobs:
           #npm i -force
           #cd ..
           # echo "copy "
-          cp -rn node_modules/  AutoBlocklyApp/          
+          #cp -rn node_modules/  AutoBlocklyApp/          
+          cp -rn node_modules/codemirror/  AutoBlocklyApp/codemirror          
           # echo "find"
           find . -type d -name "codemirror" -print
           echo "build"
