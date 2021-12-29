@@ -4,6 +4,7 @@ import {
   OnInit,
   ɵɵsetComponentScope,
 } from '@angular/core';
+import 'codemirror/mode/javascript/javascript';
 import * as Blockly from 'blockly';
 import * as BlocklyJavaScript from 'blockly/javascript';
 import {ContentHighlight} from '@blockly/workspace-content-highlight';

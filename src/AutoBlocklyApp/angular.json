@@ -29,15 +29,19 @@
                 "glob": "**/*",
                 "input": "./node_modules/blockly/media",
                 "output": "./media/"
-              },
-              { "glob": "**/*", "input": "node_modules/monaco-editor", "output": "assets/monaco-editor" }
+              }
+              
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
               "./node_modules/tabulator-tables/dist/css/tabulator.css",
               "./node_modules/intro.js/introjs.css",
               "./node_modules/intro.js/themes/introjs-nassim.css",
-              "src/styles.css"
+              "src/styles.css",
+              "./node_modules/codemirror/lib/codemirror.css",
+              "./node_modules/codemirror/theme/material.css"
+
+
             ],
             "scripts": [
               "src/assets/acorn_interpreter.js",
@@ -117,7 +121,10 @@
               "src/styles.css",
               "./node_modules/tabulator-tables/dist/css/tabulator.css",
               "./node_modules/intro.js/introjs.css",
-              "./node_modules/intro.js/themes/introjs-nassim.css"
+              "./node_modules/intro.js/themes/introjs-nassim.css",
+              "./node_modules/codemirror/lib/codemirror.css", 
+              "./node_modules/codemirror/theme/material.css"
+
             ],
             "scripts": [
               "src/assets/acorn_interpreter.js",

@@ -95,31 +95,32 @@
     ></div>
   </mat-grid-tile>
   <mat-grid-tile *ngIf="ShowSomething()">
-    <ngx-monaco-editor
+    
+    <ngx-codemirror
       *ngIf="ShowOutput()"
       style="display: inline-block; height: 100%; width: 100%"
       [options]="editorPlain"
       [(ngModel)]="showInner"
-    ></ngx-monaco-editor>
-    <ngx-monaco-editor
+    ></ngx-codemirror>
+    <ngx-codemirror
       *ngIf="ShowCode()"
       style="display: inline-block; height: 100%; width: 100%"
       [options]="editorJSOptions"
       [(ngModel)]="showJSCode"
-    ></ngx-monaco-editor>
-    <ngx-monaco-editor
+    ></ngx-codemirror>
+    <ngx-codemirror
       *ngIf="ShowXML()"
       style="display: inline-block; height: 100%; width: 100%"
       [options]="editorXMLOptions"
       [(ngModel)]="showXMLCode"
-    ></ngx-monaco-editor>
+    ></ngx-codemirror>
 
-    <ngx-monaco-editor
+    <ngx-codemirror
       *ngIf="ShowBlocksDefinition()"
       style="display: inline-block; height: 100%; width: 100%"
       [options]="editorJSOptions"
       [(ngModel)]="showBlocksDefinition"
-    ></ngx-monaco-editor>
+    ></ngx-codemirror>
   </mat-grid-tile>
 </mat-grid-list>
 <mat-accordion>
