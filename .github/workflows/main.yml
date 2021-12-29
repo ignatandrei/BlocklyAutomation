@@ -39,7 +39,7 @@ jobs:
           #npm i -force
           #cd ..
           # echo "copy "
-          #cp -r node_modules/  AutoBlocklyApp/          
+          cp -Rvn node_modules/  AutoBlocklyApp/          
           # echo "find"
           # find . -type d -name "vex-js" -print
           echo "build"
