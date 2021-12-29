@@ -41,6 +41,8 @@ jobs:
           # echo "copy "
           #cp -rn node_modules/  AutoBlocklyApp/          
           cp -rn node_modules/codemirror/  AutoBlocklyApp/codemirror          
+          cp -rn node_modules/@types/codemirror/  AutoBlocklyApp/@types/codemirror
+          ls -l AutoBlocklyApp/node_modules/codemirror
           # echo "find"
           find . -type d -name "codemirror" -print
           echo "build"
