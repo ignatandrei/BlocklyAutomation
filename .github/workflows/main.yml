@@ -35,12 +35,12 @@ jobs:
           npm i  @angular/cli@13
           # echo "install ws"
           #npm i -force
-          #cd AutoBlocklyApp
-          #npm i -force
-          #cd ..
+          cd AutoBlocklyApp
+          npm i
+          cd ..
           # echo "copy "
           #cp -rn node_modules/  AutoBlocklyApp/          
-          cp -rn node_modules/codemirror/  AutoBlocklyApp/codemirror          
+          #cp -rn node_modules/codemirror/  AutoBlocklyApp/codemirror          
           # cp -rn node_modules/@types/codemirror/  AutoBlocklyApp/@types/codemirror
           ls -l AutoBlocklyApp/node_modules/codemirror
           # echo "find"
