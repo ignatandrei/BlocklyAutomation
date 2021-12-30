@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { saveLoadService } from 'projects/blockly-helpers/src/public-api';
-import { BlocklyXHR } from 'projects/blockly-scripts/src/public-api';
-import { BlocklyReturnSwagger } from 'projects/blockly-swagger/src/public-api';
-
+// import * as b from '@blockly/blocklyscripts';
+import { Title } from '@angular/platform-browser';
+import { AppDetails } from './AppDetails';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -10,11 +9,8 @@ import { BlocklyReturnSwagger } from 'projects/blockly-swagger/src/public-api';
 })
 export class AppComponent {
   title = 'AutoBlocklyApp';
-  bs: BlocklyReturnSwagger=new BlocklyReturnSwagger("http://localhost:8080/swagger-ui.html");
-  constructor(_saveLoadService: saveLoadService) {
-    //this.bs.getBlocks();
-    console.log(_saveLoadService.A());
-    var x:BlocklyXHR=new BlocklyXHR();
-    console.log(x.fieldXML());
+  constructor(private titleService : Title, appDetails: AppDetails) {
+    console.log(appDetails.settings?.title);
+    this.titleService.setTitle((appDetails.settings?.title||''));
   }
 }
