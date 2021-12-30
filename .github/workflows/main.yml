@@ -29,9 +29,10 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Run the build
         run: | 
-          npm i -g npm@8.3.0               
+          
           cd src
           cd AngWorkspace
+          npm i -g npm@8.3.0               
           echo 'install angular'    
           npm i  @angular/cli@13
           # echo "install ws"
@@ -46,9 +47,20 @@ jobs:
           # ls -l AutoBlocklyApp/node_modules/codemirror
           # echo "find"
           #find . -type d -name "codemirror" -print
-          npm install
+          #npm install
+          cd projects
+          cd blockly-helpers
+          npm i
+          cd ..
+          cd blockly-scripts
+          npm i
+          cd ..
+          cd blockly-swagger
+          npm i
+          cd ..
+          cd ..
           echo "build"
-          npm run buildGitHubPages
+          npm run buildGitHubPages  
           ls -l dist/auto-blockly-app
           
 

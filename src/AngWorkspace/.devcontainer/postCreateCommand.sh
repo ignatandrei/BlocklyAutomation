@@ -1,9 +1,11 @@
 echo 'install'
 npm install -g npm@8.3.0
 # npm install -g ngx-pwa-icons
-npm install -g http-server
+npm install -g http-server@14.0.0
 
 npm install @angular/cli@13
+
+
 #npm i -force
 #cd ./AutoBlocklyApp/ 
 #npm i -force

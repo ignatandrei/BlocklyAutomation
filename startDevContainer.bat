@@ -1,1 +1,1 @@
-wt new-tab -p "Windows PowerShell" -d . ;split-pane -p "Windows PowerShell" -d . cmd /k "cd src && devcontainer open ." 
+wt new-tab -p "Windows PowerShell" -d . ;split-pane -p "Windows PowerShell" -d . cmd /k "cd src && cd AngWorkspace && devcontainer open ." 
