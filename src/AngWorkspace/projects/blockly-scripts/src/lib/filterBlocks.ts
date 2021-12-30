@@ -1,5 +1,9 @@
 //call m  bs.filterBlocks.definitionBlocks(Blockly.Blocks, Blockly.JavaScript));
-exports.definitionBlocks=function(blocks,javaScript){
+
+import * as Blockly from 'blockly';
+
+export class filters{
+    definitionBlocks=function(blocks:any,javaScript:any){
     
     blocks['filterList'] = {
         init: function() {
@@ -19,7 +23,7 @@ exports.definitionBlocks=function(blocks,javaScript){
         }
       };
      
-      javaScript['filterList'] = function(block) {
+      javaScript['filterList'] = function(block: any) {
         var list = javaScript.valueToCode(block, 'LIST',
         javaScript.ORDER_MEMBER) || '[]';
             
@@ -52,7 +56,7 @@ exports.definitionBlocks=function(blocks,javaScript){
           }
       };
       
-      javaScript['mapList'] = function (block) {
+      javaScript['mapList'] = function (block:any) {
           var list = javaScript.valueToCode(block, 'LIST',
           javaScript.ORDER_MEMBER) || '[]';
       
@@ -91,7 +95,7 @@ exports.definitionBlocks=function(blocks,javaScript){
         }
     };
     
-    javaScript['reduceList'] = function (block) {
+    javaScript['reduceList'] = function (block:any) {
         
         var list = javaScript.valueToCode(block, 'LIST',
         javaScript.ORDER_MEMBER) || '[]';
@@ -120,7 +124,7 @@ exports.definitionBlocks=function(blocks,javaScript){
         return [code, javaScript.ORDER_FUNCTION_CALL];
     };
 }
-exports.fieldXML=function(){
+fieldXML():string{
     return `
         <category id="catA" name="Array">
             <block type="filterList">
@@ -167,4 +171,5 @@ exports.fieldXML=function(){
         </category>
 
 `
+}
 }

@@ -1,36 +1,46 @@
-const Blockly =require('blockly');
+import * as Blockly from 'blockly';
 
-exports.definitionBlocks = function (blocks, javaScript) {
-  blocks['simpleHtmlparser'] = {
-    init: function() {
-      this.appendValueInput("NAME")
+export class HtmlParser {
+  definitionBlocks(blocks: any, javaScript: any) {
+    blocks['simpleHtmlparser'] = {
+      init: function () {
+        this.appendValueInput('NAME')
           .setCheck(null)
-          .appendField("Find ")
-          .appendField(new Blockly.FieldDropdown([["Tables","table"], ["Links","a"], ["Images","img"], ["List","ul,ol"],["Headers","h1,h2,h3,h4,h5,h6"]]), "To");
-      this.setOutput(true, null);
-      this.setColour(230);
-   this.setTooltip("");
-   this.setHelpUrl("");
-    }
-  };
+          .appendField('Find ')
+          .appendField(
+            new Blockly.FieldDropdown([
+              ['Tables', 'table'],
+              ['Links', 'a'],
+              ['Images', 'img'],
+              ['List', 'ul,ol'],
+              ['Headers', 'h1,h2,h3,h4,h5,h6'],
+            ]),
+            'To'
+          );
+        this.setOutput(true, null);
+        this.setColour(230);
+        this.setTooltip('');
+        this.setHelpUrl('');
+      },
+    };
 
-  javaScript['simpleHtmlparser'] = function(block) {
-    var dropdown_to = block.getFieldValue('To');
-    var value_name = javaScript.valueToCode(block, 'NAME', javaScript.ORDER_ATOMIC);
-    var code = '(function(value){ \n';    
-    code +=`var doc  = parseDOMFromStringElements(value,"text/html","${dropdown_to}");\n`;        
-    // code +='consoleLog("x",doc)\n';      
-    code += 'return doc;\n';
-    code += '})('+ value_name+')';
+    javaScript['simpleHtmlparser'] = function (block: any) {
+      var dropdown_to = block.getFieldValue('To');
+      var value_name = javaScript.valueToCode(
+        block,
+        'NAME',
+        javaScript.ORDER_ATOMIC
+      );
+      var code = '(function(value){ \n';
+      code += `var doc  = parseDOMFromStringElements(value,"text/html","${dropdown_to}");\n`;
+      // code +='consoleLog("x",doc)\n';
+      code += 'return doc;\n';
+      code += '})(' + value_name + ')';
       return [code, javaScript.ORDER_NONE];
-  };
+    };
+  }
 
-
-
-};
-
-
-exports.fieldXML = function () {
+  fieldXML(): string {
     return `
     <block type='text_print'>" 
                <value name='TEXT'>" 
@@ -46,5 +56,6 @@ exports.fieldXML = function () {
 
 
       </block>
-        `;      
+        `;
+  }
 }

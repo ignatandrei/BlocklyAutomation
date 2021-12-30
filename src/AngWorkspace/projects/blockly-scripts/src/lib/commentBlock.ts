@@ -18,7 +18,7 @@ export class comment{
         }
       };
       
-      javaScript['comment'] = function(block) {
+      javaScript['comment'] = function(block: any) {
         // Print statement.
         var msg = javaScript.valueToCode(block, 'TEXT',
         /*javaScript.*/ORDER_ATOMIC) || '\'\'';
@@ -40,7 +40,7 @@ export class comment{
         }
       };
       
-      javaScript['debugger'] = function(block) {
+      javaScript['debugger'] = function(block: any) {
         // Print statement.
         var msg = javaScript.valueToCode(block, 'TEXT',
         /*javaScript.*/ORDER_ATOMIC) || '\'\'';
@@ -49,7 +49,7 @@ export class comment{
       };
 }
 
-fieldXML() {
+fieldXML() : string {
     return `<block type="comment">
     <value name="TEXT">
         <shadow type="text">

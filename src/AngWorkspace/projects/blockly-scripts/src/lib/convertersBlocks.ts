@@ -1,10 +1,11 @@
-// exports.definitionBlocks = function (blocks, javaScript) {
+// export class { definitionBlocks (blocks:any, javaScript:any) { 
 // }
 
-// exports.fieldXML = function () {
+// fieldXML() : string {
 // }
-
-exports.definitionBlocks = function (blocks, javaScript) {
+import * as Blockly from 'blockly';
+export class convertersBlocks{ 
+    definitionBlocks (blocks:any, javaScript:any) { 
     const ORDER_ATOMIC = 0;
     const ORDER_NONE=99;
     blocks['converttojson'] = {
@@ -19,7 +20,7 @@ exports.definitionBlocks = function (blocks, javaScript) {
             this.setHelpUrl("");
         }
     };
-    javaScript['converttojson'] = function (block) {
+    javaScript['converttojson'] = function (block:any) {
         var value_ValueToConvert = javaScript.valueToCode(block, 'ValueToConvert', /*javaScript.*/ORDER_ATOMIC);
         //value_ValueToConvert = value_ValueToConvert.replace(/(\r\n|\n|\r)/gm, "")
         const code = 'JSON.parse(' + value_ValueToConvert + ')';
@@ -39,7 +40,7 @@ exports.definitionBlocks = function (blocks, javaScript) {
             this.setHelpUrl("");
         }
     };
-    javaScript['converttostring'] = function (block) {
+    javaScript['converttostring'] = function (block:any) {
         var value_ValueToConvert = javaScript.valueToCode(block, 'ValueToConvert', /*javaScript.*/ORDER_ATOMIC);
         var code = 'JSON.stringify(' + value_ValueToConvert + ')';
         return [code, /*javaScript.*/ORDER_NONE];
@@ -59,7 +60,7 @@ exports.definitionBlocks = function (blocks, javaScript) {
             this.setHelpUrl("");
         }
     };
-    javaScript['convertcsv'] = function (block) {
+    javaScript['convertcsv'] = function (block:any) {
         var data = javaScript.valueToCode(block, 'ArrayToConvert', javaScript.ORDER_ATOMIC);
         var code = 'convertToCSV(' + data+')';
         //return code;
@@ -80,9 +81,10 @@ exports.definitionBlocks = function (blocks, javaScript) {
     // }
 }
 
-exports.fieldXML = function () {
+fieldXML() : string {
  return `<block type="converttojson"></block>
  <block type="converttostring"></block>
  <block type="convertcsv"></block>
 `
+}
 }

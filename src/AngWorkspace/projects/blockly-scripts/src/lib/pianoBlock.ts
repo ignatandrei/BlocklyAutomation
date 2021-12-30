@@ -1,64 +1,82 @@
-// exports.definitionBlocks = function (blocks, javaScript) {
+// export class { definitionBlocks (blocks:any, javaScript:any) {
 // }
 
-// exports.fieldXML = function () {
+// fieldXML() : string {
 // }
-const Blockly = require("blockly");
+import * as Blockly from 'blockly';
 // const a = require('./audioTest.js');
-exports.definitionBlocks = function (blocks, javaScript) {
-  blocks["pianoBlock"] = {
-    init: function () {
-      this.appendValueInput("Note").setCheck("String").appendField("Note(A-G)");
-      this.appendValueInput("Sharp")
-        .setCheck("Boolean")
-        .appendField("#");
-      this.appendValueInput("Octave").setCheck("Number").appendField("Octave");
-      this.appendValueInput("Duration")
-        .setCheck("Number")
-        .appendField("Duration");
-      this.setPreviousStatement(true, null);
-      this.setNextStatement(true, null);
-      this.setColour(230);
-      this.setTooltip("");
-      this.setHelpUrl("https://github.com/keithwhor/audiosynth");
-    },
-  };
-  javaScript["pianoBlock"] = function (block) {
-    // var dropdown_voice = block.getFieldValue('Voice');
-    var value_note = javaScript.valueToCode(block, 'Note', javaScript.ORDER_ATOMIC);
-  var value_sharp = javaScript.valueToCode(block, 'Sharp', javaScript.ORDER_ATOMIC)|| false;
-  var value_octave = javaScript.valueToCode(block, 'Octave', javaScript.ORDER_ATOMIC);
-  var value_duration = javaScript.valueToCode(block, 'Duration', javaScript.ORDER_ATOMIC)|| 2;
- 
-  var valSharp = '';
-  if(value_sharp == "true"){
-        valSharp='#';
-    }   
-    var code = 'playPiano(' + value_note+ valSharp+','+value_octave +','+ value_duration+');\n';
-    return code;
-  };
+export class piano {
+  definitionBlocks(blocks: any, javaScript: any) {
+    blocks['pianoBlock'] = {
+      init: function () {
+        this.appendValueInput('Note')
+          .setCheck('String')
+          .appendField('Note(A-G)');
+        this.appendValueInput('Sharp').setCheck('Boolean').appendField('#');
+        this.appendValueInput('Octave')
+          .setCheck('Number')
+          .appendField('Octave');
+        this.appendValueInput('Duration')
+          .setCheck('Number')
+          .appendField('Duration');
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(230);
+        this.setTooltip('');
+        this.setHelpUrl('https://github.com/keithwhor/audiosynth');
+      },
+    };
+    javaScript['pianoBlock'] = function (block: any) {
+      // var dropdown_voice = block.getFieldValue('Voice');
+      var value_note = javaScript.valueToCode(
+        block,
+        'Note',
+        javaScript.ORDER_ATOMIC
+      );
+      var value_sharp =
+        javaScript.valueToCode(block, 'Sharp', javaScript.ORDER_ATOMIC) ||
+        false;
+      var value_octave = javaScript.valueToCode(
+        block,
+        'Octave',
+        javaScript.ORDER_ATOMIC
+      );
+      var value_duration =
+        javaScript.valueToCode(block, 'Duration', javaScript.ORDER_ATOMIC) || 2;
 
-  blocks['cmajor'] = {
-    init: function() {
-      this.appendDummyInput()
-          .appendField("CMajor ");
-      this.setOutput(true, "Array");
-      this.setColour(230);
-   this.setTooltip("");
-   this.setHelpUrl("");
-    }
-  };
-  javaScript['cmajor'] = function(block) {
-    var code = '["C","D","E","F","G","A","B"]';
-    return [code, javaScript.ORDER_NONE];
-  };
-  
+      var valSharp = '';
+      if (value_sharp == 'true') {
+        valSharp = '#';
+      }
+      var code =
+        'playPiano(' +
+        value_note +
+        valSharp +
+        ',' +
+        value_octave +
+        ',' +
+        value_duration +
+        ');\n';
+      return code;
+    };
 
+    blocks['cmajor'] = {
+      init: function () {
+        this.appendDummyInput().appendField('CMajor ');
+        this.setOutput(true, 'Array');
+        this.setColour(230);
+        this.setTooltip('');
+        this.setHelpUrl('');
+      },
+    };
+    javaScript['cmajor'] = function (block: any) {
+      var code = '["C","D","E","F","G","A","B"]';
+      return [code, javaScript.ORDER_NONE];
+    };
+  }
 
-};
-
-exports.fieldXML = function () {
-  return `<block type="pianoBlock">
+  fieldXML(): string {
+    return `<block type="pianoBlock">
         <value name="Note">
             <shadow type="text">
             <field name="TEXT">C</field></shadow>
@@ -80,4 +98,5 @@ exports.fieldXML = function () {
         <block type="cmajor"></block>
 
 `;
-};
+  }
+}

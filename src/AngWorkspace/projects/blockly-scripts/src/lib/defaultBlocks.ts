@@ -1,5 +1,8 @@
-exports.generalBlocks = function(){
-    return    `
+import * as Blockly from 'blockly';
+
+export class generalBlocks {
+  fieldXML(): string {
+    return `
     
     <category name="Blockly Core">
 
@@ -305,7 +308,6 @@ exports.generalBlocks = function(){
     <category id="catFunctions" colour="290" custom="PROCEDURE" name="Functions"></category>
 </category>
 
-      `;   
-
-
+      `;
   }
+}

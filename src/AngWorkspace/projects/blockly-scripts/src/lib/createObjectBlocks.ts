@@ -1,46 +1,47 @@
-// exports.definitionBlocks = function (blocks, javaScript) {
+// export class { definitionBlocks (blocks:any, javaScript:any) { 
 // }
 
-// exports.fieldXML = function () {
+// fieldXML() : string {
 // }
 
-const Blockly=require('blockly');
+import * as Blockly from 'blockly';
+export class CreateObject{
 //https://gist.github.com/mark-friedman/48f43a9b62b1c8ad029a75d4b4e61f31
-exports.definitionBlocks = function (blocks, javaScript,BlocklyExtensions,  BlocklyMutator) {
+definitionBlocks (blocks: any, javaScript:any,BlocklyExtensions:any,  BlocklyMutator:any) {
 
     const ORDER_ATOMIC = 0;
     const ORDER_NONE=99;
     const ALIGN_RIGHT=1;
     const ALIGN_CENTRE=0;
     
-    javaScript['object_from_json'] = function(block) {
+    javaScript['object_from_json'] = function(block: any) {
         const value_json = javaScript.valueToCode(block, 'JSON', ORDER_ATOMIC);
         // TODO: Maybe check that the parsed value is actually an object.
         const code = `JSON.parse(${value_json})`;
         return [code, ORDER_NONE];
       };
       
-      javaScript['object_to_json'] = function(block) {
+      javaScript['object_to_json'] = function(block: any) {
         const value_object = javaScript.valueToCode(block, 'object', ORDER_ATOMIC);
         const code = `JSON.stringify(${value_object})`;
         return [code, ORDER_NONE];
       };
       
-      javaScript['object_get'] = function(block) {
+      javaScript['object_get'] = function(block: any) {
         const text_field_name = block.getFieldValue('field_name');
         const value_object = javaScript.valueToCode(block, 'object', ORDER_ATOMIC);
         const code = `${value_object}['${text_field_name}']`;
         return [code, ORDER_NONE];
       };
       
-      javaScript['object_set'] = function(block) {
+      javaScript['object_set'] = function(block: any) {
         const text_field_name = block.getFieldValue('field_name');
         const value_object_field = javaScript.valueToCode(block, 'object_field', ORDER_ATOMIC);
         const value_value_field = javaScript.valueToCode(block, 'value_field', ORDER_ATOMIC);
         return `${value_object_field}['${text_field_name}'] = ${value_value_field};\n`;
       };
       
-      javaScript['object_create'] = function(block) {
+      javaScript['object_create'] = function(block: any) {
         if (!block.numFields) {
           return ['{}', ORDER_NONE];
         }
@@ -64,7 +65,7 @@ exports.definitionBlocks = function (blocks, javaScript,BlocklyExtensions,  Bloc
       const CUSTOM_OBJECT_CREATE_MUTATOR_TOP_BLOCK_NAME = 'object_create_mutator_top';
       const CUSTOM_OBJECT_BLOCK_COLOR = '#F99EA3';
       
-      const getMessage = (msgName, ...arg) => {
+      const getMessage = (msgName: any) => {
         const MESSAGES = {
           object_from_json: "get object from JSON %1",
           object_from_json_tooltip: "Create object from JSON string.",
@@ -78,7 +79,7 @@ exports.definitionBlocks = function (blocks, javaScript,BlocklyExtensions,  Bloc
           object_create_tooltip: "Create a new object, optionally with some property values.",
           object_field_name: "property name",
         };
-        return MESSAGES[msgName];
+        return (MESSAGES as any)[msgName];
       };
       
       const objectFromJSONBlockDef = {
@@ -254,13 +255,13 @@ exports.definitionBlocks = function (blocks, javaScript,BlocklyExtensions,  Bloc
       
       const objectCreateMutator = {
         numFields: 0,
-        fields: [],
+        fields: new Array<any>(),
       
         /**
          * Standard function for Mutator mixin. It's called to update the block based on contents of the mutator's XML
          * DOM element.
          */
-        domToMutation: function(xmlElement) {
+        domToMutation: function(xmlElement:any) {
           this.fields = [];
           for (let i = 0, childNode; childNode = xmlElement.childNodes[i]; i++) {
             if (childNode.nodeName.toLowerCase() == 'field') {
@@ -293,7 +294,7 @@ exports.definitionBlocks = function (blocks, javaScript,BlocklyExtensions,  Bloc
          * Standard function for Mutator mixin when the mutator uses the standard mutator UI. It's called to update the
          * block based on changes to the mutator's UI.
          */
-        compose: function(topBlock) {
+        compose: function(topBlock: any) {
           let fieldBlock = topBlock.nextConnection && topBlock.nextConnection.targetBlock();
           this.numFields = 0;
           this.fields = [];
@@ -315,7 +316,7 @@ exports.definitionBlocks = function (blocks, javaScript,BlocklyExtensions,  Bloc
          * Standard function for Mutator mixin when the mutator uses the standard mutator UI.  It's called to populate the
          * mutator UI.
          */
-        decompose: function(workspace) {
+        decompose: function(workspace:any) {
           const topBlock = workspace.newBlock(CUSTOM_OBJECT_CREATE_MUTATOR_TOP_BLOCK_NAME);
           topBlock.initSvg();
           let connection = topBlock.nextConnection;
@@ -337,14 +338,14 @@ exports.definitionBlocks = function (blocks, javaScript,BlocklyExtensions,  Bloc
          * We're also using this function to update the mutator block field name values if the user changes the name in the
          * block.
          */
-        saveConnections: function(topBlock) {
+        saveConnections: function(topBlock:any) {
           let fieldBlock = topBlock.nextConnection && topBlock.nextConnection.targetBlock();
           let i = 1;
           while (fieldBlock) {
-            const input = this.getInput('field_input' + i);
+            const input = (this as any).getInput('field_input' + i);
             fieldBlock.savedConnection = input && input.connection.targetConnection;
             // Set mutator block field name from the corresponding 'real' Object.create block
-            fieldBlock.setFieldValue(this.getFieldValue('field' + i), 'field_name');
+            fieldBlock.setFieldValue((this as any).getFieldValue('field' + i), 'field_name');
             i++;
             fieldBlock = fieldBlock.nextConnection &&
               fieldBlock.nextConnection.targetBlock();
@@ -353,23 +354,23 @@ exports.definitionBlocks = function (blocks, javaScript,BlocklyExtensions,  Bloc
       
         updateShape: function() {
           // Delete everything.
-          if (this.getInput('with')) {
-            this.removeInput('with');
+          if ((this as any).getInput('with')) {
+            (this as any).removeInput('with');
           }
           let i = 1;
-          while (this.getInput('field_input' + i)) {
-            this.removeInput('field_input' + i);
+          while ((this as any).getInput('field_input' + i)) {
+            (this as any).removeInput('field_input' + i);
             i++;
           }
           // Rebuild block.
           if (this.numFields > 0) {
-            this.appendDummyInput('with')
+            (this as any).appendDummyInput('with')
             .setAlign(ALIGN_RIGHT)
             .appendField("with fields");
           }
           for (let i = 1; i <= this.numFields; i++) {
             const fieldName = this.fields[i - 1];
-            this.appendValueInput("field_input" + i)
+            (this as any).appendValueInput("field_input" + i)
               .setCheck(null)
               .setAlign(ALIGN_RIGHT)
               .appendField(new Blockly.FieldTextInput(fieldName), "field" + i);
@@ -385,7 +386,7 @@ exports.definitionBlocks = function (blocks, javaScript,BlocklyExtensions,  Bloc
       }
 }
 
-exports.fieldXML = function () {
+fieldXML() : string {
     return `    
     <block type="modifyproperty"></block>
     <block type="getproperty"></block>
@@ -396,4 +397,5 @@ exports.fieldXML = function () {
 <block type="object_set"></block>-->
 
 `;
+}
 }

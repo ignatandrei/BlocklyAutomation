@@ -47,7 +47,7 @@ export class chartBlocks {
       },
     };
 
-    javaScript['chart_js'] = function (block) {
+    javaScript['chart_js'] = function (block:any) {
       var dropdown_charttypevalue = block.getFieldValue('ChartTypeValue');
       var value_charttitlevalue = javaScript.valueToCode(
         block,
@@ -90,7 +90,7 @@ export class chartBlocks {
     };
   }
 
-  fieldXML() {
+  fieldXML() : string {
     return `<block type="chart_js"></block>`;
   }
 }

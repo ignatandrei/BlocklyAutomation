@@ -487,64 +487,64 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
     }
     this.tabulator.initGrid(gridElement);
     
-    // this.bs.filterBlocks.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
-    // this.bs.waitBlocks.definitionBlocks(
-    //   Blockly.defineBlocksWithJsonArray,
-    //   BlocklyJavaScript
-    // );
+    this.bs.filterBlocks.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
+    this.bs.waitBlocks2.definitionBlocks(
+      Blockly.defineBlocksWithJsonArray,
+      BlocklyJavaScript
+    );
     
     this.bs.xhrBlocks.definitionBlocks(
       Blockly.Blocks,
       BlocklyJavaScript
     );
-    // this.bs.propBlocks.definitionBlocks(
-    //   Blockly.Blocks,
-    //   BlocklyJavaScript
-    // );
-    // this.bs.guiBlocks.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
-    // this.bs.convertersBlocks.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
-    // this.bs.exportFileBlock.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
-    // this.bs.createObjectBlocks.definitionBlocks(
-    //   Blockly.Blocks,
-    //   BlocklyJavaScript,
-    //   Blockly.Extensions,
-    //   Blockly.Mutator
+    this.bs.propBlocks.definitionBlocks(
+      Blockly.Blocks,
+      BlocklyJavaScript
+    );
+    this.bs.guiBlocks.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
+    this.bs.convertersBlocks.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
+    this.bs.exportFileBlock.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
+    this.bs.createObjectBlocks.definitionBlocks(
+      Blockly.Blocks,
+      BlocklyJavaScript,
+      Blockly.Extensions,
+      Blockly.Mutator
       
-    // );
-    // this.bs.currentDateBlock.definitionBlocks(
-    //   Blockly.Blocks,
-    //   BlocklyJavaScript
-    // );
+    );
+    this.bs.currentDateBlock.definitionBlocks(
+      Blockly.Blocks,
+      BlocklyJavaScript
+    );
 
-    // this.bs.dateFromTextBlock.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
-    // this.bs.waitBlocks.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
-    // this.bs.commentBlock.definitionBlocks(
-    //   Blockly.Blocks,
-    //   BlocklyJavaScript
-    // );
-    // this.bs.trycatchFinBlock.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);  
-    // this.bs.auth0Blocks.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
-    // this.bs.windowsCreds.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
-    // this.bs.chartBlock.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
+    this.bs.dateFromTextBlock.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
+     this.bs.waitBlocks1.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
+    this.bs.commentBlock.definitionBlocks(
+      Blockly.Blocks,
+      BlocklyJavaScript
+    );
+    this.bs.trycatchFinBlock.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);  
+    this.bs.auth0Blocks.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
+    this.bs.windowsCreds.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
+    this.bs.chartBlock.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
 
-    //   this.bs.emailBlocks.definitionBlocks(
-    //     Blockly.Blocks,
-    //     BlocklyJavaScript
-    //   );
-    //   this.bs.htmlblocks.definitionBlocks(
-    //     Blockly.Blocks,
-    //     BlocklyJavaScript
-    //   );
-    //   this.bs.HTMLParserBlocks.definitionBlocks(
-    //     Blockly.Blocks,
-    //     BlocklyJavaScript
-    //   );
+      this.bs.emailBlocks.definitionBlocks(
+        Blockly.Blocks,
+        BlocklyJavaScript
+      );
+      this.bs.htmlblocks.definitionBlocks(
+        Blockly.Blocks,
+        BlocklyJavaScript
+      );
+      this.bs.HTMLParserBlocks.definitionBlocks(
+        Blockly.Blocks,
+        BlocklyJavaScript
+      );
         // console.log('z',window.speechSynthesis.getVoices());
-      // this.bs.ttsBlock.definitionBlocks(Blockly.Blocks,BlocklyJavaScript);
-      // this.bs.pianoBlock.definitionBlocks(Blockly.Blocks,BlocklyJavaScript);
+      this.bs.ttsBlock.definitionBlocks(Blockly.Blocks,BlocklyJavaScript);
+      this.bs.pianoBlock.definitionBlocks(Blockly.Blocks,BlocklyJavaScript);
 var customCategs=this.DetailsApp.customCategories;
     var blocks = [
-      this.bs.defaultBlocks.generalBlocks(),
+      this.bs.defaultBlocks.fieldXML(),
       ` 
         <category name='Blockly Advanced'>
         <category id="Audio" name="Audio">
@@ -560,7 +560,8 @@ var customCategs=this.DetailsApp.customCategories;
               <category id="catDates"  name="Dates">
           ${this.bs.currentDateBlock.fieldXML()}
           ${this.bs.dateFromTextBlock.fieldXML()}
-          ${this.bs.waitBlocks.fieldXML()}
+          ${this.bs.waitBlocks1.fieldXML()}
+          ${this.bs.waitBlocks2.fieldXML()}
         </category>
         <category id="catEmail"  name="Email">
         ${this.bs.emailBlocks.fieldXML()}
@@ -592,7 +593,8 @@ var customCategs=this.DetailsApp.customCategories;
             </category>
         `,
       `<category id="catTimers"  name="Timers">
-          ${this.bs.waitBlocks.fieldXML()}
+          ${this.bs.waitBlocks1.fieldXML()}
+          ${this.bs.waitBlocks2.fieldXML()}
         </category>`,
       `  <category id="programming" name="Programming">
         ${this.bs.trycatchFinBlock.fieldXML()}

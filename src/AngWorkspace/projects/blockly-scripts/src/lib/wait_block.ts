@@ -12,51 +12,58 @@
  * See https://neil.fraser.name/software/JS-Interpreter/docs.html
  */
 //modified by Andrei Ignat for BlocklyScripts
-exports.definitionBlocks=function(blocks_defineBlocksWithJsonArray,javaScript){
-    blocks_defineBlocksWithJsonArray([{
-    "type": "wait_seconds",
-    "message0": " wait %1 seconds",
-    "args0": [{
-      "type": "field_number",
-      "name": "SECONDS",
-      "min": 0,
-      "max": 600,
-      "value": 1
-    }],
-    "previousStatement": null,
-    "nextStatement": null,
-    "colour": "%{BKY_LOOPS_HUE}"
-  }]);
+import * as Blockly from 'blockly';
+export class wait {
+  definitionBlocks(blocks_defineBlocksWithJsonArray: any, javaScript: any) {
+    blocks_defineBlocksWithJsonArray([
+      {
+        type: 'wait_seconds',
+        message0: ' wait %1 seconds',
+        args0: [
+          {
+            type: 'field_number',
+            name: 'SECONDS',
+            min: 0,
+            max: 600,
+            value: 1,
+          },
+        ],
+        previousStatement: null,
+        nextStatement: null,
+        colour: '%{BKY_LOOPS_HUE}',
+      },
+    ]);
 
+    /**
+     * Generator for wait block creates call to new method
+     * <code>waitForSeconds()</code>.
+     */
+    javaScript['wait_seconds'] = function (block: any) {
+      var seconds = Number(block.getFieldValue('SECONDS'));
+      var code = 'waitForSeconds(' + seconds + ');\n';
+      return code;
+    };
+  }
   /**
-   * Generator for wait block creates call to new method
+   * Register the interpreter asynchronous function
    * <code>waitForSeconds()</code>.
    */
-  javaScript['wait_seconds'] = function(block) {
-    var seconds = Number(block.getFieldValue('SECONDS'));
-    var code = 'waitForSeconds(' + seconds + ');\n';
-    return code;
-  };
-}
-/**
- * Register the interpreter asynchronous function
- * <code>waitForSeconds()</code>.
- */
-//added in interpreter async
-// function initInterpreterWaitForSeconds(interpreter, globalObject) {
-//   // Ensure function name does not conflict with variable names.
-//   Blockly.JavaScript.addReservedWords('waitForSeconds');
+  //added in interpreter async
+  // function initInterpreterWaitForSeconds(interpreter, globalObject) {
+  //   // Ensure function name does not conflict with variable names.
+  //   Blockly.JavaScript.addReservedWords('waitForSeconds');
 
-//   var wrapper = interpreter.createAsyncFunction(
-//     function(timeInSeconds, callback) {
-//       // Delay the call to the callback.
-//       setTimeout(callback, timeInSeconds * 1000);
-//     });
-//   interpreter.setProperty(globalObject, 'waitForSeconds', wrapper);
-// }
+  //   var wrapper = interpreter.createAsyncFunction(
+  //     function(timeInSeconds, callback) {
+  //       // Delay the call to the callback.
+  //       setTimeout(callback, timeInSeconds * 1000);
+  //     });
+  //   interpreter.setProperty(globalObject, 'waitForSeconds', wrapper);
+  // }
 
-exports.fieldXML=function(){
-  return `
+  fieldXML() {
+    return `
   <block type="wait_seconds"></block>
-`
+`;
+  }
 }
