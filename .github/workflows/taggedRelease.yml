@@ -103,7 +103,9 @@ jobs:
       run: |
         rm -r src/AngWorkspace/dist/*
         cd src
+        cd AngWorkspace
         npm run buildGitHubPages
+        cd ..
         rm -r Loaders/SimpleSite/AutoBlocklySimple/wwwroot/BlocklyAutomation/*
         cp -r AngWorkspace/dist/auto-blockly-app/* Loaders/SimpleSite/AutoBlocklySimple/wwwroot/BlocklyAutomation/
         rm -r Local/LocalAPI/LocalAPI/wwwroot/BlocklyAutomation/*
