@@ -11,7 +11,7 @@ import {ContentHighlight} from '@blockly/workspace-content-highlight';
 import * as acorn from 'acorn';
 import { BlocklyXHR } from'projects/blockly-scripts/src/lib/BlocklyXHR';
 
-import * as bh from '@blockly/blocklyhelpers';
+// import * as bh from '@blockly/blocklyhelpers';
 
 import { TabulatorHelper } from './tabulator';
 import { LoadShowUsageService } from '../load-show-usage.service';
@@ -34,6 +34,7 @@ import { FindSavedBlocksComponent } from '../find-saved-blocks/find-saved-blocks
 import { error } from '@angular/compiler/src/util';
 import { bs } from '../bs';
 import { saveLoadService } from 'projects/blockly-helpers/src/lib/blockly-helpers.service';
+import { InterpreterBA } from 'projects/blockly-helpers/src/lib/interpreter';
 enum ShowCodeAndXML{
   ShowNone=0,
   ShowBlocksDefinition=1,
@@ -68,6 +69,7 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
   myId:number=0;
   bs: bs= new bs();
   bh2: saveLoadService = new saveLoadService ();
+  bh: InterpreterBA | null = null;
   constructor(
     private tabulator: TabulatorHelper,
     public DetailsApp: AppDetails,
@@ -213,10 +215,8 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
         this.showCodeAndXML = ShowCodeAndXML.ShowCode;
       }
     };
-    this.run = bh.interpreterHelper.createInterpreter(
-      this.demoWorkspace,
-      BlocklyJavaScript
-    );
+    this.bh = new InterpreterBA(this.demoWorkspace,BlocklyJavaScript);
+    this.run = this.bh;
     this.clearOutput();
     this.showCodeAndXML = ShowCodeAndXML.ShowOutput;
     this.showInner = '{ "step_start": "start program",';
@@ -840,10 +840,8 @@ var customCategs=this.DetailsApp.customCategories;
     window.setTimeout(self.afterTimeout, 2000, this, );
 
     // console.log(BlocklyJavaScript);
-    this.run = bh.interpreterHelper.createInterpreter(
-      this.demoWorkspace,
-      BlocklyJavaScript
-    );
+    this.bh = new InterpreterBA(this.demoWorkspace, BlocklyJavaScript);
+    this.run =  this.bh;
     var self = this;
     this.demoWorkspace.addChangeListener(function (evt: any) {
       if (!evt.isUiEvent) {
