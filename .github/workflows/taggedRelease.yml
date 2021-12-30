@@ -101,7 +101,7 @@ jobs:
 
     - name: making releases of loaders
       run: |
-        rm -r /src/AngWorkspace/dist/*
+        rm -r src/AngWorkspace/dist/*
         cd src
         npm run buildGitHubPages
         rm -r Loaders/SimpleSite/AutoBlocklySimple/wwwroot/BlocklyAutomation/*
