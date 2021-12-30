@@ -171,7 +171,7 @@ jobs:
         cp ${{github.workspace}}/src/Loaders/SimpleSite/AutoBlocklySimple/releaseLin.zip ${{github.workspace}}/releaseLin.zip
         cp ${{github.workspace}}/src/Loaders/SimpleSite/AutoBlocklySimple/releaseWin.zip ${{github.workspace}}/releaseWin.zip
         cp ${{github.workspace}}/src/Loaders/SimpleSite/AutoBlocklySimple/releaseIISWin.zip ${{github.workspace}}/releaseIISWin.zip
-        cp ${{github.workspace}}/src/AutoBlocklyApp/dist/releaseBlocklyAutomation.zip ${{github.workspace}}/releaseBlocklyAutomation.zip
+        cp ${{github.workspace}}/src/AngWorkspace/dist/releaseBlocklyAutomation.zip ${{github.workspace}}/releaseBlocklyAutomation.zip
         cp ${{github.workspace}}/src/Local/LocalAPI/LocalAPI/releaseLocalAPI.zip ${{github.workspace}}/releaseLocalAPI.zip
         echo 'copied'
         find ${{github.workspace}} -type f -name "*.zip"
