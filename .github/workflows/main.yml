@@ -31,23 +31,25 @@ jobs:
         run: | 
           npm i -g npm@8.3.0               
           cd src
+          cd AngWorkspace
           echo 'install angular'    
           npm i  @angular/cli@13
           # echo "install ws"
           #npm i -force
-          cd AutoBlocklyApp
-          npm i
-          cd ..
+          #cd AutoBlocklyApp
+          #npm i
+          #cd ..
           # echo "copy "
           #cp -rn node_modules/  AutoBlocklyApp/          
           #cp -rn node_modules/codemirror/  AutoBlocklyApp/codemirror          
           # cp -rn node_modules/@types/codemirror/  AutoBlocklyApp/@types/codemirror
-          ls -l AutoBlocklyApp/node_modules/codemirror
+          # ls -l AutoBlocklyApp/node_modules/codemirror
           # echo "find"
-          find . -type d -name "codemirror" -print
+          #find . -type d -name "codemirror" -print
+          
           echo "build"
           npm run buildAng
-          ls -l AutoBlocklyApp/dist/AutoBlocklyApp
+          ls -l dist/auto-blockly-app
           
 
 
