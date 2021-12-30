@@ -20,7 +20,6 @@ import { Creds } from 'projects/blockly-scripts/src/lib/WindowsCreds';
 import {waitB } from 'projects/blockly-scripts/src/lib/waitBlocks';
 import { wait } from 'projects/blockly-scripts/src/lib/wait_block';
 import { comment} from 'projects/blockly-scripts/src/lib/commentBlock';
-
 export class bs{
     public xhrBlocks: BlocklyXHR= new BlocklyXHR();
     public defaultBlocks: generalBlocks= new generalBlocks();

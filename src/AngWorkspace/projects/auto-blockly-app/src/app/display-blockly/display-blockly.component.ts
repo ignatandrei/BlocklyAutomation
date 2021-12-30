@@ -12,6 +12,7 @@ import * as acorn from 'acorn';
 import { BlocklyXHR } from'projects/blockly-scripts/src/lib/BlocklyXHR';
 
 import * as bh from '@blockly/blocklyhelpers';
+
 import { TabulatorHelper } from './tabulator';
 import { LoadShowUsageService } from '../load-show-usage.service';
 import { DemoBlocks } from '../DemoBlocks';
@@ -32,6 +33,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { FindSavedBlocksComponent } from '../find-saved-blocks/find-saved-blocks.component';
 import { error } from '@angular/compiler/src/util';
 import { bs } from '../bs';
+import { saveLoadService } from 'projects/blockly-helpers/src/lib/blockly-helpers.service';
 enum ShowCodeAndXML{
   ShowNone=0,
   ShowBlocksDefinition=1,
@@ -65,6 +67,7 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
   static id:number=0;
   myId:number=0;
   bs: bs= new bs();
+  bh2: saveLoadService = new saveLoadService ();
   constructor(
     private tabulator: TabulatorHelper,
     public DetailsApp: AppDetails,
@@ -620,7 +623,7 @@ var customCategs=this.DetailsApp.customCategories;
   showBlocksDefinition: string=''
 
   SaveBlocks() {
-    bh.saveBlocksUrl.saveState(Blockly.Xml, this.demoWorkspace, this.myId);
+    this.bh2.saveState(Blockly.Xml, this.demoWorkspace, this.myId);
   }
   public ShowBlocksDefinition(): boolean{
     return this.showCodeAndXML === ShowCodeAndXML.ShowBlocksDefinition;
@@ -703,7 +706,7 @@ var customCategs=this.DetailsApp.customCategories;
     //todo: use vex as for others - electron compatibility
     var name = window.prompt('Name?', 'blocks.txt');
     if (name == null) return;
-    bh.saveLoad.DownloadBlocks(Blockly.Xml, this.demoWorkspace, name);
+    this.bh2.DownloadBlocks(Blockly.Xml, this.demoWorkspace, name);
   }
   changeListener($event: any): void {
     this.readThis($event.target);
@@ -716,7 +719,7 @@ var customCategs=this.DetailsApp.customCategories;
     myReader.onloadend = function (e) {
       // you can perform an action with readed data here
       //console.log(myReader.result);
-      bh.saveLoad.LoadFile(Blockly.Xml, self.demoWorkspace, myReader.result);
+      self.bh2.LoadFile(Blockly.Xml, self.demoWorkspace, myReader.result);
       self.run.resetInterpreter();
     };
     myReader.readAsText(file);
@@ -852,7 +855,7 @@ var customCategs=this.DetailsApp.customCategories;
     });
   }
   public restoreBlocks() {
-    bh.saveBlocksUrl.restoreState(Blockly.Xml, this.demoWorkspace,this.myId);
+    this.bh2.restoreState(Blockly.Xml, this.demoWorkspace,this.myId);
   }
   public addToToolboxSwagger(item:any,myComponent: DisplayBlocklyComponent){
     

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-// import * as b from '@blockly/blocklyscripts';
 import { Title } from '@angular/platform-browser';
 import { AppDetails } from './AppDetails';
 @Component({
