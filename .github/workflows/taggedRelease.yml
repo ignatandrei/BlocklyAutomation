@@ -89,7 +89,7 @@ jobs:
       with:
         type: 'zip'
         filename: 'releaseBlocklyAutomation.zip'
-        path: 'AutoBlocklyApp/'
+        path: 'auto-blockly-app/'
         directory: '${{github.workspace}}/src/AngWorkspace/dist/'
         exclusions: '*.git* /*node_modules/* .editorconfig'       
 
@@ -101,7 +101,7 @@ jobs:
 
     - name: making releases of loaders
       run: |
-        rm -r src/AutoBlocklyApp/dist/AutoBlocklyApp/*
+        rm -r /src/AngWorkspace/dist/*
         cd src
         npm run buildGitHubPages
         rm -r Loaders/SimpleSite/AutoBlocklySimple/wwwroot/BlocklyAutomation/*
