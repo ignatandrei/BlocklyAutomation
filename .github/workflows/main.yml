@@ -48,7 +48,7 @@ jobs:
           #find . -type d -name "codemirror" -print
           
           echo "build"
-          npm run buildAng
+          npm run buildGitHubPages
           ls -l dist/auto-blockly-app
           
 
