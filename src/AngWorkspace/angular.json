@@ -1,0 +1,213 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "AutoBlocklyApp": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/auto-blockly-app",
+      "sourceRoot": "projects/auto-blockly-app/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/auto-blockly-app",
+            "index": "projects/auto-blockly-app/src/index.html",
+            "main": "projects/auto-blockly-app/src/main.ts",
+            "polyfills": "projects/auto-blockly-app/src/polyfills.ts",
+            "tsConfig": "projects/auto-blockly-app/tsconfig.app.json",
+            "assets": [
+              "projects/auto-blockly-app/src/favicon.ico",
+              "projects/auto-blockly-app/src/assets",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/blockly/media",
+                "output": "./media/"
+              }
+            ],
+            "styles": [
+			"./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
+              "./node_modules/tabulator-tables/dist/css/tabulator.css",
+              "./node_modules/intro.js/introjs.css",
+              "./node_modules/intro.js/themes/introjs-nassim.css",
+			  "./node_modules/codemirror/lib/codemirror.css",
+              "./node_modules/codemirror/theme/material.css",
+              "projects/auto-blockly-app/src/styles.css",
+            ],
+            "scripts": [
+			"projects/auto-blockly-app/src/assets/acorn_interpreter.js",	
+              "./node_modules/intro.js/intro.js",
+              "./node_modules/chart.js/dist/chart.js"]
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "projects/auto-blockly-app/src/environments/environment.ts",
+                  "with": "projects/auto-blockly-app/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "AutoBlocklyApp:build:production"
+            },
+            "development": {
+              "browserTarget": "AutoBlocklyApp:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "AutoBlocklyApp:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/auto-blockly-app/src/test.ts",
+            "polyfills": "projects/auto-blockly-app/src/polyfills.ts",
+            "tsConfig": "projects/auto-blockly-app/tsconfig.spec.json",
+            "karmaConfig": "projects/auto-blockly-app/karma.conf.js",
+            "assets": [
+              "projects/auto-blockly-app/src/favicon.ico",
+              "projects/auto-blockly-app/src/assets"
+            ],
+            "styles": [
+              "projects/auto-blockly-app/src/styles.css"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    },
+    "BlocklySwagger": {
+      "projectType": "library",
+      "root": "projects/blockly-swagger",
+      "sourceRoot": "projects/blockly-swagger/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/blockly-swagger/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/blockly-swagger/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/blockly-swagger/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/blockly-swagger/src/test.ts",
+            "tsConfig": "projects/blockly-swagger/tsconfig.spec.json",
+            "karmaConfig": "projects/blockly-swagger/karma.conf.js"
+          }
+        }
+      }
+    },
+    "BlocklyHelpers": {
+      "projectType": "library",
+      "root": "projects/blockly-helpers",
+      "sourceRoot": "projects/blockly-helpers/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/blockly-helpers/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/blockly-helpers/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/blockly-helpers/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/blockly-helpers/src/test.ts",
+            "tsConfig": "projects/blockly-helpers/tsconfig.spec.json",
+            "karmaConfig": "projects/blockly-helpers/karma.conf.js"
+          }
+        }
+      }
+    },
+    "BlocklyScripts": {
+      "projectType": "library",
+      "root": "projects/blockly-scripts",
+      "sourceRoot": "projects/blockly-scripts/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/blockly-scripts/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/blockly-scripts/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/blockly-scripts/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/blockly-scripts/src/test.ts",
+            "tsConfig": "projects/blockly-scripts/tsconfig.spec.json",
+            "karmaConfig": "projects/blockly-scripts/karma.conf.js"
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "AutoBlocklyApp"
+}
