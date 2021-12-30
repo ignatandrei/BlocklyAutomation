@@ -34,19 +34,28 @@ jobs:
 
     - name: npm modify docs
       run: |
-        cd src
-        npm i -g npm@8.3.0                       
+        cd src        
+        cd AngWorkspace
+        npm i -g npm@8.3.0               
         echo 'install angular'    
         npm i  @angular/cli@13
-        echo "install ws"
-        # npm i -force
-        cd AutoBlocklyApp
-        npm i 
+        cd projects
+        cd blockly-helpers
+        npm i
         cd ..
-        npm run buildGitHubPages
+        cd blockly-scripts
+        npm i
+        cd ..
+        cd blockly-swagger
+        npm i
+        cd ..
+        cd ..
+        echo "build"
+        npm run buildGitHubPages  
+        ls -l dist/auto-blockly-app          
         cd ..
         rm -r docs/*
-        cp -r src/AutoBlocklyApp/dist/AutoBlocklyApp/* docs/
+        cp -r src/AngWorkspace/dist/auto-blockly-app/* docs/
         cp docs/index.html docs/404.html
         cd docs
         echo "${{github.ref_name}}" > version.txt
@@ -58,7 +67,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: AutoBlocklyApp
-        path: 'src/AutoBlocklyApp/dist/AutoBlocklyApp/*'
+        path: 'src/AngWorkspace/dist/auto-blockly-app/*'
         retention-days: 1
 
     - name : autocommit
@@ -80,7 +89,7 @@ jobs:
         type: 'zip'
         filename: 'releaseBlocklyAutomation.zip'
         path: 'AutoBlocklyApp/'
-        directory: '${{github.workspace}}/src/AutoBlocklyApp/dist/'
+        directory: '${{github.workspace}}/src/AngWorkspace/dist/'
         exclusions: '*.git* /*node_modules/* .editorconfig'       
 
 
@@ -95,10 +104,10 @@ jobs:
         cd src
         npm run buildGitHubPages
         rm -r Loaders/SimpleSite/AutoBlocklySimple/wwwroot/BlocklyAutomation/*
-        cp -r AutoBlocklyApp/dist/AutoBlocklyApp/* Loaders/SimpleSite/AutoBlocklySimple/wwwroot/BlocklyAutomation/
+        cp -r AngWorkspace/dist/auto-blockly-app/* Loaders/SimpleSite/AutoBlocklySimple/wwwroot/BlocklyAutomation/
         rm -r Local/LocalAPI/LocalAPI/wwwroot/BlocklyAutomation/*
-        cp -r AutoBlocklyApp/dist/AutoBlocklyApp/* Local/LocalAPI/LocalAPI/wwwroot/BlocklyAutomation/
-        cp -r Local/LocalAPI/LocalAPI/wwwroot/customBlocklyAutomation/* Local/LocalAPI/LocalAPI/wwwroot/BlocklyAutomation/
+        cp -r AngWorkspace/dist/auto-blockly-app/* Local/LocalAPI/LocalAPI/wwwroot/BlocklyAutomation/
+        #cp -r Local/LocalAPI/LocalAPI/wwwroot/customBlocklyAutomation/* Local/LocalAPI/LocalAPI/wwwroot/BlocklyAutomation/
         rm -r Local/LocalAPI/LocalAPI/wwwroot/customBlocklyAutomation/*
         cd Loaders
         cd SimpleSite

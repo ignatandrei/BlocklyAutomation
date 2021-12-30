@@ -5,6 +5,17 @@ npm install -g http-server@14.0.0
 
 npm install @angular/cli@13
 
+cd projects
+cd blockly-helpers
+npm i
+cd ..
+cd blockly-scripts
+npm i
+cd ..
+cd blockly-swagger
+npm i
+cd ..
+cd ..
 
 #npm i -force
 #cd ./AutoBlocklyApp/ 
