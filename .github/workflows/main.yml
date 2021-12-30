@@ -46,7 +46,7 @@ jobs:
           # ls -l AutoBlocklyApp/node_modules/codemirror
           # echo "find"
           #find . -type d -name "codemirror" -print
-          
+          npm install
           echo "build"
           npm run buildGitHubPages
           ls -l dist/auto-blockly-app
