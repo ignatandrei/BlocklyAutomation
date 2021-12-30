@@ -54,6 +54,7 @@ jobs:
         npm run buildGitHubPages  
         ls -l dist/auto-blockly-app          
         cd ..
+        cd ..
         rm -r docs/*
         cp -r src/AngWorkspace/dist/auto-blockly-app/* docs/
         cp docs/index.html docs/404.html
