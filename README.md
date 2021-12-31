@@ -22,6 +22,13 @@ If you control the site , then you can use the [BlocklyAutomation](https://githu
 
 Follow the instructions in the wiki file.  
 
+If you do not control the site, then install the application from http://ba.serviciipeweb.ro/ and then use it to reproduce the problem. ( wiki site coming with details) 
+
+## a web site application tester
+If you control the site , then can use the https://github.com/ignatandrei/BlocklyAutomation/releases/latest/download/releaseBlocklyAutomation.zip/  and then use it to reproduce the problem. ( wiki site coming with details) .
+
+If you does not control the site, then install the application from http://ba.serviciipeweb.ro/ and then use it to make test cases. ( wiki site coming with details) 
+
 
 ## not a programmer.  I want to automate/gather data from several sites ( public or private )
 

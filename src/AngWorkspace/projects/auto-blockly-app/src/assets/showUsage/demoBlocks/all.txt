@@ -1,5 +1,11 @@
 ﻿[
     {
+        "id":  "EurRon",
+        "description":  "exchange currency",
+        "categories":  "exchange;http;",
+        "blocks":  "text;httprequest;text_join;text_print;ttsBlock"
+    },
+    {
         "id":  "chromeBookmarks",
         "description":  "export chrome bookmarks",
         "categories":  "chrome;bookmarks;localAPI",
