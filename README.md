@@ -2,9 +2,59 @@
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
-Blockly Automation :  is a tool for RPA automation made of Blockly. 
+Blockly Automation :  is a tool for Swagger / OpenAPI / RPA automation made of Blockly. 
 
-## How to test
+# How to use if you are
+
+## I am a backend developer with an REST / OpenAPI / Swagger enabled site and I want to show the use of my site
+
+Download the HTML release [BlocklyAutomation](https://github.com/ignatandrei/BlocklyAutomation/releases/latest/download/releaseBlocklyAutomation.zip/) .
+
+Follow the instructions in the wiki file.  
+
+
+## I am a frontend  developer that finds a bug in a REST / OpenAPI / Swagger enabled site
+
+You want to show to the backend developer how to reproduce the problem .
+
+If you control the site , then you can use the [BlocklyAutomation](https://github.com/ignatandrei/BlocklyAutomation/releases/latest/download/releaseBlocklyAutomation.zip/) to reproduce the problem.
+
+Follow the instructions in the wiki file.  
+
+
+## I am not a programmer.  I want to automate/gather data from several public sites
+
+You have some sites that you want to extract data and you want to automate the process.
+
+Install the application from http://ba.serviciipeweb.ro/ .
+
+Follow the instructions in the wiki file.
+
+## I am not a programmer.  I want to automate/gather data from several sites
+
+You want to obtain some data from the web. For example, extract the exchange between EUR / RON .
+
+Install the application from http://ba.serviciipeweb.ro/ .
+
+Follow the instructions in the wiki file.
+
+
+## I want to automate things on my PC. 
+
+You want to obtain some data from your PC. For example, extract and export to CSV the Chrome Bookmarks.
+
+Install the application from http://ba.serviciipeweb.ro/ .
+
+Follow the instructions in the wiki file.
+
+
+
+## Suggest a public API for BlocklyAutomation
+
+If you have a public API/site that you want to automate, please send file an issue at https://github.com/ignatandrei/BlocklyAutomation/issues 
+
+
+## How to see a preview
 
 
 To see the whole potential , please go to http://ba.serviciipeweb.ro/ and click Launch .
