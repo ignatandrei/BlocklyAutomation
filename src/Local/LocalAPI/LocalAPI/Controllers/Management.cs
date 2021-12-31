@@ -24,11 +24,12 @@ public class ManagementController : ControllerBase
     {
         cts?.Cancel();
     }
-    [Authorize]
+    
     [HttpGet]
     public string? WhoAmI()
     {
-        return this.User?.Identity?.Name;
+
+        return (this.User?.Identity?.Name ?? Environment.UserName);
     }
 }
 
