@@ -466,6 +466,8 @@ table2array(table:any) {
     var rows = table.rows;
     //console.log(myData)
     var ret = [];
+    if(!rows)
+        return [];
     if(rows.length==0){
         return [];
     }
@@ -506,6 +508,7 @@ parseDOMFromStringElements (htmlString:any, type:any, tagName:any){
     }
     else{
         elements=elements.concat(doc.getElementsByTagName(tagName));
+        elements=elements[0];//asdad
     }
     var ret={};
     // console.log('a',elements);
