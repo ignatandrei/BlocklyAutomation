@@ -392,7 +392,7 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
       return;
     }
     //self.loadedCompletely=false;
-    self.LoadSwaggerFromUrl(json).then((api) => {
+    self.LoadSwaggerFromUrl(json).then((api:any) => {
       // this.afterTimeout(this);
       if(api.hasError)
         window.alert("error loading swagger");
@@ -437,6 +437,7 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
     this.swaggerData.push(api);
     for (var i = 0; i < api.GenerateBlocks.length; i++) {
       var e = api.GenerateBlocks[i];
+      console.log('here in loadSwagger from api is ok',Blockly.getMainWorkspace());
       e(Blockly.Blocks, BlocklyJavaScript);
     }
     for (var i = 0; i < api.GenerateFunctions.length; i++) {
@@ -445,23 +446,15 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
         var image = `assets/httpImages/${opKey}.png`;
         return new Blockly.FieldImage(image, 90, 20, opKey);
       };
+     
       e(Blockly.Blocks, BlocklyJavaScript);
     }
     api.metaBlocks()(Blockly.Blocks, BlocklyJavaScript);
     return api;
   }
 
-  async StartRegister(): Promise<void> {
+  StartRegister(): void {
     // var swaggersUrl= await firstValueFrom( this.loadDemo.getSwaggerLinks());
-    var swaggersUrl = this.DetailsApp.swaggersDict;
-    var swaggersDict: Map<string, any> = new Map<string, any>();    
-    swaggersUrl.forEach((it, key) => {
-      var show = !it.hasError;
-      //special condition for local api
-      console.log("show swagger: "+ key +":"+show);
-      if(show)
-        swaggersDict.set(key, this.LoadSwaggerFromAPI(it));
-    });
     // swaggersUrl.forEach(async (it) => {
     //   swaggersDict.set(it.id, await this.LoadSwaggerFromUrl(it.link, it.id));
     // });
@@ -615,6 +608,18 @@ var customCategs=this.DetailsApp.customCategories;
         `,
     ];
     this.initialize(blocks);
+
+    var swaggersUrl = this.DetailsApp.swaggersDict;
+    var swaggersDict: Map<string, any> = new Map<string, any>();    
+    swaggersUrl.forEach((it, key) => {
+      var show = !it.hasError;
+      //special condition for local api
+      console.log("show swagger: "+ key +":"+show);
+      if(show)
+        swaggersDict.set(key, this.LoadSwaggerFromAPI(it));
+    });
+  
+
     if(this.DetailsApp.LocalAPI?.WasAlive){
       this.LoadSwaggerFromUrl(this.DetailsApp.LocalAPI.urL+"swagger/v1/swagger.json","LocalAutomation");
     }

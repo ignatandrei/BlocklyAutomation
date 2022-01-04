@@ -1,4 +1,9 @@
 ﻿[
+{"id":"err38",
+        "description":  "Error",
+        "categories":  "error",
+        "blocks":  ""
+},
     {
         "id":  "FridayLinks",
         "description":  "FridayLinks",

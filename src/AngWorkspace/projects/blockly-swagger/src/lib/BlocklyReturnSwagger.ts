@@ -158,6 +158,7 @@ export class BlocklyReturnSwagger {
           var arrValue:any[][] = [];
           if(schema.enum){
             isEnum=true;
+            console.log('here in GenerateBlock from api is not ok',Blockly.getMainWorkspace());
             var keys= Object.keys(schema.enum);
             if(schema['x-enumNames']){
               arrValue = keys.map((it)=>{
