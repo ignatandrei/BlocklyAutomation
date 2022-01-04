@@ -437,8 +437,9 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
     this.swaggerData.push(api);
     for (var i = 0; i < api.GenerateBlocks.length; i++) {
       var e = api.GenerateBlocks[i];
-      console.log('here in loadSwagger from api is ok',Blockly.getMainWorkspace());
-      e(Blockly.Blocks, BlocklyJavaScript);
+      
+      console.log('#38 here in loadSwagger from api is ok',Blockly.getMainWorkspace());
+      e(Blockly.Blocks, BlocklyJavaScript, this.demoWorkspace);
     }
     for (var i = 0; i < api.GenerateFunctions.length; i++) {
       var e = api.GenerateFunctions[i];

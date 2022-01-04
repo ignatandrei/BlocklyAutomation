@@ -33,7 +33,7 @@ export class BlocklyReturnSwagger {
   tagsSwagger: [] = []; 
   openApiDocument: any = null;
   cacheCategSwaggerFromPaths :string[]= [];
-
+  
   async ParseSwagger() {
     var self = this;
     self.fieldXMLObjects.push(`<label text="${self.swaggerUrl}"></label>`);
@@ -96,7 +96,7 @@ export class BlocklyReturnSwagger {
         xmlBlockShow+='</block>';
         self.fieldXMLObjects.push(xmlBlockShow);
 
-        
+        console.log('here again', Blockly.getMainWorkspace());
         self.GenerateBlocks.push(self.GenerateBlock(schema, key));
       });
     }
@@ -142,14 +142,22 @@ export class BlocklyReturnSwagger {
     
   }
   GenerateBlock(schema:any, key:any) {
+    
     var self = this;
     var blocklyTypeName = key;
     var props = "";
     var objPropString = self.findProperties(schema);
 
-    return function (blocks:any, javaScript:any) {
-      //   console.log(blocklyTypeName);
-      
+    return function (blocks:any, javaScript:any, ws: Blockly.WorkspaceSvg) {
+         console.log('fix for #38 this is ws',ws);
+         console.log('fix for #38 this is main',Blockly.getMainWorkspace());
+      if(!Blockly.getMainWorkspace()){
+        console.log('fix for #38 set mainWorkspace');
+        (Blockly as any)["mainWorkspace"] = ws;
+        console.log('fix for #38  after focus',Blockly.getMainWorkspace());
+
+      }  
+
       blocks[blocklyTypeName] = {
         init: function () {
           //this.setInputsInline(true);
@@ -158,7 +166,7 @@ export class BlocklyReturnSwagger {
           var arrValue:any[][] = [];
           if(schema.enum){
             isEnum=true;
-            console.log('here in GenerateBlock from api is not ok',Blockly.getMainWorkspace());
+            console.log('#38  here in GenerateBlock from api is ',Blockly.getMainWorkspace());
             var keys= Object.keys(schema.enum);
             if(schema['x-enumNames']){
               arrValue = keys.map((it)=>{
