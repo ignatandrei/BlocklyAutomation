@@ -615,6 +615,11 @@ var customCategs=this.DetailsApp.customCategories;
         `,
     ];
     this.initialize(blocks);
+    if(this.DetailsApp.LocalAPI?.WasAlive){
+      this.LoadSwaggerFromUrl(this.DetailsApp.LocalAPI.urL+"swagger/v1/swagger.json","LocalAutomation");
+    }
+    window.setTimeout(this.afterTimeout, 2000, this);
+
     // console.log('x',this.bs.windowsCreds.fieldXML());
   }
   showInner: string = '';
@@ -834,10 +839,6 @@ var customCategs=this.DetailsApp.customCategories;
         console.error('error when load default blocks', e);
       }
     }
-    if(this.DetailsApp.LocalAPI?.WasAlive){
-      this.LoadSwaggerFromUrl(this.DetailsApp.LocalAPI.urL+"swagger/v1/swagger.json","LocalAutomation");
-    }
-    window.setTimeout(self.afterTimeout, 2000, this, );
 
     // console.log(BlocklyJavaScript);
     this.bh = new InterpreterBA(this.demoWorkspace, BlocklyJavaScript);
