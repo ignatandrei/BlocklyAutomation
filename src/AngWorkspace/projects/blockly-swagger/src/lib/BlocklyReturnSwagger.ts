@@ -96,7 +96,6 @@ export class BlocklyReturnSwagger {
         xmlBlockShow+='</block>';
         self.fieldXMLObjects.push(xmlBlockShow);
 
-        console.log('here again', Blockly.getMainWorkspace());
         self.GenerateBlocks.push(self.GenerateBlock(schema, key));
       });
     }

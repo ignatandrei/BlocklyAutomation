@@ -221,9 +221,10 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
     this.showCodeAndXML = ShowCodeAndXML.ShowOutput;
     this.showInner = '{ "step_start": "start program",';
     
-    // console.log('x',code);
-    // console.log('y',jsCode);
-    if(code !=  jsCode){
+    //  console.log('x',code);
+    //  console.log('y',jsCode);
+     //#38 
+    if(false && (code !=  jsCode)){
       if(window.confirm('Do you want to run the code modified by you ?'))
         code = jsCode;
         this.showJSCode=jsCode;
