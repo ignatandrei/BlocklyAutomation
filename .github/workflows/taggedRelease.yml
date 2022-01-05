@@ -60,6 +60,8 @@ jobs:
       shell: pwsh
     - name: npm modify docs
       run: |
+        cd src
+        cd AngWorkspace        
         echo "build"
         npm run buildGitHubPages  
         ls -l dist/auto-blockly-app          
