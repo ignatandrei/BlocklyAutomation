@@ -32,7 +32,7 @@ jobs:
         echo "${{github.ref_name}}" > version.txt
 
 
-    - name: npm modify docs
+    - name: npm install
       run: |
         cd src        
         cd AngWorkspace
@@ -50,6 +50,16 @@ jobs:
         npm i
         cd ..
         cd ..
+        
+    - name: fix bug #38
+      run: |
+        cd src
+        cd AngWorkspace
+        ./fix#38.ps1
+        
+      shell: pwsh
+    - name: npm modify docs
+      run: |
         echo "build"
         npm run buildGitHubPages  
         ls -l dist/auto-blockly-app          

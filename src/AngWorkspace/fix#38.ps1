@@ -10,4 +10,5 @@ $newGet = "Blockly.DropDownDiv.getContentDiv=function(){  var z=Blockly.DropDown
 $c = $c.replace( $oldGet, $newGet)
 $c | Set-Content $_
 }
-Write-Host "delete the .angular folder and ng serve again"
+Remove-Item ".angular" -Recurse -ErrorAction Ignore
+Write-Host "deleted the .angular folder , do ng serve again"
