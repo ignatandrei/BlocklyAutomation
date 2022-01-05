@@ -484,63 +484,8 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
       return;
     }
     this.tabulator.initGrid(gridElement);
-    
-    this.bs.filterBlocks.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
-    this.bs.waitBlocks2.definitionBlocks(
-      Blockly.defineBlocksWithJsonArray,
-      BlocklyJavaScript
-    );
-    
-    this.bs.xhrBlocks.definitionBlocks(
-      Blockly.Blocks,
-      BlocklyJavaScript
-    );
-    this.bs.propBlocks.definitionBlocks(
-      Blockly.Blocks,
-      BlocklyJavaScript
-    );
-    this.bs.guiBlocks.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
-    this.bs.convertersBlocks.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
-    this.bs.exportFileBlock.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
-    this.bs.createObjectBlocks.definitionBlocks(
-      Blockly.Blocks,
-      BlocklyJavaScript,
-      Blockly.Extensions,
-      Blockly.Mutator
-      
-    );
-    this.bs.currentDateBlock.definitionBlocks(
-      Blockly.Blocks,
-      BlocklyJavaScript
-    );
+    var customCategs=this.DetailsApp.customCategories;
 
-    this.bs.dateFromTextBlock.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
-     this.bs.waitBlocks1.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
-    this.bs.commentBlock.definitionBlocks(
-      Blockly.Blocks,
-      BlocklyJavaScript
-    );
-    this.bs.trycatchFinBlock.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);  
-    this.bs.auth0Blocks.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
-    this.bs.windowsCreds.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
-    this.bs.chartBlock.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
-
-      this.bs.emailBlocks.definitionBlocks(
-        Blockly.Blocks,
-        BlocklyJavaScript
-      );
-      this.bs.htmlblocks.definitionBlocks(
-        Blockly.Blocks,
-        BlocklyJavaScript
-      );
-      this.bs.HTMLParserBlocks.definitionBlocks(
-        Blockly.Blocks,
-        BlocklyJavaScript
-      );
-        // console.log('z',window.speechSynthesis.getVoices());
-      this.bs.ttsBlock.definitionBlocks(Blockly.Blocks,BlocklyJavaScript);
-      this.bs.pianoBlock.definitionBlocks(Blockly.Blocks,BlocklyJavaScript);
-var customCategs=this.DetailsApp.customCategories;
     var blocks = [
       this.bs.defaultBlocks.fieldXML(),
       ` 
@@ -610,6 +555,62 @@ var customCategs=this.DetailsApp.customCategories;
         `,
     ];
     this.initialize(blocks);
+
+    this.bs.filterBlocks.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
+    this.bs.waitBlocks2.definitionBlocks(
+      Blockly.defineBlocksWithJsonArray,
+      BlocklyJavaScript
+    );
+    
+    this.bs.xhrBlocks.definitionBlocks(
+      Blockly.Blocks,
+      BlocklyJavaScript
+    );
+    this.bs.propBlocks.definitionBlocks(
+      Blockly.Blocks,
+      BlocklyJavaScript
+    );
+    this.bs.guiBlocks.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
+    this.bs.convertersBlocks.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
+    this.bs.exportFileBlock.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
+    this.bs.createObjectBlocks.definitionBlocks(
+      Blockly.Blocks,
+      BlocklyJavaScript,
+      Blockly.Extensions,
+      Blockly.Mutator
+      
+    );
+    this.bs.currentDateBlock.definitionBlocks(
+      Blockly.Blocks,
+      BlocklyJavaScript
+    );
+
+    this.bs.dateFromTextBlock.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
+     this.bs.waitBlocks1.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
+    this.bs.commentBlock.definitionBlocks(
+      Blockly.Blocks,
+      BlocklyJavaScript
+    );
+    this.bs.trycatchFinBlock.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);  
+    this.bs.auth0Blocks.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
+    this.bs.windowsCreds.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
+    this.bs.chartBlock.definitionBlocks(Blockly.Blocks, BlocklyJavaScript);
+
+      this.bs.emailBlocks.definitionBlocks(
+        Blockly.Blocks,
+        BlocklyJavaScript
+      );
+      this.bs.htmlblocks.definitionBlocks(
+        Blockly.Blocks,
+        BlocklyJavaScript
+      );
+      this.bs.HTMLParserBlocks.definitionBlocks(
+        Blockly.Blocks,
+        BlocklyJavaScript
+      );
+        // console.log('z',window.speechSynthesis.getVoices());
+      this.bs.ttsBlock.definitionBlocks(Blockly.Blocks,BlocklyJavaScript);
+      this.bs.pianoBlock.definitionBlocks(Blockly.Blocks,BlocklyJavaScript);
 
     var swaggersUrl = this.DetailsApp.swaggersDict;
     var swaggersDict: Map<string, any> = new Map<string, any>();    
