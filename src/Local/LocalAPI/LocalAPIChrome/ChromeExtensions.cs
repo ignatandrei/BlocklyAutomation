@@ -11,6 +11,7 @@ public class ChromeExtensions
 
         var tasks = Directory
             .GetDirectories(d)
+            //.Where(it=>it.Contains("aapocclcgogkmnckokdopfmhonfmgoek"))
             .Select(it => ChromeExtension.FromDir(it));
 
         var all = (await Task.WhenAll(tasks));

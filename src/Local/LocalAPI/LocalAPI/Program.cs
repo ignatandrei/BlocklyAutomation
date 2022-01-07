@@ -49,8 +49,8 @@ builder.Services.AddVersionedApiExplorer(setup =>
     setup.GroupNameFormat = "'v'VVV";
     setup.SubstituteApiVersionInUrl = true;
 });
-builder.Services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
-   .AddNegotiate();
+//builder.Services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
+//   .AddNegotiate();
 
 var app = builder.Build();
 
@@ -78,13 +78,13 @@ app.UseApiVersioning();
 //app.UseHttpsRedirection();
 app.UseDefaultFiles();
 app.UseStaticFiles();
-app.UseAuthorization();
+//app.UseAuthorization();
 //later: use versioning
 app.MapControllers();
 app.UseAMS();
 app.MapFallbackToFile("/BlocklyAutomation/{**slug:nonfile}", "BlocklyAutomation/index.html");
 ManagementController.cts = new();
-app.Urls.Add("http://localhost:37283");
+//app.Urls.Add("http://localhost:37283");
 //while (true)
 {//
     try

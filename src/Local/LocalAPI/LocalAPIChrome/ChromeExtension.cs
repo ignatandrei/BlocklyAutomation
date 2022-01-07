@@ -5,7 +5,7 @@ public record ChromeExtension(string Id, string Name)
     public static async Task<ChromeExtension?> FromDir(string dir)
     {
         if(dir == null)return null;
-        var id=Path.GetDirectoryName(dir);
+        var id=new DirectoryInfo( dir).Name;
         var version = Directory
             .GetDirectories(dir)
             .Select(it=>new DirectoryInfo(it))
@@ -31,14 +31,28 @@ public record ChromeExtension(string Id, string Name)
                 var dirs = Directory.GetDirectories(locale);
                 if (dirs.Length > 0)
                 {
-                    var dirLang = dirs.FirstOrDefault(it => it.EndsWith("en"))??dirs[0];
+                    var dirLang = dirs.FirstOrDefault(it => 
+                    
+                    it.EndsWith("en")
+                    ||
+                    it.EndsWith("en_US")
+                    ||
+                    it.EndsWith("en_GB")
+                    ) ?? dirs[0];
                     var message = await File.ReadAllTextAsync(Path.Combine(dirLang, "messages.json"));
                     var mess = JsonObject.Parse(message!)?.AsObject();
                     if (mess != null) 
                     {
-                        if (mess.ContainsKey(name))
+                        JsonObject? objLocale= null;
+                        if (mess.ContainsKey(key))
                         {
-                            name = mess[name]!.GetValue<string>();
+                            objLocale = mess[key]!.AsObject();
+                        }else if (mess.ContainsKey(key.ToLower())){
+                            objLocale = mess[key.ToLower()]!.AsObject();
+                        }
+                        if(objLocale != null)
+                        {
+                            name = objLocale!["message"]?.ToString()??name;
                         }
                     }
 
