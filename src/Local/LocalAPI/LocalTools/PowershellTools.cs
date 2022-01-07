@@ -1,6 +1,6 @@
 ﻿namespace LocalTools
 {
-    public record PowershellModule(string id, string name)
+    public record PowershellModule(string Id, string Name)
     {
         public static PowershellModule FromDir(string folder)
         {
@@ -11,7 +11,7 @@
         {
             get
             {
-                return "https://www.powershellgallery.com/packages/" + id;
+                return "https://www.powershellgallery.com/packages/" + Id;
             }
             set
             {

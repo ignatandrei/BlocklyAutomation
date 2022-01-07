@@ -8,11 +8,13 @@ public partial class MyTools : ControllerBase
 {
     private readonly ChromeExtensions chromeExt;
     private readonly PowershellTools pwsTools;
+    private readonly VSCodeExtensions extension;
 
-    public MyTools(ChromeExtensions chromeExt, PowershellTools pwsTools)
+    public MyTools(ChromeExtensions chromeExt, PowershellTools pwsTools, VSCodeExtensions extension)
     {
         this.chromeExt = chromeExt;
         this.pwsTools = pwsTools;
+        this.extension = extension;
     }
 }
 
