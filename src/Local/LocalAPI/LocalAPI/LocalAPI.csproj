@@ -33,6 +33,7 @@
     <ProjectReference Include="..\LocalAPIChrome\LocalAPIChrome.csproj" />
     <ProjectReference Include="..\LocalAPIEmail\LocalAPIEmail.csproj" />
     <ProjectReference Include="..\LocalFS\LocalFS.csproj" />
+    <ProjectReference Include="..\LocalTools\LocalTools.csproj" />
   </ItemGroup>
 
 	<PropertyGroup>

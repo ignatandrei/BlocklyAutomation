@@ -11,4 +11,6 @@ global using System.Text.Json.Serialization;
 global using AMSWebAPI;
 global using LocalAPI.Controllers;
 global using Microsoft.AspNetCore.Authentication.Negotiate;
+global using LocalTools;
+
 

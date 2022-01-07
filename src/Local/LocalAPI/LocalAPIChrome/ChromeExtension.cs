@@ -22,6 +22,30 @@ public record ChromeExtension(string Id, string Name)
             return null;
         var name = obj["name"]!.GetValue<string>();
         if (name == null) return null;
+        if (name.StartsWith("__MSG_"))
+        {
+            var key = name.Replace("__MSG_", "").Replace("__","");
+            var locale = Path.Combine(version.FullName, "_locales");
+            if (Directory.Exists(locale))
+            {
+                var dirs = Directory.GetDirectories(locale);
+                if (dirs.Length > 0)
+                {
+                    var dirLang = dirs.FirstOrDefault(it => it.EndsWith("en"))??dirs[0];
+                    var message = await File.ReadAllTextAsync(Path.Combine(dirLang, "messages.json"));
+                    var mess = JsonObject.Parse(message!)?.AsObject();
+                    if (mess != null) 
+                    {
+                        if (mess.ContainsKey(name))
+                        {
+                            name = mess[name]!.GetValue<string>();
+                        }
+                    }
+
+                }
+            }
+        }
+
         return new ChromeExtension(id!, name);
 
     }

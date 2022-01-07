@@ -22,6 +22,8 @@ builder.Services.AddTransient<IFileSystem>(_ => new FileSystem());
 builder.Services.AddTransient<IFile>((sp) => new FileSystem().File);
 builder.Services.AddTransient<IDirectory>((sp) => new FileSystem().Directory);
 builder.Services.AddTransient<clsISystem_Diagnostics_Process>();
+builder.Services.AddTransient<ChromeExtensions>();
+builder.Services.AddTransient<PowershellTools>();
 //builder.Configuration.GetDebugView();
 EmailConfig cfgEmail =new ();
 builder.Configuration.GetSection("plugins:email").Bind(cfgEmail);

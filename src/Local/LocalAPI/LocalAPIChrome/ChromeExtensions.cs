@@ -2,7 +2,7 @@
 namespace LocalAPIChrome;
 public class ChromeExtensions
 {
-    public async Task<ChromeExtension[]?> Data()
+    public async Task<ChromeExtension[]?> MyPCChromeExtensions()
     {
         var d=Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
         d = Path.Combine(d, "Google", "Chrome", "User Data", "Default", "Extensions");
