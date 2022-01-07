@@ -395,8 +395,11 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
     //self.loadedCompletely=false;
     self.LoadSwaggerFromUrl(json).then((api:any) => {
       // this.afterTimeout(this);
-      if(api.hasError)
-        window.alert("error loading swagger");
+      if(api.hasError){
+        if(window.confirm("error loading swagger - most probably CORS\n Please download the windows app to try this.")){
+            window.open('http://ba.serviciipeweb.ro/');
+        }
+      }
       else{
         
         self.addToToolboxSwagger(api,this);      
