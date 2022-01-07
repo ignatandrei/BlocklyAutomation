@@ -1,6 +1,23 @@
 ﻿namespace LocalTools
 {
-
+    public record PowershellModule(string id, string name)
+    {
+        public static PowershellModule FromDir(string folder)
+        {
+            var id = new DirectoryInfo(folder).Name;
+            return new PowershellModule(id, id);
+        }
+        public string Url
+        {
+            get
+            {
+                return "https://www.powershellgallery.com/packages/" + id;
+            }
+            set
+            {
+            }
+        }
+    }
     public class PowershellTools
     {
 
@@ -17,7 +34,7 @@
             return await File.ReadAllTextAsync(file);
 
         }
-        public string?[]? PowershellModules()
+        public PowershellModule[]? PowershellModules()
         {
             var location = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             var strFolder = Path.Combine(location, "WindowsPowerShell");
@@ -28,11 +45,11 @@
             //Console.WriteLine(strFolder);
             if (!Directory.Exists(strFolder))
                 return null;
-            Console.WriteLine(strFolder);
+            //Console.WriteLine(strFolder);
             return Directory
                 .GetDirectories(strFolder)
-                .Select(it=>new DirectoryInfo(it))
-                .Select(it=> it.Name)
+                //.Select(it=>new DirectoryInfo(it))
+                .Select(it=> PowershellModule.FromDir( it))
                 .ToArray()
                 ;
 
