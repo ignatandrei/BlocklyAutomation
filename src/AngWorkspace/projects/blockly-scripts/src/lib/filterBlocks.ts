@@ -5,6 +5,41 @@ import * as Blockly from 'blockly';
 export class filters{
     definitionBlocks=function(blocks:any,javaScript:any){
     
+
+        blocks['concatList'] = {
+            init: function() {
+              this.appendDummyInput()
+                  .appendField("concatArray");
+                  this.appendValueInput("LIST1")
+                  .setCheck("Array");
+                  
+                  this.appendValueInput("LIST2")
+                  .setCheck("Array");
+                  
+                  
+                  this.setInputsInline(true);
+                  this.setOutput(true, "Array");
+                  this.setColour(230);
+                  this.setTooltip("");
+                  this.setHelpUrl("");
+            }
+          };
+         
+            javaScript['concatList'] = function(block: any) {
+            var list1 = javaScript.valueToCode(block, 'LIST1',
+            javaScript.ORDER_MEMBER) || '[]';
+            var list2 = javaScript.valueToCode(block, 'LIST2',
+            javaScript.ORDER_MEMBER) || '[]';
+                
+                
+            var code = '';
+            code += '[].concat(' + list1 + ').concat(' + list2 + ')';
+            code += '';
+            
+            return [code, javaScript.ORDER_MEMBER ];
+          };
+        
+
     blocks['filterList'] = {
         init: function() {
           this.appendDummyInput()
@@ -144,6 +179,7 @@ fieldXML():string{
                     </shadow>
                 </value>
             </block>
+            <block type="concatList"></block>
             <block type="mapList">
             <value name="LIST">
                 <block type="variables_get">
