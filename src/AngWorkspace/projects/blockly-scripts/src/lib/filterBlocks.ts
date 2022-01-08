@@ -17,8 +17,8 @@ export class filters{
                   .setCheck("Array");
                   
                   
-                  this.setInputsInline(true);
-                  this.setOutput(true, "Array");
+                  this.setInputsInline(false);
+                  this.setOutput(true, null);
                   this.setColour(230);
                   this.setTooltip("");
                   this.setHelpUrl("");
@@ -33,10 +33,10 @@ export class filters{
                 
                 
             var code = '';
-            code += '[].concat(' + list1 + ').concat(' + list2 + ')';
+            code += '(function(a1,a2){ return [].concat(a1).concat(a2);})(' + list1 + ',' + list2 + ')';
             code += '';
             
-            return [code, javaScript.ORDER_MEMBER ];
+            return [code, javaScript.ORDER_FUNCTION_CALL ];
           };
         
 
