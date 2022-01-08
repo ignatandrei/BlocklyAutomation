@@ -143,6 +143,59 @@ export class HTMLTags {
       return [code, javaScript.ORDER_NONE];
     };
 
+
+    blocks['HTMLlinkFromObject'] = {
+      init: function () {
+        this.appendDummyInput()
+          .appendField('Object=>Link')
+          .appendField('target')
+          .appendField(
+            new Blockly.FieldDropdown([
+              ['_blank', '_blank'],
+              ['_self', '_self'],
+              ['_parent', '_parent'],
+              ['_top', '_top'],
+            ]),
+            'targetDrop'
+          );
+        this.appendValueInput('objectProp').setCheck(null).appendField('objectProp');
+        this.appendValueInput('textProp').setCheck(null).appendField('textProp');
+        this.appendValueInput('hrefProp').setCheck(null).appendField('hrefProp');
+        this.setOutput(true, null);
+        this.setColour(230);
+        this.setTooltip('');
+        this.setHelpUrl('');
+      },
+    };
+
+    javaScript['HTMLlinkFromObject'] = function (block: any) {
+      var dropdown_targetdrop = block.getFieldValue('targetDrop');
+      var value_href = javaScript.valueToCode(
+        block,
+        'hrefProp',
+        javaScript.ORDER_MEMBER
+      );
+      var value_text = javaScript.valueToCode(
+        block,
+        'textProp',
+        javaScript.ORDER_ATOMIC
+      );
+      var value_object = javaScript.valueToCode(
+        block,
+        'objectProp',
+        javaScript.ORDER_ATOMIC
+      );
+      value_text = value_text || value_href;
+      var code: string = "(function(obj,text,href){\n" ;      
+      code+=`return '<a href="'+ obj[href] `;
+      code += `+ '" target="${dropdown_targetdrop}"'`;
+      code += `+ '>'+ obj[text] + '</a>' `;
+      code += "}("+ value_object + "," + value_text + "," + value_href + "))";
+      // code= javaScript.quote_(code);
+      return [code, javaScript.ORDER_FUNCTION_CALL];
+    };
+
+
     blocks['HTMLlink'] = {
       init: function () {
         this.appendDummyInput()
@@ -210,11 +263,6 @@ export class HTMLTags {
 <value name='TEXT'>" 
   
 <block type="HTMLli">
-<value name="NAME">
-<shadow type="text">
- <field name="TEXT"></field>
-</shadow>
-</value>
 </block>    
 </value>
 </block>
@@ -235,11 +283,45 @@ export class HTMLTags {
 <block type='text_print'>" 
 <value name='TEXT'>" 
 
-<block type="HTMLlink"></block>
+<block type="HTMLlink">
+<value name="HREF">
+<shadow type="text">
+    <field name="TEXT">http://</field>
+</shadow>
 
+</value>
+<value name="text">
+<shadow type="text">
+    <field name="TEXT">My Text</field>
+</shadow>
+
+</value>
+
+</block>
 </value>
 </block>    
 
+
+<block type='text_print'>" 
+<value name='TEXT'>" 
+
+<block type="HTMLlinkFromObject">
+<value name="hrefProp">
+<shadow type="text">
+    <field name="TEXT">prop</field>
+</shadow>
+
+</value>
+<value name="textProp">
+<shadow type="text">
+    <field name="TEXT">prop</field>
+</shadow>
+
+</value>
+
+</block>
+</value>
+</block>    
 
 `;
   }
