@@ -148,8 +148,8 @@ export class BlocklyReturnSwagger {
     var objPropString = self.findProperties(schema);
 
     return function (blocks:any, javaScript:any, ws: Blockly.WorkspaceSvg) {
-         console.log('fix for #38 this is ws',ws);
-         console.log('fix for #38 this is main',Blockly.getMainWorkspace());
+         //console.log('fix for #38 this is ws',ws);
+         //console.log('fix for #38 this is main',Blockly.getMainWorkspace());
       if(!Blockly.getMainWorkspace()){
         console.log('fix for #38 set mainWorkspace');
         (Blockly as any)["mainWorkspace"] = ws;
@@ -165,7 +165,7 @@ export class BlocklyReturnSwagger {
           var arrValue:any[][] = [];
           if(schema.enum){
             isEnum=true;
-            console.log('#38  here in GenerateBlock from api is ',Blockly.getMainWorkspace());
+            //console.log('#38  here in GenerateBlock from api is ',Blockly.getMainWorkspace());
             var keys= Object.keys(schema.enum);
             if(schema['x-enumNames']){
               arrValue = keys.map((it)=>{
