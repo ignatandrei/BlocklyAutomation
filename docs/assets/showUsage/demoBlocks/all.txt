@@ -1,9 +1,16 @@
 ﻿[
-{"id":"err38",
+    {
+        "id":  "MyPCExtensions",
+        "description":  "Extensions",
+        "categories":  "vscode;chrome;powershell;",
+        "blocks":  "text_print;procedures_callreturn;converttojson;get__api_v1_MyTools_MyPCChromeExtensions;text;math_number;get__api_v1_MyTools_FindVSCodeExtension;get__api_v1_MyTools_PowershellModules;procedures_defreturn;HTMLheaders;text_append;HTMLliStart;controls_forEach;HTMLli;HTMLlinkFromObject;converttostring;HTMLliStop"
+    },
+    {
+        "id":  "err38",
         "description":  "Error 38",
         "categories":  "error",
-        "blocks":  ""
-},
+        "blocks":  "text_print;AnEnum;httprequest"
+    },
     {
         "id":  "FridayLinks",
         "description":  "FridayLinks",
