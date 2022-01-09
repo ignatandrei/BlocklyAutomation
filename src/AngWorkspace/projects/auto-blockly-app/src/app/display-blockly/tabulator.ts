@@ -89,6 +89,10 @@ export class TabulatorHelper
     //console.log(this.stringsForGrid);
     //window.alert('length:'+stringsForGrid.length);
 }
+    data:any[]=[];
+    AddData(value:any){
+        this.data.push(value);
+    }
     AddDataToGrid(value:any) {
         
     //gridElement.innerHTML = '';
@@ -112,6 +116,7 @@ export class TabulatorHelper
     this.AddStringToGrid(value.toString());
 }
     ClearDataGrid() {
+        this.data =[];
         this.dataObject = [];
         this.objectsForGrid = [];
         this.stringsForGrid = [];
@@ -267,7 +272,9 @@ Headers(allHeaders:string[]): Tabulator.ColumnDefinition[] {
 
 }
 FinishGrid() {
-
+    for(var i=0; i<this.data.length; i++){
+        this.AddDataToGrid(this.data[i]);
+    }
     if (this.objectsForGrid.length + this.stringsForGrid.length == 0)
         return;
 

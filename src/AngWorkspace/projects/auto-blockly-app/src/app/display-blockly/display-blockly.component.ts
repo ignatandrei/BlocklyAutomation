@@ -264,7 +264,7 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
 "step_${self.step}" : "${data}",`;
         // console.log(`obtained ${data}`);
         self.lastData=data;
-        self.tabulator.AddDataToGrid(data);
+        self.tabulator.AddData(data);
         //self.ShowChart(data);
         self.ShowHTML(data);
         self.ShowText(data);
