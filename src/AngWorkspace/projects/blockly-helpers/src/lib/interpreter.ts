@@ -746,6 +746,10 @@ consoleLog(arg1:any,arg2:any){
 var wrapper14 = function (text:any, voiceNr:any, rate:any, pitch:any, volume:any) {
     var msg = new SpeechSynthesisUtterance(text);
     var nr = parseInt(voiceNr);
+    if(nr <0) {
+        console.log(' no voice selected');
+        return;
+    }
     var voice= window.speechSynthesis.getVoices()[nr];
     //window.alert(nr);
     msg.voice = voice;

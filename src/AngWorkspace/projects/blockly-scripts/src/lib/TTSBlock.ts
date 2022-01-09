@@ -43,6 +43,9 @@ export class tts {
         'NAME',
         javaScript.ORDER_ATOMIC
       );
+      if(dropdown_voice == "NoVoice"){
+        dropdown_voice="-1";
+      }
       var code = 'speakDefault(' + value_name + ',' + dropdown_voice + ');\n';
       // console.log(a);
       // var piano = a.Synth.createInstrument('piano');
