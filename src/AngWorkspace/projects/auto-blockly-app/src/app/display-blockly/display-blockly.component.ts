@@ -53,7 +53,7 @@ enum ShowCodeAndXML{
 })
 export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
 
-
+  lastData: any = null;
   //monaco settings
   editorXMLOptions = {theme: 'vs-dark', language: 'xml'};
   editorJSOptions = {theme: 'vs-dark', language: 'javascript', lineNumbers: 'on'};
@@ -197,9 +197,9 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
   //   "datasets":[{"label":"Population",
   //   "data":[328239523/10000000,327167439/10000000,325719178/10000000,323127515/10000000,321418821/10000000,318857056/10000000,316128839/10000000]}]}
   // });
-  public changeTabOutput(event: MatTabChangeEvent){
-    console.log(event.index);
-    switch(event.index){
+  private tabIndex:number=0;
+  private changeTab(index:number){
+    switch(index){
       case 0:
         break;
       case 1:
@@ -208,10 +208,18 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
       case 2:
         this.finishHTMLOutput();
         break;
+      case 3: 
+        this.ShowChart(this.lastData);
+        break;
       default:
-        window.alert("tab "+ event.index +" not implemented");
+        window.alert("tab "+ index +" not implemented");
         break;
     }
+  }
+  public changeTabOutput(eventTab: MatTabChangeEvent){
+    console.log(eventTab.index);
+    this.tabIndex=eventTab.index;
+    this.changeTab(eventTab.index);
   }
   step: number = 0;
   RunCode() {
@@ -255,8 +263,9 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
         self.showInner += `\n           
 "step_${self.step}" : "${data}",`;
         // console.log(`obtained ${data}`);
+        self.lastData=data;
         self.tabulator.AddDataToGrid(data);
-        self.ShowChart(data);
+        //self.ShowChart(data);
         self.ShowHTML(data);
         self.ShowText(data);
       },
@@ -266,6 +275,7 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
         });
         self.showInner += `\n "step_end" : "program executed; see results below"\n}`;
         this.tabulator.FinishGrid();
+        this.changeTab(this.tabIndex);
         //this.finishHTMLOutput();
       },
       code

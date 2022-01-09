@@ -111,7 +111,8 @@
         <div [id]="'htmlOutput' + myId"></div>
 
       </mat-tab>
-      <mat-tab label="Chart"> 
+      <mat-tab label="Chart">
+        <canvas [id]="'barchart' + myId" width="800" height="450"> </canvas> 
       </mat-tab>
     </mat-tab-group>
     <ngx-codemirror
@@ -154,7 +155,6 @@
       </mat-panel-description>
     </mat-expansion-panel-header>
     <p>
-      <canvas [id]="'barchart' + myId" width="800" height="450"> </canvas>
     </p>
   </mat-expansion-panel>
   <mat-expansion-panel>
