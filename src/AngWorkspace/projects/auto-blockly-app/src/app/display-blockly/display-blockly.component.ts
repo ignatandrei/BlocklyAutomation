@@ -211,6 +211,17 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
       case 3: 
         this.ShowChart(this.lastData);
         break;
+      case 4:
+        const gridElement = document.getElementById('steps'+this.myId);
+        if (gridElement == null) {
+          window.alert('gridElement is null');
+          return;
+        }
+        this.tabulator.ClearDataGrid();
+        this.tabulator.initGrid(gridElement);
+    
+        this.tabulator.FinishGrid();
+        break;
       default:
         window.alert("tab "+ index +" not implemented");
         break;
@@ -274,7 +285,7 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
           duration: 3000
         });
         self.showInner += `\n "step_end" : "program executed; see results below"\n}`;
-        this.tabulator.FinishGrid();
+        //this.tabulator.FinishGrid();
         this.changeTab(this.tabIndex);
         //this.finishHTMLOutput();
       },
@@ -509,12 +520,6 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
     //this.loadDemo.getDemoBlocks().subscribe(
     
     // );
-    const gridElement = document.getElementById('steps'+this.myId);
-    if (gridElement == null) {
-      window.alert('gridElement is null');
-      return;
-    }
-    this.tabulator.initGrid(gridElement);
     var customCategs=this.DetailsApp.customCategories;
 
     var blocks = [

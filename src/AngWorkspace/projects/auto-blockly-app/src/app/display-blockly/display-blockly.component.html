@@ -96,7 +96,7 @@
   </mat-grid-tile>
   <mat-grid-tile *ngIf="ShowSomething()">
     
-    <mat-tab-group  (selectedTabChange)="changeTabOutput($event)" style="display: inline-block; height: 100%; width: 100%" headerPosition="below" *ngIf="ShowOutput()">
+    <mat-tab-group  (selectedTabChange)="changeTabOutput($event)" style="height: 100%; width: 100%"  *ngIf="ShowOutput()">
       <mat-tab label="JSON"> 
         <ngx-codemirror
         style="display: inline-block; height: 100%; width: 100%"
@@ -106,13 +106,16 @@
       
       </mat-tab>
       
-      <mat-tab label="Text"> <div [id]="'htmlText' + myId"></div></mat-tab>
+      <mat-tab label="Text" isActive="true" > <div [id]="'htmlText' + myId"></div></mat-tab>
       <mat-tab label="HTML"> 
         <div [id]="'htmlOutput' + myId"></div>
 
       </mat-tab>
       <mat-tab label="Chart">
         <canvas [id]="'barchart' + myId" width="800" height="450"> </canvas> 
+      </mat-tab>
+      <mat-tab label="Grid" *ngIf="false">
+        <div [id]="'steps' + myId"></div>
       </mat-tab>
     </mat-tab-group>
     <ngx-codemirror
@@ -136,42 +139,3 @@
     ></ngx-codemirror>
   </mat-grid-tile>
 </mat-grid-list>
-<mat-accordion>
-  <mat-expansion-panel>
-    <mat-expansion-panel-header>
-      <mat-panel-title> Output Grid </mat-panel-title>
-      <mat-panel-description>
-        Click to see grid of output values
-      </mat-panel-description>
-    </mat-expansion-panel-header>
-    
-    <div [id]="'steps' + myId"></div>
-  </mat-expansion-panel>
-  <mat-expansion-panel>
-    <mat-expansion-panel-header>
-      <mat-panel-title> Chart </mat-panel-title>
-      <mat-panel-description>
-        Click to see chart of output values
-      </mat-panel-description>
-    </mat-expansion-panel-header>
-    <p>
-    </p>
-  </mat-expansion-panel>
-  <mat-expansion-panel>
-    <mat-expansion-panel-header>
-      <mat-panel-title> HTML </mat-panel-title>
-      <mat-panel-description>
-        Click to see output as HTML
-      </mat-panel-description>
-    </mat-expansion-panel-header>
-  </mat-expansion-panel>
-  <mat-expansion-panel>
-    <mat-expansion-panel-header>
-      <mat-panel-title> Text </mat-panel-title>
-      <mat-panel-description>
-        Click to see output as Text
-      </mat-panel-description>
-    </mat-expansion-panel-header>
-    
-  </mat-expansion-panel>
-</mat-accordion>

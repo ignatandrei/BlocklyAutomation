@@ -13,12 +13,12 @@ export class TabulatorHelper
     objectsForGrid: Array<object> = [];
     stringsForGrid: Array<string> = [];
     hotInstance: Tabulator | null = null;
-    get hot(): Tabulator | never {
+    get hot(): Tabulator | null {
 
         if(this.hotInstance != null)
             return this.hotInstance;
 
-        throw new Error("hot is null");
+        return null;
     };
 
     initGrid(gridElement: any) {
@@ -197,8 +197,8 @@ AddObjectToFinishGrid() {
     headers.splice(0, 0, "Nr");
     allHeaders.splice(0, 0, "Nr");
     var hs = this.Headers(allHeaders); 
-    this.hot.setColumns(hs);
-    this.hot.replaceData(fullData);
+    this.hot?.setColumns(hs);
+    this.hot?.replaceData(fullData);
 }
 Headers(allHeaders:string[]): Tabulator.ColumnDefinition[] {
     
@@ -267,8 +267,8 @@ Headers(allHeaders:string[]): Tabulator.ColumnDefinition[] {
     //window.alert(fullData.length);
     var allHeaders = ["Nr", "Text"];
     var hs =this.Headers(allHeaders); 
-    this.hot.setColumns(hs);
-    this.hot.replaceData(fullData);
+    this.hot?.setColumns(hs);
+    this.hot?.replaceData(fullData);
 
 }
 FinishGrid() {
@@ -287,7 +287,7 @@ FinishGrid() {
     }
 
     // this.hot.clearFilter(true);
-    this.hot.redraw(true);           
+    this.hot?.redraw(true);           
 }
 
 goodNameForKey(key:string) {
@@ -296,9 +296,9 @@ goodNameForKey(key:string) {
     return ret;
 }
 copyClip() {
-    this.hot.copyToClipboard();
+    this.hot?.copyToClipboard();
 }
 copyCSV() {
-    this.hot.download("csv", "data.csv", { bom: true });
+    this.hot?.download("csv", "data.csv", { bom: true });
 }
 }
