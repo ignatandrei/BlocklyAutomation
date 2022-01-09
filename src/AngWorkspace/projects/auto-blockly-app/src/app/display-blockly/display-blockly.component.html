@@ -96,12 +96,24 @@
   </mat-grid-tile>
   <mat-grid-tile *ngIf="ShowSomething()">
     
-    <ngx-codemirror
-      *ngIf="ShowOutput()"
-      style="display: inline-block; height: 100%; width: 100%"
-      [options]="editorPlain"
-      [(ngModel)]="showInner"
-    ></ngx-codemirror>
+    <mat-tab-group  (selectedTabChange)="changeTabOutput($event)" style="display: inline-block; height: 100%; width: 100%" headerPosition="below" *ngIf="ShowOutput()">
+      <mat-tab label="JSON"> 
+        <ngx-codemirror
+        style="display: inline-block; height: 100%; width: 100%"
+        [options]="editorPlain"
+        [(ngModel)]="showInner"
+      ></ngx-codemirror>
+      
+      </mat-tab>
+      
+      <mat-tab label="Text"> <div [id]="'htmlText' + myId"></div></mat-tab>
+      <mat-tab label="HTML"> 
+        <div [id]="'htmlOutput' + myId"></div>
+
+      </mat-tab>
+      <mat-tab label="Chart"> 
+      </mat-tab>
+    </mat-tab-group>
     <ngx-codemirror
       *ngIf="ShowCode()"
       style="display: inline-block; height: 100%; width: 100%"
@@ -152,7 +164,6 @@
         Click to see output as HTML
       </mat-panel-description>
     </mat-expansion-panel-header>
-    <div [id]="'htmlOutput' + myId"></div>
   </mat-expansion-panel>
   <mat-expansion-panel>
     <mat-expansion-panel-header>
@@ -161,6 +172,6 @@
         Click to see output as Text
       </mat-panel-description>
     </mat-expansion-panel-header>
-    <div [id]="'htmlText' + myId"></div>
+    
   </mat-expansion-panel>
 </mat-accordion>

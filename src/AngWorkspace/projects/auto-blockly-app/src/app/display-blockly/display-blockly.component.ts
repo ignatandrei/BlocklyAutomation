@@ -1,6 +1,8 @@
 import {
   AfterViewInit,
+  ChangeDetectorRef,
   Component,
+  NgZone,
   OnInit,
   ɵɵsetComponentScope,
 } from '@angular/core';
@@ -28,13 +30,14 @@ import { TransmitAction } from '../TransmitAction';
 import { MatSnackBar } from '@angular/material/snack-bar';
 // import { Chart , registerables } from 'chart.js';
 import Chart from 'chart.js/auto';
-import { catchError, fromEvent, throwError } from 'rxjs';
+import { catchError, fromEvent, throwError, windowWhen } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { FindSavedBlocksComponent } from '../find-saved-blocks/find-saved-blocks.component';
 import { error } from '@angular/compiler/src/util';
 import { bs } from '../bs';
 import { saveLoadService } from 'projects/blockly-helpers/src/lib/blockly-helpers.service';
 import { InterpreterBA } from 'projects/blockly-helpers/src/lib/interpreter';
+import { MatTabChangeEvent } from '@angular/material/tabs';
 enum ShowCodeAndXML{
   ShowNone=0,
   ShowBlocksDefinition=1,
@@ -124,12 +127,12 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
     if(this.myChart !=null){
       this.myChart.destroy();
     };
-    var el=this.theHtmlOutput();
-    el.innerHTML = '';
+    //var el=this.theHtmlOutput();
+    //el.innerHTML = '';
     this.fullHtmlData='';
 
-    el=this.theTextOutput();
-    el.innerText = '';
+    //el=this.theTextOutput();
+    //el.innerText = '';
     this.fullTextData='';
 
 
@@ -140,9 +143,9 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
     if(data == null)
       return;
     var dt= data.toString();
-    this.fullTextData+=dt;
-    var el=this.theTextOutput();
-    el.innerText = this.fullTextData;
+    this.fullTextData+="\n"+dt;
+    //var el=this.theTextOutput();
+    //el.innerText = this.fullTextData;
   }
   fullHtmlData:string='';
   finishHTMLOutput(){
@@ -152,9 +155,9 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
     if(data == null)
       return;
     var dt= data.toString();
-    this.fullHtmlData+=dt;
-    var el=this.theHtmlOutput();
-    el.innerHTML += dt;
+    this.fullHtmlData+="<br/>"+dt;
+    //var el=this.theHtmlOutput();
+    //el.innerHTML += dt;
   }
   public theHtmlOutput() : HTMLElement{
     return document.getElementById('htmlOutput'+this.myId)!;
@@ -194,7 +197,22 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
   //   "datasets":[{"label":"Population",
   //   "data":[328239523/10000000,327167439/10000000,325719178/10000000,323127515/10000000,321418821/10000000,318857056/10000000,316128839/10000000]}]}
   // });
-  
+  public changeTabOutput(event: MatTabChangeEvent){
+    console.log(event.index);
+    switch(event.index){
+      case 0:
+        break;
+      case 1:
+        this.theTextOutput().innerText = this.fullTextData; 
+        break;
+      case 2:
+        this.finishHTMLOutput();
+        break;
+      default:
+        window.alert("tab "+ event.index +" not implemented");
+        break;
+    }
+  }
   step: number = 0;
   RunCode() {
     
@@ -217,8 +235,8 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
     };
     this.bh = new InterpreterBA(this.demoWorkspace,BlocklyJavaScript);
     this.run = this.bh;
+    this.showCodeAndXML = ShowCodeAndXML.ShowOutput;    
     this.clearOutput();
-    this.showCodeAndXML = ShowCodeAndXML.ShowOutput;
     this.showInner = '{ "step_start": "start program",';
     
     //  console.log('x',code);
@@ -248,7 +266,7 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
         });
         self.showInner += `\n "step_end" : "program executed; see results below"\n}`;
         this.tabulator.FinishGrid();
-        this.finishHTMLOutput();
+        //this.finishHTMLOutput();
       },
       code
     );
