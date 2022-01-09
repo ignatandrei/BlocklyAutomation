@@ -312,7 +312,8 @@ constructor(public workspace:any,public BlocklyJavaScript:any){
     if(withCreds){
         req.withCredentials = withCreds;
     }
-    else{
+    //else 
+    {
         var hasContentType=false;
         // 
         if(headers && headers.length>0){        
@@ -325,6 +326,7 @@ constructor(public workspace:any,public BlocklyJavaScript:any){
                 req.setRequestHeader(head.name,head.value);
             }
         };
+        //default to application json those days
          if(hasSomethingToSend && !hasContentType){
              req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
          }
