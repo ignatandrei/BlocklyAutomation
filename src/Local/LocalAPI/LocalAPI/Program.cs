@@ -25,6 +25,7 @@ builder.Services.AddTransient<clsISystem_Diagnostics_Process>();
 builder.Services.AddTransient<ChromeExtensions>();
 builder.Services.AddTransient<PowershellTools>();
 builder.Services.AddTransient<VSCodeExtensions>();
+builder.Services.AddTransient<NuGets>();
 //builder.Configuration.GetDebugView();
 EmailConfig cfgEmail =new ();
 builder.Configuration.GetSection("plugins:email").Bind(cfgEmail);
@@ -85,7 +86,7 @@ app.MapControllers();
 app.UseAMS();
 app.MapFallbackToFile("/BlocklyAutomation/{**slug:nonfile}", "BlocklyAutomation/index.html");
 ManagementController.cts = new();
-//app.Urls.Add("http://localhost:37283");
+app.Urls.Add("http://localhost:37283");
 //while (true)
 {//
     try
