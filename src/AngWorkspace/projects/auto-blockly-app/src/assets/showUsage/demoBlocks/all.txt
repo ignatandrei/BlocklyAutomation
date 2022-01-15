@@ -1,4 +1,10 @@
 ﻿[
+ {
+        "id":  "htmlConverter",
+        "description":  "html converter",
+        "categories":  "html;httprequest",
+        "blocks":  "httprequest;HTMLlist;controls_forEach;text_print;HTMLli;HTMLlinkFromObject;converttostring"
+    },
     {
         "id":  "trello",
         "description":  "see trello cards",

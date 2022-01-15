@@ -66,6 +66,29 @@ export class convertersBlocks{
         //return code;
         return [code, /*javaScript.*/ORDER_NONE];
     };
+
+
+
+    blocks['convertHtml'] = {
+        init: function () {
+            this.appendDummyInput()
+                .appendField("Convert To HTML");
+            this.appendValueInput("ArrayToConvert")
+                .setCheck(null)
+                .appendField("Array to convert");
+            //this.setPreviousStatement(true, null);
+            //this.setNextStatement(true, null);
+            this.setOutput(true, null);
+            this.setTooltip("");
+            this.setHelpUrl("");
+        }
+    };
+    javaScript['convertHtml'] = function (block:any) {
+        var data = javaScript.valueToCode(block, 'ArrayToConvert', javaScript.ORDER_ATOMIC);
+        var code = 'convertToHTML(' + data+')';
+        //return code;
+        return [code, /*javaScript.*/ORDER_NONE];
+    };
     
     // const convertCSV = function (arrayOrString) {
         
@@ -85,6 +108,8 @@ fieldXML() : string {
  return `<block type="converttojson"></block>
  <block type="converttostring"></block>
  <block type="convertcsv"></block>
+ <block type="convertHtml"></block>
+
 `
 }
 }

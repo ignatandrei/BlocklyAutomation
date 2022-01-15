@@ -581,19 +581,19 @@ consoleLog(arg1:any,arg2:any){
         interpreter.setProperty(globalObject, 'errHandler',
             interpreter.createNativeFunction(wrapper));
 
-            var wrapper1 = function(arg1:any,arg2:any) {                
+            var wrapper10 = function(arg1:any,arg2:any) {                
                 return interpreter.createPrimitive(thisClass.consoleLog(arg1,arg2));
               };
               interpreter.setProperty(globalObject, 'consoleLog',
-                  interpreter.createNativeFunction(wrapper1));
+                  interpreter.createNativeFunction(wrapper10));
 
 
-            var wrapper2 = function(html:any,type:any, tagName:any) {                
+            var wrapper20 = function(html:any,type:any, tagName:any) {                
                 html= html ? html.toString() : '';
                 return interpreter.createPrimitive(thisClass.parseDOMFromStringElements(html,type,tagName));
               };
               interpreter.setProperty(globalObject, 'parseDOMFromStringElements',
-                  interpreter.createNativeFunction(wrapper2));
+                  interpreter.createNativeFunction(wrapper20));
             
 
   
@@ -606,32 +606,32 @@ consoleLog(arg1:any,arg2:any){
           var headersForDomain = interpreter.nativeToPseudo({ '(localSite)': [] });
           interpreter.setProperty(globalObject, 'headersForDomain',headersForDomain);
 
-          var wrapper3 = function(text:any) {
+          var wrapper30 = function(text:any) {
             text = text ? text.toString() : '';
             window.alert(text);
           };
           interpreter.setProperty(globalObject, 'alert1',
-              interpreter.createNativeFunction(wrapper3));
+              interpreter.createNativeFunction(wrapper30));
 
-              var wrapper4 = function(note:any, octave:any, duration:any) {
+              var wrapper40 = function(note:any, octave:any, duration:any) {
                 var piano = synthPiano.Synth.createInstrument('piano');
                 piano.play(note,octave,duration);
                 //window.alert(text);
               };
               interpreter.setProperty(globalObject, 'playPiano',
-                  interpreter.createNativeFunction(wrapper4));
+                  interpreter.createNativeFunction(wrapper40));
     
-              var wrapper5 = function(msg:any, id:any, item:any) {
+              var wrapper50 = function(msg:any, id:any, item:any) {
                 thisClass.highlightBlock(id);
                 debugger;
                 console.log(msg, id,item);                
               };
               interpreter.setProperty(globalObject, 'startDebugger',
-                  interpreter.createNativeFunction(wrapper5));
+                  interpreter.createNativeFunction(wrapper50));
     
     
             // Add an API function for the alert() block, generated for "text_print" blocks.
-            var wrapper6 = function(text:any) {
+            var wrapper60 = function(text:any) {
               text = text ? text.toString() : '';
               //outputArea.value = outputArea.value + '\n' + text;
               if(callBackData)
@@ -640,27 +640,27 @@ consoleLog(arg1:any,arg2:any){
                 console.log(text);
             };
             interpreter.setProperty(globalObject, 'alert',
-                interpreter.createNativeFunction(wrapper6));
+                interpreter.createNativeFunction(wrapper60));
 
-                var wrapper7 = (nr:any, callback:any) => {
+                var wrapper70 = (nr:any, callback:any) => {
                   console.log(`waiting seconds ${nr}`);
                   setTimeout(callback, nr * 1000);
               };
               interpreter.setProperty(globalObject, 'waitTime',
-                  interpreter.createAsyncFunction(wrapper7));
+                  interpreter.createAsyncFunction(wrapper70));
 
                 
-          var wrapper8 = (it:any) => thisClass.displayDateFormatted(it);
+          var wrapper80 = (it:any) => thisClass.displayDateFormatted(it);
           interpreter.setProperty(globalObject, 'displayDateFormatted',
-                        interpreter.createNativeFunction(wrapper8));
+                        interpreter.createNativeFunction(wrapper80));
             
     
-            var wrapper9 = (it:any, content:any, toByte:any) => thisClass.exportToFile(it, content, toByte);
+            var wrapper90 = (it:any, content:any, toByte:any) => thisClass.exportToFile(it, content, toByte);
             interpreter.setProperty(globalObject, 'exportToFile',
-                    interpreter.createNativeFunction(wrapper9));
+                    interpreter.createNativeFunction(wrapper90));
         
 
-            var wrapper10 = (arrayOrString:any) => {             
+            var wrapper100 = (arrayOrString:any) => {             
                 //console.log('z',arrayOrString,typeof arrayOrString);
                 var arr= null;
                 if(Array.isArray(arrayOrString)){
@@ -686,17 +686,48 @@ consoleLog(arg1:any,arg2:any){
             
             }
             interpreter.setProperty(globalObject, 'convertToCSV',
-                interpreter.createNativeFunction(wrapper10));
+                interpreter.createNativeFunction(wrapper100));
 
+                var wrapper101 = (arrayOrString:any) => {             
+                    //console.log('z',arrayOrString,typeof arrayOrString);
+                    var arr= null;
+                    if(Array.isArray(arrayOrString)){
+                        arr = arrayOrString;
+                    }
+                    else{
+                        arr = typeof arrayOrString != 'object' ? JSON.parse(arrayOrString) : {};
+                        if(arr && arr.table0){//compatibility with table parser blocks
+                            arr = arr.table0;
+                        }
+                        if(arr && arr.list0){//compatibility with list parser blocks
+                            arr = arr.list0;
+                        }
+                    }
+                    if(arr.length == 0)
+                        return "";
+                    var keys=Object.keys(arr[0]);
+                    var data= "<table><tr>";
+                    data += keys.map((it :any )=> `<th>${it}</th>\n`).join('');
+                    data+="</tr>";
+                    data+= arr.map((it:any)=> `<tr>${Object.values(it).map(it=>`<td>${it}</td>`).join('')}</tr>`).join('');
+                    data+="</table>";
+                    
+                    
+                    return data;
+                
+                }
+                interpreter.setProperty(globalObject, 'convertToHTML',
+                    interpreter.createNativeFunction(wrapper101));
+    
             
-          var wrapper11 = function (text:any) {
+          var wrapper110 = function (text:any) {
                   window.open(text,'_blank');
               };
           interpreter.setProperty(globalObject, 'open',
-                  interpreter.createNativeFunction(wrapper11));
+                  interpreter.createNativeFunction(wrapper110));
   
   
-        var wrapper12 = function (url:any, hostname:any){
+        var wrapper120 = function (url:any, hostname:any){
             hostname = hostname ? hostname.toString() : '';
             hostname=hostname.trim();
             if(hostname.length == 0)
@@ -729,9 +760,9 @@ consoleLog(arg1:any,arg2:any){
             return ret;
         }
         interpreter.setProperty(globalObject, 'changeHost',
-                                interpreter.createNativeFunction(wrapper12));
+                                interpreter.createNativeFunction(wrapper120));
 
-        var wrapper13 = function (url:any, port:any){
+        var wrapper130 = function (url:any, port:any){
             var urlNew= new URL(url);
             console.log(`url ${urlNew.href}`);
             urlNew.port = port;
@@ -742,10 +773,10 @@ consoleLog(arg1:any,arg2:any){
             return ret;
         }
         interpreter.setProperty(globalObject, 'changePort',
-                                interpreter.createNativeFunction(wrapper13));
+                                interpreter.createNativeFunction(wrapper130));
         
 //speak
-var wrapper14 = function (text:any, voiceNr:any, rate:any, pitch:any, volume:any) {
+var wrapper140 = function (text:any, voiceNr:any, rate:any, pitch:any, volume:any) {
     var msg = new SpeechSynthesisUtterance(text);
     var nr = parseInt(voiceNr);
     if(nr <0) {
@@ -758,7 +789,7 @@ var wrapper14 = function (text:any, voiceNr:any, rate:any, pitch:any, volume:any
     window.speechSynthesis.speak(msg);
 }
 interpreter.setProperty(globalObject, 'speakDefault',
-                        interpreter.createNativeFunction(wrapper14));
+                        interpreter.createNativeFunction(wrapper140));
 
 //speak
                                 
@@ -780,29 +811,29 @@ interpreter.setProperty(globalObject, 'speakDefault',
             //   return vex.dialog.prompt( { message:text,callback: callback});
 
             // });
-            var wrapper15 = function(message:any,defaultPrompt:any, callback:any) {
+            var wrapper150 = function(message:any,defaultPrompt:any, callback:any) {
                 message= message? message.toString() : '';
                 defaultPrompt= defaultPrompt? defaultPrompt.toString() : '';
                 var res= window.prompt(message,defaultPrompt);
                 callback(res);
               }; 
               interpreter.setProperty(globalObject, 'prompt',
-                  interpreter.createAsyncFunction(wrapper15));
+                  interpreter.createAsyncFunction(wrapper150));
             
       
             // Add an API for the wait block.  See wait_block.js
             // this.initInterpreterWaitForSeconds(interpreter, globalObject);
             thisClass.BlocklyJavaScript.addReservedWords('waitForSeconds');
           
-            var wrapper16 = interpreter.createAsyncFunction(
+            var wrapper160 = interpreter.createAsyncFunction(
               function(timeInSeconds:any, callback:any) {
                 // Delay the call to the callback.
                 setTimeout(callback, timeInSeconds * 1000);
               });
-            interpreter.setProperty(globalObject, 'waitForSeconds', wrapper16);
+            interpreter.setProperty(globalObject, 'waitForSeconds', wrapper160);
 
 
-            var wrapper17 = (href:any, callback:any) => {
+            var wrapper170 = (href:any, callback:any) => {
 
               
               var arrHeaders = thisClass.getHeaders(interpreter, headersForDomain, href);
@@ -811,10 +842,10 @@ interpreter.setProperty(globalObject, 'speakDefault',
               return thisClass.doGet(href, callback, arrHeaders, withCreds);
           }
           interpreter.setProperty(globalObject, 'getXhr',
-              interpreter.createAsyncFunction(wrapper17));
+              interpreter.createAsyncFunction(wrapper170));
 
 
-              var wrapper18 = (href:any, objectToPost:any, callback:any) => {
+              var wrapper180 = (href:any, objectToPost:any, callback:any) => {
                 try {
                     var arrHeaders = thisClass.getHeaders(interpreter, headersForDomain, href);
                     var withCreds = thisClass.getCreds(interpreter, withCredsForDomain, href);
@@ -825,9 +856,9 @@ interpreter.setProperty(globalObject, 'speakDefault',
                 }
             };
             interpreter.setProperty(globalObject, 'postXhr',
-                interpreter.createAsyncFunction(wrapper18)); 
+                interpreter.createAsyncFunction(wrapper180)); 
 
-                var wrapper19 = (href:any, objectToDelete:any, callback:any) => {
+                var wrapper190 = (href:any, objectToDelete:any, callback:any) => {
                   try {
                     var arrHeaders = thisClass.getHeaders(interpreter, headersForDomain, href);
                     var withCreds = thisClass.getCreds(interpreter, withCredsForDomain, href);                      
@@ -841,10 +872,10 @@ interpreter.setProperty(globalObject, 'speakDefault',
   
   
               interpreter.setProperty(globalObject, 'deleteXhr',
-                  interpreter.createAsyncFunction(wrapper19));
+                  interpreter.createAsyncFunction(wrapper190));
   
             
-                var wrapper20 = (href:any, objectToPost:any, callback:any) => {
+                var wrapper200 = (href:any, objectToPost:any, callback:any) => {
                   try {
                       
         
@@ -869,17 +900,17 @@ interpreter.setProperty(globalObject, 'speakDefault',
                   }
               };
               interpreter.setProperty(globalObject, 'putXhr',
-                  interpreter.createAsyncFunction(wrapper20));
+                  interpreter.createAsyncFunction(wrapper200));
   
 
             
             // Add an API function for highlighting blocks.
-            var wrapper21 = function(id:any) {
+            var wrapper210 = function(id:any) {
               id = id ? id.toString() : '';
               return interpreter.createPrimitive(thisClass.highlightBlock(id));
             };
             interpreter.setProperty(globalObject, 'highlightBlock',
-                interpreter.createNativeFunction(wrapper21));
+                interpreter.createNativeFunction(wrapper210));
           }
       
     }
