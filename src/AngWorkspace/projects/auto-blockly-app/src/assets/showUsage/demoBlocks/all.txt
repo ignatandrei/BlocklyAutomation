@@ -1,9 +1,15 @@
 ﻿[
- {
+    {
+        "id":  "wikirandom",
+        "description":  "wikipedia random article",
+        "categories":  "httprequest",
+        "blocks":  "window_open;text"
+    },
+    {
         "id":  "htmlConverter",
         "description":  "html converter",
         "categories":  "html;httprequest",
-        "blocks":  "httprequest;HTMLlist;controls_forEach;text_print;HTMLli;HTMLlinkFromObject;converttostring"
+        "blocks":  "get__WeatherForecast;text_print;convertHtml"
     },
     {
         "id":  "trello",
