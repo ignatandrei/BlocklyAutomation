@@ -420,25 +420,27 @@ export class BlocklyReturnSwagger {
               this.setColour(10);
           }
           var str = key;
-
+          var last= "";
           var categs = self.findCategSwaggerFromPaths();
           for(var i=0;i<categs.length;i++){
             var find='/'+categs[i]+'/';
             var whereFind=key.indexOf(find);
             if(whereFind>-1){
+              last = categs[i];
               var remains=key.substring(whereFind+ find.length);
               if(remains.length< str.length){
+                
                 str=remains;
               }
             }
 
           }
 
-          
+          if(last.length>5) last=last.substring(0,5)+"...";
           if (str.length > 25) str = str.substring(0, 25) + "...";
           this.appendDummyInput()
             .appendField(new Blockly.FieldImage(`assets/httpImages/${operationKey}.png`,90,20,operationKey))
-            .appendField(`${displayOpKey} ${str}`);
+            .appendField(`${last} ${displayOpKey} ${str}`);
           var root = self.findRootSite();          
           if (op.parameters)
             op.parameters.forEach((it:any) => {
