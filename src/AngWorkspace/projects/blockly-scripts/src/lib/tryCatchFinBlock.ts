@@ -25,7 +25,7 @@ export class tryCat {
 
       var code = 'try {\n' + statements_try + '}\n';
       code +=
-        'catch(err){\n errHandler(JSON.stringify(err));\n' +
+        'catch(err){\n ' +
         statements_catch +
         '\n}';
       code += 'finally{\n ' + statements_finally + '\n}\n';
