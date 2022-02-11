@@ -7,7 +7,9 @@ const routes: Routes = [
   { path: '', redirectTo: 'automation/main', pathMatch: 'full' },
   { path: 'automation/main', component:DisplayBlocklyComponent },
   { path: 'automation/studio', component:BlocklyStudioComponent },
-  { path: 'automation/loadexample/:demoblock', component:DisplayBlocklyComponent }
+  { path: 'automation/loadexample/:demoblock', component:DisplayBlocklyComponent },
+  { path: '**',component: DisplayBlocklyComponent }
+  
 
 ];
 
