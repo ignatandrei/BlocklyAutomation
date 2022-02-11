@@ -1,9 +1,15 @@
 ﻿[
     {
+        "id":  "api",
+        "description":  "show help for api",
+        "categories":  "javascript",
+        "blocks":  "text_print;text_message;text"
+    },
+    {
         "id":  "javascript",
         "description":  "javascript errors",
         "categories":  "javascript",
-        "blocks":  "window_open;text"
+        "blocks":  "text;text_print;math_arithmetic"
     },
     {
         "id":  "wikirandom",
