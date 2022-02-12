@@ -4,7 +4,7 @@ import {   forkJoin, from, merge, Observable, of, zip} from "rxjs";
 import { delay, map,  tap ,switchMap,zipAll, switchMapTo, catchError} from 'rxjs/operators';
 import { DemoBlocks } from "projects/node2-blockly/src/lib/DemoBlocks";
 import { LinksSwagger } from "projects/node2-blockly/src/lib/LinksSwagger";
-import { LoadShowUsageService } from "./load-show-usage.service";
+import { LoadShowUsageService } from "projects/node2-blockly/src/lib/load-show-usage.service";
 import { Settings } from "projects/node2-blockly/src/lib/Settings";
 import { BlocklyReturnSwagger } from "projects/blockly-swagger/src/public-api";
 import { LocalAPI } from "projects/node2-blockly/src/lib/LocalApi";

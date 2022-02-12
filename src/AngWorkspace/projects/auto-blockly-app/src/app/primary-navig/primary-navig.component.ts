@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-import { LoadShowUsageService } from '../load-show-usage.service';
+import { LoadShowUsageService } from "projects/node2-blockly/src/lib/load-show-usage.service";
 import { DemoBlocks } from "projects/node2-blockly/src/lib/DemoBlocks";
 import { AppDetails } from '../AppDetails';
 import { Settings } from "projects/node2-blockly/src/lib/Settings";

@@ -11,3 +11,4 @@ export * from './lib/LocalApi';
 export * from './lib/TourSteps';
 export * from './lib/Settings';
 export * from './lib/TransmitAction';
+export * from './lib/load-show-usage.service';
