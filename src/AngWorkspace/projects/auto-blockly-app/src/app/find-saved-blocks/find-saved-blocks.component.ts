@@ -3,7 +3,7 @@ import { FormControl } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { combineLatest, map, of, startWith } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
-import { AppDetails } from '../AppDetails';
+import { AppDetails } from 'projects/node2-blockly/src/lib/AppDetails';
 import { DemoBlocks } from "projects/node2-blockly/src/lib/DemoBlocks";
 
 @Component({

@@ -24,7 +24,7 @@ import { ActivatedRoute } from '@angular/router';
 declare var Interpreter: any;
 import { IntroJs } from 'intro.js';
 import * as introJs from 'intro.js';
-import { AppDetails } from '../AppDetails';
+import { AppDetails } from 'projects/node2-blockly/src/lib/AppDetails';
 import { TourSteps } from "projects/node2-blockly/src/lib/TourSteps";
 import { TransmitAction } from 'projects/node2-blockly/src/lib/TransmitAction';
 import { MatSnackBar } from '@angular/material/snack-bar';

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { AppDetails } from './AppDetails';
+import { AppDetails } from 'projects/node2-blockly/src/lib/AppDetails';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
