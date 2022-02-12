@@ -26,7 +26,7 @@ import { IntroJs } from 'intro.js';
 import * as introJs from 'intro.js';
 import { AppDetails } from '../AppDetails';
 import { TourSteps } from "projects/node2-blockly/src/lib/TourSteps";
-import { TransmitAction } from '../TransmitAction';
+import { TransmitAction } from 'projects/node2-blockly/src/lib/TransmitAction';
 import { MatSnackBar } from '@angular/material/snack-bar';
 // import { Chart , registerables } from 'chart.js';
 import Chart from 'chart.js/auto';

@@ -43,7 +43,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { PrimaryNavigComponent } from './primary-navig/primary-navig.component';
 import { AppDetails } from './AppDetails';
 import { Observable, ObservableLike } from 'rxjs';
-import { TransmitAction } from './TransmitAction';
+import { TransmitAction } from 'projects/node2-blockly/src/lib/TransmitAction';
 import { BlocklyStudioComponent } from './blockly-studio/blockly-studio.component';
 import { FindSavedBlocksComponent } from './find-saved-blocks/find-saved-blocks.component';
 import { CodemirrorModule } from '@ctrl/ngx-codemirror';

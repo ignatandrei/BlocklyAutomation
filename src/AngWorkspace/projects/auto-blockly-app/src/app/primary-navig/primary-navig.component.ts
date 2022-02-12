@@ -6,7 +6,7 @@ import { LoadShowUsageService } from '../load-show-usage.service';
 import { DemoBlocks } from "projects/node2-blockly/src/lib/DemoBlocks";
 import { AppDetails } from '../AppDetails';
 import { Settings } from "projects/node2-blockly/src/lib/Settings";
-import { TransmitAction } from '../TransmitAction';
+import { TransmitAction } from 'projects/node2-blockly/src/lib/TransmitAction';
 
 @Component({
   selector: 'app-primary-navig',
