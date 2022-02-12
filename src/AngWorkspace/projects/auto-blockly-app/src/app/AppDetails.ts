@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 import {   forkJoin, from, merge, Observable, of, zip} from "rxjs";
 import { delay, map,  tap ,switchMap,zipAll, switchMapTo, catchError} from 'rxjs/operators';
 import { DemoBlocks } from "./DemoBlocks";
-import { LinksSwagger } from "./LinksSwagger";
+import { LinksSwagger } from "projects/node2-blockly/src/lib/LinksSwagger";
 import { LoadShowUsageService } from "./load-show-usage.service";
 import { Settings } from "./Settings";
 import { BlocklyReturnSwagger } from "projects/blockly-swagger/src/public-api";

@@ -5,7 +5,7 @@ import { map,  tap } from 'rxjs/operators';
 
 import { environment } from '../environments/environment';
 import { DemoBlocks } from './DemoBlocks';
-import { LinksSwagger } from './LinksSwagger';
+import { LinksSwagger } from 'projects/node2-blockly/src/lib/LinksSwagger';
 
 @Injectable({
   providedIn: 'root'

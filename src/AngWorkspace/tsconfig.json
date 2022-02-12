@@ -14,6 +14,10 @@
       "BlocklySwagger": [
         "dist/blockly-swagger/blockly-swagger",
         "dist/blockly-swagger"
+      ],
+      "Node2Blockly": [
+        "dist/node2-blockly/node2-blockly",
+        "dist/node2-blockly"
       ]
     },
     "baseUrl": "./",

@@ -207,6 +207,37 @@
           }
         }
       }
+    },
+    "Node2Blockly": {
+      "projectType": "library",
+      "root": "projects/node2-blockly",
+      "sourceRoot": "projects/node2-blockly/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/node2-blockly/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/node2-blockly/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/node2-blockly/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/node2-blockly/src/test.ts",
+            "tsConfig": "projects/node2-blockly/tsconfig.spec.json",
+            "karmaConfig": "projects/node2-blockly/karma.conf.js"
+          }
+        }
+      }
     }
   },
   "defaultProject": "AutoBlocklyApp"
