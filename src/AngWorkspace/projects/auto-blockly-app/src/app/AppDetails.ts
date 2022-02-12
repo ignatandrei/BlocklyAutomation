@@ -5,7 +5,7 @@ import { delay, map,  tap ,switchMap,zipAll, switchMapTo, catchError} from 'rxjs
 import { DemoBlocks } from "projects/node2-blockly/src/lib/DemoBlocks";
 import { LinksSwagger } from "projects/node2-blockly/src/lib/LinksSwagger";
 import { LoadShowUsageService } from "./load-show-usage.service";
-import { Settings } from "./Settings";
+import { Settings } from "projects/node2-blockly/src/lib/Settings";
 import { BlocklyReturnSwagger } from "projects/blockly-swagger/src/public-api";
 import { LocalAPI } from "projects/node2-blockly/src/lib/LocalApi";
 

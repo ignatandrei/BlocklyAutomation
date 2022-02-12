@@ -1,4 +1,4 @@
-import { TourSteps } from "projects/node2-blockly/src/lib/TourSteps";
+import { TourSteps } from "./TourSteps";
 
 
 export class Settings {

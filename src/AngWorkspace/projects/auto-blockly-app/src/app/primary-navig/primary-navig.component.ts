@@ -5,7 +5,7 @@ import { map, shareReplay } from 'rxjs/operators';
 import { LoadShowUsageService } from '../load-show-usage.service';
 import { DemoBlocks } from "projects/node2-blockly/src/lib/DemoBlocks";
 import { AppDetails } from '../AppDetails';
-import { Settings } from '../Settings';
+import { Settings } from "projects/node2-blockly/src/lib/Settings";
 import { TransmitAction } from '../TransmitAction';
 
 @Component({
