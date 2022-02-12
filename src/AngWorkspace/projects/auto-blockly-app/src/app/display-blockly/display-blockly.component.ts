@@ -25,7 +25,7 @@ declare var Interpreter: any;
 import { IntroJs } from 'intro.js';
 import * as introJs from 'intro.js';
 import { AppDetails } from '../AppDetails';
-import { TourSteps } from '../TourSteps';
+import { TourSteps } from "projects/node2-blockly/src/lib/TourSteps";
 import { TransmitAction } from '../TransmitAction';
 import { MatSnackBar } from '@angular/material/snack-bar';
 // import { Chart , registerables } from 'chart.js';
