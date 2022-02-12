@@ -69,7 +69,7 @@ export class convertersBlocks{
 
 
 
-    blocks['convertHtml'] = {
+    blocks['convertToTable'] = {
         init: function () {
             this.appendDummyInput()
                 .appendField("Convert To HTML");
@@ -83,9 +83,9 @@ export class convertersBlocks{
             this.setHelpUrl("");
         }
     };
-    javaScript['convertHtml'] = function (block:any) {
+    javaScript['convertToTable'] = function (block:any) {
         var data = javaScript.valueToCode(block, 'ArrayToConvert', javaScript.ORDER_ATOMIC);
-        var code = 'convertToHTML(' + data+')';
+        var code = 'convertArrToTable(' + data+')';
         //return code;
         return [code, /*javaScript.*/ORDER_NONE];
     };
@@ -108,7 +108,7 @@ fieldXML() : string {
  return `<block type="converttojson"></block>
  <block type="converttostring"></block>
  <block type="convertcsv"></block>
- <block type="convertHtml"></block>
+ <block type="convertToTable"></block>
 
 `
 }

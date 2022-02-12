@@ -716,7 +716,7 @@ consoleLog(arg1:any,arg2:any){
                     return data;
                 
                 }
-                interpreter.setProperty(globalObject, 'convertToHTML',
+                interpreter.setProperty(globalObject, 'convertArrToTable',
                     interpreter.createNativeFunction(wrapper101));
     
             
