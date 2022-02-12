@@ -7,7 +7,8 @@ interface operations{
 }
 interface fieldXmlFunctions{
   id: string,
-  gui:string
+  gui:string,
+  methodAPI:any
 }
 interface KV{
   key:string,
@@ -37,7 +38,7 @@ export class BlocklyReturnSwagger {
   async ParseSwagger() {
     var self = this;
     self.fieldXMLObjects.push(`<label text="${self.swaggerUrl}"></label>`);
-    self.fieldXMLFunctions.push({id:'',gui:`<label text="${self.swaggerUrl}"></label>`});
+    self.fieldXMLFunctions.push({id:'',gui:`<label text="${self.swaggerUrl}"></label>`, methodAPI:null});
     var r:any =null;
     try{
     // const SwaggerParser = require("@api-platform/api-doc-parser/lib/openapi3/parseOpenApi3Documentation");
@@ -391,7 +392,7 @@ export class BlocklyReturnSwagger {
       xmlBlockShow+=`</block></value>`;
       
       xmlBlockShow+=`</block>`;
-    self.fieldXMLFunctions.push({id:key,gui:xmlBlockShow});
+    self.fieldXMLFunctions.push({id:key,gui:xmlBlockShow , methodAPI:operationKey});
 
     return function (blocks:any, javaScript:any) {
       blocks[blocklyTypeName] = {
@@ -770,9 +771,9 @@ TranslateToBlocklyType(t:any) {
             name: it,
             ops: self
               .findfieldXMLFunctions(it)
-              .map((op:any) => op.id)
-              .filter((op:any) => op.length > 0),
-          };
+              .filter((op:any) => op.id.length > 0),
+              //.map((op:any) => op.id)
+        };
         });
         var obj1 = { name: self.name, categories: obj };
         var code = JSON.stringify(obj1);
@@ -869,11 +870,11 @@ TranslateToBlocklyType(t:any) {
     return this.cacheCategSwaggerFromPaths;
   }
   findfieldXMLFunctions(controllerName:string){
-    var allPaths=this.openApiDocument.paths;
-    var keys= Object.keys(allPaths);
+    // var allPaths=this.openApiDocument.paths;
+    //var keys= Object.keys(allPaths);
     
     var urls = this.operations.filter((it:any) => it.controller == controllerName);
-    //console.log(urls);
+    // console.log('x'+controllerName, urls);
     var xmlList = this.fieldXMLFunctions
       .filter((it:any) => {
         if (it.id == '') return true;

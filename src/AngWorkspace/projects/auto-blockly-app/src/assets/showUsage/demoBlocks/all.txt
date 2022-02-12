@@ -1,4 +1,11 @@
 ﻿[
+{
+        "id":  "apiHtml",
+        "description":  "html api",
+        "categories":  "meta;api",
+        "blocks":  "window_open;text"
+    },
+
     {
         "id":  "api",
         "description":  "show help for api",

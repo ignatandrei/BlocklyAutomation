@@ -72,7 +72,7 @@ export class convertersBlocks{
     blocks['convertToTable'] = {
         init: function () {
             this.appendDummyInput()
-                .appendField("Convert To HTML");
+                .appendField("Convert To Table");
             this.appendValueInput("ArrayToConvert")
                 .setCheck(null)
                 .appendField("Array to convert");
