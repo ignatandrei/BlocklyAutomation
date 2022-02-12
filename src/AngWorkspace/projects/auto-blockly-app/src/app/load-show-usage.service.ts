@@ -4,7 +4,7 @@ import {  Observable, of } from 'rxjs';
 import { map,  tap } from 'rxjs/operators';
 
 import { environment } from '../environments/environment';
-import { DemoBlocks } from './DemoBlocks';
+import { DemoBlocks } from "projects/node2-blockly/src/lib/DemoBlocks";
 import { LinksSwagger } from 'projects/node2-blockly/src/lib/LinksSwagger';
 
 @Injectable({

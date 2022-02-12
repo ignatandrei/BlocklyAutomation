@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { catchError, map, Observable, of } from "rxjs";
-import { DemoBlocks } from "./DemoBlocks";
+import { DemoBlocks } from "projects/node2-blockly/src/lib/DemoBlocks";
 
 export class LocalAPI{
     constructor(public urL:string, private http: HttpClient){

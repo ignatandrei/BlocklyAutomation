@@ -3,7 +3,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { LoadShowUsageService } from '../load-show-usage.service';
-import { DemoBlocks } from '../DemoBlocks';
+import { DemoBlocks } from "projects/node2-blockly/src/lib/DemoBlocks";
 import { AppDetails } from '../AppDetails';
 import { Settings } from '../Settings';
 import { TransmitAction } from '../TransmitAction';

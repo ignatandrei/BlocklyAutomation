@@ -17,7 +17,7 @@ import { BlocklyXHR } from'projects/blockly-scripts/src/lib/BlocklyXHR';
 
 import { TabulatorHelper } from './tabulator';
 import { LoadShowUsageService } from '../load-show-usage.service';
-import { DemoBlocks } from '../DemoBlocks';
+import { DemoBlocks } from "projects/node2-blockly/src/lib/DemoBlocks";
 import { BlocklyReturnSwagger } from "projects/blockly-swagger/src/public-api";
 // import { firstValueFrom } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';

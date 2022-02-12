@@ -4,7 +4,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { combineLatest, map, of, startWith } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
 import { AppDetails } from '../AppDetails';
-import { DemoBlocks } from '../DemoBlocks';
+import { DemoBlocks } from "projects/node2-blockly/src/lib/DemoBlocks";
 
 @Component({
   selector: 'app-find-saved-blocks',
