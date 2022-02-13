@@ -45,7 +45,7 @@ import { AppDetails } from 'projects/node2-blockly/src/lib/AppDetails';
 import { Observable, ObservableLike } from 'rxjs';
 import { TransmitAction } from 'projects/node2-blockly/src/lib/TransmitAction';
 import { BlocklyStudioComponent } from './blockly-studio/blockly-studio.component';
-import { FindSavedBlocksComponent } from './find-saved-blocks/find-saved-blocks.component';
+import { FindSavedBlocksComponent } from 'projects/node2-blockly/src/lib/find-saved-blocks/find-saved-blocks.component';
 import { CodemirrorModule } from '@ctrl/ngx-codemirror';
 
 @NgModule({

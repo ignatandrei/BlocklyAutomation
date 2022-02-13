@@ -32,7 +32,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import Chart from 'chart.js/auto';
 import { catchError, fromEvent, throwError, windowWhen } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
-import { FindSavedBlocksComponent } from '../find-saved-blocks/find-saved-blocks.component';
+import { FindSavedBlocksComponent } from 'projects/node2-blockly/src/lib/find-saved-blocks/find-saved-blocks.component';
 import { error } from '@angular/compiler/src/util';
 import { bs } from 'projects/node2-blockly/src/lib/bs';
 import { saveLoadService } from 'projects/blockly-helpers/src/lib/blockly-helpers.service';
