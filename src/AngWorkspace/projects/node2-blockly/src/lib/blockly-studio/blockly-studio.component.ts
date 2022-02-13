@@ -1,5 +1,5 @@
 import { Component, OnInit ,AfterViewInit, Type, Injector, ComponentFactoryResolver, ComponentRef, ViewContainerRef, ViewChild, ViewChildren, QueryList} from '@angular/core';
-import { DisplayBlocklyComponent } from 'projects/node2-blockly/src/lib/display-blockly/display-blockly.component';
+import { DisplayBlocklyComponent } from '../display-blockly/display-blockly.component';
 
 @Component({
   selector: 'app-blockly-studio',
@@ -42,7 +42,7 @@ export class BlocklyStudioComponent implements OnInit,AfterViewInit {
   async loadBar(index:number): Promise<number> {
     try{     
      
-      const b = await import(`projects/node2-blockly/src/lib/display-blockly/display-blockly.component`);
+      const b = await import(`../display-blockly/display-blockly.component`);
       const factory = this.resolver.resolveComponentFactory(b.DisplayBlocklyComponent);
       var vcr=this.components?.get(index);
       

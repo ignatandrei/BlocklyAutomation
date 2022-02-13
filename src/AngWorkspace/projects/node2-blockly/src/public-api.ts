@@ -15,3 +15,4 @@ export * from './lib/load-show-usage.service';
 export * from './lib/AppDetails';
 export * from './lib/find-saved-blocks/find-saved-blocks.component';
 export * from './lib/display-blockly/display-blockly.component';
+export * from './lib/blockly-studio/blockly-studio.component';
