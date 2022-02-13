@@ -16,6 +16,7 @@
         "dist/blockly-swagger"
       ],
       "Node2Blockly": [
+        "dist/node2-blockly/primary-navig",
         "dist/node2-blockly/blockly-studio",
         "dist/node2-blockly/display-blockly",
         "dist/node2-blockly/find-saved-blocks",

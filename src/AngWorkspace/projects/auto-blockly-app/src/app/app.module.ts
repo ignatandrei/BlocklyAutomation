@@ -40,7 +40,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { PrimaryNavigComponent } from './primary-navig/primary-navig.component';
+import { PrimaryNavigComponent } from 'projects/node2-blockly/src/lib/primary-navig/primary-navig.component';
 import { AppDetails } from 'projects/node2-blockly/src/lib/AppDetails';
 import { Observable, ObservableLike } from 'rxjs';
 import { TransmitAction } from 'projects/node2-blockly/src/lib/TransmitAction';

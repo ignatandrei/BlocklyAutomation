@@ -16,3 +16,4 @@ export * from './lib/AppDetails';
 export * from './lib/find-saved-blocks/find-saved-blocks.component';
 export * from './lib/display-blockly/display-blockly.component';
 export * from './lib/blockly-studio/blockly-studio.component';
+export * from './lib/primary-navig/primary-navig.component';
