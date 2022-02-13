@@ -62,6 +62,7 @@ jobs:
           echo "build"
           npm run buildGitHubPages  
           ls -l dist/auto-blockly-app
+          ng build Node2Blockly
           
 
 
