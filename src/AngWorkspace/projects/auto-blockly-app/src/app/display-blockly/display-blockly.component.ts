@@ -34,7 +34,7 @@ import { catchError, fromEvent, throwError, windowWhen } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { FindSavedBlocksComponent } from '../find-saved-blocks/find-saved-blocks.component';
 import { error } from '@angular/compiler/src/util';
-import { bs } from '../bs';
+import { bs } from 'projects/node2-blockly/src/lib/bs';
 import { saveLoadService } from 'projects/blockly-helpers/src/lib/blockly-helpers.service';
 import { InterpreterBA } from 'projects/blockly-helpers/src/lib/interpreter';
 import { MatTabChangeEvent } from '@angular/material/tabs';
