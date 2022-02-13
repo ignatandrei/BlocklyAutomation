@@ -16,7 +16,7 @@
         "dist/blockly-swagger"
       ],
       "Node2Blockly": [
-        "dist/node2-blockly/node2-blockly",
+        "dist/node2-blockly/find-saved-blocks",
         "dist/node2-blockly"
       ]
     },
