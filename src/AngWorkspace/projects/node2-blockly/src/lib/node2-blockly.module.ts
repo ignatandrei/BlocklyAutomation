@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { Node2BlocklyComponent } from './node2-blockly.component';
 
@@ -8,6 +9,7 @@ import { Node2BlocklyComponent } from './node2-blockly.component';
     Node2BlocklyComponent
   ],
   imports: [
+    CommonModule 
   ],
   exports: [
     Node2BlocklyComponent

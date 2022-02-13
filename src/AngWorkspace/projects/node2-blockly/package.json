@@ -1,6 +1,22 @@
 {
   "name": "node2-blockly",
-  "version": "0.0.1",
+  "version": "2022.10213.1548",
+  "description": "A lowcode blockly editor for your API / swagger / OpenAPI",
+  "author": "Ignat Andrei",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ignatandrei/BlocklyAutomation"
+  },
+  "homepage": "https://github.com/ignatandrei/BlocklyAutomation",
+  "keywords": [
+    "blockly",
+    "api",
+    "swagger",
+    "openapi",
+    "lowcode",
+    "automation",
+    "editor"
+  ],
   "peerDependencies": {
     "@angular/common": "^13.1.0",
     "@angular/core": "^13.1.0"
