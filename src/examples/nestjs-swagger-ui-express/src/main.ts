@@ -4,6 +4,7 @@ import { ValidationPipe } from '@nestjs/common';
 import * as helmet from 'helmet';
 import * as rateLimit from 'express-rate-limit';
 import { AppModule } from './app.module';
+import express = require('express');
 // import fs from 'fs';
 async function bootstrap() {
   // CORS is enabled
@@ -31,7 +32,8 @@ async function bootstrap() {
       'Too many accounts created from this IP, please try again after an hour',
   });
   app.use('/auth/signup', signupLimiter);
-
+  //dist folder?
+  app.use('/blocklyAutomation',express.static(__dirname + '/blocklyAutomation'))
   // Swagger API Documentation
   const options = new DocumentBuilder()
     .setTitle('NestJS API')
