@@ -5,16 +5,23 @@ import * as helmet from 'helmet';
 import * as rateLimit from 'express-rate-limit';
 import { AppModule } from './app.module';
 import express = require('express');
+import * as http from 'http';
+import { ExpressAdapter } from '@nestjs/platform-express';
 // import fs from 'fs';
 async function bootstrap() {
-  // CORS is enabled
-  const app = await NestFactory.create(AppModule, { cors: true });
-
+  
+  const server = express();
+  const app = await NestFactory.create(AppModule,
+    new ExpressAdapter(server),
+   { cors: false,
+    
+    httpsOptions:{requestCert:false} });
+  
   // Request Validation
-  app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
+  // app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
 
   // Helmet Middleware against known security vulnerabilities
-  app.use(helmet());
+  // app.use(helmet());
 
   // Rate limiting against brute-force attacks
   app.use(
@@ -34,7 +41,8 @@ async function bootstrap() {
   app.use('/auth/signup', signupLimiter);
   //dist folder?
   app.use('/blocklyAutomation',express.static(__dirname + '/blocklyAutomation'))
-  // Swagger API Documentation
+  // app.use(express.static('blocklyAutomation'))
+    // Swagger API Documentation
   const options = new DocumentBuilder()
     .setTitle('NestJS API')
     .setDescription('NestJS API description')
@@ -43,8 +51,9 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, options);
   // fs.writeFileSync("./swagger-spec.json", JSON.stringify(document));
   SwaggerModule.setup('api', app, document);
-
-  await app.listen(3000);
+  await app.init();
+  // await app.listen(3000);
+  http.createServer(server).listen(3000);
 }
 
 bootstrap();
