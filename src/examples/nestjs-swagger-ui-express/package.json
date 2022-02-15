@@ -45,6 +45,7 @@
     "mysql": "^2.18.1",
     "nanoid": "^3.1.22",
     "nest": "^0.1.6",
+    "node2-blockly": "^2022.10215.2200",
     "nodemailer": "^6.5.0",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",

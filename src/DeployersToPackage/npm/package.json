@@ -1,0 +1,35 @@
+{
+  "name": "node2-blockly",
+  "version": "2022.10215.2225",
+  "description": "A lowcode blockly editor for your API / swagger / OpenAPI",
+  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ignatandrei/BlocklyAutomation"
+  },
+  "homepage": "https://github.com/ignatandrei/BlocklyAutomation",
+  "keywords": [
+    "blockly",
+    "api",
+    "swagger",
+    "openapi",
+    "lowcode",
+    "automation",
+    "editor"
+  ],
+  "directories": {
+    "docs": "docs"
+  },
+  
+  "license": "ISC",
+  "main": "index.js",
+  "scripts": {
+	"compile": "html-includes --src docs --dest dist",
+	"compile:min": "html-includes --src docs --dest dist --minify"	,
+	"compile-watch": "html-includes --src src --dest dist --watch",
+  "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "html-includes": "^4.4.1"
+  }
+}

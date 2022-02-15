@@ -40,7 +40,10 @@ async function bootstrap() {
   });
   app.use('/auth/signup', signupLimiter);
   //dist folder?
-  app.use('/blocklyAutomation',express.static(__dirname + '/blocklyAutomation'))
+  var dirBlockly=__dirname + '/../node_modules/node2-blockly/docs/';
+  console.log('blockly is at '+ dirBlockly);
+  app.use('/blocklyAutomation',express.static(dirBlockly));
+  app.use('/blocklyAutomation/*',express.static(dirBlockly));
   // app.use(express.static('blocklyAutomation'))
     // Swagger API Documentation
   const options = new DocumentBuilder()
