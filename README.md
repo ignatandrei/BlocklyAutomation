@@ -3,11 +3,20 @@
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-Blockly Automation :  is a tool for automation of sites (Swagger / OpenAPI / RPA ) and PC made of Blockly. 
+Blockly Automation :  is a tool for LowCode / automation of sites (Swagger / OpenAPI / RPA ) and PC made of Blockly. 
 
 # How to use if you are
 
 ## a backend developer with an REST / OpenAPI / Swagger enabled site and I want to show the use of my site
+
+
+Use the appropiate package:
+
+.NET Core: ![Nuget](https://img.shields.io/nuget/dt/NetCore2Blockly)
+
+Node: ![npm](https://img.shields.io/npm/v/node2-blockly)
+
+or
 
 Download the HTML release [BlocklyAutomation](https://github.com/ignatandrei/BlocklyAutomation/releases/latest/download/releaseBlocklyAutomation.zip/) .
 
