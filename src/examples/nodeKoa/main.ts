@@ -9,8 +9,9 @@ import router from './routes/index';
 const fs = require('fs');
 const serve = require('koa-static');
 const send = require('koa-send');
-const app = new Koa();
 const path=require('path');
+const app = new Koa();
+
 app
   .use(cors())
   

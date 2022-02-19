@@ -1,7 +1,11 @@
 [
 {
-	"id":"MySite",
+	"id":"MySiteSwagger",
 	"link":"/api-json"
+},
+{
+	"id":"MySiteKoa",
+	"link":"/swagger-json"
 },
 {
 	"id":"_MyPC",
