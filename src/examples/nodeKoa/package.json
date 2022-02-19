@@ -17,7 +17,7 @@
     "koa-send": "^5.0.1",
     "koa-static": "^5.0.0",
     "koa-swagger-decorator": "^1.8.4",
-    "node2-blockly": "^2022.10215.2225",
+    "node2-blockly": "^2022.10219.2225",
     "ts-node": "^10.5.0",
     "typescript": "^4.5.5"
   }
