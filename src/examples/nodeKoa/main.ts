@@ -6,29 +6,36 @@ import config from './config';
 import errorHandle from './middleware/errorHandle';
 import router from './routes/index';
 
-
+const fs = require('fs');
 const serve = require('koa-static');
 const send = require('koa-send');
 const app = new Koa();
 const path=require('path');
 app
   .use(cors())
+  
   .use(async (ctx, next) => {
-    if(ctx.path === '/BlocklyAutomation' || ctx.path === '/BlocklyAutomation/') {
-      var folder= "tet";
-      console.log('root'+folder);
-      var file=path.join(folder, 'index.html');
-      await send(ctx, file);
-      return;
-    }
     if(ctx.path.startsWith('/BlocklyAutomation') ) {
+      var folder=path.join("node_modules", 'node2-blockly','docs');// "tet";
+      console.log('root for blockly '+folder);
+      if(ctx.path === '/BlocklyAutomation' || ctx.path === '/BlocklyAutomation/') {
+        var file=path.join(folder, 'index.html');
+        await send(ctx, file);
+        return;
+      }
       
       var fileToServe = ctx.path.replace('/BlocklyAutomation','');
-      
-      var folder= "tet";
       var file = path.join(folder, fileToServe);
-      console.log('serving ' + file);
-      await send(ctx, file);
+      if(fs.existsSync(file)) {
+        console.log('serving ' + file);
+        await send(ctx, file);
+      }
+      else{
+        //serving index
+        var file=path.join(folder, 'index.html');
+        await send(ctx, file);
+        return;
+      }
       return;
     }
     
