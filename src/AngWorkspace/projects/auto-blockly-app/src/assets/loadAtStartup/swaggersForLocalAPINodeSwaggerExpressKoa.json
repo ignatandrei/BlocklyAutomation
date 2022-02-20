@@ -1,7 +1,11 @@
 [
 {
-	"id":"MySiteExpress",
+	"id":"MySiteNest",
 	"link":"/api-json"
+},
+{
+	"id":"MySiteExpress",
+	"link":"/docs-json"
 },
 {
 	"id":"MySiteKoa",
