@@ -6,7 +6,43 @@ To use it
 
 npm i node2-blockly
 
-## Example with Express 
+## Example with Express
+Then you can use it like this:
+
+```javascript
+var express = require('express');
+var app = express();
+
+function swaggerDocs(app, port) {
+  app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+  app.get('/docs.json', (req, res) => {
+      res.setHeader('Content-Type', 'application/json');
+      res.send(swaggerSpec);
+  })
+}
+
+swaggerDocs(app, 3000);
+//code with API
+var dirBlockly= path.join(__dirname , 'node_modules','node2-blockly','docs');
+console.log('blockly folder',dirBlockly);
+app.use("/BlocklyAutomation", express.static(dirBlockly));
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+  console.log('404',req.path);
+  if(req.path.startsWith("/BlocklyAutomation")){
+    console.log('test');
+    res.sendFile(path.join(dirBlockly, 'index.html'));
+    return;
+  }
+  next(createError(404));
+});
+
+
+
+```
+Full working example at https://github.com/ignatandrei/BlocklyAutomation/tree/main/src/examples/expressExample
+
+## Example with NestJS 
 
 Then you can use it like this:
 
