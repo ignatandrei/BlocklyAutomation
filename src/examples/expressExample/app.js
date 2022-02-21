@@ -6,7 +6,6 @@ var logger = require('morgan');
 
 const swaggerJsdoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
-const version = require('./package.json');
 const options = require('./swaggerOptions');
 const swaggerSpec = swaggerJsdoc(options);
 
@@ -18,7 +17,7 @@ var controller2 = require('./routes/controller2');
 
 var app = express();
 
-function swaggerDocs(app, port) {
+function swaggerDocs(app) {
   app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
   app.get('/docs.json', (req, res) => {
       res.setHeader('Content-Type', 'application/json');
@@ -26,7 +25,7 @@ function swaggerDocs(app, port) {
   })
 }
 
-swaggerDocs(app, 3000);
+swaggerDocs(app);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
