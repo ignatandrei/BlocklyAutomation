@@ -6,7 +6,7 @@ import { DemoBlocks } from "./DemoBlocks";
 import { LinksSwagger } from "./LinksSwagger";
 import { LoadShowUsageService } from "./load-show-usage.service";
 import { Settings } from "./Settings";
-import { BlocklyReturnSwagger } from "projects/blockly-swagger/src/public-api";
+import { BlocklyReturnSwagger} from "projects/blockly-swagger/src/public-api";
 import { LocalAPI } from "./LocalApi";
 
 

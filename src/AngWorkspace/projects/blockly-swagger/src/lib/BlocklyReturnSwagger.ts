@@ -19,6 +19,7 @@ interface IDOPs{
   nrOps:number
 }
 declare var require: any;
+
 export class BlocklyReturnSwagger {
   constructor(public swaggerUrl: string) {}
 
@@ -62,6 +63,12 @@ export class BlocklyReturnSwagger {
     this.hasError = false;
     
     this.basePath= r.basePath ||'';
+    
+    if(this.basePath.length == 0){
+      if(r.servers && r.servers.length>0){
+        this.basePath=r.servers[0].url;
+      }
+    }
     // console.log("basepath"+ this.swaggerUrl,this.basePath);
     //var r = q.response;
     // console.log(r.paths);
