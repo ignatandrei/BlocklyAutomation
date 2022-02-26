@@ -1637,6 +1637,9 @@ licenses; we recommend you read them, as their terms may differ from the
 terms above.
 
 
+node2-blockly
+MIT
+
 object-inspect
 MIT
 MIT License
