@@ -91,12 +91,24 @@ export class propBlockly {
         /*javaScript.*/ ORDER_ATOMIC
       );
 
+      /*
+      this works for just 1 property - but does not use hack for multiple properties 
+      see comment with
+      acorn object passed
+      
       var code =
         '(function(t){ if (typeof t === "string") return JSON.parse(t);  return t;}(' +
         value_objecttochange +
         '))[' +
         value_propertyname +
         ']';
+      */
+
+      var code =
+      '(function(t, val){   return findPropValue(val,t);})(' +
+      value_propertyname +','+
+      value_objecttochange +
+      ')';
 
       return [code, /*javaScript.*/ ORDER_NONE];
     };

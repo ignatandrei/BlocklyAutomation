@@ -56,8 +56,24 @@ constructor(public workspace:any,public BlocklyJavaScript:any){
         //         }
         //     }
         // },
+        findPropValue1(obj:any, [first, ...rest]:any[]):any {
+            //  console.log('searchin object ',obj );
+            //  console.log(' for property ',first);
+            //  console.log(' the rest is ', rest);             
+             if(typeof obj === 'string'){
+                obj=JSON.parse(obj);
+            }
+            //acorn object passed
+            if(obj.a && obj.L && obj.O ){
+                obj=obj.a;
+            }
 
-        
+            return rest.length>0 ? this.findPropValue(obj[first], rest) : obj[first];
+        }
+        findPropValue(obj:any, [first, ...rest]:any):any {
+            console.log('this is',obj)
+            return rest.length ? this.findPropValue(obj[first], rest) : obj[first];
+        }
         highlightBlock(id:any) {
             this.workspace.highlightBlock(id);
             this.highlightPause = true;
@@ -911,6 +927,14 @@ interpreter.setProperty(globalObject, 'speakDefault',
             };
             interpreter.setProperty(globalObject, 'highlightBlock',
                 interpreter.createNativeFunction(wrapper210));
-          }
-      
+          
+
+          var wrapper220 = function(path:any,jsonData:any) {
+            
+            return interpreter.createPrimitive(thisClass.findPropValue1(path,jsonData.split('.')));
+          };
+          interpreter.setProperty(globalObject, 'findPropValue',
+              interpreter.createNativeFunction(wrapper220));
+        }
     }
+  
