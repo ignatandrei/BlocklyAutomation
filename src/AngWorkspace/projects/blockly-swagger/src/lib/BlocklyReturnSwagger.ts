@@ -284,10 +284,22 @@ export class BlocklyReturnSwagger {
     // console.log('in find root ', this.openApiDocument)
     if(this.openApiDocument?.host?.length>0){
       var hostData=this.openApiDocument.host;
-      if(Array.isArray(hostData))
-        href=this.openApiDocument.schemes[0]+"://"+hostData[0];
-      else
-        href=this.openApiDocument.schemes[0]+"://"+hostData;
+      if (Array.isArray(hostData)){
+        href = this.openApiDocument.schemes[0] + '://' + hostData[0];
+      }
+      else if(Array.isArray(this.openApiDocument.schemes)){
+        href = this.openApiDocument.schemes[0] + '://' + hostData;
+      }
+      else{
+        try{
+          const url = new URL(this.swaggerUrl);
+          href= url.protocol +"//"+ url.host;
+        }
+        catch{
+          throw "cannot find host for "+ this.swaggerUrl;
+        }
+      }
+
       // console.log('yyy',href);
     }
     else
@@ -309,6 +321,7 @@ export class BlocklyReturnSwagger {
     switch (blockShadowType)
     {
         case "integer":
+        case "number":
             var val=defaultValue?defaultValue:0;            
             return `<block type='math_number'><field name='NUM'>${val}</field></block>`;
 
@@ -594,7 +607,11 @@ export class BlocklyReturnSwagger {
         
         code +='};\n';
         //  console.log("basepath",self.basePath);
-        code += 'var strUrl =rootSite +"'+ self.basePath  + key + '";\n';
+        var partUrl= self.basePath  + key;
+        if(partUrl.startsWith("//")){
+          partUrl=partUrl.replace("//","/");
+        }
+        code += 'var strUrl =rootSite +"'+ partUrl + '";\n';
         var paramsQuery = parameters.filter((it:any) => it.in == "query");
         if(paramsQuery.length>0){
           code += 'strUrl+="?";\n;';
@@ -717,10 +734,22 @@ TranslateToBlocklyType(t:any) {
     var href = '';
     if (this.openApiDocument?.host?.length > 0) {
       var hostData = this.openApiDocument.host;
-      if (Array.isArray(hostData))
+      if (Array.isArray(hostData)){
         href = this.openApiDocument.schemes[0] + '://' + hostData[0];
-      else href = this.openApiDocument.schemes[0] + '://' + hostData;
-
+      }
+      else if(Array.isArray(this.openApiDocument.schemes)){
+        href = this.openApiDocument.schemes[0] + '://' + hostData;
+      }
+      else{
+        try{
+          const url = new URL(this.swaggerUrl);
+          href= url.protocol +"//"+ url.host;
+        }
+        catch{
+          throw "cannot find host for "+ this.swaggerUrl;
+        }
+      }
+      window.alert(href);
       // href=this.openApiDocument.schemes[0]+"://"+this.openApiDocument.host[0];
       // console.log('xxx',href);
     } else {
@@ -791,6 +820,7 @@ TranslateToBlocklyType(t:any) {
   findCategsFromTags(){
     
     var allPaths=this.openApiDocument.paths;
+    console.log('x',this.openApiDocument);
     var keys= Object.keys(allPaths);
     var self=this;
     keys.forEach(function (key) {
