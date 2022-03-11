@@ -296,7 +296,9 @@ export class BlocklyReturnSwagger {
           href= url.protocol +"//"+ url.host;
         }
         catch{
-          throw "cannot find host for "+ this.swaggerUrl;
+          //assuming it is local
+          href="/";
+          //throw "cannot find host for "+ this.swaggerUrl;
         }
       }
 
@@ -746,7 +748,9 @@ TranslateToBlocklyType(t:any) {
           href= url.protocol +"//"+ url.host;
         }
         catch{
-          throw "cannot find host for "+ this.swaggerUrl;
+          //assuming it is local
+          href="/";          
+          //throw "cannot find host for "+ this.swaggerUrl;
         }
       }
       // window.alert(href);
