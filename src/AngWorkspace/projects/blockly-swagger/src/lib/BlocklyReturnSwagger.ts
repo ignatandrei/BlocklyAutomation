@@ -749,7 +749,7 @@ TranslateToBlocklyType(t:any) {
           throw "cannot find host for "+ this.swaggerUrl;
         }
       }
-      window.alert(href);
+      // window.alert(href);
       // href=this.openApiDocument.schemes[0]+"://"+this.openApiDocument.host[0];
       // console.log('xxx',href);
     } else {

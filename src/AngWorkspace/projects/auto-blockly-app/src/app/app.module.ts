@@ -47,6 +47,8 @@ import { TransmitAction } from 'projects/node2-blockly/src/lib/TransmitAction';
 import { BlocklyStudioComponent } from 'projects/node2-blockly/src/lib/blockly-studio/blockly-studio.component';
 import { FindSavedBlocksComponent } from 'projects/node2-blockly/src/lib/find-saved-blocks/find-saved-blocks.component';
 import { CodemirrorModule } from '@ctrl/ngx-codemirror';
+import { UrlSerializer } from '@angular/router';
+import { LowerCaseUrlSerializer } from './LowerCaseUrlSerializer';
 
 @NgModule({
   declarations: [
@@ -112,7 +114,15 @@ import { CodemirrorModule } from '@ctrl/ngx-codemirror';
   ],
   providers: [  AppDetails,TransmitAction,
   
-    { provide: APP_INITIALIZER,useFactory: initializeApp1, deps: [AppDetails], multi: true}],
+    { provide: APP_INITIALIZER,useFactory: initializeApp1, deps: [AppDetails], multi: true}
+  ,
+    {
+      provide: UrlSerializer,
+      useClass: LowerCaseUrlSerializer
+    }
+  ]
+    
+    ,
   bootstrap: [AppComponent]
 })
 export class AppModule { }
