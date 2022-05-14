@@ -51,13 +51,13 @@ jobs:
         cd ..
         cd ..
         
-    - name: fix bug #38
-      run: |
-        cd src
-        cd AngWorkspace
-        ./fix#38.ps1
+    # - name: fix bug #38
+    #   run: |
+    #     cd src
+    #     cd AngWorkspace
+    #     ./fix#38.ps1
         
-      shell: pwsh
+    #   shell: pwsh
     - name: npm modify docs
       run: |
         cd src
