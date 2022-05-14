@@ -593,8 +593,9 @@ export class BlocklyReturnSwagger {
         callingFunctionDefinition += "1"; //maybe later we use for logging
         var code = "function(";
         code += parameterFunctionDefinition.join(",");
+        var rootSite=self.findRootSite();
         code += "){\n";
-        code +=`var rootSite="`+self.findRootSite()+`";\n`;
+        code +=`var rootSite="`+rootSite+`";\n`;
         // code +="window.alert(JSON.stringify(extraData));\n";
         code +='if(extraData){\n';
         code +='if(extraData.url && extraData.url.host && extraData.url.host.length>0 ){\n';
@@ -612,6 +613,11 @@ export class BlocklyReturnSwagger {
         var partUrl= self.basePath  + key;
         if(partUrl.startsWith("//")){
           partUrl=partUrl.replace("//","/");
+        }
+        //code +='window.alert("a"+rootSite);\n';
+        rootSite= rootSite||'';
+        if(rootSite.length>0 && partUrl.startsWith(rootSite)){
+          code +='\n rootSite="";//the root site is in url;\n';          
         }
         code += 'var strUrl =rootSite +"'+ partUrl + '";\n';
         var paramsQuery = parameters.filter((it:any) => it.in == "query");
