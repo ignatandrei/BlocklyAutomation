@@ -23,5 +23,10 @@
 {
 	"id":"github3.4",
 	"link":"assets/loadAtStartup/github3.4.json"
+},
+{
+	"id":"AzureFunctions",
+	"link":"https://net6azurefunctions20220514015914.azurewebsites.net/api/swagger/json"
 }
+
 ]
