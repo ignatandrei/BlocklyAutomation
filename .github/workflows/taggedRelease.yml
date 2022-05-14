@@ -36,20 +36,21 @@ jobs:
       run: |
         cd src        
         cd AngWorkspace
-        npm i -g npm@8.3.0               
-        echo 'install angular'    
-        npm i  @angular/cli@13
-        cd projects
-        cd blockly-helpers
-        npm i
-        cd ..
-        cd blockly-scripts
-        npm i
-        cd ..
-        cd blockly-swagger
-        npm i
-        cd ..
-        cd ..
+        npm i -g npm@8.1.0               
+        npm i  
+        # echo 'install angular'    
+        #npm i  @angular/cli@13.3.4
+        # cd projects
+        # cd blockly-helpers
+        # npm i
+        # cd ..
+        # cd blockly-scripts
+        # npm i
+        # cd ..
+        # cd blockly-swagger
+        # npm i
+        # cd ..
+        # cd ..
         
     # - name: fix bug #38
     #   run: |
