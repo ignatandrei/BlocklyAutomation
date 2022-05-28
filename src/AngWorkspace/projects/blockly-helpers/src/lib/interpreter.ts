@@ -945,11 +945,13 @@ interpreter.setProperty(globalObject, 'speakDefault',
             }
             var args=JSON.parse(argsDocker);
             var dd=d.execCli(cmd,args).then(data=>  {
-                try {
-                    callback(JSON.stringify(data.parseJsonObject()));            
-                }
-                catch(e){
-                    console.log('parseJsonObject gives error',e);
+                // try {
+                    
+                //     callback(JSON.stringify(data.parseJsonObject()));            
+                // }
+                // catch(e)
+                {
+                    // console.log('parseJsonObject gives error',e);
                     var lines= data.lines();
                     console.log("array of lines",lines);
                     var arr= [];
