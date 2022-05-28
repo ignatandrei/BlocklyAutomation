@@ -2,4 +2,5 @@
  * Public API Surface of docker-extension
  */
 
-export * from './lib/docker-extension.service';
+export * from './lib/BlocklyDockerBase';
+export * from './lib/DockerData';

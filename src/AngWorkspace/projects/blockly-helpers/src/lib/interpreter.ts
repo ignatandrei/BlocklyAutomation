@@ -723,10 +723,10 @@ consoleLog(arg1:any,arg2:any){
                     if(arr.length == 0)
                         return "";
                     var keys=Object.keys(arr[0]);
-                    var data= "<table><tr>";
+                    var data= "<table border='1'><tr><th>No</th>";
                     data += keys.map((it :any )=> `<th>${it}</th>\n`).join('');
                     data+="</tr>";
-                    data+= arr.map((it:any)=> `<tr>${Object.values(it).map(it=>`<td>${it}</td>`).join('')}</tr>`).join('');
+                    data+= arr.map((it:any, index:number)=> `<tr><td>${index+1}</td>${Object.values(it).map(it=>`<td>${it}</td>`).join('')}</tr>`).join('');
                     data+="</table>";
                     
                     
@@ -944,7 +944,27 @@ interpreter.setProperty(globalObject, 'speakDefault',
                 return callback("please see error log in console");
             }
             var args=JSON.parse(argsDocker);
-            var dd=d.execCli(cmd,args).then(data=>  callback(data.parseJsonObject()));            
+            var dd=d.execCli(cmd,args).then(data=>  {
+                try {
+                    callback(JSON.stringify(data.parseJsonObject()));            
+                }
+                catch(e){
+                    console.log('parseJsonObject gives error',e);
+                    var lines= data.lines();
+                    console.log("array of lines",lines);
+                    var arr= [];
+                    for(var i=0;i<lines.length;i++){
+                        try{
+                            arr.push(JSON.parse(lines[i]));
+                        }
+                        catch(eline){
+                            console.error('error in line',lines[i], eline);
+                        }
+                    } ;
+                    console.log("array of json objects",arr);
+                    callback(JSON.stringify(arr));   
+                }
+            });
         }
         interpreter.setProperty(globalObject, 'execDockerCLI',
             interpreter.createAsyncFunction(wrapper230));

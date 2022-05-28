@@ -20,9 +20,9 @@ import { Creds } from 'projects/blockly-scripts/src/lib/WindowsCreds';
 import {waitB } from 'projects/blockly-scripts/src/lib/waitBlocks';
 import { wait } from 'projects/blockly-scripts/src/lib/wait_block';
 import { comment} from 'projects/blockly-scripts/src/lib/commentBlock';
-import { BlocklyDockerContainers } from 'projects/docker-extension/src/public-api';
+import { BlocklyDockerBase } from 'projects/docker-extension/src/public-api';
 export class bs{
-    public DockerContainer:BlocklyDockerContainers=new BlocklyDockerContainers();
+    public DockerContainer:BlocklyDockerBase=new BlocklyDockerBase();
     public xhrBlocks: BlocklyXHR= new BlocklyXHR();
     public defaultBlocks: generalBlocks= new generalBlocks();
     public trycatchFinBlock: tryCat= new tryCat();   
