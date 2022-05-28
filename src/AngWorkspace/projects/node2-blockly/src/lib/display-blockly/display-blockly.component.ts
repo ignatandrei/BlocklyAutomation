@@ -585,6 +585,7 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
       `</category>
       <category id="Docker" name="DockerExtension"  hidden="${!this.bs.docker.canConstruct}">>
       ${this.bs.DockerContainer.fieldXML()}
+      ${this.bs.DockerVersionInfo.fieldXML()}
       </category>
 
       ${customCategs}
@@ -608,6 +609,10 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
       BlocklyJavaScript
     );
     this.bs.DockerContainer.definitionBlocks(
+      Blockly.Blocks,
+      BlocklyJavaScript
+    );
+    this.bs.DockerVersionInfo.definitionBlocks(
       Blockly.Blocks,
       BlocklyJavaScript
     );
