@@ -13,6 +13,14 @@ ren swaggersForDockerExtension.json swaggers.json
 cd ..
 cd ..
 cd ..
+
+cd ui\assets\showUsage
+rmdir /S /Q demoBlocks
+ren demoBlocksDockerExtension demoBlocks
+cd ..
+cd ..
+cd ..
+
 docker build -t blockly-automation:0.0.1 .
 docker extension install blockly-automation:0.0.1 -f
 goto 1

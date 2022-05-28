@@ -1,0 +1,8 @@
+﻿[
+    {
+        "id":  "GenericCallArguments",
+        "description":  "call any docker command",
+        "categories":  "github;api;user",
+        "blocks":  "procedures_defreturn;get__rate_limit;text;math_number;text_print;getproperty;text_join;controls_if;logic_compare;procedures_callreturn;convertToTable;get__users___username_repos"
+    }
+]
