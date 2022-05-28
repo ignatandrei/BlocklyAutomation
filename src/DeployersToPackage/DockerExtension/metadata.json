@@ -1,0 +1,11 @@
+{
+  "icon": "/ui/favicon.ico",
+  "ui": {
+    "dashboard-tab": {
+      "title": "BlocklyAutomation",
+      "root": "/ui",
+      "src": "index.html"
+    }
+
+  }
+}

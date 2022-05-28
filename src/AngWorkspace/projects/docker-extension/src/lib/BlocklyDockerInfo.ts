@@ -137,7 +137,10 @@ export class BlocklyInfoVersion{
         this.appendValueInput("commandArgs")
             .setCheck("Array")
             .appendField("Arguments");
-        this.setOutput(true, "String");
+            this.appendDummyInput()
+        .appendField("JSON Output")
+        .appendField(new Blockly.FieldCheckbox("FALSE"), "outputJson");
+        this.setOutput(true, null);
         this.setColour(230);
      this.setTooltip("");
      this.setHelpUrl("");
@@ -147,10 +150,17 @@ export class BlocklyInfoVersion{
     javaScript['dockercommandv1'] = function(block:any) {
       var dropdown_commands = block.getFieldValue('commands');
       var value_commandargs = javaScript.valueToCode(block, 'commandArgs', ORDER_ATOMIC)||'';
-      
+      var checkbox_outputjson = block.getFieldValue('outputJson') === 'TRUE';
       var code = 'function(){';
       code+=' var argsDocker= '+value_commandargs+';\n';
-      code+='return execDockerCLI_String('+dropdown_commands +', JSON.stringify(argsDocker) );\n';
+      var funcToExecute="";
+      if(checkbox_outputjson){
+        funcToExecute="execDockerCLI_JSONParser";
+      }
+      else{
+        funcToExecute="execDockerCLI_String";
+      }
+      code+='return '+funcToExecute+'('+dropdown_commands +', JSON.stringify(argsDocker) );\n';
       code+='}()\n';
 
       return [code, ORDER_NONE];
