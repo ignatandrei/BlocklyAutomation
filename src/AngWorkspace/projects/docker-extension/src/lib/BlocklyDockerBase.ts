@@ -12,10 +12,10 @@ export class BlocklyDockerBase{
     const ORDER_ATOMIC = 0;
     const ORDER_NONE = 99;
 
-    blocks['dockerImages'] = {
+    blocks['dockerImagesList'] = {
       init: function() {
         this.appendDummyInput()
-            .appendField("Docker Images");
+            .appendField("List Images");
         this.appendValueInput("all")
             .setCheck("Boolean")
             .appendField("All Containers");
@@ -36,7 +36,7 @@ export class BlocklyDockerBase{
      this.setHelpUrl("https://docs.docker.com/engine/api/v1.37/#tag/Image");
       }
     };
-    javaScript['dockerImages'] = function (block:any) {
+    javaScript['dockerImagesList'] = function (block:any) {
       var value_all = javaScript.valueToCode(block, 'all', javaScript.ORDER_ATOMIC)||false;
       var value_digests = javaScript.valueToCode(block, 'digests', javaScript.ORDER_ATOMIC)||false;
       var value_filter = javaScript.valueToCode(block, 'filter', javaScript.ORDER_ATOMIC)||'';
@@ -60,10 +60,10 @@ export class BlocklyDockerBase{
       return [code, ORDER_NONE];
     };
 
-    blocks['dockerContainers'] = {
+    blocks['dockerContainersList'] = {
       init: function() {
         this.appendDummyInput()
-            .appendField("Docker Containers");
+            .appendField("List Containers");
         this.appendValueInput("all")
             .setCheck("Boolean")
             .appendField("All Containers");
@@ -84,7 +84,7 @@ export class BlocklyDockerBase{
      this.setHelpUrl("https://docs.docker.com/engine/api/v1.37/#tag/Container");
       }
     };
-    javaScript['dockerContainers'] = function (block:any) {
+    javaScript['dockerContainersList'] = function (block:any) {
       var value_all = javaScript.valueToCode(block, 'all', javaScript.ORDER_ATOMIC)||false;
       var value_size = javaScript.valueToCode(block, 'size', javaScript.ORDER_ATOMIC)||false;
       var value_filter = javaScript.valueToCode(block, 'filter', javaScript.ORDER_ATOMIC)||'';
@@ -114,7 +114,7 @@ export class BlocklyDockerBase{
     <category name='images'>    
     <block type='text_print' x='141' y='76'>
     <value name='TEXT'>
-      <block type='dockerImages'>
+      <block type='dockerImagesList'>
       <value name="all">
       <shadow type="logic_boolean">
         <field name="BOOL">TRUE</field>
@@ -142,7 +142,7 @@ export class BlocklyDockerBase{
   <category name='containers'>
   <block type='text_print' x='141' y='76'>
   <value name='TEXT'>
-    <block type='dockerContainers'>
+    <block type='dockerContainersList'>
     <value name="all">
     <shadow type="logic_boolean">
       <field name="BOOL">TRUE</field>
