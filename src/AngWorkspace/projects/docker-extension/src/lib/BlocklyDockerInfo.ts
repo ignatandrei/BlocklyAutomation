@@ -33,7 +33,7 @@ export class BlocklyInfoVersion{
       code+=' argsDocker.push("--format");\n';
       code+=' argsDocker.push('+value_transform +');\n';
       //code+=' alert(argsDocker.join(","));\n';
-      code+='return execDockerCLI("info", JSON.stringify(argsDocker) );\n';
+      code+='return execDockerCLI_JSONParser("info", JSON.stringify(argsDocker) );\n';
       code+='}()\n';
       return [code, ORDER_NONE];
     };
@@ -61,10 +61,39 @@ export class BlocklyInfoVersion{
       code+=' argsDocker.push("--format");\n';
       code+=' argsDocker.push('+value_transform +');\n';
       //code+=' alert(argsDocker.join(","));\n';
-      code+='return execDockerCLI("version", JSON.stringify(argsDocker) );\n';
+      code+='return execDockerCLI_JSONParser("version", JSON.stringify(argsDocker) );\n';
       code+='}()\n';
       return [code, ORDER_NONE];
     };
+
+    blocks['dockercommandv1'] = {
+      init: function() {
+        this.appendDummyInput()
+            .appendField("Command")
+            .appendField(new Blockly.FieldDropdown([["container","'container'"]]), "commands");
+        this.appendValueInput("commandArgs")
+            .setCheck("Array")
+            .appendField("Arguments");
+        this.setOutput(true, "String");
+        this.setColour(230);
+     this.setTooltip("");
+     this.setHelpUrl("");
+      }
+    };
+
+    javaScript['dockercommandv1'] = function(block:any) {
+      var dropdown_commands = block.getFieldValue('commands');
+      var value_commandargs = javaScript.valueToCode(block, 'commandArgs', ORDER_ATOMIC)||'';
+      
+      var code = 'function(){';
+      code+=' var argsDocker= '+value_commandargs+';\n';
+      code+='return execDockerCLI_String('+dropdown_commands +', JSON.stringify(argsDocker) );\n';
+      code+='}()\n';
+
+      return [code, ORDER_NONE];
+    };
+
+
 
   }
   fieldXML(): string {
@@ -81,6 +110,8 @@ export class BlocklyInfoVersion{
     </block>
     </value>
   </block>
+
+
   <block type='text_print' x='141' y='76'>
   <value name='TEXT'>
     <block type='dockerVersion'>
@@ -92,6 +123,16 @@ export class BlocklyInfoVersion{
   </block>
   </value>
 </block>
+
+<block type='text_print' x='141' y='76'>
+<value name='TEXT'>
+  <block type='dockercommandv1'>
+    
+</block>
+</value>
+</block>
+
+
 </category>
 `;
   }

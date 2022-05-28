@@ -53,7 +53,7 @@ export class BlocklyDockerContainerImages{
       code+=' argsDocker.push("--format");\n';
       code+=' argsDocker.push('+value_transform +');\n';
       //code+=' alert(argsDocker.join(","));\n';
-      code+='return execDockerCLI("image", JSON.stringify(argsDocker) );\n';
+      code+='return execDockerCLI_JSONParser("image", JSON.stringify(argsDocker) );\n';
       code+='}()\n';
       return [code, ORDER_NONE];
     };
@@ -101,7 +101,7 @@ export class BlocklyDockerContainerImages{
       code+=' argsDocker.push("--format");\n';
       code+=' argsDocker.push('+value_transform +');\n';
       //code+=' alert(argsDocker.join(","));\n';
-      code+='return execDockerCLI("container", JSON.stringify(argsDocker) );\n';
+      code+='return execDockerCLI_JSONParser("container", JSON.stringify(argsDocker) );\n';
       code+='}()\n';
       return [code, ORDER_NONE];
     };

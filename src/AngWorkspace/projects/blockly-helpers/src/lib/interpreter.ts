@@ -968,8 +968,37 @@ interpreter.setProperty(globalObject, 'speakDefault',
                 }
             });
         }
-        interpreter.setProperty(globalObject, 'execDockerCLI',
+        interpreter.setProperty(globalObject, 'execDockerCLI_JSONParser',
             interpreter.createAsyncFunction(wrapper230));
+
+
+            var wrapper240 = (cmd:string,argsDocker:string, callback:any) => {
+
+                var d=new DockerData();
+                if(!d.canConstruct){
+                    return callback("please see error log in console");
+                }
+                var args=JSON.parse(argsDocker);
+                var dd=d.execCli(cmd,args).then(data=>  {
+                    // try {
+                        
+                    //     callback(JSON.stringify(data.parseJsonObject()));            
+                    // }
+                    // catch(e)
+                    {
+                        // console.log('parseJsonObject gives error',e);
+                        var lines= data.lines();
+                        console.log("lines",lines);
+                         var oneLine = lines.join('\n'); 
+                        console.log("single line",oneLine);
+                        
+                        callback(oneLine);   
+                    }
+                });
+            }
+            interpreter.setProperty(globalObject, 'execDockerCLI_String',
+                interpreter.createAsyncFunction(wrapper240));
+    
 
     }
 }
