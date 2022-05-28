@@ -9,14 +9,14 @@ export class DockerData {
 
     try {
       this.ddClient = createDockerDesktopClient();
-
+      
     }
     catch (e) {
       console.log("in dockerdata constructor", e);
       return;
     }
-
-    (window as any).ANDREITEST = this.ddClient;
+    
+    // (window as any).ANDREITEST = this.ddClient;
     this.canConstruct = true;
     // const result = ddClient.docker.cli.exec('info', [
     //   '--format',

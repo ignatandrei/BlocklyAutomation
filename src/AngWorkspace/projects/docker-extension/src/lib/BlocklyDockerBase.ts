@@ -111,7 +111,7 @@ export class BlocklyDockerBase{
   }
   fieldXML(): string {
     return `
-    
+    <category name='images'>    
     <block type='text_print' x='141' y='76'>
     <value name='TEXT'>
       <block type='dockerImages'>
@@ -138,8 +138,8 @@ export class BlocklyDockerBase{
     </block>
     </value>
   </block>
-  
-  
+  </category>
+  <category name='containers'>
   <block type='text_print' x='141' y='76'>
   <value name='TEXT'>
     <block type='dockerContainers'>
@@ -166,6 +166,7 @@ export class BlocklyDockerBase{
   </block>
   </value>
 </block>
+</category>
 `;
   }
 }
