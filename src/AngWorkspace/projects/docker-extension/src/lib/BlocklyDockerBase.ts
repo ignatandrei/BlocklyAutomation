@@ -67,7 +67,7 @@ export class BlocklyDockerBase{
     
     <block type='text_print' x='141' y='76'>
     <value name='TEXT'>
-      <block type='dockerContainers'>
+      <block type='dockerImages'>
       <value name="all">
       <shadow type="logic_boolean">
         <field name="BOOL">TRUE</field>
