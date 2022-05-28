@@ -16,7 +16,7 @@ export class DockerData {
       return;
     }
 
-
+    (window as any).ANDREITEST=this.ddClient;
     this.canConstruct=true;
     // const result = ddClient.docker.cli.exec('info', [
     //   '--format',
@@ -41,6 +41,8 @@ export class DockerData {
     //ddClient.desktopUI.toast.success("DockerData");
   }
   public execCli(cmd:string, args:string[]):Promise<ExecResult>{
+    console.log('executing command ',cmd);
+    console.log('executing args',args);
     return this.ddClient!.docker.cli.exec(cmd, args);
   }
 }
@@ -87,14 +89,16 @@ export class BlocklyDockerContainers {
       var argsDocker= [];
       argsDocker.push('--format');
       argsDocker.push('');
-      var str= argsDocker.join(',');
+      //var str= argsDocker.join(',');
       var code = 'function(){';
       code+=' var argsDocker= [];\n';
-      code+=' argsDocker.push("--format");\n';
-      code+=' argsDocker.push("{{json .}}");\n';
+      code+=' argsDocker.push("ls");\n';
+      code+=' if('+value_all+'){argsDocker.push("--all")};\n';      
       code+=' if('+value_size+'){argsDocker.push("--size")};\n';
-      code+=' if('+value_all+'){argsDocker.push("--all")};\n';
-      code+='return execDockerCLI("containers", argsDocker );\n';//+value_all+','+value_filter+','+value_size+')';
+      code+=' argsDocker.push("--format");\n';
+      code+=' argsDocker.push(\'"{{json .}}"\');\n';
+      //code+=' alert(argsDocker.join(","));\n';
+      code+='return execDockerCLI("container", JSON.stringify(argsDocker) );\n';//+value_all+','+value_filter+','+value_size+')';
       code+='}()\n';
       return [code, ORDER_NONE];
     };

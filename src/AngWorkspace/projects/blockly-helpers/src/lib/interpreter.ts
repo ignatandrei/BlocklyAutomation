@@ -937,15 +937,14 @@ interpreter.setProperty(globalObject, 'speakDefault',
           interpreter.setProperty(globalObject, 'findPropValue',
               interpreter.createNativeFunction(wrapper220));
         
-        var wrapper230 = (cmd:string,argsDocker:string[], callback:any) => {
+        var wrapper230 = (cmd:string,argsDocker:string, callback:any) => {
 
             var d=new DockerData();
             if(!d.canConstruct){
                 return callback("please see error log in console");
             }
-            var dd=d.execCli(cmd,argsDocker).then(data=>  callback(data.parseJsonObject()));
-
-            
+            var args=JSON.parse(argsDocker);
+            var dd=d.execCli(cmd,args).then(data=>  callback(data.parseJsonObject()));            
         }
         interpreter.setProperty(globalObject, 'execDockerCLI',
             interpreter.createAsyncFunction(wrapper230));
