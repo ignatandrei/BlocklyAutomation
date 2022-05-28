@@ -73,7 +73,7 @@ export class BlocklyDockerBase{
         <field name="BOOL">TRUE</field>
       </shadow>
     </value>
-    <value name="size">
+    <value name="digests">
       <shadow type="logic_boolean">
         <field name="BOOL">FALSE</field>
       </shadow>
