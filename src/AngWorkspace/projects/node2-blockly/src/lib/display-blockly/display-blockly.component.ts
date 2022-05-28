@@ -583,7 +583,7 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
         
       `,
       `</category>
-      <category id="Docker" name="DockerExtension">
+      <category id="Docker" name="DockerExtension"  hidden="${!this.bs.docker.canConstruct}">>
       ${this.bs.DockerContainer.fieldXML()}
       </category>
 

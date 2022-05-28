@@ -1,11 +1,9 @@
 import * as Blockly from 'blockly';
 import { DockerData } from './DockerData';
 
-export class BlocklyDockerBase{
+export class BlocklyDockerContainerImages{
   
-  public dd: DockerData;
   constructor() { 
-    this.dd=new DockerData();
   }
 
   definitionBlocks(blocks: any, javaScript: any) {
