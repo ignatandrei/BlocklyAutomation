@@ -171,7 +171,7 @@ export class BlocklyInfoVersion{
   }
   fieldXML(): string {
     return `
-    <category name='general'>    
+    <category name='General'>    
     <block type='text_print' x='141' y='76'>
     <value name='TEXT'>
       <block type='dockerInfo'>
