@@ -7,6 +7,7 @@ import { DemoBlocks } from "projects/node2-blockly/src/lib/DemoBlocks";
 import { AppDetails } from 'projects/node2-blockly/src/lib/AppDetails';
 import { Settings } from "projects/node2-blockly/src/lib/Settings";
 import { TransmitAction } from 'projects/node2-blockly/src/lib/TransmitAction';
+import { DockerData } from 'projects/docker-extension/src/public-api';
 
 @Component({
   selector: 'app-primary-navig',
@@ -26,7 +27,7 @@ export class PrimaryNavigComponent implements OnInit {
     public title:string = "Blockly Automation";
     public footer:string = '';
     public standalone:boolean=false;
-
+    public d: DockerData=new DockerData();
   constructor(private breakpointObserver: BreakpointObserver, private details: AppDetails, private ta :TransmitAction) {}
   ngOnInit(): void {
       this.latestVersion = this.details.settings?.latestVersion;

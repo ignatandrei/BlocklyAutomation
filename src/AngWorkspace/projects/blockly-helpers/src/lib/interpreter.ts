@@ -1,5 +1,6 @@
 
 import * as  FileSaver from "file-saver";
+import { DockerData } from "projects/docker-extension/src/public-api";
 declare var require: any;
 const synthPiano = require('./js/audioTest.js');
 // const vex = require('vex-js');
@@ -935,6 +936,19 @@ interpreter.setProperty(globalObject, 'speakDefault',
           };
           interpreter.setProperty(globalObject, 'findPropValue',
               interpreter.createNativeFunction(wrapper220));
+        
+        var wrapper230 = (cmd:string,argsDocker:string[], callback:any) => {
+
+            var d=new DockerData();
+            if(!d.canConstruct){
+                return callback("please see error log in console");
+            }
+            var dd=d.execCli(cmd,argsDocker).then(data=>  callback(data.parseJsonObject()));
+
+            
         }
+        interpreter.setProperty(globalObject, 'execDockerCLI',
+            interpreter.createAsyncFunction(wrapper230));
+
     }
-  
+}

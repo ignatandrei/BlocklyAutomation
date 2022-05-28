@@ -238,6 +238,37 @@
           }
         }
       }
+    },
+    "DockerExtension": {
+      "projectType": "library",
+      "root": "projects/docker-extension",
+      "sourceRoot": "projects/docker-extension/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/docker-extension/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/docker-extension/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/docker-extension/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/docker-extension/src/test.ts",
+            "tsConfig": "projects/docker-extension/tsconfig.spec.json",
+            "karmaConfig": "projects/docker-extension/karma.conf.js"
+          }
+        }
+      }
     }
   },
   "defaultProject": "AutoBlocklyApp"
