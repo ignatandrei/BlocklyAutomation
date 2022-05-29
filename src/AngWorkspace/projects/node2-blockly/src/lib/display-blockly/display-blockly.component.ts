@@ -383,7 +383,7 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
   }
   ngAfterViewInit(): void {
     this.StartRegister();
-    this.createIntro();
+    // this.createIntro();
     fromEvent(window, 'TabDownload').subscribe(it=>this.tabulator.copyCSV());
     fromEvent(window, 'TabCopy').subscribe(it=>this.tabulator.copyClip());
   }

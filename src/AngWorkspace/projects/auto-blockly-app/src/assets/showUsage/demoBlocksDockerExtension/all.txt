@@ -28,5 +28,12 @@
         "description":  "read image name",
         "categories":  "images;read;",
         "blocks":  "dockerImagesList;text_print;convertToTable;controls_forEach;converttojson;getproperty;ttsBlock;text_join;text"
+    },
+    {
+        "id":  "dockerVersionInfo",
+        "description":  "docker info and version",
+        "categories":  "version;info;",
+        "blocks":  ""
     }
+
 ]
