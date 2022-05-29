@@ -1,7 +1,7 @@
 <xml xmlns="https://developers.google.com/blockly/xml">
   <variables>
     <variable id="y(;gdM%fmHFp9-aS=b2[">containerList</variable>
-    <variable id="/?#kf%Ed1]@,hl{2aYY*">image</variable>
+    <variable id="/?#kf%Ed1]@,hl{2aYY*">container</variable>
     <variable id="PHh2C#|-`bX,YB/ssp~-">i</variable>
   </variables>
   <block type="variables_set" x="41" y="-18">
@@ -32,7 +32,7 @@
     </value>
     <next>
       <block type="controls_forEach">
-        <field name="VAR" id="/?#kf%Ed1]@,hl{2aYY*">image</field>
+        <field name="VAR" id="/?#kf%Ed1]@,hl{2aYY*">container</field>
         <value name="LIST">
           <block type="converttojson">
             <value name="ValueToConvert">
@@ -51,7 +51,7 @@
                 <field name="prop">property</field>
                 <value name="ObjectToChange">
                   <block type="variables_get">
-                    <field name="VAR" id="/?#kf%Ed1]@,hl{2aYY*">image</field>
+                    <field name="VAR" id="/?#kf%Ed1]@,hl{2aYY*">container</field>
                   </block>
                 </value>
                 <value name="PropertyName">
