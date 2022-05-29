@@ -18,4 +18,11 @@
         "categories":  "images;remove;",
         "blocks":  "procedures_defreturn;get__rate_limit;text;math_number;text_print;getproperty;text_join;controls_if;logic_compare;procedures_callreturn;convertToTable;get__users___username_repos"
     }
+     ,
+	{
+        "id":  "startStopped",
+        "description":  "start stopped container",
+        "categories":  "containers;start;",
+        "blocks":  "procedures_defreturn;get__rate_limit;text;math_number;text_print;getproperty;text_join;controls_if;logic_compare;procedures_callreturn;convertToTable;get__users___username_repos"
+    }
 ]
