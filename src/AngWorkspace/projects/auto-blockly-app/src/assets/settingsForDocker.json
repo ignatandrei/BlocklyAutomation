@@ -7,7 +7,7 @@
 "  <block type='text_print' x='40' y='61'>",
 "    <value name='TEXT'>",
 "      <shadow type='text'>",
-"        <field name='TEXT'>For images , containers blocks click on the left </field>",
+"        <field name='TEXT'>See images , containers, general categories on the left </field>",
 "      </shadow>",
 "    </value>",
 "    <next>",
