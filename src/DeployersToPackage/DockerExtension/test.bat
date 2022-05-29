@@ -7,6 +7,14 @@ rem cmd /C start /B /WAIT /REALTIME  npm run buildDesktop
 start /separate /wait /REALTIME cmd /c "npm run buildDesktop" 
 cd ..\DeployersToPackage\DockerExtension
 xcopy ..\..\AngWorkspace\dist\auto-blockly-app\*.* ui\ /E  
+
+cd ui\assets\
+del settings.json
+ren settingsForDocker.json settings.json
+cd ..
+cd ..
+
+
 cd ui\assets\loadAtStartup\
 del swaggers.json
 ren swaggersForDockerExtension.json swaggers.json
