@@ -3,7 +3,7 @@
     <value name="TEXT">
       <block type="convertToTable">
         <value name="ArrayToConvert">
-          <block type="dockerImages">
+          <block type="dockerImagesList">
             <value name="all">
               <shadow type="logic_boolean">
                 <field name="BOOL">TRUE</field>
@@ -11,7 +11,7 @@
             </value>
             <value name="filter">
               <shadow type="text">
-                <field name="TEXT">dangling=true</field>
+                <field name="TEXT"></field>
               </shadow>
             </value>
             <value name="digests">

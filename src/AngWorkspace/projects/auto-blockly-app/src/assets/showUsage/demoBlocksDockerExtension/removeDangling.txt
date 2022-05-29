@@ -1,0 +1,71 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="y(;gdM%fmHFp9-aS=b1[">danglingImages</variable>
+  </variables>
+  <block type="variables_set" x="52" y="-3">
+    <field name="VAR" id="y(;gdM%fmHFp9-aS=b1[">danglingImages</field>
+    <value name="VALUE">
+      <block type="dockerImagesList">
+        <value name="all">
+          <shadow type="logic_boolean">
+            <field name="BOOL">TRUE</field>
+          </shadow>
+        </value>
+        <value name="filter">
+          <shadow type="text">
+            <field name="TEXT">dangling=true</field>
+          </shadow>
+        </value>
+        <value name="digests">
+          <shadow type="logic_boolean">
+            <field name="BOOL">FALSE</field>
+          </shadow>
+        </value>
+        <value name="transform">
+          <shadow type="text">
+            <field name="TEXT">"{{json .}}"</field>
+          </shadow>
+        </value>
+      </block>
+    </value>
+    <next>
+      <block type="text_print">
+        <value name="TEXT">
+          <block type="variables_get">
+            <field name="VAR" id="y(;gdM%fmHFp9-aS=b1[">danglingImages</field>
+          </block>
+        </value>
+      </block>
+    </next>
+  </block>
+  <block type="text_print" x="0" y="0">
+    <value name="TEXT">
+      <block type="convertToTable">
+        <value name="ArrayToConvert">
+          <block type="dockerImagesList">
+            <value name="all">
+              <shadow type="logic_boolean">
+                <field name="BOOL">TRUE</field>
+              </shadow>
+            </value>
+            <value name="filter">
+              <shadow type="text">
+                <field name="TEXT">dangling=true</field>
+              </shadow>
+            </value>
+            <value name="digests">
+              <shadow type="logic_boolean">
+                <field name="BOOL">FALSE</field>
+              </shadow>
+            </value>
+            <value name="transform">
+              <shadow type="text">
+                <field name="TEXT">"{{json .}}"</field>
+              </shadow>
+            </value>
+          </block>
+        </value>
+      </block>
+    </value>
+  </block>
+</xml>

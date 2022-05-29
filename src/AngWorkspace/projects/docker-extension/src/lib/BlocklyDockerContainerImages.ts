@@ -16,7 +16,7 @@ export class BlocklyDockerContainerImages{
             .appendField("List Images");
         this.appendValueInput("all")
             .setCheck("Boolean")
-            .appendField("All Containers");
+            .appendField("All Images");
         this.appendValueInput("filter")
             .setCheck("String")
             .appendField("Filter");

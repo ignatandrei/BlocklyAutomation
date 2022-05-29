@@ -1,14 +1,21 @@
 ﻿[
     {
         "id":  "GenericCallArguments",
-        "description":  "call any docker command",
-        "categories":  "github;api;user",
+        "description":  "call any command",
+        "categories":  "command;call;",
         "blocks":  "procedures_defreturn;get__rate_limit;text;math_number;text_print;getproperty;text_join;controls_if;logic_compare;procedures_callreturn;convertToTable;get__users___username_repos"
     },
 	{
         "id":  "images",
-        "description":  "list docker images",
-        "categories":  "github;api;user",
+        "description":  "list images",
+        "categories":  "images;list;",
+        "blocks":  "procedures_defreturn;get__rate_limit;text;math_number;text_print;getproperty;text_join;controls_if;logic_compare;procedures_callreturn;convertToTable;get__users___username_repos"
+    }
+    ,
+	{
+        "id":  "removeDangling",
+        "description":  "remove dangling images",
+        "categories":  "images;remove;",
         "blocks":  "procedures_defreturn;get__rate_limit;text;math_number;text_print;getproperty;text_join;controls_if;logic_compare;procedures_callreturn;convertToTable;get__users___username_repos"
     }
 ]

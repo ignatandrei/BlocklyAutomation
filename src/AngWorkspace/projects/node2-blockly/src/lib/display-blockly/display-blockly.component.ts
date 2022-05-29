@@ -311,6 +311,7 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
         Blockly.Xml.clearWorkspaceAndLoadFromXml(xml, this.demoWorkspace);
         }
         catch(e){
+          console.log('error loading',id,xml, e);
           if(id?.toString().indexOf("docker")>-1){
             if(window.confirm("This demo must run with Desktop App.\nDo you want to go to download page?")){
               window.open('http://ba.serviciipeweb.ro/');
