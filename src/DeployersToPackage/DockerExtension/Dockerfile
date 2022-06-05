@@ -1,6 +1,6 @@
 FROM scratch
 
-LABEL org.opencontainers.image.title="Blockly Automation for Docker" \
+LABEL org.opencontainers.image.title="Blockly Automation" \
     org.opencontainers.image.description="A extension that displays lowCode with Blockly for any Docker command" \
     org.opencontainers.image.vendor="Andrei Ignat" \
     com.docker.desktop.extension.api.version=">= 0.2.0" \

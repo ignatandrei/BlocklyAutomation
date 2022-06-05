@@ -1,6 +1,7 @@
 :1
 pause
 docker extension uninstall blockly-automation:0.0.1 
+docker extension uninstall blockly-automation:0.0.2 
 del  ui\*.* /F /Q /S
 cd ..\..\AngWorkspace
 rem cmd /C start /B /WAIT /REALTIME  npm run buildDesktop
@@ -29,6 +30,6 @@ cd ..
 cd ..
 cd ..
 
-docker build -t blockly-automation:0.0.1 .
-docker extension install blockly-automation:0.0.1 -f
+docker build -t blockly-automation:0.0.2 .
+docker extension install blockly-automation:0.0.2 -f
 goto 1
