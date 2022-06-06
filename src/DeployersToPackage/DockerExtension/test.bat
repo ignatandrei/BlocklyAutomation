@@ -1,8 +1,7 @@
 :1
 pause
 
-docker extension uninstall blockly-automation:0.0.1 
-docker extension uninstall blockly-automation:0.0.2 
+docker extension uninstall blockly-automation:0.0.5 
 
 del  ui\*.* /F /Q /S
 cd ..\..\AngWorkspace
@@ -32,7 +31,7 @@ cd ..
 cd ..
 cd ..
 
-docker build -t blockly-automation:0.0.2 .
-docker extension install blockly-automation:0.0.4 -f
-docker extension dev debug blockly-automation:0.0.4
+docker build -t blockly-automation:0.0.5 .
+docker extension install blockly-automation:0.0.5 -f
+docker extension dev debug blockly-automation:0.0.5
 goto 1
