@@ -6,6 +6,8 @@ import {
   OnInit,
   ɵɵsetComponentScope,
 } from '@angular/core';
+// import * as vex from 'vex-js';
+// import 'vex-dialog';
 import 'codemirror/mode/javascript/javascript';
 import * as Blockly from 'blockly';
 import * as BlocklyJavaScript from 'blockly/javascript';
@@ -38,6 +40,16 @@ import { bs } from '../bs';
 import { saveLoadService } from 'projects/blockly-helpers/src/lib/blockly-helpers.service';
 import { InterpreterBA } from 'projects/blockly-helpers/src/lib/interpreter';
 import { MatTabChangeEvent } from '@angular/material/tabs';
+declare var require: any;
+
+const vex = require('vex-js');
+try{
+ vex.registerPlugin(require('vex-dialog'));
+}
+catch{
+
+}
+
 enum ShowCodeAndXML{
   ShowNone=0,
   ShowBlocksDefinition=1,
@@ -420,16 +432,32 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
       
     });
   }
+  public LoadPrompt(text:string, callBack: (result:string)=>void){
+    vex.defaultOptions.className = 'vex-theme-os';
+    vex.dialog.prompt({
+      message: text,
+      callback: function (value: string) {
+          if (value) {
+              callBack(value);
+          } else {
+              console.log('no answer');
+          }
+      }
+  });
+  }
   public LoadSwagger() {
     //https://swagger-tax-calc-api.herokuapp.com/api-docs
     //cors: https://humorapi.com/downloads/humorapi-openapi-3.json
     var self=this;
+    
+    this.LoadPrompt('Please enter the swagger url ( not the html!)' , (json:string)=>{
     var parser = new BlocklyReturnSwagger("");
-    var json = window.prompt("Swagger/OpenAPI ? ");
+    
+    // var json = window.prompt("Swagger/OpenAPI ? ");
     
     if (!json) return;
     if (json.endsWith('.html') || json.endsWith('.htm')) {
-      window.alert('Swagger should end with .json - see source of html page');
+      window.alert('Swagger should not end with .html - see source of html page');
       return;
     }
     //self.loadedCompletely=false;
@@ -447,6 +475,7 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
         window.alert("loaded successfully");
       }
     });
+      });
     }
     // var json = window.prompt(
     //   'Swagger url? ',
@@ -768,9 +797,15 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
   }
   Download(): void {
     //todo: use vex as for others - electron compatibility
-    var name = window.prompt('Name?', 'blocks.txt');
+    var self=this;
+    this.LoadPrompt('Please enter file name' , (name:string)=>{
+
+    
+    // var name = window.prompt('Name?', 'blocks.txt');
     if (name == null) return;
-    this.bh2.DownloadBlocks(Blockly.Xml, this.demoWorkspace, name);
+    self.bh2.DownloadBlocks(Blockly.Xml, this.demoWorkspace, name);
+    });
+
   }
   changeListener($event: any): void {
     this.readThis($event.target);

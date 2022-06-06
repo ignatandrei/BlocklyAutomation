@@ -39,6 +39,9 @@
 			  "./node_modules/codemirror/lib/codemirror.css",
               "./node_modules/codemirror/theme/material.css",
               "projects/auto-blockly-app/src/styles.css",
+              "./node_modules/vex-js/dist/css/vex.css",
+              "./node_modules/vex-js/dist/css/vex-theme-os.css"
+              
             ],
             "scripts": [
 			"projects/auto-blockly-app/src/assets/acorn_interpreter.js",	
