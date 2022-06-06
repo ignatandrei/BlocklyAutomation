@@ -31,6 +31,10 @@ export class PrimaryNavigComponent implements OnInit {
     public hideMenu:boolean = false;
   constructor(private breakpointObserver: BreakpointObserver, private details: AppDetails, private ta :TransmitAction) {}
   ngOnInit(): void {
+    const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+    if(prefersDarkScheme.matches){    
+       document.body.classList.toggle('dark-theme');
+      };
       this.latestVersion = this.details.settings?.latestVersion;
       this.hideMenu=this.details.settings?.hideMenu??false;
       this.demoBlocks =this.details.demoBlocks.sort((a, b) => a.description.localeCompare(b.description));

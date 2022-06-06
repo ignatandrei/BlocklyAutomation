@@ -6,6 +6,7 @@ import {
   OnInit,
   ɵɵsetComponentScope,
 } from '@angular/core';
+
 // import * as vex from 'vex-js';
 // import 'vex-dialog';
 import 'codemirror/mode/javascript/javascript';
@@ -41,7 +42,7 @@ import { saveLoadService } from 'projects/blockly-helpers/src/lib/blockly-helper
 import { InterpreterBA } from 'projects/blockly-helpers/src/lib/interpreter';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 declare var require: any;
-
+const DarkTheme = require('@blockly/theme-dark');
 const vex = require('vex-js');
 try{
  vex.registerPlugin(require('vex-dialog'));
@@ -895,13 +896,20 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
     this.toolboxXML = `<xml xmlns="https://developers.google.com/blockly/xml" id="toolbox-simple" style="display: none">    
     ${blocks}
     </xml>`;
+
+    var theme:any = '';
+    const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+    if(prefersDarkScheme.matches){
+      theme=DarkTheme;
+    }
     // console.log(toolboxXML);
     this.demoWorkspace = Blockly.inject(blocklyDiv, {
       readOnly: false,
       media: 'media/',
       trashcan: true,
       // renderer:'thrasos',
-      // theme: "highcontrast",
+      //theme: "highcontrast",
+      theme: theme,
       horizontalLayout:	false,
       move: {
         scrollbars: true,

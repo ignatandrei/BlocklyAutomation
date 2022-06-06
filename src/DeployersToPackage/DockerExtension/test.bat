@@ -33,6 +33,6 @@ cd ..
 cd ..
 
 docker build -t blockly-automation:0.0.2 .
-docker extension install blockly-automation:0.0.2 -f
-docker extension dev debug blockly-automation:0.0.2
+docker extension install blockly-automation:0.0.4 -f
+docker extension dev debug blockly-automation:0.0.4
 goto 1
