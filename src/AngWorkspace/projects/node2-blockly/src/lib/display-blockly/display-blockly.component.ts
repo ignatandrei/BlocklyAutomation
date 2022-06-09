@@ -6,6 +6,9 @@ import {
   OnInit,
   ɵɵsetComponentScope,
 } from '@angular/core';
+
+// import * as vex from 'vex-js';
+// import 'vex-dialog';
 import 'codemirror/mode/javascript/javascript';
 import * as Blockly from 'blockly';
 import * as BlocklyJavaScript from 'blockly/javascript';
@@ -38,6 +41,16 @@ import { bs } from '../bs';
 import { saveLoadService } from 'projects/blockly-helpers/src/lib/blockly-helpers.service';
 import { InterpreterBA } from 'projects/blockly-helpers/src/lib/interpreter';
 import { MatTabChangeEvent } from '@angular/material/tabs';
+declare var require: any;
+const DarkTheme = require('@blockly/theme-dark');
+const vex = require('vex-js');
+try{
+ vex.registerPlugin(require('vex-dialog'));
+}
+catch{
+
+}
+
 enum ShowCodeAndXML{
   ShowNone=0,
   ShowBlocksDefinition=1,
@@ -311,6 +324,7 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
         Blockly.Xml.clearWorkspaceAndLoadFromXml(xml, this.demoWorkspace);
         }
         catch(e){
+          console.log('error loading',id,xml, e);
           if(id?.toString().indexOf("docker")>-1){
             if(window.confirm("This demo must run with Desktop App.\nDo you want to go to download page?")){
               window.open('http://ba.serviciipeweb.ro/');
@@ -382,7 +396,7 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
   }
   ngAfterViewInit(): void {
     this.StartRegister();
-    //this.createIntro();
+    // this.createIntro();
     fromEvent(window, 'TabDownload').subscribe(it=>this.tabulator.copyCSV());
     fromEvent(window, 'TabCopy').subscribe(it=>this.tabulator.copyClip());
   }
@@ -419,16 +433,32 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
       
     });
   }
+  public LoadPrompt(text:string, callBack: (result:string)=>void){
+    vex.defaultOptions.className = 'vex-theme-os';
+    vex.dialog.prompt({
+      message: text,
+      callback: function (value: string) {
+          if (value) {
+              callBack(value);
+          } else {
+              console.log('no answer');
+          }
+      }
+  });
+  }
   public LoadSwagger() {
     //https://swagger-tax-calc-api.herokuapp.com/api-docs
     //cors: https://humorapi.com/downloads/humorapi-openapi-3.json
     var self=this;
+    
+    this.LoadPrompt('Please enter the swagger url ( not the html!)' , (json:string)=>{
     var parser = new BlocklyReturnSwagger("");
-    var json = window.prompt("Swagger/OpenAPI ? ");
+    
+    // var json = window.prompt("Swagger/OpenAPI ? ");
     
     if (!json) return;
     if (json.endsWith('.html') || json.endsWith('.htm')) {
-      window.alert('Swagger should end with .json - see source of html page');
+      window.alert('Swagger should not end with .html - see source of html page');
       return;
     }
     //self.loadedCompletely=false;
@@ -446,6 +476,7 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
         window.alert("loaded successfully");
       }
     });
+      });
     }
     // var json = window.prompt(
     //   'Swagger url? ',
@@ -583,6 +614,11 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
         
       `,
       `</category>
+      <category id="DockerBlockly" name="DockerBA" expanded="true"  hidden="${!this.bs.docker.canConstruct}">>
+      ${this.bs.DockerContainer.fieldXML()}
+      ${this.bs.DockerVersionInfo.fieldXML()}
+      </category>
+
       ${customCategs}
       
       <category name="Swagger" id="catSwagger" expanded='false' >          
@@ -600,6 +636,14 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
     );
     
     this.bs.xhrBlocks.definitionBlocks(
+      Blockly.Blocks,
+      BlocklyJavaScript
+    );
+    this.bs.DockerContainer.definitionBlocks(
+      Blockly.Blocks,
+      BlocklyJavaScript
+    );
+    this.bs.DockerVersionInfo.definitionBlocks(
       Blockly.Blocks,
       BlocklyJavaScript
     );
@@ -754,9 +798,15 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
   }
   Download(): void {
     //todo: use vex as for others - electron compatibility
-    var name = window.prompt('Name?', 'blocks.txt');
+    var self=this;
+    this.LoadPrompt('Please enter file name' , (name:string)=>{
+
+    
+    // var name = window.prompt('Name?', 'blocks.txt');
     if (name == null) return;
-    this.bh2.DownloadBlocks(Blockly.Xml, this.demoWorkspace, name);
+    self.bh2.DownloadBlocks(Blockly.Xml, this.demoWorkspace, name);
+    });
+
   }
   changeListener($event: any): void {
     this.readThis($event.target);
@@ -846,13 +896,20 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
     this.toolboxXML = `<xml xmlns="https://developers.google.com/blockly/xml" id="toolbox-simple" style="display: none">    
     ${blocks}
     </xml>`;
+
+    var theme:any = '';
+    const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+    if(prefersDarkScheme.matches){
+      theme=DarkTheme;
+    }
     // console.log(toolboxXML);
     this.demoWorkspace = Blockly.inject(blocklyDiv, {
       readOnly: false,
       media: 'media/',
       trashcan: true,
       // renderer:'thrasos',
-      // theme: "highcontrast",
+      //theme: "highcontrast",
+      theme: theme,
       horizontalLayout:	false,
       move: {
         scrollbars: true,

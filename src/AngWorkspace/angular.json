@@ -39,6 +39,9 @@
 			  "./node_modules/codemirror/lib/codemirror.css",
               "./node_modules/codemirror/theme/material.css",
               "projects/auto-blockly-app/src/styles.css",
+              "./node_modules/vex-js/dist/css/vex.css",
+              "./node_modules/vex-js/dist/css/vex-theme-os.css"
+              
             ],
             "scripts": [
 			"projects/auto-blockly-app/src/assets/acorn_interpreter.js",	
@@ -235,6 +238,37 @@
             "main": "projects/node2-blockly/src/test.ts",
             "tsConfig": "projects/node2-blockly/tsconfig.spec.json",
             "karmaConfig": "projects/node2-blockly/karma.conf.js"
+          }
+        }
+      }
+    },
+    "DockerExtension": {
+      "projectType": "library",
+      "root": "projects/docker-extension",
+      "sourceRoot": "projects/docker-extension/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/docker-extension/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/docker-extension/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/docker-extension/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/docker-extension/src/test.ts",
+            "tsConfig": "projects/docker-extension/tsconfig.spec.json",
+            "karmaConfig": "projects/docker-extension/karma.conf.js"
           }
         }
       }

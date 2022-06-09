@@ -7,6 +7,7 @@ import { DemoBlocks } from "projects/node2-blockly/src/lib/DemoBlocks";
 import { AppDetails } from 'projects/node2-blockly/src/lib/AppDetails';
 import { Settings } from "projects/node2-blockly/src/lib/Settings";
 import { TransmitAction } from 'projects/node2-blockly/src/lib/TransmitAction';
+import { DockerData } from 'projects/docker-extension/src/public-api';
 
 @Component({
   selector: 'app-primary-navig',
@@ -26,10 +27,16 @@ export class PrimaryNavigComponent implements OnInit {
     public title:string = "Blockly Automation";
     public footer:string = '';
     public standalone:boolean=false;
-
+    public d: DockerData=new DockerData();
+    public hideMenu:boolean = false;
   constructor(private breakpointObserver: BreakpointObserver, private details: AppDetails, private ta :TransmitAction) {}
   ngOnInit(): void {
+    const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+    if(prefersDarkScheme.matches){    
+       document.body.classList.toggle('dark-theme');
+      };
       this.latestVersion = this.details.settings?.latestVersion;
+      this.hideMenu=this.details.settings?.hideMenu??false;
       this.demoBlocks =this.details.demoBlocks.sort((a, b) => a.description.localeCompare(b.description));
       this.title=this.details?.settings?.title ||'Blockly Automation';
       this.footer = this.details?.settings?.footer || '';

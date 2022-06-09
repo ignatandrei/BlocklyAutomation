@@ -15,6 +15,10 @@
         "dist/blockly-swagger/blockly-swagger",
         "dist/blockly-swagger"
       ],
+      "DockerExtension": [
+        "dist/docker-extension/docker-extension",
+        "dist/docker-extension"
+      ],
       "Node2Blockly": [
         "dist/node2-blockly/primary-navig",
         "dist/node2-blockly/blockly-studio",

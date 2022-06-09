@@ -9,4 +9,5 @@ export class Settings {
     public tourSteps: TourSteps[] = [];
     public latestVersion: string = '';
     public localAPI: string = '';
+    public hideMenu:boolean=false;
 }
