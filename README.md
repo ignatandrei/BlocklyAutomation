@@ -12,9 +12,16 @@ Blockly Automation :  is a tool for LowCode / automation of sites (Swagger / Ope
 
 Use the appropiate package:
 
+### [NetCore](https://github.com/ignatandrei/BlocklyAutomation/wiki/netcore) 
+
 .NET Core: ![Nuget](https://img.shields.io/nuget/dt/NetCore2Blockly)
 
+### [Node](https://github.com/ignatandrei/BlocklyAutomation/wiki/node)
+
 Node: ![npm](https://img.shields.io/npm/v/node2-blockly)
+
+
+### [Java](https://github.com/ignatandrei/BlocklyAutomation/wiki/java) 
 
 or
 
