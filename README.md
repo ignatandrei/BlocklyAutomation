@@ -34,11 +34,15 @@ Packagist : [![php](https://img.shields.io/packagist/v/carolpelu/blockly-automat
 More details at https://github.com/Tynael/laravel-blockly-automation
 
 
+### [Java](https://github.com/cosminpopescu14/math-operations-swagger) , Manual example by Cosmin Popescu 
 
+Not yet ready as a package, you can read to add manually 
 
-### [Java](https://github.com/ignatandrei/BlocklyAutomation/wiki/java) 
-Not yet ready as a package, you care read to add manually at https://github.com/ignatandrei/BlocklyAutomation/wiki/java
+Example by Cosmin Popescu at https://github.com/cosminpopescu14/math-operations-swagger
+
 or
+
+### Manual
 
 Download the HTML release [BlocklyAutomation](https://github.com/ignatandrei/BlocklyAutomation/releases/latest/download/releaseBlocklyAutomation.zip/) .
 
