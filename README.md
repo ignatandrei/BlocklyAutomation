@@ -12,23 +12,27 @@ Blockly Automation :  is a tool for LowCode / automation of sites (Swagger / Ope
 
 Use the appropiate package: 
 
-### [NetCore](https://github.com/ignatandrei/BlocklyAutomation/wiki/netcore) 
+### [NetCore](https://github.com/ignatandrei/BlocklyAutomation/wiki/netcore)  , made by Andrei Ignat
 
 .NET Core: [![Nuget](https://img.shields.io/nuget/dt/NetCore2Blockly)](https://www.nuget.org/packages/NetCore2Blockly/)
 
 More details at https://github.com/ignatandrei/BlocklyAutomation/wiki/netcore
 
 
-### [Node](https://github.com/ignatandrei/BlocklyAutomation/wiki/node)
+### [Node](https://github.com/ignatandrei/BlocklyAutomation/wiki/node) , made by Andrei Ignat
 
 Node: [![npm](https://img.shields.io/npm/v/node2-blockly)](https://www.npmjs.com/package/node-blockly?)
 
 More details at https://github.com/ignatandrei/BlocklyAutomation/wiki/node
 
-### [PHP](https://github.com/ignatandrei/BlocklyAutomation/wiki/php)
+### [PHP](https://github.com/Tynael/laravel-blockly-automation) , made by Carol Pelu
 
-Made by Carol Pelu
+
+
 Packagist : [![php](https://img.shields.io/packagist/v/carolpelu/blockly-automation)](https://packagist.org/packages/carolpelu/blockly-automation)
+
+More details at https://github.com/Tynael/laravel-blockly-automation
+
 
 
 
