@@ -10,19 +10,30 @@ Blockly Automation :  is a tool for LowCode / automation of sites (Swagger / Ope
 ## a backend developer with an REST / OpenAPI / Swagger enabled site and I want to show the use of my site
 
 
-Use the appropiate package:
+Use the appropiate package: 
 
 ### [NetCore](https://github.com/ignatandrei/BlocklyAutomation/wiki/netcore) 
 
-.NET Core: ![Nuget](https://img.shields.io/nuget/dt/NetCore2Blockly)
+.NET Core: [![Nuget](https://img.shields.io/nuget/dt/NetCore2Blockly)](https://www.nuget.org/packages/NetCore2Blockly/)
+
+More details at https://github.com/ignatandrei/BlocklyAutomation/wiki/netcore
+
 
 ### [Node](https://github.com/ignatandrei/BlocklyAutomation/wiki/node)
 
-Node: ![npm](https://img.shields.io/npm/v/node2-blockly)
+Node: [![npm](https://img.shields.io/npm/v/node2-blockly)](https://www.npmjs.com/package/node-blockly?)
+
+More details at https://github.com/ignatandrei/BlocklyAutomation/wiki/node
+
+### [PHP](https://github.com/ignatandrei/BlocklyAutomation/wiki/php)
+
+Made by Carol Pelu
+Packagist : [![php](https://img.shields.io/packagist/v/carolpelu/blockly-automation)](https://packagist.org/packages/carolpelu/blockly-automation)
+
 
 
 ### [Java](https://github.com/ignatandrei/BlocklyAutomation/wiki/java) 
-
+Not yet ready as a package, you care read to add manually at https://github.com/ignatandrei/BlocklyAutomation/wiki/java
 or
 
 Download the HTML release [BlocklyAutomation](https://github.com/ignatandrei/BlocklyAutomation/releases/latest/download/releaseBlocklyAutomation.zip/) .
