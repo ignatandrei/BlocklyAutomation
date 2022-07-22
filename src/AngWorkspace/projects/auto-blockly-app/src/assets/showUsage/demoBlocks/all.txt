@@ -1,9 +1,15 @@
 ﻿[
     {
+        "id":  "generateAPIList",
+        "description":  "generate api documentation",
+        "categories":  "api;list",
+        "blocks":  "procedures_defnoreturn;controls_if;logic_compare;logic_null;text_print;text;HTMLliStart;controls_forEach;getproperty;converttostring;text_join;text_changeCase;HTMLli;HTMLliStop;procedures_callnoreturn"
+    },
+    {
         "id":  "githubRepoForUser",
         "description":  "github repo for user",
         "categories":  "github;api;user",
-        "blocks":  "procedures_defreturn;get__rate_limit;text;math_number;text_print;getproperty;text_join;controls_if;logic_compare;procedures_callreturn;convertToTable;get__users___username_repos"
+        "blocks":  "controls_if;logic_compare;math_number;procedures_callreturn;text_print;text;convertToTable;get__users___username_repos;procedures_defreturn;get__rate_limit;getproperty;text_join"
     },
     {
         "id":  "apiHtml",
