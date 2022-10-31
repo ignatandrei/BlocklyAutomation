@@ -4,10 +4,23 @@ declare var Interpreter: any;
 class InterpreterRunner{
     highlightPause :boolean= false;
     myInterpreter : any= null;
-    step: number=0;
+    public step: number=0;
     runnerPid:NodeJS.Timeout|null=null;
-    constructor(private workspace: WorkspaceSvg, private javascriptGenerator: any){
+    private myCallBackCode :(text:any, me:InterpreterRunner)=>void ;
+    public lastData:any;
 
+    constructor(private workspace: WorkspaceSvg, private javascriptGenerator: any,private  callBackCode:(x:any)=>void | null){
+      
+      this.myCallBackCode = (text, me)=>{
+        // console.log('received ', text,me);
+        me.step++;
+        me.lastData=text;
+          if(me.callBackCode != null)
+            me.callBackCode(text);
+          else
+            console.log(text);
+        }
+        
     }
     public resetStepUi(clearOutput: boolean): number{
         // Reset the UI to the start of the program.
@@ -35,10 +48,13 @@ class InterpreterRunner{
                 '===================================\n' + latestCode);
   
             // Begin execution
-            self.myInterpreter = new Interpreter(latestCode, self.initApi);
+            self.myInterpreter = new Interpreter(latestCode,(i:any,g:any)=> self.initApi(i,g,self), self);
             function runner() {
+              //console.log('ab',self.myInterpreter);
               if (self.myInterpreter) {
+                //console.log('ac',self.myInterpreter);
                 var hasMore = self.myInterpreter.run();
+                //console.log('ad',self.myInterpreter, hasMore);
                 if (hasMore) {
                   // Execution is currently blocked by some async call.
                   // Try again later.
@@ -59,13 +75,19 @@ class InterpreterRunner{
         this.workspace.highlightBlock(id);
         this.highlightPause = true;
     }
-
-    public initApi(interpreter: any, globalObject:any):void {
+    
+    public initApi(interpreter: any, globalObject:any, me: InterpreterRunner):void {
+      
+      var callMe=me.myCallBackCode;
+      me.initApiJS(interpreter,globalObject,me);
+    }
+    public initApiJS(interpreter: any, globalObject:any, me: InterpreterRunner):void {
         var self=this;
         // Add an API function for the alert() block, generated for "text_print" blocks.
         var wrapperAlert = function alert(text:any) {
-          text = arguments.length ? text : '';
-        //   outputArea.value += '\n' + text;
+          text = arguments.length ? text : '';          
+          me.myCallBackCode(text,me);
+          
         };
         interpreter.setProperty(globalObject, 'alert',
             interpreter.createNativeFunction(wrapperAlert));

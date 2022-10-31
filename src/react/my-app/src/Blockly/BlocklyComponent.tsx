@@ -16,16 +16,21 @@ import InterpreterRunner from '../BlocklyReusable/InterpreterRunner';
     const blocklyDiv = useRef<any|null>() ;
     const toolbox = useRef<any|null>();
     let primaryWorkspace = useRef<WorkspaceSvg>();
-
+    let s: InterpreterRunner | null = null;
     const generateCode = () => {
         var code = javascriptGenerator.workspaceToCode(
           primaryWorkspace.current
         );
         window.alert(code);
-        var s =new InterpreterRunner(primaryWorkspace.current!,javascriptGenerator);
+        s =new InterpreterRunner(primaryWorkspace.current!,javascriptGenerator, displayStatement);
         s.runCode();
-    }
- 
+    };
+    const displayStatement = (x: any) =>  {
+        console.log('for step ' + s!.step + ' data is ' +s!.lastData );
+
+        //console.log('received' +x);
+    };
+    
     useEffect(() => {
 
         if(primaryWorkspace.current !== undefined)
