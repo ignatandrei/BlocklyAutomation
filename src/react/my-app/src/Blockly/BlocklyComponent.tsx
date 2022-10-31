@@ -8,6 +8,7 @@
  import {javascriptGenerator} from 'blockly/javascript';
  import locale from 'blockly/msg/en';
  import 'blockly/blocks';
+import InterpreterRunner from '../BlocklyReusable/InterpreterRunner';
  
  Blockly.setLocale(locale);
  
@@ -20,13 +21,15 @@
         var code = javascriptGenerator.workspaceToCode(
           primaryWorkspace.current
         );
-        console.log(code);
+        window.alert(code);
+        var s =new InterpreterRunner(primaryWorkspace.current!,javascriptGenerator);
+        s.runCode();
     }
  
     useEffect(() => {
 
         if(primaryWorkspace.current !== undefined)
-            return;//generates twice ?
+            return;//TODO: why generates twice ?
         console.log("test", primaryWorkspace);
         const { initialXml, children, ...rest } = props;
             primaryWorkspace.current = Blockly.inject(
