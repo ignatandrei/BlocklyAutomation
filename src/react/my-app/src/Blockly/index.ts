@@ -35,4 +35,10 @@ const Shadow = (p:any) => {
     return React.createElement("shadow", props, children);
 };
 
-export { Block, Category, Value, Field, Shadow }
+const Mutation = (p:any) => {
+    const { children, ...props } = p;
+    props.is = "blockly";
+    return React.createElement("mutation", props, children);
+};
+
+export { Block, Category, Value, Field, Shadow , Mutation}
