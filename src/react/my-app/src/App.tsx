@@ -12,6 +12,8 @@ import BlocklyComponent from './Blockly/BlocklyComponent';
 import { Block, Category, Field, Mutation, Shadow, Value } from './Blockly';
 import { AppBar, Box, Button, IconButton, Toolbar, Typography, useMediaQuery, useTheme } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+import { javascriptGenerator } from 'blockly/javascript';
+import waitBlock from './BlocklyReusable/BlocklyNewBlocks/wait_block';
 function App(props: any) {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
@@ -19,6 +21,9 @@ function App(props: any) {
   const showMenu = (event: React.MouseEvent<HTMLElement>) => {
     showLeftMenu((prevState) => !prevState)
   }
+  var waitBlockInstance=new waitBlock();
+  waitBlockInstance.definitionBlocks(javascriptGenerator);
+
     return <>
 
       <Box sx={{ flexGrow: 1 }}>
@@ -43,7 +48,7 @@ function App(props: any) {
             </IconButton>
           }
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Blockly Automation
+            Blockly Automation 
           </Typography>
           <Button color="inherit">Login </Button>
         </Toolbar>
@@ -369,6 +374,11 @@ function App(props: any) {
     <Category id="catVariables" colour="330" custom="VARIABLE" name="Variables"></Category>
     <Category id="catFunctions" colour="290" custom="PROCEDURE" name="Functions"></Category>
 
+</Category>
+<Category name="Advanced">
+<Category id="catTimers"  name="Timers">
+    <Block type={waitBlock.nameBlock}></Block>
+</Category>
 </Category>
             {/* <Block type="controls_ifelse" />
             <Block type="logic_compare" />

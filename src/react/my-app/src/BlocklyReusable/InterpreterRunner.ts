@@ -4,16 +4,17 @@ declare var Interpreter: any;
 class InterpreterRunner{
     highlightPause :boolean= false;
     myInterpreter : any= null;
-    public step: number=0;
+    public stepDisplay: number=0;
+    public stepExecute:number=0;
     runnerPid:NodeJS.Timeout|null=null;
     private myCallBackCode :(text:any, me:InterpreterRunner)=>void ;
     public lastData:any;
-
+    public latestCode:string='';
     constructor(private workspace: WorkspaceSvg, private javascriptGenerator: any,private  callBackCode:(x:any)=>void | null){
       
       this.myCallBackCode = (text, me)=>{
         // console.log('received ', text,me);
-        me.step++;
+        me.stepDisplay++;
         me.lastData=text;
           if(me.callBackCode != null)
             me.callBackCode(text);
@@ -24,13 +25,14 @@ class InterpreterRunner{
     }
     public resetStepUi(clearOutput: boolean): number{
         // Reset the UI to the start of the program.
-        this.step = 0;
+        this.stepDisplay = 0;
+        this.stepExecute=0;
         if(this.runnerPid != null)
             clearTimeout(this.runnerPid);
 
-        this.workspace.highlightBlock(null);
+        this.workspace.highlightBlock('');
         this.highlightPause = false;
-        return this.step;
+        return this.stepDisplay;
     }
     public runCode() {
         var self=this;
@@ -38,7 +40,7 @@ class InterpreterRunner{
           // First statement of this code.
           // Clear the program output.
           this.resetStepUi(true);
-          var latestCode = this.javascriptGenerator.workspaceToCode(this.workspace);
+          var latestCode = this.javascriptGenerator.workspaceToCode(this.workspace)||'';
           //runButton.disabled = 'disabled';
   
           // And then show generated code in an alert.
@@ -74,15 +76,29 @@ class InterpreterRunner{
     public highlightBlock(id: string) {
         this.workspace.highlightBlock(id);
         this.highlightPause = true;
+        this.stepExecute++;
     }
     
     public initApi(interpreter: any, globalObject:any, me: InterpreterRunner):void {
       
-      var callMe=me.myCallBackCode;
       me.initApiJS(interpreter,globalObject,me);
     }
     public initApiJS(interpreter: any, globalObject:any, me: InterpreterRunner):void {
         var self=this;
+
+
+        //thisClass.BlocklyJavaScript.addReservedWords('waitForSeconds');
+          
+        var wrapper160 = interpreter.createAsyncFunction(
+          function(timeInSeconds:any, callback:any) {
+            // Delay the call to the callback.
+            setTimeout(callback, timeInSeconds * 1000);
+          });
+        interpreter.setProperty(globalObject, 'waitForSeconds', wrapper160);
+
+
+
+
         // Add an API function for the alert() block, generated for "text_print" blocks.
         var wrapperAlert = function alert(text:any) {
           text = arguments.length ? text : '';          
@@ -102,6 +118,7 @@ class InterpreterRunner{
         // Add an API function for highlighting blocks.
         var wrapper = function(id:any) {
           id = String(id || '');
+          me.stepExecute++;
           return self.highlightBlock(id);
         };
         interpreter.setProperty(globalObject, 'highlightBlock',

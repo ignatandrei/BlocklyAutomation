@@ -17,16 +17,18 @@ import InterpreterRunner from '../BlocklyReusable/InterpreterRunner';
     const toolbox = useRef<any|null>();
     let primaryWorkspace = useRef<WorkspaceSvg>();
     let s: InterpreterRunner | null = null;
+    
     const generateCode = () => {
-        var code = javascriptGenerator.workspaceToCode(
-          primaryWorkspace.current
-        );
-        window.alert(code);
+        // var code = javascriptGenerator.workspaceToCode(
+        //   primaryWorkspace.current
+        // );
+        // window.alert(code);
         s =new InterpreterRunner(primaryWorkspace.current!,javascriptGenerator, displayStatement);
         s.runCode();
     };
     const displayStatement = (x: any) =>  {
-        console.log('for step ' + s!.step + ' data is ' +s!.lastData );
+
+        console.log('for display step ' + s!.stepDisplay + ' data is ' +s!.lastData );
 
         //console.log('received' +x);
     };
