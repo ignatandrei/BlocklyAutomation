@@ -8,12 +8,14 @@ import logo from './logo.svg';
 
 // import './Blocks/customBlocks';
 // import './generator/generator';
-import BlocklyComponent from './Blockly/BlocklyComponent';
-import { Block, Category, Field, Mutation, Shadow, Value } from './Blockly';
+import BlocklyComponent from './BlocklyFields/BlocklyComponent';
+import Blockly from 'blockly/core';
+import  { Block, Category, Field, Mutation, Shadow, Value } from './BlocklyFields';
 import { AppBar, Box, Button, IconButton, Toolbar, Typography, useMediaQuery, useTheme } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { javascriptGenerator } from 'blockly/javascript';
 import waitBlock from './BlocklyReusable/BlocklyNewBlocks/wait_block';
+import darkThemeData from './BlocklyReusable/themeDark';
 function App(props: any) {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
@@ -23,7 +25,9 @@ function App(props: any) {
   }
   var waitBlockInstance=new waitBlock();
   waitBlockInstance.definitionBlocks(javascriptGenerator);
-
+  
+//   var dark = Blockly.Theme.defineTheme('darkAndrei',darkThemeData);
+  
     return <>
 
       <Box sx={{ flexGrow: 1 }}>
@@ -59,6 +63,9 @@ function App(props: any) {
         <header className="App-header">
           <BlocklyComponent readOnly={false} 
           trashcan={true} media={'media/'}
+          renderer={'thrasos'}
+        theme={Blockly.Themes.Classic}
+
           move={{
             scrollbars: true,
             drag: true,
@@ -175,7 +182,7 @@ function App(props: any) {
             </Value>
         </Block>
         <Block type="math_constrain">
-            <Value name="Value">
+            <Value name="value">
                 <Shadow type="math_number">
                     <Field name="NUM">50</Field>
                 </Shadow>
