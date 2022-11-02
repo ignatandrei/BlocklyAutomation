@@ -15,7 +15,8 @@ import { AppBar, Box, Button, IconButton, Toolbar, Typography, useMediaQuery, us
 import MenuIcon from '@mui/icons-material/Menu';
 import { javascriptGenerator } from 'blockly/javascript';
 import waitBlock from './BlocklyReusable/BlocklyNewBlocks/wait_block';
-import darkThemeData from './BlocklyReusable/themeDark';
+import FindSavedBlocksComponent from './Components/Examples/FindSavedBlocksComponent';
+// import darkThemeData from './BlocklyReusable/themeDark';
 function App(props: any) {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
@@ -27,7 +28,18 @@ function App(props: any) {
   waitBlockInstance.definitionBlocks(javascriptGenerator);
   
 //   var dark = Blockly.Theme.defineTheme('darkAndrei',darkThemeData);
-  
+const [open, setOpen] = React.useState(false);
+const [selectedValue, setSelectedValue] = React.useState("");  
+
+const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = (value: string) => {
+    setOpen(false);
+    setSelectedValue(value);
+    window.alert(value);
+  };
+
     return <>
 
       <Box sx={{ flexGrow: 1 }}>
@@ -36,8 +48,13 @@ function App(props: any) {
           mobil
         )</>: <>(not mobil)</>
         }</span> */}
-
-      <AppBar position="static">
+    <FindSavedBlocksComponent
+        selectedValue={selectedValue}
+        open={open}
+        onClose={handleClose}
+      />
+      <AppBar position="static" color="secondary">
+        
         <Toolbar>
           {isMobile &&
             <IconButton
@@ -53,8 +70,10 @@ function App(props: any) {
           }
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Blockly Automation 
+            <Button variant="contained" onClick={handleClickOpen}>Examples</Button>
+
           </Typography>
-          <Button color="inherit">Login </Button>
+          {/* <Button color="inherit">Login </Button> */}
         </Toolbar>
       </AppBar>
     </Box>
