@@ -24,18 +24,21 @@ class DemoBlocks {
     const baseUrl=process.env.PUBLIC_URL+'/'; 
     
     return ajax
-      .get<string>(baseUrl+ `assets/showUsage/demoBlocks/all.txt?${dt}`, {
+      .get<DemoBlocks[]>(baseUrl+ `assets/showUsage/demoBlocks/all.txt?${dt}`, {
         responseType: "text" as "text",
       })
       .pipe(
-        map((res: AjaxResponse<string>)=> res.response),
-        tap((it:string)=> console.log('obtaining all blocks demos',it)),
-        map(data=>JSON.stringify(data)),
-        map((data: string) => {                    
-          var d: DemoBlocks[] = JSON.parse(data) ;
-          d = d.map((it) => new DemoBlocks(it));
-          return d;
-        })
+        map((res: AjaxResponse<DemoBlocks[]>)=> res.response),
+        map((data: DemoBlocks[]) => data.map(it=>new DemoBlocks(it))),
+        tap((it: DemoBlocks[]) =>console.log('obtaining all blocks demos',it)),
+        
+        // tap((it:string)=> console.log('obtaining all blocks demos',it)),
+        // map(data=>JSON.stringify(data)),
+        // map((data: string) => {                    
+        //   var d: DemoBlocks[] = JSON.parse(data) ;
+        //   d = d.map((it) => new DemoBlocks(it));
+        //   return d;
+        // })
       );
   }
 }
