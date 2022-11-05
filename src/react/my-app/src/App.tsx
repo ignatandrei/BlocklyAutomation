@@ -16,6 +16,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { javascriptGenerator } from 'blockly/javascript';
 import waitBlock from './BlocklyReusable/BlocklyNewBlocks/wait_block';
 import FindSavedBlocksComponent from './Components/Examples/FindSavedBlocksComponent';
+import SaveButton from './Components/GUI/save';
 // import darkThemeData from './BlocklyReusable/themeDark';
 function App(props: any) {
   const theme = useTheme();
@@ -71,6 +72,7 @@ const handleClickOpen = () => {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Blockly Automation 
             <Button variant="contained" onClick={handleClickOpen}>Examples</Button>
+            <SaveButton />
 
           </Typography>
           {/* <Button color="inherit">Login </Button> */}

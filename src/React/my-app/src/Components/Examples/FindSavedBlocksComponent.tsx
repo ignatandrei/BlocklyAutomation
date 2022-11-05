@@ -21,6 +21,9 @@ function FindSavedBlocksComponent(props:SimpleDialogProps) {
     onClose(selectedValue);
   };
     useEffect(()=>{
+
+        if(demoBlocks.length>0)
+            return;
         // LoadIDService.sendID("asdasd");
         var x= DemoBlocks.getDemoBlocks().subscribe(it=>{
             setDemoBlocks(it)

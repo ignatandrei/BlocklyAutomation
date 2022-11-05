@@ -1,5 +1,5 @@
-import { Observable , map} from "rxjs";
-import { ajax } from "rxjs/ajax";
+import { Observable , map, tap} from "rxjs";
+import { ajax, AjaxResponse } from "rxjs/ajax";
 
 
 type BlockSource = "None" | "Demos" | "Download" | "LocalAPI" | "Cloud";
@@ -19,15 +19,20 @@ class DemoBlocks {
 
   public static getDemoBlocks(): Observable<DemoBlocks[]> {
     var dt = new Date().toISOString();
-    const baseUrl=process.env.REACT_APP_URL+'/'; 
+    //process.env.REACT_APP_URL is giving undefined
+    console.log(process.env);    
+    const baseUrl=process.env.PUBLIC_URL+'/'; 
     
     return ajax
       .get<string>(baseUrl+ `assets/showUsage/demoBlocks/all.txt?${dt}`, {
-        responseType: "text" as "json",
+        responseType: "text" as "text",
       })
       .pipe(
-        map((res: any) => {
-          var d: DemoBlocks[] = JSON.parse(res);
+        map((res: AjaxResponse<string>)=> res.response),
+        tap((it:string)=> console.log('obtaining all blocks demos',it)),
+        map(data=>JSON.stringify(data)),
+        map((data: string) => {                    
+          var d: DemoBlocks[] = JSON.parse(data) ;
           d = d.map((it) => new DemoBlocks(it));
           return d;
         })
