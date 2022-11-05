@@ -1,4 +1,5 @@
 import * as  FileSaver from "file-saver";
+import Blockly, { Workspace, WorkspaceSvg } from 'blockly/core';
 export class saveLoadService{
 
   
@@ -28,20 +29,21 @@ export class saveLoadService{
 
 }
 //TODO: find appropiate type reference
-public saveState (BLocklyXML:any, Workspace:any, id:any){
+public saveState (workspace:Workspace, id:any){
     var cname= 'BlocklyState'+(id?id:"");
-    var xml = BLocklyXML.workspaceToDom(Workspace, true);
-    var xml_text = BLocklyXML.domToPrettyText(xml);
+    
+    var xml = Blockly.Xml.workspaceToDom(workspace, true);
+    var xml_text = Blockly.Xml.domToPrettyText(xml);
     window.localStorage.setItem(cname, xml_text);
 }
-public restoreState (BLocklyXML:any,workspace:any, id:any){
+public restoreState (workspace:WorkspaceSvg, id:any){
     
     var cname= 'BlocklyState'+(id?id:"");
-    var xml_text = window.localStorage.getItem(cname);
+    var xml_text = window.localStorage.getItem(cname)||'';
     //<xml xmlns="https://developers.google.com/blockly/xml"></xml>
-    if(( xml_text?.length || 0) >62){
-        var xml = BLocklyXML.textToDom(xml_text);
-        BLocklyXML.clearWorkspaceAndLoadFromXml(xml, workspace);
+    if(xml_text.length  >62){
+        var xml = Blockly.Xml.textToDom(xml_text);
+        Blockly.Xml.clearWorkspaceAndLoadFromXml(xml, workspace);
     }
     return "";
   }

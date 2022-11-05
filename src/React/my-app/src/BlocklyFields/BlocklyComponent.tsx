@@ -9,6 +9,9 @@
  import locale from 'blockly/msg/en';
  import 'blockly/blocks';
 import InterpreterRunner from '../BlocklyReusable/InterpreterRunner';
+import { MustSave } from '../Components/Examples/examples';
+import { SaveLocation } from '../Components/GUI/SaveLocation';
+import { saveLoadService } from '../AppFiles/saveLoadService';
  
  Blockly.setLocale(locale);
  
@@ -32,7 +35,26 @@ import InterpreterRunner from '../BlocklyReusable/InterpreterRunner';
 
         //console.log('received' +x);
     };
+    useEffect(()=>{
+
+       
+        var x= MustSave.getMessage().subscribe(it=>{
+            switch(it){
+                case SaveLocation.Save_Local:
+                    SaveLocationData();
+                    return;
+                default:
+                    window.alert('not yet implemented must save for '+ it);
+            }
+        });
+        return ()=>x.unsubscribe();        
+
+    },[]);
     
+    const SaveLocationData=()=>{
+            var s=new saveLoadService();
+            s.saveState(primaryWorkspace.current!,"save1");
+    }
     useEffect(() => {
 
         if(primaryWorkspace.current !== undefined)
@@ -46,10 +68,12 @@ import InterpreterRunner from '../BlocklyReusable/InterpreterRunner';
                     ...rest
                 },
             );
-
-            if (initialXml) {
-                Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(initialXml), primaryWorkspace.current);
-            }
+        
+            // if (initialXml) {
+            //     Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(initialXml), primaryWorkspace.current);
+            // }
+            var s=new saveLoadService();
+            s.restoreState(primaryWorkspace.current,"save1");
     }, [primaryWorkspace, toolbox, blocklyDiv, props]);
  
     return <>

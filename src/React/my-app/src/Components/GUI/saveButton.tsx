@@ -8,11 +8,9 @@ import Paper from '@mui/material/Paper';
 import Popper from '@mui/material/Popper';
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
-enum SaveLocation{
-    Save_To_Cloud=0,
-    Save_Local=1,
-    Download_Blocks=2
-}
+import { saveLoadService } from '../../AppFiles/saveLoadService';
+import { SaveLocation } from './SaveLocation';
+import { MustSave } from '../Examples/examples';
 const options =Object.values(SaveLocation);
 
 function SaveButton(props: any) {
@@ -21,12 +19,28 @@ function SaveButton(props: any) {
     const anchorRef = React.useRef<HTMLDivElement>(null);
     const [selectedIndex, setSelectedIndex] = React.useState(1);
   
-    // var objects = Object.entries(SaveLocation).map(([number, word]) => ({ number, word }));
-    // console.log(objects);
+    var optionsSave=new Map<string,SaveLocation|string>();
+    Object.entries(SaveLocation).map(([number, word]) => ({ number, word })).forEach(it=>optionsSave.set(it.number,it.word));
+    console.log(optionsSave);
+
+
     const handleClick = () => {
-      window.alert(`You clicked ${options[selectedIndex]}`);
+        var sel=options[selectedIndex].toString();
+        var e= optionsSave.get(sel) ;
+        
+        switch(e){
+            case SaveLocation.Save_Local:
+              console.log('test');
+              MustSave.sendMessage(e);
+              return;
+            
+            default:
+                window.alert( `${e} is not implemented`);
+                return;
+        }
+      
     };
-  
+    
     const handleMenuItemClick = (
       event: React.MouseEvent<HTMLLIElement, MouseEvent>,
       index: number,
