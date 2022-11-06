@@ -1,11 +1,11 @@
 
-import { Avatar, Dialog, DialogTitle, List, ListItem, ListItemAvatar, ListItemText } from '@mui/material';
+import { Autocomplete, Avatar, Dialog, DialogTitle, FilterOptionsState, List, ListItem, ListItemAvatar, ListItemText, TextField } from '@mui/material';
 import { blue } from '@mui/material/colors';
 import { useEffect, useState } from 'react';
 import { SimpleDialogProps } from '../../Common/SimpleDialogProps';
 import DemoBlocks from './DemoBlocks';
 import { LoadIDService } from './examples';
-const emails = ['username@gmail.com', 'user02@gmail.com'];
+
 
 function FindSavedBlocksComponent(props:SimpleDialogProps) {
  
@@ -20,13 +20,29 @@ function FindSavedBlocksComponent(props:SimpleDialogProps) {
   const handleClose = () => {
     onClose(selectedValue);
   };
+
+
+  const filterOptions = (options:DemoBlocks[],  inputValue:FilterOptionsState<DemoBlocks>) => {
+    if((inputValue.inputValue?.length || 0 ) === 0)
+      return options;
+    var searchText=inputValue.inputValue.toLowerCase();
+    var filtered = options.filter(it=>        
+          it.description?.toLowerCase().indexOf(searchText)>-1
+                || it.blocks?.toLowerCase().indexOf(searchText)>-1
+                || it.categories?.toLowerCase().indexOf(searchText)>-1
+                || it.id?.toLowerCase().indexOf(searchText)>-1
+    );
+    return filtered;
+  };
+
     useEffect(()=>{
 
         if(demoBlocks.length>0)
             return;
         // LoadIDService.sendID("asdasd");
         var x= DemoBlocks.getDemoBlocks().subscribe(it=>{
-            setDemoBlocks(it)
+            var arr = it.sort((a,b)=> a.description.localeCompare(b.description));
+            setDemoBlocks(arr);
         });
         return ()=>x.unsubscribe();        
     },[demoBlocks]);
@@ -34,30 +50,31 @@ function FindSavedBlocksComponent(props:SimpleDialogProps) {
 
     
     <Dialog onClose={handleClose} open={open}>
-      <DialogTitle>Set backup account</DialogTitle>
+      <DialogTitle>Load Examples</DialogTitle>
+      <Autocomplete filterOptions={filterOptions}
+        id="searchDemos"
+        freeSolo
+        getOptionLabel={(opt : DemoBlocks | string )=> (typeof opt === "string") ? opt:  opt.description}
+        // options={demoBlocks.map((option,index) => `${index+1}) ${option.description}`)}
+        options = {demoBlocks}
+        renderInput={(params) => <TextField {...params} label="Search Demo" />}
+      />
       <List sx={{ pt: 0 }}>
-        {demoBlocks.map((d)=>(
-          <ListItem button onClick={() => handleListItemClick(d.Source)} key={d.id}>
-            <ListItemText primary={d.Source} />
+        {demoBlocks.map((d, index)=>(
+          <ListItem button onClick={() => handleListItemClick(d.id)} key={d.id} >
+            <ListItemText primary={`${index+1}) ${d.description}`} secondary={d.categories} />
+
          </ListItem>
         ))}
 
-        {emails.map((email) => (
-          <ListItem button onClick={() => handleListItemClick(email)} key={email}>
-            <ListItemAvatar>
-              <Avatar sx={{ bgcolor: blue[100], color: blue[600] }}>
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText primary={email} />
-          </ListItem>
-        ))}
-        <ListItem autoFocus button onClick={() => handleListItemClick('addAccount')}>
+       
+        {/* <ListItem autoFocus button onClick={() => handleListItemClick('addAccount')}>
           <ListItemAvatar>
             <Avatar>
             </Avatar>
           </ListItemAvatar>
           <ListItemText primary="Add account" />
-        </ListItem>
+        </ListItem> */}
       </List>
     </Dialog>
     </>;
