@@ -1,5 +1,5 @@
 
-import { Autocomplete, Avatar, Dialog, DialogTitle, FilterOptionsState, List, ListItem, ListItemAvatar, ListItemText, TextField } from '@mui/material';
+import { Autocomplete, AutocompleteChangeDetails, AutocompleteChangeReason, AutocompleteCloseReason, AutocompleteValue, Avatar, Dialog, DialogTitle, FilterOptionsState, List, ListItem, ListItemAvatar, ListItemText, TextField } from '@mui/material';
 import { blue } from '@mui/material/colors';
 import { useEffect, useState } from 'react';
 import { SimpleDialogProps } from '../../Common/SimpleDialogProps';
@@ -20,7 +20,18 @@ function FindSavedBlocksComponent(props:SimpleDialogProps) {
   const handleClose = () => {
     onClose(selectedValue);
   };
-
+  const closeAutoComplete=(
+    event: React.SyntheticEvent,
+    value: AutocompleteValue<DemoBlocks, boolean, boolean, boolean>,
+    reason: AutocompleteChangeReason,
+    details?: AutocompleteChangeDetails<DemoBlocks>,
+  )=>{
+    if(reason === 'selectOption'){
+        var v= value as DemoBlocks;
+        
+        onClose(v.id);
+    }
+  }
 
   const filterOptions = (options:DemoBlocks[],  inputValue:FilterOptionsState<DemoBlocks>) => {
     if((inputValue.inputValue?.length || 0 ) === 0)
@@ -51,9 +62,11 @@ function FindSavedBlocksComponent(props:SimpleDialogProps) {
     
     <Dialog onClose={handleClose} open={open}>
       <DialogTitle>Load Examples</DialogTitle>
-      <Autocomplete filterOptions={filterOptions}
+      <Autocomplete filterOptions={filterOptions} autoComplete={true}
         id="searchDemos"
         freeSolo
+        
+        onChange = {closeAutoComplete}
         getOptionLabel={(opt : DemoBlocks | string )=> (typeof opt === "string") ? opt:  opt.description}
         // options={demoBlocks.map((option,index) => `${index+1}) ${option.description}`)}
         options = {demoBlocks}
