@@ -24,9 +24,7 @@ class DemoBlocks {
     const baseUrl=process.env.PUBLIC_URL+'/'; 
     
     return ajax
-      .get<DemoBlocks[]>(baseUrl+ `assets/showUsage/demoBlocks/all.txt?${dt}`, {
-        responseType: "text" as "text",
-      })
+      .get<DemoBlocks[]>(baseUrl+ `assets/showUsage/demoBlocks/all.txt?${dt}`, {responseType: "text" as "text",})
       .pipe(
         map((res: AjaxResponse<DemoBlocks[]>)=> res.response),
         map((data: DemoBlocks[]) => data.map(it=>new DemoBlocks(it))),
@@ -40,6 +38,20 @@ class DemoBlocks {
         //   return d;
         // })
       );
+  }
+
+  public getDemoBlock(id:string): Observable<string> {
+    const baseUrl=process.env.PUBLIC_URL+'/'; 
+    var dt=new Date().toISOString();
+    var q= ajax({ method: 'GET', url:baseUrl+`assets/showUsage/demoBlocks/${id}.txt?${dt}` ,async: false})      
+    .pipe(
+      tap((res: any) =>console.log(`obtaining ${id} `,res)),
+      map((res: any)=> res.response)
+      
+    );
+    return q;
+    // return of("andrei");
+    
   }
 }
 

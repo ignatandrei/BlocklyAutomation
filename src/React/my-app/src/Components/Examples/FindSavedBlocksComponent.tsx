@@ -27,8 +27,7 @@ function FindSavedBlocksComponent(props:SimpleDialogProps) {
     details?: AutocompleteChangeDetails<DemoBlocks>,
   )=>{
     if(reason === 'selectOption'){
-        var v= value as DemoBlocks;
-        
+        var v= value as DemoBlocks;        
         onClose(v.id);
     }
   }
@@ -45,6 +44,7 @@ function FindSavedBlocksComponent(props:SimpleDialogProps) {
     );
     return filtered;
   };
+  
 
     useEffect(()=>{
 

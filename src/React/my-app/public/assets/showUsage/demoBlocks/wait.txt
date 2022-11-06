@@ -35,8 +35,8 @@
                   </block>
                 </value>
                 <next>
-                  <block type="wait">
-                    <value name="VALUE">
+                  <block type="wait_seconds">
+                    <value name="SECONDS">
                       <block type="math_number">
                         <field name="NUM">2</field>
                       </block>

@@ -9,9 +9,10 @@
  import locale from 'blockly/msg/en';
  import 'blockly/blocks';
 import InterpreterRunner from '../BlocklyReusable/InterpreterRunner';
-import { MustSave } from '../Components/Examples/examples';
+import { LoadIDService, MustSave, RunCode, RunCodeData } from '../Components/Examples/examples';
 import { SaveLocation } from '../Components/GUI/SaveLocation';
 import { saveLoadService } from '../AppFiles/saveLoadService';
+import DemoBlocks from '../Components/Examples/DemoBlocks';
  
  Blockly.setLocale(locale);
  
@@ -35,6 +36,21 @@ import { saveLoadService } from '../AppFiles/saveLoadService';
 
         //console.log('received' +x);
     };
+
+    useEffect(()=>{
+        if(!primaryWorkspace.current)
+            return;
+
+        LoadIDService.getID().subscribe(it=>{
+          var d=new DemoBlocks();
+          d.getDemoBlock(it).subscribe(data=>{
+              //window.alert(JSON.stringify(a));
+              var xml = Blockly.Xml.textToDom(data);
+              Blockly.Xml.clearWorkspaceAndLoadFromXml(xml,primaryWorkspace.current!);
+    
+          })
+        })
+      },[primaryWorkspace]);
     useEffect(()=>{
 
        
@@ -42,6 +58,26 @@ import { saveLoadService } from '../AppFiles/saveLoadService';
             switch(it){
                 case SaveLocation.Save_Local:
                     SaveLocationData();
+                    return;
+                default:
+                    window.alert('not yet implemented must save for '+ it);
+            }
+        });
+        return ()=>x.unsubscribe();        
+
+    },[]);
+
+
+    useEffect(()=>{
+
+       
+        var x= RunCode.getMessage().subscribe(it=>{
+            switch(it){
+                case RunCodeData.Start:
+                    generateCode();
+                    return;
+                case RunCodeData.Stop:
+                        //do nothing yet
                     return;
                 default:
                     window.alert('not yet implemented must save for '+ it);
@@ -81,7 +117,7 @@ import { saveLoadService } from '../AppFiles/saveLoadService';
         <div style={{ display: 'none' }} ref={toolbox}>
             {props.children}
         </div>
-        <button onClick={generateCode}>Convert</button>
+        {/* <button onClick={generateCode}>Convert</button> */}
     </>;
 }
  

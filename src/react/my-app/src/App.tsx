@@ -17,6 +17,8 @@ import { javascriptGenerator } from 'blockly/javascript';
 import waitBlock from './BlocklyReusable/BlocklyNewBlocks/wait_block';
 import FindSavedBlocksComponent from './Components/Examples/FindSavedBlocksComponent';
 import SaveButton from './Components/GUI/saveButton';
+import DemoBlocks from './Components/Examples/DemoBlocks';
+import { LoadIDService, RunCode, RunCodeData } from './Components/Examples/examples';
 // import darkThemeData from './BlocklyReusable/themeDark';
 function App(props: any) {
   const theme = useTheme();
@@ -31,6 +33,9 @@ function App(props: any) {
 //   var dark = Blockly.Theme.defineTheme('darkAndrei',darkThemeData);
 const [open, setOpen] = React.useState(false);
 const [selectedValue, setSelectedValue] = React.useState("");  
+const handleRun = () => {
+    RunCode.sendMessage(RunCodeData.Start);
+  };
 
 const handleClickOpen = () => {
     setOpen(true);
@@ -38,7 +43,10 @@ const handleClickOpen = () => {
   const handleClose = (value: string) => {
     setOpen(false);
     setSelectedValue(value);
-    window.alert(value);
+    // window.alert(value);
+    
+    LoadIDService.sendID(value);
+    
   };
 
     return <>
@@ -71,11 +79,15 @@ const handleClickOpen = () => {
           }
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Blockly Automation 
+            
+            
             <Button variant="contained" onClick={handleClickOpen}>Examples</Button>
+
             <SaveButton />
 
           </Typography>
           {/* <Button color="inherit">Login </Button> */}
+          <Button variant="contained" onClick={handleRun}>Run!</Button>
         </Toolbar>
       </AppBar>
     </Box>

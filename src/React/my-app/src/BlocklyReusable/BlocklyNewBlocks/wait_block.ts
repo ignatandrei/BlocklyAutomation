@@ -35,7 +35,7 @@ export class waitBlock {
         colour: '%{BKY_LOOPS_HUE}',
       },
     ]);
-
+    
     /**
      * Generator for wait block creates call to new method
      * <code>waitForSeconds()</code>.
