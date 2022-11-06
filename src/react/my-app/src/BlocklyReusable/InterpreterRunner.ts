@@ -10,7 +10,7 @@ class InterpreterRunner{
     private myCallBackCode :(text:any, me:InterpreterRunner)=>void ;
     public lastData:any;
     public latestCode:string='';
-    constructor(private workspace: WorkspaceSvg, private javascriptGenerator: any,private  callBackCode:(x:any)=>void | null){
+    constructor(private workspace: WorkspaceSvg, private javascriptGenerator: any,private callBackCode:(x:any)=>void | null, private finishRun:()=>void){
       
       this.myCallBackCode = (text, me)=>{
         // console.log('received ', text,me);
@@ -46,8 +46,8 @@ class InterpreterRunner{
           // And then show generated code in an alert.
           // In a timeout to allow the outputArea.value to reset first.
           setTimeout(function() {
-            alert('Ready to execute the following code\n' +
-                '===================================\n' + latestCode);
+            // alert('Ready to execute the following code\n' +
+            //     '===================================\n' + latestCode);
   
             // Begin execution
             self.myInterpreter = new Interpreter(latestCode,(i:any,g:any)=> self.initApi(i,g,self), self);
@@ -63,8 +63,10 @@ class InterpreterRunner{
                   self.runnerPid = setTimeout(runner, 10);
                 } else {
                   // Program is complete.
-                  //outputArea.value += '\n\n<< Program complete >>';
+                  //outputArea.value += '\n\n<< Program complete >>';                  
                   self.resetStepUi(false);
+                  if(self.finishRun)
+                    self.finishRun();
                 }
               }
             }

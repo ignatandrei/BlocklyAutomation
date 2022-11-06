@@ -27,8 +27,15 @@ import DemoBlocks from '../Components/Examples/DemoBlocks';
         //   primaryWorkspace.current
         // );
         // window.alert(code);
-        s =new InterpreterRunner(primaryWorkspace.current!,javascriptGenerator, displayStatement);
+        s =new InterpreterRunner(primaryWorkspace.current!,javascriptGenerator, displayStatement,finishRun);
         s.runCode();
+    };
+    const finishRun = () =>  {
+
+        console.log('finish' );
+        RunCode.sendMessage(RunCodeData.Stop);
+
+        //console.log('received' +x);
     };
     const displayStatement = (x: any) =>  {
 

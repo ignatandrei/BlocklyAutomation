@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 
 import logo from './logo.svg';
@@ -11,19 +11,20 @@ import logo from './logo.svg';
 import BlocklyComponent from './BlocklyFields/BlocklyComponent';
 import Blockly from 'blockly/core';
 import  { Block, Category, Field, Mutation, Shadow, Value } from './BlocklyFields';
-import { AppBar, Box, Button, IconButton, Toolbar, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { Alert,  AppBar, Box, Button, IconButton,  Snackbar, Toolbar, Typography, useMediaQuery, useTheme } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { javascriptGenerator } from 'blockly/javascript';
 import waitBlock from './BlocklyReusable/BlocklyNewBlocks/wait_block';
 import FindSavedBlocksComponent from './Components/Examples/FindSavedBlocksComponent';
 import SaveButton from './Components/GUI/saveButton';
 import DemoBlocks from './Components/Examples/DemoBlocks';
-import { LoadIDService, RunCode, RunCodeData } from './Components/Examples/examples';
+import { LoadIDService, MustSave, RunCode, RunCodeData } from './Components/Examples/examples';
 // import darkThemeData from './BlocklyReusable/themeDark';
 function App(props: any) {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const [userWantshowLeftMenu, showLeftMenu] = useState(false);
+  const[showSnack, setShowSnack]=useState(false);
   const showMenu = (event: React.MouseEvent<HTMLElement>) => {
     showLeftMenu((prevState) => !prevState)
   }
@@ -49,8 +50,37 @@ const handleClickOpen = () => {
     
   };
 
-    return <>
+  useEffect(()=>{
+    var x= RunCode.getMessage().subscribe((it:RunCodeData)=>{
+        // var data=it;
+        // if(!Number.isNaN(Number(it)){
+        //     data=RunCodeData[it];
+        // }
+        switch(it){
+            case RunCodeData.Start:
+                setShowSnack(true);
+                return;
+            case RunCodeData.Stop:
+                setShowSnack(false);
+                return;
+            default:
+                window.alert('cannot interpret '+ it +' in app.tsx');
+                return;
+        }
+    })
 
+  },[]);
+
+    return <>
+<Snackbar open={showSnack} anchorOrigin= {{ 
+  vertical: 'top' ,
+  horizontal:  'center' 
+}}    
+>
+<Alert  severity="success" sx={{ width: '100%' }}>
+    Running code
+  </Alert>
+</Snackbar>
       <Box sx={{ flexGrow: 1 }}>
       {/* <span>{userWantshowLeftMenu?"true":"false"}</span> */}
       {/* <span>{isMobile ? <>(
@@ -443,6 +473,9 @@ const handleClickOpen = () => {
               </Value>
             </Block> */}
           </BlocklyComponent>
+
+          
+
         </header>
       </div>
     </>;
