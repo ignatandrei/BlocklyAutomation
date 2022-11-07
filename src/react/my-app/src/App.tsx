@@ -20,6 +20,7 @@ import SaveButton from './Components/GUI/saveButton';
 import DemoBlocks from './Components/Examples/DemoBlocks';
 import { LoadIDService, MustSave, RunCode, RunCodeData, RunCodeMessage } from './Components/Examples/examples';
 import BlocklyDisplayText from './BlocklyFields/BlocklyDisplayText';
+import CurrentDateBlock from './BlocklyReusable/BlocklyNewBlocks/CurrentDateBlock';
 // import darkThemeData from './BlocklyReusable/themeDark';
 function App(props: any) {
   const theme = useTheme();
@@ -31,6 +32,9 @@ function App(props: any) {
   }
   var waitBlockInstance=new waitBlock();
   waitBlockInstance.definitionBlocks(javascriptGenerator);
+
+  var currentDateInstance =new CurrentDateBlock();
+  currentDateInstance.definitionBlocks(javascriptGenerator);
   
 //   var dark = Blockly.Theme.defineTheme('darkAndrei',darkThemeData);
 const [open, setOpen] = React.useState(false);

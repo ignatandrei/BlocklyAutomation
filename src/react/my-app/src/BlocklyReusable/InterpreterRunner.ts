@@ -85,20 +85,55 @@ class InterpreterRunner{
       
       me.initApiJS(interpreter,globalObject,me);
     }
+
+   public displayDateFormatted(format:any) {
+
+      switch (format) {
+          case 'human':
+            {
+              // console.log("calling displayDateCurrentAsHuman")
+              let today = new Date().toLocaleDateString(undefined, {
+                day: 'numeric',
+                month: 'numeric',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+            return today;
+          }
+          case 'iso':
+           {   //console.log("calling displayDateCurrentAsIso")
+              let today = new Date().toISOString();
+              return today;
+           }
+           case 'unix':
+           {   // console.log("calling displayDateCurrentAsUnix")
+            return Date.now();
+           }
+          default:
+              console.log('Date time format not suported');
+              return '';
+
+      }
+  }
     public initApiJS(interpreter: any, globalObject:any, me: InterpreterRunner):void {
         var self=this;
 
 
         //thisClass.BlocklyJavaScript.addReservedWords('waitForSeconds');
           
-        var wrapper160 = interpreter.createAsyncFunction(
+        var wrapperwaitForSeconds = interpreter.createAsyncFunction(
           function(timeInSeconds:any, callback:any) {
             // Delay the call to the callback.
             setTimeout(callback, timeInSeconds * 1000);
           });
-        interpreter.setProperty(globalObject, 'waitForSeconds', wrapper160);
+        interpreter.setProperty(globalObject, 'waitForSeconds', wrapperwaitForSeconds);
 
 
+        var wrapperdisplayDateFormatted = (it:any) => self.displayDateFormatted(it);
+
+        interpreter.setProperty(globalObject, 'displayDateFormatted',
+                      interpreter.createNativeFunction(wrapperdisplayDateFormatted));
 
 
         // Add an API function for the alert() block, generated for "text_print" blocks.
