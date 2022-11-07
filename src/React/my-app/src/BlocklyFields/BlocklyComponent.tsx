@@ -91,8 +91,11 @@ import DemoBlocks from '../Components/Examples/DemoBlocks';
                 case RunCodeData.Stop:
                         //do nothing yet
                     return;
+                case RunCodeData.UserRequestedPrint:
+                    //do nothing yet
+                    return;
                 default:
-                    window.alert('not yet implemented must save for '+ it);
+                    window.alert('not yet implemented in BlocklyComponent for '+ it);
             }
         });
         return ()=>x.unsubscribe();        
