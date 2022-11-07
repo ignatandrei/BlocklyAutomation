@@ -21,6 +21,7 @@ import DemoBlocks from './Components/Examples/DemoBlocks';
 import { LoadIDService, MustSave, RunCode, RunCodeData, RunCodeMessage } from './Components/Examples/Messages';
 import CurrentDateBlock from './BlocklyReusable/BlocklyNewBlocks/CurrentDateBlock';
 import BlocklyDisplayText from './Components/GUI/BlocklyDisplayText';
+import BlocklyDisplayData from './Components/GUI/BlocklyDisplayData';
 // import darkThemeData from './BlocklyReusable/themeDark';
 function App(props: any) {
   const theme = useTheme();
@@ -489,8 +490,8 @@ const handleClickOpen = () => {
             </Block> */}
           </BlocklyComponent>
         <div id="blocklyDisplay">
-            asdasd
-          <BlocklyDisplayText></BlocklyDisplayText>
+            
+          <BlocklyDisplayData></BlocklyDisplayData>
          </div>
 
         </header>
