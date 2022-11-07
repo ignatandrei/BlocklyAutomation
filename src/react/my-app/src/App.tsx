@@ -1,6 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import './App.css';
+import SendIcon from '@mui/icons-material/Send';
 
 import logo from './logo.svg';
 
@@ -129,7 +130,7 @@ const handleClickOpen = () => {
 
           </Typography>
           {/* <Button color="inherit">Login </Button> */}
-          <Button variant="contained" disabled={disabledRun} onClick={handleRun}>Run!</Button>
+          <Button variant="contained" disabled={disabledRun} color={"success"}  endIcon={<SendIcon />} onClick={handleRun}>Run!</Button>
         </Toolbar>
       </AppBar>
     </Box>
@@ -460,6 +461,7 @@ const handleClickOpen = () => {
 
 </Category>
 <Category name="Advanced">
+    {/* TODO:register from fieldXML */}
 <Category id="catTimers"  name="Timers">
     <Block type={waitBlock.nameBlock}></Block>
 </Category>
