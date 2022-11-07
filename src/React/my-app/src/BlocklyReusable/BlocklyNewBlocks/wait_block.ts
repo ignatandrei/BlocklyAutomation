@@ -69,6 +69,18 @@ export class waitBlock {
   <block type="${waitBlock.nameBlock}"></block>
 `;
   }
+  public addWrapper(interpreter: any, globalObject:any){
+    // var self=this;
+
+    var wrapperwaitForSeconds = interpreter.createAsyncFunction(
+      function(timeInSeconds:any, callback:any) {
+        // Delay the call to the callback.
+        setTimeout(callback, timeInSeconds * 1000);
+      });
+    interpreter.setProperty(globalObject, 'waitForSeconds', wrapperwaitForSeconds);
+
+
+  }
   
 }
 

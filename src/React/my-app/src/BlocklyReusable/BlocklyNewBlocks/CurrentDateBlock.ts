@@ -69,6 +69,45 @@ export class CurrentDateBlock {
   public fieldXML(): string {
     return `<block type="displayCurrentDate"></block>`;
   }
+
+  public addWrapper(interpreter: any, globalObject:any){
+    var self=this;
+    var wrapperdisplayDateFormatted = (it:any) => self.displayDateFormatted(it);
+
+    interpreter.setProperty(globalObject, 'displayDateFormatted',
+                  interpreter.createNativeFunction(wrapperdisplayDateFormatted));
+
+  }
+  displayDateFormatted(format:any) {
+
+    switch (format) {
+        case 'human':
+          {
+            // console.log("calling displayDateCurrentAsHuman")
+            let today = new Date().toLocaleDateString(undefined, {
+              day: 'numeric',
+              month: 'numeric',
+              year: 'numeric',
+              hour: '2-digit',
+              minute: '2-digit'
+          });
+          return today;
+        }
+        case 'iso':
+         {   //console.log("calling displayDateCurrentAsIso")
+            let today = new Date().toISOString();
+            return today;
+         }
+         case 'unix':
+         {   // console.log("calling displayDateCurrentAsUnix")
+          return Date.now();
+         }
+        default:
+            console.log('Date time format not suported');
+            return '';
+
+    }
+}
 }
 
 export default CurrentDateBlock;

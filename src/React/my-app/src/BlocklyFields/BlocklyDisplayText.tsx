@@ -6,6 +6,7 @@ import { RunCode, RunCodeData } from "../Components/Examples/examples";
 function BlocklyDisplayText(){
  
     const [text, setText ]= useState('');
+    
     // const textAreaRef = React.useRef<HTMLTextAreaElement>(null);
     useEffect(()=>{
         var data= RunCode.getMessage().subscribe(it=>{
@@ -26,7 +27,7 @@ function BlocklyDisplayText(){
         return ()=>{ data.unsubscribe();}
     },[]);
  
-    return <> Output of data <div> <TextareaAutosize
+    return <> Output of data <div> <TextareaAutosize cols={40}
     aria-label="output"
     minRows={3}
     placeholder="output of data"

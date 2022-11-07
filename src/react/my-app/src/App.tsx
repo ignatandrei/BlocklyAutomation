@@ -38,6 +38,8 @@ function App(props: any) {
   
 //   var dark = Blockly.Theme.defineTheme('darkAndrei',darkThemeData);
 const [open, setOpen] = React.useState(false);
+
+const [disabledRun, setdisabledRun] = React.useState(false);
 const [selectedValue, setSelectedValue] = React.useState("");  
 const handleRun = () => {
     RunCode.sendMessage({runCodeData:RunCodeData.Start});
@@ -63,10 +65,13 @@ const handleClickOpen = () => {
         // }
         switch(it.runCodeData){
             case RunCodeData.Start:
+                setdisabledRun(true);
                 setShowSnack(true);
                 return;
             case RunCodeData.Stop:
+                setdisabledRun(false);
                 setShowSnack(false);
+                
                 return;
             case RunCodeData.UserRequestedPrint:
                 return;
@@ -124,7 +129,7 @@ const handleClickOpen = () => {
 
           </Typography>
           {/* <Button color="inherit">Login </Button> */}
-          <Button variant="contained" onClick={handleRun}>Run!</Button>
+          <Button variant="contained" disabled={disabledRun} onClick={handleRun}>Run!</Button>
         </Toolbar>
       </AppBar>
     </Box>
