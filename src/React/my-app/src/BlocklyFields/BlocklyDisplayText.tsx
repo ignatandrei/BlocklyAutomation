@@ -1,7 +1,7 @@
 import { TextareaAutosize } from "@mui/material";
 import React from "react";
 import { useEffect, useState } from "react";
-import { RunCode, RunCodeData } from "../Components/Examples/examples";
+import { RunCode, RunCodeData } from "../Components/Examples/Messages";
 
 function BlocklyDisplayText(){
  

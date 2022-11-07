@@ -9,7 +9,7 @@
  import locale from 'blockly/msg/en';
  import 'blockly/blocks';
 import InterpreterRunner from '../BlocklyReusable/InterpreterRunner';
-import { LoadIDService, MustSave, RunCode, RunCodeData, RunCodeMessage } from '../Components/Examples/examples';
+import { LoadIDService, MustSave, RunCode, RunCodeData, RunCodeMessage } from '../Components/Examples/Messages';
 import { SaveLocation } from '../Components/GUI/SaveLocation';
 import { saveLoadService } from '../AppFiles/saveLoadService';
 import DemoBlocks from '../Components/Examples/DemoBlocks';

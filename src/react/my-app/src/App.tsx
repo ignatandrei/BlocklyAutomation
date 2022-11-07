@@ -19,7 +19,7 @@ import waitBlock from './BlocklyReusable/BlocklyNewBlocks/wait_block';
 import FindSavedBlocksComponent from './Components/Examples/FindSavedBlocksComponent';
 import SaveButton from './Components/GUI/saveButton';
 import DemoBlocks from './Components/Examples/DemoBlocks';
-import { LoadIDService, MustSave, RunCode, RunCodeData, RunCodeMessage } from './Components/Examples/examples';
+import { LoadIDService, MustSave, RunCode, RunCodeData, RunCodeMessage } from './Components/Examples/Messages';
 import BlocklyDisplayText from './BlocklyFields/BlocklyDisplayText';
 import CurrentDateBlock from './BlocklyReusable/BlocklyNewBlocks/CurrentDateBlock';
 // import darkThemeData from './BlocklyReusable/themeDark';
@@ -490,6 +490,7 @@ const handleClickOpen = () => {
             </Block> */}
           </BlocklyComponent>
         <div id="blocklyDisplay">
+            asdasd
           <BlocklyDisplayText></BlocklyDisplayText>
          </div>
 

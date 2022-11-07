@@ -4,7 +4,7 @@ import { blue } from '@mui/material/colors';
 import { useEffect, useState } from 'react';
 import { SimpleDialogProps } from '../../Common/SimpleDialogProps';
 import DemoBlocks from './DemoBlocks';
-import { LoadIDService } from './examples';
+import { LoadIDService } from './Messages';
 
 
 function FindSavedBlocksComponent(props:SimpleDialogProps) {
