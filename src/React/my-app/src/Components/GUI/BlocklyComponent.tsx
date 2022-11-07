@@ -8,11 +8,12 @@
  import {javascriptGenerator} from 'blockly/javascript';
  import locale from 'blockly/msg/en';
  import 'blockly/blocks';
-import InterpreterRunner from '../BlocklyReusable/InterpreterRunner';
-import { LoadIDService, MustSave, RunCode, RunCodeData, RunCodeMessage } from '../Components/Examples/Messages';
-import { SaveLocation } from '../Components/GUI/SaveLocation';
-import { saveLoadService } from '../AppFiles/saveLoadService';
-import DemoBlocks from '../Components/Examples/DemoBlocks';
+import { saveLoadService } from '../../AppFiles/saveLoadService';
+import InterpreterRunner from '../../BlocklyReusable/InterpreterRunner';
+import DemoBlocks from '../Examples/DemoBlocks';
+import { RunCode, RunCodeData, RunCodeMessage, LoadIDService, MustSave } from '../Examples/Messages';
+import { SaveLocation } from './SaveLocation';
+
  
  Blockly.setLocale(locale);
  
@@ -100,7 +101,7 @@ import DemoBlocks from '../Components/Examples/DemoBlocks';
         });
         return ()=>x.unsubscribe();        
 
-    },[]);
+    },[generateCode]);
     
     const SaveLocationData=()=>{
             var s=new saveLoadService();

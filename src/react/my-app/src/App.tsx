@@ -9,9 +9,8 @@ import logo from './logo.svg';
 
 // import './Blocks/customBlocks';
 // import './generator/generator';
-import BlocklyComponent from './BlocklyFields/BlocklyComponent';
 import Blockly from 'blockly/core';
-import  { Block, Category, Field, Mutation, Shadow, Value } from './BlocklyFields';
+import  BlocklyComponent, { Block, Category, Field, Mutation, Shadow, Value } from './BlocklyFields';
 import { Alert,  AppBar, Box, Button, IconButton,  Snackbar, Toolbar, Typography, useMediaQuery, useTheme } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { javascriptGenerator } from 'blockly/javascript';
@@ -20,8 +19,8 @@ import FindSavedBlocksComponent from './Components/Examples/FindSavedBlocksCompo
 import SaveButton from './Components/GUI/saveButton';
 import DemoBlocks from './Components/Examples/DemoBlocks';
 import { LoadIDService, MustSave, RunCode, RunCodeData, RunCodeMessage } from './Components/Examples/Messages';
-import BlocklyDisplayText from './BlocklyFields/BlocklyDisplayText';
 import CurrentDateBlock from './BlocklyReusable/BlocklyNewBlocks/CurrentDateBlock';
+import BlocklyDisplayText from './Components/GUI/BlocklyDisplayText';
 // import darkThemeData from './BlocklyReusable/themeDark';
 function App(props: any) {
   const theme = useTheme();

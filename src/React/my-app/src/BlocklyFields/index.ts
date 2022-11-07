@@ -1,7 +1,7 @@
 
 
  import React from 'react';
-import BlocklyComponent from './BlocklyComponent';
+import BlocklyComponent from '../Components/GUI/BlocklyComponent';
 
 export default BlocklyComponent;
 
