@@ -16,3 +16,10 @@ body {
     transform: rotate(360deg);
   }
 }
+
+#blocklyDisplay{
+  height: 100%;
+  width: 50%;
+  position: absolute;
+  right: 0;
+}

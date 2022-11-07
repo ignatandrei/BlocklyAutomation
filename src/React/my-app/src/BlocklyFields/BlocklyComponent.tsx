@@ -9,7 +9,7 @@
  import locale from 'blockly/msg/en';
  import 'blockly/blocks';
 import InterpreterRunner from '../BlocklyReusable/InterpreterRunner';
-import { LoadIDService, MustSave, RunCode, RunCodeData } from '../Components/Examples/examples';
+import { LoadIDService, MustSave, RunCode, RunCodeData, RunCodeMessage } from '../Components/Examples/examples';
 import { SaveLocation } from '../Components/GUI/SaveLocation';
 import { saveLoadService } from '../AppFiles/saveLoadService';
 import DemoBlocks from '../Components/Examples/DemoBlocks';
@@ -20,27 +20,32 @@ import DemoBlocks from '../Components/Examples/DemoBlocks';
     const blocklyDiv = useRef<any|null>() ;
     const toolbox = useRef<any|null>();
     let primaryWorkspace = useRef<WorkspaceSvg>();
-    let s: InterpreterRunner | null = null;
+    let runner: InterpreterRunner | null = null;
     
     const generateCode = () => {
         // var code = javascriptGenerator.workspaceToCode(
         //   primaryWorkspace.current
         // );
         // window.alert(code);
-        s =new InterpreterRunner(primaryWorkspace.current!,javascriptGenerator, displayStatement,finishRun);
-        s.runCode();
+        runner =new InterpreterRunner(primaryWorkspace.current!,javascriptGenerator, displayStatement,finishRun);
+        runner.runCode();
     };
     const finishRun = () =>  {
 
         console.log('finish' );
-        RunCode.sendMessage(RunCodeData.Stop);
+        RunCode.sendMessage({runCodeData:RunCodeData.Stop});
 
         //console.log('received' +x);
     };
     const displayStatement = (x: any) =>  {
 
-        console.log('for display step ' + s!.stepDisplay + ' data is ' +s!.lastData );
-
+        console.log('for display step ' + runner!.stepDisplay + ' data is ' +runner!.lastData );
+        var message: RunCodeMessage ={
+            runCodeData : RunCodeData.UserRequestedPrint,
+            message:x,
+            messageType:'string'
+        }
+        RunCode.sendMessage(message);
         //console.log('received' +x);
     };
 
@@ -79,7 +84,7 @@ import DemoBlocks from '../Components/Examples/DemoBlocks';
 
        
         var x= RunCode.getMessage().subscribe(it=>{
-            switch(it){
+            switch(it.runCodeData){
                 case RunCodeData.Start:
                     generateCode();
                     return;

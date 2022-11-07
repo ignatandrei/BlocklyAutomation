@@ -18,7 +18,8 @@ import waitBlock from './BlocklyReusable/BlocklyNewBlocks/wait_block';
 import FindSavedBlocksComponent from './Components/Examples/FindSavedBlocksComponent';
 import SaveButton from './Components/GUI/saveButton';
 import DemoBlocks from './Components/Examples/DemoBlocks';
-import { LoadIDService, MustSave, RunCode, RunCodeData } from './Components/Examples/examples';
+import { LoadIDService, MustSave, RunCode, RunCodeData, RunCodeMessage } from './Components/Examples/examples';
+import BlocklyDisplayText from './BlocklyFields/BlocklyDisplayText';
 // import darkThemeData from './BlocklyReusable/themeDark';
 function App(props: any) {
   const theme = useTheme();
@@ -35,7 +36,7 @@ function App(props: any) {
 const [open, setOpen] = React.useState(false);
 const [selectedValue, setSelectedValue] = React.useState("");  
 const handleRun = () => {
-    RunCode.sendMessage(RunCodeData.Start);
+    RunCode.sendMessage({runCodeData:RunCodeData.Start});
   };
 
 const handleClickOpen = () => {
@@ -51,17 +52,19 @@ const handleClickOpen = () => {
   };
 
   useEffect(()=>{
-    var x= RunCode.getMessage().subscribe((it:RunCodeData)=>{
+    var x= RunCode.getMessage().subscribe((it:RunCodeMessage)=>{
         // var data=it;
         // if(!Number.isNaN(Number(it)){
         //     data=RunCodeData[it];
         // }
-        switch(it){
+        switch(it.runCodeData){
             case RunCodeData.Start:
                 setShowSnack(true);
                 return;
             case RunCodeData.Stop:
                 setShowSnack(false);
+                return;
+            case RunCodeData.UserRequestedPrint:
                 return;
             default:
                 window.alert('cannot interpret '+ it +' in app.tsx');
@@ -124,6 +127,8 @@ const handleClickOpen = () => {
 
       <div className="App">
         <header className="App-header">
+
+        
           <BlocklyComponent readOnly={false} 
           trashcan={true} media={'media/'}
           renderer={'thrasos'}
@@ -473,8 +478,9 @@ const handleClickOpen = () => {
               </Value>
             </Block> */}
           </BlocklyComponent>
-
-          
+        <div id="blocklyDisplay">
+          <BlocklyDisplayText></BlocklyDisplayText>
+         </div>
 
         </header>
       </div>
