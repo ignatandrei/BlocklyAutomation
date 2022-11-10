@@ -4,7 +4,7 @@
  import './BlocklyComponent.css';
  import {useEffect, useRef} from 'react';
 
- import Blockly, { WorkspaceSvg } from 'blockly/core';
+ import Blockly, { Block, WorkspaceSvg } from 'blockly/core';
  import {javascriptGenerator} from 'blockly/javascript';
  import locale from 'blockly/msg/en';
  import 'blockly/blocks';
@@ -14,6 +14,8 @@ import DemoBlocks from '../Examples/DemoBlocks';
 import { RunCode, RunCodeData, RunCodeMessage, LoadIDService, MustSave, ShowData, InnerWorkings } from '../Examples/Messages';
 import { SaveLocation } from './SaveLocation';
 import ShowCodeAndXML from './ShowCodeAndXML';
+import { Category } from '@mui/icons-material';
+import { BlockReact, CategoryReact } from '../../BlocklyFields';
 
  
  Blockly.setLocale(locale);
@@ -191,6 +193,7 @@ import ShowCodeAndXML from './ShowCodeAndXML';
     return <>
         <div ref={blocklyDiv} id="blocklyDiv" />
         <div style={{ display: 'none' }} ref={toolbox}>
+        {/* <CategoryReact id="asdstart" colour="210" name="Loaaaasdasgic"><BlockReact type="controls_if"></BlockReact></CategoryReact>  */}
             {props.children}
         </div>
         {/* <button onClick={generateCode}>Convert</button> */}

@@ -10,7 +10,7 @@ import logo from './logo.svg';
 // import './Blocks/customBlocks';
 // import './generator/generator';
 import Blockly from 'blockly/core';
-import  BlocklyComponent, { Block, Category, Field, Mutation, Shadow, Value } from './BlocklyFields';
+import  BlocklyComponent, { BlockReact,  CategoryReact, Field, Mutation, Shadow, Value } from './BlocklyFields';
 import { Alert,  AppBar, Box, Button, IconButton,  Snackbar, Toolbar, Typography, useMediaQuery, useTheme } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { javascriptGenerator } from 'blockly/javascript';
@@ -64,7 +64,7 @@ const handleClickOpen = () => {
     LoadIDService.sendID(value);
     
   };
-
+  const dataX= ('<CategoryReact id="asdasd" colour="210" name="Loasdasgic"><BlockReact type="controls_if"></BlockReact></CategoryReact>');
   useEffect(()=>{
     var x= RunCode.getMessage().subscribe((it:RunCodeMessage)=>{
         // var data=it;
@@ -160,32 +160,32 @@ const handleClickOpen = () => {
           }}
           initialXml={`
 <xml xmlns="http://www.w3.org/1999/xhtml">
-<Block type="controls_ifelse" x="0" y="0"></Block>
+<BlockReact type="controls_ifelse" x="0" y="0"></BlockReact>
 </xml>
       `}>
-            {/* <Block type="test_react_Field" /> */}
-            {/* <Block type="test_react_date_Field" /> */}
-            <Category name="Blockly Core">
-
-<Category id="catLogic" colour="210" name="Logic">
-    <Block type="controls_if"></Block>
-    <Block type="logic_compare"></Block>
-    <Block type="logic_operation"></Block>
-    <Block type="logic_negate"></Block>
-    <Block type="logic_boolean"></Block>
-    <Block type="logic_null"></Block>
-    <Block type="logic_ternary"></Block>
-</Category>
-<Category id="catLoops" colour="120" name="Loops">
-    <Block type="controls_repeat_ext">
+            {/* dataX */}
+            {/* <CategoryReact id="asdasdasdasd" colour="210" name="Loasdasgic"><BlockReact type="controls_if"></BlockReact></CategoryReact> */}
+            
+            <CategoryReact name="Blockly Core">
+<CategoryReact id="catLogic" colour="210" name="Logic">
+    <BlockReact type="controls_if"></BlockReact>
+    <BlockReact type="logic_compare"></BlockReact>
+    <BlockReact type="logic_operation"></BlockReact>
+    <BlockReact type="logic_negate"></BlockReact>
+    <BlockReact type="logic_boolean"></BlockReact>
+    <BlockReact type="logic_null"></BlockReact>
+    <BlockReact type="logic_ternary"></BlockReact>
+</CategoryReact>
+<CategoryReact id="catLoops" colour="120" name="Loops">
+    <BlockReact type="controls_repeat_ext">
         <Value name="TIMES">
             <Shadow type="math_number">
                 <Field name="NUM">10</Field>
             </Shadow>
         </Value>
-    </Block>
-    <Block type="controls_whileUntil"></Block>
-    <Block type="controls_for">
+    </BlockReact>
+    <BlockReact type="controls_whileUntil"></BlockReact>
+    <BlockReact type="controls_for">
         <Value name="FROM">
             <Shadow type="math_number">
                 <Field name="NUM">1</Field>
@@ -201,13 +201,13 @@ const handleClickOpen = () => {
                 <Field name="NUM">1</Field>
             </Shadow>
         </Value>
-    </Block>
-    <Block type="controls_forEach"></Block>
-    <Block type="controls_flow_statements"></Block>
-</Category>
-<Category id="catMath" colour="230" name="Math">
-        <Block type="math_number"></Block>
-        <Block type="math_arithmetic">
+    </BlockReact>
+    <BlockReact type="controls_forEach"></BlockReact>
+    <BlockReact type="controls_flow_statements"></BlockReact>
+</CategoryReact>
+<CategoryReact id="catMath" colour="230" name="Math">
+        <BlockReact type="math_number"></BlockReact>
+        <BlockReact type="math_arithmetic">
             <Value name="A">
                 <Shadow type="math_number">
                     <Field name="NUM">1</Field>
@@ -218,45 +218,45 @@ const handleClickOpen = () => {
                     <Field name="NUM">1</Field>
                 </Shadow>
             </Value>
-        </Block>
-        <Block type="math_single">
+        </BlockReact>
+        <BlockReact type="math_single">
             <Value name="NUM">
                 <Shadow type="math_number">
                     <Field name="NUM">9</Field>
                 </Shadow>
             </Value>
-        </Block>
-        <Block type="math_trig">
+        </BlockReact>
+        <BlockReact type="math_trig">
             <Value name="NUM">
                 <Shadow type="math_number">
                     <Field name="NUM">45</Field>
                 </Shadow>
             </Value>
-        </Block>
-        <Block type="math_constant"></Block>
-        <Block type="math_number_property">
+        </BlockReact>
+        <BlockReact type="math_constant"></BlockReact>
+        <BlockReact type="math_number_property">
             <Value name="NUMBER_TO_CHECK">
                 <Shadow type="math_number">
                     <Field name="NUM">0</Field>
                 </Shadow>
             </Value>
-        </Block>
-        <Block type="math_change">
+        </BlockReact>
+        <BlockReact type="math_change">
             <Value name="DELTA">
                 <Shadow type="math_number">
                     <Field name="NUM">1</Field>
                 </Shadow>
             </Value>
-        </Block>
-        <Block type="math_round">
+        </BlockReact>
+        <BlockReact type="math_round">
             <Value name="NUM">
                 <Shadow type="math_number">
                     <Field name="NUM">3.1</Field>
                 </Shadow>
             </Value>
-        </Block>
-        <Block type="math_on_list"></Block>
-        <Block type="math_modulo">
+        </BlockReact>
+        <BlockReact type="math_on_list"></BlockReact>
+        <BlockReact type="math_modulo">
             <Value name="DIVIDEND">
                 <Shadow type="math_number">
                     <Field name="NUM">64</Field>
@@ -267,8 +267,8 @@ const handleClickOpen = () => {
                     <Field name="NUM">10</Field>
                 </Shadow>
             </Value>
-        </Block>
-        <Block type="math_constrain">
+        </BlockReact>
+        <BlockReact type="math_constrain">
             <Value name="value">
                 <Shadow type="math_number">
                     <Field name="NUM">50</Field>
@@ -284,8 +284,8 @@ const handleClickOpen = () => {
                     <Field name="NUM">100</Field>
                 </Shadow>
             </Value>
-        </Block>
-        <Block type="math_random_int">
+        </BlockReact>
+        <BlockReact type="math_random_int">
             <Value name="FROM">
                 <Shadow type="math_number">
                     <Field name="NUM">1</Field>
@@ -296,141 +296,141 @@ const handleClickOpen = () => {
                     <Field name="NUM">100</Field>
                 </Shadow>
             </Value>
-        </Block>
-        <Block type="math_random_float"></Block>
-    </Category>
-    <Category id="catText" colour="160" name="Text">
-        <Block type="text"></Block>
-        <Block type="text_join"></Block>
-        <Block type="text_append">
+        </BlockReact>
+        <BlockReact type="math_random_float"></BlockReact>
+    </CategoryReact>
+    <CategoryReact id="catText" colour="160" name="Text">
+        <BlockReact type="text"></BlockReact>
+        <BlockReact type="text_join"></BlockReact>
+        <BlockReact type="text_append">
             <Value name="TEXT">
                 <Shadow type="text"></Shadow>
             </Value>
-        </Block>
-        <Block type="text_length">
+        </BlockReact>
+        <BlockReact type="text_length">
             <Value name="Value">
                 <Shadow type="text">
                     <Field name="TEXT">abc</Field>
                 </Shadow>
             </Value>
-        </Block>
-        <Block type="text_isEmpty">
+        </BlockReact>
+        <BlockReact type="text_isEmpty">
             <Value name="Value">
                 <Shadow type="text">
                     <Field name="TEXT"></Field>
                 </Shadow>
             </Value>
-        </Block>
-        <Block type="text_indexOf">
+        </BlockReact>
+        <BlockReact type="text_indexOf">
             <Value name="Value">
-                <Block type="variables_get">
+                <BlockReact type="variables_get">
                     <Field name="VAR">text</Field>
-                </Block>
+                </BlockReact>
             </Value>
             <Value name="FIND">
                 <Shadow type="text">
                     <Field name="TEXT">abc</Field>
                 </Shadow>
             </Value>
-        </Block>
-        <Block type="text_charAt">
+        </BlockReact>
+        <BlockReact type="text_charAt">
             <Value name="Value">
-                <Block type="variables_get">
+                <BlockReact type="variables_get">
                     <Field name="VAR">text</Field>
-                </Block>
+                </BlockReact>
             </Value>
-        </Block>
-        <Block type="text_getSubstring">
+        </BlockReact>
+        <BlockReact type="text_getSubstring">
             <Value name="STRING">
-                <Block type="variables_get">
+                <BlockReact type="variables_get">
                     <Field name="VAR">text</Field>
-                </Block>
+                </BlockReact>
             </Value>
-        </Block>
-        <Block type="text_changeCase">
+        </BlockReact>
+        <BlockReact type="text_changeCase">
             <Value name="TEXT">
                 <Shadow type="text">
                     <Field name="TEXT">abc</Field>
                 </Shadow>
             </Value>
-        </Block>
-        <Block type="text_trim">
+        </BlockReact>
+        <BlockReact type="text_trim">
             <Value name="TEXT">
                 <Shadow type="text">
                     <Field name="TEXT">abc</Field>
                 </Shadow>
             </Value>
-        </Block>
-        <Block type="text_print">
+        </BlockReact>
+        <BlockReact type="text_print">
             <Value name="TEXT">
                 <Shadow type="text">
                     <Field name="TEXT">abc</Field>
                 </Shadow>
             </Value>
-        </Block>
-        <Block type="text_prompt_ext">
+        </BlockReact>
+        <BlockReact type="text_prompt_ext">
             <Value name="TEXT">
                 <Shadow type="text">
                     <Field name="TEXT">abc</Field>
                 </Shadow>
             </Value>
-        </Block>
-    </Category>
-    <Category id="catLists" colour="260" name="Lists">
-        <Block type="lists_create_with">
+        </BlockReact>
+    </CategoryReact>
+    <CategoryReact id="catLists" colour="260" name="Lists">
+        <BlockReact type="lists_create_with">
             <Mutation items="0"></Mutation>
-        </Block>
-        <Block type="lists_create_with"></Block>
-        <Block type="lists_repeat">
+        </BlockReact>
+        <BlockReact type="lists_create_with"></BlockReact>
+        <BlockReact type="lists_repeat">
             <Value name="NUM">
                 <Shadow type="math_number">
                     <Field name="NUM">5</Field>
                 </Shadow>
             </Value>
-        </Block>
-        <Block type="lists_length"></Block>
-        <Block type="lists_isEmpty"></Block>
-        <Block type="lists_indexOf">
+        </BlockReact>
+        <BlockReact type="lists_length"></BlockReact>
+        <BlockReact type="lists_isEmpty"></BlockReact>
+        <BlockReact type="lists_indexOf">
             <Value name="Value">
-                <Block type="variables_get">
+                <BlockReact type="variables_get">
                     <Field name="VAR">list</Field>
-                </Block>
+                </BlockReact>
             </Value>
-        </Block>
-        <Block type="lists_getIndex">
+        </BlockReact>
+        <BlockReact type="lists_getIndex">
             <Value name="Value">
-                <Block type="variables_get">
+                <BlockReact type="variables_get">
                     <Field name="VAR">list</Field>
-                </Block>
+                </BlockReact>
             </Value>
-        </Block>
-        <Block type="lists_setIndex">
+        </BlockReact>
+        <BlockReact type="lists_setIndex">
             <Value name="LIST">
-                <Block type="variables_get">
+                <BlockReact type="variables_get">
                     <Field name="VAR">list</Field>
-                </Block>
+                </BlockReact>
             </Value>
-        </Block>
-        <Block type="lists_getSublist">
+        </BlockReact>
+        <BlockReact type="lists_getSublist">
             <Value name="LIST">
-                <Block type="variables_get">
+                <BlockReact type="variables_get">
                     <Field name="VAR">list</Field>
-                </Block>
+                </BlockReact>
             </Value>
-        </Block>
-        <Block type="lists_split">
+        </BlockReact>
+        <BlockReact type="lists_split">
             <Value name="DELIM">
                 <Shadow type="text">
                     <Field name="TEXT">,</Field>
                 </Shadow>
             </Value>
-        </Block>
-        <Block type="lists_sort"></Block>
-    </Category>
-    <Category id="catColour" colour="20" name="Color">
-        <Block type="colour_picker"></Block>
-        <Block type="colour_random"></Block>
-        <Block type="colour_rgb">
+        </BlockReact>
+        <BlockReact type="lists_sort"></BlockReact>
+    </CategoryReact>
+    <CategoryReact id="catColour" colour="20" name="Color">
+        <BlockReact type="colour_picker"></BlockReact>
+        <BlockReact type="colour_random"></BlockReact>
+        <BlockReact type="colour_rgb">
             <Value name="RED">
                 <Shadow type="math_number">
                     <Field name="NUM">100</Field>
@@ -446,8 +446,8 @@ const handleClickOpen = () => {
                     <Field name="NUM">0</Field>
                 </Shadow>
             </Value>
-        </Block>
-        <Block type="colour_blend">
+        </BlockReact>
+        <BlockReact type="colour_blend">
             <Value name="COLOUR1">
                 <Shadow type="colour_picker">
                     <Field name="COLOUR">#ff0000</Field>
@@ -463,50 +463,50 @@ const handleClickOpen = () => {
                     <Field name="NUM">0.5</Field>
                 </Shadow>
             </Value>
-        </Block>
-    </Category>
-    <Category id="catVariables" colour="330" custom="VARIABLE" name="Variables"></Category>
-    <Category id="catFunctions" colour="290" custom="PROCEDURE" name="Functions"></Category>
+        </BlockReact>
+    </CategoryReact>
+    <CategoryReact id="catVariables" colour="330" custom="VARIABLE" name="Variables"></CategoryReact>
+    <CategoryReact id="catFunctions" colour="290" custom="PROCEDURE" name="Functions"></CategoryReact>
 
-</Category>
-<Category name="Advanced">
+</CategoryReact>
+<CategoryReact name="Advanced">
     {/* TODO:register from fieldXML */}
-    <Category id="Audio" name="Audio">
-    <Block type="ttsBlock">
+    <CategoryReact id="Audio" name="Audio">
+    <BlockReact type="ttsBlock">
         <Value name="NAME">
             <Shadow type="text">
             <Field name="TEXT">Hello</Field></Shadow>
         </Value>       
-        </Block>
-    </Category>
+        </BlockReact>
+    </CategoryReact>
 
-<Category id="catTimers"  name="Timers">
-    <Block type={waitBlock.nameBlock}></Block>
-</Category>
+<CategoryReact id="catTimers"  name="Timers">
+    <BlockReact type={waitBlock.nameBlock}></BlockReact>
+</CategoryReact>
 
-</Category>
-            {/* <Block type="controls_ifelse" />
-            <Block type="logic_compare" />
-            <Block type="logic_operation" />
-            <Block type="controls_repeat_ext">
+</CategoryReact>
+            {/* <BlockReact type="controls_ifelse" />
+            <BlockReact type="logic_compare" />
+            <BlockReact type="logic_operation" />
+            <BlockReact type="controls_repeat_ext">
               <Value name="TIMES">
                 <Shadow type="math_number">
                   <Field name="NUM">10</Field>
                 </Shadow>
               </Value>
-            </Block>
-            <Block type="logic_operation" />
-            <Block type="logic_negate" />
-            <Block type="logic_boolean" />
-            <Block type="logic_null" disabled="true" />
-            <Block type="logic_ternary" />
-            <Block type="text_charAt">
+            </BlockReact>
+            <BlockReact type="logic_operation" />
+            <BlockReact type="logic_negate" />
+            <BlockReact type="logic_boolean" />
+            <BlockReact type="logic_null" disabled="true" />
+            <BlockReact type="logic_ternary" />
+            <BlockReact type="text_charAt">
               <Value name="Value">
-                <Block type="variables_get">
+                <BlockReact type="variables_get">
                   <Field name="VAR">text</Field>
-                </Block>
+                </BlockReact>
               </Value>
-            </Block> */}
+            </BlockReact> */}
           </BlocklyComponent>
         <div id="blocklyDisplay">
             
@@ -519,3 +519,7 @@ const handleClickOpen = () => {
 }
 
 export default App;
+function renderToString(arg0: string) {
+    throw new Error('Function not implemented.');
+}
+

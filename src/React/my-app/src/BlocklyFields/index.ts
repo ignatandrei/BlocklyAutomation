@@ -5,13 +5,13 @@ import BlocklyComponent from '../Components/GUI/BlocklyComponent';
 
 export default BlocklyComponent;
 
-const Block = (p:any) => {
+const BlockReact = (p:any) => {
     const { children, ...props } = p;
     props.is = "blockly";
     return React.createElement("block", props, children);
 };
 
-const Category = (p:any) => {
+const CategoryReact = (p:any) => {
     const { children, ...props } = p;
     props.is = "blockly";
     return React.createElement("category", props, children);
@@ -41,4 +41,4 @@ const Mutation = (p:any) => {
     return React.createElement("mutation", props, children);
 };
 
-export { Block, Category, Value, Field, Shadow , Mutation}
+export { BlockReact, CategoryReact, Value, Field, Shadow , Mutation}
