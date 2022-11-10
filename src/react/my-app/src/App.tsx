@@ -24,6 +24,7 @@ import BlocklyDisplayText from './Components/GUI/BlocklyDisplayText';
 import BlocklyDisplayData from './Components/GUI/BlocklyDisplayData';
 import OutputButton from './Components/GUI/outputButton';
 import ShowCodeAndXML from './Components/GUI/ShowCodeAndXML';
+import { tts } from './BlocklyReusable/BlocklyNewBlocks/tts';
 
 // import darkThemeData from './BlocklyReusable/themeDark';
 function App(props: any) {
@@ -39,7 +40,9 @@ function App(props: any) {
 
   var currentDateInstance =new CurrentDateBlock();
   currentDateInstance.definitionBlocks(javascriptGenerator);
-  
+
+  var ttsBlockInstance= new tts();
+  ttsBlockInstance.definitionBlocks(javascriptGenerator);
 //   var dark = Blockly.Theme.defineTheme('darkAndrei',darkThemeData);
 const [open, setOpen] = React.useState(false);
 
@@ -136,7 +139,7 @@ const handleClickOpen = () => {
 
           </Typography>
           {/* <Button color="inherit">Login </Button> */}
-          <Button variant="contained" disabled={disabledRun} color={"success"}  endIcon={<SendIcon />} onClick={handleRun}>Run!</Button>
+          <Button variant="contained" disabled={disabledRun} color={"success"}  endIcon={<SendIcon />} onClick={handleRun}>Execute!</Button>
         </Toolbar>
       </AppBar>
     </Box>
@@ -468,9 +471,19 @@ const handleClickOpen = () => {
 </Category>
 <Category name="Advanced">
     {/* TODO:register from fieldXML */}
+    <Category id="Audio" name="Audio">
+    <Block type="ttsBlock">
+        <Value name="NAME">
+            <Shadow type="text">
+            <Field name="TEXT">Hello</Field></Shadow>
+        </Value>       
+        </Block>
+    </Category>
+
 <Category id="catTimers"  name="Timers">
     <Block type={waitBlock.nameBlock}></Block>
 </Category>
+
 </Category>
             {/* <Block type="controls_ifelse" />
             <Block type="logic_compare" />
