@@ -64,7 +64,7 @@ const handleClickOpen = () => {
     LoadIDService.sendID(value);
     
   };
-  const dataX= ('<CategoryReact id="asdasd" colour="210" name="Loasdasgic"><BlockReact type="controls_if"></BlockReact></CategoryReact>');
+//   const dataX= <>('<CategoryReact id="asdasd" colour="210" name="Loasdasgic"><BlockReact type="controls_if"></BlockReact></CategoryReact>')</>;
   useEffect(()=>{
     var x= RunCode.getMessage().subscribe((it:RunCodeMessage)=>{
         // var data=it;
@@ -163,8 +163,8 @@ const handleClickOpen = () => {
 <BlockReact type="controls_ifelse" x="0" y="0"></BlockReact>
 </xml>
       `}>
-            {/* dataX */}
-            {/* <CategoryReact id="asdasdasdasd" colour="210" name="Loasdasgic"><BlockReact type="controls_if"></BlockReact></CategoryReact> */}
+            {/* {dataX} */}
+            
             
             <CategoryReact name="Blockly Core">
 <CategoryReact id="catLogic" colour="210" name="Logic">
