@@ -59,7 +59,15 @@ class InterpreterRunner{
               //console.log('ab',self.myInterpreter);
               if (self.myInterpreter) {
                 //console.log('ac',self.myInterpreter);
-                var hasMore = self.myInterpreter.run();
+                var hasMore=false;
+                try{
+                  hasMore = self.myInterpreter.run();
+                }
+                catch(e){
+                  //TODO: make the error visible
+                  console.error('error!',e);
+                  hasMore=false;
+                }
                 //console.log('ad',self.myInterpreter, hasMore);
                 if (hasMore) {
                   // Execution is currently blocked by some async call.
