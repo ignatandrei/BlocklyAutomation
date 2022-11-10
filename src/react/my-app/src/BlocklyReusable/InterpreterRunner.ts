@@ -1,5 +1,6 @@
 import { WorkspaceSvg } from "blockly";
 import CurrentDateBlock from "./BlocklyNewBlocks/CurrentDateBlock";
+import { piano } from "./BlocklyNewBlocks/piano";
 import { tts } from "./BlocklyNewBlocks/tts";
 import waitBlock from "./BlocklyNewBlocks/wait_block";
 declare var Interpreter: any;
@@ -104,6 +105,9 @@ class InterpreterRunner{
       
         var ttsBlockInstance=new tts();
         ttsBlockInstance.addWrapper(interpreter,globalObject);
+
+        var pianoBlockInstance=new piano();
+        pianoBlockInstance.addWrapper(interpreter,globalObject);
 
         // Add an API function for the alert() block, generated for "text_print" blocks.
         var wrapperAlert = function alert(text:any) {

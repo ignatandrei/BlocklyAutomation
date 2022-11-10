@@ -25,6 +25,7 @@ import BlocklyDisplayData from './Components/GUI/BlocklyDisplayData';
 import OutputButton from './Components/GUI/outputButton';
 import ShowCodeAndXML from './Components/GUI/ShowCodeAndXML';
 import { tts } from './BlocklyReusable/BlocklyNewBlocks/tts';
+import { piano } from './BlocklyReusable/BlocklyNewBlocks/piano';
 
 // import darkThemeData from './BlocklyReusable/themeDark';
 function App(props: any) {
@@ -43,6 +44,10 @@ function App(props: any) {
 
   var ttsBlockInstance= new tts();
   ttsBlockInstance.definitionBlocks(javascriptGenerator);
+
+
+  var pianoBlockInstance= new piano();
+  pianoBlockInstance.definitionBlocks(javascriptGenerator);
 //   var dark = Blockly.Theme.defineTheme('darkAndrei',darkThemeData);
 const [open, setOpen] = React.useState(false);
 
@@ -478,6 +483,27 @@ const handleClickOpen = () => {
             <Field name="TEXT">Hello</Field></Shadow>
         </Value>       
         </BlockReact>
+
+        <BlockReact type="pianoBlock">
+        <Value name="Note">
+            <Shadow type="text">
+            <Field name="TEXT">C</Field></Shadow>
+        </Value>       
+        <Value name="Octave">
+            <Shadow type="math_number">
+            <Field name="NUM">4</Field></Shadow>
+        </Value>       
+        <Value name="Sharp">
+            <Shadow type="logic_boolean">
+            <Field name="BOOL">FALSE</Field></Shadow>
+        </Value>       
+        
+        <Value name="Duration">
+            <Shadow type="math_number">
+            <Field name="NUM">2</Field></Shadow>
+        </Value>       
+        </BlockReact>
+        <BlockReact type="cmajor"></BlockReact>
     </CategoryReact>
 
 <CategoryReact id="catTimers"  name="Timers">

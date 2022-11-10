@@ -22,5 +22,5 @@
   },
   "include": [
     "src"
-  ]
+, "src/BlocklyReusable/BlocklyNewBlocks/audioTest.js"  ]
 }
