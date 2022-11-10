@@ -484,6 +484,15 @@ const handleClickOpen = () => {
     <BlockReact type={waitBlock.nameBlock}></BlockReact>
 </CategoryReact>
 
+<CategoryReact id="catDates"  name="Dates">
+<BlockReact type="text_print" >
+    <Value name="TEXT">
+    <BlockReact type="displayCurrentDate"></BlockReact>
+    </Value>
+    </BlockReact>
+</CategoryReact>
+
+
 </CategoryReact>
             {/* <BlockReact type="controls_ifelse" />
             <BlockReact type="logic_compare" />
