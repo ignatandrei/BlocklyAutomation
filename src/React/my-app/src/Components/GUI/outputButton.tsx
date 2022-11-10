@@ -9,41 +9,42 @@ import Popper from '@mui/material/Popper';
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 import { saveLoadService } from '../../AppFiles/saveLoadService';
-import { SaveLocation } from './SaveLocation';
-import { MustSave } from '../Examples/Messages';
-const options =Object.values(SaveLocation).filter(it=> isNaN(Number(it)));
+import { ShowData } from '../Examples/Messages';
+import ShowCodeAndXML from './ShowCodeAndXML';
+const options =Object.values(ShowCodeAndXML).filter(it=> isNaN(Number(it)));
 
-function SaveButton(props: any) {
+function OutputButton(props: any) {
 
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef<HTMLDivElement>(null);
     const [selectedIndex, setSelectedIndex] = React.useState(1);
   
-    var optionsSave=new Map<string,SaveLocation|string>();
-    Object.entries(SaveLocation).map(([number, word]) => ({ number, word })).forEach(it=>optionsSave.set(it.number,it.word));
+    var optionsSave=new Map<string,ShowCodeAndXML|string>();
+    Object.entries(ShowCodeAndXML).map(([number, word]) => ({ number, word })).forEach(it=>optionsSave.set(it.number,it.word));
     // console.log(optionsSave);
 
 
     const handleClick = () => {
       ClickOnIndex(selectedIndex);
-        
     };
 
     const ClickOnIndex=(index:number)=>{
       var sel=options[index].toString();
       var e= optionsSave.get(sel) ;
-      
       switch(e){
-          case SaveLocation.Save_Local:
-            console.log('test');
-            MustSave.sendMessage(e);
+        case ShowCodeAndXML.ShowBlocksDefinition:
+        case ShowCodeAndXML.ShowCode:
+        case ShowCodeAndXML.ShowOutput:
+        case ShowCodeAndXML.ShowXML:   
+          // console.log('send'+ e);        
+          ShowData.sendMessage(e);
+          return;
+        
+        default:
+            window.alert( `${e} is not implemented`);
             return;
-          
-          default:
-              window.alert( `${e} is not implemented`);
-              return;
-      }
-    };
+    }
+    }
     
     const handleMenuItemClick = (
       event: React.MouseEvent<HTMLLIElement, MouseEvent>,
@@ -108,7 +109,7 @@ function SaveButton(props: any) {
                     {options.map((option, index) => (
                       <MenuItem
                         key={option}
-                        disabled={index === 0}
+                        // disabled={index === 0}
                         selected={index === selectedIndex}
                         onClick={(event) => handleMenuItemClick(event, index)}
                       >
@@ -125,4 +126,4 @@ function SaveButton(props: any) {
     );
   }
 
-export default SaveButton;
+export default OutputButton;

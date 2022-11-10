@@ -11,8 +11,9 @@
 import { saveLoadService } from '../../AppFiles/saveLoadService';
 import InterpreterRunner from '../../BlocklyReusable/InterpreterRunner';
 import DemoBlocks from '../Examples/DemoBlocks';
-import { RunCode, RunCodeData, RunCodeMessage, LoadIDService, MustSave } from '../Examples/Messages';
+import { RunCode, RunCodeData, RunCodeMessage, LoadIDService, MustSave, ShowData, InnerWorkings } from '../Examples/Messages';
 import { SaveLocation } from './SaveLocation';
+import ShowCodeAndXML from './ShowCodeAndXML';
 
  
  Blockly.setLocale(locale);
@@ -107,6 +108,65 @@ import { SaveLocation } from './SaveLocation';
             var s=new saveLoadService();
             s.saveState(primaryWorkspace.current!,"save1");
     }
+
+    useEffect(()=>{
+        var x=ShowData.getMessage().subscribe(it=>{            
+            switch(it){
+                case ShowCodeAndXML.ShowOutput:
+
+                    return;
+                case ShowCodeAndXML.ShowCode:
+                    var code = javascriptGenerator.workspaceToCode(primaryWorkspace.current);
+                    InnerWorkings.sendMessage(code);     
+                    return;
+                case ShowCodeAndXML.ShowXML:
+                    var xml = Blockly.Xml.workspaceToDom(primaryWorkspace.current!, true);
+                    var xml_text = Blockly.Xml.domToPrettyText(xml);
+                    //console.log('send' ,xml_text);
+                    InnerWorkings.sendMessage(xml_text);                    
+                    return;
+                case ShowCodeAndXML.ShowBlocksDefinition:
+                     var xml = Blockly.Xml.workspaceToDom(primaryWorkspace.current!, true);
+                     var xml_text = Blockly.Xml.domToPrettyText(xml);
+                     var blocksArr=Array<string>(0);
+                    
+                    if(xml_text.indexOf('<block type="')>=0){
+                      var blocks=xml_text.split('<block type="');
+                      for(var i=1;i<blocks.length;i++){
+                        var block=blocks[i].split('"')[0];
+                        blocksArr.push(block);
+                      }
+                    }
+                    
+                    if(blocksArr.length === 0)
+                    {
+                        InnerWorkings.sendMessage('no text'); 
+                        return;
+                    }
+                    try{
+                        var text = blocksArr.map(it=>
+                        {
+                            var blocksData=`Blockly.Blocks['${it}']={ init: \n` + ((Blockly.Blocks[it] as any)['init']).toString() + '};';
+                            var js = `Blockly.JavaScript['${it}']=` +  ((javascriptGenerator as any)[it]).toString()+';';
+                            return blocksData + '\n' + js;
+                        } ).join('\n');
+                        InnerWorkings.sendMessage(text); 
+                          //console.log('x'+it,(Blockly.Blocks[it] as any)['init']());
+                      }
+                      catch(e){
+                        console.error('parse definition : '+it,e);
+                        return ;
+                      }
+                    
+                    return;
+                default:
+                    window.alert('not implemented '+it);
+            }
+        });
+        return ()=>x.unsubscribe();
+    },[]);
+
+
     useEffect(() => {
 
         if(primaryWorkspace.current !== undefined)

@@ -1,9 +1,11 @@
 import { TextareaAutosize } from "@mui/material";
 import React from "react";
 import { useEffect, useState } from "react";
+import { ShowBlocklyOutput } from "../../Common/SimpleDialogProps";
 import { RunCode, RunCodeData } from "../Examples/Messages";
+import ShowCodeAndXML from "./ShowCodeAndXML";
 
-function BlocklyDisplayText(){
+function BlocklyDisplayText({showData}: ShowBlocklyOutput){
  
     const [text, setText ]= useState('');
     
@@ -27,7 +29,9 @@ function BlocklyDisplayText(){
         return ()=>{ data.unsubscribe();}
     },[]);
  
-    return <> Output of data <div> <TextareaAutosize cols={40}
+    return <> 
+    
+    <div hidden={showData !== ShowCodeAndXML.ShowOutput}> <TextareaAutosize cols={40}
     aria-label="output"
     minRows={3}
     placeholder="output of data"

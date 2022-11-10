@@ -1,5 +1,6 @@
 import { Subject } from 'rxjs';
 import { SaveLocation } from '../GUI/SaveLocation';
+import ShowCodeAndXML from '../GUI/ShowCodeAndXML';
 
 export const enum RunCodeData{
     Start=0,
@@ -17,6 +18,8 @@ export interface RunCodeMessage{
 const subjectID = new Subject<string>();
 const subjectSave = new Subject<SaveLocation>();
 const subjectRun = new Subject<RunCodeMessage>();
+const subjectShow=new Subject<ShowCodeAndXML>();
+const subjectInnerWorking=new Subject<string>();
 
 export const LoadIDService = {
     sendID: (message:string) => subjectID.next(message ),
@@ -31,3 +34,15 @@ export const RunCode= {
     sendMessage: (message:RunCodeMessage) => subjectRun.next(message),
     getMessage: () => subjectRun.asObservable()
 };
+
+
+export const ShowData= {
+    sendMessage: (message:ShowCodeAndXML) => subjectShow.next(message),
+    getMessage: () => subjectShow.asObservable()
+};
+
+export const InnerWorkings = {
+    sendMessage: (message:string) => subjectInnerWorking.next(message),
+    getMessage: () => subjectInnerWorking.asObservable()
+
+}

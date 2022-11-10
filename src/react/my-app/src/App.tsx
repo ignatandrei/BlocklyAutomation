@@ -18,10 +18,13 @@ import waitBlock from './BlocklyReusable/BlocklyNewBlocks/wait_block';
 import FindSavedBlocksComponent from './Components/Examples/FindSavedBlocksComponent';
 import SaveButton from './Components/GUI/saveButton';
 import DemoBlocks from './Components/Examples/DemoBlocks';
-import { LoadIDService, MustSave, RunCode, RunCodeData, RunCodeMessage } from './Components/Examples/Messages';
+import { LoadIDService, MustSave, RunCode, RunCodeData, RunCodeMessage, ShowData } from './Components/Examples/Messages';
 import CurrentDateBlock from './BlocklyReusable/BlocklyNewBlocks/CurrentDateBlock';
 import BlocklyDisplayText from './Components/GUI/BlocklyDisplayText';
 import BlocklyDisplayData from './Components/GUI/BlocklyDisplayData';
+import OutputButton from './Components/GUI/outputButton';
+import ShowCodeAndXML from './Components/GUI/ShowCodeAndXML';
+
 // import darkThemeData from './BlocklyReusable/themeDark';
 function App(props: any) {
   const theme = useTheme();
@@ -43,6 +46,7 @@ const [open, setOpen] = React.useState(false);
 const [disabledRun, setdisabledRun] = React.useState(false);
 const [selectedValue, setSelectedValue] = React.useState("");  
 const handleRun = () => {
+    ShowData.sendMessage(ShowCodeAndXML.ShowOutput);
     RunCode.sendMessage({runCodeData:RunCodeData.Start});
   };
 
@@ -124,9 +128,11 @@ const handleClickOpen = () => {
             Blockly Automation 
             
             
-            <Button variant="contained" onClick={handleClickOpen}>Examples</Button>
+            <Button variant="contained" onClick={handleClickOpen}>Examples!</Button>
 
             <SaveButton />
+
+            <OutputButton />
 
           </Typography>
           {/* <Button color="inherit">Login </Button> */}
