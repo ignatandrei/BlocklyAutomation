@@ -26,6 +26,8 @@ import OutputButton from './Components/GUI/outputButton';
 import ShowCodeAndXML from './Components/GUI/ShowCodeAndXML';
 import { tts } from './BlocklyReusable/BlocklyNewBlocks/tts';
 import { piano } from './BlocklyReusable/BlocklyNewBlocks/piano';
+import {  CredsBlocks } from './BlocklyReusable/BlocklyNewBlocks/http/WindowsCreds';
+import { HttpBlocks } from './BlocklyReusable/BlocklyNewBlocks/http/xhrBlocks';
 
 // import darkThemeData from './BlocklyReusable/themeDark';
 function App(props: any) {
@@ -48,6 +50,14 @@ function App(props: any) {
 
   var pianoBlockInstance= new piano();
   pianoBlockInstance.definitionBlocks(javascriptGenerator);
+
+  var credsInstance =new CredsBlocks();
+  credsInstance.definitionBlocks(javascriptGenerator);
+
+
+  var httpInstance =new HttpBlocks();
+  httpInstance.definitionBlocks(javascriptGenerator);
+
 //   var dark = Blockly.Theme.defineTheme('darkAndrei',darkThemeData);
 const [open, setOpen] = React.useState(false);
 
@@ -521,30 +531,57 @@ const handleClickOpen = () => {
     </BlockReact>
 </CategoryReact>
 
+<CategoryReact id="XHR" name="Request">
+
+<BlockReact type="headersbeforehttp">
+    <Value name="HttpDomain">
+        <Shadow type="text">
+            <Field name="TEXT">(localSite)</Field>
+        </Shadow>
+    </Value>
+    <Value name="HeaderName">
+        <Shadow type="text">
+            <Field name="TEXT">Authorization</Field>
+        </Shadow>
+    </Value>
+    <Value name="HeaderValue">
+        <Shadow type="text_join">
+
+        </Shadow>
+    </Value>
+</BlockReact>
+<BlockReact type="text_print">
+<Value name="TEXT">
+
+    <BlockReact type="httprequest">
+    <Value name="TheUrl">
+        <Shadow type="text">
+            <Field name="TEXT">https://httpbin.org/get</Field>
+        </Shadow>
+    </Value>
+</BlockReact>
+</Value>
+</BlockReact>    
+
+
+
+<BlockReact type="credsforhttp">
+    <Value name="HttpDomain">
+        <Shadow type="text">
+            <Field name="TEXT">(localSite)</Field>
+        </Shadow>
+    </Value>
+    <Value name="WithCreds">
+        <Shadow type="logic_boolean">
+            <Field name="BOOL">FALSE</Field>
+        </Shadow>
+    </Value>
+</BlockReact>
 
 </CategoryReact>
-            {/* <BlockReact type="controls_ifelse" />
-            <BlockReact type="logic_compare" />
-            <BlockReact type="logic_operation" />
-            <BlockReact type="controls_repeat_ext">
-              <Value name="TIMES">
-                <Shadow type="math_number">
-                  <Field name="NUM">10</Field>
-                </Shadow>
-              </Value>
-            </BlockReact>
-            <BlockReact type="logic_operation" />
-            <BlockReact type="logic_negate" />
-            <BlockReact type="logic_boolean" />
-            <BlockReact type="logic_null" disabled="true" />
-            <BlockReact type="logic_ternary" />
-            <BlockReact type="text_charAt">
-              <Value name="Value">
-                <BlockReact type="variables_get">
-                  <Field name="VAR">text</Field>
-                </BlockReact>
-              </Value>
-            </BlockReact> */}
+
+</CategoryReact>
+
           </BlocklyComponent>
         <div id="blocklyDisplay">
             

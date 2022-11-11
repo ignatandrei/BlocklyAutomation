@@ -2,7 +2,7 @@
     
     
     definitionBlocks(javascriptGenerator: any): void;
-    addWrapper(interpreter: any, globalObject:any):void;
+    addWrapper(interpreter: any, globalObject:any):any|void;
 
 
 }

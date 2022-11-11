@@ -1,5 +1,7 @@
 import { WorkspaceSvg } from "blockly";
 import CurrentDateBlock from "./BlocklyNewBlocks/CurrentDateBlock";
+import { CredsBlocks } from "./BlocklyNewBlocks/http/WindowsCreds";
+import { HttpBlocks } from "./BlocklyNewBlocks/http/xhrBlocks";
 import { piano } from "./BlocklyNewBlocks/piano";
 import { tts } from "./BlocklyNewBlocks/tts";
 import waitBlock from "./BlocklyNewBlocks/wait_block";
@@ -116,6 +118,14 @@ class InterpreterRunner{
 
         var pianoBlockInstance=new piano();
         pianoBlockInstance.addWrapper(interpreter,globalObject);
+
+
+        var credsInstance =new CredsBlocks();
+        credsInstance.addWrapper(interpreter,globalObject);
+
+        
+        var httpInstance =new HttpBlocks();
+        httpInstance.addWrapper(interpreter,globalObject);
 
         // Add an API function for the alert() block, generated for "text_print" blocks.
         var wrapperAlert = function alert(text:any) {
