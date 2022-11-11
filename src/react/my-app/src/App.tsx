@@ -157,6 +157,9 @@ const handleClickOpen = () => {
           trashcan={true} media={'media/'}
           renderer={'thrasos'}
         theme={Blockly.Themes.Classic}
+        zoom= {{
+            controls: true,
+          }}
 
           move={{
             scrollbars: true,

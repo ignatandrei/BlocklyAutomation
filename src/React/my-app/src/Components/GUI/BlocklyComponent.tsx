@@ -17,6 +17,7 @@ import ShowCodeAndXML from './ShowCodeAndXML';
 import { Category } from '@mui/icons-material';
 import { BlockReact, CategoryReact } from '../../BlocklyFields';
 import {ContentHighlight} from '@blockly/workspace-content-highlight';
+import {ZoomToFitControl} from '@blockly/zoom-to-fit';
  
  Blockly.setLocale(locale);
  
@@ -184,6 +185,9 @@ import {ContentHighlight} from '@blockly/workspace-content-highlight';
             );
             const contentHighlight = new ContentHighlight(primaryWorkspace.current);
             contentHighlight.init();
+
+            const zoomToFit = new ZoomToFitControl(primaryWorkspace.current);
+            zoomToFit.init();
             // if (initialXml) {
             //     Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(initialXml), primaryWorkspace.current);
             // }
