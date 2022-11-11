@@ -28,7 +28,7 @@ class DemoBlocks {
       .pipe(
         map((res: AjaxResponse<DemoBlocks[]>)=> res.response),
         map((data: DemoBlocks[]) => data.map(it=>new DemoBlocks(it))),
-        tap((it: DemoBlocks[]) =>console.log('obtaining all blocks demos',it)),
+        // tap((it: DemoBlocks[]) =>console.log('obtaining all blocks demos',it)),
         
         // tap((it:string)=> console.log('obtaining all blocks demos',it)),
         // map(data=>JSON.stringify(data)),

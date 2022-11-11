@@ -20,10 +20,10 @@ export default class ExistingSwagger {
       .pipe(
         map((res: AjaxResponse<LinksSwagger[]>) => res.response),
         map((data: LinksSwagger[]) => data.map((it) => new LinksSwagger(it))),
-        tap((it: LinksSwagger[]) =>
-          console.log("obtaining all blocks demos", it)
-        ) 
-        ,
+        // tap((it: LinksSwagger[]) =>
+        //   console.log("obtaining all blocks demos", it);
+        // ) ,
+        //
         switchMap((it) => 
         {
           return this.obtainSwaggers(it);
@@ -54,7 +54,7 @@ export default class ExistingSwagger {
     var api= from(parser.ParseSwagger() as Promise<any>)
       .pipe(
       tap((it:any)=>{
-        console.log('swagger loaded:' +cacheUrl, it);
+        // console.log('swagger loaded:' +cacheUrl, it);
         it.name = name;
         //this.swaggersDict.set(cacheUrl, it);
       }

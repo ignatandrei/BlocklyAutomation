@@ -29,6 +29,7 @@ import { piano } from './BlocklyReusable/BlocklyNewBlocks/piano';
 import {  CredsBlocks } from './BlocklyReusable/BlocklyNewBlocks/http/WindowsCreds';
 import { HttpBlocks } from './BlocklyReusable/BlocklyNewBlocks/http/xhrBlocks';
 import AllNewBlocks from './BlocklyReusable/allNewBlocks';
+import { SettingsBA } from './Components/GUI/settings/Settings';
 
 // import darkThemeData from './BlocklyReusable/themeDark';
 function App(props: any) {
@@ -39,6 +40,7 @@ function App(props: any) {
   const showMenu = (event: React.MouseEvent<HTMLElement>) => {
     showLeftMenu((prevState) => !prevState)
   }
+  const [titleBA, setTitleBA]= useState("Blockly Autopmation")
 //   var waitBlockInstance=new waitBlock();
 //   waitBlockInstance.definitionBlocks(javascriptGenerator);
 
@@ -84,6 +86,13 @@ const handleClickOpen = () => {
     LoadIDService.sendID(value);
     
   };
+
+  useEffect(()=>{
+    var x= new SettingsBA().getSettings().subscribe(it=>{        
+        setTitleBA(it.title);
+    });
+    return ()=>x.unsubscribe();
+  },[setTitleBA])
 //   const dataX= <>('<CategoryReact id="asdasd" colour="210" name="Loasdasgic"><BlockReact type="controls_if"></BlockReact></CategoryReact>')</>;
   useEffect(()=>{
     var x= RunCode.getMessage().subscribe((it:RunCodeMessage)=>{
@@ -148,7 +157,7 @@ const handleClickOpen = () => {
             </IconButton>
           }
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Blockly Automation 
+           {titleBA}
             
             
             <Button variant="contained" onClick={handleClickOpen}>Examples!</Button>

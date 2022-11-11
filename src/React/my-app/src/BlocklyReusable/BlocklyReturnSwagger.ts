@@ -829,7 +829,7 @@ TranslateToBlocklyType(t:any) {
   findCategsFromTags(){
     
     var allPaths=this.openApiDocument.paths;
-    console.log('x',this.openApiDocument);
+    // console.log('x',this.openApiDocument);
     var keys= Object.keys(allPaths);
     var self=this;
     keys.forEach(function (key) {

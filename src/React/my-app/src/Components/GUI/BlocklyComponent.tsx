@@ -1,6 +1,6 @@
 
 import { renderToString } from 'react-dom/server'
- import React from 'react';
+ import React, { useLayoutEffect, useState } from 'react';
  import './BlocklyComponent.css';
  import {useEffect, useRef} from 'react';
 
@@ -23,16 +23,21 @@ import {CrossTabCopyPaste} from '@blockly/plugin-cross-tab-copy-paste';
 import {Backpack} from '@blockly/workspace-backpack';
 import ExistingSwagger from '../Swagger/ExistingSwagger';
 import BlocklyReturnSwagger from '../../BlocklyReusable/BlocklyReturnSwagger';
+import { SettingsBA } from './settings/Settings';
 
 Blockly.setLocale(locale);
  
  function BlocklyComponent(props:any) {
+    
     const blocklyDiv = useRef<any|null>() ;
     const toolbox = useRef<any|null>();
     let primaryWorkspace = useRef<WorkspaceSvg>();
     let runner: InterpreterRunner | null = null;
     let swaggerData: BlocklyReturnSwagger[] = [];
     let children = props.children as [];
+    const [startBlocks,setstartBlocks]=useState(['']);
+    
+    
     const generateCode = () => {
         // var code = javascriptGenerator.workspaceToCode(
         //   primaryWorkspace.current
@@ -59,6 +64,14 @@ Blockly.setLocale(locale);
         RunCode.sendMessage(message);
         //console.log('received' +x);
     };
+
+    useLayoutEffect (()=>{
+      var x= new SettingsBA().getSettings().subscribe(it=>{        
+        setstartBlocks(it.startBlocks);
+             
+      });
+      return ()=>x.unsubscribe();
+    },[setstartBlocks])
 
     useEffect(()=>{
         if(!primaryWorkspace.current)
@@ -174,15 +187,16 @@ Blockly.setLocale(locale);
         });
         return ()=>x.unsubscribe();
     },[]);
+    
     useEffect(()=>{
         
         var x= new  ExistingSwagger().getSwagger().subscribe(it=>{
-            console.log('this is swagger', it);
+            // console.log('this is swagger', it);
             it.forEach(element => {
                 var url=element.swaggerUrl;
                 var show = !element.hasError;
                 //special condition for local api
-                console.log("show swagger: "+ url +":"+show);
+                // console.log("show swagger: "+ url +":"+show);
                 if(show){
                     var data=LoadSwaggerFromAPI(element);
                 }
@@ -191,7 +205,7 @@ Blockly.setLocale(locale);
               window.setTimeout(afterTimeout, 2000);
             });        
         return ()=>x.unsubscribe();
-    },[])
+    },[]);
 
 
 
@@ -223,7 +237,7 @@ Blockly.setLocale(locale);
     `;
     // console.log('x',replaceCategory)
     xmlToolbox= xmlToolbox.replace(nameExistingCategorySwagger,replaceCategory);  
-    console.log('load toolbox '+swaggerLoaded,xmlToolbox)  ;
+    // console.log('load toolbox '+swaggerLoaded,xmlToolbox)  ;
     primaryWorkspace.current?.updateToolbox(xmlToolbox);
     
     
@@ -293,7 +307,7 @@ Blockly.setLocale(locale);
     const CategorySwaggerHidden=(id: Number)=> {
         return `<category name='swagger_hidden_${id}' hidden='true' >${id}</category>`;
       }
-    const afterTimeout=()=>{
+    const afterTimeout=(s:any)=>{
         var nr = swaggerData.length;
         if(nr === 0)
             return;
@@ -323,27 +337,27 @@ Blockly.setLocale(locale);
     // if (myComponent?.mustLoadDemoBlock != null)
     //   myComponent.ShowDemo(myComponent?.mustLoadDemoBlock);
     // else {
-    //   //from default
-    //   if ((myComponent.DetailsApp.settings?.startBlocks?.length || 0) > 0) {
-    //     try {
-    //       var xml_text = (
-    //         myComponent.DetailsApp.settings?.startBlocks || []
-    //       ).join('\n');
-    //       //<xml xmlns="https://developers.google.com/blockly/xml"></xml>
-    //       if (xml_text?.length > 62) {
-    //         var xml = Blockly.Xml.textToDom(xml_text);
-    //         Blockly.Xml.clearWorkspaceAndLoadFromXml(
-    //           xml,
-    //           myComponent.demoWorkspace!
-    //         );
-    //       }
-    //     } catch (e) {
-    //       console.log('error when load default blocks', e);
-    //     }
-    //   }
+        // console.log('asdsa', startBlocks);
+      if ((startBlocks?.length || 0) > 0) {
+        try {
+          var xml_text = (startBlocks || []).join('\n');
+          //<xml xmlns="https://developers.google.com/blockly/xml"></xml>
+          if (xml_text?.length > 62) {
+            var xml = Blockly.Xml.textToDom(xml_text);
+            Blockly.Xml.clearWorkspaceAndLoadFromXml(
+              xml,
+              primaryWorkspace.current!
+            );
+          }
+        } catch (e) {
+          console.log('error when load default blocks', e);
+        }
+      }
     //   //from browser cache
-    //   myComponent.restoreBlocks();
-    // }
+      var s1=new saveLoadService();
+      s1.restoreState(primaryWorkspace.current!,"save1");
+
+    
     }
     
 

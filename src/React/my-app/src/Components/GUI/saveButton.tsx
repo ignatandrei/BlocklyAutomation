@@ -35,7 +35,7 @@ function SaveButton(props: any) {
       
       switch(e){
           case SaveLocation.Save_Local:
-            console.log('test');
+            // console.log('test');
             MustSave.sendMessage(e);
             return;
           
