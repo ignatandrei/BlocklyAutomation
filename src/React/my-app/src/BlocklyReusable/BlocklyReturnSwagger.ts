@@ -227,6 +227,24 @@ export default class BlocklyReturnSwagger {
         }
           //this.setTooltip(`${this.swaggerUrl}`);
           this.setOutput(true, blocklyTypeName);
+
+          this.setOnChange((changeEvent:any) =>{
+
+            var warning = '';
+            objPropString.forEach(item=>{
+
+              if (!this.getInput(`val_${item.key}`).connection.targetBlock()) {          
+              warning+=`Please add block (variable?) for  ${item.key} \r\n`;
+              }
+            });
+          
+            if(warning === '')
+              this.setWarningText(null);  
+            else
+              this.setWarningText(warning);
+          
+        });
+
         },
       };
 
