@@ -302,8 +302,8 @@ Blockly.setLocale(locale);
                 console.log('all swaggers has errors');
                 return;
             }
-        var newSwaggerCategories =new Array(50).fill(null).map((it) =>
-            CategorySwaggerHidden(it)
+        var newSwaggerCategories =new Array(50).fill(null).map((it, index) =>
+            CategorySwaggerHidden(index)
           ).join('');
         
         var xmlToolbox= '<xml xmlns="https://developers.google.com/blockly/xml" id="toolbox-simple" style="display: none">';

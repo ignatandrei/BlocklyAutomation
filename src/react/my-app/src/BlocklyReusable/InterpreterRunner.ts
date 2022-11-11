@@ -127,6 +127,58 @@ class InterpreterRunner{
         var httpInstance =new HttpBlocks();
         httpInstance.addWrapper(interpreter,globalObject);
 
+
+        var wrapper120 = function (url:any, hostname:any){
+          hostname = hostname ? hostname.toString() : '';
+          hostname=hostname.trim();
+          if(hostname.length == 0)
+          {
+              return url;
+          }
+          
+          url=url?url:'';
+          url=url.trim();
+          if(url.length == 0){
+              url=hostname;
+              if(!url.startsWith("http")){
+                  throw `please put in front of ${hostname} http:// or https://`;
+              }
+          }
+          var urlNew= new URL(url);
+          //console.log(`url ${url.hostname} to ${hostname}`);
+          if(hostname.startsWith("http")){
+              var replace = new URL(hostname);                
+              urlNew.hostname = replace.hostname;
+              urlNew.protocol = replace.protocol
+          }
+          else{
+              urlNew.hostname = hostname.replace('https://','').replace('http://','');
+          }
+          //console.log(`url ${url.href}`);
+          var ret=urlNew.href;
+          if(ret.endsWith('/'))
+              ret=ret.substring(0,ret.length-1);
+          return ret;
+      }
+      interpreter.setProperty(globalObject, 'changeHost',
+                              interpreter.createNativeFunction(wrapper120));
+
+      var wrapper130 = function (url:any, port:any){
+          var urlNew= new URL(url);
+          console.log(`url ${urlNew.href}`);
+          urlNew.port = port;
+          console.log(`url ${urlNew.href}`);
+          var ret=urlNew.href;
+          if(ret.endsWith('/'))
+              ret=ret.substring(0,ret.length-1);
+          return ret;
+      }
+      interpreter.setProperty(globalObject, 'changePort',
+                              interpreter.createNativeFunction(wrapper130));
+      
+
+
+
         // Add an API function for the alert() block, generated for "text_print" blocks.
         var wrapperAlert = function alert(text:any) {
           text = arguments.length ? text : '';          
