@@ -1,5 +1,5 @@
 
-
+import { renderToString } from 'react-dom/server'
  import React from 'react';
  import './BlocklyComponent.css';
  import {useEffect, useRef} from 'react';
@@ -21,6 +21,8 @@ import {ZoomToFitControl} from '@blockly/zoom-to-fit';
 import {shadowBlockConversionChangeListener} from '@blockly/shadow-block-converter'; 
 import {CrossTabCopyPaste} from '@blockly/plugin-cross-tab-copy-paste';
 import {Backpack} from '@blockly/workspace-backpack';
+import ExistingSwagger from '../Swagger/ExistingSwagger';
+import BlocklyReturnSwagger from '../../BlocklyReusable/BlocklyReturnSwagger';
 
 Blockly.setLocale(locale);
  
@@ -29,7 +31,8 @@ Blockly.setLocale(locale);
     const toolbox = useRef<any|null>();
     let primaryWorkspace = useRef<WorkspaceSvg>();
     let runner: InterpreterRunner | null = null;
-    
+    let swaggerData: BlocklyReturnSwagger[] = [];
+    let children = props.children as [];
     const generateCode = () => {
         // var code = javascriptGenerator.workspaceToCode(
         //   primaryWorkspace.current
@@ -171,8 +174,205 @@ Blockly.setLocale(locale);
         });
         return ()=>x.unsubscribe();
     },[]);
+    useEffect(()=>{
+        
+        var x= new  ExistingSwagger().getSwagger().subscribe(it=>{
+            console.log('this is swagger', it);
+            it.forEach(element => {
+                var url=element.swaggerUrl;
+                var show = !element.hasError;
+                //special condition for local api
+                console.log("show swagger: "+ url +":"+show);
+                if(show){
+                    var data=LoadSwaggerFromAPI(element);
+                }
+                  
+              });
+              window.setTimeout(afterTimeout, 2000);
+            });        
+        return ()=>x.unsubscribe();
+    },[])
 
 
+
+    const addToToolboxSwagger=(item:any,xmlToolbox:string, swaggerLoaded: number)=>{
+    
+        var newCateg = item
+        .findCategSwaggerFromPaths()
+        .sort()
+        .map(
+          (it: any) =>
+            `<category name='${it}' custom='func_${item.name}_${it}'></category>`
+        )
+        .join('\n');
+      var nameExistingCategorySwagger =CategorySwaggerHidden(swaggerLoaded) || '';
+    
+    // console.log('a',xmlToolbox);
+    var replaceCategory=`<category name='${item.name}'>
+    <category name='API' id='func_${item.name}'>
+    ${newCateg}
+    </category>
+    ${item.categSwagger()}
+    
+    <category name='meta' id='meta_${item.name}'>
+    <block type='meta_swagger_controllers_${item.name}'></block>
+    <block type='meta_swagger_controllers_actions_${item.name}'></block>
+    </category>
+    
+    </category>
+    `;
+    // console.log('x',replaceCategory)
+    xmlToolbox= xmlToolbox.replace(nameExistingCategorySwagger,replaceCategory);  
+    console.log('load toolbox '+swaggerLoaded,xmlToolbox)  ;
+    primaryWorkspace.current?.updateToolbox(xmlToolbox);
+    
+    
+      
+        var nameCat = 'objects_' + item.nameCategSwagger();
+        var nameAPI = 'AllApi_' + item.nameCategSwagger();
+        var cache=item;
+        
+        primaryWorkspace.current?.registerToolboxCategoryCallback(
+          nameCat,
+          (d: Blockly.Workspace) => {
+            return registerSwaggerBlocksObjects(d, cache);
+          }
+        );
+        
+        primaryWorkspace.current?.registerToolboxCategoryCallback(
+          nameAPI,
+          (d: Blockly.Workspace) => {
+            return registerSwaggerBlocksAPIAll(d, cache);
+          }
+        );
+          
+        item.findCategSwaggerFromPaths().forEach((it: any) => {
+            primaryWorkspace.current?.registerToolboxCategoryCallback(
+              `func_${item.name}_${it}`,
+              (d: Blockly.Workspace) => {
+                return  registerSwaggerBlocksAPIControllers(
+                  d,
+                  item,
+                  it
+                );
+              }
+            );
+          });
+       return xmlToolbox;
+      }
+    const registerSwaggerBlocksObjects=(
+        demoWorkspace: Blockly.Workspace,
+        item: any
+      )=> {
+        var xmlList: Element[] = [];
+        xmlList = item.fieldXMLObjects.map((it: any) => Blockly.Xml.textToDom(it));       
+        return xmlList;
+       
+      };
+
+      const  registerSwaggerBlocksAPIControllers=(
+        demoWorkspace: Blockly.Workspace,
+        item: any,
+        controller: string
+      )=>  {
+        var xmlList: Element[] = [];
+        xmlList= item.findfieldXMLFunctions(controller)
+          .map((it: any) => Blockly.Xml.textToDom(it.gui));
+        return xmlList;
+      }
+      const registerSwaggerBlocksAPIAll=(
+        demoWorkspace: Blockly.Workspace,
+        item: any
+      )=> {
+        var xmlList: Element[] = [];
+        xmlList = item.fieldXMLFunctions.map((it: any) =>
+          Blockly.Xml.textToDom(it.gui)
+        );
+        return xmlList;
+      }   
+    const CategorySwaggerHidden=(id: Number)=> {
+        return `<category name='swagger_hidden_${id}' hidden='true' >${id}</category>`;
+      }
+    const afterTimeout=()=>{
+        var nr = swaggerData.length;
+        if(nr === 0)
+            return;
+        if(swaggerData.every(it=>it.hasError))
+            {
+                console.log('all swaggers has errors');
+                return;
+            }
+        var newSwaggerCategories =new Array(50).fill(null).map((it) =>
+            CategorySwaggerHidden(it)
+          ).join('');
+        
+        var xmlToolbox= '<xml xmlns="https://developers.google.com/blockly/xml" id="toolbox-simple" style="display: none">';
+        children.forEach(it=>xmlToolbox+=renderToString(it));
+        xmlToolbox+= `<category name="Swagger" id="catSwagger" expanded='false' > '
+        ${newSwaggerCategories}
+        '</category>  `;
+
+        xmlToolbox+='    </xml>';
+        primaryWorkspace.current!.updateToolbox(xmlToolbox);
+        swaggerData.forEach((item, index) => {
+        //  console.log('a_item', item);
+            var cache=item;      
+            xmlToolbox= addToToolboxSwagger(cache,xmlToolbox, index);
+        });
+
+    // if (myComponent?.mustLoadDemoBlock != null)
+    //   myComponent.ShowDemo(myComponent?.mustLoadDemoBlock);
+    // else {
+    //   //from default
+    //   if ((myComponent.DetailsApp.settings?.startBlocks?.length || 0) > 0) {
+    //     try {
+    //       var xml_text = (
+    //         myComponent.DetailsApp.settings?.startBlocks || []
+    //       ).join('\n');
+    //       //<xml xmlns="https://developers.google.com/blockly/xml"></xml>
+    //       if (xml_text?.length > 62) {
+    //         var xml = Blockly.Xml.textToDom(xml_text);
+    //         Blockly.Xml.clearWorkspaceAndLoadFromXml(
+    //           xml,
+    //           myComponent.demoWorkspace!
+    //         );
+    //       }
+    //     } catch (e) {
+    //       console.log('error when load default blocks', e);
+    //     }
+    //   }
+    //   //from browser cache
+    //   myComponent.restoreBlocks();
+    // }
+    }
+    
+
+    const LoadSwaggerFromAPI = (api: BlocklyReturnSwagger)=> {
+        
+        if(api.hasError){
+          console.error("error in swagger", api.name);
+          return api;
+        }
+        swaggerData.push(api);
+        for (var i = 0; i < api.GenerateBlocks.length; i++) {
+          var e = api.GenerateBlocks[i];
+        //   if(Blockly.getMainWorkspace() == null){
+        //     console.log('#38 here in loadSwagger from api is not ok',Blockly.getMainWorkspace());
+        //   }
+          e(Blockly.Blocks, javascriptGenerator,primaryWorkspace.current );
+        }
+        for (var i = 0; i < api.GenerateFunctions.length; i++) {
+          var e = api.GenerateFunctions[i];
+          var image = function (opKey: string) {
+            var image = `assets/httpImages/${opKey}.png`;
+            return new Blockly.FieldImage(image, 90, 20, opKey);
+          };
+         
+          e(Blockly.Blocks, javascriptGenerator);
+        }
+        api.metaBlocks()(Blockly.Blocks, javascriptGenerator);
+        return api;
+      }
     useEffect(() => {
 
         if(primaryWorkspace.current !== undefined)

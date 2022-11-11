@@ -531,7 +531,7 @@ const handleClickOpen = () => {
     </BlockReact>
 </CategoryReact>
 
-<CategoryReact id="XHR" name="Request">
+<CategoryReact id="XHR" name="HTTP Request">
 
 <BlockReact type="headersbeforehttp">
     <Value name="HttpDomain">
