@@ -18,7 +18,7 @@ import { Category } from '@mui/icons-material';
 import { BlockReact, CategoryReact } from '../../BlocklyFields';
 import {ContentHighlight} from '@blockly/workspace-content-highlight';
 import {ZoomToFitControl} from '@blockly/zoom-to-fit';
- 
+import {shadowBlockConversionChangeListener} from '@blockly/shadow-block-converter'; 
  Blockly.setLocale(locale);
  
  function BlocklyComponent(props:any) {
@@ -188,6 +188,9 @@ import {ZoomToFitControl} from '@blockly/zoom-to-fit';
 
             const zoomToFit = new ZoomToFitControl(primaryWorkspace.current);
             zoomToFit.init();
+
+            primaryWorkspace.current.addChangeListener(shadowBlockConversionChangeListener);
+
             // if (initialXml) {
             //     Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(initialXml), primaryWorkspace.current);
             // }
