@@ -419,6 +419,8 @@ export default class BlocklyReturnSwagger {
       blocks[blocklyTypeName] = {
         init: function () {
           //this.setInputsInline(true);
+          
+          
           var displayOpKey=operationKey;
           switch(operationKey.toString().toLowerCase()){
             case "get":
@@ -463,10 +465,12 @@ export default class BlocklyReturnSwagger {
           this.appendDummyInput()
             .appendField(new Blockly.FieldImage(`assets/httpImages/${operationKey}.png`,90,20,operationKey))
             .appendField(`${last} ${displayOpKey} ${str}`);
-          var root = self.findRootSite();          
+          var root = self.findRootSite(); 
+          var OpParameters:string[]=[];         
           if (op.parameters)
             op.parameters.forEach((it:any) => {
               var name= it.name;
+              OpParameters.push(name);
               if(it.required){
                 name +="*"; 
               }
@@ -498,8 +502,9 @@ export default class BlocklyReturnSwagger {
               }
               this.appendValueInput(`val_${it.name}`).appendField(name);
             });
-          if (op.requestBody) {
             var type="";
+          if (op.requestBody) {
+            
             if(op.requestBody.content)
               {
                 var jsonResp= op.requestBody.content['application/json'];
@@ -520,7 +525,7 @@ export default class BlocklyReturnSwagger {
               }
             this
               .appendValueInput('val_values')
-              .appendField('values' + type)
+              .appendField('ValueToBeSent' + type)
               .setCheck();
               
               
@@ -534,6 +539,25 @@ export default class BlocklyReturnSwagger {
           //     .appendField("override Port");
           this.setTooltip(`${operationKey} ${root}${key}`);
           this.setOutput(true, "");
+
+          this.setOnChange((changeEvent:any) =>{
+
+            var warning = '';
+            OpParameters.forEach(it=>{
+
+              if (!this.getInput(`val_${it}`).connection.targetBlock()) {          
+              warning+=`Please add block (variable?) for  ${it} \r\n`;
+              }
+            });
+            if(this.getInput('val_values') && !this.getInput('val_values').connection.targetBlock()) {  
+              warning+=`Please add variable for ValueToBeSent  ${type}`;
+            }
+            if(warning === '')
+              this.setWarningText(null);  
+            else
+              this.setWarningText(warning);
+          
+        });
         },
       };
       javaScript[blocklyTypeName] = function (block:any) {
