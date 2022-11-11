@@ -20,7 +20,9 @@ import {ContentHighlight} from '@blockly/workspace-content-highlight';
 import {ZoomToFitControl} from '@blockly/zoom-to-fit';
 import {shadowBlockConversionChangeListener} from '@blockly/shadow-block-converter'; 
 import {CrossTabCopyPaste} from '@blockly/plugin-cross-tab-copy-paste';
- Blockly.setLocale(locale);
+import {Backpack} from '@blockly/workspace-backpack';
+
+Blockly.setLocale(locale);
  
  function BlocklyComponent(props:any) {
     const blocklyDiv = useRef<any|null>() ;
@@ -186,6 +188,9 @@ import {CrossTabCopyPaste} from '@blockly/plugin-cross-tab-copy-paste';
             );
             const contentHighlight = new ContentHighlight(primaryWorkspace.current);
             contentHighlight.init();
+
+            const backpack = new Backpack(primaryWorkspace.current);
+            backpack.init();
 
             const zoomToFit = new ZoomToFitControl(primaryWorkspace.current);
             zoomToFit.init();
