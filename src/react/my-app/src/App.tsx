@@ -28,6 +28,7 @@ import { tts } from './BlocklyReusable/BlocklyNewBlocks/tts';
 import { piano } from './BlocklyReusable/BlocklyNewBlocks/piano';
 import {  CredsBlocks } from './BlocklyReusable/BlocklyNewBlocks/http/WindowsCreds';
 import { HttpBlocks } from './BlocklyReusable/BlocklyNewBlocks/http/xhrBlocks';
+import AllNewBlocks from './BlocklyReusable/allNewBlocks';
 
 // import darkThemeData from './BlocklyReusable/themeDark';
 function App(props: any) {
@@ -38,25 +39,29 @@ function App(props: any) {
   const showMenu = (event: React.MouseEvent<HTMLElement>) => {
     showLeftMenu((prevState) => !prevState)
   }
-  var waitBlockInstance=new waitBlock();
-  waitBlockInstance.definitionBlocks(javascriptGenerator);
+//   var waitBlockInstance=new waitBlock();
+//   waitBlockInstance.definitionBlocks(javascriptGenerator);
 
-  var currentDateInstance =new CurrentDateBlock();
-  currentDateInstance.definitionBlocks(javascriptGenerator);
+//   var currentDateInstance =new CurrentDateBlock();
+//   currentDateInstance.definitionBlocks(javascriptGenerator);
 
-  var ttsBlockInstance= new tts();
-  ttsBlockInstance.definitionBlocks(javascriptGenerator);
-
-
-  var pianoBlockInstance= new piano();
-  pianoBlockInstance.definitionBlocks(javascriptGenerator);
-
-  var credsInstance =new CredsBlocks();
-  credsInstance.definitionBlocks(javascriptGenerator);
+//   var ttsBlockInstance= new tts();
+//   ttsBlockInstance.definitionBlocks(javascriptGenerator);
 
 
-  var httpInstance =new HttpBlocks();
-  httpInstance.definitionBlocks(javascriptGenerator);
+//   var pianoBlockInstance= new piano();
+//   pianoBlockInstance.definitionBlocks(javascriptGenerator);
+
+//   var credsInstance =new CredsBlocks();
+//   credsInstance.definitionBlocks(javascriptGenerator);
+
+
+//   var httpInstance =new HttpBlocks();
+//   httpInstance.definitionBlocks(javascriptGenerator);
+
+AllNewBlocks.Instance.NewBlocks().forEach(it=>{
+    it.definitionBlocks(javascriptGenerator);
+})
 
 //   var dark = Blockly.Theme.defineTheme('darkAndrei',darkThemeData);
 const [open, setOpen] = React.useState(false);

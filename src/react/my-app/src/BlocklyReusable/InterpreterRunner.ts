@@ -1,4 +1,5 @@
 import { WorkspaceSvg } from "blockly";
+import AllNewBlocks from "./allNewBlocks";
 import CurrentDateBlock from "./BlocklyNewBlocks/CurrentDateBlock";
 import { CredsBlocks } from "./BlocklyNewBlocks/http/WindowsCreds";
 import { HttpBlocks } from "./BlocklyNewBlocks/http/xhrBlocks";
@@ -107,26 +108,29 @@ class InterpreterRunner{
 
         //thisClass.BlocklyJavaScript.addReservedWords('waitForSeconds');
           
-        var waitBlockInstance=new waitBlock();
-        waitBlockInstance.addWrapper(interpreter,globalObject);
+        // var waitBlockInstance=new waitBlock();
+        // waitBlockInstance.addWrapper(interpreter,globalObject);
         
-        var currentDateInstance =new CurrentDateBlock();
-        currentDateInstance.addWrapper(interpreter,globalObject);
+        // var currentDateInstance =new CurrentDateBlock();
+        // currentDateInstance.addWrapper(interpreter,globalObject);
       
-        var ttsBlockInstance=new tts();
-        ttsBlockInstance.addWrapper(interpreter,globalObject);
+        // var ttsBlockInstance=new tts();
+        // ttsBlockInstance.addWrapper(interpreter,globalObject);
 
-        var pianoBlockInstance=new piano();
-        pianoBlockInstance.addWrapper(interpreter,globalObject);
+        // var pianoBlockInstance=new piano();
+        // pianoBlockInstance.addWrapper(interpreter,globalObject);
 
 
-        var credsInstance =new CredsBlocks();
-        credsInstance.addWrapper(interpreter,globalObject);
+        // var credsInstance =new CredsBlocks();
+        // credsInstance.addWrapper(interpreter,globalObject);
 
         
-        var httpInstance =new HttpBlocks();
-        httpInstance.addWrapper(interpreter,globalObject);
+        // var httpInstance =new HttpBlocks();
+        // httpInstance.addWrapper(interpreter,globalObject);
 
+        AllNewBlocks.Instance.NewBlocks().forEach(it=>{
+          it.addWrapper(interpreter,globalObject);
+      })
 
         var wrapper120 = function (url:any, hostname:any){
           hostname = hostname ? hostname.toString() : '';

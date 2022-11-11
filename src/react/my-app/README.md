@@ -20,6 +20,9 @@ https://github.com/google/blockly-samples/tree/master/examples/headless-demo
 
 https://gist.github.com/davidferguson/f85e1ae84b940bf8398f9bdbe98a4d8f
 
+https://google.github.io/blockly-samples/examples/custom-dialogs-demo/
+
+
 Do not know:
 https://google.github.io/blockly-samples/plugins/fixed-edges/test/index
 
