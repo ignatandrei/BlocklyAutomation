@@ -19,6 +19,7 @@ import { BlockReact, CategoryReact } from '../../BlocklyFields';
 import {ContentHighlight} from '@blockly/workspace-content-highlight';
 import {ZoomToFitControl} from '@blockly/zoom-to-fit';
 import {shadowBlockConversionChangeListener} from '@blockly/shadow-block-converter'; 
+import {CrossTabCopyPaste} from '@blockly/plugin-cross-tab-copy-paste';
  Blockly.setLocale(locale);
  
  function BlocklyComponent(props:any) {
@@ -190,6 +191,24 @@ import {shadowBlockConversionChangeListener} from '@blockly/shadow-block-convert
             zoomToFit.init();
 
             primaryWorkspace.current.addChangeListener(shadowBlockConversionChangeListener);
+
+            const options = {
+                contextMenu: true,
+                shortcut: true,
+              }
+              
+              // Initialize plugin.
+              const plugin = new CrossTabCopyPaste();
+              plugin.init(options, () => {
+                  console.log('Use this error callback to handle TypeError while pasting');
+                });
+              
+              // optional: Remove the duplication command from Blockly's context menu.
+              Blockly.ContextMenuRegistry.registry.unregister('blockDuplicate');
+              
+              // optional: You can change the position of the menu added to the context menu.
+              Blockly.ContextMenuRegistry.registry.getItem('blockCopyToStorage')!.weight = 2;
+              Blockly.ContextMenuRegistry.registry.getItem('blockPasteFromStorage')!.weight = 3;
 
             // if (initialXml) {
             //     Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(initialXml), primaryWorkspace.current);

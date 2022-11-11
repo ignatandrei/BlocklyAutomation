@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@blockly/plugin-cross-tab-copy-paste": "^2.0.2",
     "@blockly/shadow-block-converter": "^2.0.2",
     "@blockly/workspace-content-highlight": "2.0.2",
     "@blockly/zoom-to-fit": "3.0.2",
