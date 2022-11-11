@@ -16,7 +16,7 @@ import { SaveLocation } from './SaveLocation';
 import ShowCodeAndXML from './ShowCodeAndXML';
 import { Category } from '@mui/icons-material';
 import { BlockReact, CategoryReact } from '../../BlocklyFields';
-
+import {ContentHighlight} from '@blockly/workspace-content-highlight';
  
  Blockly.setLocale(locale);
  
@@ -182,7 +182,8 @@ import { BlockReact, CategoryReact } from '../../BlocklyFields';
                     ...rest
                 },
             );
-        
+            const contentHighlight = new ContentHighlight(primaryWorkspace.current);
+            contentHighlight.init();
             // if (initialXml) {
             //     Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(initialXml), primaryWorkspace.current);
             // }
