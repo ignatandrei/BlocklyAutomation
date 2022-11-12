@@ -67,12 +67,13 @@ export class FilterBlocks implements IBlocks {
 
       var code = "";
       code +=
-        '(function(t){ if (typeof t === "string") return JSON.parse(t);  return t;}(' +
+        'JSON.stringify((function(t){ if (typeof t === "string") return JSON.parse(t);  return t;}(' +
         list +
         ")).filter(function (item){ return " +
         value_logic +
-        ";})";
+        ";}))";
       code += "";
+
 
       return [code, javaScript.ORDER_FUNCTION_CALL];
     };
@@ -106,11 +107,11 @@ export class FilterBlocks implements IBlocks {
 
       var code = "";
       code +=
-        '(function(t){ if (typeof t === "string") return JSON.parse(t);  return t;}(' +
+        'JSON.stringify((function(t){ if (typeof t === "string") return JSON.parse(t);  return t;}(' +
         list +
         ")).map(function (item){ return " +
         value_logic +
-        ";})";
+        ";}))";
       code += "";
 
       return [code, javaScript.ORDER_FUNCTION_CALL];
