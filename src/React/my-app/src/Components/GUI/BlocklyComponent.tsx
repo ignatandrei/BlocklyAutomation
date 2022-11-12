@@ -25,6 +25,7 @@ import ExistingSwagger from '../Swagger/ExistingSwagger';
 import BlocklyReturnSwagger from '../../BlocklyReusable/BlocklyReturnSwagger';
 import { SettingsBA } from './settings/Settings';
 import { useParams } from 'react-router-dom';
+import { setState } from 'blockly/core/utils/aria';
 
 Blockly.setLocale(locale);
  
@@ -38,8 +39,31 @@ Blockly.setLocale(locale);
     let swaggerData: BlocklyReturnSwagger[] = [];
     let children = props.children as [];
     const [startBlocks,setstartBlocks]=useState(['']);
-    
-    
+    const CategorySwaggerHidden=(id: Number)=> {
+      return `<category name='swagger_hidden_${id}' hidden='true' >${id}</category>`;
+    }
+    const createXML=()=>{
+      var newSwaggerCategories =new Array(50).fill(null).map((it, index) =>
+      CategorySwaggerHidden(index)
+      ).join('');
+  
+      var xmlToolbox= '<xml xmlns="https://developers.google.com/blockly/xml" id="toolbox-simple" style="display: none">';
+      children.forEach(it=>xmlToolbox+=renderToString(it));
+      xmlToolbox+= `<category name="Swaggers" id="catSwagger" expanded='false' > '        
+      <button text="Add Swagger" callbackKey="addSwagger"></button>
+      ${newSwaggerCategories}
+      '</category>  `;
+
+      xmlToolbox+='    </xml>';
+      return xmlToolbox;
+    }
+    const primaryXmlToolboxRef = useRef('');
+    const [primaryXmlToolbox,setPrimaryXmlToolbox]=useState(createXML());
+
+    useEffect(() => {
+      primaryXmlToolboxRef.current = primaryXmlToolbox;
+    }, [primaryXmlToolbox]);
+  
     const generateCode = () => {
         // var code = javascriptGenerator.workspaceToCode(
         //   primaryWorkspace.current
@@ -204,7 +228,7 @@ Blockly.setLocale(locale);
                 }
                   
               });
-              window.setTimeout(afterTimeout, 2000);
+              window.setTimeout(()=>afterTimeout(), 2000);
             });        
         return ()=>x.unsubscribe();
     },[]);
@@ -212,7 +236,7 @@ Blockly.setLocale(locale);
 
 
     const addToToolboxSwagger=(item:any,xmlToolbox:string, swaggerLoaded: number)=>{
-    
+        
         var newCateg = item
         .findCategSwaggerFromPaths()
         .sort()
@@ -306,10 +330,8 @@ Blockly.setLocale(locale);
         );
         return xmlList;
       }   
-    const CategorySwaggerHidden=(id: Number)=> {
-        return `<category name='swagger_hidden_${id}' hidden='true' >${id}</category>`;
-      }
-    const afterTimeout=(s:any)=>{
+   
+    const afterTimeout=()=>{
         var nr = swaggerData.length;
         if(nr === 0)
             return;
@@ -318,24 +340,16 @@ Blockly.setLocale(locale);
                 console.log('all swaggers has errors');
                 return;
             }
-        var newSwaggerCategories =new Array(50).fill(null).map((it, index) =>
-            CategorySwaggerHidden(index)
-          ).join('');
-        
-        var xmlToolbox= '<xml xmlns="https://developers.google.com/blockly/xml" id="toolbox-simple" style="display: none">';
-        children.forEach(it=>xmlToolbox+=renderToString(it));
-        xmlToolbox+= `<category name="Swagger" id="catSwagger" expanded='false' > '
-        ${newSwaggerCategories}
-        '</category>  `;
-
-        xmlToolbox+='    </xml>';
+        var xmlToolbox=primaryXmlToolboxRef.current;
+       
         primaryWorkspace.current!.updateToolbox(xmlToolbox);
+        
         swaggerData.forEach((item, index) => {
         //  console.log('a_item', item);
-            var cache=item;      
+            var cache=item;  
             xmlToolbox= addToToolboxSwagger(cache,xmlToolbox, index);
         });
-
+        setPrimaryXmlToolbox(xmlToolbox);
     // if (myComponent?.mustLoadDemoBlock != null)
     //   myComponent.ShowDemo(myComponent?.mustLoadDemoBlock);
     // else {
@@ -392,6 +406,53 @@ Blockly.setLocale(locale);
         api.metaBlocks()(Blockly.Blocks, javascriptGenerator);
         return api;
       }
+      const  LoadSwaggerFromUrl=async (url: string, name?: string)=> {
+        const baseUrl=process.env.PUBLIC_URL+'/'; 
+        var parser = new BlocklyReturnSwagger(url,baseUrl);
+        var api = await parser.ParseSwagger();
+    
+        api.name = name || url;
+        if(!api.hasError)
+          return LoadSwaggerFromAPI(api); 
+        else
+          return api;
+      }
+
+      const LoadPrompt=(text:string, callBack: (result:string|null)=>void)=>{
+          var data= window.prompt(text);
+          callBack(data);
+      }
+      const LoadSwagger= ()=>{
+        
+        const baseUrl=process.env.PUBLIC_URL+'/'; 
+        LoadPrompt('Please enter the swagger url ( not the html!)' , (json:string| null)=>{
+        
+        if (!json) return;
+        if (json.endsWith('.html') || json.endsWith('.htm')) {
+          window.alert('Swagger should not end with .html - see source of html page');
+          return;
+        }
+        //self.loadedCompletely=false;
+        LoadSwaggerFromUrl(json).then((api:any) => {
+          // this.afterTimeout(this);
+          if(api.hasError){
+            if(window.confirm("error loading swagger - most probably CORS\n Please download the windows app to try this.")){
+                window.open('http://ba.serviciipeweb.ro/');
+            }
+          }
+          else{
+            swaggerData.push(api);
+            var xmlToolbox = primaryXmlToolboxRef.current;
+            var data= addToToolboxSwagger(api,xmlToolbox , swaggerData.length);      
+            setPrimaryXmlToolbox(data);
+            //self.loadedCompletely=true;
+            window.alert("loaded successfully");
+          }
+        });
+          });
+    }
+
+    
     useEffect(() => {
 
         if(primaryWorkspace.current !== undefined)
@@ -405,6 +466,7 @@ Blockly.setLocale(locale);
                     ...rest
                 },
             );
+            primaryWorkspace.current!.registerButtonCallback("addSwagger",()=>LoadSwagger());
             const contentHighlight = new ContentHighlight(primaryWorkspace.current);
             contentHighlight.init();
 
