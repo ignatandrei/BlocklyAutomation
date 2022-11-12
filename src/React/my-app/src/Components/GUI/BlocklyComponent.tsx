@@ -27,6 +27,7 @@ import { SettingsBA } from './settings/Settings';
 import { useParams } from 'react-router-dom';
 import AllNewBlocks from '../../BlocklyReusable/allNewBlocks';
 import IBlocks from '../../BlocklyReusable/blocksInterface';
+import { downloadWorkspaceScreenshot } from './screenshot';
 
 Blockly.setLocale(locale);
  
@@ -527,7 +528,32 @@ Blockly.setLocale(locale);
                     ...rest
                 },
             );
+            var workspace = primaryWorkspace.current!;
+            const prevConfigureContextMenu = workspace.configureContextMenu;
+            workspace.configureContextMenu = (menuOptions, e) => {
+              prevConfigureContextMenu &&
+                  prevConfigureContextMenu.call(null, menuOptions, e);
+  
+              const screenshotOption = {
+                text: 'Download Screenshot',
+                enabled: true,
+                callback: function() {
+                  downloadWorkspaceScreenshot(workspace);
+                  
+                },
+
+                scope: {
+                  block: undefined,
+                  workspace: undefined
+                },
+                weight: workspace.getTopBlocks(false).length
+        
+              };
+              menuOptions.push(screenshotOption);
+            };
+  
             primaryWorkspace.current!.registerButtonCallback("addSwagger",()=>LoadSwagger());
+            
             const contentHighlight = new ContentHighlight(primaryWorkspace.current);
             contentHighlight.init();
 
