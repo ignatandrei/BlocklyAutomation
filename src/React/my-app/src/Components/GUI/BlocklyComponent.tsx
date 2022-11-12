@@ -125,6 +125,28 @@ Blockly.setLocale(locale);
         });
     
       }
+      const inputFile = useRef<HTMLInputElement| null>(null) ;
+
+      const LoadFile=(e:any)=>{
+        e.stopPropagation();
+        e.preventDefault();
+        if((!inputFile.current!.files) || (inputFile.current!.files!.length === 0))
+          return;
+
+          
+        var file: File = inputFile.current!.files![0];
+        var myReader: FileReader = new FileReader();
+        myReader.onloadend = function (e) {
+          // console.log('file',myReader.result);
+          
+          var s=new saveLoadService();          
+          s.LoadFile(Blockly.Xml, primaryWorkspace.current!, myReader.result);
+          //window.alert('finish loading blocks');
+          // self.run.resetInterpreter();
+        };
+        myReader.readAsText(file);
+
+      }
     useEffect(()=>{
 
        
@@ -136,7 +158,10 @@ Blockly.setLocale(locale);
                 case SaveLocation.Download_Blocks:
                   Download();
                   return;
-            
+              case SaveLocation.LoadBlocks:
+                inputFile.current!.click();
+                 
+                  return;
                 default:
                     window.alert('not yet implemented must save for '+ it);
             }
@@ -520,6 +545,7 @@ Blockly.setLocale(locale);
     }, [primaryWorkspace, toolbox, blocklyDiv, props]);
  
     return <>
+        <input type='file' id='file' ref={inputFile}  onChange={LoadFile} style={{display: 'none'}}/>
         <div ref={blocklyDiv} id="blocklyDiv" />
         <div style={{ display: 'none' }} ref={toolbox}>
         {/* <CategoryReact id="asdstart" colour="210" name="Loaaaasdasgic"><BlockReact type="controls_if"></BlockReact></CategoryReact>  */}

@@ -11,9 +11,9 @@ export class saveLoadService {
   }
   //TODO: find appropiate type reference
   public LoadFile(BlocklyXML: any, workspace: any, content: any) {
-    workspace.clear();
-    var dom = BlocklyXML.textToDom(content);
-    BlocklyXML.domToWorkspace(dom, workspace);
+    //workspace.clear();
+    var dom = BlocklyXML.textToDom(content);    
+    BlocklyXML.clearWorkspaceAndLoadFromXml(dom,workspace);
   }
 
   public formatInt(number: number): string {

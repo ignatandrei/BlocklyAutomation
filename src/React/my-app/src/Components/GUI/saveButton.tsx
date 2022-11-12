@@ -11,10 +11,11 @@ import MenuList from '@mui/material/MenuList';
 import { saveLoadService } from '../../AppFiles/saveLoadService';
 import { SaveLocation } from './SaveLocation';
 import { MustSave } from '../Examples/Messages';
+import { useRef } from 'react';
 const options =Object.values(SaveLocation).filter(it=> isNaN(Number(it)));
 
 function SaveButton(props: any) {
-
+    
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef<HTMLDivElement>(null);
     const [selectedIndex, setSelectedIndex] = React.useState(1);
@@ -41,6 +42,10 @@ function SaveButton(props: any) {
           case SaveLocation.Download_Blocks:
               MustSave.sendMessage(e);
              return;
+          case SaveLocation.LoadBlocks:
+              MustSave.sendMessage(e);
+              
+              return;
           default:
               window.alert( `SaveButton => ${e} is not implemented`);
               return;
@@ -70,9 +75,10 @@ function SaveButton(props: any) {
   
       setOpen(false);
     };
-  
+    
     return (
       <React.Fragment>
+     
         <ButtonGroup variant="contained" ref={anchorRef} aria-label="split button">
           <Button onClick={handleClick}>{options[selectedIndex]}</Button>
           <Button
