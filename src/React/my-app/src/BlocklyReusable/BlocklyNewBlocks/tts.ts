@@ -1,7 +1,8 @@
 import * as Blockly from "blockly/core";
 import IBlocks from "../blocksInterface";
 
-export class tts {
+export class tts implements IBlocks {
+  category: string='Audio';
   public static nameBlock: string = "ttsBlock";
   definitionBlocks(javascriptGenerator: any) {
     Blockly.Blocks[tts.nameBlock] = {

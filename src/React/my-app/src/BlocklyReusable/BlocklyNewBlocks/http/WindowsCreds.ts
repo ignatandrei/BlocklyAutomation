@@ -2,7 +2,7 @@ import * as Blockly from 'blockly/core';
 import IBlocks from '../../blocksInterface';
 
 export class CredsBlocks implements IBlocks {
-
+  category: string='REST Requests';
   public static nameBlock:string='credsforhttp';
 
   definitionBlocks( javaScript: any) {

@@ -7,6 +7,7 @@ const synthPiano = require('./audioTest');
 // const a = require('./audioTest.js');
 export class piano implements IBlocks{
     public static nameBlock: string = "pianoBlock";
+    category: string='Audio';
   definitionBlocks(javaScript: any) {
     Blockly.Blocks[piano.nameBlock] = {
       init: function () {

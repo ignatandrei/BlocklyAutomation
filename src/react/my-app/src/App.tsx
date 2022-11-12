@@ -14,12 +14,12 @@ import  BlocklyComponent, { BlockReact,  CategoryReact, Field, Mutation, Shadow,
 import { Alert,  AppBar, Box, Button, IconButton,  Snackbar, Toolbar, Typography, useMediaQuery, useTheme } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { javascriptGenerator } from 'blockly/javascript';
-import waitBlock from './BlocklyReusable/BlocklyNewBlocks/wait_block';
+import waitBlock from './BlocklyReusable/BlocklyNewBlocks/timers/wait_block';
 import FindSavedBlocksComponent from './Components/Examples/FindSavedBlocksComponent';
 import SaveButton from './Components/GUI/saveButton';
 import DemoBlocks from './Components/Examples/DemoBlocks';
 import { LoadIDService, MustSave, RunCode, RunCodeData, RunCodeMessage, ShowData } from './Components/Examples/Messages';
-import CurrentDateBlock from './BlocklyReusable/BlocklyNewBlocks/CurrentDateBlock';
+import CurrentDateBlock from './BlocklyReusable/BlocklyNewBlocks/dates/CurrentDateBlock';
 import BlocklyDisplayText from './Components/GUI/BlocklyDisplayText';
 import BlocklyDisplayData from './Components/GUI/BlocklyDisplayData';
 import OutputButton from './Components/GUI/outputButton';

@@ -4,9 +4,10 @@
 // fieldXML() : string {
 // }
 import * as Blockly from 'blockly/core';
-import IBlocks from '../blocksInterface';
+import IBlocks from '../../blocksInterface';
 
 export class CurrentDateBlock implements IBlocks  {
+  category: string='Dates';
 
   public static nameBlock:string =  'displayCurrentDate';
 

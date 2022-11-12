@@ -4,6 +4,7 @@ import * as Blockly from "blockly/core";
 import IBlocks from "../../blocksInterface";
 
 export class FilterBlocks implements IBlocks {
+  category: string='Array';
   definitionBlocks = function (javaScript: any) {
     Blockly.Blocks["concatList"] = {
       init: function () {
@@ -181,7 +182,7 @@ export class FilterBlocks implements IBlocks {
   };
   fieldXML(): string {
     return `
-        <category id="catA" name="Array">
+        
             <block type="filterList">
                 <value name="LIST">
                     <block type="variables_get">
@@ -224,7 +225,7 @@ export class FilterBlocks implements IBlocks {
                 </shadow>
             </value>
         </block>
-        </category>
+        
 
 `;
   }

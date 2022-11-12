@@ -1,11 +1,13 @@
-import CurrentDateBlock from "./BlocklyNewBlocks/CurrentDateBlock";
+import CurrentDateBlock from "./BlocklyNewBlocks/dates/CurrentDateBlock";
 import { CredsBlocks } from "./BlocklyNewBlocks/http/WindowsCreds";
 import { HttpBlocks } from "./BlocklyNewBlocks/http/xhrBlocks";
 import { FilterBlocks } from "./BlocklyNewBlocks/list/filterBlocks";
 import { piano } from "./BlocklyNewBlocks/piano";
 import { tts } from "./BlocklyNewBlocks/tts";
-import waitBlock from "./BlocklyNewBlocks/wait_block";
+import waitBlock from "./BlocklyNewBlocks/timers/wait_block";
 import IBlocks from "./blocksInterface";
+import waitUntilBlock from "./BlocklyNewBlocks/timers/wait_until";
+import DateFromTextBlock from "./BlocklyNewBlocks/dates/DateFromText";
 
 export default class AllNewBlocks
 {
@@ -26,16 +28,20 @@ export default class AllNewBlocks
         if(this.nb != null)
             return this.nb;
 
-        this.nb=[];
-        this.nb.push(new CurrentDateBlock());
-        this.nb.push(new waitBlock());
-        this.nb.push(new tts());
-        this.nb.push(new piano());
-        this.nb.push(new CredsBlocks());
-        this.nb.push(new HttpBlocks());
-        this.nb.push(new FilterBlocks());
+        this.nb=[
+        new CurrentDateBlock(),
+        new DateFromTextBlock (),
+        new waitBlock(),
+        new waitUntilBlock(),
+        new tts(),
+        new piano(),
+        new CredsBlocks(),
+        new HttpBlocks(),
+        new FilterBlocks(),
+        ];
         return this.nb;
     }
+    
 
 }
 

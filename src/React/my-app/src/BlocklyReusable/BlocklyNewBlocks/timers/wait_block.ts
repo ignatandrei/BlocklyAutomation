@@ -13,8 +13,9 @@
  */
 //modified by Andrei Ignat for BlocklyScripts
 import * as Blockly from 'blockly/core';
-import IBlocks from '../blocksInterface';
+import IBlocks from '../../blocksInterface';
 export class waitBlock implements IBlocks {
+  category: string='Timers';
   //definitionBlocks(blocks_defineBlocksWithJsonArray: any, javaScript: any) {
   public static nameBlock:string =  'wait_seconds';
   public definitionBlocks(javascriptGenerator: any){

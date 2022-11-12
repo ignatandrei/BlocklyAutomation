@@ -2,8 +2,9 @@ import * as Blockly from 'blockly';
 import IBlocks from '../../blocksInterface';
 
 export class HttpBlocks  implements IBlocks{
-
+  category: string='REST Requests';
   definitionBlocks(javaScript: any) {
+    
     const ORDER_ATOMIC = javaScript.ORDER_ATOMIC;
     const ORDER_NONE = javaScript.ORDER_NONE;
 

@@ -26,6 +26,8 @@ import BlocklyReturnSwagger from '../../BlocklyReusable/BlocklyReturnSwagger';
 import { SettingsBA } from './settings/Settings';
 import { useParams } from 'react-router-dom';
 import { setState } from 'blockly/core/utils/aria';
+import AllNewBlocks from '../../BlocklyReusable/allNewBlocks';
+import IBlocks from '../../BlocklyReusable/blocksInterface';
 
 Blockly.setLocale(locale);
  
@@ -49,6 +51,25 @@ Blockly.setLocale(locale);
   
       var xmlToolbox= '<xml xmlns="https://developers.google.com/blockly/xml" id="toolbox-simple" style="display: none">';
       children.forEach(it=>xmlToolbox+=renderToString(it));
+      xmlToolbox+= '<category name="Advanced1" id="catAdv" expanded="true" > ';
+      const mapCategoryBlocks = new Map<string, IBlocks[]>();
+      AllNewBlocks.Instance.NewBlocks().sort((a,b)=>a.category.localeCompare(b.category)).forEach(it=>{
+        const key = it.category;
+        if(!mapCategoryBlocks.has(key)){
+          mapCategoryBlocks.set(key,[]);
+        }
+        mapCategoryBlocks.get(key)?.push(it);
+      
+      });
+      
+      mapCategoryBlocks.forEach((val,key) =>{
+        xmlToolbox+= `<category name="${key}" id="catAdv_${key}" expanded='false' > ` ;
+        val.forEach(it=>{
+          xmlToolbox+=it.fieldXML();
+        })
+        xmlToolbox+='</category> ';
+      });
+      xmlToolbox+='</category> ';
       xmlToolbox+= `<category name="Swaggers" id="catSwagger" expanded='false' > '        
       <button text="Add Swagger" callbackKey="addSwagger"></button>
       ${newSwaggerCategories}
