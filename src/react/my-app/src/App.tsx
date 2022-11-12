@@ -34,6 +34,7 @@ import { SettingsBA } from './Components/GUI/settings/Settings';
 
 import ToolboxBlocksCore from './Components/ToolboxBlocksCore';
 import ToolboxBlocksAdvanced from './Components/ToolboxBlocksAdvanced';
+import About from './Components/GUI/about';
 
 // import darkThemeData from './BlocklyReusable/themeDark';
 function App(props: any) {
@@ -223,6 +224,7 @@ const handleClickOpen = () => {
 
         </header>
       </div>
+      
     </>;
 }
 
