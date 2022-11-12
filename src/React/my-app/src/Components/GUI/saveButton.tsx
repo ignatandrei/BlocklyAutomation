@@ -38,9 +38,11 @@ function SaveButton(props: any) {
             // console.log('test');
             MustSave.sendMessage(e);
             return;
-          
+          case SaveLocation.Download_Blocks:
+              MustSave.sendMessage(e);
+             return;
           default:
-              window.alert( `${e} is not implemented`);
+              window.alert( `SaveButton => ${e} is not implemented`);
               return;
       }
     };

@@ -113,6 +113,18 @@ Blockly.setLocale(locale);
           })
         })
       },[primaryWorkspace]);
+
+      const Download=()=> {
+        //todo: use vex as for others - electron compatibility
+        
+        LoadPrompt('Please enter file name' , (name:string| null)=>{
+    
+        if (name == null) return;
+        var s=new saveLoadService();
+        s.DownloadBlocks(Blockly.Xml, primaryWorkspace.current!, name);
+        });
+    
+      }
     useEffect(()=>{
 
        
@@ -121,6 +133,10 @@ Blockly.setLocale(locale);
                 case SaveLocation.Save_Local:
                     SaveLocationData();
                     return;
+                case SaveLocation.Download_Blocks:
+                  Download();
+                  return;
+            
                 default:
                     window.alert('not yet implemented must save for '+ it);
             }

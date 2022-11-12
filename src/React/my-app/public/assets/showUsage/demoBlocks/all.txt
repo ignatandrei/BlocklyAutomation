@@ -417,5 +417,11 @@
         "description":  "ipaddy",
         "categories":  "http call",
         "blocks":  "text_print;httprequest"
-    }
+    },
+{
+"id":  "arrayExample",
+        "description":  "example for advanced array",
+        "categories":  "array",
+        "blocks":  "text_print;httprequest"
+}
 ]

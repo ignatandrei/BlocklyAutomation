@@ -137,7 +137,7 @@ function ToolboxBlocksAdvanced(props:any){
             </Value>
             <Value name="Logic">
                 <Shadow type="text">
-                    <Field name="TEXT">...</Field>
+                    <Field name="TEXT">return ...</Field>
                 </Shadow>
             </Value>
         </BlockReact>

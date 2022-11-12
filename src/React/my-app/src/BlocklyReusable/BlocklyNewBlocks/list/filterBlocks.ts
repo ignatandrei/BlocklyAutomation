@@ -220,7 +220,7 @@ export class FilterBlocks implements IBlocks {
             </value>
             <value name="Logic">
                 <shadow type="text">
-                    <field name="TEXT">...</field>
+                    <field name="TEXT">return ...</field>
                 </shadow>
             </value>
         </block>

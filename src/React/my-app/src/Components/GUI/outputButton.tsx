@@ -41,7 +41,7 @@ function OutputButton(props: any) {
           return;
         
         default:
-            window.alert( `${e} is not implemented`);
+            window.alert( `OutputButton => ${e} is not implemented`);
             return;
     }
     }
