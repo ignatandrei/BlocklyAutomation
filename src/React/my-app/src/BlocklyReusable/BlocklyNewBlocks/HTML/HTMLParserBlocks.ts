@@ -55,6 +55,7 @@ export default class HtmlParserBlocks implements IBlocksSimple{
 
   fieldXML(): string {
     return `
+    <category name='Parser'>
     <block type='text_print'>" 
                <value name='TEXT'>" 
                  
@@ -69,6 +70,7 @@ export default class HtmlParserBlocks implements IBlocksSimple{
 
 
       </block>
+      </category>
         `;
   }
 

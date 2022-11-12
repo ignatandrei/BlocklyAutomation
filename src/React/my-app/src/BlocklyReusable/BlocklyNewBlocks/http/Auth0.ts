@@ -7,7 +7,7 @@ export default class auth0Blocks implements IBlocksSimple {
   addWrapper(interpreter: any, globalObject: any) {
       
   }
-  category: string="REST Requests";
+  category: string="Auth0";
   definitionBlocksSimple(blocks: any, javaScript: any) {
     const ORDER_ATOMIC = 0;
     const ORDER_NONE = 99;
@@ -66,7 +66,7 @@ export default class auth0Blocks implements IBlocksSimple {
   }
 
   fieldXML(): string {
-    return `<category id="Auth0" name="Auth0">
+    return `
     <block type="auth0webapidata">
         <value name="client_id">
             <shadow type="text">
@@ -93,7 +93,7 @@ export default class auth0Blocks implements IBlocksSimple {
 
         </value>
     </block>
-</category>
+
 `;
   }
 }
