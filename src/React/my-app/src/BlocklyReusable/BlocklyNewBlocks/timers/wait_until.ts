@@ -5,7 +5,7 @@ import { IBlocksSimple } from '../../blocksInterface';
 export  default class waitUntilBlock implements IBlocksSimple {
     public static nameBlock:string =  'wait_until';
     category: string='Timers';
-  definitionBlocksSimple(javaScript: any) {
+  definitionBlocksSimple(blocks: any,javaScript: any) {
    
     // blocks['wait'] = {
     //   init: function () {
@@ -28,7 +28,7 @@ export  default class waitUntilBlock implements IBlocksSimple {
     //   return code;
     // };
 
-    Blockly.Blocks['wait_until'] = {
+    blocks['wait_until'] = {
       init: function () {
         this.appendValueInput('VALUE').appendField('wait until date');
 

@@ -18,7 +18,7 @@ export class waitBlock implements IBlocksSimple {
   category: string='Timers';
   //definitionBlocksSimple(blocks_defineBlocksWithJsonArray: any, javaScript: any) {
   public static nameBlock:string =  'wait_seconds';
-  public definitionBlocksSimple(javascriptGenerator: any){
+  public definitionBlocksSimple(blocks: any,javascriptGenerator: any){
     Blockly.defineBlocksWithJsonArray([
       {
         type: waitBlock.nameBlock,

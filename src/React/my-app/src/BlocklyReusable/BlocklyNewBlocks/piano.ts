@@ -8,8 +8,8 @@ const synthPiano = require('./audioTest');
 export class piano implements IBlocksSimple{
     public static nameBlock: string = "pianoBlock";
     category: string='Audio';
-  definitionBlocksSimple(javaScript: any) {
-    Blockly.Blocks[piano.nameBlock] = {
+  definitionBlocksSimple(blocks: any,javaScript: any) {
+    blocks[piano.nameBlock] = {
       init: function () {
         this.appendValueInput('Note')
           .setCheck('String')
@@ -62,7 +62,7 @@ export class piano implements IBlocksSimple{
       return code;
     };
 
-    Blockly.Blocks['cmajor'] = {
+    blocks['cmajor'] = {
       init: function () {
         this.appendDummyInput().appendField('CMajor ');
         this.setOutput(true, 'Array');

@@ -1,7 +1,5 @@
  interface IBlocks{
     
-    
-    
     addWrapper(interpreter: any, globalObject:any):any|void;
     fieldXML():string;
     category: string;
@@ -9,11 +7,11 @@
 }
 
 interface IBlocksSimple extends IBlocks {
-    definitionBlocksSimple(javascriptGenerator: any): void;
+    definitionBlocksSimple(blocks:any,javascriptGenerator: any): void;
 }
 
 interface IBlocksExtMut extends  IBlocks{
-    definitionBlocksExtMut(javascriptGenerator: any, BlocklyExtensions:any,  BlocklyMutator:any): void;
+    definitionBlocksExtMut(blocks: any, javascriptGenerator: any, BlocklyExtensions:any,  BlocklyMutator:any): void;
 }
 
 export default IBlocks;

@@ -5,8 +5,8 @@ import { IBlocksSimple } from "../../blocksInterface";
 
 export class FilterBlocks implements IBlocksSimple {
   category: string='Array';
-  definitionBlocksSimple(javaScript: any) {
-    Blockly.Blocks["concatList"] = {
+  definitionBlocksSimple(blocks: any,javaScript: any) {
+    blocks["concatList"] = {
       init: function () {
         this.appendDummyInput().appendField("concatArray");
         this.appendValueInput("LIST1").setCheck("Array");
@@ -39,7 +39,7 @@ export class FilterBlocks implements IBlocksSimple {
       return [code, javaScript.ORDER_FUNCTION_CALL];
     };
 
-    Blockly.Blocks["filterList"] = {
+    blocks["filterList"] = {
       init: function () {
         this.appendDummyInput().appendField("filterList");
         this.appendValueInput("LIST").setCheck("Array");
@@ -79,7 +79,7 @@ export class FilterBlocks implements IBlocksSimple {
       return [code, javaScript.ORDER_FUNCTION_CALL];
     };
 
-    Blockly.Blocks["mapList"] = {
+    blocks["mapList"] = {
       init: function () {
         this.appendDummyInput().appendField("mapList");
         this.appendValueInput("LIST").setCheck("Array");
@@ -118,7 +118,7 @@ export class FilterBlocks implements IBlocksSimple {
       return [code, javaScript.ORDER_FUNCTION_CALL];
     };
 
-    Blockly.Blocks["reduceList"] = {
+    blocks["reduceList"] = {
       init: function () {
         this.appendDummyInput().appendField("reduceList");
 

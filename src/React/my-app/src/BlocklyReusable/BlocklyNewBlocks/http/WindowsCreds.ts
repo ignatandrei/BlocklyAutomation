@@ -5,11 +5,11 @@ export class CredsBlocks implements IBlocksSimple {
   category: string='REST Requests';
   public static nameBlock:string='credsforhttp';
 
-  definitionBlocksSimple( javaScript: any) {
+  definitionBlocksSimple(blocks:any, javaScript: any) {
     const ORDER_ATOMIC = javaScript.ORDER_ATOMIC;
     const ORDER_NONE = javaScript.ORDER_NONE;
     
-    Blockly.Blocks[CredsBlocks.nameBlock] = {
+    blocks[CredsBlocks.nameBlock] = {
       init: function () {
         this.appendDummyInput().appendField('Http with Creds');
         this.appendValueInput('HttpDomain')

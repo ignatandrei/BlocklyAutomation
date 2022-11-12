@@ -51,31 +51,31 @@ function App(props: any) {
   }
   const [titleBA, setTitleBA]= useState("Blockly Autopmation")
 //   var waitBlockInstance=new waitBlock();
-//   waitBlockInstance.definitionBlocksSimple(javascriptGenerator);
+//   waitBlockInstance.definitionBlocksSimple(blocks: any,javascriptGenerator);
 
 //   var currentDateInstance =new CurrentDateBlock();
-//   currentDateInstance.definitionBlocksSimple(javascriptGenerator);
+//   currentDateInstance.definitionBlocksSimple(blocks: any,javascriptGenerator);
 
 //   var ttsBlockInstance= new tts();
-//   ttsBlockInstance.definitionBlocksSimple(javascriptGenerator);
+//   ttsBlockInstance.definitionBlocksSimple(blocks: any,javascriptGenerator);
 
 
 //   var pianoBlockInstance= new piano();
-//   pianoBlockInstance.definitionBlocksSimple(javascriptGenerator);
+//   pianoBlockInstance.definitionBlocksSimple(blocks: any,javascriptGenerator);
 
 //   var credsInstance =new CredsBlocks();
-//   credsInstance.definitionBlocksSimple(javascriptGenerator);
+//   credsInstance.definitionBlocksSimple(blocks: any,javascriptGenerator);
 
 
 //   var httpInstance =new HttpBlocks();
-//   httpInstance.definitionBlocksSimple(javascriptGenerator);
+//   httpInstance.definitionBlocksSimple(blocks: any,javascriptGenerator);
 
 AllNewBlocks.Instance.NewBlocks().forEach(it=>{
     if(AllNewBlocks.isSimple(it)){
-      (it as IBlocksSimple).definitionBlocksSimple(javascriptGenerator);
+      (it as IBlocksSimple).definitionBlocksSimple(Blockly.Blocks,javascriptGenerator);
     }
     if(AllNewBlocks.isExtMut(it)){
-      (it as IBlocksExtMut).definitionBlocksExtMut(javascriptGenerator, Blockly.Extensions,Blockly.Mutator);
+      (it as IBlocksExtMut).definitionBlocksExtMut(Blockly.Blocks,javascriptGenerator, Blockly.Extensions,Blockly.Mutator);
     }
     
     //it.

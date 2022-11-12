@@ -8,7 +8,9 @@ import waitBlock from "./BlocklyNewBlocks/timers/wait_block";
 import IBlocks, { IBlocksExtMut, IBlocksSimple } from "./blocksInterface";
 import waitUntilBlock from "./BlocklyNewBlocks/timers/wait_until";
 import DateFromTextBlock from "./BlocklyNewBlocks/dates/DateFromText";
-import CreateObjectBlocks from "./BlocklyNewBlocks/createObjectBlocks";
+import CreateObjectBlocks from "./BlocklyNewBlocks/objects/createObjectBlocks";
+import auth0Blocks from "./BlocklyNewBlocks/http/Auth0";
+import propBlockly from "./BlocklyNewBlocks/objects/propBlocks";
 
 export default class AllNewBlocks
 {
@@ -40,6 +42,8 @@ export default class AllNewBlocks
         new HttpBlocks(),
         new FilterBlocks(),
         new CreateObjectBlocks(),
+        new auth0Blocks(),
+        new propBlockly(),
         ];
         return this.nb;
     }
@@ -51,6 +55,7 @@ export default class AllNewBlocks
     public static isExtMut = (block: IBlocks): block is IBlocksExtMut=> {
         return 'definitionBlocksExtMut' in block;
     }
+    
 
 
 }

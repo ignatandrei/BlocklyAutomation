@@ -3,12 +3,12 @@ import { IBlocksSimple } from '../../blocksInterface';
 
 export class HttpBlocks  implements IBlocksSimple{
   category: string='REST Requests';
-  definitionBlocksSimple(javaScript: any) {
+  definitionBlocksSimple(blocks: any,javaScript: any) {
     
     const ORDER_ATOMIC = javaScript.ORDER_ATOMIC;
     const ORDER_NONE = javaScript.ORDER_NONE;
 
-    Blockly.Blocks['headersbeforehttp'] = {
+    blocks['headersbeforehttp'] = {
       init: function () {
         this.appendDummyInput().appendField('Add Headers');
         this.appendValueInput('HttpDomain')
@@ -67,7 +67,7 @@ export class HttpBlocks  implements IBlocksSimple{
       return code;
     };
 
-    Blockly.Blocks['httprequest'] = {
+    blocks['httprequest'] = {
       init: function () {
         this.appendDummyInput()
           .appendField(

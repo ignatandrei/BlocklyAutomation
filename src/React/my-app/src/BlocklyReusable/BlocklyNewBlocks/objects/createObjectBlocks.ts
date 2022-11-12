@@ -5,14 +5,14 @@
 // }
 
 import * as Blockly from 'blockly/core';
-import { IBlocksExtMut } from '../blocksInterface';
+import { IBlocksExtMut } from '../../blocksInterface';
 
 export default class CreateObjectBlocks implements IBlocksExtMut{
 
 
 category: string = "Object";
 //https://gist.github.com/mark-friedman/48f43a9b62b1c8ad029a75d4b4e61f31
-definitionBlocksExtMut(javaScript:any,BlocklyExtensions:any,  BlocklyMutator:any) {
+definitionBlocksExtMut(blocks: any,javaScript:any,BlocklyExtensions:any,  BlocklyMutator:any) {
 
     const ORDER_ATOMIC = javaScript.ORDER_ATOMIC ;
     const ORDER_NONE=javaScript.ORDER_NONE;
@@ -103,7 +103,7 @@ definitionBlocksExtMut(javaScript:any,BlocklyExtensions:any,  BlocklyMutator:any
         "helpUrl": "http://www.json.org/"
       };
       
-      Blockly.Blocks[CUSTOM_OBJECT_FROM_JSON_BLOCK_NAME] = {
+      blocks[CUSTOM_OBJECT_FROM_JSON_BLOCK_NAME] = {
         init: function () {
           this.jsonInit(objectFromJSONBlockDef);
         }
@@ -125,7 +125,7 @@ definitionBlocksExtMut(javaScript:any,BlocklyExtensions:any,  BlocklyMutator:any
         "helpUrl": "http://www.json.org/"
       };
       
-      Blockly.Blocks[CUSTOM_OBJECT_TO_JSON_BLOCK_NAME] = {
+      blocks[CUSTOM_OBJECT_TO_JSON_BLOCK_NAME] = {
         init: function () {
           this.jsonInit(objectToJSONBlockDef);
         }
@@ -156,7 +156,7 @@ definitionBlocksExtMut(javaScript:any,BlocklyExtensions:any,  BlocklyMutator:any
           "helpUrl": ""
       };
       
-      Blockly.Blocks[CUSTOM_OBJECT_GET_BLOCK_NAME] = {
+      blocks[CUSTOM_OBJECT_GET_BLOCK_NAME] = {
         init: function () {
           this.jsonInit(objectGetBlockDef);
         }
@@ -194,7 +194,7 @@ definitionBlocksExtMut(javaScript:any,BlocklyExtensions:any,  BlocklyMutator:any
       };
       
       
-      Blockly.Blocks[CUSTOM_OBJECT_SET_BLOCK_NAME] = {
+      blocks[CUSTOM_OBJECT_SET_BLOCK_NAME] = {
         init: function () {
           this.jsonInit(objectSetBlockDef);
         }
@@ -210,7 +210,7 @@ definitionBlocksExtMut(javaScript:any,BlocklyExtensions:any,  BlocklyMutator:any
         "helpUrl": ""
       };
       
-      Blockly.Blocks[CUSTOM_OBJECT_CREATE_BLOCK_NAME] = {
+      blocks[CUSTOM_OBJECT_CREATE_BLOCK_NAME] = {
         init: function () {
           this.jsonInit(objectCreateBlockDef);
         }
@@ -237,7 +237,7 @@ definitionBlocksExtMut(javaScript:any,BlocklyExtensions:any,  BlocklyMutator:any
         "helpUrl": ""
       };
       
-      Blockly.Blocks[CUSTOM_OBJECT_MUTATOR_FIELD_BLOCK_NAME] = {
+      blocks[CUSTOM_OBJECT_MUTATOR_FIELD_BLOCK_NAME] = {
         init: function () {
           this.jsonInit(objectFieldBlockDef);
         }
@@ -252,7 +252,7 @@ definitionBlocksExtMut(javaScript:any,BlocklyExtensions:any,  BlocklyMutator:any
         "helpUrl": ""
       };
       
-      Blockly.Blocks[CUSTOM_OBJECT_CREATE_MUTATOR_TOP_BLOCK_NAME] = {
+      blocks[CUSTOM_OBJECT_CREATE_MUTATOR_TOP_BLOCK_NAME] = {
         init: function () {
           this.jsonInit(objectCreateMutatorBlockDef);
         }

@@ -5,8 +5,8 @@ export class tts implements IBlocksSimple {
  
   category: string='Audio';
   public static nameBlock: string = "ttsBlock";
-  definitionBlocksSimple(javascriptGenerator: any) {
-    Blockly.Blocks[tts.nameBlock] = {
+  definitionBlocksSimple(blocks: any,javascriptGenerator: any) {
+    blocks[tts.nameBlock] = {
       init: function () {
         this.appendValueInput("NAME")
           .setCheck(null)

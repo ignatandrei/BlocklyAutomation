@@ -11,14 +11,14 @@ export class CurrentDateBlock implements IBlocksSimple  {
 
   public static nameBlock:string =  'displayCurrentDate';
 
-  public definitionBlocksSimple(javascriptGenerator: any) {
+  public definitionBlocksSimple(blocks: any,javascriptGenerator: any) {
     /*
      * Block that display the current date time
      * @Author: Popescu Ionut Cosmin (cosmin.popescu93@gmail.com)
      * https://github.com/cosminpopescu14
      */
     const ORDER_NONE = javascriptGenerator.ORDER_NONE;
-    Blockly.Blocks[CurrentDateBlock.nameBlock] = {
+    blocks[CurrentDateBlock.nameBlock] = {
       init: function () {
         this.appendDummyInput().appendField('Current Date');
         this.appendDummyInput()

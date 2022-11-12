@@ -4,9 +4,9 @@ import { IBlocksSimple } from '../../blocksInterface';
 export default class DateFromTextBlock implements IBlocksSimple {
   static nameBlock:string='DateFromText';
   category: string='Dates';
-  definitionBlocksSimple(javaScript: any) {
+  definitionBlocksSimple(blocks: any,javaScript: any) {
     // const ORDER_NONE = 99;
-    Blockly.Blocks['DateFromText'] = {
+    blocks['DateFromText'] = {
       init: function () {
         this.appendValueInput('VALUE').appendField('Date from ');
         this.setOutput(true, null);
