@@ -13,12 +13,12 @@
  */
 //modified by Andrei Ignat for BlocklyScripts
 import * as Blockly from 'blockly/core';
-import IBlocks from '../../blocksInterface';
-export class waitBlock implements IBlocks {
+import { IBlocksSimple } from '../../blocksInterface';
+export class waitBlock implements IBlocksSimple {
   category: string='Timers';
-  //definitionBlocks(blocks_defineBlocksWithJsonArray: any, javaScript: any) {
+  //definitionBlocksSimple(blocks_defineBlocksWithJsonArray: any, javaScript: any) {
   public static nameBlock:string =  'wait_seconds';
-  public definitionBlocks(javascriptGenerator: any){
+  public definitionBlocksSimple(javascriptGenerator: any){
     Blockly.defineBlocksWithJsonArray([
       {
         type: waitBlock.nameBlock,

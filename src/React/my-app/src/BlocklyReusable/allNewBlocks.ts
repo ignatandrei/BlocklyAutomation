@@ -5,9 +5,10 @@ import { FilterBlocks } from "./BlocklyNewBlocks/list/filterBlocks";
 import { piano } from "./BlocklyNewBlocks/piano";
 import { tts } from "./BlocklyNewBlocks/tts";
 import waitBlock from "./BlocklyNewBlocks/timers/wait_block";
-import IBlocks from "./blocksInterface";
+import IBlocks, { IBlocksExtMut, IBlocksSimple } from "./blocksInterface";
 import waitUntilBlock from "./BlocklyNewBlocks/timers/wait_until";
 import DateFromTextBlock from "./BlocklyNewBlocks/dates/DateFromText";
+import CreateObjectBlocks from "./BlocklyNewBlocks/createObjectBlocks";
 
 export default class AllNewBlocks
 {
@@ -38,10 +39,19 @@ export default class AllNewBlocks
         new CredsBlocks(),
         new HttpBlocks(),
         new FilterBlocks(),
+        new CreateObjectBlocks(),
         ];
         return this.nb;
     }
     
+    public static isSimple = (block: IBlocks): block is IBlocksSimple=> {
+        return 'definitionBlocksSimple' in block;
+    }
+
+    public static isExtMut = (block: IBlocks): block is IBlocksExtMut=> {
+        return 'definitionBlocksExtMut' in block;
+    }
+
 
 }
 

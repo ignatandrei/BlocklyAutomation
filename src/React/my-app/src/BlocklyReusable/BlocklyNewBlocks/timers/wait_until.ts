@@ -1,11 +1,11 @@
 
 import * as Blockly from 'blockly/core';
-import IBlocks from '../../blocksInterface';
+import { IBlocksSimple } from '../../blocksInterface';
 
-export  default class waitUntilBlock implements IBlocks {
+export  default class waitUntilBlock implements IBlocksSimple {
     public static nameBlock:string =  'wait_until';
     category: string='Timers';
-  definitionBlocks(javaScript: any) {
+  definitionBlocksSimple(javaScript: any) {
    
     // blocks['wait'] = {
     //   init: function () {

@@ -1,11 +1,11 @@
-//call m  bs.filterBlocks.definitionBlocks(Blockly.Blocks, Blockly.JavaScript));
+//call m  bs.filterBlocks.definitionBlocksSimple(Blockly.Blocks, Blockly.JavaScript));
 
 import * as Blockly from "blockly/core";
-import IBlocks from "../../blocksInterface";
+import { IBlocksSimple } from "../../blocksInterface";
 
-export class FilterBlocks implements IBlocks {
+export class FilterBlocks implements IBlocksSimple {
   category: string='Array';
-  definitionBlocks = function (javaScript: any) {
+  definitionBlocksSimple(javaScript: any) {
     Blockly.Blocks["concatList"] = {
       init: function () {
         this.appendDummyInput().appendField("concatArray");

@@ -1,14 +1,14 @@
 import * as Blockly from 'blockly/core';
-import IBlocks from '../blocksInterface';
+import { IBlocksSimple } from '../blocksInterface';
 // import {Synth} from './audioTest';
 // declare var require: any;
 const synthPiano = require('./audioTest');
 // declare var synthPiano : any;
 // const a = require('./audioTest.js');
-export class piano implements IBlocks{
+export class piano implements IBlocksSimple{
     public static nameBlock: string = "pianoBlock";
     category: string='Audio';
-  definitionBlocks(javaScript: any) {
+  definitionBlocksSimple(javaScript: any) {
     Blockly.Blocks[piano.nameBlock] = {
       init: function () {
         this.appendValueInput('Note')

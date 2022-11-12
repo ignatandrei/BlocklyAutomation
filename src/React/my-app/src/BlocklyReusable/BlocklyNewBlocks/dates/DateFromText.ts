@@ -1,10 +1,10 @@
 
 import * as Blockly from 'blockly/core';
-import IBlocks from '../../blocksInterface';
-export default class DateFromTextBlock implements IBlocks {
+import { IBlocksSimple } from '../../blocksInterface';
+export default class DateFromTextBlock implements IBlocksSimple {
   static nameBlock:string='DateFromText';
   category: string='Dates';
-  definitionBlocks(javaScript: any) {
+  definitionBlocksSimple(javaScript: any) {
     // const ORDER_NONE = 99;
     Blockly.Blocks['DateFromText'] = {
       init: function () {

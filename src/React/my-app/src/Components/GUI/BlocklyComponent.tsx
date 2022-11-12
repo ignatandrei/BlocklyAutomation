@@ -25,7 +25,6 @@ import ExistingSwagger from '../Swagger/ExistingSwagger';
 import BlocklyReturnSwagger from '../../BlocklyReusable/BlocklyReturnSwagger';
 import { SettingsBA } from './settings/Settings';
 import { useParams } from 'react-router-dom';
-import { setState } from 'blockly/core/utils/aria';
 import AllNewBlocks from '../../BlocklyReusable/allNewBlocks';
 import IBlocks from '../../BlocklyReusable/blocksInterface';
 

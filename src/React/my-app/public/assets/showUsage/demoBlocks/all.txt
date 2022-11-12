@@ -87,7 +87,7 @@
         "id":  "joy",
         "description":  "ode to joy",
         "categories":  "audio",
-        "blocks":  "lists_split;text;controls_forEach;pianoBlock;wait"
+        "blocks":  "lists_split;text;controls_forEach;pianoBlock;wait_seconds"
     },
     {
         "id":  "parser",
@@ -117,7 +117,7 @@
         "id":  "piano",
         "description":  "piano test",
         "categories":  "audio",
-        "blocks":  "pianoBlock;controls_forEach;cmajor;text_print;wait"
+        "blocks":  "pianoBlock;controls_forEach;cmajor;text_print;wait_seconds"
     },
     {
         "id":  "voice",
@@ -183,7 +183,7 @@
         "id":  "wait",
         "description":  "simple wait",
         "categories":  "timer",
-        "blocks":  "math_number;controls_repeat_ext;math_change;text_print;wait"
+        "blocks":  "math_number;controls_repeat_ext;math_change;text_print;wait_seconds"
     },
     {
         "id":  "nasa",
@@ -230,7 +230,7 @@
         "id":  "testWait",
         "description":  "wait with dates",
         "categories":  "programming;dates",
-        "blocks":  "text_print;displayCurrentDate;wait"
+        "blocks":  "text_print;displayCurrentDate;wait_seconds"
     },
     {
         "id":  "dateFrom",
@@ -418,10 +418,17 @@
         "categories":  "http call",
         "blocks":  "text_print;httprequest"
     },
-{
-"id":  "arrayExample",
+    {
+        "id":  "arrayExample",
         "description":  "example for advanced array",
         "categories":  "array",
-        "blocks":  "text_print;httprequest"
-}
+        "blocks":  "get__api_DB_Departments;text;math_number;text_print;filterList;mapList;reduceList"
+    }
+,
+    {
+        "id":  "objects",
+        "description":  "example for objects",
+        "categories":  "array",
+        "blocks":  "get__api_DB_Departments;text;math_number;text_print;filterList;mapList;reduceList"
+    }
 ]

@@ -1,17 +1,17 @@
 // export class { definitionBlocks (blocks:any, javaScript:any) {
-// }
+// }import { IBlocksSimple }
 
 // fieldXML() : string {
 // }
 import * as Blockly from 'blockly/core';
-import IBlocks from '../../blocksInterface';
+import { IBlocksSimple } from '../../blocksInterface';
 
-export class CurrentDateBlock implements IBlocks  {
+export class CurrentDateBlock implements IBlocksSimple  {
   category: string='Dates';
 
   public static nameBlock:string =  'displayCurrentDate';
 
-  public definitionBlocks(javascriptGenerator: any) {
+  public definitionBlocksSimple(javascriptGenerator: any) {
     /*
      * Block that display the current date time
      * @Author: Popescu Ionut Cosmin (cosmin.popescu93@gmail.com)

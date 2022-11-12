@@ -1,10 +1,11 @@
 import * as Blockly from "blockly/core";
-import IBlocks from "../blocksInterface";
+import { IBlocksSimple } from "../blocksInterface";
 
-export class tts implements IBlocks {
+export class tts implements IBlocksSimple {
+ 
   category: string='Audio';
   public static nameBlock: string = "ttsBlock";
-  definitionBlocks(javascriptGenerator: any) {
+  definitionBlocksSimple(javascriptGenerator: any) {
     Blockly.Blocks[tts.nameBlock] = {
       init: function () {
         this.appendValueInput("NAME")

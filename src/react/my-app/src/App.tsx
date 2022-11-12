@@ -35,6 +35,7 @@ import { SettingsBA } from './Components/GUI/settings/Settings';
 import ToolboxBlocksCore from './Components/ToolboxBlocksCore';
 import ToolboxBlocksAdvanced from './Components/ToolboxBlocksAdvanced';
 import About from './Components/GUI/about';
+import {  IBlocksExtMut, IBlocksSimple } from './BlocklyReusable/blocksInterface';
 
 // import darkThemeData from './BlocklyReusable/themeDark';
 function App(props: any) {
@@ -50,27 +51,34 @@ function App(props: any) {
   }
   const [titleBA, setTitleBA]= useState("Blockly Autopmation")
 //   var waitBlockInstance=new waitBlock();
-//   waitBlockInstance.definitionBlocks(javascriptGenerator);
+//   waitBlockInstance.definitionBlocksSimple(javascriptGenerator);
 
 //   var currentDateInstance =new CurrentDateBlock();
-//   currentDateInstance.definitionBlocks(javascriptGenerator);
+//   currentDateInstance.definitionBlocksSimple(javascriptGenerator);
 
 //   var ttsBlockInstance= new tts();
-//   ttsBlockInstance.definitionBlocks(javascriptGenerator);
+//   ttsBlockInstance.definitionBlocksSimple(javascriptGenerator);
 
 
 //   var pianoBlockInstance= new piano();
-//   pianoBlockInstance.definitionBlocks(javascriptGenerator);
+//   pianoBlockInstance.definitionBlocksSimple(javascriptGenerator);
 
 //   var credsInstance =new CredsBlocks();
-//   credsInstance.definitionBlocks(javascriptGenerator);
+//   credsInstance.definitionBlocksSimple(javascriptGenerator);
 
 
 //   var httpInstance =new HttpBlocks();
-//   httpInstance.definitionBlocks(javascriptGenerator);
+//   httpInstance.definitionBlocksSimple(javascriptGenerator);
 
 AllNewBlocks.Instance.NewBlocks().forEach(it=>{
-    it.definitionBlocks(javascriptGenerator);
+    if(AllNewBlocks.isSimple(it)){
+      (it as IBlocksSimple).definitionBlocksSimple(javascriptGenerator);
+    }
+    if(AllNewBlocks.isExtMut(it)){
+      (it as IBlocksExtMut).definitionBlocksExtMut(javascriptGenerator, Blockly.Extensions,Blockly.Mutator);
+    }
+    
+    //it.
 })
 
 //   var dark = Blockly.Theme.defineTheme('darkAndrei',darkThemeData);

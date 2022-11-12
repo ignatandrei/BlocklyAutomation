@@ -1,9 +1,9 @@
 import * as Blockly from 'blockly';
-import IBlocks from '../../blocksInterface';
+import { IBlocksSimple } from '../../blocksInterface';
 
-export class HttpBlocks  implements IBlocks{
+export class HttpBlocks  implements IBlocksSimple{
   category: string='REST Requests';
-  definitionBlocks(javaScript: any) {
+  definitionBlocksSimple(javaScript: any) {
     
     const ORDER_ATOMIC = javaScript.ORDER_ATOMIC;
     const ORDER_NONE = javaScript.ORDER_NONE;

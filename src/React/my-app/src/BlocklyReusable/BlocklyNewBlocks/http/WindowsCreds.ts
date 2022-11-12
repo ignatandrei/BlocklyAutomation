@@ -1,11 +1,11 @@
 import * as Blockly from 'blockly/core';
-import IBlocks from '../../blocksInterface';
+import { IBlocksSimple } from '../../blocksInterface';
 
-export class CredsBlocks implements IBlocks {
+export class CredsBlocks implements IBlocksSimple {
   category: string='REST Requests';
   public static nameBlock:string='credsforhttp';
 
-  definitionBlocks( javaScript: any) {
+  definitionBlocksSimple( javaScript: any) {
     const ORDER_ATOMIC = javaScript.ORDER_ATOMIC;
     const ORDER_NONE = javaScript.ORDER_NONE;
     
