@@ -20,7 +20,7 @@ interface IDOPs{
 declare var require: any;
 
 export default class BlocklyReturnSwagger {
-  constructor(public swaggerUrl: string) {}
+  constructor(public swaggerUrl: string, public baseUrlOfApp:string) {}
 
   GenerateBlocks: any[] = [];
   GenerateFunctions: any[] = [];
@@ -481,7 +481,7 @@ export default class BlocklyReturnSwagger {
           if(last.length>5) last=last.substring(0,5)+"...";
           if (str.length > 25) str = str.substring(0, 25) + "...";
           this.appendDummyInput()
-            .appendField(new Blockly.FieldImage(`assets/httpImages/${operationKey}.png`,90,20,operationKey))
+            .appendField(new Blockly.FieldImage(`${self.baseUrlOfApp}assets/httpImages/${operationKey}.png`,90,20,operationKey))
             .appendField(`${last} ${displayOpKey} ${str}`);
           var root = self.findRootSite(); 
           var OpParameters:string[]=[];         

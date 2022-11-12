@@ -30,9 +30,13 @@ import {  CredsBlocks } from './BlocklyReusable/BlocklyNewBlocks/http/WindowsCre
 import { HttpBlocks } from './BlocklyReusable/BlocklyNewBlocks/http/xhrBlocks';
 import AllNewBlocks from './BlocklyReusable/allNewBlocks';
 import { SettingsBA } from './Components/GUI/settings/Settings';
+import { redirect, useParams } from 'react-router-dom';
 
 // import darkThemeData from './BlocklyReusable/themeDark';
 function App(props: any) {
+
+
+  
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const [userWantshowLeftMenu, showLeftMenu] = useState(false);
@@ -74,7 +78,7 @@ const handleRun = () => {
     ShowData.sendMessage(ShowCodeAndXML.ShowOutput);
     RunCode.sendMessage({runCodeData:RunCodeData.Start});
   };
-
+  
 const handleClickOpen = () => {
     setOpen(true);
   };
@@ -83,8 +87,15 @@ const handleClickOpen = () => {
     setSelectedValue(value);
     // window.alert(value);
     
+    // LoadIDService.sendID(value);
+    const baseUrl=process.env.PUBLIC_URL+'/';
+    var urlToRedirect= baseUrl+`automation/loadexample/${value}`;
+    //window.open(urlToRedirect);
     LoadIDService.sendID(value);
-    
+    RunCode.sendSimpleMessage('the url for this sample is:' + urlToRedirect);
+    //history.push(urlToRedirect);
+    //return redirect(urlToRedirect);
+    //return  <Redirect  to="/posts/" />
   };
 
   useEffect(()=>{
@@ -190,6 +201,7 @@ const handleClickOpen = () => {
             drag: true,
             wheel: true
           }}
+          
           initialXml={`
 <xml xmlns="http://www.w3.org/1999/xhtml">
 <BlockReact type="controls_ifelse" x="0" y="0"></BlockReact>

@@ -32,6 +32,7 @@ export const MustSave= {
 };
 export const RunCode= {
     sendMessage: (message:RunCodeMessage) => subjectRun.next(message),
+    sendSimpleMessage: (message:string) => subjectRun.next({runCodeData: RunCodeData.UserRequestedPrint, message:message, messageType:'string' }),
     getMessage: () => subjectRun.asObservable()
 };
 

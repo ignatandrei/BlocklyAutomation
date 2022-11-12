@@ -24,11 +24,13 @@ import {Backpack} from '@blockly/workspace-backpack';
 import ExistingSwagger from '../Swagger/ExistingSwagger';
 import BlocklyReturnSwagger from '../../BlocklyReusable/BlocklyReturnSwagger';
 import { SettingsBA } from './settings/Settings';
+import { useParams } from 'react-router-dom';
 
 Blockly.setLocale(locale);
  
  function BlocklyComponent(props:any) {
     
+    let { id } = useParams();
     const blocklyDiv = useRef<any|null>() ;
     const toolbox = useRef<any|null>();
     let primaryWorkspace = useRef<WorkspaceSvg>();
@@ -353,10 +355,13 @@ Blockly.setLocale(locale);
           console.log('error when load default blocks', e);
         }
       }
-    //   //from browser cache
+    if(id){
+       LoadIDService.sendID(id);
+    }
+    else{
       var s1=new saveLoadService();
       s1.restoreState(primaryWorkspace.current!,"save1");
-
+    }
     
     }
     

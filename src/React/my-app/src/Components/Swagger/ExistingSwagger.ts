@@ -50,7 +50,8 @@ export default class ExistingSwagger {
   LoadSwaggersFromUrl(l:LinksSwagger): Observable<any> {
     var cacheUrl = l.link;
     var name= l.id || l.link;
-    var parser = new BlocklyReturnSwagger(cacheUrl);
+    const baseUrl=process.env.PUBLIC_URL+'/'; 
+    var parser = new BlocklyReturnSwagger(cacheUrl,baseUrl);
     var api= from(parser.ParseSwagger() as Promise<any>)
       .pipe(
       tap((it:any)=>{

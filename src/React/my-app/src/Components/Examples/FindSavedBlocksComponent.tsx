@@ -1,5 +1,5 @@
 
-import { Autocomplete, AutocompleteChangeDetails, AutocompleteChangeReason, AutocompleteCloseReason, AutocompleteValue, Avatar, Dialog, DialogTitle, FilterOptionsState, List, ListItem, ListItemAvatar, ListItemText, TextField } from '@mui/material';
+import { Autocomplete, AutocompleteChangeDetails, AutocompleteChangeReason, AutocompleteCloseReason, AutocompleteValue, Avatar, Dialog, DialogTitle, FilterOptionsState, List, ListItem, ListItemAvatar, ListItemText, ListSubheader, TextField } from '@mui/material';
 import { blue } from '@mui/material/colors';
 import { useEffect, useState } from 'react';
 import { SimpleDialogProps } from '../../Common/SimpleDialogProps';
@@ -61,7 +61,7 @@ function FindSavedBlocksComponent(props:SimpleDialogProps) {
 
     
     <Dialog onClose={handleClose} open={open}>
-      <DialogTitle>Load Examples</DialogTitle>
+      <DialogTitle>Examples({demoBlocks.length})</DialogTitle>
       <Autocomplete filterOptions={filterOptions} autoComplete={true}
         id="searchDemos"
         freeSolo
@@ -73,6 +73,7 @@ function FindSavedBlocksComponent(props:SimpleDialogProps) {
         renderInput={(params) => <TextField {...params} label="Search Demo" />}
       />
       <List sx={{ pt: 0 }}>
+        <ListSubheader>Click to load  </ListSubheader>
         {demoBlocks.map((d, index)=>(
           <ListItem button onClick={() => handleListItemClick(d.id)} key={d.id} >
             <ListItemText primary={`${index+1}) ${d.description}`} secondary={d.categories} />
