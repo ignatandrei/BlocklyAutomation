@@ -28,11 +28,11 @@ export class FilterBlocks implements IBlocks {
 
       var code = "";
       code +=
-        "(function(a1,a2){ return [].concat(a1).concat(a2);})(" +
+        "JSON.stringify(function(a1,a2){ return [].concat(a1).concat(a2);})(" +
         list1 +
         "," +
         list2 +
-        ")";
+        "))";
       code += "";
 
       return [code, javaScript.ORDER_FUNCTION_CALL];
@@ -165,7 +165,7 @@ export class FilterBlocks implements IBlocks {
 
       var code = "";
       code +=
-        '(function(t){ if (typeof t === "string") return JSON.parse(t);  return t;}(' +
+        'JSON.stringify((function(t){ if (typeof t === "string") return JSON.parse(t);  return t;}(' +
         list +
         ")).reduce(function (acc,curVal,index,array){ " +
         value_logic +
@@ -173,7 +173,7 @@ export class FilterBlocks implements IBlocks {
       if (value_initvalue && value_initvalue.toString().length > 0) {
         code += "," + value_initvalue;
       }
-      code += ")";
+      code += "))";
       code += "";
 
       return [code, javaScript.ORDER_FUNCTION_CALL];
