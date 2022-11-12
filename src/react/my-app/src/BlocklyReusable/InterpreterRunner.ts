@@ -1,11 +1,5 @@
 import { WorkspaceSvg } from "blockly";
 import AllNewBlocks from "./allNewBlocks";
-import CurrentDateBlock from "./BlocklyNewBlocks/CurrentDateBlock";
-import { CredsBlocks } from "./BlocklyNewBlocks/http/WindowsCreds";
-import { HttpBlocks } from "./BlocklyNewBlocks/http/xhrBlocks";
-import { piano } from "./BlocklyNewBlocks/piano";
-import { tts } from "./BlocklyNewBlocks/tts";
-import waitBlock from "./BlocklyNewBlocks/wait_block";
 declare var Interpreter: any;
 
 class InterpreterRunner{

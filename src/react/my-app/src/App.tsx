@@ -30,7 +30,7 @@ import {  CredsBlocks } from './BlocklyReusable/BlocklyNewBlocks/http/WindowsCre
 import { HttpBlocks } from './BlocklyReusable/BlocklyNewBlocks/http/xhrBlocks';
 import AllNewBlocks from './BlocklyReusable/allNewBlocks';
 import { SettingsBA } from './Components/GUI/settings/Settings';
-import { redirect, useParams } from 'react-router-dom';
+
 
 import ToolboxBlocksCore from './Components/ToolboxBlocksCore';
 import ToolboxBlocksAdvanced from './Components/ToolboxBlocksAdvanced';
@@ -172,7 +172,7 @@ const handleClickOpen = () => {
           }
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
            {titleBA}
-            
+           {/* <small>You are running this application in <b>{process.env.NODE_ENV}</b> mode.</small> */}
             
             <Button variant="contained" onClick={handleClickOpen}>Examples!</Button>
 

@@ -6,8 +6,8 @@ export class CredsBlocks implements IBlocks {
   public static nameBlock:string='credsforhttp';
 
   definitionBlocks( javaScript: any) {
-    const ORDER_ATOMIC = 0;
-    const ORDER_NONE = 99;
+    const ORDER_ATOMIC = javaScript.ORDER_ATOMIC;
+    const ORDER_NONE = javaScript.ORDER_NONE;
     
     Blockly.Blocks[CredsBlocks.nameBlock] = {
       init: function () {

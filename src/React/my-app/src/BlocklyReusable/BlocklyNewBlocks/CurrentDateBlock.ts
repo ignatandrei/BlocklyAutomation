@@ -16,7 +16,7 @@ export class CurrentDateBlock implements IBlocks  {
      * @Author: Popescu Ionut Cosmin (cosmin.popescu93@gmail.com)
      * https://github.com/cosminpopescu14
      */
-    const ORDER_NONE = 99;
+    const ORDER_NONE = javascriptGenerator.ORDER_NONE;
     Blockly.Blocks[CurrentDateBlock.nameBlock] = {
       init: function () {
         this.appendDummyInput().appendField('Current Date');

@@ -262,8 +262,8 @@ export default class BlocklyReturnSwagger {
           
           var objPropStringFound = self.findProperties(schema);
           //console.log(blocklyTypeName, objPropStringFound);
-          const ORDER_NONE = 99;
-          const ORDER_ATOMIC = 0;
+          const ORDER_NONE = javaScript.ORDER_NONE;
+          const ORDER_ATOMIC = javaScript.ORDER_ATOMIC;
           var code = "";
           var objPropString :string[]= [];
           objPropStringFound.forEach((it:any) => {
@@ -582,8 +582,8 @@ export default class BlocklyReturnSwagger {
         //https://netcoreblockly.herokuapp.com/blocklyAPIFunctions?v=version
         //https://netcoreblockly.herokuapp.com/blockly.html?dom=20211115121043
         // console.log(blocklyTypeName);
-        const ORDER_NONE = 99;
-        const ORDER_ATOMIC = 0;
+        const ORDER_NONE = javaScript.ORDER_NONE;
+        const ORDER_ATOMIC = javaScript.ORDER_ATOMIC;
         var path = self.openApiDocument.paths[key];
         var operation = path[operationKey];
         // console.log('a' , key);

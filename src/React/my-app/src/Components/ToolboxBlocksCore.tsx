@@ -1,6 +1,5 @@
 
 import { Field, CategoryReact, BlockReact, Value, Shadow, Mutation } from "../BlocklyFields";
-import waitBlock from "../BlocklyReusable/BlocklyNewBlocks/wait_block";
 
 function ToolboxBlocksCore(props:any){
     return <>

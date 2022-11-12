@@ -396,7 +396,7 @@ Blockly.setLocale(locale);
 
         if(primaryWorkspace.current !== undefined)
             return;//TODO: why generates twice ?
-        console.log("test", primaryWorkspace);
+        // console.log("test", primaryWorkspace);
         const { initialXml, children, ...rest } = props;
             primaryWorkspace.current = Blockly.inject(
                 blocklyDiv.current,

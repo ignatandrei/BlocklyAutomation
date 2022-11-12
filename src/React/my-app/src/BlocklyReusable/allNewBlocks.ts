@@ -1,6 +1,7 @@
 import CurrentDateBlock from "./BlocklyNewBlocks/CurrentDateBlock";
 import { CredsBlocks } from "./BlocklyNewBlocks/http/WindowsCreds";
 import { HttpBlocks } from "./BlocklyNewBlocks/http/xhrBlocks";
+import { FilterBlocks } from "./BlocklyNewBlocks/list/filterBlocks";
 import { piano } from "./BlocklyNewBlocks/piano";
 import { tts } from "./BlocklyNewBlocks/tts";
 import waitBlock from "./BlocklyNewBlocks/wait_block";
@@ -32,6 +33,7 @@ export default class AllNewBlocks
         this.nb.push(new piano());
         this.nb.push(new CredsBlocks());
         this.nb.push(new HttpBlocks());
+        this.nb.push(new FilterBlocks());
         return this.nb;
     }
 

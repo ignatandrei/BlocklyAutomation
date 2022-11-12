@@ -1,5 +1,5 @@
 
-import { Field, CategoryReact, BlockReact, Value, Shadow, Mutation } from "../BlocklyFields";
+import { Field, CategoryReact, BlockReact, Value, Shadow } from "../BlocklyFields";
 import waitBlock from "../BlocklyReusable/BlocklyNewBlocks/wait_block";
 
 function ToolboxBlocksAdvanced(props:any){
@@ -97,6 +97,51 @@ function ToolboxBlocksAdvanced(props:any){
 
 </CategoryReact>
 
+
+<CategoryReact id="catA" name="Array">
+            <BlockReact type="filterList">
+                <Value name="LIST">
+                    <BlockReact type="variables_get">
+                        <Field name="VAR">list</Field>
+                    </BlockReact>
+                </Value>
+                <Value name="initValue">
+                    <Shadow type="text">
+                        <Field name="TEXT"> </Field>
+                    </Shadow>
+                </Value>
+                <Value name="Logic">
+                    <Shadow type="text">
+                        <Field name="TEXT">item.property == "value"</Field>
+                    </Shadow>
+                </Value>
+            </BlockReact>
+            <BlockReact type="concatList"></BlockReact>
+            <BlockReact type="mapList">
+            <Value name="LIST">
+                <BlockReact type="variables_get">
+                    <Field name="VAR">list</Field>
+                </BlockReact>
+            </Value>
+            <Value name="Logic">
+                <Shadow type="text">
+                    <Field name="TEXT">item.property</Field>
+                </Shadow>
+            </Value>
+        </BlockReact>
+        <BlockReact type="reduceList">
+        <Value name="LIST">
+        <BlockReact type="variables_get">
+                <Field name="VAR">list</Field>
+            </BlockReact>
+            </Value>
+            <Value name="Logic">
+                <Shadow type="text">
+                    <Field name="TEXT">...</Field>
+                </Shadow>
+            </Value>
+        </BlockReact>
+        </CategoryReact>
 </CategoryReact>
 
 
