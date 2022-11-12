@@ -1,1 +1,0 @@
-declare module '@blockly/workspace-content-highlight';
