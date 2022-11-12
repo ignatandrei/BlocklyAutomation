@@ -11,6 +11,10 @@ import DateFromTextBlock from "./BlocklyNewBlocks/dates/DateFromText";
 import CreateObjectBlocks from "./BlocklyNewBlocks/objects/createObjectBlocks";
 import auth0Blocks from "./BlocklyNewBlocks/http/Auth0";
 import propBlockly from "./BlocklyNewBlocks/objects/propBlocks";
+import convertersBlocks from "./BlocklyNewBlocks/converters/convertersBlocks";
+import guiBlocks from "./BlocklyNewBlocks/GUI/guiBlocks";
+import HtmlParserBlocks from "./BlocklyNewBlocks/HTML/HTMLParserBlocks";
+import { exportFileBlock } from "./BlocklyNewBlocks/exporters/exportfileBlock";
 
 export default class AllNewBlocks
 {
@@ -44,6 +48,10 @@ export default class AllNewBlocks
         new CreateObjectBlocks(),
         new auth0Blocks(),
         new propBlockly(),
+        new convertersBlocks(),
+        new guiBlocks(),
+        new HtmlParserBlocks(),
+        new exportFileBlock(),
         ];
         return this.nb;
     }
