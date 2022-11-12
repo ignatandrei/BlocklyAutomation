@@ -102,7 +102,8 @@ const handleClickOpen = () => {
   };
 
   useEffect(()=>{
-    var x= new SettingsBA().getSettings().subscribe(it=>{        
+    var x= new SettingsBA().getSettings().subscribe(it=>{      
+          document.title= it.title; 
         setTitleBA(it.title);
     });
     return ()=>x.unsubscribe();
