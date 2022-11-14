@@ -32,9 +32,9 @@ jobs:
           
           cd src
           ls
-          cd react
+          cd react_app
           ls
-          cd my-app
+          cd blockly_automation
           npm i
           npm run build
           # cd src
