@@ -31,8 +31,11 @@ jobs:
         run: | 
           
           cd src
-          cd React
+          ls
+          cd react
+          ls
           cd my-app
+          npm i
           npm run build
           # cd src
           # cd AngWorkspace
