@@ -1,0 +1,25 @@
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+html,
+body {
+  margin: 0;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+#blocklyDisplay{
+  height: 100%;
+  width: 25%;
+  position: absolute;
+  right: 0;
+}
