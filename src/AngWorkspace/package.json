@@ -46,7 +46,7 @@
     "@angular-devkit/build-angular": "13.2.5",
     "@angular/cli": "^13.3.5",
     "@angular/compiler-cli": "13.1.0",
-    "@api-platform/api-doc-parser": "0.12.0",
+    "@api-platform/api-doc-parser": "0.16.1",
     "@docker/extension-api-client-types": "0.2.3",
     "@types/file-saver": "2.0.4",
     "@types/jasmine": "3.10.0",
