@@ -31,39 +31,43 @@ jobs:
         run: | 
           
           cd src
-          cd AngWorkspace
-          npm i -g npm@8.3.0               
-          echo 'install angular'    
-          npm i  @angular/cli@13
-          # echo "install ws"
-          #npm i -force
-          #cd AutoBlocklyApp
-          #npm i
-          #cd ..
-          # echo "copy "
-          #cp -rn node_modules/  AutoBlocklyApp/          
-          #cp -rn node_modules/codemirror/  AutoBlocklyApp/codemirror          
-          # cp -rn node_modules/@types/codemirror/  AutoBlocklyApp/@types/codemirror
-          # ls -l AutoBlocklyApp/node_modules/codemirror
-          # echo "find"
-          #find . -type d -name "codemirror" -print
-          #npm install
-          cd projects
-          cd blockly-helpers
-          npm i
-          cd ..
-          cd blockly-scripts
-          npm i
-          cd ..
-          cd blockly-swagger
-          npm i
-          cd ..
-          cd ..
-          echo "build"
-          npm run buildGitHubPages  
-          ls -l dist/auto-blockly-app
-          npm run buildLibrary
-          ls -l dist/node2-blockly
+          cd React
+          cd my-app
+          npm run build
+          # cd src
+          # cd AngWorkspace
+          # npm i -g npm@8.3.0               
+          # echo 'install angular'    
+          # npm i  @angular/cli@13
+          # # echo "install ws"
+          # #npm i -force
+          # #cd AutoBlocklyApp
+          # #npm i
+          # #cd ..
+          # # echo "copy "
+          # #cp -rn node_modules/  AutoBlocklyApp/          
+          # #cp -rn node_modules/codemirror/  AutoBlocklyApp/codemirror          
+          # # cp -rn node_modules/@types/codemirror/  AutoBlocklyApp/@types/codemirror
+          # # ls -l AutoBlocklyApp/node_modules/codemirror
+          # # echo "find"
+          # #find . -type d -name "codemirror" -print
+          # #npm install
+          # cd projects
+          # cd blockly-helpers
+          # npm i
+          # cd ..
+          # cd blockly-scripts
+          # npm i
+          # cd ..
+          # cd blockly-swagger
+          # npm i
+          # cd ..
+          # cd ..
+          # echo "build"
+          # npm run buildGitHubPages  
+          # ls -l dist/auto-blockly-app
+          # npm run buildLibrary
+          # ls -l dist/node2-blockly
           
 
 
