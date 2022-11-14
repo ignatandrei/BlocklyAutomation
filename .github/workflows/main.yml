@@ -35,7 +35,7 @@ jobs:
           cd react_app
           ls
           cd blockly_automation
-          npm i
+          npm i 
           npm run build
           # cd src
           # cd AngWorkspace
