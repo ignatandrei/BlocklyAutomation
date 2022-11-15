@@ -187,7 +187,7 @@ Blockly.setLocale(locale);
         });
         return ()=>x.unsubscribe();        
 
-    },[]);
+    },[Download]);
 
 
     useEffect(()=>{
@@ -227,19 +227,22 @@ Blockly.setLocale(locale);
                     var code = javascriptGenerator.workspaceToCode(primaryWorkspace.current);
                     InnerWorkings.sendMessage(code);     
                     return;
-                case ShowCodeAndXML.ShowXML:
+                case ShowCodeAndXML.ShowXML:{
                     var xml = Blockly.Xml.workspaceToDom(primaryWorkspace.current!, true);
                     var xml_text = Blockly.Xml.domToPrettyText(xml);
                     //console.log('send' ,xml_text);
                     InnerWorkings.sendMessage(xml_text);                    
                     return;
+                  }
                 case ShowCodeAndXML.ShowBlocksDefinition:
-                     var xml = Blockly.Xml.workspaceToDom(primaryWorkspace.current!, true);
-                     var xml_text = Blockly.Xml.domToPrettyText(xml);
+                  
+
+                    var xml1 = Blockly.Xml.workspaceToDom(primaryWorkspace.current!, true);
+                     var xml_text1 = Blockly.Xml.domToPrettyText(xml1);
                      var blocksArr=Array<string>(0);
                     
-                    if(xml_text.indexOf('<block type="')>=0){
-                      var blocks=xml_text.split('<block type="');
+                    if(xml_text1.indexOf('<block type="')>=0){
+                      var blocks=xml_text1.split('<block type="');
                       for(var i=1;i<blocks.length;i++){
                         var block=blocks[i].split('"')[0];
                         blocksArr.push(block);
@@ -279,12 +282,12 @@ Blockly.setLocale(locale);
         var x= new  ExistingSwagger().getSwagger().subscribe(it=>{
             // console.log('this is swagger', it);
             it.forEach(element => {
-                var url=element.swaggerUrl;
+                //var url=element.swaggerUrl;
                 var show = !element.hasError;
                 //special condition for local api
                 // console.log("show swagger: "+ url +":"+show);
                 if(show){
-                    var data=LoadSwaggerFromAPI(element);
+                    LoadSwaggerFromAPI(element);
                 }
                   
               });

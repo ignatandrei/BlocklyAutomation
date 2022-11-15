@@ -133,7 +133,7 @@ export default class BlocklyReturnSwagger {
     var h = this.findHostNameRegular();
     h = h.split(".").join("");
     var max = 5;
-    if (h.length > max) var first = h.substring(0, max);
+    //if (h.length > max) var first = h.substring(0, max);
     var categ = this.nameCategSwagger();
     return (
       '<category name="Objects' +
@@ -151,7 +151,7 @@ export default class BlocklyReturnSwagger {
     
     var self = this;
     var blocklyTypeName = key;
-    var props = "";
+//    var props = "";
     var objPropString = self.findProperties(schema);
 
     return function (blocks:any, javaScript:any, ws: Blockly.WorkspaceSvg) {
@@ -920,7 +920,7 @@ TranslateToBlocklyType(t:any) {
         return it;
       })
       .map((it) => {
-        if (it.id.lastIndexOf('/') !=== it.id.length - 1) it.id += '/';
+        if (it.id.lastIndexOf('/') !== it.id.length - 1) it.id += '/';
 
         return it;
       });

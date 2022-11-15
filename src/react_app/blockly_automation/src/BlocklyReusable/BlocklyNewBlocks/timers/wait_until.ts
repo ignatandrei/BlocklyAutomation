@@ -1,5 +1,4 @@
 
-import * as Blockly from 'blockly/core';
 import { IBlocksSimple } from '../../blocksInterface';
 
 export  default class waitUntilBlock implements IBlocksSimple {
@@ -42,7 +41,7 @@ export  default class waitUntilBlock implements IBlocksSimple {
 
     javaScript['wait_until'] = function (block: any) {
       var number_wait =
-        javaScript.valueToCode(block, 'VALUE', javaScript. ORDER_ATOMIC) ||
+        javaScript.valueToCode(block, 'VALUE', javaScript.ORDER_ATOMIC) ||
         '';
       //console.log(number_wait);
 
