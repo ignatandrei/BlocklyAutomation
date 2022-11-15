@@ -1,6 +1,6 @@
 //call m  bs.filterBlocks.definitionBlocksSimple(Blockly.Blocks, Blockly.JavaScript));
 
-import * as Blockly from "blockly/core";
+//import * as Blockly from "blockly/core";
 import { IBlocksSimple } from "../../blocksInterface";
 
 export class FilterBlocks implements IBlocksSimple {

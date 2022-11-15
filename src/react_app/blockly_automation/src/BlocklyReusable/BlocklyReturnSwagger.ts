@@ -420,14 +420,14 @@ export default class BlocklyReturnSwagger {
    }
    host=host?host:" ";
    
-   var shadow=self.GenerateShadowField('string', 'override_host',host);
+   var shadowHost=self.GenerateShadowField('string', 'override_host',host);
   //  console.log('X_override_host',shadow);
-    xmlBlockShow += `<value name="override_Host">${shadow}</value>`;          
+    xmlBlockShow += `<value name="override_Host">${shadowHost}</value>`;          
    
     port=port?port:"0";
-    var shadow=self.GenerateShadowField('integer', 'override_port',port);
+    var shadowPort=self.GenerateShadowField('integer', 'override_port',port);
     //  console.log('X_override_host',shadow);
-      xmlBlockShow+= `<value name="override_Port">${shadow}</value>`;          
+      xmlBlockShow+= `<value name="override_Port">${shadowPort}</value>`;          
    
       xmlBlockShow+=`</block></value>`;
       

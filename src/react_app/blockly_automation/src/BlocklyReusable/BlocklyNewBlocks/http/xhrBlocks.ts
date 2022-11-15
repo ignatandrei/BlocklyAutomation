@@ -311,7 +311,7 @@ export class HttpBlocks  implements IBlocksSimple{
             req.withCredentials = withCreds;
         }
         //else 
-        {
+        
             var hasContentType=false;
             // 
             if(headers && headers.length>0){        
@@ -328,7 +328,7 @@ export class HttpBlocks  implements IBlocksSimple{
              if(hasSomethingToSend && !hasContentType){
                  req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
              }
-        }
+        
         
       }
       doPut (href:any, objectToPost:any, callback:any,headers:any,withCreds:any) {
