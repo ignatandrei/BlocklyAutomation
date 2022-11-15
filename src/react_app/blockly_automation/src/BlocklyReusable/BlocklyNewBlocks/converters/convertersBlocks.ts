@@ -1,4 +1,4 @@
-import * as Blockly from 'blockly/core';
+//import * as Blockly from 'blockly/core';
 import { IBlocksSimple } from '../../blocksInterface';
 export default class convertersBlocks implements IBlocksSimple {
     addWrapper(interpreter: any, globalObject: any) {
@@ -17,7 +17,7 @@ export default class convertersBlocks implements IBlocksSimple {
                     arr = arr.list0;
                 }
             }
-            if(arr.length == 0)
+            if(arr.length === 0)
                 return "";
 
             arr = [Object.keys(arr[0])].concat(arr)
@@ -46,7 +46,7 @@ export default class convertersBlocks implements IBlocksSimple {
                         arr = arr.list0;
                     }
                 }
-                if(arr.length == 0)
+                if(arr.length === 0)
                     return "";
                 var keys=Object.keys(arr[0]);
                 var data= "<table border='1'><tr><th>No</th>";

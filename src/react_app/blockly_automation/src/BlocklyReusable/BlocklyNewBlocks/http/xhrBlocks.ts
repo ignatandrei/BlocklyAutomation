@@ -430,9 +430,10 @@ export class HttpBlocks  implements IBlocksSimple{
         //req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     
         req.onreadystatechange = function () {
+          var answer:string='';
             if (req.readyState === 4) {
                 if (req.status >= 200 && req.status < 300) {
-                    var answer = JSON.stringify({
+                    answer = JSON.stringify({
                         'origHref': href,
                         'objectToSend': objectToPost,
                         'status': req.status,
@@ -445,7 +446,7 @@ export class HttpBlocks  implements IBlocksSimple{
     
                 } else {
                     // console.log('x_',req);
-                    var answer = JSON.stringify({
+                    answer = JSON.stringify({
                         'origHref': href,
                         'objectToSend': objectToPost,
                         'status': req.status,
@@ -472,9 +473,10 @@ export class HttpBlocks  implements IBlocksSimple{
     req.open('GET', href, true);
     this.generateDataAndCreds(req, headers, withCreds,false);          
     req.onreadystatechange = function () {
+        var answer:string='';
         if (req.readyState === 4) {
             if (req.status >= 200 && req.status < 300) {
-                var answer = JSON.stringify({
+                answer = JSON.stringify({
                     'origHref': href,
                     'objectToSend': '',
                     'status': req.status,
@@ -487,7 +489,7 @@ export class HttpBlocks  implements IBlocksSimple{
 
             } else {
                 
-                var answer = JSON.stringify({
+                answer = JSON.stringify({
                     'origHref': href,
                     'objectToSend': '',
                     'status': req.status,

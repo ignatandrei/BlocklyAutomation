@@ -24,7 +24,6 @@ import { SettingsBA } from './Components/GUI/settings/Settings';
 
 import ToolboxBlocksCore from './Components/ToolboxBlocksCore';
 import ToolboxBlocksAdvanced from './Components/ToolboxBlocksAdvanced';
-import About from './Components/GUI/about';
 import {  IBlocksExtMut, IBlocksSimple } from './BlocklyReusable/blocksInterface';
 import FindSavedBlocksComponent from './Components/Examples/FindSavedBlocksComponent';
 import { LoadIDService, RunCode, RunCodeData, RunCodeMessage, ShowData } from './Components/Examples/Messages';
@@ -36,11 +35,11 @@ function App(props: any) {
   
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-  const [userWantshowLeftMenu, showLeftMenu] = useState(false);
+  //const [userWantshowLeftMenu, showLeftMenu] = useState(false);
   const[showSnack, setShowSnack]=useState(false);
-  const showMenu = (event: React.MouseEvent<HTMLElement>) => {
-    showLeftMenu((prevState) => !prevState)
-  }
+  // const showMenu = (event: React.MouseEvent<HTMLElement>) => {
+  //   showLeftMenu((prevState) => !prevState)
+  // }
   const [titleBA, setTitleBA]= useState("Blockly Autopmation")
 //   var waitBlockInstance=new waitBlock();
 //   waitBlockInstance.definitionBlocksSimple(blocks: any,javascriptGenerator);
@@ -133,7 +132,7 @@ const handleClickOpen = () => {
                 return;
         }
     })
-
+    return ()=> x.unsubscribe();
   },[]);
 
     return <>
@@ -167,7 +166,7 @@ const handleClickOpen = () => {
               color="inherit"
               aria-label="menu"
               sx={{ mr: 2 }}
-              onClick={showMenu}
+              // onClick={showMenu}
             >
               <MenuIcon />
             </IconButton>
@@ -229,7 +228,5 @@ const handleClickOpen = () => {
 }
 
 export default App;
-function renderToString(arg0: string) {
-    throw new Error('Function not implemented.');
-}
+
 

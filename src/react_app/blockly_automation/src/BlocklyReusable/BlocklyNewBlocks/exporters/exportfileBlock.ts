@@ -1,5 +1,5 @@
 import * as  FileSaver from "file-saver";
-import * as Blockly from 'blockly/core';
+// import * as Blockly from 'blockly/core';
 import { IBlocksSimple } from '../../blocksInterface';
 
 export class exportFileBlock implements IBlocksSimple {
@@ -13,7 +13,7 @@ export class exportFileBlock implements IBlocksSimple {
   category: string = "Exporters";
   definitionBlocksSimple(blocks: any, javaScript: any) {
     const ORDER_ATOMIC = javaScript.ORDER_ATOMIC;
-    const ORDER_NONE = javaScript.ORDER_NONE;
+    //const ORDER_NONE = javaScript.ORDER_NONE;
 
     blocks['exportfile'] = {
       init: function () {

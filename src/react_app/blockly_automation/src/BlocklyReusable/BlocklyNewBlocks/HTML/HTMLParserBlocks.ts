@@ -80,7 +80,7 @@ export default class HtmlParserBlocks implements IBlocksSimple{
     var ret = [];
     if(!rows)
         return [];
-    if(rows.length==0){
+    if(rows.length===0){
         return [];
     }
     //first row is header
@@ -97,11 +97,12 @@ export default class HtmlParserBlocks implements IBlocksSimple{
     return ret;
 }
   parseDOMFromStringElements (htmlString:any, type:any, tagName:any){
+    var i=0;
     var doc = new DOMParser().parseFromString(htmlString, type);
     var elements:Array<any>=[];
     if(tagName.toString().indexOf(",")>-1){
         var arrTags= tagName.split(",");
-        for(var i=0;i<arrTags.length;i++){
+        for(i=0;i<arrTags.length;i++){
             elements=elements.concat(Array.from(doc.getElementsByTagName(arrTags[i])));
         }
     }
@@ -113,12 +114,13 @@ export default class HtmlParserBlocks implements IBlocksSimple{
     // console.log('a',elements);
     // console.log('b',elements[0]);
     
-    if(elements.length == 0)
+    if(elements.length === 0)
         return ret;
+        
     switch(tagName){
         case "table":
             ret={};
-            for(var i=0;i<elements.length;i++){
+            for(i=0;i<elements.length;i++){
                 (ret as any)["table"+i]= this.table2array(elements[i]);     
             }             
             break;
@@ -129,7 +131,7 @@ export default class HtmlParserBlocks implements IBlocksSimple{
                 loc=window.location.protocol+"//"+loc;
             }
             // console.log('x',loc);
-            for(var i=0;i<elements.length;i++){
+            for(i=0;i<elements.length;i++){
                 var href=elements[i].href;
                 if(loc.length>0 && href.startsWith(loc)){
                     href= href.substring(loc.length);
@@ -139,20 +141,20 @@ export default class HtmlParserBlocks implements IBlocksSimple{
             break;
         case "img":
             ret=[];
-            for(var i=0;i<elements.length;i++){
+            for(i=0;i<elements.length;i++){
                 (ret as any).push({ "src" : elements[i].src});     
             }
             break;    
         case "ul,ol":
             ret={};
-            for(var i=0;i<elements.length;i++){
+            for(i=0;i<elements.length;i++){
                 (ret as any)["list"+i]= this.list2array(elements[i]);     
             }      
             
             break;
         case "h1,h2,h3,h4,h5,h6":
             ret=[];
-            for(var i=0;i<elements.length;i++){
+            for(i=0;i<elements.length;i++){
                 (ret as any).push({ "header" : elements[i].innerText});     
             }
             break;
@@ -167,7 +169,7 @@ list2array(list:any) :any[] {
   var rows =   list.getElementsByTagName('li');;
   //console.log(myData)
   var ret = [];
-  if(rows.length==0){
+  if(rows.length===0){
       return [];
   }
   for (var i = 0; i < rows.length; i++) {
