@@ -374,7 +374,7 @@ export default class BlocklyReturnSwagger {
       operation,
       operationKey
     );
-    var props = "";
+    //var props = "";
     var op = operation;
     //console.log(key);
     //console.log(operationKey);
@@ -383,9 +383,10 @@ export default class BlocklyReturnSwagger {
 
     var xmlBlockShow=`<block type="text_print"> <value name="TEXT"><block type="${blocklyTypeName}">`;
     if (op.parameters){
-      op.parameters.forEach((it:any) => {        
+      op.parameters.forEach((it:any) => {   
+        var shadow:string='';     
         if(it.type){
-          var shadow=self.GenerateShadowField(it.type, it.name,null);
+          shadow=self.GenerateShadowField(it.type, it.name,null);
           if(shadow.length>0){
             xmlBlockShow += `<value name="val_${it.name}">${shadow}</value>`;
           }
@@ -393,7 +394,7 @@ export default class BlocklyReturnSwagger {
         }
         else{
           if(it.schema && it.schema.type){
-            var shadow=self.GenerateShadowField(it.schema.type, it.name,null);
+            shadow=self.GenerateShadowField(it.schema.type, it.name,null);
             if(shadow.length>0){
               xmlBlockShow += `<value name="val_${it.name}">${shadow}</value>`;
             }
@@ -596,7 +597,7 @@ export default class BlocklyReturnSwagger {
           parameters = operation.parameters;
         }
         var hasBody=false;
-        var hasBodyParameter=parameters.filter((it:any)=>it.in=='body').length>0;
+        var hasBodyParameter=parameters.filter((it:any)=>it.in==='body').length>0;
         if(hasBodyParameter || ('requestBody' in operation)){
           hasBody=true;
         }
@@ -626,12 +627,12 @@ export default class BlocklyReturnSwagger {
             parameterFunctionDefinition.push("values");
         }
         parameterFunctionDefinition.push("extraData");
-        var callingFunctionDefinition = parameters.map(
-          (it:any) =>"${" + `obj['val_${it.name}']` +"}" + ","
-        );
+        // var callingFunctionDefinition = parameters.map(
+        //   (it:any) =>"${" + `obj['val_${it.name}']` +"}" + ","
+        // );
         
         
-        callingFunctionDefinition += "1"; //maybe later we use for logging
+        //callingFunctionDefinition += "1"; //maybe later we use for logging
         var code = "function(";
         code += parameterFunctionDefinition.join(",");
         var rootSite=self.findRootSite();
