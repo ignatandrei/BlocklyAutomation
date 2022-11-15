@@ -487,7 +487,7 @@ Blockly.setLocale(locale);
       }
       const LoadSwagger= ()=>{
         
-        const baseUrl=process.env.PUBLIC_URL+'/'; 
+        //const baseUrl=process.env.PUBLIC_URL+'/'; 
         LoadPrompt('Please enter the swagger url ( not the html!)' , (json:string| null)=>{
         
         if (!json) return;
