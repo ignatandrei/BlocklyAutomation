@@ -130,9 +130,9 @@ export default class BlocklyReturnSwagger {
     return self;
   }
   categSwagger():string {
-    var h = this.findHostNameRegular();
-    h = h.split(".").join("");
-    var max = 5;
+    //var h = this.findHostNameRegular();
+    //h = h.split(".").join("");
+    //var max = 5;
     //if (h.length > max) var first = h.substring(0, max);
     var categ = this.nameCategSwagger();
     return (
@@ -249,7 +249,7 @@ export default class BlocklyReturnSwagger {
       };
 
       javaScript[blocklyTypeName] = function (block:any) {
-        {
+        
           //console.log(blocklyTypeName, self.openApiDocument);
           // var actualSchema = self.openApiDocument.components.schemas[blocklyTypeName];
           // console.log(blocklyTypeName, actualSchema);
@@ -279,9 +279,9 @@ export default class BlocklyReturnSwagger {
             if (val == null) {
               val = "null";
             }
-            objPropString.push(`"${it.key}\":${val}`);
+            objPropString.push(`"${it.key}":${val}`);
           });
-          var code = "{ " + objPropString.join(",") + " }";
+          code = "{ " + objPropString.join(",") + " }";
 
           if(isEnum){           
             var dropdown_name = block.getFieldValue(`val_${key}`);                    
@@ -289,7 +289,7 @@ export default class BlocklyReturnSwagger {
           }
           //console.log(code);
           return [code, /*javaScript.*/ ORDER_NONE];
-        }
+        
       };
     };
   }
@@ -336,20 +336,20 @@ export default class BlocklyReturnSwagger {
     return hostname;
   }
   GenerateShadowField(blockShadowType:any,key:any, defaultValue:any):string {
-         
+    var val='';
     switch (blockShadowType)
     {
         case "integer":
         case "number":
-            var val=defaultValue?defaultValue:0;            
+            val=defaultValue?defaultValue:0;            
             return `<block type='math_number'><field name='NUM'>${val}</field></block>`;
 
         case "string":
-            var val = defaultValue?defaultValue:`please enter ${key}`;
+            val = defaultValue?defaultValue:`please enter ${key}`;
             return `<block type='text'><field name='TEXT'>${val}</field></block>`;
 
         case "boolean":
-            var val= defaultValue?defaultValue:"FALSE";
+            val= defaultValue?defaultValue:"FALSE";
             return `<block type='logic_boolean'><field name='BOOL'>${val}</field></block>`;
         case "array":
             return '<block type="lists_create_with"> <mutation items="0"></mutation></block>';

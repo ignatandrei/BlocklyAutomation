@@ -318,7 +318,7 @@ export class HttpBlocks  implements IBlocksSimple{
             //alert(JSON.stringify(headers));
                 for(var iHeader=0;iHeader<headers.length;iHeader++){
                     var head=headers[iHeader];
-                    if(head.name=="Content-Type"){
+                    if(head.name==="Content-Type"){
                         hasContentType=true;
                     }
                     req.setRequestHeader(head.name,head.value);
@@ -338,10 +338,11 @@ export class HttpBlocks  implements IBlocksSimple{
     
         req.open('PUT', href, true);
         this.generateDataAndCreds(req,headers,withCreds,objectToPost?true:false);
+        var answer:any;
         req.onreadystatechange = function () {
-            if (req.readyState == 4) {
+            if (req.readyState === 4) {
                 if (req.status >= 200 && req.status < 300) {
-                    var answer = JSON.stringify({
+                     answer = JSON.stringify({
                         'origHref': href,
                         'objectToSend': objectToPost,
                         'status': req.status,
@@ -353,7 +354,7 @@ export class HttpBlocks  implements IBlocksSimple{
     
     
                 } else {
-                    var answer = JSON.stringify({
+                     answer = JSON.stringify({
                         'origHref': href,
                         'objectToSend': objectToPost,
                         'status': req.status,

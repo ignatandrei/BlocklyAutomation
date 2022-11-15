@@ -10,24 +10,14 @@ import SendIcon from '@mui/icons-material/Send';
 // import './Blocks/customBlocks';
 // import './generator/generator';
 import Blockly from 'blockly/core';
-import  BlocklyComponent, { BlockReact,  CategoryReact, Field, Mutation, Shadow, Value } from './BlocklyFields';
+import  BlocklyComponent  from './BlocklyFields';
 import { Alert,  AppBar, Box, Button, IconButton,  Snackbar, Toolbar, Typography, useMediaQuery, useTheme } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { javascriptGenerator } from 'blockly/javascript';
-import waitBlock from './BlocklyReusable/BlocklyNewBlocks/timers/wait_block';
-import FindSavedBlocksComponent from './Components/Examples/FindSavedBlocksComponent';
 import SaveButton from './Components/GUI/saveButton';
-import DemoBlocks from './Components/Examples/DemoBlocks';
-import { LoadIDService, MustSave, RunCode, RunCodeData, RunCodeMessage, ShowData } from './Components/Examples/Messages';
-import CurrentDateBlock from './BlocklyReusable/BlocklyNewBlocks/dates/CurrentDateBlock';
-import BlocklyDisplayText from './Components/GUI/BlocklyDisplayText';
 import BlocklyDisplayData from './Components/GUI/BlocklyDisplayData';
 import OutputButton from './Components/GUI/outputButton';
 import ShowCodeAndXML from './Components/GUI/ShowCodeAndXML';
-import { tts } from './BlocklyReusable/BlocklyNewBlocks/tts';
-import { piano } from './BlocklyReusable/BlocklyNewBlocks/piano';
-import {  CredsBlocks } from './BlocklyReusable/BlocklyNewBlocks/http/WindowsCreds';
-import { HttpBlocks } from './BlocklyReusable/BlocklyNewBlocks/http/xhrBlocks';
 import AllNewBlocks from './BlocklyReusable/allNewBlocks';
 import { SettingsBA } from './Components/GUI/settings/Settings';
 
@@ -36,6 +26,8 @@ import ToolboxBlocksCore from './Components/ToolboxBlocksCore';
 import ToolboxBlocksAdvanced from './Components/ToolboxBlocksAdvanced';
 import About from './Components/GUI/about';
 import {  IBlocksExtMut, IBlocksSimple } from './BlocklyReusable/blocksInterface';
+import FindSavedBlocksComponent from './Components/Examples/FindSavedBlocksComponent';
+import { LoadIDService, RunCode, RunCodeData, RunCodeMessage, ShowData } from './Components/Examples/Messages';
 
 // import darkThemeData from './BlocklyReusable/themeDark';
 function App(props: any) {

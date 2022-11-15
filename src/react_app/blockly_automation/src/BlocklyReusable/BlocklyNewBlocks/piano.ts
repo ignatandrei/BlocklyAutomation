@@ -1,4 +1,3 @@
-import * as Blockly from 'blockly/core';
 import { IBlocksSimple } from '../blocksInterface';
 // import {Synth} from './audioTest';
 // declare var require: any;
