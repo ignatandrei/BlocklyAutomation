@@ -504,7 +504,7 @@ export default class BlocklyReturnSwagger {
                     name += "=>"+s[s.length-1];
                   }
                   else if(it.schema.type){
-                    if(it.schema.type=='object'){
+                    if(it.schema.type==='object'){
                       var val = it.schema["$$ref"]||'';
                       if(val.length>0){
                         val = val.substring(val.lastIndexOf("/")+1);
@@ -664,7 +664,7 @@ export default class BlocklyReturnSwagger {
         var paramsQuery = parameters.filter((it:any) => it.in === "query");
         if(paramsQuery.length>0){
           code += 'strUrl+="?";\n;';
-          var data= paramsQuery.map((it:any)=>`${it.name}=`+"{" + it.name+"}") .join("&");
+          var data= paramsQuery.map((it:any)=>`${it.name}=`+"{" + it.name+"}").join("&");
           // console.log(data);
           // console.log('strUrl += "'+data+'";'); 
           code += 'strUrl += "'+data+'";\n;';
@@ -841,7 +841,7 @@ TranslateToBlocklyType(t:any) {
         return [code, javaScript.ORDER_NONE];
       };
 
-      var nameBlock = `meta_swagger_controllers_actions_${self.name}`;
+    nameBlock = `meta_swagger_controllers_actions_${self.name}`;
       blocks[nameBlock] = {
         init: function () {
           this.appendDummyInput().appendField('categories_actions' + self.name);
@@ -965,7 +965,7 @@ TranslateToBlocklyType(t:any) {
     // console.log('x'+controllerName, urls);
     var xmlList = this.fieldXMLFunctions
       .filter((it:any) => {
-        if (it.id == '') return true;
+        if (it.id === '') return true;
         var val = it.id + '/';
         var existInfields = false;
         urls.forEach((url:any) => {

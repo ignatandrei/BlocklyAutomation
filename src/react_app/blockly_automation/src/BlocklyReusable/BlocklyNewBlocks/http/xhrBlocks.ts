@@ -383,9 +383,10 @@ export class HttpBlocks  implements IBlocksSimple{
       //req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
       this.generateDataAndCreds(req,headers,withCreds,objectToDelete?true:false); 
       req.onreadystatechange = function () {
-          if (req.readyState == 4) {
+        var answer:string='';
+          if (req.readyState === 4) {
               if (req.status >= 200 && req.status < 300) {
-                  var answer = JSON.stringify({
+                   answer = JSON.stringify({
                       'origHref': href,
                       'objectToSend': '',
                       'status': req.status,
@@ -397,7 +398,7 @@ export class HttpBlocks  implements IBlocksSimple{
     
     
               } else {
-                  var answer = JSON.stringify({
+                   answer = JSON.stringify({
                       'origHref': href,
                       'status': req.status,
                       'statusOK': false,
@@ -429,7 +430,7 @@ export class HttpBlocks  implements IBlocksSimple{
         //req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     
         req.onreadystatechange = function () {
-            if (req.readyState == 4) {
+            if (req.readyState === 4) {
                 if (req.status >= 200 && req.status < 300) {
                     var answer = JSON.stringify({
                         'origHref': href,
@@ -471,7 +472,7 @@ export class HttpBlocks  implements IBlocksSimple{
     req.open('GET', href, true);
     this.generateDataAndCreds(req, headers, withCreds,false);          
     req.onreadystatechange = function () {
-        if (req.readyState == 4) {
+        if (req.readyState === 4) {
             if (req.status >= 200 && req.status < 300) {
                 var answer = JSON.stringify({
                     'origHref': href,
