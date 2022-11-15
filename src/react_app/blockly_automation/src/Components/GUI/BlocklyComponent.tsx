@@ -1,6 +1,6 @@
 
 import { renderToString } from 'react-dom/server'
- import React, { useCallback, useLayoutEffect, useState } from 'react';
+ import React, { useCallback, useLayoutEffect, useMemo, useState } from 'react';
  import './BlocklyComponent.css';
  import {useEffect, useRef} from 'react';
 
@@ -36,7 +36,7 @@ Blockly.setLocale(locale);
     const toolbox = useRef<any|null>();
     let primaryWorkspace = useRef<WorkspaceSvg>();
     let runner = useRef< InterpreterRunner>();
-    let swaggerData: BlocklyReturnSwagger[] = [];
+    let swaggerData: BlocklyReturnSwagger[] = useMemo(()=>[],[]);
     let children = props.children as [];
     const [startBlocks,setstartBlocks]=useState(['']);
     const CategorySwaggerHidden=(id: Number)=> {
@@ -133,7 +133,7 @@ Blockly.setLocale(locale);
         })
       },[primaryWorkspace]);
 
-      const Download=()=> {
+      const Download=useCallback(()=> {
         //todo: use vex as for others - electron compatibility
         
         LoadPrompt('Please enter file name' , (name:string| null)=>{
@@ -143,7 +143,7 @@ Blockly.setLocale(locale);
         s.DownloadBlocks(Blockly.Xml, primaryWorkspace.current!, name);
         });
     
-      }
+      },[]);
       const inputFile = useRef<HTMLInputElement| null>(null) ;
 
       const LoadFile=(e:any)=>{
@@ -277,28 +277,11 @@ Blockly.setLocale(locale);
         return ()=>x.unsubscribe();
     },[]);
     
-    useEffect(()=>{
-        
-        var x= new  ExistingSwagger().getSwagger().subscribe(it=>{
-            // console.log('this is swagger', it);
-            it.forEach(element => {
-                //var url=element.swaggerUrl;
-                var show = !element.hasError;
-                //special condition for local api
-                // console.log("show swagger: "+ url +":"+show);
-                if(show){
-                    LoadSwaggerFromAPI(element);
-                }
-                  
-              });
-              window.setTimeout(()=>afterTimeout(), 2000);
-            });        
-        return ()=>x.unsubscribe();
-    },[]);
+   
 
 
 
-    const addToToolboxSwagger=(item:any,xmlToolbox:string, swaggerLoaded: number)=>{
+    const addToToolboxSwagger=useCallback((item:any,xmlToolbox:string, swaggerLoaded: number)=>{
         
         var newCateg = item
         .findCategSwaggerFromPaths()
@@ -362,7 +345,7 @@ Blockly.setLocale(locale);
             );
           });
        return xmlToolbox;
-      }
+      },[]);
     const registerSwaggerBlocksObjects=(
         demoWorkspace: Blockly.Workspace,
         item: any
@@ -394,7 +377,7 @@ Blockly.setLocale(locale);
         return xmlList;
       }   
    
-    const afterTimeout=()=>{
+    const afterTimeout=useCallback(()=>{
         var nr = swaggerData.length;
         if(nr === 0)
             return;
@@ -440,10 +423,10 @@ Blockly.setLocale(locale);
       s1.restoreState(primaryWorkspace.current!,"save1");
     }
     
-    }
+    },[addToToolboxSwagger,primaryWorkspace,startBlocks,id,swaggerData]);
     
 
-    const LoadSwaggerFromAPI = (api: BlocklyReturnSwagger)=> {
+    const LoadSwaggerFromAPI =useCallback( (api: BlocklyReturnSwagger)=> {
         var i:number=0;
         if(api.hasError){
           console.error("error in swagger", api.name);
@@ -468,8 +451,9 @@ Blockly.setLocale(locale);
         }
         api.metaBlocks()(Blockly.Blocks, javascriptGenerator);
         return api;
-      }
-      const  LoadSwaggerFromUrl=async (url: string, name?: string)=> {
+      },[swaggerData]);
+
+      const  LoadSwaggerFromUrl=useCallback( async (url: string, name?: string)=> {
         const baseUrl=process.env.PUBLIC_URL+'/'; 
         var parser = new BlocklyReturnSwagger(url,baseUrl);
         var api = await parser.ParseSwagger();
@@ -479,13 +463,31 @@ Blockly.setLocale(locale);
           return LoadSwaggerFromAPI(api); 
         else
           return api;
-      }
+      },[LoadSwaggerFromAPI]);
 
+      useEffect(()=>{
+        
+        var x= new  ExistingSwagger().getSwagger().subscribe(it=>{
+            // console.log('this is swagger', it);
+            it.forEach(element => {
+                //var url=element.swaggerUrl;
+                var show = !element.hasError;
+                //special condition for local api
+                // console.log("show swagger: "+ url +":"+show);
+                if(show){
+                    LoadSwaggerFromAPI(element);
+                }
+                  
+              });
+              window.setTimeout(()=>afterTimeout(), 2000);
+            });        
+        return ()=>x.unsubscribe();
+    },[LoadSwaggerFromAPI,afterTimeout]);
       const LoadPrompt=(text:string, callBack: (result:string|null)=>void)=>{
           var data= window.prompt(text);
           callBack(data);
       }
-      const LoadSwagger= ()=>{
+      const LoadSwagger=useCallback(()=>{
         
         //const baseUrl=process.env.PUBLIC_URL+'/'; 
         LoadPrompt('Please enter the swagger url ( not the html!)' , (json:string| null)=>{
@@ -513,7 +515,7 @@ Blockly.setLocale(locale);
           }
         });
           });
-    }
+    },[LoadSwaggerFromUrl,addToToolboxSwagger,swaggerData]);
 
     
     useEffect(() => {
@@ -589,7 +591,7 @@ Blockly.setLocale(locale);
             // }
             var s=new saveLoadService();
             s.restoreState(primaryWorkspace.current,"save1");
-    }, [primaryWorkspace, toolbox, blocklyDiv, props]);
+    }, [primaryWorkspace, toolbox, blocklyDiv, props,LoadSwagger]);
  
     return <>
         <input type='file' id='file' ref={inputFile}  onChange={LoadFile} style={{display: 'none'}}/>
