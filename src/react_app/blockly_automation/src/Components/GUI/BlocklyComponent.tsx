@@ -444,27 +444,27 @@ Blockly.setLocale(locale);
     
 
     const LoadSwaggerFromAPI = (api: BlocklyReturnSwagger)=> {
-        
+        var i:number=0;
         if(api.hasError){
           console.error("error in swagger", api.name);
           return api;
         }
         swaggerData.push(api);
-        for (var i = 0; i < api.GenerateBlocks.length; i++) {
-          var e = api.GenerateBlocks[i];
+        for (i = 0; i < api.GenerateBlocks.length; i++) {
+          var b = api.GenerateBlocks[i];
         //   if(Blockly.getMainWorkspace() == null){
         //     console.log('#38 here in loadSwagger from api is not ok',Blockly.getMainWorkspace());
         //   }
-          e(Blockly.Blocks, javascriptGenerator,primaryWorkspace.current );
+          b(Blockly.Blocks, javascriptGenerator,primaryWorkspace.current );
         }
-        for (var i = 0; i < api.GenerateFunctions.length; i++) {
-          var e = api.GenerateFunctions[i];
-          var image = function (opKey: string) {
-            var image = `assets/httpImages/${opKey}.png`;
-            return new Blockly.FieldImage(image, 90, 20, opKey);
-          };
+        for (i = 0; i < api.GenerateFunctions.length; i++) {
+          var f = api.GenerateFunctions[i];
+          // var image = function (opKey: string) {
+          //   var image = `assets/httpImages/${opKey}.png`;
+          //   return new Blockly.FieldImage(image, 90, 20, opKey);
+          // };
          
-          e(Blockly.Blocks, javascriptGenerator);
+          f(Blockly.Blocks, javascriptGenerator);
         }
         api.metaBlocks()(Blockly.Blocks, javascriptGenerator);
         return api;
