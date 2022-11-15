@@ -63,7 +63,7 @@ export default class BlocklyReturnSwagger {
     
     this.basePath= r.basePath ||'';
     
-    if(this.basePath.length == 0){
+    if(this.basePath.length === 0){
       if(r.servers && r.servers.length>0){
         this.basePath=r.servers[0].url;
       }
@@ -72,7 +72,7 @@ export default class BlocklyReturnSwagger {
     //var r = q.response;
     // console.log(r.paths);
     var data=r.components?.schemas;
-    if(data == null || data == undefined){
+    if(data == null || data === undefined){
       //console.log(this.swaggerUrl,data);
       data=r.definitions;
     }
@@ -200,12 +200,12 @@ export default class BlocklyReturnSwagger {
           objPropString.forEach((item) => {
             //var t = self.TranslateToBlocklyType(key.type);
               var name=item.key;
-              if(item.value.nullable && item.value.nullable==false){
+              if(item.value.nullable && item.value.nullable===false){
                 name +="*";
               } 
               if(item.value?.type){
                 var val=item.value.type||'';
-                if(val == "object"){
+                if(val === "object"){
                   // console.log(item);
                   var val1= item.value["$$ref"]||'';
                   if(val1.length>0){
@@ -661,7 +661,7 @@ export default class BlocklyReturnSwagger {
           code +='\n rootSite="";//the root site is in url;\n';          
         }
         code += 'var strUrl =rootSite +"'+ partUrl + '";\n';
-        var paramsQuery = parameters.filter((it:any) => it.in == "query");
+        var paramsQuery = parameters.filter((it:any) => it.in === "query");
         if(paramsQuery.length>0){
           code += 'strUrl+="?";\n;';
           var data= paramsQuery.map((it:any)=>`${it.name}=`+"{" + it.name+"}") .join("&");
@@ -671,7 +671,7 @@ export default class BlocklyReturnSwagger {
         }
 
         var replaceUrl = parameters
-          .filter((it:any) => it.in == "path" || it.in == "query")
+          .filter((it:any) => it.in === "path" || it.in === "query")
           //.map((it) => `strUrl = strUrl.replace("{${it.name}}",${it.name});`)
           .map((it:any) => `
           //this gives error cannot read property 'call' of undefined in acorn
@@ -692,7 +692,7 @@ export default class BlocklyReturnSwagger {
         if(hasBody) {
           var values="values";
           if(hasBodyParameter){
-            values= parameters.filter((it:any)=>it.in=='body')[0].name;
+            values= parameters.filter((it:any)=>it.in==='body')[0].name;
           }
           code += `,JSON.stringify(${values})`;
         }
@@ -767,12 +767,12 @@ export default class BlocklyReturnSwagger {
   
 
 TranslateToBlocklyType(t:any) {
-  if (t == "integer") return "Number";
-  if (t == "string") return "String";
+  if (t === "integer") return "Number";
+  if (t === "string") return "String";
 
-  if (t == "bool") return "Boolean";
+  if (t=== "bool") return "Boolean";
 
-  if (t == "array") return "Array";
+  if (t === "array") return "Array";
   console.error("not found TranslateToBlocklyType item" + t);
   return "not found type" + t;
 }
@@ -920,7 +920,7 @@ TranslateToBlocklyType(t:any) {
         return it;
       })
       .map((it) => {
-        if (it.id.lastIndexOf('/') != it.id.length - 1) it.id += '/';
+        if (it.id.lastIndexOf('/') !=== it.id.length - 1) it.id += '/';
 
         return it;
       });
@@ -941,12 +941,12 @@ TranslateToBlocklyType(t:any) {
       });
 
     var others = normalized
-      .filter((it) => it.nrOps == 1)
+      .filter((it) => it.nrOps === 1)
       .map((it) => {
         return { arr: it.id.split('/').filter((a:string) => a.length > 0), id: it.id };
       })
       .map((it) => {
-        if (it.arr.length == 1) return { controller: it.arr[0], id: it.id };
+        if (it.arr.length === 1) return { controller: it.arr[0], id: it.id };
         return { controller: it.arr[it.arr.length - 2], id: it.id };
       });
     this.operations.push(...others);
@@ -961,7 +961,7 @@ TranslateToBlocklyType(t:any) {
     // var allPaths=this.openApiDocument.paths;
     //var keys= Object.keys(allPaths);
     
-    var urls = this.operations.filter((it:any) => it.controller == controllerName);
+    var urls = this.operations.filter((it:any) => it.controller === controllerName);
     // console.log('x'+controllerName, urls);
     var xmlList = this.fieldXMLFunctions
       .filter((it:any) => {

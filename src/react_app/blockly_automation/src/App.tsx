@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import SendIcon from '@mui/icons-material/Send';
 
-import logo from './logo.svg';
+// import logo from './logo.svg';
 
 // import BlocklyComponent, { Block, Value, Field, Shadow } from './Blockly';
 

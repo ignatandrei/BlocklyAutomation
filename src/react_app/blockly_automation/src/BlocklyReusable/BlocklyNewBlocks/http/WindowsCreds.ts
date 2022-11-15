@@ -1,4 +1,3 @@
-import * as Blockly from 'blockly/core';
 import { IBlocksSimple } from '../../blocksInterface';
 
 export class CredsBlocks implements IBlocksSimple {
@@ -7,7 +6,7 @@ export class CredsBlocks implements IBlocksSimple {
 
   definitionBlocksSimple(blocks:any, javaScript: any) {
     const ORDER_ATOMIC = javaScript.ORDER_ATOMIC;
-    const ORDER_NONE = javaScript.ORDER_NONE;
+    //const ORDER_NONE = javaScript.ORDER_NONE;
     
     blocks[CredsBlocks.nameBlock] = {
       init: function () {

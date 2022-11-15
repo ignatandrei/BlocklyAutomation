@@ -8,7 +8,7 @@
  * @fileoverview Download screenshot.
  * @author samelh@google.com (Sam El-Husseini)
  */
-import Blockly from 'blockly/core';
+// import Blockly from 'blockly/core';
 
 /**
  * Convert an SVG datauri into a PNG datauri.
@@ -86,7 +86,7 @@ function workspaceToSvg_(workspace, callback, customCss) {
   style.innerHTML = css + '\n' + customCss;
   svg.insertBefore(style, svg.firstChild);
 
-  let svgAsXML = (new XMLSerializer).serializeToString(svg);
+  let svgAsXML = (new XMLSerializer()).serializeToString(svg);
   svgAsXML = svgAsXML.replace(/&nbsp/g, '&#160');
   const data = 'data:image/svg+xml,' + encodeURIComponent(svgAsXML);
 

@@ -352,3 +352,4 @@ MigrationBackup/
 #src/AutoBlocklyApp/package-lock.json
 
 **/DockerExtension/ui
+src/react_app/blockly_automation/package-lock.json

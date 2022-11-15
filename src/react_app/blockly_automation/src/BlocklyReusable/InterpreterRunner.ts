@@ -129,17 +129,17 @@ class InterpreterRunner{
         var wrapper120 = function (url:any, hostname:any){
           hostname = hostname ? hostname.toString() : '';
           hostname=hostname.trim();
-          if(hostname.length == 0)
+          if(hostname.length === 0)
           {
               return url;
           }
           
           url=url?url:'';
           url=url.trim();
-          if(url.length == 0){
+          if(url.length === 0){
               url=hostname;
               if(!url.startsWith("http")){
-                  throw `please put in front of ${hostname} http:// or https://`;
+                  throw new Error(`please put in front of ${hostname} http:// or https://`);
               }
           }
           var urlNew= new URL(url);

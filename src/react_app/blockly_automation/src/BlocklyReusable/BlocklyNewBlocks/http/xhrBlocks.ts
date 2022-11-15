@@ -203,7 +203,7 @@ export class HttpBlocks  implements IBlocksSimple{
     interpreter.setProperty(globalObject, 'headersForDomain',headersForDomain);
 
     var thisClass =this;
-    var headersForDomain = interpreter.getProperty(globalObject,'headersForDomain');
+    headersForDomain = interpreter.getProperty(globalObject,'headersForDomain');
     // console.log('ccc',headersForDomain);
     var withCredsForDomain = interpreter.getProperty(globalObject,'withCredsForDomain');
     var wrapper170 = (href:any, callback:any) => {

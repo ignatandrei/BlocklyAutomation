@@ -40,7 +40,7 @@ export class tts implements IBlocksSimple {
         "NAME",
         javascriptGenerator.ORDER_ATOMIC
       );
-      if (dropdown_voice == "NoVoice") {
+      if (dropdown_voice === "NoVoice") {
         dropdown_voice = "-1";
       }
       var code = "speakDefault(" + value_name + "," + dropdown_voice + ");\n";
