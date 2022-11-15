@@ -665,7 +665,8 @@ export default class BlocklyReturnSwagger {
         var paramsQuery = parameters.filter((it:any) => it.in === "query");
         if(paramsQuery.length>0){
           code += 'strUrl+="?";\n;';
-          var data= paramsQuery.map((it:any)=>`${it.name}=`+"{" + it.name+"}").join("&");
+          var data= paramsQuery.map((it:any)=>it.name +"={" + it.name+"}").join("&");
+          // var data= paramsQuery.map((it:any)=>`${it.name}=`+"{" + it.name+"}").join("&");
           // console.log(data);
           // console.log('strUrl += "'+data+'";'); 
           code += 'strUrl += "'+data+'";\n;';

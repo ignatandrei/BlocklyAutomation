@@ -1,6 +1,6 @@
 
 import { renderToString } from 'react-dom/server'
- import React, { useLayoutEffect, useState } from 'react';
+ import React, { useCallback, useLayoutEffect, useState } from 'react';
  import './BlocklyComponent.css';
  import {useEffect, useRef} from 'react';
 
@@ -35,7 +35,7 @@ Blockly.setLocale(locale);
     const blocklyDiv = useRef<any|null>() ;
     const toolbox = useRef<any|null>();
     let primaryWorkspace = useRef<WorkspaceSvg>();
-    let runner: InterpreterRunner | null = null;
+    let runner = useRef< InterpreterRunner>();
     let swaggerData: BlocklyReturnSwagger[] = [];
     let children = props.children as [];
     const [startBlocks,setstartBlocks]=useState(['']);
@@ -83,14 +83,14 @@ Blockly.setLocale(locale);
       primaryXmlToolboxRef.current = primaryXmlToolbox;
     }, [primaryXmlToolbox]);
   
-    const generateCode = () => {
+    const generateCode =  useCallback(() => {
         // var code = javascriptGenerator.workspaceToCode(
         //   primaryWorkspace.current
         // );
         // window.alert(code);
-        runner =new InterpreterRunner(primaryWorkspace.current!,javascriptGenerator, displayStatement,finishRun);
-        runner.runCode();
-    };
+        runner.current =new InterpreterRunner(primaryWorkspace.current!,javascriptGenerator, displayStatement,finishRun);
+        runner.current.runCode();
+    },[runner]);
     const finishRun = () =>  {
 
         console.log('finish' );
@@ -100,7 +100,7 @@ Blockly.setLocale(locale);
     };
     const displayStatement = (x: any) =>  {
 
-        console.log('for display step ' + runner!.stepDisplay + ' data is ' +runner!.lastData );
+        console.log('for display step ' + runner.current!.stepDisplay + ' data is ' +runner.current!.lastData );
         var message: RunCodeMessage ={
             runCodeData : RunCodeData.UserRequestedPrint,
             message:x,
