@@ -53,7 +53,7 @@
     "@types/node": "12.11.1",
     "@types/tabulator-tables": "5.0.1",
     "jasmine-core": "3.10.0",
-    "karma": "6.3.0",
+    "karma": "6.4.1",
     "karma-chrome-launcher": "3.1.0",
     "karma-coverage": "2.1.0",
     "karma-jasmine": "4.0.0",
