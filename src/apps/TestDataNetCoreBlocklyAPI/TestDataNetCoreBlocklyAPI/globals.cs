@@ -1,0 +1,14 @@
+﻿global using Microsoft.AspNetCore.Server.Kestrel.Core;
+global using Microsoft.OpenApi.Models;
+global using System.Text.Json.Serialization;
+global using System.Text;
+global using Microsoft.EntityFrameworkCore;
+global using System.ComponentModel.DataAnnotations;
+global using System.ComponentModel.DataAnnotations.Schema;
+global using Microsoft.AspNetCore.Authentication.JwtBearer;
+global using TestDataNetCoreBlocklyAPI.DB;
+global using Microsoft.IdentityModel.Tokens;
+global using AMSWebAPI;
+global using System.IdentityModel.Tokens.Jwt;
+global using System.Security.Claims;
+global using TestDataNetCoreBlocklyAPI;
