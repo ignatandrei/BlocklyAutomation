@@ -5,7 +5,7 @@
     },
     {
       "id": "Demo_Blocks",
-      "link": "https://netcoreblockly.herokuapp.com/swagger/v1/swagger.json"
+      "link": "https://visualapi.azurewebsites.net/swagger/v1/swagger.json"
     },
     {
       "id": "Demo_PetStore",

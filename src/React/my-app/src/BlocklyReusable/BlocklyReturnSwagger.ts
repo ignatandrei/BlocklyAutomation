@@ -579,8 +579,8 @@ export default class BlocklyReturnSwagger {
         },
       };
       javaScript[blocklyTypeName] = function (block:any) {
-        //https://netcoreblockly.herokuapp.com/blocklyAPIFunctions?v=version
-        //https://netcoreblockly.herokuapp.com/blockly.html?dom=20211115121043
+        //https://visualapi.azurewebsites.net/blocklyAPIFunctions?v=version
+        //https://visualapi.azurewebsites.net/blockly.html?dom=20211115121043
         // console.log(blocklyTypeName);
         const ORDER_NONE = javaScript.ORDER_NONE;
         const ORDER_ATOMIC = javaScript.ORDER_ATOMIC;

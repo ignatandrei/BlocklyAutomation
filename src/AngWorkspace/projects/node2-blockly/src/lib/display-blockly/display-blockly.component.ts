@@ -346,7 +346,7 @@ export class DisplayBlocklyComponent implements OnInit,AfterViewInit {
   }
   // swaggersUrl:string[]=[
   //   'https://microservicesportchooser.azurewebsites.net/swagger/v1/swagger.json',
-  //   'https://netcoreblockly.herokuapp.com/swagger/v1/swagger.json',
+  //   'https://visualapi.azurewebsites.net/swagger/v1/swagger.json',
   //   'https://petstore.swagger.io/v2/swagger.json'
 
   // ];

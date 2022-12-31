@@ -67,7 +67,7 @@ namespace TestNetCorePackage
                 endpoints.UseBlocklyAutomation();
             });
             //app.UseBlocklyLocalStorage();
-            //app.UseBlocklySwagger("heroku", "https://netcoreblockly.herokuapp.com/swagger/v1/swagger.json");
+            //app.UseBlocklySwagger("heroku", "https://visualapi.azurewebsites.net/swagger/v1/swagger.json");
             //app.UseBlockly();
         }
     }
