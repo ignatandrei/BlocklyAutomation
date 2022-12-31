@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy to TestDataNetCoreBlocklyAPI
+name: Build and deploy to VisualAPI
 
 on:
   push:
@@ -60,7 +60,7 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'TestDataNetCoreBlocklyAPI'
+          app-name: 'VisualAPI'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_FF1606970D6E4BEB841A4EF57A0E8A73 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_6808215105A946969FD984B31F750930 }}
           package: .
