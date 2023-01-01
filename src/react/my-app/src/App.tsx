@@ -103,6 +103,7 @@ const handleClickOpen = () => {
     const baseUrl=process.env.PUBLIC_URL+'/';
     var urlToRedirect= baseUrl+`automation/loadexample/${value}`;
     //window.open(urlToRedirect);
+    console.log('send the id to '+value);
     LoadIDService.sendID(value);
     RunCode.sendSimpleMessage('the url for this sample is:' + urlToRedirect);
     //history.push(urlToRedirect);

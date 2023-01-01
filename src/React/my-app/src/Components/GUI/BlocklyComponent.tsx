@@ -37,7 +37,7 @@ Blockly.setLocale(locale);
     const blocklyDiv = useRef<any|null>() ;
     const toolbox = useRef<any|null>();
     let primaryWorkspace = useRef<WorkspaceSvg>();
-    let runner: InterpreterRunner | null = null;
+    let runner= useRef<InterpreterRunner | null>( null);
     let swaggerData: BlocklyReturnSwagger[] = useMemo(()=>[],[]);
     let children = props.children as [];
     const [startBlocks,setstartBlocks]=useState(['']);
@@ -86,8 +86,8 @@ Blockly.setLocale(locale);
     }, [primaryXmlToolbox]);
   
     const generateCode = useCallback(() => {
-        runner =new InterpreterRunner(primaryWorkspace.current!,javascriptGenerator, displayStatement,finishRun);
-        runner.runCode();
+        runner.current =new InterpreterRunner(primaryWorkspace.current!,javascriptGenerator, displayStatement,finishRun);
+        runner.current.runCode();
     },[]);
 
     const finishRun = () =>  {
@@ -99,7 +99,7 @@ Blockly.setLocale(locale);
     };
     const displayStatement = (x: any) =>  {
 
-        console.log('for display step ' + runner!.stepDisplay + ' data is ' +runner!.lastData );
+        console.log('for display step ' + runner.current!.stepDisplay + ' data is ' +runner.current!.lastData );
         var message: RunCodeMessage ={
             runCodeData : RunCodeData.UserRequestedPrint,
             message:x,
@@ -118,10 +118,12 @@ Blockly.setLocale(locale);
     },[setstartBlocks])
 
     useEffect(()=>{
-        if(!primaryWorkspace.current)
-            return;
+        
+        // if(!primaryWorkspace.current)
+        //     return;
 
-        LoadIDService.getID().subscribe(it=>{
+        var x= LoadIDService.getID().subscribe(it=>{
+          console.log('in getID');
           var d=new DemoBlocks();
           d.getDemoBlock(it).subscribe(data=>{
               //window.alert(JSON.stringify(a));
@@ -129,7 +131,8 @@ Blockly.setLocale(locale);
               Blockly.Xml.clearWorkspaceAndLoadFromXml(xml,primaryWorkspace.current!);
     
           })
-        })
+        });
+        return ()=> x.unsubscribe();
       },[primaryWorkspace]);
 
       const Download=useCallback(()=> {
@@ -411,6 +414,7 @@ Blockly.setLocale(locale);
       }
     }
   if(id){
+    console.log('send the id'+id);
      LoadIDService.sendID(id);
   }
   else{

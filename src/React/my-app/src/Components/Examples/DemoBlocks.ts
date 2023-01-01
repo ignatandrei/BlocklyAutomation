@@ -41,6 +41,7 @@ class DemoBlocks {
   }
 
   public getDemoBlock(id:string): Observable<string> {
+    console.log('getDemoBlock');
     const baseUrl=process.env.PUBLIC_URL+'/'; 
     var dt=new Date().toISOString();
     var q= ajax({ method: 'GET', url:baseUrl+`assets/showUsage/demoBlocks/${id}.txt?${dt}` ,async: false})      
