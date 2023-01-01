@@ -60,7 +60,7 @@ var Synth, AudioSynth, AudioSynthInstrument;
 		var l = this._sounds.length;
 		while(f.length<l) {
 			var octaveList = [];
-			for(var i = 0; i < 8; i++) {
+			for(var iNote = 0; iNote < 8; iNote++) {
 				var noteList = {};
 				for(var k in this._notes) {
 					noteList[k] = {};
@@ -78,7 +78,7 @@ var Synth, AudioSynth, AudioSynthInstrument;
 		var thisSound = this._sounds[sound];
 		if(!thisSound) {
 			for(var i=0;i<this._sounds.length;i++) {
-				if(this._sounds[i].name==sound) {
+				if(this._sounds[i].name===sound) {
 					thisSound = this._sounds[i];
 					sound = i;
 					break;
@@ -86,14 +86,14 @@ var Synth, AudioSynth, AudioSynthInstrument;
 			}
 		}
 		if(!thisSound) { throw new Error('Invalid sound or sound ID: ' + sound); }
-		var t = (new Date).valueOf();
+		var t = (new Date()).valueOf();
 		this._temp = {};
 		octave |= 0;
 		octave = Math.min(8, Math.max(1, octave));
 		var time = !duration?2:parseFloat(duration);
 		if(typeof(this._notes[note])=='undefined') { throw new Error(note + ' is not a valid note.'); }
 		if(typeof(this._fileCache[sound][octave-1][note][time])!='undefined') {
-			if(this._debug) { console.log((new Date).valueOf() - t, 'ms to retrieve (cached)'); }
+			if(this._debug) { console.log((new Date()).valueOf() - t, 'ms to retrieve (cached)'); }
 			return this._fileCache[sound][octave-1][note][time];
 		} else {
 			var frequency = this._notes[note] * Math.pow(2,octave-4);
@@ -106,18 +106,18 @@ var Synth, AudioSynth, AudioSynthInstrument;
 			var waveFunc = thisSound.wave;
 			var waveBind = {modulate: this._mod, vars: this._temp};
 			var val = 0;
-			var curVol = 0;
+			// var curVol = 0;
 
 			var data = new Uint8Array(new ArrayBuffer(Math.ceil(sampleRate * time * 2)));
 			var attackLen = (sampleRate * attack) | 0;
 			var decayLen = (sampleRate * time) | 0;
 
-			for (var i = 0 | 0; i !== attackLen; i++) {
+			for (var iAttack = 0 | 0; iAttack !== attackLen; iAttack++) {
 		
-				val = volume * (i/(sampleRate*attack)) * waveFunc.call(waveBind, i, sampleRate, frequency, volume);
+				val = volume * (iAttack/(sampleRate*attack)) * waveFunc.call(waveBind, iAttack, sampleRate, frequency, volume);
 
-				data[i << 1] = val;
-				data[(i << 1) + 1] = val >> 8;
+				data[iAttack << 1] = val;
+				data[(iAttack << 1) + 1] = val >> 8;
 
 			}
 
@@ -151,7 +151,7 @@ var Synth, AudioSynth, AudioSynthInstrument;
 			var blob = new Blob(out, {type: 'audio/wav'});
 			var dataURI = URL.createObjectURL(blob);
 			this._fileCache[sound][octave-1][note][time] = dataURI;
-			if(this._debug) { console.log((new Date).valueOf() - t, 'ms to generate'); }
+			if(this._debug) { console.log((new Date()).valueOf() - t, 'ms to generate'); }
 			return dataURI;
 		}
 	});
@@ -167,7 +167,7 @@ var Synth, AudioSynth, AudioSynthInstrument;
 		var found = false;
 		if(typeof(sound)=='string') {
 			for(var i=0;i<this._sounds.length;i++) {
-				if(this._sounds[i].name==sound) {
+				if(this._sounds[i].name===sound) {
 					found = true;
 					n = i;
 					break;

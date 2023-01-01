@@ -1,10 +1,10 @@
 
 import { renderToString } from 'react-dom/server'
- import React, { useLayoutEffect, useState } from 'react';
+ import React, { useCallback, useLayoutEffect, useMemo, useState } from 'react';
  import './BlocklyComponent.css';
  import {useEffect, useRef} from 'react';
 
- import Blockly, { Block, WorkspaceSvg } from 'blockly/core';
+ import Blockly, {  WorkspaceSvg } from 'blockly/core';
  import {javascriptGenerator} from 'blockly/javascript';
  import locale from 'blockly/msg/en';
  import 'blockly/blocks';
@@ -14,8 +14,8 @@ import DemoBlocks from '../Examples/DemoBlocks';
 import { RunCode, RunCodeData, RunCodeMessage, LoadIDService, MustSave, ShowData, InnerWorkings } from '../Examples/Messages';
 import { SaveLocation } from './SaveLocation';
 import ShowCodeAndXML from './ShowCodeAndXML';
-import { Category } from '@mui/icons-material';
-import { BlockReact, CategoryReact } from '../../BlocklyFields';
+// import { Category } from '@mui/icons-material';
+// import { BlockReact, CategoryReact } from '../../BlocklyFields';
 import {ContentHighlight} from '@blockly/workspace-content-highlight';
 import {ZoomToFitControl} from '@blockly/zoom-to-fit';
 import {shadowBlockConversionChangeListener} from '@blockly/shadow-block-converter'; 
@@ -38,7 +38,7 @@ Blockly.setLocale(locale);
     const toolbox = useRef<any|null>();
     let primaryWorkspace = useRef<WorkspaceSvg>();
     let runner: InterpreterRunner | null = null;
-    let swaggerData: BlocklyReturnSwagger[] = [];
+    let swaggerData: BlocklyReturnSwagger[] = useMemo(()=>[],[]);
     let children = props.children as [];
     const [startBlocks,setstartBlocks]=useState(['']);
     const CategorySwaggerHidden=(id: Number)=> {
@@ -85,14 +85,11 @@ Blockly.setLocale(locale);
       primaryXmlToolboxRef.current = primaryXmlToolbox;
     }, [primaryXmlToolbox]);
   
-    const generateCode = () => {
-        // var code = javascriptGenerator.workspaceToCode(
-        //   primaryWorkspace.current
-        // );
-        // window.alert(code);
+    const generateCode = useCallback(() => {
         runner =new InterpreterRunner(primaryWorkspace.current!,javascriptGenerator, displayStatement,finishRun);
         runner.runCode();
-    };
+    },[]);
+
     const finishRun = () =>  {
 
         console.log('finish' );
@@ -135,7 +132,7 @@ Blockly.setLocale(locale);
         })
       },[primaryWorkspace]);
 
-      const Download=()=> {
+      const Download=useCallback(()=> {
         //todo: use vex as for others - electron compatibility
         
         LoadPrompt('Please enter file name' , (name:string| null)=>{
@@ -145,7 +142,7 @@ Blockly.setLocale(locale);
         s.DownloadBlocks(Blockly.Xml, primaryWorkspace.current!, name);
         });
     
-      }
+      },[]);
       const inputFile = useRef<HTMLInputElement| null>(null) ;
 
       const LoadFile=(e:any)=>{
@@ -168,6 +165,11 @@ Blockly.setLocale(locale);
         myReader.readAsText(file);
 
       }
+      const SaveLocationData=useCallback(()=>{
+        var s=new saveLoadService();
+        s.saveState(primaryWorkspace.current!,"save1"); 
+      },[]);
+
     useEffect(()=>{
 
        
@@ -189,7 +191,7 @@ Blockly.setLocale(locale);
         });
         return ()=>x.unsubscribe();        
 
-    },[]);
+    },[Download,SaveLocationData]);
 
 
     useEffect(()=>{
@@ -214,10 +216,6 @@ Blockly.setLocale(locale);
 
     },[generateCode]);
     
-    const SaveLocationData=()=>{
-            var s=new saveLoadService();
-            s.saveState(primaryWorkspace.current!,"save1");
-    }
 
     useEffect(()=>{
         var x=ShowData.getMessage().subscribe(it=>{            
@@ -230,18 +228,20 @@ Blockly.setLocale(locale);
                     InnerWorkings.sendMessage(code);     
                     return;
                 case ShowCodeAndXML.ShowXML:
+                    
                     var xml = Blockly.Xml.workspaceToDom(primaryWorkspace.current!, true);
                     var xml_text = Blockly.Xml.domToPrettyText(xml);
                     //console.log('send' ,xml_text);
                     InnerWorkings.sendMessage(xml_text);                    
+                    
                     return;
                 case ShowCodeAndXML.ShowBlocksDefinition:
-                     var xml = Blockly.Xml.workspaceToDom(primaryWorkspace.current!, true);
-                     var xml_text = Blockly.Xml.domToPrettyText(xml);
+                     var xml1 = Blockly.Xml.workspaceToDom(primaryWorkspace.current!, true);
+                     var xml_text1 = Blockly.Xml.domToPrettyText(xml1);
                      var blocksArr=Array<string>(0);
                     
-                    if(xml_text.indexOf('<block type="')>=0){
-                      var blocks=xml_text.split('<block type="');
+                    if(xml_text1.indexOf('<block type="')>=0){
+                      var blocks=xml_text1.split('<block type="');
                       for(var i=1;i<blocks.length;i++){
                         var block=blocks[i].split('"')[0];
                         blocksArr.push(block);
@@ -276,92 +276,172 @@ Blockly.setLocale(locale);
         return ()=>x.unsubscribe();
     },[]);
     
+    const LoadSwaggerFromAPI = useCallback((api: BlocklyReturnSwagger)=> {
+        
+      if(api.hasError){
+        console.error("error in swagger", api.name);
+        return api;
+      }
+      swaggerData.push(api);
+      for (var i = 0; i < api.GenerateBlocks.length; i++) {
+        var e = api.GenerateBlocks[i];
+      //   if(Blockly.getMainWorkspace() == null){
+      //     console.log('#38 here in loadSwagger from api is not ok',Blockly.getMainWorkspace());
+      //   }
+        e(Blockly.Blocks, javascriptGenerator,primaryWorkspace.current );
+      }
+      for (var iFunc = 0; iFunc < api.GenerateFunctions.length; iFunc++) {
+        var eFunc = api.GenerateFunctions[iFunc];
+        // var image = function (opKey: string) {
+        //   var image = `assets/httpImages/${opKey}.png`;
+        //   return new Blockly.FieldImage(image, 90, 20, opKey);
+        // };
+       
+        eFunc(Blockly.Blocks, javascriptGenerator);
+      }
+      api.metaBlocks()(Blockly.Blocks, javascriptGenerator);
+      return api;
+    },[swaggerData]);
+
+    const addToToolboxSwagger=useCallback( (item:any,xmlToolbox:string, swaggerLoaded: number)=>{
+        
+      var newCateg = item
+      .findCategSwaggerFromPaths()
+      .sort()
+      .map(
+        (it: any) =>
+          `<category name='${it}' custom='func_${item.name}_${it}'></category>`
+      )
+      .join('\n');
+    var nameExistingCategorySwagger =CategorySwaggerHidden(swaggerLoaded) || '';
+  
+  // console.log('a',xmlToolbox);
+  var replaceCategory=`<category name='${item.name}'>
+  <category name='API' id='func_${item.name}'>
+  ${newCateg}
+  </category>
+  ${item.categSwagger()}
+  
+  <category name='meta' id='meta_${item.name}'>
+  <block type='meta_swagger_controllers_${item.name}'></block>
+  <block type='meta_swagger_controllers_actions_${item.name}'></block>
+  </category>
+  
+  </category>
+  `;
+  // console.log('x',replaceCategory)
+  xmlToolbox= xmlToolbox.replace(nameExistingCategorySwagger,replaceCategory);  
+  // console.log('load toolbox '+swaggerLoaded,xmlToolbox)  ;
+  primaryWorkspace.current?.updateToolbox(xmlToolbox);
+  
+  
+    
+      var nameCat = 'objects_' + item.nameCategSwagger();
+      var nameAPI = 'AllApi_' + item.nameCategSwagger();
+      var cache=item;
+      
+      primaryWorkspace.current?.registerToolboxCategoryCallback(
+        nameCat,
+        (d: Blockly.Workspace) => {
+          return registerSwaggerBlocksObjects(d, cache);
+        }
+      );
+      
+      primaryWorkspace.current?.registerToolboxCategoryCallback(
+        nameAPI,
+        (d: Blockly.Workspace) => {
+          return registerSwaggerBlocksAPIAll(d, cache);
+        }
+      );
+        
+      item.findCategSwaggerFromPaths().forEach((it: any) => {
+          primaryWorkspace.current?.registerToolboxCategoryCallback(
+            `func_${item.name}_${it}`,
+            (d: Blockly.Workspace) => {
+              return  registerSwaggerBlocksAPIControllers(
+                d,
+                item,
+                it
+              );
+            }
+          );
+        });
+     return xmlToolbox;
+    },[]);
+
+
+
+
+    const afterTimeout=useCallback(()=>{
+      var nr = swaggerData.length;
+      if(nr === 0)
+          return;
+      if(swaggerData.every(it=>it.hasError))
+          {
+              console.log('all swaggers has errors');
+              return;
+          }
+      var xmlToolbox=primaryXmlToolboxRef.current;
+     
+      primaryWorkspace.current!.updateToolbox(xmlToolbox);
+      
+      swaggerData.forEach((item, index) => {
+      //  console.log('a_item', item);
+          var cache=item;  
+          xmlToolbox= addToToolboxSwagger(cache,xmlToolbox, index);
+      });
+      setPrimaryXmlToolbox(xmlToolbox);
+  // if (myComponent?.mustLoadDemoBlock != null)
+  //   myComponent.ShowDemo(myComponent?.mustLoadDemoBlock);
+  // else {
+      // console.log('asdsa', startBlocks);
+    if ((startBlocks?.length || 0) > 0) {
+      try {
+        var xml_text = (startBlocks || []).join('\n');
+        //<xml xmlns="https://developers.google.com/blockly/xml"></xml>
+        if (xml_text?.length > 62) {
+          var xml = Blockly.Xml.textToDom(xml_text);
+          Blockly.Xml.clearWorkspaceAndLoadFromXml(
+            xml,
+            primaryWorkspace.current!
+          );
+        }
+      } catch (e) {
+        console.log('error when load default blocks', e);
+      }
+    }
+  if(id){
+     LoadIDService.sendID(id);
+  }
+  else{
+    var s1=new saveLoadService();
+    s1.restoreState(primaryWorkspace.current!,"save1");
+  }
+  
+  },[addToToolboxSwagger, id, startBlocks, swaggerData]);
+
+
     useEffect(()=>{
         
         var x= new  ExistingSwagger().getSwagger().subscribe(it=>{
             // console.log('this is swagger', it);
             it.forEach(element => {
-                var url=element.swaggerUrl;
+                // var url=element.swaggerUrl;
                 var show = !element.hasError;
                 //special condition for local api
                 // console.log("show swagger: "+ url +":"+show);
                 if(show){
-                    var data=LoadSwaggerFromAPI(element);
+                    LoadSwaggerFromAPI(element);
                 }
                   
               });
               window.setTimeout(()=>afterTimeout(), 2000);
             });        
         return ()=>x.unsubscribe();
-    },[]);
+    },[LoadSwaggerFromAPI, afterTimeout]);
 
 
 
-    const addToToolboxSwagger=(item:any,xmlToolbox:string, swaggerLoaded: number)=>{
-        
-        var newCateg = item
-        .findCategSwaggerFromPaths()
-        .sort()
-        .map(
-          (it: any) =>
-            `<category name='${it}' custom='func_${item.name}_${it}'></category>`
-        )
-        .join('\n');
-      var nameExistingCategorySwagger =CategorySwaggerHidden(swaggerLoaded) || '';
-    
-    // console.log('a',xmlToolbox);
-    var replaceCategory=`<category name='${item.name}'>
-    <category name='API' id='func_${item.name}'>
-    ${newCateg}
-    </category>
-    ${item.categSwagger()}
-    
-    <category name='meta' id='meta_${item.name}'>
-    <block type='meta_swagger_controllers_${item.name}'></block>
-    <block type='meta_swagger_controllers_actions_${item.name}'></block>
-    </category>
-    
-    </category>
-    `;
-    // console.log('x',replaceCategory)
-    xmlToolbox= xmlToolbox.replace(nameExistingCategorySwagger,replaceCategory);  
-    // console.log('load toolbox '+swaggerLoaded,xmlToolbox)  ;
-    primaryWorkspace.current?.updateToolbox(xmlToolbox);
-    
-    
-      
-        var nameCat = 'objects_' + item.nameCategSwagger();
-        var nameAPI = 'AllApi_' + item.nameCategSwagger();
-        var cache=item;
-        
-        primaryWorkspace.current?.registerToolboxCategoryCallback(
-          nameCat,
-          (d: Blockly.Workspace) => {
-            return registerSwaggerBlocksObjects(d, cache);
-          }
-        );
-        
-        primaryWorkspace.current?.registerToolboxCategoryCallback(
-          nameAPI,
-          (d: Blockly.Workspace) => {
-            return registerSwaggerBlocksAPIAll(d, cache);
-          }
-        );
-          
-        item.findCategSwaggerFromPaths().forEach((it: any) => {
-            primaryWorkspace.current?.registerToolboxCategoryCallback(
-              `func_${item.name}_${it}`,
-              (d: Blockly.Workspace) => {
-                return  registerSwaggerBlocksAPIControllers(
-                  d,
-                  item,
-                  it
-                );
-              }
-            );
-          });
-       return xmlToolbox;
-      }
     const registerSwaggerBlocksObjects=(
         demoWorkspace: Blockly.Workspace,
         item: any
@@ -393,82 +473,10 @@ Blockly.setLocale(locale);
         return xmlList;
       }   
    
-    const afterTimeout=()=>{
-        var nr = swaggerData.length;
-        if(nr === 0)
-            return;
-        if(swaggerData.every(it=>it.hasError))
-            {
-                console.log('all swaggers has errors');
-                return;
-            }
-        var xmlToolbox=primaryXmlToolboxRef.current;
-       
-        primaryWorkspace.current!.updateToolbox(xmlToolbox);
-        
-        swaggerData.forEach((item, index) => {
-        //  console.log('a_item', item);
-            var cache=item;  
-            xmlToolbox= addToToolboxSwagger(cache,xmlToolbox, index);
-        });
-        setPrimaryXmlToolbox(xmlToolbox);
-    // if (myComponent?.mustLoadDemoBlock != null)
-    //   myComponent.ShowDemo(myComponent?.mustLoadDemoBlock);
-    // else {
-        // console.log('asdsa', startBlocks);
-      if ((startBlocks?.length || 0) > 0) {
-        try {
-          var xml_text = (startBlocks || []).join('\n');
-          //<xml xmlns="https://developers.google.com/blockly/xml"></xml>
-          if (xml_text?.length > 62) {
-            var xml = Blockly.Xml.textToDom(xml_text);
-            Blockly.Xml.clearWorkspaceAndLoadFromXml(
-              xml,
-              primaryWorkspace.current!
-            );
-          }
-        } catch (e) {
-          console.log('error when load default blocks', e);
-        }
-      }
-    if(id){
-       LoadIDService.sendID(id);
-    }
-    else{
-      var s1=new saveLoadService();
-      s1.restoreState(primaryWorkspace.current!,"save1");
-    }
-    
-    }
     
 
-    const LoadSwaggerFromAPI = (api: BlocklyReturnSwagger)=> {
-        
-        if(api.hasError){
-          console.error("error in swagger", api.name);
-          return api;
-        }
-        swaggerData.push(api);
-        for (var i = 0; i < api.GenerateBlocks.length; i++) {
-          var e = api.GenerateBlocks[i];
-        //   if(Blockly.getMainWorkspace() == null){
-        //     console.log('#38 here in loadSwagger from api is not ok',Blockly.getMainWorkspace());
-        //   }
-          e(Blockly.Blocks, javascriptGenerator,primaryWorkspace.current );
-        }
-        for (var i = 0; i < api.GenerateFunctions.length; i++) {
-          var e = api.GenerateFunctions[i];
-          var image = function (opKey: string) {
-            var image = `assets/httpImages/${opKey}.png`;
-            return new Blockly.FieldImage(image, 90, 20, opKey);
-          };
-         
-          e(Blockly.Blocks, javascriptGenerator);
-        }
-        api.metaBlocks()(Blockly.Blocks, javascriptGenerator);
-        return api;
-      }
-      const  LoadSwaggerFromUrl=async (url: string, name?: string)=> {
+    
+      const  LoadSwaggerFromUrl=useCallback(async (url: string, name?: string)=> {
         const baseUrl=process.env.PUBLIC_URL+'/'; 
         var parser = new BlocklyReturnSwagger(url,baseUrl);
         var api = await parser.ParseSwagger();
@@ -478,15 +486,15 @@ Blockly.setLocale(locale);
           return LoadSwaggerFromAPI(api); 
         else
           return api;
-      }
+      },[LoadSwaggerFromAPI]);
 
       const LoadPrompt=(text:string, callBack: (result:string|null)=>void)=>{
           var data= window.prompt(text);
           callBack(data);
       }
-      const LoadSwagger= ()=>{
+      const LoadSwagger= useCallback(()=>{
         
-        const baseUrl=process.env.PUBLIC_URL+'/'; 
+        //const baseUrl=process.env.PUBLIC_URL+'/'; 
         LoadPrompt('Please enter the swagger url ( not the html!)' , (json:string| null)=>{
         
         if (!json) return;
@@ -512,7 +520,7 @@ Blockly.setLocale(locale);
           }
         });
           });
-    }
+    },[LoadSwaggerFromUrl, addToToolboxSwagger, swaggerData]);
 
     
     useEffect(() => {
@@ -588,7 +596,7 @@ Blockly.setLocale(locale);
             // }
             var s=new saveLoadService();
             s.restoreState(primaryWorkspace.current,"save1");
-    }, [primaryWorkspace, toolbox, blocklyDiv, props]);
+    }, [primaryWorkspace, toolbox, blocklyDiv, props, LoadSwagger]);
  
     return <>
         <input type='file' id='file' ref={inputFile}  onChange={LoadFile} style={{display: 'none'}}/>

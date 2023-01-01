@@ -1,5 +1,5 @@
 
-import * as Blockly from 'blockly/core';
+// import * as Blockly from 'blockly/core';
 import { IBlocksSimple } from '../../blocksInterface';
 export default class DateFromTextBlock implements IBlocksSimple {
   static nameBlock:string='DateFromText';

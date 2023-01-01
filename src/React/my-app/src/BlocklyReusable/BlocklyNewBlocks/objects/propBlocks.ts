@@ -117,7 +117,7 @@ export default class propBlockly implements IBlocksSimple {
       // value_objecttochange +
       // ')';
 
-      return [code, javaScript.ORDER_NONE];
+      //return [code, javaScript.ORDER_NONE];
     };
   }
 

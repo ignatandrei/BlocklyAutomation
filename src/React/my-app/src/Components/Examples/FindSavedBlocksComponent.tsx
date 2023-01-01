@@ -1,10 +1,10 @@
 
-import { Autocomplete, AutocompleteChangeDetails, AutocompleteChangeReason, AutocompleteCloseReason, AutocompleteValue, Avatar, Dialog, DialogTitle, FilterOptionsState, List, ListItem, ListItemAvatar, ListItemText, ListSubheader, TextField } from '@mui/material';
-import { blue } from '@mui/material/colors';
+import { Autocomplete, AutocompleteChangeDetails, AutocompleteChangeReason,  AutocompleteValue,  Dialog, DialogTitle, FilterOptionsState, List, ListItem,  ListItemText, ListSubheader, TextField } from '@mui/material';
+//import { blue } from '@mui/material/colors';
 import { useEffect, useState } from 'react';
 import { SimpleDialogProps } from '../../Common/SimpleDialogProps';
 import DemoBlocks from './DemoBlocks';
-import { LoadIDService } from './Messages';
+//import { LoadIDService } from './Messages';
 
 
 function FindSavedBlocksComponent(props:SimpleDialogProps) {

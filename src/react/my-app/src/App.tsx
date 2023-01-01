@@ -3,38 +3,38 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import SendIcon from '@mui/icons-material/Send';
 
-import logo from './logo.svg';
+// import logo from './logo.svg';
 
 // import BlocklyComponent, { Block, Value, Field, Shadow } from './Blockly';
 
 // import './Blocks/customBlocks';
 // import './generator/generator';
 import Blockly from 'blockly/core';
-import  BlocklyComponent, { BlockReact,  CategoryReact, Field, Mutation, Shadow, Value } from './BlocklyFields';
+import  BlocklyComponent from './BlocklyFields';
 import { Alert,  AppBar, Box, Button, IconButton,  Snackbar, Toolbar, Typography, useMediaQuery, useTheme } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { javascriptGenerator } from 'blockly/javascript';
-import waitBlock from './BlocklyReusable/BlocklyNewBlocks/timers/wait_block';
+// import waitBlock from './BlocklyReusable/BlocklyNewBlocks/timers/wait_block';
 import FindSavedBlocksComponent from './Components/Examples/FindSavedBlocksComponent';
 import SaveButton from './Components/GUI/saveButton';
-import DemoBlocks from './Components/Examples/DemoBlocks';
-import { LoadIDService, MustSave, RunCode, RunCodeData, RunCodeMessage, ShowData } from './Components/Examples/Messages';
-import CurrentDateBlock from './BlocklyReusable/BlocklyNewBlocks/dates/CurrentDateBlock';
-import BlocklyDisplayText from './Components/GUI/BlocklyDisplayText';
+// import DemoBlocks from './Components/Examples/DemoBlocks';
+import { LoadIDService,  RunCode, RunCodeData, RunCodeMessage, ShowData } from './Components/Examples/Messages';
+// import CurrentDateBlock from './BlocklyReusable/BlocklyNewBlocks/dates/CurrentDateBlock';
+// import BlocklyDisplayText from './Components/GUI/BlocklyDisplayText';
 import BlocklyDisplayData from './Components/GUI/BlocklyDisplayData';
 import OutputButton from './Components/GUI/outputButton';
 import ShowCodeAndXML from './Components/GUI/ShowCodeAndXML';
-import { tts } from './BlocklyReusable/BlocklyNewBlocks/tts';
-import { piano } from './BlocklyReusable/BlocklyNewBlocks/piano';
-import {  CredsBlocks } from './BlocklyReusable/BlocklyNewBlocks/http/WindowsCreds';
-import { HttpBlocks } from './BlocklyReusable/BlocklyNewBlocks/http/xhrBlocks';
+// import { tts } from './BlocklyReusable/BlocklyNewBlocks/tts';
+// import { piano } from './BlocklyReusable/BlocklyNewBlocks/piano';
+// import {  CredsBlocks } from './BlocklyReusable/BlocklyNewBlocks/http/WindowsCreds';
+// import { HttpBlocks } from './BlocklyReusable/BlocklyNewBlocks/http/xhrBlocks';
 import AllNewBlocks from './BlocklyReusable/allNewBlocks';
 import { SettingsBA } from './Components/GUI/settings/Settings';
 
 
 import ToolboxBlocksCore from './Components/ToolboxBlocksCore';
 import ToolboxBlocksAdvanced from './Components/ToolboxBlocksAdvanced';
-import About from './Components/GUI/about';
+// import About from './Components/GUI/about';
 import {  IBlocksExtMut, IBlocksSimple } from './BlocklyReusable/blocksInterface';
 
 // import darkThemeData from './BlocklyReusable/themeDark';
@@ -128,19 +128,20 @@ const handleClickOpen = () => {
             case RunCodeData.Start:
                 setdisabledRun(true);
                 setShowSnack(true);
-                return;
+                break;
             case RunCodeData.Stop:
                 setdisabledRun(false);
                 setShowSnack(false);
                 
-                return;
+                break;
             case RunCodeData.UserRequestedPrint:
-                return;
+                break;
             default:
                 window.alert('cannot interpret '+ it +' in app.tsx');
-                return;
+                break;
         }
-    })
+    });
+    return ()=>x.unsubscribe();
 
   },[]);
 
@@ -155,7 +156,7 @@ const handleClickOpen = () => {
   </Alert>
 </Snackbar>
       <Box sx={{ flexGrow: 1 }}>
-      {/* <span>{userWantshowLeftMenu?"true":"false"}</span> */}
+      <span>{userWantshowLeftMenu?"  ":" "}</span>
       {/* <span>{isMobile ? <>(
           mobil
         )</>: <>(not mobil)</>
@@ -237,7 +238,5 @@ const handleClickOpen = () => {
 }
 
 export default App;
-function renderToString(arg0: string) {
-    throw new Error('Function not implemented.');
-}
+
 

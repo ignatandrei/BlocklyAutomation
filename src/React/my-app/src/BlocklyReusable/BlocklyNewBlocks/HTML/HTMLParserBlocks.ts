@@ -80,7 +80,7 @@ export default class HtmlParserBlocks implements IBlocksSimple{
     var ret = [];
     if(!rows)
         return [];
-    if(rows.length==0){
+    if(rows.length===0){
         return [];
     }
     //first row is header
@@ -113,13 +113,13 @@ export default class HtmlParserBlocks implements IBlocksSimple{
     // console.log('a',elements);
     // console.log('b',elements[0]);
     
-    if(elements.length == 0)
+    if(elements.length === 0)
         return ret;
     switch(tagName){
         case "table":
             ret={};
-            for(var i=0;i<elements.length;i++){
-                (ret as any)["table"+i]= this.table2array(elements[i]);     
+            for(var iEl=0;iEl<elements.length;iEl++){
+                (ret as any)["table"+iEl]= this.table2array(elements[iEl]);     
             }             
             break;
         case "a":
@@ -129,31 +129,31 @@ export default class HtmlParserBlocks implements IBlocksSimple{
                 loc=window.location.protocol+"//"+loc;
             }
             // console.log('x',loc);
-            for(var i=0;i<elements.length;i++){
-                var href=elements[i].href;
+            for(var iEle=0;iEle<elements.length;iEle++){
+                var href=elements[iEle].href;
                 if(loc.length>0 && href.startsWith(loc)){
                     href= href.substring(loc.length);
                 }
-                (ret as any).push({ "href" : href, 'text': elements[i].innerText});    
+                (ret as any).push({ "href" : href, 'text': elements[iEle].innerText});    
             }
             break;
         case "img":
             ret=[];
-            for(var i=0;i<elements.length;i++){
-                (ret as any).push({ "src" : elements[i].src});     
+            for(var iElement=0;iElement<elements.length;iElement++){
+                (ret as any).push({ "src" : elements[iElement].src});     
             }
             break;    
         case "ul,ol":
             ret={};
-            for(var i=0;i<elements.length;i++){
-                (ret as any)["list"+i]= this.list2array(elements[i]);     
+            for(var iList=0;iList<elements.length;iList++){
+                (ret as any)["list"+iList]= this.list2array(elements[iList]);     
             }      
             
             break;
         case "h1,h2,h3,h4,h5,h6":
             ret=[];
-            for(var i=0;i<elements.length;i++){
-                (ret as any).push({ "header" : elements[i].innerText});     
+            for(var iH=0;iH<elements.length;iH++){
+                (ret as any).push({ "header" : elements[iH].innerText});     
             }
             break;
         default:
@@ -167,7 +167,7 @@ list2array(list:any) :any[] {
   var rows =   list.getElementsByTagName('li');;
   //console.log(myData)
   var ret = [];
-  if(rows.length==0){
+  if(rows.length===0){
       return [];
   }
   for (var i = 0; i < rows.length; i++) {

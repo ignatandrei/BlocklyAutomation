@@ -66,11 +66,11 @@ export class HTMLTags implements IBlocksSimple{
 
     javaScript['HTMLlist'] = function (block: any) {
       var dropdown_listtype = block.getFieldValue('listType');
-      var value_listtype = javaScript.valueToCode(
-        block,
-        'ListType',
-        javaScript.ORDER_ATOMIC
-      );
+      // var value_listtype = javaScript.valueToCode(
+      //   block,
+      //   'ListType',
+      //   javaScript.ORDER_ATOMIC
+      // );
       var statements_content = javaScript.statementToCode(block, 'Content');
 
       var code = `window.alert('<${dropdown_listtype}>');\n;${statements_content};\n;window.alert('</${dropdown_listtype}>');\n`;

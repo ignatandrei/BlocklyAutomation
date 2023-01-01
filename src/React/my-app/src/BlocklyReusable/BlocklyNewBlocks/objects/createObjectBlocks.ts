@@ -17,7 +17,7 @@ definitionBlocksExtMut(blocks: any,javaScript:any,BlocklyExtensions:any,  Blockl
     const ORDER_ATOMIC = javaScript.ORDER_ATOMIC ;
     const ORDER_NONE=javaScript.ORDER_NONE;
     const ALIGN_RIGHT=javaScript.ALIGN_RIGHT;
-    const ALIGN_CENTRE=javaScript.ALIGN_CENTRE;
+    // const ALIGN_CENTRE=javaScript.ALIGN_CENTRE;
     
     javaScript['object_from_json'] = function(block: any) {
         const value_json = javaScript.valueToCode(block, 'JSON', ORDER_ATOMIC);
@@ -268,8 +268,9 @@ definitionBlocksExtMut(blocks: any,javaScript:any,BlocklyExtensions:any,  Blockl
          */
         domToMutation: function(xmlElement:any) {
           this.fields = [];
-          for (let i = 0, childNode; childNode = xmlElement.childNodes[i]; i++) {
-            if (childNode.nodeName.toLowerCase() == 'field') {
+          for (let i = 0;i<xmlElement.childNodes.length ; i++) {
+            let childNode = xmlElement.childNodes[i];
+            if (childNode.nodeName.toLowerCase() === 'field') {
               this.fields.push(childNode.getAttribute('name'));
             }
           }

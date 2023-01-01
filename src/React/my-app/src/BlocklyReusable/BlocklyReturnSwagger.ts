@@ -63,7 +63,7 @@ export default class BlocklyReturnSwagger {
     
     this.basePath= r.basePath ||'';
     
-    if(this.basePath.length == 0){
+    if(this.basePath.length === 0){
       if(r.servers && r.servers.length>0){
         this.basePath=r.servers[0].url;
       }
@@ -72,7 +72,7 @@ export default class BlocklyReturnSwagger {
     //var r = q.response;
     // console.log(r.paths);
     var data=r.components?.schemas;
-    if(data == null || data == undefined){
+    if(data == null || data === undefined){
       //console.log(this.swaggerUrl,data);
       data=r.definitions;
     }
@@ -130,10 +130,10 @@ export default class BlocklyReturnSwagger {
     return self;
   }
   categSwagger():string {
-    var h = this.findHostNameRegular();
-    h = h.split(".").join("");
-    var max = 5;
-    if (h.length > max) var first = h.substring(0, max);
+    //var h = this.findHostNameRegular();
+    //h = h.split(".").join("");
+    //var max = 5;
+    //if (h.length > max) var first = h.substring(0, max);
     var categ = this.nameCategSwagger();
     return (
       '<category name="Objects' +
@@ -151,7 +151,7 @@ export default class BlocklyReturnSwagger {
     
     var self = this;
     var blocklyTypeName = key;
-    var props = "";
+    //var props = "";
     var objPropString = self.findProperties(schema);
 
     return function (blocks:any, javaScript:any, ws: Blockly.WorkspaceSvg) {
@@ -200,12 +200,12 @@ export default class BlocklyReturnSwagger {
           objPropString.forEach((item) => {
             //var t = self.TranslateToBlocklyType(key.type);
               var name=item.key;
-              if(item.value.nullable && item.value.nullable==false){
+              if(item.value.nullable && item.value.nullable===false){
                 name +="*";
               } 
               if(item.value?.type){
                 var val=item.value.type||'';
-                if(val == "object"){
+                if(val === "object"){
                   // console.log(item);
                   var val1= item.value["$$ref"]||'';
                   if(val1.length>0){
@@ -249,7 +249,7 @@ export default class BlocklyReturnSwagger {
       };
 
       javaScript[blocklyTypeName] = function (block:any) {
-        {
+        
           //console.log(blocklyTypeName, self.openApiDocument);
           // var actualSchema = self.openApiDocument.components.schemas[blocklyTypeName];
           // console.log(blocklyTypeName, actualSchema);
@@ -279,9 +279,9 @@ export default class BlocklyReturnSwagger {
             if (val == null) {
               val = "null";
             }
-            objPropString.push(`"${it.key}\":${val}`);
+            objPropString.push(`"${it.key}":${val}`);
           });
-          var code = "{ " + objPropString.join(",") + " }";
+          code = "{ " + objPropString.join(",") + " }";
 
           if(isEnum){           
             var dropdown_name = block.getFieldValue(`val_${key}`);                    
@@ -289,7 +289,7 @@ export default class BlocklyReturnSwagger {
           }
           //console.log(code);
           return [code, /*javaScript.*/ ORDER_NONE];
-        }
+        
       };
     };
   }
@@ -336,21 +336,21 @@ export default class BlocklyReturnSwagger {
     return hostname;
   }
   GenerateShadowField(blockShadowType:any,key:any, defaultValue:any):string {
-         
+           
     switch (blockShadowType)
     {
         case "integer":
         case "number":
-            var val=defaultValue?defaultValue:0;            
-            return `<block type='math_number'><field name='NUM'>${val}</field></block>`;
+            var valNr=defaultValue?defaultValue:0;            
+            return `<block type='math_number'><field name='NUM'>${valNr}</field></block>`;
 
         case "string":
-            var val = defaultValue?defaultValue:`please enter ${key}`;
-            return `<block type='text'><field name='TEXT'>${val}</field></block>`;
+            var valStr = defaultValue?defaultValue:`please enter ${key}`;
+            return `<block type='text'><field name='TEXT'>${valStr}</field></block>`;
 
         case "boolean":
-            var val= defaultValue?defaultValue:"FALSE";
-            return `<block type='logic_boolean'><field name='BOOL'>${val}</field></block>`;
+            var valB= defaultValue?defaultValue:"FALSE";
+            return `<block type='logic_boolean'><field name='BOOL'>${valB}</field></block>`;
         case "array":
             return '<block type="lists_create_with"> <mutation items="0"></mutation></block>';
         
@@ -374,7 +374,7 @@ export default class BlocklyReturnSwagger {
       operation,
       operationKey
     );
-    var props = "";
+    // var props = "";
     var op = operation;
     //console.log(key);
     //console.log(operationKey);
@@ -385,9 +385,9 @@ export default class BlocklyReturnSwagger {
     if (op.parameters){
       op.parameters.forEach((it:any) => {        
         if(it.type){
-          var shadow=self.GenerateShadowField(it.type, it.name,null);
-          if(shadow.length>0){
-            xmlBlockShow += `<value name="val_${it.name}">${shadow}</value>`;
+          var shadowField=self.GenerateShadowField(it.type, it.name,null);
+          if(shadowField.length>0){
+            xmlBlockShow += `<value name="val_${it.name}">${shadowField}</value>`;
           }
 
         }
@@ -424,9 +424,9 @@ export default class BlocklyReturnSwagger {
     xmlBlockShow += `<value name="override_Host">${shadow}</value>`;          
    
     port=port?port:"0";
-    var shadow=self.GenerateShadowField('integer', 'override_port',port);
+    var shadowNew=self.GenerateShadowField('integer', 'override_port',port);
     //  console.log('X_override_host',shadow);
-      xmlBlockShow+= `<value name="override_Port">${shadow}</value>`;          
+      xmlBlockShow+= `<value name="override_Port">${shadowNew}</value>`;          
    
       xmlBlockShow+=`</block></value>`;
       
@@ -504,7 +504,7 @@ export default class BlocklyReturnSwagger {
                     name += "=>"+s[s.length-1];
                   }
                   else if(it.schema.type){
-                    if(it.schema.type=='object'){
+                    if(it.schema.type==='object'){
                       var val = it.schema["$$ref"]||'';
                       if(val.length>0){
                         val = val.substring(val.lastIndexOf("/")+1);
@@ -596,7 +596,7 @@ export default class BlocklyReturnSwagger {
           parameters = operation.parameters;
         }
         var hasBody=false;
-        var hasBodyParameter=parameters.filter((it:any)=>it.in=='body').length>0;
+        var hasBodyParameter=parameters.filter((it:any)=>it.in==='body').length>0;
         if(hasBodyParameter || ('requestBody' in operation)){
           hasBody=true;
         }
@@ -626,12 +626,12 @@ export default class BlocklyReturnSwagger {
             parameterFunctionDefinition.push("values");
         }
         parameterFunctionDefinition.push("extraData");
-        var callingFunctionDefinition = parameters.map(
-          (it:any) =>"${" + `obj['val_${it.name}']` +"}" + ","
-        );
+        // var callingFunctionDefinition = parameters.map(
+        //   (it:any) =>"${" + `obj['val_${it.name}']` +"}" + ","
+        // );
         
         
-        callingFunctionDefinition += "1"; //maybe later we use for logging
+        // callingFunctionDefinition += "1"; //maybe later we use for logging
         var code = "function(";
         code += parameterFunctionDefinition.join(",");
         var rootSite=self.findRootSite();
@@ -661,17 +661,17 @@ export default class BlocklyReturnSwagger {
           code +='\n rootSite="";//the root site is in url;\n';          
         }
         code += 'var strUrl =rootSite +"'+ partUrl + '";\n';
-        var paramsQuery = parameters.filter((it:any) => it.in == "query");
+        var paramsQuery = parameters.filter((it:any) => it.in === "query");
         if(paramsQuery.length>0){
           code += 'strUrl+="?";\n;';
-          var data= paramsQuery.map((it:any)=>`${it.name}=`+"{" + it.name+"}") .join("&");
+          var data= paramsQuery.map((it:any)=>`${it.name}={${it.name}}`).join("&");
           // console.log(data);
           // console.log('strUrl += "'+data+'";'); 
           code += 'strUrl += "'+data+'";\n;';
         }
 
         var replaceUrl = parameters
-          .filter((it:any) => it.in == "path" || it.in == "query")
+          .filter((it:any) => it.in === "path" || it.in === "query")
           //.map((it) => `strUrl = strUrl.replace("{${it.name}}",${it.name});`)
           .map((it:any) => `
           //this gives error cannot read property 'call' of undefined in acorn
@@ -692,7 +692,7 @@ export default class BlocklyReturnSwagger {
         if(hasBody) {
           var values="values";
           if(hasBodyParameter){
-            values= parameters.filter((it:any)=>it.in=='body')[0].name;
+            values= parameters.filter((it:any)=>it.in==='body')[0].name;
           }
           code += `,JSON.stringify(${values})`;
         }
@@ -767,12 +767,12 @@ export default class BlocklyReturnSwagger {
   
 
 TranslateToBlocklyType(t:any) {
-  if (t == "integer") return "Number";
-  if (t == "string") return "String";
+  if (t === "integer") return "Number";
+  if (t === "string") return "String";
 
-  if (t == "bool") return "Boolean";
+  if (t === "bool") return "Boolean";
 
-  if (t == "array") return "Array";
+  if (t === "array") return "Array";
   console.error("not found TranslateToBlocklyType item" + t);
   return "not found type" + t;
 }
@@ -841,7 +841,7 @@ TranslateToBlocklyType(t:any) {
         return [code, javaScript.ORDER_NONE];
       };
 
-      var nameBlock = `meta_swagger_controllers_actions_${self.name}`;
+      nameBlock = `meta_swagger_controllers_actions_${self.name}`;
       blocks[nameBlock] = {
         init: function () {
           this.appendDummyInput().appendField('categories_actions' + self.name);
@@ -920,7 +920,7 @@ TranslateToBlocklyType(t:any) {
         return it;
       })
       .map((it) => {
-        if (it.id.lastIndexOf('/') != it.id.length - 1) it.id += '/';
+        if (it.id.lastIndexOf('/') !== it.id.length - 1) it.id += '/';
 
         return it;
       });
@@ -941,12 +941,12 @@ TranslateToBlocklyType(t:any) {
       });
 
     var others = normalized
-      .filter((it) => it.nrOps == 1)
+      .filter((it) => it.nrOps === 1)
       .map((it) => {
         return { arr: it.id.split('/').filter((a:string) => a.length > 0), id: it.id };
       })
       .map((it) => {
-        if (it.arr.length == 1) return { controller: it.arr[0], id: it.id };
+        if (it.arr.length === 1) return { controller: it.arr[0], id: it.id };
         return { controller: it.arr[it.arr.length - 2], id: it.id };
       });
     this.operations.push(...others);
@@ -961,11 +961,11 @@ TranslateToBlocklyType(t:any) {
     // var allPaths=this.openApiDocument.paths;
     //var keys= Object.keys(allPaths);
     
-    var urls = this.operations.filter((it:any) => it.controller == controllerName);
+    var urls = this.operations.filter((it:any) => it.controller === controllerName);
     // console.log('x'+controllerName, urls);
     var xmlList = this.fieldXMLFunctions
       .filter((it:any) => {
-        if (it.id == '') return true;
+        if (it.id === '') return true;
         var val = it.id + '/';
         var existInfields = false;
         urls.forEach((url:any) => {
