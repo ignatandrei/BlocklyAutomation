@@ -1,0 +1,189 @@
+name: "deploy version"
+env:
+  DOTNET_VERSION: '6.0.x'           # set this to the dot net version to use
+  AZURE_WEBAPP_NAME: 'AutoBlocklyApp'
+on:
+  push:    
+    tags:
+      - "v*"
+  
+  workflow_dispatch:
+
+jobs:
+  buildAngular:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16.13.0]
+
+    steps:
+    - name: 'Checkout Github Action'
+      uses: actions/checkout@master
+
+    - name: Node ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: put version
+      run: |
+        echo "${{github.ref_name}}" 
+        echo "${{github.ref_name}}" > version.txt
+
+
+    - name: npm install
+      run: |
+        cd src        
+        cd React
+        cd my-app
+        npm i -g npm@8.1.0               
+        npm i  
+    - name: Archive production artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: AutoBlocklyApp
+        path: 'src/React/my-app/build/*'
+        retention-days: 1
+
+        
+    - name: Archive Release 
+      uses: thedoctor0/zip-release@master
+      with:
+        type: 'zip'
+        filename: 'releaseBlocklyAutomation.zip'
+        path: 'auto-blockly-app/'
+        directory: '${{github.workspace}}/src/React/my-app/build/'
+        exclusions: '*.git* /*node_modules/* .editorconfig'       
+
+    - name: copy release 
+      run: |
+        find ${{github.workspace}} -type f -name "*.zip"
+
+    - name: Archive production artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: AllReleases
+        path: |
+            releaseBlocklyAutomation.zip
+            version.txt
+        retention-days: 1
+
+
+    - name: Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files:  |
+            releaseBlocklyAutomation.zip
+            version.txt
+        tag: v${{ env.GITHUB_SHA }}
+        tag_name: v${{ env.GITHUB_SHA }}
+
+
+
+
+    - name: delete older-releases@v0
+      uses: dev-drprasad/delete-older-releases@v0.2.0
+      with:
+        #repo: <owner>/<repoName> # defaults to current repo
+        keep_latest: 2
+        #delete_tag_pattern: beta # defaults to ""
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
+  buildDesktop:
+    needs: buildAngular
+    runs-on: windows-latest
+
+    steps:
+    - name: 'Checkout Github Action'
+      uses: actions/checkout@master
+
+    - name: Set up .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }} 
+    
+    - name: Download artifact
+      uses: actions/download-artifact@v1
+      with:
+        name: AllReleases
+  
+    - name: unzip ang archive
+      shell: pwsh
+      run: |
+        echo 'root'
+        dir
+        echo 'All releases'
+        dir AllReleases/*
+        Expand-Archive -LiteralPath "AllReleases/releaseBlocklyAutomation.zip" -DestinationPath "releaseBlocklyAutomation"
+        echo 'root'
+        dir
+        echo 'releaseBlocklyAutomation'
+        dir releaseBlocklyAutomation
+        echo 'All releases'
+        dir AllReleases/*
+    - name: build wpf
+      shell: pwsh
+      run: |        
+        rm -r src\apps\wpf\WebView2WpfBrowser\dist\
+        cp -r releaseBlocklyAutomation\* src\apps\wpf\WebView2WpfBrowser\dist\
+        ((Get-Content -path src\apps\wpf\WebView2WpfBrowser\dist\index.html -Raw) -replace 'base href="/BlocklyAutomation/"','base href="."') | Set-Content -Path src\apps\wpf\WebView2WpfBrowser\dist\index.html
+        cd src\apps\wpf\WebView2WpfBrowser
+        dotnet publish -r win-x64 -c Release -o ${{env.AZURE_WEBAPP_NAME}}WPF64 --self-contained 
+
+    - name: zip wpf
+      uses: thedoctor0/zip-release@master
+      with:
+        type: 'zip'
+        filename: 'releaseWPF64.zip'
+        directory: '${{github.workspace}}/src/apps/wpf/WebView2WpfBrowser'
+        path: '${{env.AZURE_WEBAPP_NAME}}WPF64/'
+        exclusions: '*.git* /*node_modules/* .editorconfig'       
+
+    - name: copy zip
+      run: |
+        # find ${{github.workspace}} -type f -name "*.zip"
+        cp ${{github.workspace}}\src\apps\wpf\WebView2WpfBrowser\releaseWPF64.zip ${{github.workspace}}/releaseWPF64.zip 
+        cp -r AllReleases/* .
+        echo 'copied'
+        # find ${{github.workspace}} -type f -name "*.zip"
+
+    - name: Archive wpf
+      uses: actions/upload-artifact@v2
+      with:
+        name: wpf
+        path: |
+            releaseWPF64.zip 
+            # releaseBlocklyAutomation.zip
+            # releaseLin.zip
+            # releaseWin.zip
+            # releaseIISWin.zip
+            # releaseLocalAPI.zip
+            # version.txt
+        retention-days: 1
+
+    - name: Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files:  |
+            releaseWPF64.zip
+            releaseBlocklyAutomation.zip
+            releaseLin.zip
+            releaseWin.zip
+            releaseIISWin.zip
+            releaseLocalAPI.zip
+            version.txt
+        # tag: v${{ env.GITHUB_SHA }}
+        # tag_name: v${{ env.GITHUB_SHA }}
+    
+    - name: delete older-releases@v0
+      uses: dev-drprasad/delete-older-releases@v0.2.0
+      with:
+        #repo: <owner>/<repoName> # defaults to current repo
+        keep_latest: 2
+        #delete_tag_pattern: beta # defaults to ""
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
