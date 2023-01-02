@@ -54,7 +54,7 @@ jobs:
         type: 'zip'
         filename: 'releaseBlocklyAutomation.zip'
         path: 'src/react_new_app/my-app/build/*'
-        directory: '${{github.workspace}}src/react_new_app/my-app/build/'
+        directory: '${{github.workspace}}/src/react_new_app/my-app/build/'
         exclusions: '*.git* /*node_modules/* .editorconfig'       
 
     - name: copy release 
