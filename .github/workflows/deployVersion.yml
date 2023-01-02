@@ -43,19 +43,9 @@ jobs:
     - name: Archive production artifacts
       uses: actions/upload-artifact@v2
       with:
-        name: AutoBlocklyApp
+        name: releaseBlocklyAutomation
         path: 'src/react_new_app/my-app/build/*'
         retention-days: 1
-
-        
-    - name: Archive Release 
-      uses: thedoctor0/zip-release@master
-      with:
-        type: 'zip'
-        filename: 'releaseBlocklyAutomation.zip'
-        path: 'auto-blockly-app/'
-        directory: '${{github.workspace}}/src/react_new_app/my-app/build/'
-        exclusions: '*.git* /*node_modules/* .editorconfig'       
 
     - name: copy release 
       run: |
