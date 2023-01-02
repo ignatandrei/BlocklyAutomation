@@ -30,6 +30,11 @@ jobs:
         echo "${{github.ref_name}}" 
         echo "${{github.ref_name}}" > version.txt
 
+    - name: change root
+      shell: pwsh
+      run: |
+        ((Get-Content -path src/react_new_app/my-app/package.json -Raw) -replace '"homepage": "."','"homepage": "/blocklyAutomation"') | Set-Content -Path src/react_new_app/my-app/package.json
+
 
     - name: npm install
       run: |
