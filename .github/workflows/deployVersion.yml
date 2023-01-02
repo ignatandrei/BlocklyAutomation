@@ -47,13 +47,16 @@ jobs:
         path: 'src/react_new_app/my-app/build/*'
         retention-days: 1
 
-        
+    - name: verify exists
+      run: |
+        ls -l ${{github.workspace}}/src/react_new_app/my-app/build/
+
     - name: Archive Release 
       uses: thedoctor0/zip-release@master
       with:
         type: 'zip'
         filename: 'releaseBlocklyAutomation.zip'
-        path: 'src/react_new_app/my-app/build/*'
+        path: '${{github.workspace}}/src/react_new_app/my-app/build/*'
         directory: '${{github.workspace}}/src/react_new_app/my-app/build/'
         exclusions: '*.git* /*node_modules/* .editorconfig'       
 
