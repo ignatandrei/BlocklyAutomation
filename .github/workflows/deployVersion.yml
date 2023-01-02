@@ -49,8 +49,7 @@ jobs:
 
     - name: verify exists
       run: |
-        ls -l ${{github.workspace}}/src/react_new_app/my-app/build/
-        cp
+        ls -l ${{github.workspace}}/src/react_new_app/my-app/build/      
 
     - name: Archive Release 
       uses: thedoctor0/zip-release@master
