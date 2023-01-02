@@ -1,5 +1,5 @@
 #please edit  public static version: string = '
-name: "tagged-release"
+name: "tagged-release to be moved some to NetCoreBlockly"
 env:
   DOTNET_VERSION: '6.0.x'           # set this to the dot net version to use
   AZURE_WEBAPP_NAME: 'AutoBlocklyApp'

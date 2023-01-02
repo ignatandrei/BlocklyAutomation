@@ -38,7 +38,7 @@ jobs:
           npm i 
           npm run build
           cd build 
-          
+          ls -l          
           # cd src
           # cd AngWorkspace
           # npm i -g npm@8.3.0               

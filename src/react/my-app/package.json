@@ -2,6 +2,7 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
+  "homepage": ".",
   "dependencies": {
     "@blockly/plugin-cross-tab-copy-paste": "^2.0.2",
     "@blockly/shadow-block-converter": "2.0.2",
@@ -20,6 +21,7 @@
     "@types/react": "18.0.24",
     "@types/react-dom": "18.0.8",
     "blockly": "9.0.1",
+    "env-cmd": "10.1.0",
     "file-saver": "2.0.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",
