@@ -47,18 +47,20 @@ jobs:
         path: 'src/react_new_app/my-app/build/*'
         retention-days: 1
 
+        
+    - name: Archive Release 
+      uses: thedoctor0/zip-release@master
+      with:
+        type: 'zip'
+        filename: 'releaseBlocklyAutomation.zip'
+        path: 'src/react_new_app/my-app/build/*'
+        directory: '${{github.workspace}}src/react_new_app/my-app/build/'
+        exclusions: '*.git* /*node_modules/* .editorconfig'       
+
     - name: copy release 
       run: |
         find ${{github.workspace}} -type f -name "*.zip"
 
-    - name: Archive production artifacts
-      uses: actions/upload-artifact@v2
-      with:
-        name: AllReleases
-        path: |
-            releaseBlocklyAutomation.zip
-            version.txt
-        retention-days: 1
 
 
     - name: Release
@@ -67,7 +69,7 @@ jobs:
         files:  |
             releaseBlocklyAutomation.zip
             version.txt
-        tag: v${{ env.GITHUB_SHA }}
+        # tag: v${{ env.GITHUB_SHA }}
         tag_name: v${{ env.GITHUB_SHA }}
 
 
