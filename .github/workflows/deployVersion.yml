@@ -34,7 +34,7 @@ jobs:
     - name: npm install
       run: |
         cd src        
-        cd React
+        cd react_new_app
         cd my-app
         npm i -g npm@8.1.0               
         npm i  
@@ -42,7 +42,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: AutoBlocklyApp
-        path: 'src/React/my-app/build/*'
+        path: 'src/react_new_app/my-app/build/*'
         retention-days: 1
 
         
@@ -52,7 +52,7 @@ jobs:
         type: 'zip'
         filename: 'releaseBlocklyAutomation.zip'
         path: 'auto-blockly-app/'
-        directory: '${{github.workspace}}/src/React/my-app/build/'
+        directory: '${{github.workspace}}/src/react_new_app/my-app/build/'
         exclusions: '*.git* /*node_modules/* .editorconfig'       
 
     - name: copy release 
