@@ -30,12 +30,6 @@ jobs:
         echo "${{github.ref_name}}" 
         echo "${{github.ref_name}}" > version.txt
 
-    - name: change root
-      shell: pwsh
-      run: |
-        ((Get-Content -path src/react_new_app/my-app/package.json -Raw) -replace '"homepage": "."','"homepage": "/blocklyAutomation"') | Set-Content -Path src/react_new_app/my-app/package.json
-
-
     - name: npm install
       run: |
         cd src        
@@ -43,6 +37,32 @@ jobs:
         cd my-app
         npm i -g npm@8.1.0               
         npm i  
+
+    - name: build with root .
+      run: |
+        cd src        
+        cd react_new_app
+        cd my-app
+        npm run build
+
+    - name: Archive production artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: releaseBlocklyAutomationRoot
+        path: 'src/react_new_app/my-app/build/*'
+        retention-days: 1
+
+    - name: change root
+      shell: pwsh
+      run: |
+        ((Get-Content -path src/react_new_app/my-app/package.json -Raw) -replace '"homepage": "."','"homepage": "/blocklyAutomation"') | Set-Content -Path src/react_new_app/my-app/package.json
+
+
+    - name: build with root blocklyAutomation
+      run: |
+        cd src        
+        cd react_new_app
+        cd my-app
         npm run build
         
     - name: Archive production artifacts
