@@ -204,7 +204,7 @@ const handleClickOpen = () => {
 
         
           <BlocklyComponent readOnly={false} 
-          trashcan={true} media={'media/'}
+          trashcan={true} media={`${process.env.PUBLIC_URL}/media/`}
           renderer={'thrasos'}
         theme={Blockly.Themes.Classic}
         zoom= {{

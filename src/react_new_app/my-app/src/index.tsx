@@ -14,9 +14,9 @@ root.render(
   <React.StrictMode>
      <BrowserRouter>
      <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/automation/loadexample/:id" element={<App />} />
-        <Route path="/about" element={<About />} />
+        <Route path="/blocklyAutomation" element={<App />} />
+        <Route path="/blocklyAutomation/automation/loadexample/:id" element={<App />} />
+        <Route path="/blocklyAutomation/about" element={<About />} />
         <Route path="*" element={<NotFound />} />
 
       </Routes>

@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "isRoot": true,
+  "tools": {
+    "powershell": {
+      "version": "7.3.1",
+      "commands": [
+        "pwsh"
+      ]
+    },
+    "run-script": {
+      "version": "0.5.0",
+      "commands": [
+        "r"
+      ]
+    }
+  }
+}

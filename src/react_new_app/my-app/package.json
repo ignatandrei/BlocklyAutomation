@@ -2,7 +2,7 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": ".",
+  "homepage": "/blocklyAutomation",
   "dependencies": {
     "@blockly/plugin-cross-tab-copy-paste": "^2.0.2",
     "@blockly/shadow-block-converter": "2.0.2",
