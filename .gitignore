@@ -357,3 +357,4 @@ MigrationBackup/
 **/DockerExtension/ui
 package-lock.json
 
+src/**/build/
