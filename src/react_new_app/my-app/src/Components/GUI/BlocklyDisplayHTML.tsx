@@ -24,7 +24,7 @@ function BlocklyDisplayHtml({showData}: ShowBlocklyOutput){
                     //setText('asdasdasd');
                     break;
                 case RunCodeData.CodeError:
-                    setText(prev=> prev + "\r\n" +`<p style="color:red">${it.message}</p>` );
+                    setText(prev=> prev + `\r\n<p style="color:red">${it.message}</p>` );
                     break;
             }
         });
