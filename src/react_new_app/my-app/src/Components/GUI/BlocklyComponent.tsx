@@ -86,7 +86,7 @@ Blockly.setLocale(locale);
     }, [primaryXmlToolbox]);
   
     const generateCode = useCallback(() => {
-        runner.current =new InterpreterRunner(primaryWorkspace.current!,javascriptGenerator, displayStatement,finishRun);
+        runner.current =new InterpreterRunner(primaryWorkspace.current!,javascriptGenerator, displayStatement,finishRun, displayError );
         runner.current.runCode();
     },[]);
 
@@ -97,6 +97,21 @@ Blockly.setLocale(locale);
 
         //console.log('received' +x);
     };
+    const displayError = (x: any) =>  {
+
+      console.error('error is ' ,x);
+
+      var message: RunCodeMessage ={
+          runCodeData : RunCodeData.CodeError,
+          message:x,
+          messageType:'string'
+      }
+      RunCode.sendMessage(message);
+      return true;
+      
+      //console.log('received' +x);
+  };
+
     const displayStatement = (x: any) =>  {
 
         console.log('for display step ' + runner.current!.stepDisplay + ' data is ' +runner.current!.lastData );
@@ -208,9 +223,11 @@ Blockly.setLocale(locale);
                 case RunCodeData.Stop:
                         //do nothing yet
                     return;
+                case RunCodeData.CodeError:
                 case RunCodeData.UserRequestedPrint:
                     //do nothing yet
                     return;
+
                 default:
                     window.alert('not yet implemented in BlocklyComponent for '+ it);
             }

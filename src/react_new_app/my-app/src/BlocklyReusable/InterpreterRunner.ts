@@ -11,7 +11,7 @@ class InterpreterRunner{
     private myCallBackCode :(text:any, me:InterpreterRunner)=>void ;
     public lastData:any;
     public latestCode:string='';
-    constructor(private workspace: WorkspaceSvg, private javascriptGenerator: any,private callBackCode:(x:any)=>void | null, private finishRun:()=>void){
+    constructor(private workspace: WorkspaceSvg, private javascriptGenerator: any,private callBackCode:(x:any)=>void | null, private finishRun:()=>void, private interceptError:(e:any)=>boolean){
       
       this.myCallBackCode = (text, me)=>{
         // console.log('received ', text,me);
@@ -63,7 +63,9 @@ class InterpreterRunner{
                 catch(e){
                   //TODO: make the error visible
                   console.error('error!',e);
-                  hasMore=false;
+                  hasMore= self.interceptError(e);
+                  
+                  
                 }
                 //console.log('ad',self.myInterpreter, hasMore);
                 if (hasMore) {
@@ -77,6 +79,7 @@ class InterpreterRunner{
                   if(self.finishRun)
                     self.finishRun();
                 }
+                
               }
             }
             runner();
@@ -99,6 +102,21 @@ class InterpreterRunner{
     public initApiJS(interpreter: any, globalObject:any, me: InterpreterRunner):void {
         var self=this;
 
+        var wrapperErrHandler = (item:any) => {
+          var errorText='error';
+          if(item)
+            errorText=JSON.stringify(item);
+          
+            throw new Error(errorText);
+          // if(callBackData)
+          //   callBackData('\n error --' + '\n' + item + '\n error --');            
+          // else
+          //   console.log(item);
+     
+      };
+
+      interpreter.setProperty(globalObject, 'errHandler',
+          interpreter.createNativeFunction(wrapperErrHandler));
 
         //thisClass.BlocklyJavaScript.addReservedWords('waitForSeconds');
           

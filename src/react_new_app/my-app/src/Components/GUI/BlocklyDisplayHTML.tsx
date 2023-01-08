@@ -15,14 +15,17 @@ function BlocklyDisplayHtml({showData}: ShowBlocklyOutput){
             switch(it.runCodeData){
                 case RunCodeData.Start:
                     setText('<hr />');
-                    return;
+                    break;
                 case RunCodeData.Stop:
                     setText(prev=>prev + '\r\n<hr />');
-                    return;
+                    break;
                 case RunCodeData.UserRequestedPrint:
                     setText(prev=> prev + "\r\n" + it.message);
                     //setText('asdasdasd');
-                    
+                    break;
+                case RunCodeData.CodeError:
+                    setText(prev=> prev + "\r\n" +`<p style="color:red">${it.message}</p>` );
+                    break;
             }
         });
         return ()=>{ data.unsubscribe();}

@@ -5,7 +5,8 @@ import ShowCodeAndXML from '../GUI/ShowCodeAndXML';
 export const enum RunCodeData{
     Start=0,
     Stop=1,
-    UserRequestedPrint
+    UserRequestedPrint,
+    CodeError
     
 }
 

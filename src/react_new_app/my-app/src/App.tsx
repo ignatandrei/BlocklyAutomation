@@ -136,6 +136,7 @@ const handleClickOpen = () => {
                 setShowSnack(false);
                 
                 break;
+            case RunCodeData.CodeError:
             case RunCodeData.UserRequestedPrint:
                 break;
             default:

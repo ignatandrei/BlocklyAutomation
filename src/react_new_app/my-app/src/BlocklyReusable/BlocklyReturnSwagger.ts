@@ -699,7 +699,7 @@ export default class BlocklyReturnSwagger {
         code +=`);\n`;
         code +="var resJS=JSON.parse(res);\n";
         code +="if(resJS.statusOK) return resJS.text;\n"
-        code +="errHandler(res);\n}\n";
+        code +="errHandler(res);throw res;\n}\n";
         //code +=";}\n";
 
         // code += "\nreturn strUrl;\n";
