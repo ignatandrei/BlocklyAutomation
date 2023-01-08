@@ -50,6 +50,8 @@
                 .GetDirectories(strFolder)
                 //.Select(it=>new DirectoryInfo(it))
                 .Select(it=> PowershellModule.FromDir( it))
+                .Where(it=> it!=null)
+                .OrderBy(it => it.Name)
                 .ToArray()
                 ;
 
