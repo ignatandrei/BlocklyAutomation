@@ -5,9 +5,11 @@ public record VSCodeExtension(string Id, string Name)
 {
     public static async Task<VSCodeExtension?> FromDir(string folder)
     {
-        var dir = new DirectoryInfo(folder);
-        var id = dir.Name.Split("-")[0];
-        //read the .vsix file
+        //var dir = new DirectoryInfo(folder);
+        //var ids = dir.Name.Split("-");
+        ////get rid of version
+        //var id = string.Join("-",ids.SkipLast(1));
+        ////read the .vsix file
         var f = Path.Combine(folder, ".vsixmanifest");
         if (!File.Exists(f))
             return null;
@@ -16,10 +18,17 @@ public record VSCodeExtension(string Id, string Name)
             return null;
         var x = new XmlDocument();
         x.LoadXml(content!);
-       var node= x.SelectNodes("//*[local-name() = 'DisplayName']");
+        var idNode = x.SelectNodes("//*[local-name() = 'Identity']")![0];
+        if(idNode == null)
+            return null;
+        var id = idNode.Attributes!["Publisher"]!.Value + "." + idNode.Attributes!["Id"]!.Value;
+
+        var node = x.SelectNodes("//*[local-name() = 'DisplayName']");
         if ((node?.Count??0) == 0)
             return null;
         var name = node![0]?.InnerText??id;
+
+        
         return new VSCodeExtension(id, name);
     }
     public string Url
@@ -47,7 +56,11 @@ public class VSCodeExtensions
             //.Where(it=>it.Contains("alefragnani.bookmarks-13.2.2"))
             .Select(it => VSCodeExtension.FromDir(it));
         var ret = await Task.WhenAll(all);
-        return ret.Where(it => it != null).Select(it=>it!).ToArray();
+        return ret.Where(it => it != null)
+            
+            .Select(it=>it!)
+            .OrderBy(it=>it.Name)
+            .ToArray();
     }
 }
 

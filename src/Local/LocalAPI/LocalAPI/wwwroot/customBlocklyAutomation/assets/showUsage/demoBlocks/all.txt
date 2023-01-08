@@ -3,13 +3,18 @@
         "id":  "ChromeExtensions",
         "description":  "export Chrome extensions",
         "categories":  "api;local tools;",
-        "blocks":  "procedures_defnoreturn;controls_if;logic_compare;logic_null;text_print;text;HTMLliStart;controls_forEach;getproperty;converttostring;text_join;text_changeCase;HTMLli;HTMLliStop;procedures_callnoreturn"
+        "blocks":  "converttojson;get__api_v1_MyTools_MyPCChromeExtensions;text;math_number;HTMLheaders;text_append;HTMLliStart;controls_forEach;text_print;getproperty;procedures_callreturn;controls_if;logic_compare;text_length;converttostring;controls_flow_statements;HTMLlinkFromObject;HTMLli;HTMLliStop;procedures_defreturn;htmlParserAttrVal;get__api_v1_HttpCalls_GetBasicString;lists_getIndex"
     },
     {
         "id":  "nugets",
         "description":  "export nugets locals",
         "categories":  "api;local tools;",
-        "blocks":  "procedures_defnoreturn;controls_if;logic_compare;logic_null;text_print;text;HTMLliStart;controls_forEach;getproperty;converttostring;text_join;text_changeCase;HTMLli;HTMLliStop;procedures_callnoreturn"
-
+        "blocks":  "text_print;procedures_callreturn;text;converttojson;get__api_v1_MyTools_FindNuGets;math_number;HTMLheaders;text_append;HTMLliStart;controls_forEach;getproperty;controls_if;logic_compare;text_length;text_getSubstring;converttostring;controls_flow_statements;HTMLlinkFromObject;HTMLli;wait_seconds;HTMLliStop;procedures_defreturn;htmlParserAttrVal;get__api_v1_HttpCalls_GetBasicString;lists_getIndex;text_trim"
+    },
+    {
+        "id":  "extVsCode",
+        "description":  "export npm locals",
+        "categories":  "api;local tools;",
+        "blocks":  "text_print;procedures_callreturn;text;converttojson;get__api_v1_MyTools_FindVSCodeExtension;math_number;HTMLheaders;text_append;HTMLliStart;controls_forEach;getproperty;controls_if;logic_compare;text_length;text_getSubstring;controls_flow_statements;HTMLlinkFromObject;HTMLli;wait_seconds;converttostring;HTMLliStop;procedures_defreturn;htmlParserAttrVal;get__api_v1_HttpCalls_GetBasicString;lists_getIndex;text_trim"
     }
 ]
