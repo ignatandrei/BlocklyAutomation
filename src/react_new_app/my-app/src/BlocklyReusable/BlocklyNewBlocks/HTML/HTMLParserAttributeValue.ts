@@ -61,7 +61,7 @@ export default class HTMLParserAttributeValue implements IBlocksSimple{
     
     var doc = new DOMParser().parseFromString(htmlString, type);
     var selector=`[${attrName}='${value}']`;
-    window.alert(selector);
+    // window.alert(selector);
     var sel =doc.querySelectorAll(selector)
     var nodes=Array.prototype.slice.call( sel);
     var ret=nodes.map(it=>( { innerText:it.innerText,innerHTML: it.innerHTML, outerHTML:it.outerHTML}));    
