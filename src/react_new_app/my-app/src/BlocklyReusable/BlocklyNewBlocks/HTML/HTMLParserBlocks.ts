@@ -13,7 +13,7 @@ export default class HtmlParserBlocks implements IBlocksSimple{
     interpreter.setProperty(globalObject, 'parseDOMFromStringElements',
         interpreter.createNativeFunction(wrapper20));
   }
-  category: string='HTML';
+  category: string='HTMLParser';
   definitionBlocksSimple(blocks: any, javaScript: any) {
     blocks['simpleHtmlparser'] = {
       init: function () {
@@ -55,7 +55,6 @@ export default class HtmlParserBlocks implements IBlocksSimple{
 
   fieldXML(): string {
     return `
-    <category name='Parser'>
     <block type='text_print'>" 
                <value name='TEXT'>" 
                  
@@ -70,7 +69,6 @@ export default class HtmlParserBlocks implements IBlocksSimple{
 
 
       </block>
-      </category>
         `;
   }
 

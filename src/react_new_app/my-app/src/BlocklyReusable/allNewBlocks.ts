@@ -16,6 +16,7 @@ import guiBlocks from "./BlocklyNewBlocks/GUI/guiBlocks";
 import HtmlParserBlocks from "./BlocklyNewBlocks/HTML/HTMLParserBlocks";
 import { exportFileBlock } from "./BlocklyNewBlocks/exporters/exportfileBlock";
 import { HTMLTags } from "./BlocklyNewBlocks/HTML/HTMLTags";
+import HTMLParserAttributeValue from "./BlocklyNewBlocks/HTML/HTMLParserAttributeValue";
 
 export default class AllNewBlocks
 {
@@ -52,6 +53,7 @@ export default class AllNewBlocks
         new convertersBlocks(),
         new guiBlocks(),
         new HtmlParserBlocks(),
+        new HTMLParserAttributeValue(),
         new exportFileBlock(),
         new HTMLTags(),
         ];
