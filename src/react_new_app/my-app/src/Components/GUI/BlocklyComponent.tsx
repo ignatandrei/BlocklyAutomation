@@ -28,12 +28,13 @@ import { useParams } from 'react-router-dom';
 import AllNewBlocks from '../../BlocklyReusable/allNewBlocks';
 import IBlocks from '../../BlocklyReusable/blocksInterface';
 import { downloadWorkspaceScreenshot } from './screenshot';
+import { delay } from 'rxjs';
 
 Blockly.setLocale(locale);
  
  function BlocklyComponent(props:any) {
     
-    let { id } = useParams();
+    let { idBlock } = useParams();
     const blocklyDiv = useRef<any|null>() ;
     const toolbox = useRef<any|null>();
     let primaryWorkspace = useRef<WorkspaceSvg>();
@@ -137,10 +138,15 @@ Blockly.setLocale(locale);
         // if(!primaryWorkspace.current)
         //     return;
 
-        var x= LoadIDService.getID().subscribe(it=>{
+        var x= LoadIDService.getID()
+        .pipe(
+          delay(5000)//in order to load data
+        )
+        .subscribe(it=>{
           console.log('in getID');
           var d=new DemoBlocks();
-          d.getDemoBlock(it).subscribe(data=>{
+          d.getDemoBlock(it)
+              .subscribe(data=>{
               //window.alert(JSON.stringify(a));
               var xml = Blockly.Xml.textToDom(data);
               Blockly.Xml.clearWorkspaceAndLoadFromXml(xml,primaryWorkspace.current!);
@@ -431,16 +437,16 @@ Blockly.setLocale(locale);
         console.log('error when load default blocks', e);
       }
     }
-  if(id){
-    console.log('send the id'+id);
-     LoadIDService.sendID(id);
+  if(idBlock){
+    console.log('send the id'+idBlock);
+     LoadIDService.sendID(idBlock);
   }
   else{
     var s1=new saveLoadService();
     s1.restoreState(primaryWorkspace.current!,"save1");
   }
   
-  },[addToToolboxSwagger, id, startBlocks, swaggerData]);
+  },[addToToolboxSwagger, idBlock, startBlocks, swaggerData]);
 
 
     useEffect(()=>{

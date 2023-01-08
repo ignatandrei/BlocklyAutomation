@@ -45,7 +45,7 @@ function BlocklyDisplayText({showData}: ShowBlocklyOutput){
     value={text}
     
   /></div>
-      <div hidden={showData !== ShowCodeAndXML.ShowOutput && textError.length>0}> 
+      <div hidden={showData !== ShowCodeAndXML.ShowOutput}> 
       {(textError.length>0) && 
       <TextareaAutosize cols={40}
     id="disErr"

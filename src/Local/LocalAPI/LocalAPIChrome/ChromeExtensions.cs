@@ -19,6 +19,7 @@ public class ChromeExtensions
         return all.
             Where(it=>it!=null)
             .Select(ut=>ut!)
+            .OrderBy(it=>it.Name)
             .ToArray();
     }
 

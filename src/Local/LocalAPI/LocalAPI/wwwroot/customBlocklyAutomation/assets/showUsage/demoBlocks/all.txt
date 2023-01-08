@@ -1,0 +1,8 @@
+﻿[
+    {
+        "id":  "ChromeExtensions",
+        "description":  "export Chrome extensions",
+        "categories":  "api;local tools;",
+        "blocks":  "procedures_defnoreturn;controls_if;logic_compare;logic_null;text_print;text;HTMLliStart;controls_forEach;getproperty;converttostring;text_join;text_changeCase;HTMLli;HTMLliStop;procedures_callnoreturn"
+    }
+]

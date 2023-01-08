@@ -15,7 +15,7 @@ root.render(
      <BrowserRouter>
      <Routes>
         <Route path="/blocklyAutomation" element={<App />} />
-        <Route path="/blocklyAutomation/automation/loadexample/:id" element={<App />} />
+        <Route path="/blocklyAutomation/automation/loadexample/:idBlock" element={<App />} />
         <Route path="/blocklyAutomation/about" element={<About />} />
         <Route path="*" element={<NotFound />} />
 
