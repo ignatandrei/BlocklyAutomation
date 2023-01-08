@@ -115,14 +115,14 @@ export class HttpBlocks  implements IBlocksSimple{
       switch (dropdown_typerequest.toString()) {
         case 'GET':
           operation =
-            '(function(url){ var res=JSON.parse(getXhr(url)); if(res.statusOK) return res.text;errHandler(JSON.stringify(res)); throw res;}(' +
+            '(function(url){ var res=JSON.parse(getXhr(url)); if(res.statusOK) return res.text;errHandler(JSON.stringify(res)); }(' +
             value_theurl +
             ') )';
           break;
         case 'POST':
           // console.log('x',value_data)
           operation =
-            '(function(url,data){ var res=JSON.parse(postXhr(url,JSON.stringify(data))); if(res.statusOK) return res.text;errHandler(JSON.stringify(res)); throw res;}(' +
+            '(function(url,data){ var res=JSON.parse(postXhr(url,JSON.stringify(data))); if(res.statusOK) return res.text;errHandler(JSON.stringify(res)); }(' +
             value_theurl;
           if (value_data) {
             operation += ',' + value_data;
@@ -131,7 +131,7 @@ export class HttpBlocks  implements IBlocksSimple{
           break;
         case 'DELETE':
           operation =
-            '(function(url,data){ var res=JSON.parse(deleteXhr(url,JSON.stringify(data))); if(res.statusOK) return res.text;errHandler(JSON.stringify(res)); throw res;}(' +
+            '(function(url,data){ var res=JSON.parse(deleteXhr(url,JSON.stringify(data))); if(res.statusOK) return res.text;errHandler(JSON.stringify(res)); }(' +
             value_theurl;
           if (value_data) {
             operation += ',' + value_data;
@@ -140,7 +140,7 @@ export class HttpBlocks  implements IBlocksSimple{
           break;
         case 'PUT':
           operation =
-            '(function(url,data){ var res=JSON.parse(putXhr(url,JSON.stringify(data))); if(res.statusOK) return res.text;errHandler(JSON.stringify(res)); throw res;}(' +
+            '(function(url,data){ var res=JSON.parse(putXhr(url,JSON.stringify(data))); if(res.statusOK) return res.text;errHandler(JSON.stringify(res)); }(' +
             value_theurl;
           if (value_data) {
             operation += ',' + value_data;

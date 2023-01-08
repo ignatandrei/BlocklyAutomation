@@ -61,10 +61,12 @@ class InterpreterRunner{
                   hasMore = self.myInterpreter.run();
                 }
                 catch(e){
+                  
                   //TODO: make the error visible
                   console.error('error!',e);
                   hasMore= self.interceptError(e);
-                  
+                  console.log('in error', hasMore);                  
+                    
                   
                 }
                 //console.log('ad',self.myInterpreter, hasMore);
@@ -106,8 +108,15 @@ class InterpreterRunner{
           var errorText='error';
           if(item)
             errorText=JSON.stringify(item);
-          
-            throw new Error(errorText);
+          var err=new Error(errorText);
+          if(!me.interceptError(err)){
+            //window.alert('throwing error');
+            throw err;
+          }
+          // else{
+          //   window.alert('not error');
+          // }
+            
           // if(callBackData)
           //   callBackData('\n error --' + '\n' + item + '\n error --');            
           // else
