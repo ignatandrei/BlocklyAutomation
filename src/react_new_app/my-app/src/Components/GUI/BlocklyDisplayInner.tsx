@@ -21,11 +21,13 @@ function BlocklyDisplayInner({showData}: ShowBlocklyOutput){
     
     return<> 
     
-    <div hidden={!displayInner}> <textarea cols={40}
+    <div hidden={!displayInner}> <TextareaAutosize cols={40}
     aria-label="output"
+    minRows={3}
     placeholder="output of inner workings"
+    value={text}
     
-  >{text}</textarea></div></>
+  /></div></>
 }
 
 export default BlocklyDisplayInner;

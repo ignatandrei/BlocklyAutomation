@@ -11,6 +11,7 @@ import MenuList from '@mui/material/MenuList';
 // import { saveLoadService } from '../../AppFiles/saveLoadService';
 import { ShowData } from '../Examples/Messages';
 import ShowCodeAndXML from './ShowCodeAndXML';
+import { useEffect } from 'react';
 const options =Object.values(ShowCodeAndXML).filter(it=> isNaN(Number(it)));
 
 function OutputButton(props: any) {
@@ -19,6 +20,15 @@ function OutputButton(props: any) {
     const anchorRef = React.useRef<HTMLDivElement>(null);
     const [selectedIndex, setSelectedIndex] = React.useState(0);
   
+    useEffect(()=>{
+      var x=ShowData.getMessage().subscribe((it:any)=>{                        
+          //console.log("received "+it);
+          setSelectedIndex(it);
+          
+      });
+      return ()=>x.unsubscribe();
+  },[])
+    
     var optionsSave=new Map<string,ShowCodeAndXML|string>();
     Object.entries(ShowCodeAndXML).map(([number, word]) => ({ number, word })).forEach(it=>optionsSave.set(it.number,it.word));
     // console.log(optionsSave);

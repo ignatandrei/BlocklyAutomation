@@ -1,4 +1,4 @@
-import { TextareaAutosize } from "@mui/material";
+// import { TextareaAutosize } from "@mui/material";
 import React from "react";
 import { useEffect, useState } from "react";
 import { ShowBlocklyOutput } from "../../Common/SimpleDialogProps";

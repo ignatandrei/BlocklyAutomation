@@ -87,6 +87,7 @@ const [open, setOpen] = React.useState(false);
 const [disabledRun, setdisabledRun] = React.useState(false);
 const [selectedValue, setSelectedValue] = React.useState("");  
 const handleRun = () => {
+  //maybe do this only if we are on inner workings?    
     ShowData.sendMessage(ShowCodeAndXML.ShowOutput);
     RunCode.sendMessage({runCodeData:RunCodeData.Start});
   };
