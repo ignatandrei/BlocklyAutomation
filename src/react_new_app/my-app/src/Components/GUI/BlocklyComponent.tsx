@@ -224,6 +224,7 @@ Blockly.setLocale(locale);
         var x=ShowData.getMessage().subscribe(it=>{            
             switch(it){
                 case ShowCodeAndXML.ShowOutput:
+                case ShowCodeAndXML.ShowOutputHTML:
 
                     return;
                 case ShowCodeAndXML.ShowCode:
@@ -234,7 +235,7 @@ Blockly.setLocale(locale);
                     
                     var xml = Blockly.Xml.workspaceToDom(primaryWorkspace.current!, true);
                     var xml_text = Blockly.Xml.domToPrettyText(xml);
-                    //console.log('send' ,xml_text);
+                    console.log('send' ,xml_text);
                     InnerWorkings.sendMessage(xml_text);                    
                     
                     return;
@@ -537,7 +538,6 @@ Blockly.setLocale(locale);
                 blocklyDiv.current,
                 {
                     toolbox: toolbox.current,
-                    media:"./BlocklyAutomation/",
                     ...rest
                 },
             );

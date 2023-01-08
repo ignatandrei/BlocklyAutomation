@@ -35,6 +35,7 @@ function OutputButton(props: any) {
         case ShowCodeAndXML.ShowBlocksDefinition:
         case ShowCodeAndXML.ShowCode:
         case ShowCodeAndXML.ShowOutput:
+          case ShowCodeAndXML.ShowOutputHTML:
         case ShowCodeAndXML.ShowXML:   
           // console.log('send'+ e);        
           ShowData.sendMessage(e);

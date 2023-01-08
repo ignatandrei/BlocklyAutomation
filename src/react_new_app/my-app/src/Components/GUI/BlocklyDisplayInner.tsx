@@ -6,6 +6,10 @@ import ShowCodeAndXML from "./ShowCodeAndXML";
 
 function BlocklyDisplayInner({showData}: ShowBlocklyOutput){
 
+    var displayInner = (showData === ShowCodeAndXML.ShowBlocksDefinition);
+    displayInner ||=(showData=== ShowCodeAndXML.ShowCode);
+    displayInner ||=(showData=== ShowCodeAndXML.ShowXML);
+
     const [text,setText]=useState('');
     
     useEffect(()=>{
@@ -17,13 +21,11 @@ function BlocklyDisplayInner({showData}: ShowBlocklyOutput){
     
     return<> 
     
-    <div hidden={showData === ShowCodeAndXML.ShowOutput}> <TextareaAutosize cols={40}
+    <div hidden={!displayInner}> <textarea cols={40}
     aria-label="output"
-    minRows={3}
     placeholder="output of inner workings"
-    value={text}
     
-  /></div></>
+  >{text}</textarea></div></>
 }
 
 export default BlocklyDisplayInner;

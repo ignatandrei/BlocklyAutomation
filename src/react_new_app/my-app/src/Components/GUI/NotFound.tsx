@@ -1,7 +1,7 @@
 
 
 function NotFound(props:any){
-    return <>NOT FOUND!</>
+    return <>ROUTE NOT FOUND!</>
 }
 
 export default NotFound;

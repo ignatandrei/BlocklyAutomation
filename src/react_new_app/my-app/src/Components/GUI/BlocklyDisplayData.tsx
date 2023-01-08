@@ -1,6 +1,7 @@
 // import { Tab, Tabs } from "@mui/material";
 import { useEffect, useState } from "react";
 import { ShowData } from "../Examples/Messages";
+import BlocklyDisplayHtml from "./BlocklyDisplayHTML";
 import BlocklyDisplayInner from "./BlocklyDisplayInner";
 import BlocklyDisplayText from "./BlocklyDisplayText";
 import ShowCodeAndXML from "./ShowCodeAndXML";
@@ -29,6 +30,8 @@ function BlocklyDisplayData(){
     {state !== ShowCodeAndXML.ShowOutput &&  <BlocklyDisplayInner></BlocklyDisplayInner>} */}
 <BlocklyDisplayText {...data}></BlocklyDisplayText>
 <BlocklyDisplayInner {...data}></BlocklyDisplayInner>
+<BlocklyDisplayHtml {...data}></BlocklyDisplayHtml>
+
     </>
 }
 
