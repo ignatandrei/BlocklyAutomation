@@ -18,6 +18,10 @@ public record npmPackage(string Id, string? Name)
             package= package.Substring(0, arond);
         if (package.StartsWith("file:"))
             return null;
+        if (package.StartsWith("github:"))
+            return null;
+
+        
         return new npmPackage(package, package);
     }
     public string Url
