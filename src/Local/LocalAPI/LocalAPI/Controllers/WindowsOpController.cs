@@ -3,19 +3,21 @@ using WindowsRelated;
 
 namespace LocalAPI.Controllers;
 
-[Route("api/[controller]/[action]")]
 [ApiController]
 [ApiVersion("1.0")]
+[Route("api/v{version:apiVersion}/[controller]/[action]")]
 
 [AutoActions(template = TemplateIndicator.NoArgs_Is_Get_Else_Post, FieldsName = new[] { "*" }, ExcludeFields = new[] { "_logger" })]
 
 public partial class WindowsOpController : ControllerBase
 {
     private readonly Apps apps;
+    private readonly WingetApps winget;
 
-    public WindowsOpController(Apps  apps)
+    public WindowsOpController(Apps  apps, WingetApps winget)
 	{
         this.apps = apps;
+        this.winget = winget;
     }
    
 }

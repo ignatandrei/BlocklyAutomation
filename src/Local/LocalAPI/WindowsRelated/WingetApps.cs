@@ -16,7 +16,7 @@ public record WinGetApp(string id, string name, string description, string url)
     {
         StringBuilder data = new();
         var si = new ProcessStartInfo(@"winget.exe");
-        si.Arguments = "show -id "+id;
+        si.Arguments = "show --id "+id;
         si.UseShellExecute = false;
         si.RedirectStandardOutput = true;
         si.RedirectStandardError = true;
@@ -37,19 +37,30 @@ public record WinGetApp(string id, string name, string description, string url)
         p.BeginErrorReadLine();
         await p.WaitForExitAsync();
         var lines = data.ToString().Split(Environment.NewLine);
-        string name, string description, string url;
+        string name="", description = "", url = "";
         foreach(var l in lines)
         {
-            string f = "Found ";
-            if (l.StartsWith(f))
-            {
-                name=l.Substring(f.Length);
+            if (FoundData("Found ", l, ref name))
                 continue;
-            }
-
-
+            if (FoundData("Description:", l, ref description))
+                continue;
+            if (FoundData("Homepage:",l, ref url))
+                continue;
+            if (name.Length * description.Length * url.Length > 0)
+                break;
         }
+        return new WinGetApp(id, name, description, url);
 
+    }
+    static bool FoundData(string start, string l, ref string data)
+    {
+
+        if (l.StartsWith(start))
+        {
+            data = l.Substring(start.Length);
+            return true;
+        }
+        return false;
     }
 }
 public class WingetApps
@@ -59,6 +70,7 @@ public class WingetApps
     {
         List<WinGetApp> apps = new();
         var fileName=Path.GetRandomFileName();
+        fileName = Path.Combine(Path.GetTempPath(), fileName);
         var si = new ProcessStartInfo(@"winget.exe");
         si.Arguments = "export -o " +fileName;
         si.UseShellExecute = false;
@@ -69,15 +81,18 @@ public class WingetApps
         await p.WaitForExitAsync();
         if (!File.Exists(fileName)) return apps.ToArray();
         var text = await File.ReadAllTextAsync(fileName);
+        File.Delete(fileName);
         var r = Root.FromJson(text);
         if(r== null)
             return apps.ToArray();
         foreach(var source in r.Sources)
         {
-            foreach(var p in source.Packages)
+            foreach(var pac in source.Packages)
             {
-                var id = p.PackageIdentifier;
-
+                var id = pac.PackageIdentifier;
+                var pack =await WinGetApp.FromId(id);
+                if (pack==null) continue;
+                apps.Add(pack);
             }
         }
 

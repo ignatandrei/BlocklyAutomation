@@ -30,6 +30,7 @@ builder.Services.AddTransient<VSCodeExtensions>();
 builder.Services.AddTransient<NuGets>();
 builder.Services.AddTransient<NPMs>();
 builder.Services.AddTransient<Apps>();
+builder.Services.AddTransient<WingetApps>();
 //builder.Configuration.GetDebugView();
 EmailConfig cfgEmail =new ();
 builder.Configuration.GetSection("plugins:email").Bind(cfgEmail);
