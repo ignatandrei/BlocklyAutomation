@@ -10,13 +10,15 @@ public partial class MyToolsController : ControllerBase
     private readonly PowershellTools pwsTools;
     private readonly VSCodeExtensions extension;
     private readonly NuGets nuGets;
+    private readonly NPMs npms;
 
-    public MyToolsController(ChromeExtensions chromeExt, PowershellTools pwsTools, VSCodeExtensions extension, NuGets nuGets)
+    public MyToolsController(ChromeExtensions chromeExt, PowershellTools pwsTools, VSCodeExtensions extension, NuGets nuGets, NPMs npms)
     {
         this.chromeExt = chromeExt;
         this.pwsTools = pwsTools;
         this.extension = extension;
         this.nuGets = nuGets;
+        this.npms = npms;
     }
 }
 

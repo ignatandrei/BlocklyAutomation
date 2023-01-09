@@ -26,6 +26,7 @@ builder.Services.AddTransient<ChromeExtensions>();
 builder.Services.AddTransient<PowershellTools>();
 builder.Services.AddTransient<VSCodeExtensions>();
 builder.Services.AddTransient<NuGets>();
+builder.Services.AddTransient<NPMs>(); 
 //builder.Configuration.GetDebugView();
 EmailConfig cfgEmail =new ();
 builder.Configuration.GetSection("plugins:email").Bind(cfgEmail);
