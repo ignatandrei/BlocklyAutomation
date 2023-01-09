@@ -43,6 +43,7 @@ namespace LocalAPI.Controllers
                 nrReq--;
             }
             exOriginal!.Throw();
+            throw exOriginal!.SourceException;
 
 
         }

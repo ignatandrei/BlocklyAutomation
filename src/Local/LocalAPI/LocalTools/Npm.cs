@@ -22,7 +22,9 @@ public record npmPackage(string Id, string? Name)
     {
         get
         {
-            return "https://www.npmjs.com/package/" + Id;
+            //var rep = Id.Replace("@", "%40").Replace("/", "%2F");
+            return "https://registry.npmjs.org/" + Id;
+            //return "https://www.npmjs.com/package/" + Id;
         }
         set
         {
@@ -62,7 +64,9 @@ public class NPMs
         var ret = lines
             .Select(it=> npmPackage.FromLine(it))
             .Where(it=> it != null)
+            .Select(it=>it!)
             .ToArray();
+        ret = ret.DistinctBy(p => p.Id).ToArray();
         return ret;
         
     }
