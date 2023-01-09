@@ -16,6 +16,8 @@ public record npmPackage(string Id, string? Name)
         var arond = package.LastIndexOf('@');
         if(arond>0)
             package= package.Substring(0, arond);
+        if (package.StartsWith("file:"))
+            return null;
         return new npmPackage(package, package);
     }
     public string Url
