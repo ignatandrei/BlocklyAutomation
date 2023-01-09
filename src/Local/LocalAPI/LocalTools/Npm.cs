@@ -18,6 +18,16 @@ public record npmPackage(string Id, string? Name)
             package= package.Substring(0, arond);
         return new npmPackage(package, package);
     }
+    public string Url
+    {
+        get
+        {
+            return "https://www.npmjs.com/package/" + Id;
+        }
+        set
+        {
+        }
+    }
 
 }
 
