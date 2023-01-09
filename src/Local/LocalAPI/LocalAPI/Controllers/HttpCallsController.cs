@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Net.Http.Headers;
 using System.Net.Http;
+using System.Runtime.ExceptionServices;
 
 namespace LocalAPI.Controllers
 {
@@ -20,14 +21,30 @@ namespace LocalAPI.Controllers
         [HttpGet]
         public async Task<string> GetBasicString(string url)
         {
-            var httpRequestMessage = new HttpRequestMessage(
-            HttpMethod.Get, url);
+            ExceptionDispatchInfo? exOriginal=null;
+            var nrReq = 5;
+            while (nrReq > 0)
+            {
+                var httpRequestMessage = new HttpRequestMessage(
+                HttpMethod.Get, url);
 
-            var httpClient = _httpClientFactory.CreateClient();
-            var httpResponseMessage = await httpClient.SendAsync(httpRequestMessage);
-            httpResponseMessage.EnsureSuccessStatusCode();
-            return await httpResponseMessage.Content.ReadAsStringAsync();
-                
+                var httpClient = _httpClientFactory.CreateClient();
+                var httpResponseMessage = await httpClient.SendAsync(httpRequestMessage);
+                try
+                {
+                    httpResponseMessage.EnsureSuccessStatusCode();
+                    return await httpResponseMessage.Content.ReadAsStringAsync();
+                }
+                catch (Exception ex)
+                {
+                    exOriginal= ExceptionDispatchInfo.Capture(ex);
+                }
+                await Task.Delay(5000);
+                nrReq--;
+            }
+            exOriginal!.Throw();
+
+
         }
     }
 }
