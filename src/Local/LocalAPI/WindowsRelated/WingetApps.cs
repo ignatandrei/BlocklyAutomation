@@ -96,6 +96,6 @@ public class WingetApps
             }
         }
 
-        return apps.ToArray();
+        return apps.OrderBy(it=>it.name).ToArray();
     }
 }
