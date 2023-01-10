@@ -55,7 +55,7 @@ jobs:
           cd wwwroot
           rm -rf BlocklyAutomation
           mkdir BlocklyAutomation
-          cp ${{github.workspace}}/src/react_new_app/my-app/build/  BlocklyAutomation/ 
+          cp -R ${{github.workspace}}/src/react_new_app/my-app/build/*  BlocklyAutomation 
           cd ..
           cd ..
           ls -l
