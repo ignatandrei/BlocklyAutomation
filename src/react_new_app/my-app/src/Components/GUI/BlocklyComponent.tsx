@@ -71,7 +71,7 @@ Blockly.setLocale(locale);
         xmlToolbox+='</category> ';
       });
       xmlToolbox+='</category> ';
-      xmlToolbox+= `<category name="Swaggers" id="catSwagger" expanded='false' > '        
+      xmlToolbox+= `<category name="Swaggers" id="catSwagger" class='.stepTourSwagger' expanded='false' > '        
       <button text="Add Swagger" callbackKey="addSwagger"></button>
       ${newSwaggerCategories}
       '</category>  `;

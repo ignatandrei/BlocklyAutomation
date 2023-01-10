@@ -50,7 +50,7 @@ function TourMainPage() {
             id: "index" + index,
             title: 'Visual API',
             text: val.text,
-            attachTo: { element: val.query,on: (index===0)?'top' as const:'bottom' as const},
+            attachTo: { element: val.query,on: (index===0)?'top' as const:'right-end' as const},
             beforeShowPromise: function () {
               return new Promise<void>(function (resolve) {
                 setTimeout(function () {
@@ -87,7 +87,13 @@ function TourMainPage() {
 
         <Button variant="contained" onClick={()=>tourContext!.start()}>
             Help!
-            <StartAnything startFunc={()=>{if(newSteps.length>1) tourContext!.start()}}>
+            <StartAnything start={()=>{
+                if(newSteps.length>1) {
+                    tourContext!.start();
+                    return true;
+                  }
+                return false;}
+            }>
           </StartAnything>
         </Button>
 

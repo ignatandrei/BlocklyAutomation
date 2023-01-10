@@ -93,6 +93,15 @@
           "query":".blocklyWorkspace"          
       },
       {
+        "text":"Here you can find blocks for API, loops and many more! Expand to investigate and drag",
+        "query":".blocklyToolboxContents"
+      },
+      {
+        "text":"Drag here blocks to execute them",
+        "query":".blocklyBlockCanvas"
+      }
+      ,
+      {
           "text":"Here you will find examples to get started",
           "query":".stepTourDemos"
       },
@@ -114,8 +123,9 @@
         "query":".stepTourOutput"
       },
       {
-          "text":"Did I mention the examples button ?",
-          "query":".stepTourDemos"
+          "text":"Now press run and see , via HTTP, a joke with Chuck Norris ",
+          "query":".stepTourRunButton"
       }
+      
   ]
 }

@@ -3,7 +3,7 @@ import { Field, CategoryReact, BlockReact, Value, Shadow, Mutation } from "../Bl
 
 function ToolboxBlocksCore(props:any){
     return <>
-    <CategoryReact name="Blockly Core">
+    <CategoryReact name="Blockly Core" class="stepTourSwagger">
 <CategoryReact id="catLogic" colour="210" name="Logic">
     <BlockReact type="controls_if"></BlockReact>
     <BlockReact type="logic_compare"></BlockReact>
