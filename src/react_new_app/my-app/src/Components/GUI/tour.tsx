@@ -1,8 +1,9 @@
 import { Button } from '@mui/material';
 import React, { useEffect, useState }  from 'react'
-import { ShepherdOptionsWithType, ShepherdTour, Step, TourMethods } from 'react-shepherd'
+import { ShepherdOptionsWithType, ShepherdTour, TourMethods } from 'react-shepherd'
 import "shepherd.js/dist/css/shepherd.css";
 import { LoadTourSteps } from '../Examples/Messages';
+import StartAnything from './StartAnything';
 const tourOptions = {
   defaultStepOptions: {
     cancelIcon: {
@@ -18,6 +19,7 @@ function TourMainPage() {
     {
       id: 'welcome',
       title:'Visual API',
+      
       text: [
         `
         <p>
@@ -45,9 +47,18 @@ function TourMainPage() {
       it=>{
           var data=it.map((val, index) =>
             ({
-            id:"index"+index,
-            title:'Visual API',
-            text: val.text  ,
+            id: "index" + index,
+            title: 'Visual API',
+            text: val.text,
+            attachTo: { element: val.query,on: (index===0)?'top' as const:'bottom' as const},
+            beforeShowPromise: function () {
+              return new Promise<void>(function (resolve) {
+                setTimeout(function () {
+                  window.scrollTo(0, 0);
+                  resolve();
+                }, 500);
+              });
+            },
             buttons: [
               {
                 type: 'cancel',
@@ -56,24 +67,30 @@ function TourMainPage() {
               },
               {
                 type: 'next',
-                text: 'Next'
+                text: 'Next',
+                classes:'shepherd-button-primary'
               }
-            ]  
-            }) 
+            ]
+          }) 
           );
           setNewSteps(data);
       }
     );
     return ()=>x.unsubscribe();
     },[])
+
   return (
     
     <ShepherdTour steps={newSteps} tourOptions={tourOptions}>
         <TourMethods>
             {tourContext=>
+
         <Button variant="contained" onClick={()=>tourContext!.start()}>
             Help!
+            <StartAnything startFunc={()=>{if(newSteps.length>1) tourContext!.start()}}>
+          </StartAnything>
         </Button>
+
         }
         </TourMethods>
         {/* {cloneElement(children, {tourContext: ShepherdTourContext})} */}

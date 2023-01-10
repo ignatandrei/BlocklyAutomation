@@ -79,7 +79,7 @@ function SaveButton(props: any) {
     return (
       <React.Fragment>
      
-        <ButtonGroup variant="contained" ref={anchorRef} aria-label="split button">
+        <ButtonGroup className='stepTourDownload' variant="contained" ref={anchorRef} aria-label="split button">
           <Button onClick={handleClick}>{options[selectedIndex]}</Button>
           <Button
             size="small"
