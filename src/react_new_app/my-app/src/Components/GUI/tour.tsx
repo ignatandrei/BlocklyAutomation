@@ -1,6 +1,6 @@
 import { Button } from '@mui/material';
 import React, { useEffect, useState }  from 'react'
-import { ShepherdOptionsWithType, ShepherdTour, TourMethods } from 'react-shepherd'
+import { ShepherdOptionsWithType, ShepherdTour, Tour, TourMethods } from 'react-shepherd'
 import "shepherd.js/dist/css/shepherd.css";
 import { LoadTourSteps } from '../Examples/Messages';
 import StartAnything from './StartAnything';
@@ -14,6 +14,10 @@ const tourOptions = {
 };
 
 function TourMainPage() {
+
+  const dismissTour=()=>{
+    localStorage.setItem('BA_ShepherdHide', 'yes');
+  };
 
   const [newSteps, setNewSteps]=useState([
     {
@@ -40,8 +44,7 @@ function TourMainPage() {
         }
       ]
     }] as ShepherdOptionsWithType[]);
-
-  useEffect(()=>{
+    useEffect(()=>{
 
     var x= LoadTourSteps.getTS().subscribe(
       it=>{
@@ -62,9 +65,13 @@ function TourMainPage() {
                 type: 'next',
                 text: 'Next',
                 classes:'shepherd-button-primary'
+              },
+              {
+                text: 'Do not show again',
+                action(){  dismissTour();console.log('a',this); this.hide();}
               }
             ]
-          }) 
+          } as ShepherdOptionsWithType) 
           );
           setNewSteps(data);
       }
@@ -81,8 +88,11 @@ function TourMainPage() {
         <Button variant="contained" onClick={()=>tourContext!.start()}>
             Help!
             <StartAnything start={()=>{
+              
                 if(newSteps.length>1) {
+                  if(!localStorage.getItem('BA_ShepherdHide')) {
                     tourContext!.start();
+                  }      
                     return true;
                   }
                 return false;}
