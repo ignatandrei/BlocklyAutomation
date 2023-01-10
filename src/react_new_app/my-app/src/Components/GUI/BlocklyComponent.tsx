@@ -247,15 +247,15 @@ Blockly.setLocale(locale);
         var x=ShowData.getMessage().subscribe(it=>{            
             switch(it){
                 case ShowCodeAndXML.ShowOutput:
-                case ShowCodeAndXML.ShowOutputHTML:
-                  case ShowCodeAndXML.ShowOutputJSON:
+                case ShowCodeAndXML.ShowOutputHtml:
+                  case ShowCodeAndXML.ShowOutputJson:
 
                     return;
                 case ShowCodeAndXML.ShowCode:
                     var code = javascriptGenerator.workspaceToCode(primaryWorkspace.current);
                     InnerWorkings.sendMessage(code);     
                     return;
-                case ShowCodeAndXML.ShowXML:
+                case ShowCodeAndXML.ShowXml:
                     
                     var xml = Blockly.Xml.workspaceToDom(primaryWorkspace.current!, true);
                     var xml_text = Blockly.Xml.domToPrettyText(xml);

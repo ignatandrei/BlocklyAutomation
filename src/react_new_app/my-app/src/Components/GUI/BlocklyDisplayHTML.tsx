@@ -40,7 +40,7 @@ function BlocklyDisplayHtml({showData}: ShowBlocklyOutput){
 
     return <> 
     
-    <div hidden={showData !== ShowCodeAndXML.ShowOutputHTML}> 
+    <div hidden={showData !== ShowCodeAndXML.ShowOutputHtml}> 
     <div id="outputHTML" /></div></>
 }
 

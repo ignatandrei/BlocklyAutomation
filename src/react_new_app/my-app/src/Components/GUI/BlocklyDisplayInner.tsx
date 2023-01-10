@@ -8,7 +8,7 @@ function BlocklyDisplayInner({showData}: ShowBlocklyOutput){
 
     var displayInner = (showData === ShowCodeAndXML.ShowBlocksDefinition);
     displayInner ||=(showData=== ShowCodeAndXML.ShowCode);
-    displayInner ||=(showData=== ShowCodeAndXML.ShowXML);
+    displayInner ||=(showData=== ShowCodeAndXML.ShowXml);
 
     const [text,setText]=useState('');
     

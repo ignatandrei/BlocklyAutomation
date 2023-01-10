@@ -45,31 +45,41 @@ function TourMainPage() {
       ]
     }] as ShepherdOptionsWithType[]);
     useEffect(()=>{
-
+      var title=document.title;
     var x= LoadTourSteps.getTS().subscribe(
       it=>{
+        var l=it.length;
           var data=it.map((val, index) =>
             ({
             id: "index" + index,
-            title: 'Visual API',
+            title: `${title} ( ${index+1} / ${l})` ,
             text: val.text,
             attachTo: { element: val.query,on: (index===0)?'top' as const:'right-end' as const},
             
             buttons: [
               {
+                text: 'Do not show again',
+                action(){  dismissTour();this.hide();},
+                disabled:(index !== l-1) 
+              },
+              {
                 type: 'cancel',
                 classes: 'shepherd-button-secondary',
                 text: 'Exit'
+              },
+              
+              {
+                type: 'back',
+                text: 'Back',
+                classes:'shepherd-button-primary',
+                disabled:(index === 0) 
               },
               {
                 type: 'next',
                 text: 'Next',
                 classes:'shepherd-button-primary'
-              },
-              {
-                text: 'Do not show again',
-                action(){  dismissTour();console.log('a',this); this.hide();}
               }
+              
             ]
           } as ShepherdOptionsWithType) 
           );

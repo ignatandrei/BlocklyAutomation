@@ -83,7 +83,7 @@ function BlocklyDisplayJSON({showData}: ShowBlocklyOutput){
     
     return <> 
     
-    <div hidden={showData !== ShowCodeAndXML.ShowOutputJSON}> 
+    <div hidden={showData !== ShowCodeAndXML.ShowOutputJson}> 
     {/* theme at https://github.com/reduxjs/redux-devtools/tree/75322b15ee7ba03fddf10ac3399881e302848874/src/react/themes */}
     <JSONTree data={json} theme={'solarized'} />;</div>
     

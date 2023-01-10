@@ -45,9 +45,9 @@ function OutputButton(props: any) {
         case ShowCodeAndXML.ShowBlocksDefinition:
         case ShowCodeAndXML.ShowCode:
         case ShowCodeAndXML.ShowOutput:
-          case ShowCodeAndXML.ShowOutputHTML:
-        case ShowCodeAndXML.ShowXML:  
-        case ShowCodeAndXML.ShowOutputJSON: 
+          case ShowCodeAndXML.ShowOutputHtml:
+        case ShowCodeAndXML.ShowXml:  
+        case ShowCodeAndXML.ShowOutputJson: 
           // console.log('send'+ e);        
           ShowData.sendMessage(e);
           return;
@@ -70,7 +70,15 @@ function OutputButton(props: any) {
     const handleToggle = () => {
       setOpen((prevOpen) => !prevOpen);
     };
-  
+    const ReInterpretOpt=(opt:string|ShowCodeAndXML)=>{
+      if(!opt)
+        return opt;
+      if(typeof opt === "string"){
+        const re=/[A-Z][a-z]+|[0-9]+/g;
+        return opt.match(re)!.join(" ");
+      }
+      return  opt+"!";
+    }
     const handleClose = (event: Event) => {
       if (
         anchorRef.current &&
@@ -85,7 +93,7 @@ function OutputButton(props: any) {
     return (
       <React.Fragment>
         <ButtonGroup className="stepTourOutputButton" variant="contained" ref={anchorRef} aria-label="split button">
-          <Button onClick={handleClick}>{options[selectedIndex]}</Button>
+          <Button onClick={handleClick}>{ReInterpretOpt(options[selectedIndex])}</Button>
           <Button
             size="small"
             aria-controls={open ? 'split-button-menu' : undefined}
@@ -125,7 +133,7 @@ function OutputButton(props: any) {
                         selected={index === selectedIndex}
                         onClick={(event) => handleMenuItemClick(event, index)}
                       >
-                        {option}
+                         {ReInterpretOpt(option)}
                       </MenuItem>
                     ))}
                   </MenuList>

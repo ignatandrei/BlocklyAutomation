@@ -5,6 +5,7 @@ import BlocklyDisplayHtml from "./BlocklyDisplayHTML";
 import BlocklyDisplayInner from "./BlocklyDisplayInner";
 import BlocklyDisplayJSON from "./BlocklyDisplayJSON";
 import BlocklyDisplayText from "./BlocklyDisplayText";
+import OutputButton from "./outputButton";
 import ShowCodeAndXML from "./ShowCodeAndXML";
 
 // const options =Object.values(ShowCodeAndXML).filter(it=> isNaN(Number(it)));
@@ -26,7 +27,9 @@ function BlocklyDisplayData(){
 
 
     return <>    
-    Display {optionsSave.get(state.toString())}
+    Display
+     {/* {optionsSave.get(state.toString())} */}
+    <OutputButton />
     {/* {state === ShowCodeAndXML.ShowOutput &&  <BlocklyDisplayText></BlocklyDisplayText>}
     {state !== ShowCodeAndXML.ShowOutput &&  <BlocklyDisplayInner></BlocklyDisplayInner>} */}
 <BlocklyDisplayText {...data}></BlocklyDisplayText>
