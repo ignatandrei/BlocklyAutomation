@@ -38,7 +38,7 @@ jobs:
         npm i -g npm@8.1.0               
         npm i  
 
-    - name: build with root .
+    - name: build with root 
       run: |
         cd src        
         cd react_new_app
