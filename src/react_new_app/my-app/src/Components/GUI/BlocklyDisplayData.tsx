@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { ShowData } from "../Examples/Messages";
 import BlocklyDisplayHtml from "./BlocklyDisplayHTML";
 import BlocklyDisplayInner from "./BlocklyDisplayInner";
+import BlocklyDisplayJSON from "./BlocklyDisplayJSON";
 import BlocklyDisplayText from "./BlocklyDisplayText";
 import ShowCodeAndXML from "./ShowCodeAndXML";
 
@@ -31,6 +32,7 @@ function BlocklyDisplayData(){
 <BlocklyDisplayText {...data}></BlocklyDisplayText>
 <BlocklyDisplayInner {...data}></BlocklyDisplayInner>
 <BlocklyDisplayHtml {...data}></BlocklyDisplayHtml>
+<BlocklyDisplayJSON {...data}></BlocklyDisplayJSON>
 
     </>
 }

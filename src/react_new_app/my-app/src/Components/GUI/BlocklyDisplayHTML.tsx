@@ -35,7 +35,7 @@ function BlocklyDisplayHtml({showData}: ShowBlocklyOutput){
         var textArea=document.getElementById("outputHTML");
         if(textArea)
             textArea.innerHTML = text;
-        console.log(text);
+        // console.log(text);
       }, [text]);
 
     return <> 

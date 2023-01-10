@@ -3,7 +3,9 @@ enum ShowCodeAndXML{
     ShowBlocksDefinition=1,
     ShowXML=2,
     ShowCode=3,
-    ShowOutputHTML=4
+    ShowOutputHTML=4,
+    ShowOutputJSON=5,
+
   }
 
 export default ShowCodeAndXML;

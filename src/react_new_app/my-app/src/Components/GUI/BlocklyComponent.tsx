@@ -115,7 +115,7 @@ Blockly.setLocale(locale);
 
     const displayStatement = (x: any) =>  {
 
-        console.log('for display step ' + runner.current!.stepDisplay + ' data is ' +runner.current!.lastData );
+        //console.log('for display step ' + runner.current!.stepDisplay + ' data is ' +runner.current!.lastData );
         var message: RunCodeMessage ={
             runCodeData : RunCodeData.UserRequestedPrint,
             message:x,
@@ -248,6 +248,7 @@ Blockly.setLocale(locale);
             switch(it){
                 case ShowCodeAndXML.ShowOutput:
                 case ShowCodeAndXML.ShowOutputHTML:
+                  case ShowCodeAndXML.ShowOutputJSON:
 
                     return;
                 case ShowCodeAndXML.ShowCode:
@@ -297,7 +298,7 @@ Blockly.setLocale(locale);
                     
                     return;
                 default:
-                    window.alert('not implemented '+it);
+                    window.alert('in blocklycomponent.tsx not implemented '+it);
             }
         });
         return ()=>x.unsubscribe();
