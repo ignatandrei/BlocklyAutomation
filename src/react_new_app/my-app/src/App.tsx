@@ -36,6 +36,7 @@ import ToolboxBlocksCore from './Components/ToolboxBlocksCore';
 import ToolboxBlocksAdvanced from './Components/ToolboxBlocksAdvanced';
 // import About from './Components/GUI/about';
 import {  IBlocksExtMut, IBlocksSimple } from './BlocklyReusable/blocksInterface';
+import TourMainPage from './Components/GUI/tour';
 
 // import darkThemeData from './BlocklyReusable/themeDark';
 function App(props: any) {
@@ -151,7 +152,7 @@ const handleClickOpen = () => {
     return <>
 <Snackbar open={showSnack} anchorOrigin= {{ 
   vertical: 'top' ,
-  horizontal:  'center' 
+  horizontal:  'right' 
 }}    
 >
 <Alert  severity="success" sx={{ width: '100%' }}>
@@ -187,7 +188,7 @@ const handleClickOpen = () => {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
            {titleBA}
            {/* <small>You are running this application in <b>{process.env.NODE_ENV}</b> mode.</small> */}
-            
+           <TourMainPage></TourMainPage>  
             <Button variant="contained" onClick={handleClickOpen}>Examples!</Button>
 
             <SaveButton />
@@ -195,6 +196,7 @@ const handleClickOpen = () => {
             <OutputButton />
 
           </Typography>
+          
           {/* <Button color="inherit">Login </Button> */}
           <Button variant="contained" disabled={disabledRun} color={"success"}  endIcon={<SendIcon />} onClick={handleRun}>Execute!</Button>
         </Toolbar>
