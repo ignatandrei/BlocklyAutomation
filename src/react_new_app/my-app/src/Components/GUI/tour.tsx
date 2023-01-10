@@ -51,14 +51,7 @@ function TourMainPage() {
             title: 'Visual API',
             text: val.text,
             attachTo: { element: val.query,on: (index===0)?'top' as const:'right-end' as const},
-            beforeShowPromise: function () {
-              return new Promise<void>(function (resolve) {
-                setTimeout(function () {
-                  window.scrollTo(0, 0);
-                  resolve();
-                }, 500);
-              });
-            },
+            
             buttons: [
               {
                 type: 'cancel',

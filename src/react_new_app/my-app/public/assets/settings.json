@@ -93,8 +93,13 @@
           "query":".blocklyWorkspace"          
       },
       {
-        "text":"Here you can find blocks for API, loops and many more! Expand to investigate and drag",
+        "text":"Here you can find blocks for VisualCode  API ! Expand to investigate and drag",
         "query":".blocklyToolboxContents"
+      },
+      
+      {
+        "text":"Here you can find blocks for basic constructs : loops, text, bool, logic ...",
+        "query":".blocklyTreeLabel"
       },
       {
         "text":"Drag here blocks to execute them",
