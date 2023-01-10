@@ -1,7 +1,8 @@
 import { Button } from '@mui/material';
-import React  from 'react'
-import { ShepherdTour, TourMethods } from 'react-shepherd'
+import React, { useEffect, useState }  from 'react'
+import { ShepherdOptionsWithType, ShepherdTour, Step, TourMethods } from 'react-shepherd'
 import "shepherd.js/dist/css/shepherd.css";
+import { LoadTourSteps } from '../Examples/Messages';
 const tourOptions = {
   defaultStepOptions: {
     cancelIcon: {
@@ -11,20 +12,17 @@ const tourOptions = {
   useModalOverlay: true
 };
 
-const newSteps=[
+function TourMainPage() {
+
+  const [newSteps, setNewSteps]=useState([
     {
       id: 'welcome',
+      title:'Visual API',
       text: [
         `
         <p>
-        Shepherd is a JavaScript library for guiding users through your app.
-        It uses <a href="https://popper.js.org/">Popper.js</a>,
-        another open source library, to render dialogs for each tour "step".
-        </p>
+        Welcome to Visual API!</p>
         <p>
-        Among many things, Popper makes sure your steps never end up off screen or
-        cropped by an overflow. (Try resizing your browser to see what we mean.)
-        </p>
         `
       ],
       classes: 'shepherd shepherd-welcome',
@@ -39,10 +37,35 @@ const newSteps=[
           text: 'Next'
         }
       ]
-    }]
-function TourMainPage() {
+    }] as ShepherdOptionsWithType[]);
 
+  useEffect(()=>{
 
+    var x= LoadTourSteps.getTS().subscribe(
+      it=>{
+          var data=it.map((val, index) =>
+            ({
+            id:"index"+index,
+            title:'Visual API',
+            text: val.text  ,
+            buttons: [
+              {
+                type: 'cancel',
+                classes: 'shepherd-button-secondary',
+                text: 'Exit'
+              },
+              {
+                type: 'next',
+                text: 'Next'
+              }
+            ]  
+            }) 
+          );
+          setNewSteps(data);
+      }
+    );
+    return ()=>x.unsubscribe();
+    },[])
   return (
     
     <ShepherdTour steps={newSteps} tourOptions={tourOptions}>

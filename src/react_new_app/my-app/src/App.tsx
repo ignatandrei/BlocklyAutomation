@@ -18,7 +18,7 @@ import { javascriptGenerator } from 'blockly/javascript';
 import FindSavedBlocksComponent from './Components/Examples/FindSavedBlocksComponent';
 import SaveButton from './Components/GUI/saveButton';
 // import DemoBlocks from './Components/Examples/DemoBlocks';
-import { LoadIDService,  RunCode, RunCodeData, RunCodeMessage, ShowData } from './Components/Examples/Messages';
+import { LoadIDService,  LoadTourSteps,  RunCode, RunCodeData, RunCodeMessage, ShowData } from './Components/Examples/Messages';
 // import CurrentDateBlock from './BlocklyReusable/BlocklyNewBlocks/dates/CurrentDateBlock';
 // import BlocklyDisplayText from './Components/GUI/BlocklyDisplayText';
 import BlocklyDisplayData from './Components/GUI/BlocklyDisplayData';
@@ -37,6 +37,7 @@ import ToolboxBlocksAdvanced from './Components/ToolboxBlocksAdvanced';
 // import About from './Components/GUI/about';
 import {  IBlocksExtMut, IBlocksSimple } from './BlocklyReusable/blocksInterface';
 import TourMainPage from './Components/GUI/tour';
+import { TourSteps } from './Components/GUI/settings/TourSteps';
 
 // import darkThemeData from './BlocklyReusable/themeDark';
 function App(props: any) {
@@ -84,7 +85,6 @@ AllNewBlocks.Instance.NewBlocks().forEach(it=>{
 
 //   var dark = Blockly.Theme.defineTheme('darkAndrei',darkThemeData);
 const [open, setOpen] = React.useState(false);
-
 const [disabledRun, setdisabledRun] = React.useState(false);
 const [selectedValue, setSelectedValue] = React.useState("");  
 const handleRun = () => {
@@ -115,7 +115,9 @@ const handleClickOpen = () => {
 
   useEffect(()=>{
     var x= new SettingsBA().getSettings().subscribe(it=>{      
-          document.title= it.title; 
+          document.title= it.title;
+          LoadTourSteps.sendTS(it.tourSteps);
+
         setTitleBA(it.title);
     });
     return ()=>x.unsubscribe();

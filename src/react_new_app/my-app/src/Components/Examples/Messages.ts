@@ -1,5 +1,6 @@
 import { Subject } from 'rxjs';
 import { SaveLocation } from '../GUI/SaveLocation';
+import { TourSteps } from '../GUI/settings/TourSteps';
 import ShowCodeAndXML from '../GUI/ShowCodeAndXML';
 
 export const enum RunCodeData{
@@ -21,7 +22,12 @@ const subjectSave = new Subject<SaveLocation>();
 const subjectRun = new Subject<RunCodeMessage>();
 const subjectShow=new Subject<ShowCodeAndXML>();
 const subjectInnerWorking=new Subject<string>();
+const subjectTourSteps=new Subject<TourSteps[]>();
 
+export const LoadTourSteps = {
+    sendTS: (tourSteps:TourSteps[]) => subjectTourSteps.next(tourSteps ),
+    getTS: () => subjectTourSteps.asObservable()
+};
 export const LoadIDService = {
     sendID: (message:string) => subjectID.next(message ),
     getID: () => subjectID.asObservable()
