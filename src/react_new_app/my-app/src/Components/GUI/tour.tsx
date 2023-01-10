@@ -1,6 +1,6 @@
 import { Button } from '@mui/material';
 import React, { useEffect, useState }  from 'react'
-import { ShepherdOptionsWithType, ShepherdTour, Tour, TourMethods } from 'react-shepherd'
+import { ShepherdOptionsWithType, ShepherdTour,  TourMethods } from 'react-shepherd'
 import "shepherd.js/dist/css/shepherd.css";
 import { LoadTourSteps } from '../Examples/Messages';
 import StartAnything from './StartAnything';
