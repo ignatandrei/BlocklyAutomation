@@ -1,4 +1,4 @@
-name: Build and deploy to dotnet programmer all
+name: Build nuget dotnet programmer all
 
 on:
   push:
@@ -61,7 +61,7 @@ jobs:
       - name: Upload nuget
         uses: actions/upload-artifact@v2
         with:
-          name: .net-app
+          name: programmerAll
           path: ${{github.workspace}}/src/Local/LocalAPI/PACK/
 
   

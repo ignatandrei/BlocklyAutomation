@@ -7,7 +7,14 @@
     <Nullable>enable</Nullable>
 	  <ValidateExecutableReferencesMatchSelfContained>false</ValidateExecutableReferencesMatchSelfContained>
   </PropertyGroup>
-	<PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+		<!--<None Include="../../../README.md" Pack="true" PackagePath="\" />
+		<None Include="../../../docs/nuget.png" Pack="true" PackagePath="\" />
+		<None Include="../readme.txt" Pack="true" PackagePath="\" />-->
+
+	</ItemGroup>
+		<PropertyGroup>
 		<PackAsTool>true</PackAsTool>
 		<PackageId>dotnet-programmerAll</PackageId>
 		<ToolCommandName>programmerall</ToolCommandName>
