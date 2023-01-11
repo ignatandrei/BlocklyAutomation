@@ -19,6 +19,8 @@ public class LocalAPIStarter
         // Add services to the container.
 
         builder.Services.AddControllers()
+            .AddApplicationPart(typeof(LocalAPIStarter).Assembly)
+            .AddControllersAsServices()
             .AddJsonOptions(c =>
 
             {
