@@ -11,11 +11,6 @@
 		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
 		<None Include="../README.md" Pack="true" PackagePath="\" />
 		<None Include="wwwroot/a.zip" Pack="true" PackagePath="\tools\net7.0\any\wwwroot" />
-		<None Include="../LocalApi/www*/**" Pack="true" PackagePath="\tools\net7.0\any\wwwroot">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-			<PackageCopyToOutput>true</PackageCopyToOutput>
-		</None>
-
 		<!--<None Include="../../../docs/nuget.png" Pack="true" PackagePath="\" />
 		<None Include="../readme.txt" Pack="true" PackagePath="\" />-->
 
@@ -54,12 +49,19 @@
 		<ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
 	</PropertyGroup>
 	<ItemGroup>
-	  <None Remove="wwwroot\index.html" />
+	  <None Remove="wwwroot\default.html" />
 	</ItemGroup>
 	<ItemGroup>
-	  <Content Include="wwwroot\index.html">
+		<Content Include="../LocalApi/www*/**" Pack="true" PackagePath="\tools\net7.0\any\wwwroot">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<PackageCopyToOutput>true</PackageCopyToOutput>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</Content>
+
+
+		<Content Include="wwwroot\default.html">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+	    <ExcludeFromSingleFile>false</ExcludeFromSingleFile>
 	    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
 	  </Content>
 	</ItemGroup>
