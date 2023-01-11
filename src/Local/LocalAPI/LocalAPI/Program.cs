@@ -1,3 +1,4 @@
+using LocalTools;
 using System.Reflection;
 using WindowsRelated;
 public class LocalAPIStarter
@@ -47,6 +48,7 @@ public class LocalAPIStarter
         builder.Services.AddTransient<NPMs>();
         builder.Services.AddTransient<Apps>();
         builder.Services.AddTransient<WingetApps>();
+        builder.Services.AddTransient<dotNetTools>();
         //builder.Configuration.GetDebugView();
         EmailConfig cfgEmail = new();
         builder.Configuration.GetSection("plugins:email").Bind(cfgEmail);

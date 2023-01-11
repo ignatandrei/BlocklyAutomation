@@ -6,14 +6,16 @@
 [AutoActions(template = TemplateIndicator.NoArgs_Is_Get_Else_Post, FieldsName = new[] { "*" }, ExcludeFields = new[] { "_logger" })]
 public partial class MyToolsController : ControllerBase
 {
+    private readonly dotNetTools dotnetTools;
     private readonly ChromeExtensions chromeExt;
     private readonly PowershellTools pwsTools;
     private readonly VSCodeExtensions extension;
     private readonly NuGets nuGets;
     private readonly NPMs npms;
 
-    public MyToolsController(ChromeExtensions chromeExt, PowershellTools pwsTools, VSCodeExtensions extension, NuGets nuGets, NPMs npms)
+    public MyToolsController(dotNetTools dotnetTools, ChromeExtensions chromeExt, PowershellTools pwsTools, VSCodeExtensions extension, NuGets nuGets, NPMs npms)
     {
+        this.dotnetTools = dotnetTools;
         this.chromeExt = chromeExt;
         this.pwsTools = pwsTools;
         this.extension = extension;
