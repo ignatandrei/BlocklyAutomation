@@ -1,0 +1,1 @@
+﻿await LocalAPIStarter.Main(null);

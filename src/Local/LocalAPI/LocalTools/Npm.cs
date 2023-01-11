@@ -41,11 +41,25 @@ public record npmPackage(string Id, string? Name)
 
 public class NPMs
 {
+    private string LocationExe(string exe)
+    {
+        var p = new Process();
+        p.StartInfo.FileName = "where";
+        p.StartInfo.Arguments = exe;
+        p.StartInfo.UseShellExecute = false;
+        p.StartInfo.RedirectStandardOutput = true;
+        p.Start();
+        p.WaitForExit();
+        var output = p.StandardOutput.ReadToEnd();
+        return output;
+    }
     public async Task<npmPackage[]?> FindNPMs()
     {
 
         StringBuilder data = new();
-        var si = new ProcessStartInfo(@"C:\Program Files\nodejs\npm.cmd");
+        //var si = new ProcessStartInfo(@"C:\Program Files\nodejs\npm.cmd");
+        string npmLocation = LocationExe("npm.cmd");
+        var si = new ProcessStartInfo(npmLocation);
         si.Arguments = "cache ls";
         si.UseShellExecute = false;
         si.RedirectStandardOutput = true;

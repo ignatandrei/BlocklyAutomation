@@ -1,4 +1,5 @@
 {
+	"scriptShell":"pwsh1",
   "scripts": {
     "build": "dotnet build --configuration Release",
     "fastBuild":"dotnet build --no-restore",
@@ -8,5 +9,6 @@
     "fastCopyAssets":"dotnet r fastBA  && xcopy \"../build/wwwroot/customBlocklyAutomation\"  \"../build/wwwroot/BlocklyAutomation/\" /E /F /R /Y",
    "fastRun":"dotnet r fastCopyAssets  && pushd \"../build/\" && LocalAPI.exe && popd",
     "ci": "dotnet r build && dotnet r test"
+	
   }
 }

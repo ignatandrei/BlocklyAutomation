@@ -1,0 +1,44 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+	  <ValidateExecutableReferencesMatchSelfContained>false</ValidateExecutableReferencesMatchSelfContained>
+  </PropertyGroup>
+	<PropertyGroup>
+		<PackAsTool>true</PackAsTool>
+		<PackageId>dotnet-programmerAll</PackageId>
+		<ToolCommandName>programmerall</ToolCommandName>
+		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+	</PropertyGroup>
+	<PropertyGroup>
+		<Version>2023.1.11.1300</Version>
+		<PackageVersion>2023.1.11.1300</PackageVersion>
+		<Authors>Andrei Ignat</Authors>
+		<Description>Export all tools and many others</Description>
+		<Title>programmerall</Title>
+		<PackageId>programmerall</PackageId>
+		<PackageTags>C#;.NET;</PackageTags>
+		<!--<PackageReadmeFile>readme.md</PackageReadmeFile>
+    <PackageIcon>tb.png</PackageIcon>
+    <RepositoryUrl>https://github.com/ignatandrei/RSCG_TimeBombComment</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/ignatandrei/RSCG_TimeBombComment</PackageProjectUrl>
+    <RepositoryType>GIT</RepositoryType>-->
+		<Copyright>MIT</Copyright>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<IncludeSymbols>true</IncludeSymbols>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+		<Deterministic>true</Deterministic>
+		<DebugType>embedded</DebugType>
+
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
+		<ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+	</PropertyGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\LocalAPI\LocalAPI.csproj" />
+	</ItemGroup>
+</Project>
