@@ -1,5 +1,5 @@
 {
-	"scriptShell":"pwsh1",
+	"scriptShell":"pwsh",
   "scripts": {
     "build": "dotnet build --configuration Release",
     "fastBuild":"dotnet build --no-restore",
@@ -8,7 +8,8 @@
     "fastBA":"dotnet r fastPublish && xcopy \"../../react_new_app/my-app/build/\"  \"../build/wwwroot/BlocklyAutomation/\" /E /F /R /Y",
     "fastCopyAssets":"dotnet r fastBA  && xcopy \"../build/wwwroot/customBlocklyAutomation\"  \"../build/wwwroot/BlocklyAutomation/\" /E /F /R /Y",
    "fastRun":"dotnet r fastCopyAssets  && pushd \"../build/\" && LocalAPI.exe && popd",
-    "ci": "dotnet r build && dotnet r test"
-	
+    "ci": "dotnet r build && dotnet r test",
+	"copyFiles": "copy-item LocalAPI/wwwroot/customBlocklyAutomation/* LocalAPI/wwwroot/BlocklyAutomation/ -force -recurse -verbose",
+	"buildPack": "dotnet r copyFiles && dotnet pack MyProgrammerAllTool/MyProgrammerAllTool.csproj --include-source -o PACK"
   }
 }

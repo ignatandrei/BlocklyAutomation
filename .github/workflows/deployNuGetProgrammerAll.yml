@@ -49,47 +49,12 @@ jobs:
           cd Local
           cd LocalAPI
           dotnet tool restore
-          cd wwwroot
-          rm -rf BlocklyAutomation
-          mkdir BlocklyAutomation
-          cp -R ${{github.workspace}}/src/react_new_app/my-app/build/*  BlocklyAutomation 
-          cd ..
-          cd ..
-          ls -l
-          dotnet build --configuration Release
-
-      - name: dotnet publish
-        run: |
-          cd src
-          cd apps
-          cd TestDataNetCoreBlocklyAPI
-          cd TestDataNetCoreBlocklyAPI
-          dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
-
-      - name: Upload artifact for deployment job
+          dotnet r buildPack
+      
+      - name: Upload nuget
         uses: actions/upload-artifact@v2
         with:
           name: .net-app
-          path: ${{env.DOTNET_ROOT}}/myapp
+          path: ${{github.workspace}}/src/Local/LocalAPI/PACK/
 
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    environment:
-      name: 'Production'
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-
-    steps:
-      - name: Download artifact from build job
-        uses: actions/download-artifact@v2
-        with:
-          name: .net-app
-
-      - name: Deploy to Azure Web App
-        id: deploy-to-webapp
-        uses: azure/webapps-deploy@v2
-        with:
-          app-name: 'VisualAPI'
-          slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_6808215105A946969FD984B31F750930 }}
-          package: .
+  
