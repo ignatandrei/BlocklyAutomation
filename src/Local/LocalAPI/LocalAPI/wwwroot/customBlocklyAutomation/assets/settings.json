@@ -1,31 +1,53 @@
 {
-    "title": "Visual API",
-    "footer": "Please give us a star on https://github.com/ignatandrei/BlocklyAutomation",
-    "startBlocks":[
-      
-    ],
-    "hideMenu":false,
-  "tourSteps":
-    [
-      {
-          "text":"This is the introduction to automate",
-          "query":".blocklyWorkspace"
-      },
-      {
-          "text":"Here you will find demos",
-          "query":"#demos"
-      },
-      {
-        "text":"You can download the app from here ",
-        "query":"#download"
-      },
-      {
-          "text":"to reuse you can download the blocks from here",
-          "query":"#downloadBlocks"
-      },
-      {
-          "text":"Press the run button to see the result of blocks",
-          "query":"#runButton"
-      }
+  "title": "Visual API",
+  "footer": "Please give us a star on https://github.com/ignatandrei/BlocklyAutomation",
+  "startBlocks": [
+
+  ],
+  "hideMenu": false,
+  "tourSteps": [
+    {
+      "text": "This is the introduction to VisualAPI",
+      "query": ".blocklyWorkspace"
+    },
+    {
+      "text": "Here you can find blocks for VisualCode  API ! Expand to investigate and drag",
+      "query": ".blocklyToolboxContents"
+    },
+
+    {
+      "text": "Here you can find blocks for basic constructs : loops, text, bool, logic ...",
+      "query": ".blocklyTreeLabel"
+    },
+    {
+      "text": "Drag here blocks to execute them",
+      "query": ".blocklyBlockCanvas"
+    },
+    {
+      "text": "Here you will find examples to get started",
+      "query": ".stepTourDemos"
+    },
+    {
+      "text": "to reuse you can download / load  the blocks from here",
+      "query": ".stepTourDownload"
+    },
+    {
+      "text": "Press the execute button to run ;-) ",
+      "query": ".stepTourRunButton"
+    },
+
+    {
+      "text": "Press the output button to see the result of blocks",
+      "query": ".stepTourOutputButton"
+    },
+    {
+      "text": "Here you can find the output as text, html and json",
+      "query": ".stepTourOutput"
+    },
+    {
+      "text": "Now press run and see , via HTTP, a joke with Chuck Norris ",
+      "query": ".stepTourRunButton"
+    }
+
   ]
 }
