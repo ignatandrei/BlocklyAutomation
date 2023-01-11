@@ -7,7 +7,7 @@ public class LocalAPIStarter
         var rootPath = AppContext.BaseDirectory;
 
         var builder = WebApplication.CreateBuilder(args);
-        builder.WebHost.UseContentRoot(rootPath);
+        //builder.WebHost.UseContentRoot(rootPath);
         builder.Host.UseContentRoot(rootPath);
         // Add services to the container.
 
