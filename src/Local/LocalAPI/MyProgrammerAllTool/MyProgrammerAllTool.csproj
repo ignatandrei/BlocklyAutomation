@@ -36,6 +36,7 @@
 		<RepositoryUrl>https://github.com/ignatandrei/BlocklyAutomation</RepositoryUrl>
 		<PackageProjectUrl>https://github.com/ignatandrei/BlocklyAutomation/tree/main/src/Local/LocalAPI</PackageProjectUrl>
 		<RepositoryType>GIT</RepositoryType>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<Copyright>MIT</Copyright>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<IncludeSymbols>true</IncludeSymbols>
