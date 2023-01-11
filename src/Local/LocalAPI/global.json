@@ -11,6 +11,6 @@
     "ci": "dotnet r build && dotnet r test",
 	"copyFiles": "copy-item LocalAPI/wwwroot/customBlocklyAutomation/* LocalAPI/wwwroot/BlocklyAutomation/ -force -recurse -verbose",
 	"copyFilesToPack": "copy-item LocalAPI/wwwroot/* MyProgrammerAllTool/wwwroot/ -force -recurse -verbose",
-	"buildPack": "dotnet r copyFiles && dotnet r copyFilesToPack && dotnet pack MyProgrammerAllTool/MyProgrammerAllTool.csproj --include-source  -o PACK"
+	"buildPack": "dotnet r copyFiles  && dotnet pack MyProgrammerAllTool/MyProgrammerAllTool.csproj --include-source  -o PACK"
   }
 }
