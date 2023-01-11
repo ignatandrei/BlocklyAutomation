@@ -48,22 +48,22 @@
 	<PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
 		<ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
 	</PropertyGroup>
-	<ItemGroup>
+	<!--<ItemGroup>
 	  <None Remove="wwwroot\default.html" />
-	</ItemGroup>
+	</ItemGroup>-->
 	<ItemGroup>
-		<Content Include="../LocalApi/www*/**" Pack="true" PackagePath="\tools\net7.0\any\wwwroot">
+		<!--<Content Include="../LocalApi/www*/**" Pack="true" PackagePath="\tools\net7.0\any\wwwroot">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 			<PackageCopyToOutput>true</PackageCopyToOutput>
 			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-		</Content>
+		</Content>-->
 
 
-		<Content Include="wwwroot\default.html">
+		<!--<Content Include="wwwroot\default.html">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	    <ExcludeFromSingleFile>false</ExcludeFromSingleFile>
 	    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-	  </Content>
+	  </Content>-->
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\LocalAPI\LocalAPI.csproj" />
