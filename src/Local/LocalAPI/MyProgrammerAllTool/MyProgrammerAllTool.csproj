@@ -10,9 +10,9 @@
 	<ItemGroup>
 		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
 		<None Include="../README.md" Pack="true" PackagePath="\" />
-		<None Include="a.zip" Pack="true" PackagePath="\tools\net7.0\any\" />
+		<None Include="a.zip" Pack="true" PackagePath="\tools\net7.0\any\wwwroot" />
 
-		<None Include="../LocalApi/wwwroot/**" Pack="true" PackagePath="\" >
+		<None Include="../LocalApi/www*/**" Pack="true" PackagePath="\tools\net7.0\any\wwwroot">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 			<PackageCopyToOutput>true</PackageCopyToOutput>
 		</None>
@@ -54,6 +54,16 @@
 	<PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
 		<ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
 	</PropertyGroup>
+	<ItemGroup>
+	  <None Remove="wwwroot\index.html" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Content Include="wwwroot\index.html">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+	    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+	  </Content>
+	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\LocalAPI\LocalAPI.csproj" />
 	</ItemGroup>
