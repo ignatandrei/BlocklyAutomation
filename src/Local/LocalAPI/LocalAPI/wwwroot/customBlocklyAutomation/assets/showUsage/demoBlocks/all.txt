@@ -13,7 +13,7 @@
     },
     {
         "id":  "extVsCode",
-        "description":  "export npm locals",
+        "description":  "export vscode extensions",
         "categories":  "api;programmer tools;",
         "blocks":  "text_print;procedures_callreturn;text;converttojson;get__api_v1_MyTools_FindVSCodeExtension;math_number;HTMLheaders;text_append;HTMLliStart;controls_forEach;getproperty;controls_if;logic_compare;text_length;text_getSubstring;controls_flow_statements;HTMLlinkFromObject;HTMLli;wait_seconds;converttostring;HTMLliStop;procedures_defreturn;htmlParserAttrVal;get__api_v1_HttpCalls_GetBasicString;lists_getIndex;text_trim"
     },
