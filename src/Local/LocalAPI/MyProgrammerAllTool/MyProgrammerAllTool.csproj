@@ -10,8 +10,7 @@
 	<ItemGroup>
 		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
 		<None Include="../README.md" Pack="true" PackagePath="\" />
-		<None Include="a.zip" Pack="true" PackagePath="\tools\net7.0\any\wwwroot" />
-
+		<None Include="wwwroot/a.zip" Pack="true" PackagePath="\tools\net7.0\any\wwwroot" />
 		<None Include="../LocalApi/www*/**" Pack="true" PackagePath="\tools\net7.0\any\wwwroot">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 			<PackageCopyToOutput>true</PackageCopyToOutput>
