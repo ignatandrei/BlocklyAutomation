@@ -8,43 +8,57 @@ on:
     branches:
       - main
     tags:
-      - "v*"
+      - "vAPI*"
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [16.13.0]
+    # strategy:
+    #   matrix:
+    #     node-version: [16.13.0]
 
     steps:
       - uses: actions/checkout@v2
 
-      - name: Node ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+      # - name: Node ${{ matrix.node-version }}
+      #   uses: actions/setup-node@v1
+      #   with:
+      #     node-version: ${{ matrix.node-version }}
+      - name: Download artifact
+        id: download-artifact
+        uses: dawidd6/action-download-artifact@v2
         with:
-          node-version: ${{ matrix.node-version }}
+          github_token: ${{secrets.GITHUB_TOKEN}}
+          workflow: deployVersion.yml
+          workflow_conclusion: success
+          branch: master
+          path: ${{github.workspace}}/src/react_new_app/my-app/build/
+          if_no_artifact_found: fail
+
+      - name: verify exists
+        run: |
+          ls -l ${{github.workspace}}/src/react_new_app/my-app/build/      
 
       - name: Set up .NET Core
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: '7.x'
           include-prerelease: false
-      - name: npm install
-        run: |
-          cd src        
-          cd react_new_app
-          cd my-app
-          npm i -g npm@8.1.0               
-          npm i  
+      # - name: npm install
+      #   run: |
+      #     cd src        
+      #     cd react_new_app
+      #     cd my-app
+      #     npm i -g npm@8.1.0               
+      #     npm i  
 
-      - name: build site
-        run: |
-          cd src        
-          cd react_new_app
-          cd my-app
-          npm run build
+      # - name: build site
+      #   run: |
+      #     cd src        
+      #     cd react_new_app
+      #     cd my-app
+      #     npm run build
 
       - name: Build with dotnet
         run: |
