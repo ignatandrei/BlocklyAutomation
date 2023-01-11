@@ -10,7 +10,9 @@
 	<ItemGroup>
 		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
 		<None Include="../README.md" Pack="true" PackagePath="\" />
-		<None Include="wwwroot/a.zip" Pack="true" PackagePath="\tools\net7.0\any\wwwroot" />
+		<!--<None Include="wwwroot/a.zip" Pack="true" PackagePath="\tools\net7.0\any\wwwroot" />-->
+		<None Include="wwwroot/**" Pack="true" PackagePath="\tools\net7.0\any\wwwroot" />
+
 		<!--<None Include="../../../docs/nuget.png" Pack="true" PackagePath="\" />
 		<None Include="../readme.txt" Pack="true" PackagePath="\" />-->
 
