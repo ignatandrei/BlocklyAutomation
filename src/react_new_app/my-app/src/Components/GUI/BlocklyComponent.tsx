@@ -140,7 +140,7 @@ Blockly.setLocale(locale);
 
         var x= LoadIDService.getID()
         .pipe(
-          delay(5000)//in order to load data
+          delay(2000)//in order to load data
         )
         .subscribe(it=>{
           console.log('in getID');
