@@ -4,11 +4,18 @@ public class LocalAPIStarter
 {
     public static async Task<int> Main(string[] args)
     {
-        var rootPath = AppContext.BaseDirectory;
-
+        //var rootPath = AppContext.BaseDirectory;
         var builder = WebApplication.CreateBuilder(args);
+        //https://learn.microsoft.com/en-us/aspnet/core/migration/50-to-60-samples?view=aspnetcore-7.0
+        //var builder = WebApplication.CreateBuilder(new WebApplicationOptions
+        //{
+        //    Args = args,
+        //    ApplicationName = typeof(LocalAPIStarter).Assembly.FullName,
+        //    ContentRootPath = rootPath,
+        //    WebRootPath = "wwwroot"
+        //});
         //builder.WebHost.UseContentRoot(rootPath);
-        builder.Host.UseContentRoot(rootPath);
+        //builder.Host.UseContentRoot(rootPath);
         // Add services to the container.
 
         builder.Services.AddControllers()

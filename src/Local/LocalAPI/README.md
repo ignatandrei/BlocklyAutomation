@@ -1,7 +1,6 @@
 Install as .NET Tool ( local or global)
 ```code
-dotnet tool update --global programmerall 
-programerall
+dotnet tool update --global programmerall --no-cache
+programerall 
 ```
-
-Browse to http://localhost:37283/BlocklyAutomation
+Then browse to http://localhost:37283/BlocklyAutomation
