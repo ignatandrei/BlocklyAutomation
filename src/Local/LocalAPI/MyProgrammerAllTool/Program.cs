@@ -5,4 +5,5 @@ Console.WriteLine($"Executing {folder}");
 var entry= Assembly.GetEntryAssembly();
 folder = (entry == null) ? "N/A" : entry.Location; 
 Console.WriteLine($"Entry {folder}");
+Console.WriteLine($"appdir {AppContext.BaseDirectory}");
 await LocalAPIStarter.Main(null);

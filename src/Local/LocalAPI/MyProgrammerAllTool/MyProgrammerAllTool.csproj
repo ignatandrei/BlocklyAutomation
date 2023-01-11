@@ -24,8 +24,8 @@
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
 	</PropertyGroup>
 	<PropertyGroup>
-		<Version>2023.1.11.1800</Version>
-		<PackageVersion>2023.1.11.1800</PackageVersion>
+		<Version>2023.1.11.1830</Version>
+		<PackageVersion>2023.1.11.1830</PackageVersion>
 		<Authors>Andrei Ignat</Authors>
 		<Description>Export all tools and many others</Description>
 		<Title>programmerall</Title>

@@ -1,12 +1,14 @@
+using System.Reflection;
 using WindowsRelated;
 public class LocalAPIStarter
 {
     public static async Task<int> Main(string[] args)
     {
-
+        var rootPath = AppContext.BaseDirectory;
 
         var builder = WebApplication.CreateBuilder(args);
-
+        builder.WebHost.UseContentRoot(rootPath);
+        builder.Host.UseContentRoot(rootPath);
         // Add services to the container.
 
         builder.Services.AddControllers()
