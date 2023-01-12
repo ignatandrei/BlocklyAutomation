@@ -116,7 +116,7 @@ namespace BrowserTest
             
             if (resp == null) return null;
             await resp.FinishedAsync();
-            
+            //await page.WaitForLoadStateAsync(LoadState.NetworkIdle);
             responses.Add(page, resp);
             return page;
         }
