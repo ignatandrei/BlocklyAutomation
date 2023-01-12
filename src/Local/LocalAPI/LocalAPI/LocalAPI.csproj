@@ -29,6 +29,7 @@
     <PackageReference Include="RSCG_AMS" Version="2022.5.25.1154" ReferenceOutputAssembly="false" OutputItemType="Analyzer" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BrowserTest\BrowserTest.csproj" />
     <ProjectReference Include="..\LocalAPIChrome\LocalAPIChrome.csproj" />
     <ProjectReference Include="..\LocalAPIEmail\LocalAPIEmail.csproj" />
     <ProjectReference Include="..\LocalFS\LocalFS.csproj" />
