@@ -146,37 +146,73 @@
                                       </block>
                                     </statement>
                                     <next>
-                                      <block type="variables_set">
-                                        <field name="VAR" id="t1YXwS=o3O^!k*O$vDw^">displayTextExt</field>
-                                        <value name="VALUE">
-                                          <block type="HTMLlinkFromObject">
-                                            <field name="targetDrop">_blank</field>
-                                            <value name="objectProp">
-                                              <block type="variables_get">
-                                                <field name="VAR" id="TqKU/-q5Pz*mP`RUsujc">j</field>
+                                      <block type="controls_if">
+                                        <value name="IF0">
+                                          <block type="logic_compare">
+                                            <field name="OP">GT</field>
+                                            <value name="A">
+                                              <block type="text_length">
+                                                <value name="VALUE">
+                                                  <block type="converttostring">
+                                                    <value name="ValueToConvert">
+                                                      <block type="variables_get">
+                                                        <field name="VAR" id="X-}RN[e:}3}BllGfkc`k">description</field>
+                                                      </block>
+                                                    </value>
+                                                  </block>
+                                                </value>
                                               </block>
                                             </value>
-                                            <value name="textProp">
-                                              <shadow type="text">
-                                                <field name="TEXT">name</field>
-                                              </shadow>
-                                            </value>
-                                            <value name="hrefProp">
-                                              <shadow type="text">
-                                                <field name="TEXT">url</field>
-                                              </shadow>
+                                            <value name="B">
+                                              <block type="math_number">
+                                                <field name="NUM">250</field>
+                                              </block>
                                             </value>
                                           </block>
                                         </value>
+                                        <statement name="DO0">
+                                          <block type="variables_set">
+                                            <field name="VAR" id="X-}RN[e:}3}BllGfkc`k">description</field>
+                                            <value name="VALUE">
+                                              <block type="text_getSubstring" inline="false">
+                                                <mutation at1="false" at2="true"></mutation>
+                                                <field name="WHERE1">FIRST</field>
+                                                <field name="WHERE2">FROM_START</field>
+                                                <value name="STRING">
+                                                  <block type="variables_get">
+                                                    <field name="VAR" id="X-}RN[e:}3}BllGfkc`k">description</field>
+                                                  </block>
+                                                </value>
+                                                <value name="AT2">
+                                                  <block type="math_number">
+                                                    <field name="NUM">250</field>
+                                                  </block>
+                                                </value>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </statement>
                                         <next>
-                                          <block type="text_append">
+                                          <block type="variables_set">
                                             <field name="VAR" id="t1YXwS=o3O^!k*O$vDw^">displayTextExt</field>
-                                            <value name="TEXT">
-                                              <shadow type="text">
-                                                <field name="TEXT"></field>
-                                              </shadow>
-                                              <block type="text">
-                                                <field name="TEXT">:</field>
+                                            <value name="VALUE">
+                                              <block type="HTMLlinkFromObject">
+                                                <field name="targetDrop">_blank</field>
+                                                <value name="objectProp">
+                                                  <block type="variables_get">
+                                                    <field name="VAR" id="TqKU/-q5Pz*mP`RUsujc">j</field>
+                                                  </block>
+                                                </value>
+                                                <value name="textProp">
+                                                  <shadow type="text">
+                                                    <field name="TEXT">name</field>
+                                                  </shadow>
+                                                </value>
+                                                <value name="hrefProp">
+                                                  <shadow type="text">
+                                                    <field name="TEXT">url</field>
+                                                  </shadow>
+                                                </value>
                                               </block>
                                             </value>
                                             <next>
@@ -186,39 +222,52 @@
                                                   <shadow type="text">
                                                     <field name="TEXT"></field>
                                                   </shadow>
-                                                  <block type="variables_get">
-                                                    <field name="VAR" id="X-}RN[e:}3}BllGfkc`k">description</field>
+                                                  <block type="text">
+                                                    <field name="TEXT">:</field>
                                                   </block>
                                                 </value>
                                                 <next>
                                                   <block type="text_append">
-                                                    <field name="VAR" id="{4E(M6EK@v(i~M9GEc)L">ret</field>
+                                                    <field name="VAR" id="t1YXwS=o3O^!k*O$vDw^">displayTextExt</field>
                                                     <value name="TEXT">
                                                       <shadow type="text">
                                                         <field name="TEXT"></field>
                                                       </shadow>
-                                                      <block type="HTMLli">
-                                                        <value name="NAME">
-                                                          <block type="variables_get">
-                                                            <field name="VAR" id="t1YXwS=o3O^!k*O$vDw^">displayTextExt</field>
-                                                          </block>
-                                                        </value>
+                                                      <block type="variables_get">
+                                                        <field name="VAR" id="X-}RN[e:}3}BllGfkc`k">description</field>
                                                       </block>
                                                     </value>
                                                     <next>
-                                                      <block type="text_print" disabled="true">
+                                                      <block type="text_append">
+                                                        <field name="VAR" id="{4E(M6EK@v(i~M9GEc)L">ret</field>
                                                         <value name="TEXT">
-                                                          <block type="converttostring">
-                                                            <value name="ValueToConvert">
+                                                          <shadow type="text">
+                                                            <field name="TEXT"></field>
+                                                          </shadow>
+                                                          <block type="HTMLli">
+                                                            <value name="NAME">
                                                               <block type="variables_get">
-                                                                <field name="VAR" id=")t#tYtz_~z*#{-g5JKUp">i</field>
+                                                                <field name="VAR" id="t1YXwS=o3O^!k*O$vDw^">displayTextExt</field>
                                                               </block>
                                                             </value>
                                                           </block>
                                                         </value>
                                                         <next>
-                                                          <block type="controls_flow_statements" disabled="true">
-                                                            <field name="FLOW">BREAK</field>
+                                                          <block type="text_print" disabled="true">
+                                                            <value name="TEXT">
+                                                              <block type="converttostring">
+                                                                <value name="ValueToConvert">
+                                                                  <block type="variables_get">
+                                                                    <field name="VAR" id=")t#tYtz_~z*#{-g5JKUp">i</field>
+                                                                  </block>
+                                                                </value>
+                                                              </block>
+                                                            </value>
+                                                            <next>
+                                                              <block type="controls_flow_statements" disabled="true">
+                                                                <field name="FLOW">BREAK</field>
+                                                              </block>
+                                                            </next>
                                                           </block>
                                                         </next>
                                                       </block>
