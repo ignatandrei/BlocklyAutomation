@@ -38,13 +38,13 @@ jobs:
           ls -l ${{github.workspace}}/src/Local/LocalAPI/LocalAPI/wwwroot      
 
       - name: Set up .NET Core 6
-        uses: actions/setup-dotnet@v1
+        uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '6.x'
           include-prerelease: false
 
       - name: Set up .NET Core 7
-        uses: actions/setup-dotnet@v1
+        uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '7.x'
           include-prerelease: false
@@ -63,5 +63,9 @@ jobs:
         with:
           name: programmerAll
           path: ${{github.workspace}}/src/Local/LocalAPI/PACK/
+      
+      - name: push to nuget
+        run: |
+          dotnet nuget push ${{github.workspace}}/src/Local/LocalAPI/PACK/progr*symb*.*pkg --api-key  ${{ secrets.NUGETAPIKEY }} --source https://api.nuget.org/v3/index.json
 
   
