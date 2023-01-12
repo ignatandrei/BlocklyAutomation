@@ -1,4 +1,7 @@
+using BrowserTest;
 using LocalTools;
+using Microsoft.Extensions.Options;
+using Microsoft.Playwright;
 using System.Reflection;
 using WindowsRelated;
 public class LocalAPIStarter
@@ -25,6 +28,7 @@ public class LocalAPIStarter
             .AddJsonOptions(c =>
 
             {
+                c.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
                 c.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
                 c.JsonSerializerOptions.IgnoreReadOnlyFields = true;
                 c.JsonSerializerOptions.IgnoreReadOnlyProperties = true;//directory info
@@ -49,6 +53,7 @@ public class LocalAPIStarter
         builder.Services.AddTransient<Apps>();
         builder.Services.AddTransient<WingetApps>();
         builder.Services.AddTransient<dotNetTools>();
+        builder.Services.AddTransient<BrowserRun>();
         //builder.Configuration.GetDebugView();
         EmailConfig cfgEmail = new();
         builder.Configuration.GetSection("plugins:email").Bind(cfgEmail);
@@ -75,6 +80,8 @@ public class LocalAPIStarter
             setup.SubstituteApiVersionInUrl = true;
         });
         builder.Services.AddHttpClient();
+        var p= await Playwright.CreateAsync();
+        builder.Services.AddSingleton(p);
         //builder.Services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
         //   .AddNegotiate();
 

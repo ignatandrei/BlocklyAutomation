@@ -17,7 +17,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocalTools", "LocalTools\Lo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WindowsRelated", "WindowsRelated\WindowsRelated.csproj", "{738C953A-091B-40B7-B3E1-5AF37E031411}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyProgrammerAllTool", "MyProgrammerAllTool\MyProgrammerAllTool.csproj", "{51F54D23-426C-4E1C-8792-0FF7A6CA3C3C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyProgrammerAllTool", "MyProgrammerAllTool\MyProgrammerAllTool.csproj", "{51F54D23-426C-4E1C-8792-0FF7A6CA3C3C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrowserTest", "BrowserTest\BrowserTest.csproj", "{6F47CAF4-4687-47B0-9F71-70C12474C882}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,6 +55,10 @@ Global
 		{51F54D23-426C-4E1C-8792-0FF7A6CA3C3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{51F54D23-426C-4E1C-8792-0FF7A6CA3C3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{51F54D23-426C-4E1C-8792-0FF7A6CA3C3C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F47CAF4-4687-47B0-9F71-70C12474C882}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F47CAF4-4687-47B0-9F71-70C12474C882}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F47CAF4-4687-47B0-9F71-70C12474C882}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F47CAF4-4687-47B0-9F71-70C12474C882}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
