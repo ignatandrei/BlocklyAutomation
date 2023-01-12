@@ -1,6 +1,7 @@
 using BrowserTest;
 using LocalTools;
 using Microsoft.Extensions.Options;
+using Microsoft.Playwright;
 using System.Reflection;
 using WindowsRelated;
 public class LocalAPIStarter
@@ -79,6 +80,8 @@ public class LocalAPIStarter
             setup.SubstituteApiVersionInUrl = true;
         });
         builder.Services.AddHttpClient();
+        var p= await Playwright.CreateAsync();
+        builder.Services.AddSingleton(p);
         //builder.Services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
         //   .AddNegotiate();
 
