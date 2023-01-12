@@ -1,5 +1,11 @@
 ﻿[
     {
+        "id":  "dotnetTool",
+        "description":  "export dotnet tools ",
+        "categories":  "api;programmer tools;",
+        "blocks":  "converttojson;get__api_v1_MyTools_AllDotNetTools;text;math_number;HTMLheaders;text_append;HTMLliStart;controls_forEach;text_print;getproperty;procedures_callreturn;controls_if;logic_compare;text_length;converttostring;controls_flow_statements;HTMLlinkFromObject;HTMLli;HTMLliStop;procedures_defreturn;htmlParserAttrVal;get__api_v1_HttpCalls_GetBasicString;lists_getIndex"
+    },
+    {
         "id":  "ChromeExtensions",
         "description":  "export Chrome extensions",
         "categories":  "api;programmer tools;",
