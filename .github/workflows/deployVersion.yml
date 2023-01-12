@@ -1,4 +1,4 @@
-name: "Deploy VisualAPI to releases"
+name: "Deploy release"
 # env:
   # DOTNET_VERSION: '6.0.x'           # set this to the dot net version to use
   # AZURE_WEBAPP_NAME: 'AutoBlocklyApp'
