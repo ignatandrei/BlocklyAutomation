@@ -1,4 +1,4 @@
-import { Observable, map, tap, from, forkJoin, switchMap } from "rxjs";
+import { Observable, map, tap, from, forkJoin, switchMap, filter } from "rxjs";
 import { ajax, AjaxResponse } from "rxjs/ajax";
 import BlocklyReturnSwagger from "../../BlocklyReusable/BlocklyReturnSwagger";
 import { LinksSwagger } from "../../BlocklyReusable/LinkSwagger";
@@ -19,11 +19,13 @@ export default class ExistingSwagger {
       })
       .pipe(
         map((res: AjaxResponse<LinksSwagger[]>) => res.response),
-        map((data: LinksSwagger[]) => data.map((it) => new LinksSwagger(it))),
+
+        map((data: LinksSwagger[]) => data.filter(it=>it.enabled).map((it) => new LinksSwagger(it))),
         // tap((it: LinksSwagger[]) =>
         //   console.log("obtaining all blocks demos", it);
         // ) ,
         //
+        
         switchMap((it) => 
         {
           return this.obtainSwaggers(it);

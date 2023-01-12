@@ -125,7 +125,7 @@
       "query": ".stepTourOutput"
     },
     {
-      "text": "Now press run and see , via HTTP, a joke with Chuck Norris ",
+      "text": "Now press execute and see , via HTTP, a joke with Chuck Norris ",
       "query": ".stepTourRunButton"
     }
 

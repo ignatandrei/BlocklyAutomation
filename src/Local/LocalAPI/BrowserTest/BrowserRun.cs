@@ -1,8 +1,21 @@
 ﻿using Microsoft.Playwright;
-using System.Text;  
+using System;
+using System.Text;
 
 namespace BrowserTest
-{    
+{
+    public enum SelectCriteria
+    {
+        None = 0,
+        AltText = 1,
+        Label = 2,
+        Placeholder,
+        Role,
+        TestId,
+        Text,
+        Title,
+
+    }
     public record RespScreenshot(string url, byte[] data);
     public record RespAnswer(bool ok, int status, string statusText);
     public record BrowserAndPage(string browserId, string Url);
@@ -10,10 +23,10 @@ namespace BrowserTest
     {
         None = 0,
         Chromium = 1,
-        Firefox=2,
+        Firefox = 2,
     }
 
-    
+
     public class BrowserRun
     {
         public BrowserRun(IPlaywright playwright)
@@ -22,7 +35,7 @@ namespace BrowserTest
         }
         IPlaywright playwright;
         static Dictionary<string, IBrowser> ExistingBrowsers = new();
-        static Dictionary<IBrowser, Dictionary<string,IPage>> pages = new();
+        static Dictionary<IBrowser, Dictionary<string, IPage>> pages = new();
         static Dictionary<IPage, IResponse> responses = new();
         public async Task<bool> CloseBrowser(string id)
         {
@@ -36,15 +49,15 @@ namespace BrowserTest
             await b.DisposeAsync();
             return true;
         }
-        public async Task<BrowserAndPage> GetBrowserAndPage(bool headless, BrowserType browserType, string browserId,string url)
+        public async Task<BrowserAndPage> GetBrowserAndPage(bool headless, BrowserType browserType, string browserId, string url)
         {
-            var id=await GetNewBrowser(headless, browserType,browserId);
+            var id = await GetNewBrowser(headless, browserType, browserId);
             var page = await GotoPageOrExisting(browserId, url);
             return new BrowserAndPage(browserId, url);
         }
 
 
-        public async Task<string> GetNewBrowser(bool headless, BrowserType browserType, string id)
+        private async Task<string> GetNewBrowser(bool headless, BrowserType browserType, string id)
         {
             if (ExistingBrowsers.ContainsKey(id))
             {
@@ -98,23 +111,25 @@ namespace BrowserTest
             }
             page = await browser.NewPageAsync();
             if (page == null) return null;
-            pages[browser].Add(url, page);                          
+            pages[browser].Add(url, page);
             var resp = await page.GotoAsync(url);
+            
             if (resp == null) return null;
             await resp.FinishedAsync();
+            
             responses.Add(page, resp);
             return page;
         }
-        public async Task<RespAnswer?> GotoPage(string browserId, string url)
+        private async Task<RespAnswer?> GotoPage(string browserId, string url)
         {
             var page = await GotoPageOrExisting(browserId, url);
-            if (page == null) return new RespAnswer(false, -1, "Not have page"); 
+            if (page == null) return new RespAnswer(false, -1, "Not have page");
 
             var resp = responses[page];
-            if (resp == null) return new RespAnswer(false, -1, "Not have response") ;
+            if (resp == null) return new RespAnswer(false, -1, "Not have response");
 
             return new RespAnswer(resp.Ok, resp.Status, resp.StatusText);
-            
+
         }
         public async Task<string?> GetResponseBodyText(BrowserAndPage browserAndPage)
         {
@@ -122,18 +137,18 @@ namespace BrowserTest
             if (page == null) return null;
 
             var resp = responses[page];
-            if (resp == null) return null; 
+            if (resp == null) return null;
             return Encoding.UTF8.GetString(await resp.BodyAsync());
         }
         public async Task<RespScreenshot?> GetScreenshot(BrowserAndPage browserAndPage)
         {
             var page = await GotoPageOrExisting(browserAndPage.browserId, browserAndPage.Url);
             if (page == null) return null;
-            var sc=await page.ScreenshotAsync(new PageScreenshotOptions()
+            var sc = await page.ScreenshotAsync(new PageScreenshotOptions()
             {
-                Type= ScreenshotType.Png,
-                FullPage= true,
-            } );
+                Type = ScreenshotType.Png,
+                FullPage = true,
+            });
 
             return new RespScreenshot(browserAndPage.Url, sc);
         }
@@ -148,15 +163,63 @@ namespace BrowserTest
         {
             var page = await GotoPageOrExisting(browserAndPage.browserId, browserAndPage.Url);
             if (page == null) return false;
-            await page.Keyboard.PressAsync("Escape");            
+            await page.Keyboard.PressAsync("Escape");
             return true;
         }
-        public async Task<bool> Click(BrowserAndPage browserAndPage,string selector)
+        public async Task<bool> Click(BrowserAndPage browserAndPage, string selector)
         {
             var page = await GotoPageOrExisting(browserAndPage.browserId, browserAndPage.Url);
             if (page == null) return false;
             await page.ClickAsync(selector);
             return true;
+        }
+        private async Task<ILocator?> GetLocator(BrowserAndPage browserAndPage, SelectCriteria criteria, string selector)
+        {
+            var page = await GotoPageOrExisting(browserAndPage.browserId, browserAndPage.Url);
+            if (page == null) return null;
+            switch (criteria)
+            {
+                case SelectCriteria.None:
+                    return page.Locator(selector);
+
+                case SelectCriteria.AltText:
+                    return page.GetByAltText(selector);
+
+                case SelectCriteria.Label:
+                    return page.GetByLabel(selector);
+                case SelectCriteria.Placeholder:
+                    return page.GetByPlaceholder(selector);
+                case SelectCriteria.Role:
+                    if (!Enum.TryParse<AriaRole>(selector, out AriaRole val))
+                        throw new ArgumentException($"{selector} is not valid for Aria Role");
+                    return page.GetByRole(val);
+
+                case SelectCriteria.TestId:
+                    return page.GetByTestId(selector);
+                case SelectCriteria.Text:
+
+                    return page.GetByText(selector);
+                case SelectCriteria.Title:
+                    return page.GetByTitle(selector);
+                default:
+                    throw new ArgumentException($"cannot find {nameof(SelectCriteria)} => {criteria}");
+            }
+        }
+        public async Task<bool> Highlight(BrowserAndPage browserAndPage, SelectCriteria criteria, string selector)
+        {
+
+            var l = await GetLocator(browserAndPage, criteria, selector);
+            if (l == null) return false;
+            await l.HighlightAsync();
+            return true;
+        }
+        public async Task<bool> ClickOn(BrowserAndPage browserAndPage, SelectCriteria criteria, string selector)
+        {
+            var l = await GetLocator(browserAndPage, criteria, selector);
+            if (l == null) return false;            
+            await l.ClickAsync();
+            return true;
+
         }
     }
 }
