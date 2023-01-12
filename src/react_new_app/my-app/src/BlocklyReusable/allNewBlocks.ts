@@ -17,6 +17,7 @@ import HtmlParserBlocks from "./BlocklyNewBlocks/HTML/HTMLParserBlocks";
 import { exportFileBlock } from "./BlocklyNewBlocks/exporters/exportfileBlock";
 import { HTMLTags } from "./BlocklyNewBlocks/HTML/HTMLTags";
 import HTMLParserAttributeValue from "./BlocklyNewBlocks/HTML/HTMLParserAttributeValue";
+import windowBlock from "./BlocklyNewBlocks/Browser/windowBlock";
 
 export default class AllNewBlocks
 {
@@ -56,6 +57,7 @@ export default class AllNewBlocks
         new HTMLParserAttributeValue(),
         new exportFileBlock(),
         new HTMLTags(),
+        new windowBlock(),
         ];
         return this.nb;
     }
