@@ -198,7 +198,7 @@ const handleClickOpen = () => {
           </Typography>
           
           {/* <Button color="inherit">Login </Button> */}
-          <Button className='stepTourRunButton' variant="contained" disabled={disabledRun} color={"success"}  endIcon={<SendIcon />} onClick={handleRun}>Execute!</Button>
+          <Button id="execute" className='stepTourRunButton' variant="contained" disabled={disabledRun} color={"success"}  endIcon={<SendIcon />} onClick={handleRun}>Execute!</Button>
         </Toolbar>
       </AppBar>
     </Box>

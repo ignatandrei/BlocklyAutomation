@@ -38,7 +38,8 @@ function BlocklyDisplayText({showData}: ShowBlocklyOutput){
  
     return <> 
     
-    <div hidden={showData !== ShowCodeAndXML.ShowOutput}> <TextareaAutosize cols={40} className="stepTourOutput"
+    <div hidden={showData !== ShowCodeAndXML.ShowOutput}> 
+    <TextareaAutosize id="txtOutput" cols={40} className="stepTourOutput"
     aria-label="output"
     minRows={3}
     placeholder="output of data"

@@ -54,6 +54,11 @@ public class LocalAPIStarter
         builder.Services.AddTransient<WingetApps>();
         builder.Services.AddTransient<dotNetTools>();
         builder.Services.AddTransient<BrowserRun>();
+        builder.Services.AddTransient<BrowserActions>();
+        builder.Services.AddTransient<WebPagesScreenshot>();
+        builder.Services.AddTransient<WebPagesTypings>();
+        //builder.Services.AddTransient<WebPages>();
+
         //builder.Configuration.GetDebugView();
         EmailConfig cfgEmail = new();
         builder.Configuration.GetSection("plugins:email").Bind(cfgEmail);
@@ -82,6 +87,7 @@ public class LocalAPIStarter
         builder.Services.AddHttpClient();
         var p= await Playwright.CreateAsync();
         builder.Services.AddSingleton(p);
+        builder.Services.AddSingleton<RunBrowserShareData>();
         //builder.Services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
         //   .AddNegotiate();
 
