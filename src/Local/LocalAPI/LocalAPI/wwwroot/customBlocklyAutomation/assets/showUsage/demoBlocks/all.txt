@@ -3,7 +3,25 @@
         "id":  "DemoWebPage",
         "description":  "demo web page 1",
         "categories":  "api;",
-        "blocks":  "post__api_v1_WebPages_GetBrowserAndPage;logic_boolean;BrowserType;text;math_number;text_print;converttojson;wait_seconds;post__api_v1_WebPages_SendEscape;post__api_v1_WebPages_Click;post__api_v1_WebPages_GetScreenshot;exportfile;getproperty;post__api_v1_WebPages_CloseBrowser"
+        "blocks":  "getproperty;converttojson;windowBlock;text;post__api_v1_WebPages_GetBrowserAndPage;logic_boolean;BrowserType;math_number;text_print;wait_seconds;post__api_v1_WebPages_SendEscape;post__api_v1_WebPages_Highlight;SelectCriteria;post__api_v1_WebPages_ClickOn;post__api_v1_WebPages_GetScreenshot;exportfile;post__api_v1_WebPages_CloseBrowser"
+    },
+    {
+        "id":  "docs_btnExecute",
+        "description":  "execute",
+        "categories":  "documentation;",
+        "blocks":  "getproperty;converttojson;windowBlock;text;post__api_v1_WebPages_GetBrowserAndPage;logic_boolean;BrowserType;math_number;text_print;wait_seconds;post__api_v1_WebPages_SendEscape;post__api_v1_WebPages_ClickOn;SelectCriteria;post__api_v1_WebPagesScreenshot_GetScreenshotElement;post__api_v1_File_SaveByte;recByteSave;post__api_v1_WebPages_CloseBrowser"
+    },
+    {
+        "id":  "docs_root",
+        "description":  "show root",
+        "categories":  "documentation;",
+        "blocks":  "getproperty;converttojson;windowBlock;text;post__api_v1_WebPages_GetBrowserAndPage;logic_boolean;BrowserType;math_number;text_print;wait_seconds;post__api_v1_WebPages_SendEscape;post__api_v1_WebPages_Highlight;SelectCriteria;post__api_v1_WebPages_ClickOn;post__api_v1_WebPages_GetScreenshot;post__api_v1_File_SaveByte;recByteSave;exportfile;post__api_v1_WebPages_CloseBrowser"
+    },
+    {
+        "id":  "docs_txtOutput",
+        "description":  "output",
+        "categories":  "documentation;",
+        "blocks":  "getproperty;converttojson;windowBlock;text;post__api_v1_WebPages_GetBrowserAndPage;logic_boolean;BrowserType;math_number;text_print;wait_seconds;post__api_v1_WebPages_SendEscape;post__api_v1_WebPages_ClickOn;SelectCriteria;post__api_v1_WebPagesScreenshot_GetScreenshotElement;post__api_v1_File_SaveByte;recByteSave;post__api_v1_WebPages_CloseBrowser"
     },
     {
         "id":  "dotnetTool",
