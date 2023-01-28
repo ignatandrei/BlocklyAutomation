@@ -37,6 +37,7 @@ import ToolboxBlocksAdvanced from './Components/ToolboxBlocksAdvanced';
 // import About from './Components/GUI/about';
 import {  IBlocksExtMut, IBlocksSimple } from './BlocklyReusable/blocksInterface';
 import TourMainPage from './Components/GUI/tour';
+import OutputButton from './Components/GUI/outputButton';
 // import darkThemeData from './BlocklyReusable/themeDark';
 function App(props: any) {
 
@@ -84,13 +85,34 @@ AllNewBlocks.Instance.NewBlocks().forEach(it=>{
 //   var dark = Blockly.Theme.defineTheme('darkAndrei',darkThemeData);
 const [open, setOpen] = React.useState(false);
 const [disabledRun, setdisabledRun] = React.useState(false);
-const [selectedValue, setSelectedValue] = React.useState("");  
+const [selectedValue, setSelectedValue] = React.useState(""); 
+const [showDisplay,setShowDisplay]=  React.useState(true); 
 const handleRun = () => {
   //maybe do this only if we are on inner workings?    
     ShowData.sendMessage(ShowCodeAndXML.ShowOutput);
     RunCode.sendMessage({runCodeData:RunCodeData.Start});
   };
-  
+
+  useEffect(()=>{
+    var x=ShowData.getMessage().subscribe(it=>{            
+        switch(it){
+            case ShowCodeAndXML.ShowOutput:
+            case ShowCodeAndXML.ShowOutputHtml:
+            case ShowCodeAndXML.ShowOutputJson:
+            case ShowCodeAndXML.ShowCode:
+            case ShowCodeAndXML.ShowXml:
+            case ShowCodeAndXML.ShowBlocksDefinition:
+              setShowDisplay(true);
+              return;
+            case ShowCodeAndXML.ShowNone:
+              setShowDisplay(false);
+              return;
+            default:     
+                window.alert('in app.tsx not implemented '+it);
+        }
+    });
+    return ()=>x.unsubscribe();
+},[]);
 const handleClickOpen = () => {
     setOpen(true);
   };
@@ -193,7 +215,7 @@ const handleClickOpen = () => {
 
             <SaveButton />
 
-            {/* <OutputButton /> */}
+            <OutputButton />
 
           </Typography>
           
@@ -231,11 +253,12 @@ const handleClickOpen = () => {
             <ToolboxBlocksAdvanced />
             
                       </BlocklyComponent>
+                      {showDisplay &&
         <div id="blocklyDisplay">
             
           <BlocklyDisplayData></BlocklyDisplayData>
          </div>
-
+}
         </header>
       </div>
       

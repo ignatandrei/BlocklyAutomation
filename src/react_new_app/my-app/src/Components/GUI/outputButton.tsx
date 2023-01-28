@@ -48,6 +48,7 @@ function OutputButton(props: any) {
           case ShowCodeAndXML.ShowOutputHtml:
         case ShowCodeAndXML.ShowXml:  
         case ShowCodeAndXML.ShowOutputJson: 
+        case ShowCodeAndXML.ShowNone:
           // console.log('send'+ e);        
           ShowData.sendMessage(e);
           return;

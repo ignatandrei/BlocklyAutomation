@@ -5,7 +5,7 @@ enum ShowCodeAndXML{
     ShowCode=3,
     ShowOutputHtml=4,
     ShowOutputJson=5,
-
+    ShowNone=6,
   }
 
 export default ShowCodeAndXML;

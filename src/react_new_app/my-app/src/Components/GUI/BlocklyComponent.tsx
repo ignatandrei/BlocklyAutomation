@@ -45,6 +45,8 @@ Blockly.setLocale(locale);
     const CategorySwaggerHidden=(id: Number)=> {
       return `<category name='swagger_hidden_${id}' hidden='true' >${id}</category>`;
     }
+
+    const [blocklyWidth, setblocklyWidth]=useState('75%');
     const createXML=()=>{
       var newSwaggerCategories =new Array(50).fill(null).map((it, index) =>
       CategorySwaggerHidden(index)
@@ -248,15 +250,22 @@ Blockly.setLocale(locale);
             switch(it){
                 case ShowCodeAndXML.ShowOutput:
                 case ShowCodeAndXML.ShowOutputHtml:
-                  case ShowCodeAndXML.ShowOutputJson:
-
-                    return;
+                case ShowCodeAndXML.ShowOutputJson:
+                  setblocklyWidth('75%');
+                  return;
+                case ShowCodeAndXML.ShowNone:
+                  setblocklyWidth('100%');
+                  setTimeout((d: Blockly.WorkspaceSvg) => {
+                    Blockly.svgResize(d);
+                  }, 1000, primaryWorkspace.current);
+                  return;
                 case ShowCodeAndXML.ShowCode:
+                    setblocklyWidth('75%');
                     var code = javascriptGenerator.workspaceToCode(primaryWorkspace.current);
                     InnerWorkings.sendMessage(code);     
                     return;
                 case ShowCodeAndXML.ShowXml:
-                    
+                  setblocklyWidth('75%');
                     var xml = Blockly.Xml.workspaceToDom(primaryWorkspace.current!, true);
                     var xml_text = Blockly.Xml.domToPrettyText(xml);
                     console.log('send' ,xml_text);
@@ -264,6 +273,7 @@ Blockly.setLocale(locale);
                     
                     return;
                 case ShowCodeAndXML.ShowBlocksDefinition:
+                  setblocklyWidth('75%');
                      var xml1 = Blockly.Xml.workspaceToDom(primaryWorkspace.current!, true);
                      var xml_text1 = Blockly.Xml.domToPrettyText(xml1);
                      var blocksArr=Array<string>(0);
@@ -629,7 +639,7 @@ Blockly.setLocale(locale);
  
     return <>
         <input type='file' id='file' ref={inputFile}  onChange={LoadFile} style={{display: 'none'}}/>
-        <div ref={blocklyDiv} id="blocklyDiv" />
+        <div ref={blocklyDiv} id="blocklyDiv" style={{width: blocklyWidth}} />
         <div style={{ display: 'none' }} ref={toolbox}>
         {/* <CategoryReact id="asdstart" colour="210" name="Loaaaasdasgic"><BlockReact type="controls_if"></BlockReact></CategoryReact>  */}
             {props.children}
