@@ -93,6 +93,10 @@
           "query":".blocklyWorkspace"          
       },
       {
+        "text": "You can start with help first",
+        "query":".btnHelp"
+      },
+      {
         "text":"Here you can find blocks for VisualCode  API ! Expand to investigate and drag",
         "query":".blocklyToolboxContents"
       },

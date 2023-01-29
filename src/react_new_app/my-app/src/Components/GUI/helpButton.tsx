@@ -19,7 +19,7 @@ function HelpButton({tourContext}: ArgHelpButton){
 
     const [open, setOpen] = useState(false);
     const anchorRef = useRef<HTMLDivElement>(null);
-    const [selectedIndex, setSelectedIndex] = useState(1);
+    const [selectedIndex, setSelectedIndex] = useState(0);
   
     const handleClick = (index: number|null) => {
         if(index == null) index= selectedIndex;
@@ -62,7 +62,7 @@ function HelpButton({tourContext}: ArgHelpButton){
   
     return (
       <>
-        <ButtonGroup variant="contained" ref={anchorRef} aria-label="split button">
+        <ButtonGroup className='btnHelp' variant="contained" ref={anchorRef} aria-label="split button">
           <Button onClick={()=>handleClick(null)}>{options[selectedIndex]}</Button>
           <Button
             size="small"
