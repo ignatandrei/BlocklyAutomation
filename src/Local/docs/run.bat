@@ -1,0 +1,1 @@
+wt new-tab --title runSite -d "." PowerShell -noexit -c "npm start" ; new-tab --title VSCode -d "." PowerShell -noexit -c  "code ."
