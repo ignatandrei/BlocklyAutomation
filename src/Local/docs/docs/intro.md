@@ -1,4 +1,4 @@
----
+a---
 sidebar_position: 1
 ---
 
@@ -26,7 +26,11 @@ You will  see this :
 
 ![ProgrammerAll](/img/generated/root.png)
 
-( this was generated with [/generateScripts/root.txt] )
+
+( this was generated with 
+
+<a href='/../automation/loadexample/docs_root' target='_blank'>docs_root</a>
+
 
 
 ### Run Joke with Chuck Norris
@@ -40,4 +44,10 @@ You will see in the right side the text box with a Chuck Norris joke:
 
 ![ChuckNorris](/img/generated/txtOutput.png)  
 
-( this was generated with [/generateScripts/btnExecute.txt]  and [/generateScripts/txtOutput.txt] )
+( this was generated with  
+<a href='/../automation/loadexample/btnExecute' target='_blank'>btnExecute</a>
+and
+<a href='/../automation/loadexample/txtOutput' target='_blank'>txtOutput</a>
+
+
+)

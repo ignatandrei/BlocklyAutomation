@@ -9,9 +9,9 @@ const config = {
   title: 'VisualAPI',
   tagline: 'LowCode API for your WebAPI',
   url: 'https://visualApi.azurewebsites.com/',
-  baseUrl: '/',
-  onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'throw',
+  baseUrl: '/blocklyAutomation/help/',
+  onBrokenLinks: 'warn',
+  onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
 
   // GitHub pages deployment config.
