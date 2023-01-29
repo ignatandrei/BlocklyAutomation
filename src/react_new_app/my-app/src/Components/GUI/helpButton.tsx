@@ -21,9 +21,10 @@ function HelpButton({tourContext}: ArgHelpButton){
     const anchorRef = useRef<HTMLDivElement>(null);
     const [selectedIndex, setSelectedIndex] = useState(1);
   
-    const handleClick = () => {
-      //window.alert(selectedIndex);
-      switch(selectedIndex){
+    const handleClick = (index: number|null) => {
+        if(index == null) index= selectedIndex;
+      
+      switch(index ){
         case 0:
             if(tourContext) tourContext.start(); else window.alert('not tour context');
             return;
@@ -41,6 +42,7 @@ function HelpButton({tourContext}: ArgHelpButton){
     ) => {
       setSelectedIndex(index);
       setOpen(false);
+      handleClick(index);
     };
   
     const handleToggle = () => {
@@ -61,7 +63,7 @@ function HelpButton({tourContext}: ArgHelpButton){
     return (
       <>
         <ButtonGroup variant="contained" ref={anchorRef} aria-label="split button">
-          <Button onClick={handleClick}>{options[selectedIndex]}</Button>
+          <Button onClick={()=>handleClick(null)}>{options[selectedIndex]}</Button>
           <Button
             size="small"
             aria-controls={open ? 'split-button-menu' : undefined}
