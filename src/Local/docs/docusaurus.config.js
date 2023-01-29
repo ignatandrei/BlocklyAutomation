@@ -8,10 +8,10 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: 'VisualAPI',
   tagline: 'LowCode API for your WebAPI',
-  url: 'https://visualApi.azurewebsites.com',
+  url: 'https://visualApi.azurewebsites.com/',
   baseUrl: '/',
   onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
+  onBrokenMarkdownLinks: 'throw',
   favicon: 'img/favicon.ico',
 
   // GitHub pages deployment config.
@@ -71,7 +71,7 @@ const config = {
           },
           {to: 'https://msprogrammer.serviciipeweb.ro', label: 'Blog', position: 'left'},
           {
-            href: 'https://github.com/BlocklyAutomation',
+            href: 'https://github.com/ignatandrei/BlocklyAutomation',
             label: 'GitHub',
             position: 'right',
           },
@@ -111,7 +111,7 @@ const config = {
               },
               {
                 label: 'GitHub',
-                href: 'https://github.com/BlocklyAutomation',
+                href: 'https://github.com/ignatandrei/BlocklyAutomation',
               },
             ],
           },
