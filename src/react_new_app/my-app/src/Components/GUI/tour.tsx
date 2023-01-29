@@ -3,6 +3,7 @@ import React, { useEffect, useState }  from 'react'
 import { ShepherdOptionsWithType, ShepherdTour,  TourMethods } from 'react-shepherd'
 import "shepherd.js/dist/css/shepherd.css";
 import { LoadTourSteps } from '../Examples/Messages';
+import HelpButton from './helpButton';
 import StartAnything from './StartAnything';
 const tourOptions = {
   defaultStepOptions: {
@@ -106,10 +107,7 @@ function TourMainPage() {
               return false;}
           }>
         </StartAnything>
-
-        <Button variant="contained" onClick={()=>tourContext!.start()}>
-            Help!
-        </Button>
+        <HelpButton tourContext={tourContext} />
         </span>
         }
         </TourMethods>
