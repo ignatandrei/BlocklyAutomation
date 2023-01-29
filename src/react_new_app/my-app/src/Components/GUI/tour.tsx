@@ -60,7 +60,7 @@ function TourMainPage() {
               {
                 text: 'Do not show again',
                 action(){  dismissTour();this.hide();},
-                disabled:(index !== l-1) 
+                disabled:false //(index !== l-1) 
               },
               {
                 type: 'cancel',
@@ -94,22 +94,23 @@ function TourMainPage() {
     <ShepherdTour steps={newSteps} tourOptions={tourOptions}>
         <TourMethods>
             {tourContext=>
+            <span>
+            <StartAnything start={()=>{
+              
+              if(newSteps.length>1) {
+                if(!localStorage.getItem('BA_ShepherdHide')) {
+                  tourContext!.start();
+                }      
+                  return true;
+                }
+              return false;}
+          }>
+        </StartAnything>
 
         <Button variant="contained" onClick={()=>tourContext!.start()}>
             Help!
-            <StartAnything start={()=>{
-              
-                if(newSteps.length>1) {
-                  if(!localStorage.getItem('BA_ShepherdHide')) {
-                    tourContext!.start();
-                  }      
-                    return true;
-                  }
-                return false;}
-            }>
-          </StartAnything>
         </Button>
-
+        </span>
         }
         </TourMethods>
         {/* {cloneElement(children, {tourContext: ShepherdTourContext})} */}

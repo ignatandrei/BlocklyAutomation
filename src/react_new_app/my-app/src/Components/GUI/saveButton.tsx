@@ -75,12 +75,21 @@ function SaveButton(props: any) {
   
       setOpen(false);
     };
-    
+    const ReInterpretOpt=(opt:string|SaveLocation)=>{
+      if(!opt)
+        return opt;
+      if(typeof opt === "string"){
+        const re=/[A-Z][a-z]+|[0-9]+/g;
+        return opt.match(re)!.join(" ");
+      }
+      return  opt+"!";
+    }
+
     return (
       <React.Fragment>
      
         <ButtonGroup className='stepTourDownload' variant="contained" ref={anchorRef} aria-label="split button">
-          <Button onClick={handleClick}>{options[selectedIndex]}</Button>
+          <Button onClick={handleClick}>{ReInterpretOpt(options[selectedIndex])}</Button>
           <Button
             size="small"
             aria-controls={open ? 'split-button-menu' : undefined}
@@ -120,7 +129,7 @@ function SaveButton(props: any) {
                         selected={index === selectedIndex}
                         onClick={(event) => handleMenuItemClick(event, index)}
                       >
-                        {option}
+                        {ReInterpretOpt(option)}
                       </MenuItem>
                     ))}
                   </MenuList>
