@@ -35,7 +35,7 @@ jobs:
         cd src        
         cd react_new_app
         cd my-app
-        npm i -g npm@8.1.0               
+        npm i -g npm@8.19.3               
         npm i  
 
     - name: build with root 
@@ -50,7 +50,7 @@ jobs:
         cd src        
         cd Local
         cd docs
-        npm i -g npm@8.1.0               
+        npm i -g npm@8.19.3              
         npm i  
         npm run build
         
