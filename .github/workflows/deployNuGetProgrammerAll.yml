@@ -22,7 +22,7 @@ jobs:
       #   uses: actions/setup-node@v1
       #   with:
       #     node-version: ${{ matrix.node-version }}
-      - name: Download artifact
+      - name: Download  main
         id: download-artifact
         uses: dawidd6/action-download-artifact@v2
         with:
@@ -33,9 +33,22 @@ jobs:
           path: ${{github.workspace}}/src/Local/LocalAPI/LocalAPI/wwwroot/BlocklyAutomation
           if_no_artifact_found: fail
 
+      - name: Download artifact docs local api
+        id: download-artifact-docs-localAPI
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          github_token: ${{secrets.GITHUB_TOKEN}}
+          workflow: deployVersion.yml
+          name: localAPIDocs
+          workflow_conclusion: success
+          path: ${{github.workspace}}/src/Local/LocalAPI/LocalAPI/wwwroot/BlocklyAutomation/help/
+          if_no_artifact_found: fail
+
       - name: verify exists
         run: |
-          ls -l ${{github.workspace}}/src/Local/LocalAPI/LocalAPI/wwwroot      
+          ls -l ${{github.workspace}}/src/Local/LocalAPI/LocalAPI/wwwroot                
+          ls -l ${{github.workspace}}/src/Local/LocalAPI/LocalAPI/wwwroot/BlocklyAutomation      
+
 
       - name: Set up .NET Core 6
         uses: actions/setup-dotnet@v3
