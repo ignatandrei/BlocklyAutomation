@@ -24,7 +24,7 @@ jobs:
       #   with:
       #     node-version: ${{ matrix.node-version }}
       - name: Download artifact main site
-        id: download-artifact
+        id: download-artifact-main
         uses: dawidd6/action-download-artifact@v2
         with:
           github_token: ${{secrets.GITHUB_TOKEN}}
@@ -35,7 +35,7 @@ jobs:
           if_no_artifact_found: fail
 
       - name: Download artifact
-        id: download-artifact
+        id: download-artifact-docs-localAPI
         uses: dawidd6/action-download-artifact@v2
         with:
           github_token: ${{secrets.GITHUB_TOKEN}}
