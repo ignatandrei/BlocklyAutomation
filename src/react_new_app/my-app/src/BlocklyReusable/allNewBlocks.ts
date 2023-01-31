@@ -18,6 +18,7 @@ import { exportFileBlock } from "./BlocklyNewBlocks/exporters/exportfileBlock";
 import { HTMLTags } from "./BlocklyNewBlocks/HTML/HTMLTags";
 import HTMLParserAttributeValue from "./BlocklyNewBlocks/HTML/HTMLParserAttributeValue";
 import windowBlock from "./BlocklyNewBlocks/Browser/windowBlock";
+import converterTemplate from "./BlocklyNewBlocks/converters/convertTemplate";
 
 export default class AllNewBlocks
 {
@@ -58,6 +59,7 @@ export default class AllNewBlocks
         new exportFileBlock(),
         new HTMLTags(),
         new windowBlock(),
+        new converterTemplate(),
         ];
         return this.nb;
     }

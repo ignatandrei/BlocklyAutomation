@@ -6,6 +6,8 @@ function ToolboxBlocksCore(props:any){
     <CategoryReact name="Blockly Core" class="stepTourSwagger">
 <CategoryReact id="catLogic" colour="210" name="Logic">
     <BlockReact type="controls_if"></BlockReact>
+    <BlockReact type="controls_ifelse"></BlockReact>
+    
     <BlockReact type="logic_compare"></BlockReact>
     <BlockReact type="logic_operation"></BlockReact>
     <BlockReact type="logic_negate"></BlockReact>
@@ -135,9 +137,13 @@ function ToolboxBlocksCore(props:any){
             </Value>
         </BlockReact>
         <BlockReact type="math_random_float"></BlockReact>
+        <BlockReact type="math_atan2"></BlockReact>
+        
     </CategoryReact>
     <CategoryReact id="catText" colour="160" name="Text">
         <BlockReact type="text"></BlockReact>
+        
+        <BlockReact type="text_multiline"></BlockReact>
         <BlockReact type="text_join"></BlockReact>
         <BlockReact type="text_append">
             <Value name="TEXT">
@@ -170,6 +176,13 @@ function ToolboxBlocksCore(props:any){
                 </Shadow>
             </Value>
         </BlockReact>
+        <BlockReact type="text_replace">
+
+        </BlockReact>
+        <BlockReact type="text_count">
+
+        </BlockReact>
+
         <BlockReact type="text_charAt">
             <Value name="Value">
                 <BlockReact type="variables_get">
@@ -205,6 +218,11 @@ function ToolboxBlocksCore(props:any){
                 </Shadow>
             </Value>
         </BlockReact>
+        <BlockReact type="text_reverse">
+        </BlockReact>
+        
+        <BlockReact type="text_prompt">
+        </BlockReact>
         <BlockReact type="text_prompt_ext">
             <Value name="TEXT">
                 <Shadow type="text">
@@ -225,6 +243,9 @@ function ToolboxBlocksCore(props:any){
                 </Shadow>
             </Value>
         </BlockReact>
+        <BlockReact type="lists_reverse"></BlockReact>
+        
+
         <BlockReact type="lists_length"></BlockReact>
         <BlockReact type="lists_isEmpty"></BlockReact>
         <BlockReact type="lists_indexOf">

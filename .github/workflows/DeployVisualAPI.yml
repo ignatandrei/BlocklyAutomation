@@ -23,7 +23,7 @@ jobs:
       #   uses: actions/setup-node@v1
       #   with:
       #     node-version: ${{ matrix.node-version }}
-      - name: Download artifact
+      - name: Download artifact main site
         id: download-artifact
         uses: dawidd6/action-download-artifact@v2
         with:
@@ -33,6 +33,18 @@ jobs:
           workflow_conclusion: success
           path: ${{github.workspace}}/src/react_new_app/my-app/build/
           if_no_artifact_found: fail
+
+      - name: Download artifact
+        id: download-artifact
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          github_token: ${{secrets.GITHUB_TOKEN}}
+          workflow: deployVersion.yml
+          name: localAPIDocs
+          workflow_conclusion: success
+          path: ${{github.workspace}}/src/react_new_app/my-app/build/help/
+          if_no_artifact_found: fail
+
 
       - name: verify exists
         run: |

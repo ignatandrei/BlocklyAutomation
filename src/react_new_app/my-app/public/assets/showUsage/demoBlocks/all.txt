@@ -1,5 +1,11 @@
 ﻿[
     {
+        "id":  "template",
+        "description":  "execute templating",
+        "categories":  "api;list",
+        "blocks":  "object_create;text;text_multiline;text_print;converterTemplate"
+    },
+    {
         "id":  "generateAPIList",
         "description":  "generate api documentation",
         "categories":  "api;list",
