@@ -1,7 +1,13 @@
 ﻿[
     {
+        "id":  "docs_makeDocsExample",
+        "description":  "generate screenshots and examples markdown pages",
+        "categories":  "api;",
+        "blocks":  "math_random_int;text_join;text;httprequest;text_multiline;text_print;converttostring;convertToTable;controls_forEach;converterTemplate;exportfile;getproperty;procedures_callnoreturn;procedures_callreturn;controls_flow_statements;procedures_defreturn;converttojson;windowBlock;procedures_defnoreturn;post__api_v1_WebPages_GetBrowserAndPage;logic_boolean;BrowserType;math_number;wait_seconds;post__api_v1_WebPages_ClickOn;SelectCriteria;post__api_v1_WebPages_SendEscape;post__api_v1_WebPages_Highlight;post__api_v1_WebPages_GetScreenshot;post__api_v1_WebPages_CloseBrowser"
+    },
+    {
         "id":  "exportChromeBookmarksThisYearBy10",
-        "description":  "export chrome bookmarks for this year in 10",
+        "description":  "export chrome bookmarks for this year paging 10 items",
         "categories":  "api;",
         "blocks":  "displayCurrentDate;text_getSubstring;math_number;text_print;post__api_v1_Chrome_GetUrlsYear;text;controls_forEach;converttojson;controls_if;math_number_property;HTMLliStop;HTMLliStart;HTMLli;HTMLlinkFromObject;math_arithmetic;convertToTable"
     },
