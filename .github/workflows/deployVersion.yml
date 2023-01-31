@@ -65,7 +65,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: localAPIDocs
-        path: 'src/local/docs/build/*'
+        path: 'src/Local/docs/build/*'
         retention-days: 1
 
     - name: verify exists
@@ -73,7 +73,7 @@ jobs:
         echo 'main workspace'
         ls -l ${{github.workspace}}/src/react_new_app/my-app/build/      
         echo 'localapi docs'
-        ls -l ${{github.workspace}}/src/local/docs/build      
+        ls -l ${{github.workspace}}/src/Local/docs/build      
 
 
     - name: Archive Release 
