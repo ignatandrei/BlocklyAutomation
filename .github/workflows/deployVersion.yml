@@ -48,7 +48,7 @@ jobs:
     - name: build docs for local api
       run: |
         cd src        
-        cd local
+        cd Local
         cd docs
         npm i -g npm@8.1.0               
         npm i  
