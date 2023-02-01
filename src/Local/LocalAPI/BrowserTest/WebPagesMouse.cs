@@ -8,11 +8,15 @@
         {
             this.rbsd = runBrowserShareData;
         }
-        public async Task<bool> Click(BrowserAndPage browserAndPage, string selector)
+        public async Task<bool> Click(BrowserAndPage browserAndPage, SelectCriteria selectCriteria,string selector)
         {
             var page = await rbsd.GotoPageOrExisting(browserAndPage.browserId, browserAndPage.Url);
             if (page == null) return false;
-            await page.ClickAsync(selector);
+            var loc = await rbsd.GetLocator(browserAndPage, selectCriteria, selector);
+            if (loc == null)
+                return false;
+
+            await loc.ClickAsync();
             return true;
         }
 
