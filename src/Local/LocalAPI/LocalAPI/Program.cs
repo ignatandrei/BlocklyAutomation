@@ -57,6 +57,7 @@ public class LocalAPIStarter
         builder.Services.AddTransient<BrowserActions>();
         builder.Services.AddTransient<WebPagesScreenshot>();
         builder.Services.AddTransient<WebPagesTypings>();
+        builder.Services.AddTransient<WebPagesMouse>();
         //builder.Services.AddTransient<WebPages>();
 
         //builder.Configuration.GetDebugView();
@@ -135,7 +136,7 @@ public class LocalAPIStarter
                 //ManagementController.cts = new();
                 Console.WriteLine("restarted");
             }
-        }
+        } 
         return 0;
     }
 }
