@@ -58,6 +58,7 @@ public class LocalAPIStarter
         builder.Services.AddTransient<WebPagesScreenshot>();
         builder.Services.AddTransient<WebPagesTypings>();
         builder.Services.AddTransient<WebPagesMouse>();
+        builder.Services.AddTransient<WebPagesFinder>();
         //builder.Services.AddTransient<WebPages>();
 
         //builder.Configuration.GetDebugView();

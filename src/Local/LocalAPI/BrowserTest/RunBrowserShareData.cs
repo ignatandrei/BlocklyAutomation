@@ -12,7 +12,40 @@ namespace BrowserTest
         static Dictionary<IBrowser, Dictionary<string, IPage>> pages = new();
         static Dictionary<IPage, IResponse> responses = new();
         private IPlaywright playwright;
+        private Tuple<ILocator?, int> FromNegative(int nr)
+        {
+            return new Tuple<ILocator?, int>(null, nr);
+        }
+        public async Task<Tuple<ILocator?,int>> FindNumberElements3(Find3 find)
+        {
+            string[] selectors = new[] { find.selector1, find.selector2, find.selector3 };
+            selectors = selectors.Where(it => !string.IsNullOrWhiteSpace(it)).ToArray();
+            if (string.IsNullOrEmpty(find.text) && selectors.Length == 0) { return FromNegative( -1); }
 
+            var page = await GotoPageOrExisting(find.browserAndPage.browserId, find.browserAndPage.Url);
+            if (page == null) return FromNegative(-2);
+
+            var loc = await GetRecursiveLocator(find.browserAndPage, selectors);
+            if (loc == null)
+                return FromNegative(-3);
+
+            if (!string.IsNullOrWhiteSpace(find.text))
+            {
+                LocatorFilterOptions opt = new()
+                {
+                    HasTextString = find.text
+                };
+                loc = loc.Filter(opt);
+
+            }
+            if (loc == null)
+                return FromNegative(-4);
+
+            
+            var nr =await loc.CountAsync();
+            return new Tuple<ILocator?, int>(loc, nr);
+
+        }
         public async Task<bool> CloseBrowser(string id)
         {
             if (!ExistingBrowsers.ContainsKey(id))
@@ -63,38 +96,55 @@ namespace BrowserTest
             ExistingBrowsers.Add(id, browser);
             return id;
         }
+
         public async Task<ILocator?> GetLocator(BrowserAndPage browserAndPage, SelectCriteria criteria, string selector)
         {
             var page = await GotoPageOrExisting(browserAndPage.browserId, browserAndPage.Url);
             if (page == null) return null;
+            ILocator? loc = null;
             switch (criteria)
             {
 
                 case SelectCriteria.AltText:
-                    return page.GetByAltText(selector);
-
+                    loc = page.GetByAltText(selector);
+                    break;
                 case SelectCriteria.Label:
-                    return page.GetByLabel(selector);
+                    loc = page.GetByLabel(selector);
+                    break;
                 case SelectCriteria.Placeholder:
-                    return page.GetByPlaceholder(selector);
+                    loc = page.GetByPlaceholder(selector);
+                    break;
                 case SelectCriteria.Role:
                     if (!Enum.TryParse<AriaRole>(selector, out AriaRole val))
                         throw new ArgumentException($"{selector} is not valid for Aria Role");
-                    return page.GetByRole(val);
-
+                    loc = page.GetByRole(val);
+                    break;
                 case SelectCriteria.TestId:
-                    return page.GetByTestId(selector);
+                    loc = page.GetByTestId(selector);
+                    break;
                 case SelectCriteria.Text:
 
-                    return page.GetByText(selector);
+                    loc = page.GetByText(selector);
+                    break;
                 case SelectCriteria.Title:
-                    return page.GetByTitle(selector);
+                    loc = page.GetByTitle(selector);
+                    break;
                 case SelectCriteria.Selector:
-                    return page.Locator(selector);
+                    if (string.IsNullOrWhiteSpace(selector))
+                        loc = page.Locator("");
+                    else
+                        loc = page.Locator(selector);
+                    break;
 
                 default:
                     throw new ArgumentException($"cannot find {nameof(SelectCriteria)} => {criteria}");
             }
+            if (loc != null) { 
+                var nr = await loc.CountAsync();
+                if (nr == 1)
+                    await loc.WaitForAsync();//default 
+            }
+            return loc;
         }
         public async Task<IPage?> GotoPageOrExisting(string browserId, string url)
         {
@@ -140,6 +190,20 @@ namespace BrowserTest
             if (!responses.ContainsKey(page))
                 throw new ArgumentException("cannot find response for page " + page.Url);
             return responses[page];
+        }
+
+        public async Task<ILocator?> GetRecursiveLocator(BrowserAndPage browserAndPage, string[] selectors)
+        {
+            if (selectors.Length == 0)
+                return null;
+            ILocator? ret =await GetLocator(browserAndPage, SelectCriteria.Selector, selectors[0]);
+            for (int i = 1; i < selectors.Length; i++)
+            {
+                var select = selectors[i];
+                if (ret != null)
+                    ret = ret.Locator(select); 
+            }
+            return ret;
         }
     }
 }
