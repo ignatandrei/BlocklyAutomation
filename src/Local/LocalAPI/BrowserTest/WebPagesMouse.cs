@@ -20,6 +20,20 @@ public class WebPagesMouse
         await loc.ClickAsync();
         return true;
     }
+    public async Task<bool> RightClick(BrowserAndPage browserAndPage, SelectCriteria selectCriteria, string selector)
+    {
+        var page = await rbsd.GotoPageOrExisting(browserAndPage.browserId, browserAndPage.Url);
+        if (page == null) return false;
+        var loc = await rbsd.GetLocator(browserAndPage, selectCriteria, selector);
+        if (loc == null)
+            return false;
+        var opt = new LocatorClickOptions()
+        {
+            Button= MouseButton.Right
+        };
+        await loc.ClickAsync(opt);
+        return true;
+    }
     public async Task<bool> ClickFind3(Find3 find)
     {
         var data= await rbsd.FindNumberElements3(find);
@@ -28,6 +42,7 @@ public class WebPagesMouse
             return false;
         if (loc == null)
             return false;
+        
         if(!await loc.IsVisibleAsync())
             await loc.ScrollIntoViewIfNeededAsync();
         await loc.ClickAsync();

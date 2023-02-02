@@ -20,26 +20,16 @@ namespace BrowserTest
         {
             string[] selectors = new[] { find.selector1, find.selector2, find.selector3 };
             selectors = selectors.Where(it => !string.IsNullOrWhiteSpace(it)).ToArray();
-            if (string.IsNullOrEmpty(find.text) && selectors.Length == 0) { return FromNegative( -1); }
+            if (string.IsNullOrEmpty(find.text) && selectors.Length == 0) { 
+                return FromNegative( -1000); 
+            }
 
             var page = await GotoPageOrExisting(find.browserAndPage.browserId, find.browserAndPage.Url);
-            if (page == null) return FromNegative(-2);
+            if (page == null) return FromNegative(-1001);
 
-            var loc = await GetRecursiveLocator(find.browserAndPage, selectors);
+            var loc = await GetRecursiveLocator(find.browserAndPage, selectors,find.text);
             if (loc == null)
-                return FromNegative(-3);
-
-            if (!string.IsNullOrWhiteSpace(find.text))
-            {
-                LocatorFilterOptions opt = new()
-                {
-                    HasTextString = find.text
-                };
-                loc = loc.Filter(opt);
-
-            }
-            if (loc == null)
-                return FromNegative(-4);
+                return FromNegative(-1002);
 
             
             var nr =await loc.CountAsync();
@@ -192,16 +182,66 @@ namespace BrowserTest
             return responses[page];
         }
 
-        public async Task<ILocator?> GetRecursiveLocator(BrowserAndPage browserAndPage, string[] selectors)
+        public async Task<ILocator?> GetRecursiveLocator(BrowserAndPage browserAndPage, string[] selectors,string find)
         {
+            bool findText = !string.IsNullOrWhiteSpace(find);
+            LocatorFilterOptions opt = new()
+            {
+                HasTextString = find
+            };
             if (selectors.Length == 0)
-                return null;
+            {
+                if (findText)
+                {
+                    return await GetLocator(browserAndPage, SelectCriteria.Text, find);
+                }
+            }
             ILocator? ret =await GetLocator(browserAndPage, SelectCriteria.Selector, selectors[0]);
+            if (ret == null)
+                return ret;
+
+            if (findText)
+            {
+
+                var loc = ret.Filter(opt);
+                if (loc != null)
+                {
+                    var nr = await loc.CountAsync();
+                    if (nr > 0)
+                    {
+                        ret = loc;
+                        findText = false;
+                    }
+                }
+                    
+            }
+
             for (int i = 1; i < selectors.Length; i++)
             {
                 var select = selectors[i];
-                if (ret != null)
-                    ret = ret.Locator(select); 
+                
+                ret = ret.Locator(select);
+                if (ret == null)
+                    return ret;
+                var nr = await ret.CountAsync();
+                if (nr == 0)
+                    return ret;
+
+                if (findText)
+                {
+
+                    var loc = ret.Filter(opt);
+                    if (loc != null)
+                    {
+                        nr = await loc.CountAsync();
+                        if (nr > 0)
+                        {
+                            ret = loc;
+                            findText = false;
+                        }
+                    }
+
+                }
             }
             return ret;
         }
