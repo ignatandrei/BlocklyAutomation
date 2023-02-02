@@ -211,6 +211,13 @@ Blockly.setLocale(locale);
                 inputFile.current!.click();
                  
                   return;
+              case SaveLocation.Screenshot_Blocks:
+                downloadWorkspaceScreenshot(primaryWorkspace.current!)
+                return;
+              case SaveLocation.Clear_Blocks:
+                Blockly.getMainWorkspace().clear();
+                return;
+                // Blockly.Xml.clearWorkspaceAndLoadFromXml({}, primaryWorkspace.current!);
                 default:
                     window.alert('not yet implemented must save for '+ it);
             }

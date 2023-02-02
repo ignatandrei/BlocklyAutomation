@@ -36,16 +36,13 @@ function SaveButton(props: any) {
       
       switch(e){
           case SaveLocation.Save_Local:
-            // console.log('test');
+          case SaveLocation.Download_Blocks:
+          case SaveLocation.LoadBlocks:
+          case SaveLocation.Screenshot_Blocks:
+          case SaveLocation.Clear_Blocks:
             MustSave.sendMessage(e);
             return;
-          case SaveLocation.Download_Blocks:
-              MustSave.sendMessage(e);
-             return;
-          case SaveLocation.LoadBlocks:
-              MustSave.sendMessage(e);
-              
-              return;
+
           default:
               window.alert( `SaveButton => ${e} is not implemented`);
               return;
