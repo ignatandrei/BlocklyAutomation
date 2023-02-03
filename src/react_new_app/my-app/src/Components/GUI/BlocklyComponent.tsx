@@ -583,6 +583,11 @@ Blockly.setLocale(locale);
                 },
             );
             var workspace = primaryWorkspace.current!;
+            (window as any)["VisualAPIworkspace"]=workspace;
+            (window as any)["VisualAPIBlocklyXML"]=Blockly.Xml;
+            (window as any)["VisualAPIBlockly"]=Blockly;
+            
+            console.log('!!!')
             const prevConfigureContextMenu = workspace.configureContextMenu;
             workspace.configureContextMenu = (menuOptions, e) => {
               prevConfigureContextMenu &&

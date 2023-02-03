@@ -1,10 +1,10 @@
 ﻿namespace BrowserTest;
 
-public class WebPageScript
+public class WebPagesScript
 {
     private readonly RunBrowserShareData rbsd;
 
-    public WebPageScript(RunBrowserShareData runBrowserShareData)
+    public WebPagesScript(RunBrowserShareData runBrowserShareData)
     {
         this.rbsd = runBrowserShareData;
     }
