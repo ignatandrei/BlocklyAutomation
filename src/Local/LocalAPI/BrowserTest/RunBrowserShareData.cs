@@ -86,6 +86,17 @@ namespace BrowserTest
             ExistingBrowsers.Add(id, browser);
             return id;
         }
+        public async Task<string?> ExecuteScript(BrowserAndPage browserAndPage, string script)
+        {
+            var page = await GotoPageOrExisting(browserAndPage.browserId, browserAndPage.Url);
+            if (page == null) return null;
+            var data= await page.EvaluateAsync<object>(script);
+            if (data == null)
+                return null;
+            var str = System.Text.Json.JsonSerializer.Serialize(data);
+            return str;
+
+        }
 
         public async Task<ILocator?> GetLocator(BrowserAndPage browserAndPage, SelectCriteria criteria, string selector)
         {

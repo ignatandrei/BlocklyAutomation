@@ -1,6 +1,4 @@
-﻿using Microsoft.Playwright;
-
-namespace BrowserTest;
+﻿namespace BrowserTest;
 public class WebPagesMouse
 {
     private readonly RunBrowserShareData rbsd;
