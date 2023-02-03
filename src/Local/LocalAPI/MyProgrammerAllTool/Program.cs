@@ -1,4 +1,6 @@
-﻿using System.Reflection;
+﻿using System.Diagnostics;
+using System.Reflection;
+using System.Runtime.InteropServices;
 
 var folder = Assembly.GetExecutingAssembly().Location;
 Console.WriteLine($"Executing {folder}");
@@ -22,4 +24,27 @@ string[] argus = new[]
 };
 
 
-await LocalAPIStarter.Main(argus);
+await Task.WhenAll(OpenBrowser("http://localhost:37283"), LocalAPIStarter.Main(argus));
+
+
+static async Task OpenBrowser(string url)
+{
+    await Task.Delay(3000);
+
+    if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+    {
+        Process.Start(new ProcessStartInfo(url) { UseShellExecute = true }); 
+    }
+    else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+    {
+        Process.Start("xdg-open", url);  
+    }
+    else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+    {
+        Process.Start("open", url); 
+    }
+    else
+    {
+        throw new ArgumentException("What os is this?");
+    }
+}
