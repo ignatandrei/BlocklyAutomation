@@ -10,6 +10,13 @@ public class WebPagesScript
     }
     public async Task<string?> InjectScript(ExecuteScriptNoArgs executeScriptNoArgs)
     {
-        return await rbsd.ExecuteScript(executeScriptNoArgs);
+        try
+        {
+            return await rbsd.ExecuteScript(executeScriptNoArgs);
+        }
+        catch(Exception ex)
+        {
+            throw;
+        }
     }
 }

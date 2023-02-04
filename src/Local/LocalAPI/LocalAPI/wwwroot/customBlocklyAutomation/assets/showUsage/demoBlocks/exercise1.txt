@@ -1,0 +1,1189 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="j8IV}zWXIPoy:R=8|coS">currentUrl</variable>
+    <variable id="pr%4%ko;GXIZbR_ouOLB">urlBrowserData</variable>
+    <variable id="{$?Y%|_Jrkg9$Hl5Kdi%">urlBrowserAndPage</variable>
+    <variable id="x.Cu7/:G*G2X}Ff4]@|y">script</variable>
+    <variable id="{#@VJjCu)qaX;:ax/|%0">text</variable>
+    <variable id=":Fmvr:9/h3;m^*:$vXrb">name</variable>
+    <variable id="_n|+.ACeMZ6Yxk5d3;@4">selector1</variable>
+    <variable id="]i/9B+3#lYc@zIl!76fI">selector2</variable>
+    <variable id="O4DFZhpmF^3AHQ)Sge#+">selector3</variable>
+    <variable id="VodOcE$BLp.WE|un5%zz">urlBrowser</variable>
+    <variable id="3,-rZa0gZQL2iaMeV`jn">textForClick</variable>
+    <variable id="@E*8+C-|RWHGNvp%I3/l">scrFile</variable>
+    <variable id="^L|$II%ZOTMM{s5alZ}t">scriptToInject</variable>
+    <variable id="!Q%MPH})Q!@!t[r+5_nn">mdText</variable>
+    <variable id="D|wmYw*Kzg|UgPk,8#,#">find</variable>
+    <variable id="VKSDCWtJ=Yq7s;9exVII">noSpace</variable>
+  </variables>
+  <block type="variables_set" x="-527" y="-1010">
+    <field name="VAR" id="j8IV}zWXIPoy:R=8|coS">currentUrl</field>
+    <value name="VALUE">
+      <block type="getproperty">
+        <field name="objectName">object</field>
+        <field name="prop">property</field>
+        <value name="ObjectToChange">
+          <block type="converttojson">
+            <value name="ValueToConvert">
+              <block type="windowBlock">
+                <field name="propWindow">location</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <value name="PropertyName">
+          <shadow type="text">
+            <field name="TEXT">enter property name</field>
+          </shadow>
+          <block type="text">
+            <field name="TEXT">href</field>
+          </block>
+        </value>
+      </block>
+    </value>
+    <next>
+      <block type="variables_set">
+        <field name="VAR" id="VodOcE$BLp.WE|un5%zz">urlBrowser</field>
+        <value name="VALUE">
+          <block type="post__api_v1_WebPages_GetBrowserAndPage">
+            <value name="val_headless">
+              <block type="logic_boolean">
+                <field name="BOOL">FALSE</field>
+              </block>
+            </value>
+            <value name="val_browserType">
+              <block type="BrowserType">
+                <field name="val_BrowserType">1</field>
+              </block>
+            </value>
+            <value name="val_browserId">
+              <block type="text">
+                <field name="TEXT">andrei</field>
+              </block>
+            </value>
+            <value name="val_url">
+              <block type="variables_get">
+                <field name="VAR" id="j8IV}zWXIPoy:R=8|coS">currentUrl</field>
+              </block>
+            </value>
+            <value name="override_Host">
+              <block type="text">
+                <field name="TEXT">localhost</field>
+              </block>
+            </value>
+            <value name="override_Port">
+              <block type="math_number">
+                <field name="NUM">37283</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="text_print" disabled="true">
+            <value name="TEXT">
+              <block type="variables_get">
+                <field name="VAR" id="VodOcE$BLp.WE|un5%zz">urlBrowser</field>
+              </block>
+            </value>
+            <next>
+              <block type="variables_set">
+                <field name="VAR" id="!Q%MPH})Q!@!t[r+5_nn">mdText</field>
+                <value name="VALUE">
+                  <block type="text_multiline">
+                    <field name="TEXT">#  Exercise 001 : Call an HTTP Api&amp;#10;&amp;#10;## What to do&amp;#10;&amp;#10;Call Chuck Norris API &amp;#10;&amp;#10;https://api.chucknorris.io/jokes/random&amp;#10;&amp;#10; 10 times and display the results&amp;#10;&amp;#10;&amp;#10;Try yourself before scrolling down to the solution&amp;#10;&lt;details&gt;&amp;#10;&lt;summary&gt;Toggle me to find the solution!&lt;/summary&gt;&amp;#10;</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="variables_set">
+                    <field name="VAR" id="VodOcE$BLp.WE|un5%zz">urlBrowser</field>
+                    <value name="VALUE">
+                      <block type="converttojson">
+                        <value name="ValueToConvert">
+                          <block type="variables_get">
+                            <field name="VAR" id="VodOcE$BLp.WE|un5%zz">urlBrowser</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="procedures_callnoreturn">
+                        <mutation name="startClearBlocks">
+                          <arg name="urlBrowserData"></arg>
+                        </mutation>
+                        <value name="ARG0">
+                          <block type="variables_get">
+                            <field name="VAR" id="VodOcE$BLp.WE|un5%zz">urlBrowser</field>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="controls_if">
+                            <value name="IF0">
+                              <block type="logic_boolean">
+                                <field name="BOOL">TRUE</field>
+                              </block>
+                            </value>
+                            <statement name="DO0">
+                              <block type="procedures_callnoreturn" inline="true">
+                                <mutation name="ClickOut">
+                                  <arg name="urlBrowserData"></arg>
+                                  <arg name="selector1"></arg>
+                                  <arg name="selector2"></arg>
+                                  <arg name="selector3"></arg>
+                                  <arg name="text"></arg>
+                                </mutation>
+                                <value name="ARG0">
+                                  <block type="variables_get">
+                                    <field name="VAR" id="VodOcE$BLp.WE|un5%zz">urlBrowser</field>
+                                  </block>
+                                </value>
+                                <value name="ARG1">
+                                  <block type="text">
+                                    <field name="TEXT">.blocklyToolboxCategory</field>
+                                  </block>
+                                </value>
+                                <value name="ARG2">
+                                  <block type="text">
+                                    <field name="TEXT"> </field>
+                                  </block>
+                                </value>
+                                <value name="ARG3">
+                                  <block type="text">
+                                    <field name="TEXT"> </field>
+                                  </block>
+                                </value>
+                                <value name="ARG4">
+                                  <block type="text">
+                                    <field name="TEXT">Blockly Core</field>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="procedures_callnoreturn" inline="true">
+                                    <mutation name="ClickOut">
+                                      <arg name="urlBrowserData"></arg>
+                                      <arg name="selector1"></arg>
+                                      <arg name="selector2"></arg>
+                                      <arg name="selector3"></arg>
+                                      <arg name="text"></arg>
+                                    </mutation>
+                                    <value name="ARG0">
+                                      <block type="variables_get">
+                                        <field name="VAR" id="VodOcE$BLp.WE|un5%zz">urlBrowser</field>
+                                      </block>
+                                    </value>
+                                    <value name="ARG1">
+                                      <block type="text">
+                                        <field name="TEXT">.blocklyToolboxCategory</field>
+                                      </block>
+                                    </value>
+                                    <value name="ARG2">
+                                      <block type="text">
+                                        <field name="TEXT">#blockly-2g</field>
+                                      </block>
+                                    </value>
+                                    <value name="ARG3">
+                                      <block type="text">
+                                        <field name="TEXT"> </field>
+                                      </block>
+                                    </value>
+                                    <value name="ARG4">
+                                      <block type="text">
+                                        <field name="TEXT">Loops</field>
+                                      </block>
+                                    </value>
+                                    <next>
+                                      <block type="variables_set">
+                                        <field name="VAR" id="D|wmYw*Kzg|UgPk,8#,#">find</field>
+                                        <value name="VALUE">
+                                          <block type="Find3" inline="true">
+                                            <value name="val_browserAndPage">
+                                              <block type="variables_get">
+                                                <field name="VAR" id="VodOcE$BLp.WE|un5%zz">urlBrowser</field>
+                                              </block>
+                                            </value>
+                                            <value name="val_selector1">
+                                              <block type="text">
+                                                <field name="TEXT">.blocklyToolboxCategory</field>
+                                              </block>
+                                            </value>
+                                            <value name="val_selector2">
+                                              <block type="text">
+                                                <field name="TEXT">#blockly-2g</field>
+                                              </block>
+                                            </value>
+                                            <value name="val_selector3">
+                                              <block type="text">
+                                                <field name="TEXT"> </field>
+                                              </block>
+                                            </value>
+                                            <value name="val_text">
+                                              <block type="text">
+                                                <field name="TEXT">Loops</field>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </value>
+                                        <next>
+                                          <block type="text_print">
+                                            <value name="TEXT">
+                                              <block type="post__api_v1_WebPagesMouse_ClickFind3">
+                                                <value name="val_values">
+                                                  <block type="variables_get">
+                                                    <field name="VAR" id="D|wmYw*Kzg|UgPk,8#,#">find</field>
+                                                  </block>
+                                                </value>
+                                                <value name="override_Host">
+                                                  <block type="text">
+                                                    <field name="TEXT">localhost</field>
+                                                  </block>
+                                                </value>
+                                                <value name="override_Port">
+                                                  <block type="math_number">
+                                                    <field name="NUM">37283</field>
+                                                  </block>
+                                                </value>
+                                              </block>
+                                            </value>
+                                            <next>
+                                              <block type="procedures_callnoreturn" inline="true">
+                                                <mutation name="injectScript">
+                                                  <arg name="urlBrowserAndPage"></arg>
+                                                  <arg name="script"></arg>
+                                                  <arg name="text"></arg>
+                                                </mutation>
+                                                <value name="ARG0">
+                                                  <block type="variables_get">
+                                                    <field name="VAR" id="VodOcE$BLp.WE|un5%zz">urlBrowser</field>
+                                                  </block>
+                                                </value>
+                                                <value name="ARG1">
+                                                  <block type="text_multiline">
+                                                    <field name="TEXT">()=&gt;{&amp;#10;var x= `&lt;xml xmlns="https://developers.google.com/blockly/xml"&gt;&lt;block type="controls_repeat_ext" x="115" y="-58"&gt;&amp;#10;    &lt;value name="TIMES"&gt;&amp;#10;      &lt;shadow type="math_number"&gt;&amp;#10;        &lt;field name="NUM"&gt;10&lt;/field&gt;&amp;#10;      &lt;/shadow&gt;&amp;#10;    &lt;/value&gt;&amp;#10;  &lt;/block&gt;&amp;#10;&lt;/xml&gt;`;&amp;#10;//return x;&amp;#10;var xml= VisualAPIBlocklyXML.textToDom(x);&amp;#10;VisualAPIBlocklyXML.clearWorkspaceAndLoadFromXml(xml,VisualAPIworkspace);&amp;#10;return 1;&amp;#10;}</field>
+                                                  </block>
+                                                </value>
+                                                <value name="ARG2">
+                                                  <block type="text">
+                                                    <field name="TEXT">drag block with repeat text</field>
+                                                  </block>
+                                                </value>
+                                                <next>
+                                                  <block type="procedures_callnoreturn" inline="true">
+                                                    <mutation name="ClickOut">
+                                                      <arg name="urlBrowserData"></arg>
+                                                      <arg name="selector1"></arg>
+                                                      <arg name="selector2"></arg>
+                                                      <arg name="selector3"></arg>
+                                                      <arg name="text"></arg>
+                                                    </mutation>
+                                                    <value name="ARG0">
+                                                      <block type="variables_get">
+                                                        <field name="VAR" id="VodOcE$BLp.WE|un5%zz">urlBrowser</field>
+                                                      </block>
+                                                    </value>
+                                                    <value name="ARG1">
+                                                      <block type="text">
+                                                        <field name="TEXT">.blocklyTreeRow</field>
+                                                      </block>
+                                                    </value>
+                                                    <value name="ARG2">
+                                                      <block type="text">
+                                                        <field name="TEXT"> </field>
+                                                      </block>
+                                                    </value>
+                                                    <value name="ARG3">
+                                                      <block type="text">
+                                                        <field name="TEXT"> </field>
+                                                      </block>
+                                                    </value>
+                                                    <value name="ARG4">
+                                                      <block type="text">
+                                                        <field name="TEXT">REST Requests</field>
+                                                      </block>
+                                                    </value>
+                                                    <next>
+                                                      <block type="variables_set">
+                                                        <field name="VAR" id="D|wmYw*Kzg|UgPk,8#,#">find</field>
+                                                        <value name="VALUE">
+                                                          <block type="Find3" inline="true">
+                                                            <value name="val_browserAndPage">
+                                                              <block type="variables_get">
+                                                                <field name="VAR" id="VodOcE$BLp.WE|un5%zz">urlBrowser</field>
+                                                              </block>
+                                                            </value>
+                                                            <value name="val_selector1">
+                                                              <block type="text">
+                                                                <field name="TEXT">.blocklyTreeRow</field>
+                                                              </block>
+                                                            </value>
+                                                            <value name="val_selector2">
+                                                              <block type="text">
+                                                                <field name="TEXT"> </field>
+                                                              </block>
+                                                            </value>
+                                                            <value name="val_selector3">
+                                                              <block type="text">
+                                                                <field name="TEXT"> </field>
+                                                              </block>
+                                                            </value>
+                                                            <value name="val_text">
+                                                              <block type="text">
+                                                                <field name="TEXT">REST Requests</field>
+                                                              </block>
+                                                            </value>
+                                                          </block>
+                                                        </value>
+                                                        <next>
+                                                          <block type="text_print">
+                                                            <value name="TEXT">
+                                                              <block type="post__api_v1_WebPagesMouse_ClickFind3">
+                                                                <value name="val_values">
+                                                                  <block type="variables_get">
+                                                                    <field name="VAR" id="D|wmYw*Kzg|UgPk,8#,#">find</field>
+                                                                  </block>
+                                                                </value>
+                                                                <value name="override_Host">
+                                                                  <block type="text">
+                                                                    <field name="TEXT">localhost</field>
+                                                                  </block>
+                                                                </value>
+                                                                <value name="override_Port">
+                                                                  <block type="math_number">
+                                                                    <field name="NUM">37283</field>
+                                                                  </block>
+                                                                </value>
+                                                              </block>
+                                                            </value>
+                                                            <next>
+                                                              <block type="procedures_callnoreturn" inline="true">
+                                                                <mutation name="injectScript">
+                                                                  <arg name="urlBrowserAndPage"></arg>
+                                                                  <arg name="script"></arg>
+                                                                  <arg name="text"></arg>
+                                                                </mutation>
+                                                                <value name="ARG0">
+                                                                  <block type="variables_get">
+                                                                    <field name="VAR" id="VodOcE$BLp.WE|un5%zz">urlBrowser</field>
+                                                                  </block>
+                                                                </value>
+                                                                <value name="ARG1">
+                                                                  <block type="text_multiline">
+                                                                    <field name="TEXT">()=&gt;{&amp;#10;var x= `&lt;xml xmlns="https://developers.google.com/blockly/xml"&gt;&amp;#10;  &lt;block type="controls_repeat_ext" x="71" y="-5"&gt;&amp;#10;    &lt;value name="TIMES"&gt;&amp;#10;      &lt;shadow type="math_number"&gt;&amp;#10;        &lt;field name="NUM"&gt;10&lt;/field&gt;&amp;#10;      &lt;/shadow&gt;&amp;#10;    &lt;/value&gt;&amp;#10;    &lt;statement name="DO"&gt;&amp;#10;      &lt;block type="text_print"&gt;&amp;#10;        &lt;value name="TEXT"&gt;&amp;#10;          &lt;block type="getproperty" inline="false"&gt;&amp;#10;            &lt;field name="objectName"&gt;object&lt;/field&gt;&amp;#10;            &lt;field name="prop"&gt;property&lt;/field&gt;&amp;#10;            &lt;value name="ObjectToChange"&gt;&amp;#10;              &lt;block type="httprequest"&gt;&amp;#10;                &lt;field name="TypeOutput"&gt;JSON&lt;/field&gt;&amp;#10;                &lt;field name="TypeRequest"&gt;GET&lt;/field&gt;&amp;#10;                &lt;value name="TheUrl"&gt;&amp;#10;                  &lt;shadow type="text"&gt;&amp;#10;                    &lt;field name="TEXT"&gt;https://api.chucknorris.io/jokes/random&lt;/field&gt;&amp;#10;                  &lt;/shadow&gt;&amp;#10;                &lt;/value&gt;&amp;#10;              &lt;/block&gt;&amp;#10;            &lt;/value&gt;&amp;#10;            &lt;value name="PropertyName"&gt;&amp;#10;              &lt;block type="text"&gt;&amp;#10;                &lt;field name="TEXT"&gt;value&lt;/field&gt;&amp;#10;              &lt;/block&gt;&amp;#10;            &lt;/value&gt;&amp;#10;          &lt;/block&gt;&amp;#10;        &lt;/value&gt;&amp;#10;      &lt;/block&gt;&amp;#10;    &lt;/statement&gt;&amp;#10;  &lt;/block&gt;&amp;#10;&lt;/xml&gt;`;&amp;#10;//return x;&amp;#10;var xml= VisualAPIBlocklyXML.textToDom(x);&amp;#10;VisualAPIBlocklyXML.clearWorkspaceAndLoadFromXml(xml,VisualAPIworkspace);&amp;#10;return 1;&amp;#10;}</field>
+                                                                  </block>
+                                                                </value>
+                                                                <value name="ARG2">
+                                                                  <block type="text">
+                                                                    <field name="TEXT">drag block with httprequest inside repeat</field>
+                                                                  </block>
+                                                                </value>
+                                                              </block>
+                                                            </next>
+                                                          </block>
+                                                        </next>
+                                                      </block>
+                                                    </next>
+                                                  </block>
+                                                </next>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </statement>
+                            <next>
+                              <block type="procedures_callnoreturn" inline="true">
+                                <mutation name="ClickOut">
+                                  <arg name="urlBrowserData"></arg>
+                                  <arg name="selector1"></arg>
+                                  <arg name="selector2"></arg>
+                                  <arg name="selector3"></arg>
+                                  <arg name="text"></arg>
+                                </mutation>
+                                <value name="ARG0">
+                                  <block type="variables_get">
+                                    <field name="VAR" id="VodOcE$BLp.WE|un5%zz">urlBrowser</field>
+                                  </block>
+                                </value>
+                                <value name="ARG1">
+                                  <block type="text">
+                                    <field name="TEXT"> </field>
+                                  </block>
+                                </value>
+                                <value name="ARG2">
+                                  <block type="text">
+                                    <field name="TEXT"> </field>
+                                  </block>
+                                </value>
+                                <value name="ARG3">
+                                  <block type="text">
+                                    <field name="TEXT"> </field>
+                                  </block>
+                                </value>
+                                <value name="ARG4">
+                                  <block type="text">
+                                    <field name="TEXT">Execute</field>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="text_append">
+                                    <field name="VAR" id="!Q%MPH})Q!@!t[r+5_nn">mdText</field>
+                                    <value name="TEXT">
+                                      <shadow type="text">
+                                        <field name="TEXT"></field>
+                                      </shadow>
+                                      <block type="text_multiline">
+                                        <field name="TEXT">&amp;#10;&amp;#10;&lt;/details&gt;&amp;#10;&amp;#10;&amp;#10;</field>
+                                      </block>
+                                    </value>
+                                    <next>
+                                      <block type="text_print">
+                                        <value name="TEXT">
+                                          <block type="post__api_v1_WebPages_CloseBrowser">
+                                            <value name="val_id">
+                                              <block type="getproperty">
+                                                <field name="objectName">object</field>
+                                                <field name="prop">property</field>
+                                                <value name="ObjectToChange">
+                                                  <block type="variables_get">
+                                                    <field name="VAR" id="VodOcE$BLp.WE|un5%zz">urlBrowser</field>
+                                                  </block>
+                                                </value>
+                                                <value name="PropertyName">
+                                                  <shadow type="text">
+                                                    <field name="TEXT">enter property name</field>
+                                                  </shadow>
+                                                  <block type="text">
+                                                    <field name="TEXT">browserId</field>
+                                                  </block>
+                                                </value>
+                                              </block>
+                                            </value>
+                                            <value name="override_Host">
+                                              <block type="text">
+                                                <field name="TEXT">localhost</field>
+                                              </block>
+                                            </value>
+                                            <value name="override_Port">
+                                              <block type="math_number">
+                                                <field name="NUM">37283</field>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </value>
+                                        <next>
+                                          <block type="text_print">
+                                            <value name="TEXT">
+                                              <shadow type="text">
+                                                <field name="TEXT">abc</field>
+                                              </shadow>
+                                              <block type="variables_get">
+                                                <field name="VAR" id="!Q%MPH})Q!@!t[r+5_nn">mdText</field>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+  <block type="procedures_defnoreturn" collapsed="true" x="372" y="-1016">
+    <mutation>
+      <arg name="urlBrowserData" varid="pr%4%ko;GXIZbR_ouOLB"></arg>
+    </mutation>
+    <field name="NAME">startClearBlocks</field>
+    <comment pinned="false" h="80" w="160">Describe this function...</comment>
+    <statement name="STACK">
+      <block type="procedures_callnoreturn" inline="true">
+        <mutation name="ClickOut">
+          <arg name="urlBrowserData"></arg>
+          <arg name="selector1"></arg>
+          <arg name="selector2"></arg>
+          <arg name="selector3"></arg>
+          <arg name="text"></arg>
+        </mutation>
+        <value name="ARG0">
+          <block type="variables_get">
+            <field name="VAR" id="pr%4%ko;GXIZbR_ouOLB">urlBrowserData</field>
+          </block>
+        </value>
+        <value name="ARG1">
+          <block type="text">
+            <field name="TEXT"> </field>
+          </block>
+        </value>
+        <value name="ARG2">
+          <block type="text">
+            <field name="TEXT"> </field>
+          </block>
+        </value>
+        <value name="ARG3">
+          <block type="text">
+            <field name="TEXT"> </field>
+          </block>
+        </value>
+        <value name="ARG4">
+          <block type="text">
+            <field name="TEXT">Exit</field>
+          </block>
+        </value>
+        <next>
+          <block type="procedures_callnoreturn" inline="true">
+            <mutation name="ClickOut">
+              <arg name="urlBrowserData"></arg>
+              <arg name="selector1"></arg>
+              <arg name="selector2"></arg>
+              <arg name="selector3"></arg>
+              <arg name="text"></arg>
+            </mutation>
+            <value name="ARG0">
+              <block type="variables_get">
+                <field name="VAR" id="pr%4%ko;GXIZbR_ouOLB">urlBrowserData</field>
+              </block>
+            </value>
+            <value name="ARG1">
+              <block type="text">
+                <field name="TEXT">//div[@role="group"]</field>
+              </block>
+            </value>
+            <value name="ARG2">
+              <block type="text">
+                <field name="TEXT">svg</field>
+              </block>
+            </value>
+            <value name="ARG3">
+              <block type="text">
+                <field name="TEXT"> </field>
+              </block>
+            </value>
+            <value name="ARG4">
+              <block type="text">
+                <field name="TEXT">Save Local</field>
+              </block>
+            </value>
+            <next>
+              <block type="procedures_callnoreturn" inline="true">
+                <mutation name="ClickOut">
+                  <arg name="urlBrowserData"></arg>
+                  <arg name="selector1"></arg>
+                  <arg name="selector2"></arg>
+                  <arg name="selector3"></arg>
+                  <arg name="text"></arg>
+                </mutation>
+                <value name="ARG0">
+                  <block type="variables_get">
+                    <field name="VAR" id="pr%4%ko;GXIZbR_ouOLB">urlBrowserData</field>
+                  </block>
+                </value>
+                <value name="ARG1">
+                  <block type="text">
+                    <field name="TEXT"> </field>
+                  </block>
+                </value>
+                <value name="ARG2">
+                  <block type="text">
+                    <field name="TEXT"> </field>
+                  </block>
+                </value>
+                <value name="ARG3">
+                  <block type="text">
+                    <field name="TEXT"> </field>
+                  </block>
+                </value>
+                <value name="ARG4">
+                  <block type="text">
+                    <field name="TEXT">Clear Blocks</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+  <block type="procedures_defnoreturn" collapsed="true" x="366" y="-965">
+    <mutation>
+      <arg name="urlBrowserAndPage" varid="{$?Y%|_Jrkg9$Hl5Kdi%"></arg>
+      <arg name="script" varid="x.Cu7/:G*G2X}Ff4]@|y"></arg>
+      <arg name="text" varid="{#@VJjCu)qaX;:ax/|%0"></arg>
+    </mutation>
+    <field name="NAME">injectScript</field>
+    <comment pinned="false" h="80" w="160">Describe this function...</comment>
+    <statement name="STACK">
+      <block type="variables_set">
+        <field name="VAR" id="3,-rZa0gZQL2iaMeV`jn">textForClick</field>
+        <value name="VALUE">
+          <block type="variables_get">
+            <field name="VAR" id="{#@VJjCu)qaX;:ax/|%0">text</field>
+          </block>
+        </value>
+        <next>
+          <block type="variables_set">
+            <field name="VAR" id="^L|$II%ZOTMM{s5alZ}t">scriptToInject</field>
+            <value name="VALUE">
+              <block type="ExecuteScriptNoArgs">
+                <value name="val_browserAndPage">
+                  <block type="variables_get">
+                    <field name="VAR" id="{$?Y%|_Jrkg9$Hl5Kdi%">urlBrowserAndPage</field>
+                  </block>
+                </value>
+                <value name="val_script">
+                  <block type="variables_get">
+                    <field name="VAR" id="x.Cu7/:G*G2X}Ff4]@|y">script</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type="wait_seconds">
+                <field name="SECONDS">3</field>
+                <next>
+                  <block type="variables_set">
+                    <field name="VAR" id="VKSDCWtJ=Yq7s;9exVII">noSpace</field>
+                    <value name="VALUE">
+                      <block type="text_replace">
+                        <value name="FROM">
+                          <block type="text">
+                            <field name="TEXT"> </field>
+                          </block>
+                        </value>
+                        <value name="TO">
+                          <block type="text">
+                            <field name="TEXT">-</field>
+                          </block>
+                        </value>
+                        <value name="TEXT">
+                          <block type="variables_get">
+                            <field name="VAR" id="{#@VJjCu)qaX;:ax/|%0">text</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="procedures_callnoreturn">
+                        <mutation name="screenshot">
+                          <arg name="urlBrowserData"></arg>
+                          <arg name="name"></arg>
+                        </mutation>
+                        <value name="ARG0">
+                          <block type="variables_get">
+                            <field name="VAR" id="{$?Y%|_Jrkg9$Hl5Kdi%">urlBrowserAndPage</field>
+                          </block>
+                        </value>
+                        <value name="ARG1">
+                          <block type="text_join">
+                            <mutation items="2"></mutation>
+                            <value name="ADD0">
+                              <block type="variables_get">
+                                <field name="VAR" id="VKSDCWtJ=Yq7s;9exVII">noSpace</field>
+                              </block>
+                            </value>
+                            <value name="ADD1">
+                              <block type="text">
+                                <field name="TEXT">-before</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="text_append">
+                            <field name="VAR" id="!Q%MPH})Q!@!t[r+5_nn">mdText</field>
+                            <value name="TEXT">
+                              <shadow type="text">
+                                <field name="TEXT"></field>
+                              </shadow>
+                              <block type="converterTemplate" inline="true">
+                                <value name="object">
+                                  <block type="object_create" inline="false">
+                                    <mutation xmlns="http://www.w3.org/1999/xhtml" num_fields="2">
+                                      <field name="text"></field>
+                                      <field name="noSpaces"></field>
+                                    </mutation>
+                                    <field name="field1">text</field>
+                                    <field name="field2">noSpace</field>
+                                    <value name="field_input1">
+                                      <block type="variables_get">
+                                        <field name="VAR" id="3,-rZa0gZQL2iaMeV`jn">textForClick</field>
+                                      </block>
+                                    </value>
+                                    <value name="field_input2">
+                                      <block type="variables_get">
+                                        <field name="VAR" id="VKSDCWtJ=Yq7s;9exVII">noSpace</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                                <value name="text">
+                                  <block type="text_multiline">
+                                    <field name="TEXT">&lt;details&gt;&amp;#10;&lt;summary&gt;&amp;#10;Do &lt;b&gt;${text}&lt;/b&gt; &amp;#10;&lt;/summary&gt;&amp;#10;&amp;#10;This looks like this **before click**&amp;#10;&amp;#10;&amp;#10;![${text}](/img/exercises/ex1/${noSpace}-before.png) &amp;#10;&amp;#10;and **after click**&amp;#10;![${text}](/img/exercises/ex1/${noSpace}-after.png)&amp;#10; &amp;#10;&lt;/details&gt;</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="text_print">
+                                <value name="TEXT">
+                                  <block type="post__api_v1_WebPagesScript_InjectScript">
+                                    <value name="val_values">
+                                      <block type="variables_get">
+                                        <field name="VAR" id="^L|$II%ZOTMM{s5alZ}t">scriptToInject</field>
+                                      </block>
+                                    </value>
+                                    <value name="override_Host">
+                                      <block type="text">
+                                        <field name="TEXT">localhost</field>
+                                      </block>
+                                    </value>
+                                    <value name="override_Port">
+                                      <block type="math_number">
+                                        <field name="NUM">37283</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="wait_seconds">
+                                    <field name="SECONDS">3</field>
+                                    <next>
+                                      <block type="procedures_callnoreturn">
+                                        <mutation name="screenshot">
+                                          <arg name="urlBrowserData"></arg>
+                                          <arg name="name"></arg>
+                                        </mutation>
+                                        <value name="ARG0">
+                                          <block type="variables_get">
+                                            <field name="VAR" id="{$?Y%|_Jrkg9$Hl5Kdi%">urlBrowserAndPage</field>
+                                          </block>
+                                        </value>
+                                        <value name="ARG1">
+                                          <block type="text_join">
+                                            <mutation items="2"></mutation>
+                                            <value name="ADD0">
+                                              <block type="variables_get">
+                                                <field name="VAR" id="VKSDCWtJ=Yq7s;9exVII">noSpace</field>
+                                              </block>
+                                            </value>
+                                            <value name="ADD1">
+                                              <block type="text">
+                                                <field name="TEXT">-after</field>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+  <block type="procedures_defnoreturn" collapsed="true" x="338" y="-893">
+    <mutation>
+      <arg name="urlBrowserData" varid="pr%4%ko;GXIZbR_ouOLB"></arg>
+      <arg name="name" varid=":Fmvr:9/h3;m^*:$vXrb"></arg>
+    </mutation>
+    <field name="NAME">screenshot</field>
+    <comment pinned="false" h="80" w="160">Describe this function...</comment>
+    <statement name="STACK">
+      <block type="variables_set">
+        <field name="VAR" id="@E*8+C-|RWHGNvp%I3/l">scrFile</field>
+        <value name="VALUE">
+          <block type="post__api_v1_WebPagesScreenshot_GetScreenshot">
+            <value name="val_values">
+              <block type="variables_get">
+                <field name="VAR" id="pr%4%ko;GXIZbR_ouOLB">urlBrowserData</field>
+              </block>
+            </value>
+            <value name="override_Host">
+              <block type="text">
+                <field name="TEXT">localhost</field>
+              </block>
+            </value>
+            <value name="override_Port">
+              <block type="math_number">
+                <field name="NUM">37283</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="variables_set">
+            <field name="VAR" id="@E*8+C-|RWHGNvp%I3/l">scrFile</field>
+            <value name="VALUE">
+              <block type="getproperty">
+                <field name="objectName">object</field>
+                <field name="prop">property</field>
+                <value name="ObjectToChange">
+                  <block type="converttojson">
+                    <value name="ValueToConvert">
+                      <block type="variables_get">
+                        <field name="VAR" id="@E*8+C-|RWHGNvp%I3/l">scrFile</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <value name="PropertyName">
+                  <shadow type="text">
+                    <field name="TEXT">enter property name</field>
+                  </shadow>
+                  <block type="text">
+                    <field name="TEXT">data</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type="exportfile">
+                <value name="fileName">
+                  <shadow type="text">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text_join">
+                    <mutation items="2"></mutation>
+                    <value name="ADD0">
+                      <block type="variables_get">
+                        <field name="VAR" id=":Fmvr:9/h3;m^*:$vXrb">name</field>
+                      </block>
+                    </value>
+                    <value name="ADD1">
+                      <block type="text">
+                        <field name="TEXT">.png</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <value name="contentFile">
+                  <block type="variables_get">
+                    <field name="VAR" id="@E*8+C-|RWHGNvp%I3/l">scrFile</field>
+                  </block>
+                </value>
+                <value name="convertToByte">
+                  <shadow type="logic_boolean">
+                    <field name="BOOL">FALSE</field>
+                  </shadow>
+                  <block type="logic_boolean">
+                    <field name="BOOL">TRUE</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+  <block type="procedures_defnoreturn" collapsed="true" x="386" y="-773">
+    <mutation>
+      <arg name="urlBrowserData" varid="pr%4%ko;GXIZbR_ouOLB"></arg>
+      <arg name="selector1" varid="_n|+.ACeMZ6Yxk5d3;@4"></arg>
+      <arg name="selector2" varid="]i/9B+3#lYc@zIl!76fI"></arg>
+      <arg name="selector3" varid="O4DFZhpmF^3AHQ)Sge#+"></arg>
+      <arg name="text" varid="{#@VJjCu)qaX;:ax/|%0"></arg>
+    </mutation>
+    <field name="NAME">ClickOut</field>
+    <comment pinned="false" h="80" w="160">Describe this function...</comment>
+    <statement name="STACK">
+      <block type="variables_set">
+        <field name="VAR" id="3,-rZa0gZQL2iaMeV`jn">textForClick</field>
+        <value name="VALUE">
+          <block type="variables_get">
+            <field name="VAR" id="{#@VJjCu)qaX;:ax/|%0">text</field>
+          </block>
+        </value>
+        <next>
+          <block type="controls_if">
+            <value name="IF0">
+              <block type="logic_compare">
+                <field name="OP">GT</field>
+                <value name="A">
+                  <block type="text_count">
+                    <value name="SUB">
+                      <block type="text">
+                        <field name="TEXT">group</field>
+                      </block>
+                    </value>
+                    <value name="TEXT">
+                      <block type="variables_get">
+                        <field name="VAR" id="_n|+.ACeMZ6Yxk5d3;@4">selector1</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <value name="B">
+                  <block type="math_number">
+                    <field name="NUM">0</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <statement name="DO0">
+              <block type="variables_set">
+                <field name="VAR" id="3,-rZa0gZQL2iaMeV`jn">textForClick</field>
+                <value name="VALUE">
+                  <block type="text">
+                    <field name="TEXT">the menu in right of </field>
+                  </block>
+                </value>
+                <next>
+                  <block type="text_append">
+                    <field name="VAR" id="3,-rZa0gZQL2iaMeV`jn">textForClick</field>
+                    <value name="TEXT">
+                      <shadow type="text">
+                        <field name="TEXT"></field>
+                      </shadow>
+                      <block type="variables_get">
+                        <field name="VAR" id="{#@VJjCu)qaX;:ax/|%0">text</field>
+                      </block>
+                    </value>
+                  </block>
+                </next>
+              </block>
+            </statement>
+            <next>
+              <block type="variables_set">
+                <field name="VAR" id="D|wmYw*Kzg|UgPk,8#,#">find</field>
+                <value name="VALUE">
+                  <block type="Find3" inline="false">
+                    <value name="val_browserAndPage">
+                      <block type="variables_get">
+                        <field name="VAR" id="pr%4%ko;GXIZbR_ouOLB">urlBrowserData</field>
+                      </block>
+                    </value>
+                    <value name="val_selector1">
+                      <block type="variables_get">
+                        <field name="VAR" id="_n|+.ACeMZ6Yxk5d3;@4">selector1</field>
+                      </block>
+                    </value>
+                    <value name="val_selector2">
+                      <block type="variables_get">
+                        <field name="VAR" id="]i/9B+3#lYc@zIl!76fI">selector2</field>
+                      </block>
+                    </value>
+                    <value name="val_selector3">
+                      <block type="variables_get">
+                        <field name="VAR" id="O4DFZhpmF^3AHQ)Sge#+">selector3</field>
+                      </block>
+                    </value>
+                    <value name="val_text">
+                      <block type="variables_get">
+                        <field name="VAR" id="{#@VJjCu)qaX;:ax/|%0">text</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="wait_seconds">
+                    <field name="SECONDS">2</field>
+                    <next>
+                      <block type="text_print" disabled="true">
+                        <value name="TEXT">
+                          <block type="post__api_v1_WebPagesFinder_FindNumberElements3">
+                            <value name="val_values">
+                              <block type="variables_get">
+                                <field name="VAR" id="D|wmYw*Kzg|UgPk,8#,#">find</field>
+                              </block>
+                            </value>
+                            <value name="override_Host">
+                              <block type="text">
+                                <field name="TEXT">localhost</field>
+                              </block>
+                            </value>
+                            <value name="override_Port">
+                              <block type="math_number">
+                                <field name="NUM">37283</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="wait_seconds">
+                            <field name="SECONDS">2</field>
+                            <next>
+                              <block type="variables_set">
+                                <field name="VAR" id="VKSDCWtJ=Yq7s;9exVII">noSpace</field>
+                                <value name="VALUE">
+                                  <block type="text_replace">
+                                    <value name="FROM">
+                                      <block type="text">
+                                        <field name="TEXT"> </field>
+                                      </block>
+                                    </value>
+                                    <value name="TO">
+                                      <block type="text">
+                                        <field name="TEXT">-</field>
+                                      </block>
+                                    </value>
+                                    <value name="TEXT">
+                                      <block type="variables_get">
+                                        <field name="VAR" id="{#@VJjCu)qaX;:ax/|%0">text</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="procedures_callnoreturn">
+                                    <mutation name="screenshot">
+                                      <arg name="urlBrowserData"></arg>
+                                      <arg name="name"></arg>
+                                    </mutation>
+                                    <value name="ARG0">
+                                      <block type="variables_get">
+                                        <field name="VAR" id="pr%4%ko;GXIZbR_ouOLB">urlBrowserData</field>
+                                      </block>
+                                    </value>
+                                    <value name="ARG1">
+                                      <block type="text_join">
+                                        <mutation items="2"></mutation>
+                                        <value name="ADD0">
+                                          <block type="variables_get">
+                                            <field name="VAR" id="VKSDCWtJ=Yq7s;9exVII">noSpace</field>
+                                          </block>
+                                        </value>
+                                        <value name="ADD1">
+                                          <block type="text">
+                                            <field name="TEXT">-before</field>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </value>
+                                    <next>
+                                      <block type="text_append">
+                                        <field name="VAR" id="!Q%MPH})Q!@!t[r+5_nn">mdText</field>
+                                        <value name="TEXT">
+                                          <shadow type="text">
+                                            <field name="TEXT"></field>
+                                          </shadow>
+                                          <block type="converterTemplate" inline="true">
+                                            <value name="object">
+                                              <block type="object_create" inline="false">
+                                                <mutation xmlns="http://www.w3.org/1999/xhtml" num_fields="2">
+                                                  <field name="text"></field>
+                                                  <field name="noSpaces"></field>
+                                                </mutation>
+                                                <field name="field1">text</field>
+                                                <field name="field2">noSpace</field>
+                                                <value name="field_input1">
+                                                  <block type="variables_get">
+                                                    <field name="VAR" id="3,-rZa0gZQL2iaMeV`jn">textForClick</field>
+                                                  </block>
+                                                </value>
+                                                <value name="field_input2">
+                                                  <block type="variables_get">
+                                                    <field name="VAR" id="VKSDCWtJ=Yq7s;9exVII">noSpace</field>
+                                                  </block>
+                                                </value>
+                                              </block>
+                                            </value>
+                                            <value name="text">
+                                              <block type="text_multiline">
+                                                <field name="TEXT">&lt;details&gt;&amp;#10;&lt;summary&gt;&amp;#10;Click on &lt;b&gt;${text}&lt;/b&gt; &amp;#10;&lt;/summary&gt;&amp;#10;&amp;#10;This looks like this **before click**&amp;#10;&amp;#10;&amp;#10;![${text}](/img/exercises/ex1/${noSpace}-before.png) &amp;#10;&amp;#10;and **after click**&amp;#10;![${text}](/img/exercises/ex1/${noSpace}-after.png)&amp;#10; &amp;#10;&lt;/details&gt;</field>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </value>
+                                        <next>
+                                          <block type="text_print">
+                                            <value name="TEXT">
+                                              <block type="post__api_v1_WebPagesMouse_ClickFind3" inline="true">
+                                                <value name="val_values">
+                                                  <block type="variables_get">
+                                                    <field name="VAR" id="D|wmYw*Kzg|UgPk,8#,#">find</field>
+                                                  </block>
+                                                </value>
+                                                <value name="override_Host">
+                                                  <block type="text">
+                                                    <field name="TEXT">localhost</field>
+                                                  </block>
+                                                </value>
+                                                <value name="override_Port">
+                                                  <block type="math_number">
+                                                    <field name="NUM">37283</field>
+                                                  </block>
+                                                </value>
+                                              </block>
+                                            </value>
+                                            <next>
+                                              <block type="wait_seconds">
+                                                <field name="SECONDS">3</field>
+                                                <next>
+                                                  <block type="procedures_callnoreturn">
+                                                    <mutation name="screenshot">
+                                                      <arg name="urlBrowserData"></arg>
+                                                      <arg name="name"></arg>
+                                                    </mutation>
+                                                    <value name="ARG0">
+                                                      <block type="variables_get">
+                                                        <field name="VAR" id="pr%4%ko;GXIZbR_ouOLB">urlBrowserData</field>
+                                                      </block>
+                                                    </value>
+                                                    <value name="ARG1">
+                                                      <block type="text_join">
+                                                        <mutation items="2"></mutation>
+                                                        <value name="ADD0">
+                                                          <block type="variables_get">
+                                                            <field name="VAR" id="VKSDCWtJ=Yq7s;9exVII">noSpace</field>
+                                                          </block>
+                                                        </value>
+                                                        <value name="ADD1">
+                                                          <block type="text">
+                                                            <field name="TEXT">-after</field>
+                                                          </block>
+                                                        </value>
+                                                      </block>
+                                                    </value>
+                                                  </block>
+                                                </next>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+</xml>

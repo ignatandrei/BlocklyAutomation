@@ -78,7 +78,59 @@ This looks like this **before click**
 and **after click**
 ![Loops](/img/exercises/ex1/Loops-after.png)
  
+</details><details>
+<summary>
+Do <b>drag block with repeat text</b> 
+</summary>
+
+This looks like this **before click**
+
+
+![drag block with repeat text](/img/exercises/ex1/drag-block-with-repeat-text-before.png) 
+
+and **after click**
+![drag block with repeat text](/img/exercises/ex1/drag-block-with-repeat-text-after.png)
+ 
+</details><details>
+<summary>
+Click on <b>REST Requests</b> 
+</summary>
+
+This looks like this **before click**
+
+
+![REST Requests](/img/exercises/ex1/REST-Requests-before.png) 
+
+and **after click**
+![REST Requests](/img/exercises/ex1/REST-Requests-after.png)
+ 
+</details><details>
+<summary>
+Do <b>drag block with httprequest inside repeat</b> 
+</summary>
+
+This looks like this **before click**
+
+
+![drag block with httprequest inside repeat](/img/exercises/ex1/drag-block-with-httprequest-inside-repeat-before.png) 
+
+and **after click**
+![drag block with httprequest inside repeat](/img/exercises/ex1/drag-block-with-httprequest-inside-repeat-after.png)
+ 
+</details><details>
+<summary>
+Click on <b>Execute!</b> 
+</summary>
+
+This looks like this **before click**
+
+
+![Execute!](/img/exercises/ex1/Execute-before.png) 
+
+and **after click**
+![Execute!](/img/exercises/ex1/Execute-after.png)
+ 
 </details>
 
 </details>
-
+ 
