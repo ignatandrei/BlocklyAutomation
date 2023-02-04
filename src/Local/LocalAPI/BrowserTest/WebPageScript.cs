@@ -8,8 +8,8 @@ public class WebPagesScript
     {
         this.rbsd = runBrowserShareData;
     }
-    public async Task<string?> InjectScript(BrowserAndPage browserAndPage,string script)
+    public async Task<string?> InjectScript(ExecuteScriptNoArgs executeScriptNoArgs)
     {
-        return await rbsd.ExecuteScript(browserAndPage, script);
+        return await rbsd.ExecuteScript(executeScriptNoArgs);
     }
 }
