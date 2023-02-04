@@ -14,7 +14,7 @@ public class WebPagesScript
         {
             return await rbsd.ExecuteScript(executeScriptNoArgs);
         }
-        catch(Exception ex)
+        catch(Exception)
         {
             throw;
         }

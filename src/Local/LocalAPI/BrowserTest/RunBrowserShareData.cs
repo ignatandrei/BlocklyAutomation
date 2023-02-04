@@ -6,8 +6,8 @@ public class RunBrowserShareData
     {
         playwright = playwrightData;
     }
-    static Dictionary<string, IBrowser> ExistingBrowsers = new();
-    static Dictionary<IBrowser, Dictionary<string, IPage>> pages = new();
+    static Dictionary<string, IBrowserContext> ExistingBrowsers = new();
+    static Dictionary<IBrowserContext, Dictionary<string, IPage>> pages = new();
     static Dictionary<IPage, IResponse> responses = new();
     private IPlaywright playwright;
     private Tuple<ILocator?, int> FromNegative(int nr)
@@ -24,7 +24,7 @@ public class RunBrowserShareData
 
         var page = await GotoPageOrExisting(find.browserAndPage.browserId, find.browserAndPage.Url);
         if (page == null) return FromNegative(-1001);
-
+        
         var loc = await GetRecursiveLocator(find.browserAndPage, selectors,find.text);
         if (loc == null)
             return FromNegative(-1002);
@@ -41,8 +41,19 @@ public class RunBrowserShareData
 
         var b = ExistingBrowsers[id];
         if (pages.ContainsKey(b))
+        {
+            var pags = pages[b];
+            foreach(var item in pags)
+            {
+                await item.Value.CloseAsync();
+                //if(item.Value.Video!= null)
+                //    await item.Value.Video.SaveAsAsync(@"C:\temp\1.vid");
+            }
             pages.Remove(b);
+        }
+            
         await b.CloseAsync();
+        
         await b.DisposeAsync();
         return true;
     }
@@ -76,12 +87,27 @@ public class RunBrowserShareData
         new()
         {
             Headless = headless,
-
+            
         }
           );
         if (browser == null)
             throw new ArgumentException("problem with browser");
-        ExistingBrowsers.Add(id, browser);
+
+        string pathVideos = Path.Combine(Path.GetTempPath(), "VisualAPI", "Videos");
+        if (!Directory.Exists(pathVideos))
+            Directory.CreateDirectory(pathVideos);
+
+        var bc = await browser.NewContextAsync(new BrowserNewContextOptions()
+        {
+            RecordVideoDir = pathVideos
+            //RecordVideoSize=new RecordVideoSize()
+            //{
+            //    Width=640,
+            //    Height=480
+            //}
+
+        });
+        ExistingBrowsers.Add(id, bc);
         return id;
     }
     public async Task<string?> ExecuteScript(ExecuteScriptNoArgs executeScriptNoArgs)
@@ -163,8 +189,14 @@ public class RunBrowserShareData
         {
             return pages[browser][url];
         }
+        
         page = await browser.NewPageAsync();
+        
         if (page == null) return null;
+        //if (page.Video != null)
+        //{
+        //    var s = await page.Video.PathAsync();
+        //}        
         pages[browser].Add(url, page);
         var resp = await page.GotoAsync(url);
 
