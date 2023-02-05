@@ -1,4 +1,6 @@
-﻿namespace BrowserTest;
+﻿using System;
+
+namespace BrowserTest;
 public record ExecuteScriptNoArgs(BrowserAndPage browserAndPage, string script);
 public class RunBrowserShareData
 {
@@ -127,7 +129,7 @@ public class RunBrowserShareData
     {
         var page = await GotoPageOrExisting(browserAndPage.browserId, browserAndPage.Url);
         if (page == null) return null;
-        ILocator? loc = null;
+        ILocator? loc = null;        
         switch (criteria)
         {
 
@@ -286,5 +288,50 @@ public class RunBrowserShareData
             }
         }
         return ret;
+    }
+
+    internal async Task<bool> ShowTextPage(ShowScreenText showScreenText)
+    {
+        var page = await GotoPageOrExisting(showScreenText.browserAndPage.browserId, showScreenText.browserAndPage.Url);
+        if (page == null) return false;
+        var secs = showScreenText.seconds * 1000;
+        var str = @$"()=> {{
+  var text = document.createElement('h1');
+  text.innerHTML = '{showScreenText.text}';
+  text.style.position = 'fixed';
+  text.style.top = '50%';
+  text.style.left = '50%';
+  text.style.transform = 'translate(-50%, -50%)';
+  document.body.appendChild(text);
+
+  setTimeout(function() {{
+    text.style.display = 'none';
+  }}, {secs}*1000);
+    return 1;
+}}";
+
+
+        await page.EvaluateAsync(str);
+        await Task.Delay(secs);
+        return true;
+    }
+
+    internal async Task<bool> IncreaseElement(Find3 find)
+    {
+        var loc = await FindNumberElements3(find);
+        if (loc.Item2<0) return false;
+        if (loc.Item1 == null) return false;
+        var str = @$"(element)=> {{
+            element.style.transform = 'scale(2)';
+  
+  setTimeout(function() {{
+    element.style.transform = 'scale(1)';
+    }}, 3*1000);
+    return 1;
+}}";
+        await loc.Item1.EvaluateAsync(str);
+        await Task.Delay(3*1000);
+        return true;
+
     }
 }
