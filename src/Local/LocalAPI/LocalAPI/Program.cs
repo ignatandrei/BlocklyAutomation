@@ -60,6 +60,7 @@ public class LocalAPIStarter
         builder.Services.AddTransient<WebPagesMouse>();
         builder.Services.AddTransient<WebPagesFinder>();
         builder.Services.AddTransient<WebPagesScript>();
+        builder.Services.AddTransient<WebPagesInteraction>();
         //builder.Services.AddTransient<WebPages>();
 
         //builder.Configuration.GetDebugView();
@@ -91,6 +92,7 @@ public class LocalAPIStarter
         var p= await Playwright.CreateAsync();
         builder.Services.AddSingleton(p);
         builder.Services.AddSingleton<RunBrowserShareData>();
+        
         //builder.Services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
         //   .AddNegotiate();
 
