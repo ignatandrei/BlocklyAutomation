@@ -165,7 +165,7 @@ class InterpreterRunner{
           url=url.trim();
           if(url.length === 0){
               url=hostname;
-              if(!url.startsWith("http")){
+              if((!url.startsWith("http")) && (!url.startsWith("/"))){
                   throw new Error(`please put in front of ${hostname} http:// or https://`);
               }
           }

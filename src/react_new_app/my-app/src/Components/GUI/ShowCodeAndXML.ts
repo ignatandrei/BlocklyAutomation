@@ -1,3 +1,4 @@
+//also it is a block to this
 enum ShowCodeAndXML{
     ShowOutput=0,
     ShowBlocksDefinition=1,

@@ -583,11 +583,13 @@ Blockly.setLocale(locale);
                 },
             );
             var workspace = primaryWorkspace.current!;
-            (window as any)["VisualAPIworkspace"]=workspace;
-            (window as any)["VisualAPIBlocklyXML"]=Blockly.Xml;
-            (window as any)["VisualAPIBlockly"]=Blockly;
+            (globalThis as any)["VisualAPIworkspace"]=workspace;
+            (globalThis as any)["VisualAPIBlocklyXML"]=Blockly.Xml;
+            (globalThis as any)["VisualAPIBlockly"]=Blockly;
+            (globalThis as any)["VisualAPIShow"]=ShowData.sendMessage;
             
-            console.log('!!!')
+            
+            // console.log('!!!')
             const prevConfigureContextMenu = workspace.configureContextMenu;
             workspace.configureContextMenu = (menuOptions, e) => {
               prevConfigureContextMenu &&
