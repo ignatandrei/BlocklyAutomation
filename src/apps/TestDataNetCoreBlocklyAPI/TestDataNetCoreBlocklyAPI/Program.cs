@@ -169,6 +169,7 @@ app.UseAuthorization();
 
 app.MapControllers();
 app.UseAMS();
+app.MapFallbackToFile("BlocklyAutomation/{*path:nonfile}", "/BlocklyAutomation/index.html");
 
 using var scope = app.Services.CreateScope();
 using var context = scope.ServiceProvider.GetRequiredService<testsContext>();
