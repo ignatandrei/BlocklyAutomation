@@ -1,9 +1,15 @@
 ﻿[
     {
+        "id":  "docs_saveNewProduct",
+        "description":  "how to create an object and call API POST",
+        "categories":  "api;object",
+        "blocks":  "object_create;text;math_number;text_print;converttostring;httprequest"
+    },
+    {
         "id":  "exercise1",
         "description":  "solving exercise 1",
         "categories":  "api;exercises",
-        "blocks":  "getproperty;converttojson;windowBlock;text;post__api_v1_WebPages_GetBrowserAndPage;logic_boolean;BrowserType;math_number;text_print;text_multiline;procedures_callnoreturn;controls_if;Find3;post__api_v1_WebPagesMouse_ClickFind3;text_append;post__api_v1_WebPages_CloseBrowser;procedures_defnoreturn;ExecuteScriptNoArgs;wait_seconds;text_replace;text_join;converterTemplate;object_create;post__api_v1_WebPagesScript_InjectScript;post__api_v1_WebPagesScreenshot_GetScreenshot;exportfile;logic_compare;text_count;post__api_v1_WebPagesFinder_FindNumberElements3"
+        "blocks":  "getproperty;converttojson;windowBlock;text;post__api_v1_WebPages_GetBrowserAndPage;logic_boolean;BrowserType;math_number;text_print;text_multiline;procedures_callnoreturn;controls_if;Find3;post__api_v1_WebPagesMouse_ClickFind3;text_append;post__api_v1_WebPages_CloseBrowser;procedures_defnoreturn;ExecuteScriptNoArgs;wait_seconds;text_replace;text_join;converterTemplate;object_create;post__api_v1_WebPagesScript_InjectScript;post__api_v1_WebPagesScreenshot_GetScreenshot;exportfile;logic_compare;text_count;post__api_v1_WebPagesInteraction_IncreaseElement;post__api_v1_WebPagesFinder_FindNumberElements3"
     },
     {
         "id":  "docs_makeDocsExample",
@@ -25,13 +31,13 @@
     },
     {
         "id":  "DemoWebPage",
-        "description":  "demo web page 1",
+        "description":  "open browser with root page and screenshot",
         "categories":  "api;",
         "blocks":  "getproperty;converttojson;windowBlock;text;post__api_v1_WebPages_GetBrowserAndPage;logic_boolean;BrowserType;math_number;text_print;wait_seconds;post__api_v1_WebPages_SendEscape;post__api_v1_WebPages_Highlight;SelectCriteria;post__api_v1_WebPages_ClickOn;post__api_v1_WebPages_GetScreenshot;exportfile;post__api_v1_WebPages_CloseBrowser"
     },
     {
         "id":  "docs_btnExecute",
-        "description":  "execute",
+        "description":  "shows how to screenshot the execute button",
         "categories":  "documentation;",
         "blocks":  "getproperty;converttojson;windowBlock;text;post__api_v1_WebPages_GetBrowserAndPage;logic_boolean;BrowserType;math_number;text_print;wait_seconds;post__api_v1_WebPages_SendEscape;post__api_v1_WebPages_ClickOn;SelectCriteria;post__api_v1_WebPagesScreenshot_GetScreenshotElement;post__api_v1_File_SaveByte;recByteSave;post__api_v1_WebPages_CloseBrowser"
     },
@@ -43,7 +49,7 @@
     },
     {
         "id":  "docs_txtOutput",
-        "description":  "output",
+        "description":  "shows how to screenshot the output text box",
         "categories":  "documentation;",
         "blocks":  "getproperty;converttojson;windowBlock;text;post__api_v1_WebPages_GetBrowserAndPage;logic_boolean;BrowserType;math_number;text_print;wait_seconds;post__api_v1_WebPages_SendEscape;post__api_v1_WebPages_ClickOn;SelectCriteria;post__api_v1_WebPagesScreenshot_GetScreenshotElement;post__api_v1_File_SaveByte;recByteSave;post__api_v1_WebPages_CloseBrowser"
     },

@@ -10,7 +10,7 @@ import { IBlocksExtMut } from '../../blocksInterface';
 export default class CreateObjectBlocks implements IBlocksExtMut{
 
 
-category: string = "Object";
+category: string = "Object Funcs";
 //https://gist.github.com/mark-friedman/48f43a9b62b1c8ad029a75d4b4e61f31
 definitionBlocksExtMut(blocks: any,javaScript:any,BlocklyExtensions:any,  BlocklyMutator:any) {
 

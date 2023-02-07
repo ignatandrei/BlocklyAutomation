@@ -4,7 +4,7 @@ import { IBlocksSimple } from '../../blocksInterface';
 export default class propBlockly implements IBlocksSimple {
  
   
-  category: string= "Object";
+  category: string= "Object Funcs";
   definitionBlocksSimple(blocks: any, javaScript: any) {
     const ALIGN_RIGHT = javaScript.ALIGN_RIGHT;
     const ALIGN_CENTRE = javaScript.ALIGN_CENTRE;

@@ -1,5 +1,5 @@
 
-#  Exercise 001 : Call an HTTP Api
+#  Exercise 001 : Call an HTTP Api GET
 
 ## What to do
 
