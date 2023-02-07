@@ -1,6 +1,6 @@
 # exportChromeBookmarksThisYearBy10
 
-The example **exportChromeBookmarksThisYearBy10** allows you to export chrome bookmarks for this year in 10.
+The example **exportChromeBookmarksThisYearBy10** allows you to export chrome bookmarks for this year paging 10 items.
 
 This looks like this:
 
