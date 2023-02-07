@@ -1,9 +1,9 @@
 <xml xmlns="https://developers.google.com/blockly/xml">
   <variables>
     <variable id="fdL?Q;7uV42PIS4!,oH8">i</variable>
+    <variable id="EImY=6y}rumMnk5BfbNt">exampleData</variable>
     <variable id="4$2JmX9Rt-rsuz=Ayg!a">fileName</variable>
     <variable id="G[]V3y[g[f-e~b@MGWA%">url</variable>
-    <variable id="EImY=6y}rumMnk5BfbNt">exampleData</variable>
     <variable id="%$lYP~]:U$eJJG2Y#4tF">examples</variable>
     <variable id="j8IV}zWXIPoy:R=8|coS">currentUrl</variable>
     <variable id="Tw$$r-_1~IPgrH+;qzCW">textDocs</variable>
@@ -238,7 +238,7 @@
                                                   </block>
                                                 </value>
                                                 <next>
-                                                  <block type="controls_flow_statements" disabled="true">
+                                                  <block type="controls_flow_statements">
                                                     <field name="FLOW">BREAK</field>
                                                   </block>
                                                 </next>

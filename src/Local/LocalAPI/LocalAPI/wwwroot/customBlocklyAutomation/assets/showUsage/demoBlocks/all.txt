@@ -2,97 +2,97 @@
     {
         "id":  "docs_saveNewProduct",
         "description":  "how to create an object and call API POST",
-        "categories":  "api;object",
+        "categories":  "programmerall;api;object",
         "blocks":  "object_create;text;math_number;text_print;converttostring;httprequest"
     },
     {
         "id":  "exercise1",
         "description":  "solving exercise 1",
-        "categories":  "api;exercises",
+        "categories":  "programmerall;api;exercises",
         "blocks":  "getproperty;converttojson;windowBlock;text;post__api_v1_WebPages_GetBrowserAndPage;logic_boolean;BrowserType;math_number;text_print;text_multiline;procedures_callnoreturn;controls_if;Find3;post__api_v1_WebPagesMouse_ClickFind3;text_append;post__api_v1_WebPages_CloseBrowser;procedures_defnoreturn;ExecuteScriptNoArgs;wait_seconds;text_replace;text_join;converterTemplate;object_create;post__api_v1_WebPagesScript_InjectScript;post__api_v1_WebPagesScreenshot_GetScreenshot;exportfile;logic_compare;text_count;post__api_v1_WebPagesInteraction_IncreaseElement;post__api_v1_WebPagesFinder_FindNumberElements3"
     },
     {
         "id":  "docs_makeDocsExample",
         "description":  "generate screenshots and examples markdown pages",
-        "categories":  "api;",
+        "categories":  "programmerall;api;",
         "blocks":  "math_random_int;text_join;text;httprequest;text_multiline;text_print;converttostring;convertToTable;controls_forEach;converterTemplate;exportfile;getproperty;procedures_callnoreturn;procedures_callreturn;controls_flow_statements;procedures_defreturn;converttojson;windowBlock;procedures_defnoreturn;post__api_v1_WebPages_GetBrowserAndPage;logic_boolean;BrowserType;math_number;wait_seconds;post__api_v1_WebPages_ClickOn;SelectCriteria;post__api_v1_WebPages_SendEscape;post__api_v1_WebPages_Highlight;post__api_v1_WebPages_GetScreenshot;post__api_v1_WebPages_CloseBrowser"
     },
     {
         "id":  "exportChromeBookmarksThisYearBy10",
         "description":  "export chrome bookmarks for this year paging 10 items",
-        "categories":  "api;",
+        "categories":  "programmerall;api;",
         "blocks":  "displayCurrentDate;text_getSubstring;math_number;text_print;post__api_v1_Chrome_GetUrlsYear;text;controls_forEach;converttojson;controls_if;math_number_property;HTMLliStop;HTMLliStart;HTMLli;HTMLlinkFromObject;math_arithmetic;convertToTable"
     },
     {
         "id":  "exportChromeBookmarksThisYear",
         "description":  "export chrome bookmarks for this year",
-        "categories":  "api;",
+        "categories":  "programmerall;api;",
         "blocks":  "displayCurrentDate;text_getSubstring;math_number;text_print;post__api_v1_Chrome_GetUrlsYear;text;HTMLlist;controls_forEach;converttojson;HTMLli;HTMLlinkFromObject;convertToTable"
     },
     {
         "id":  "DemoWebPage",
         "description":  "open browser with root page and screenshot",
-        "categories":  "api;",
+        "categories":  "programmerall;api;",
         "blocks":  "getproperty;converttojson;windowBlock;text;post__api_v1_WebPages_GetBrowserAndPage;logic_boolean;BrowserType;math_number;text_print;wait_seconds;post__api_v1_WebPages_SendEscape;post__api_v1_WebPages_Highlight;SelectCriteria;post__api_v1_WebPages_ClickOn;post__api_v1_WebPages_GetScreenshot;exportfile;post__api_v1_WebPages_CloseBrowser"
     },
     {
         "id":  "docs_btnExecute",
         "description":  "shows how to screenshot the execute button",
-        "categories":  "documentation;",
+        "categories":  "programmerall;documentation;",
         "blocks":  "getproperty;converttojson;windowBlock;text;post__api_v1_WebPages_GetBrowserAndPage;logic_boolean;BrowserType;math_number;text_print;wait_seconds;post__api_v1_WebPages_SendEscape;post__api_v1_WebPages_ClickOn;SelectCriteria;post__api_v1_WebPagesScreenshot_GetScreenshotElement;post__api_v1_File_SaveByte;recByteSave;post__api_v1_WebPages_CloseBrowser"
     },
     {
         "id":  "docs_root",
         "description":  "show root",
-        "categories":  "documentation;",
+        "categories":  "programmerall;documentation;",
         "blocks":  "getproperty;converttojson;windowBlock;text;post__api_v1_WebPages_GetBrowserAndPage;logic_boolean;BrowserType;math_number;text_print;wait_seconds;post__api_v1_WebPages_SendEscape;post__api_v1_WebPages_Highlight;SelectCriteria;post__api_v1_WebPages_ClickOn;post__api_v1_WebPages_GetScreenshot;post__api_v1_File_SaveByte;recByteSave;exportfile;post__api_v1_WebPages_CloseBrowser"
     },
     {
         "id":  "docs_txtOutput",
         "description":  "shows how to screenshot the output text box",
-        "categories":  "documentation;",
+        "categories":  "programmerall;documentation;",
         "blocks":  "getproperty;converttojson;windowBlock;text;post__api_v1_WebPages_GetBrowserAndPage;logic_boolean;BrowserType;math_number;text_print;wait_seconds;post__api_v1_WebPages_SendEscape;post__api_v1_WebPages_ClickOn;SelectCriteria;post__api_v1_WebPagesScreenshot_GetScreenshotElement;post__api_v1_File_SaveByte;recByteSave;post__api_v1_WebPages_CloseBrowser"
     },
     {
         "id":  "dotnetTool",
         "description":  "export dotnet tools ",
-        "categories":  "api;programmer tools;",
+        "categories":  "programmerall;api;programmer tools;",
         "blocks":  "converttojson;get__api_v1_MyTools_AllDotNetTools;text;math_number;HTMLheaders;text_append;HTMLliStart;controls_forEach;text_print;getproperty;procedures_callreturn;controls_if;logic_compare;text_length;converttostring;controls_flow_statements;text_getSubstring;HTMLlinkFromObject;HTMLli;HTMLliStop;procedures_defreturn;htmlParserAttrVal;get__api_v1_HttpCalls_GetBasicString;lists_getIndex"
     },
     {
         "id":  "ChromeExtensions",
         "description":  "export Chrome extensions",
-        "categories":  "api;programmer tools;",
+        "categories":  "programmerall;api;programmer tools;",
         "blocks":  "converttojson;get__api_v1_MyTools_MyPCChromeExtensions;text;math_number;HTMLheaders;text_append;HTMLliStart;controls_forEach;text_print;getproperty;procedures_callreturn;controls_if;logic_compare;text_length;converttostring;controls_flow_statements;HTMLlinkFromObject;HTMLli;HTMLliStop;procedures_defreturn;htmlParserAttrVal;get__api_v1_HttpCalls_GetBasicString;lists_getIndex"
     },
     {
         "id":  "nugets",
         "description":  "export nugets packages",
-        "categories":  "api;programmer tools;",
+        "categories":  "programmerall;api;programmer tools;",
         "blocks":  "text_print;procedures_callreturn;text;converttojson;get__api_v1_MyTools_FindNuGets;math_number;HTMLheaders;text_append;HTMLliStart;controls_forEach;getproperty;controls_if;logic_compare;text_length;text_getSubstring;converttostring;controls_flow_statements;HTMLlinkFromObject;HTMLli;wait_seconds;HTMLliStop;procedures_defreturn;htmlParserAttrVal;get__api_v1_HttpCalls_GetBasicString;lists_getIndex;text_trim"
     },
     {
         "id":  "extVsCode",
         "description":  "export vscode extensions",
-        "categories":  "api;programmer tools;",
+        "categories":  "programmerall;api;programmer tools;",
         "blocks":  "text_print;procedures_callreturn;text;converttojson;get__api_v1_MyTools_FindVSCodeExtension;math_number;HTMLheaders;text_append;HTMLliStart;controls_forEach;getproperty;controls_if;logic_compare;text_length;text_getSubstring;controls_flow_statements;HTMLlinkFromObject;HTMLli;wait_seconds;converttostring;HTMLliStop;procedures_defreturn;htmlParserAttrVal;get__api_v1_HttpCalls_GetBasicString;lists_getIndex;text_trim"
     },
     {
         "id":  "powershellModules",
         "description":  "export powershell modules locals",
-        "categories":  "api;programmer tools;",
+        "categories":  "programmerall;api;programmer tools;",
         "blocks":  "text_print;procedures_callreturn;text;converttojson;get__api_v1_MyTools_PowershellModules;math_number;HTMLheaders;text_append;HTMLliStart;controls_forEach;getproperty;controls_if;logic_compare;text_length;text_getSubstring;controls_flow_statements;HTMLlinkFromObject;HTMLli;wait_seconds;converttostring;HTMLliStop;procedures_defreturn;htmlParserAttrVal;get__api_v1_HttpCalls_GetBasicString;lists_getIndex;text_trim"
     },
     {
         "id":  "npms",
         "description":  "export npm packages",
-        "categories":  "api;programmer tools;",
+        "categories":  "programmerall;api;programmer tools;",
         "blocks":  "text_print;procedures_callreturn;text;converttojson;get__api_v1_MyTools_FindNPMs;math_number;HTMLheaders;text_append;HTMLliStart;controls_forEach;getproperty;controls_if;logic_compare;logic_null;controls_flow_statements;text_length;text_getSubstring;HTMLlinkFromObject;HTMLli;wait_seconds;converttostring;HTMLliStop;procedures_defreturn;get__api_v1_HttpCalls_GetBasicString;text_trim"
     },
     {
         "id":  "winget",
         "description":  "export winget programs",
-        "categories":  "api;programmer tools;",
+        "categories":  "programmerall;api;programmer tools;",
         "blocks":  "converttojson;get__api_v1_WindowsOp_WingetAppFromLocalPC;text;math_number;HTMLheaders;text_append;HTMLliStart;controls_forEach;getproperty;HTMLlinkFromObject;text_print;HTMLli;wait_seconds;converttostring;controls_flow_statements;HTMLliStop"
     }
 ]
