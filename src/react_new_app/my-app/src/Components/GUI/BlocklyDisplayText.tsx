@@ -5,18 +5,28 @@ import { useEffect, useState } from "react";
 import { ShowBlocklyOutput } from "../../Common/SimpleDialogProps";
 import { RunCode, RunCodeData } from "../Examples/Messages";
 import ShowCodeAndXML from "./ShowCodeAndXML";
+import { SettingsBA } from "./settings/Settings";
 
 function BlocklyDisplayText({showData}: ShowBlocklyOutput){
  
     const [text, setText ]= useState('');
     const [textError, setTextError ]= useState('');
-    
+    const [version,setVersion]=useState("");
+    useEffect (()=>{
+      var x= new SettingsBA().getVersion().subscribe(it=>{        
+        console.log('in set version'+it);
+        setVersion(it);
+             
+      });
+      return ()=>x.unsubscribe();
+    },[setVersion])
+
     // const textAreaRef = React.useRef<HTMLTextAreaElement>(null);
     useEffect(()=>{
         var data= RunCode.getMessage().subscribe(it=>{
             switch(it.runCodeData){
                 case RunCodeData.Start:
-                    setText('start running code!');
+                    setText(version+ ':start running code !');
                     setTextError('');
                     return;
                 case RunCodeData.Stop:
@@ -34,7 +44,7 @@ function BlocklyDisplayText({showData}: ShowBlocklyOutput){
             }
         });
         return ()=>{ data.unsubscribe();}
-    },[]);
+    },[version]);
  
     return <> 
     

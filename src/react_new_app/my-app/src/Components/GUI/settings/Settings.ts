@@ -1,4 +1,4 @@
-import { map, Observable } from "rxjs";
+import { map, Observable, ObservableLike, tap, } from "rxjs";
 import { ajax, AjaxResponse } from "rxjs/ajax";
 import { TourSteps } from "./TourSteps";
 
@@ -22,4 +22,16 @@ export class SettingsBA {
             map((res: AjaxResponse<SettingsBA>)=> res.response),
         );
       }
+    getVersion():Observable<string>{
+        const baseUrl=process.env.PUBLIC_URL+'/'; 
+        var dt=new Date().toISOString();
+        // const headers = new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8');
+        
+        return ajax({method: 'GET', url:baseUrl+ `version.txt?${dt}` ,async: false})          
+        .pipe(
+            tap((res: any) =>console.log(`obtaining version `,res)),
+            map((res: any)=> res.response)
+        );
+        //return of("andrei");
+    }
 }

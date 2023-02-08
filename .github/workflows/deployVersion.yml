@@ -43,6 +43,8 @@ jobs:
         cd src        
         cd react_new_app
         cd my-app
+        rm public/version.txt
+        echo "${{github.ref_name}}" > public/version.txt
         npm run build
 
     - name: build docs for local api
