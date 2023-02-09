@@ -1,4 +1,4 @@
-import { map, Observable, ObservableLike, tap, } from "rxjs";
+import { map, Observable,  tap, } from "rxjs";
 import { ajax, AjaxResponse } from "rxjs/ajax";
 import { TourSteps } from "./TourSteps";
 

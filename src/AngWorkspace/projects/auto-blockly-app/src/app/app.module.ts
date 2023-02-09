@@ -42,7 +42,7 @@ import {MatTreeModule} from '@angular/material/tree';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { PrimaryNavigComponent } from 'projects/node2-blockly/src/lib/primary-navig/primary-navig.component';
 import { AppDetails } from 'projects/node2-blockly/src/lib/AppDetails';
-import { Observable, ObservableLike } from 'rxjs';
+import { Observable} from 'rxjs';
 import { TransmitAction } from 'projects/node2-blockly/src/lib/TransmitAction';
 import { BlocklyStudioComponent } from 'projects/node2-blockly/src/lib/blockly-studio/blockly-studio.component';
 import { FindSavedBlocksComponent } from 'projects/node2-blockly/src/lib/find-saved-blocks/find-saved-blocks.component';
