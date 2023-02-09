@@ -92,11 +92,16 @@ public class LocalAPIStarter
         var p= await Playwright.CreateAsync();
         builder.Services.AddSingleton(p);
         builder.Services.AddSingleton<RunBrowserShareData>();
-        
+        builder.Services.AddProblemDetails();
         //builder.Services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
         //   .AddNegotiate();
 
         var app = builder.Build();
+
+        app.UseExceptionHandler();
+        app.UseStatusCodePages();
+
+        app.UseDeveloperExceptionPage();
 
         app.UseCors(it => it
         .AllowAnyHeader()
