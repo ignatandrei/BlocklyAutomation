@@ -104,7 +104,14 @@
       {
         "text":"Here you can find blocks for basic constructs : loops, text, bool, logic ...",
         "query":".blocklyTreeLabel"
+      }
+      ,
+      
+      {
+        "text":"If you are a programmer, you can find your swagger at the left -we have package for .NET , Node, PHP ...",
+        "query":""
       },
+      
       {
         "text":"Drag here blocks to execute them",
         "query":".blocklyBlockCanvas"

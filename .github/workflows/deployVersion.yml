@@ -61,14 +61,14 @@ jobs:
       with:
         name: releaseBlocklyAutomation
         path: 'src/react_new_app/my-app/build/*'
-        retention-days: 1
+        retention-days: 3
         
     - name: Archive local api docs
       uses: actions/upload-artifact@v2
       with:
         name: localAPIDocs
         path: 'src/Local/docs/build/*'
-        retention-days: 1
+        retention-days: 3
 
     - name: verify exists
       run: |
