@@ -3,6 +3,7 @@ using LocalTools;
 using Microsoft.Extensions.Options;
 using Microsoft.Playwright;
 using System.Reflection;
+using UsefullExtensions;
 using WindowsRelated;
 public class LocalAPIStarter
 {
@@ -34,8 +35,8 @@ public class LocalAPIStarter
                 c.JsonSerializerOptions.IgnoreReadOnlyProperties = true;//directory info
             });
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-        builder.Services.AddVersionedApiExplorer();
-        //builder.Services.AddEndpointsApiExplorer();
+        builder.Services.AddApiVersioning();
+        builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
         builder.Services.AddTransient<RepoBlocksSimple>();
         builder.Services.AddTransient<ChromeData>();
@@ -83,10 +84,10 @@ public class LocalAPIStarter
             options.AssumeDefaultVersionWhenUnspecified = true;
             options.ReportApiVersions = true;
         });
-        builder.Services.AddVersionedApiExplorer(setup =>
+        builder.Services.AddApiVersioning(setup =>
         {
-            setup.GroupNameFormat = "'v'VVV";
-            setup.SubstituteApiVersionInUrl = true;
+            //setup.GroupNameFormat = "'v'VVV";
+            //setup.SubstituteApiVersionInUrl = true;
         });
         builder.Services.AddHttpClient();
         var p= await Playwright.CreateAsync();
@@ -123,7 +124,8 @@ public class LocalAPIStarter
                 //}
             });
         }
-        app.UseApiVersioning();
+        app.MapUsefullAll();
+        //app.UseApiVersioning();
         //app.UseHttpsRedirection();
         app.UseDefaultFiles();
         app.UseStaticFiles();

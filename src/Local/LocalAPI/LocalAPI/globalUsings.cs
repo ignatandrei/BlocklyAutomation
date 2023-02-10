@@ -12,5 +12,6 @@ global using AMSWebAPI;
 global using LocalAPI.Controllers;
 global using Microsoft.AspNetCore.Authentication.Negotiate;
 global using LocalTools;
+global using Asp.Versioning;
 
 

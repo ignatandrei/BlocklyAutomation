@@ -17,11 +17,12 @@
 
   <ItemGroup>
     <PackageReference Include="FluentEmail.Liquid" Version="3.0.2" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.Negotiate" Version="7.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Negotiate" Version="7.0.2" />
+    <PackageReference Include="Asp.Versioning.Mvc.ApiExplorer" Version="7.0.0" />
+    <PackageReference Include="NetCoreUsefullEndpoints" Version="7.2023.219.1934" />
     <PackageReference Include="SkinnyControllersCommon" Version="2021.25.6.855" />
     <PackageReference Include="SkinnyControllersGenerator" Version="2021.25.6.855" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
     <ItemGroup>
     <PackageReference Include="AMSWebAPI" Version="2022.5.25.1154" />
