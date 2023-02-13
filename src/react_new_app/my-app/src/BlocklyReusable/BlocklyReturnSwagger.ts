@@ -858,8 +858,16 @@ TranslateToBlocklyType(t:any) {
             name: it,
             ops: self
               .findfieldXMLFunctions(it)
-              .filter((op:any) => op.id.length > 0),
-              //.map((op:any) => op.id)
+              .filter((op:any) => op.id.length > 0)
+              // .map((op:any) => { return { id : op.id, method: op.method };)
+              .map((it) => {
+                return {
+                  method: it.methodAPI,
+                  operation: it.id,
+                  
+                  //ops:self.operations.filter(op=>op.controller==it).map(op=>op.id)
+                };
+              })
         };
         });
         var obj1 = { name: self.name, categories: obj };
