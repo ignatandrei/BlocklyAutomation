@@ -419,22 +419,22 @@ Blockly.setLocale(locale);
 
     const afterTimeout=useCallback(()=>{
       var nr = swaggerData.length;
-      if(nr === 0)
-          return;
+      if(nr > 0)
       if(swaggerData.every(it=>it.hasError))
           {
               console.log('all swaggers has errors');
-              return;
+              nr=0;
           }
       var xmlToolbox=primaryXmlToolboxRef.current;
      
       primaryWorkspace.current!.updateToolbox(xmlToolbox);
-      
+      if(nr>0)
       swaggerData.forEach((item, index) => {
       //  console.log('a_item', item);
           var cache=item;  
           xmlToolbox= addToToolboxSwagger(cache,xmlToolbox, index);
       });
+      
       setPrimaryXmlToolbox(xmlToolbox);
   // if (myComponent?.mustLoadDemoBlock != null)
   //   myComponent.ShowDemo(myComponent?.mustLoadDemoBlock);
