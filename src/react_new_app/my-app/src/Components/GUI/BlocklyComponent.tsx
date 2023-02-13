@@ -29,6 +29,7 @@ import AllNewBlocks from '../../BlocklyReusable/allNewBlocks';
 import IBlocks from '../../BlocklyReusable/blocksInterface';
 import { downloadWorkspaceScreenshot } from './screenshot';
 import { delay } from 'rxjs';
+import CustomCategories from '../../Common/customCategs';
 
 Blockly.setLocale(locale);
  
@@ -73,6 +74,7 @@ Blockly.setLocale(locale);
         xmlToolbox+='</category> ';
       });
       xmlToolbox+='</category> ';
+      xmlToolbox+= `<category name="customCateg"></category>`;
       xmlToolbox+= `<category name="Swaggers" id="catSwagger" class='.stepTourSwagger' expanded='false' > '        
       <button text="Add Swagger" callbackKey="addSwagger"></button>
       ${newSwaggerCategories}
@@ -414,8 +416,16 @@ Blockly.setLocale(locale);
      return xmlToolbox;
     },[]);
 
+    const [customCategs,setCustomCategs]=useState('');
 
-
+    useEffect(()=>{
+      var x=(new CustomCategories()).getCustomCategories().subscribe(
+        it=> {
+          setCustomCategs(it);
+        }
+      );
+      return ()=>x.unsubscribe();
+    },[setCustomCategs]);
 
     const afterTimeout=useCallback(()=>{
       var nr = swaggerData.length;
@@ -434,8 +444,12 @@ Blockly.setLocale(locale);
           var cache=item;  
           xmlToolbox= addToToolboxSwagger(cache,xmlToolbox, index);
       });
-      
+      //xmlToolbox=xmlToolbox.replace(`<category name="customCateg"></category>`,`<category name="AndreicustomCateg"></category>`);
+      xmlToolbox=xmlToolbox.replace(`<category name="customCateg"></category>`,customCategs);
+
       setPrimaryXmlToolbox(xmlToolbox);
+      primaryWorkspace.current!.updateToolbox(xmlToolbox);
+
   // if (myComponent?.mustLoadDemoBlock != null)
   //   myComponent.ShowDemo(myComponent?.mustLoadDemoBlock);
   // else {
@@ -464,7 +478,7 @@ Blockly.setLocale(locale);
     s1.restoreState(primaryWorkspace.current!,"save1");
   }
   
-  },[addToToolboxSwagger, idBlock, startBlocks, swaggerData]);
+  },[addToToolboxSwagger,customCategs, idBlock, startBlocks, swaggerData]);
 
 
     useEffect(()=>{
