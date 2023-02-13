@@ -1,7 +1,140 @@
 <category name='CategoriesLoaded'>
       <variables>
       <variable id="andreiTedt">nrDep</variable>
+      <variable id="varCateg_And_Actions_From_Meta_API">Categ_And_Actions_From_Meta_API</variable>
+    <variable id="varCateg">category</variable>
+    <variable id="varMessage">message</variable>
+
     </variables>
+
+
+<block type="procedures_defnoreturn" collapsed="true">
+    <mutation>
+      <arg name="Categ_And_Actions_From_Meta_API" varid="varCateg_And_Actions_From_Meta_API"></arg>
+    </mutation>
+    <field name="NAME">Generate_API_Table</field>
+    <comment pinned="false" h="80" w="160">Generate API doc definition</comment>
+    <statement name="STACK">
+      <block type="controls_if">
+        <mutation else="1"></mutation>
+        <value name="IF0">
+          <block type="logic_compare">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="variables_get">
+                <field name="VAR" id="varCateg_And_Actions_From_Meta_API">Categ_And_Actions_From_Meta_API</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="logic_null"></block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="text_print">
+            <value name="TEXT">
+              <block type="text">
+                <field name="TEXT">please add argument categ and actions from your swagger meta category</field>
+              </block>
+            </value>
+          </block>
+        </statement>
+        <statement name="ELSE">
+          <block type="controls_forEach">
+            <field name="VAR" id="varCateg">category</field>
+            <value name="LIST">
+              <block type="getproperty">
+                <field name="objectName">object</field>
+                <field name="prop">property</field>
+                <value name="ObjectToChange">
+                  <block type="variables_get">
+                    <field name="VAR" id="varCateg_And_Actions_From_Meta_API">Categ_And_Actions_From_Meta_API</field>
+                  </block>
+                </value>
+                <value name="PropertyName">
+                  <block type="text">
+                    <field name="TEXT">categories</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <statement name="DO">
+              <block type="text_print">
+                <value name="TEXT">
+                  <block type="HTMLheaders">
+                    <field name="NAME">H1</field>
+                    <value name="NAME">
+                      <shadow type="text">
+                        <field name="TEXT"></field>
+                      </shadow>
+                      <block type="getproperty">
+                        <field name="objectName">object</field>
+                        <field name="prop">property</field>
+                        <value name="ObjectToChange">
+                          <block type="variables_get">
+                            <field name="VAR" id="varCateg">category</field>
+                          </block>
+                        </value>
+                        <value name="PropertyName">
+                          <block type="text">
+                            <field name="TEXT">name</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="variables_set">
+                    <field name="VAR" id="varMessage">message</field>
+                    <value name="VALUE">
+                      <block type="getproperty">
+                        <field name="objectName">object</field>
+                        <field name="prop">property</field>
+                        <value name="ObjectToChange">
+                          <block type="variables_get">
+                            <field name="VAR" id="varCateg">category</field>
+                          </block>
+                        </value>
+                        <value name="PropertyName">
+                          <block type="text">
+                            <field name="TEXT">ops</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="text_print">
+                        <value name="TEXT">
+                          <shadow type="text">
+                            <field name="TEXT">abc</field>
+                          </shadow>
+                          <block type="convertToTable">
+                            <value name="ArrayToConvert">
+                              <block type="converttostring">
+                                <value name="ValueToConvert">
+                                  <block type="variables_get">
+                                    <field name="VAR" id="varMessage">message</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </statement>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+
+
+
     <block  collapsed="true" type="procedures_defreturn">
       <field name="NAME">NumberDepartments1</field>
       <comment pinned="false" h="80" w="160">Describe this function...</comment>
