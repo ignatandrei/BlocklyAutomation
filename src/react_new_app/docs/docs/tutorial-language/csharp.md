@@ -1,5 +1,11 @@
 # Install into  ASP.NET 7
 
+:::note
+
+It is better to have swagger added in order to see the API 
+Check [this `link`](https://learn.microsoft.com/en-us/aspnet/core/tutorials/web-api-help-pages-using-swagger?view=aspnetcore-7.0).
+
+:::
 Step 1 : Install package 
 
 ```code
@@ -34,4 +40,8 @@ You will see this
 
 and on Swaggers you will see your API's as blocks .
 
+:::tip
+
+If your API do not show see customize swaggers next section
+:::
 Next : **TBD** Customize swaggers  
