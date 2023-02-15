@@ -126,6 +126,10 @@ const config = {
         ],
         copyright: `Copyright © ${new Date().getFullYear()} VisualAPI. Built with Docusaurus.`,
       },
+      tableOfContents: {
+        minHeadingLevel: 2,
+        maxHeadingLevel: 3,
+      },
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
