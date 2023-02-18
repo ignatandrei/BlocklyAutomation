@@ -47,15 +47,30 @@ jobs:
         echo "${{github.ref_name}}" > public/version.txt
         npm run build
 
-    - name: build docs for local api
+    - name: build docs 
       run: |
         cd src        
-        cd Local
+        cd react_new_app
         cd docs
         npm i -g npm@8.19.3              
         npm i  
         npm run build
-        
+
+    - name: verify exists
+      run: |
+        echo 'main workspace'
+        ls -l ${{github.workspace}}/src/react_new_app/my-app/build/      
+        echo 'docs'
+        ls -l ${{github.workspace}}/src/react_new_app/docs/build      
+
+    - name: copy  docs 
+      run: |
+        rm -rf src/react_new_app/my-app/public/help
+        mkdir src/react_new_app/my-app/public/help
+        cp -R src/react_new_app/docs/build/*  src/react_new_app/my-app/public/help/
+          
+
+
     - name: Archive production artifacts main
       uses: actions/upload-artifact@v2
       with:
@@ -63,19 +78,13 @@ jobs:
         path: 'src/react_new_app/my-app/build/*'
         retention-days: 3
         
-    - name: Archive local api docs
+    - name: Archive api docs
       uses: actions/upload-artifact@v2
       with:
         name: localAPIDocs
-        path: 'src/Local/docs/build/*'
+        path: 'src/react_new_app/docs/build/*'
         retention-days: 3
 
-    - name: verify exists
-      run: |
-        echo 'main workspace'
-        ls -l ${{github.workspace}}/src/react_new_app/my-app/build/      
-        echo 'localapi docs'
-        ls -l ${{github.workspace}}/src/Local/docs/build      
 
 
     - name: Archive Release 
