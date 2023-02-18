@@ -77,6 +77,7 @@ Blockly.setLocale(locale);
       xmlToolbox+= `<category name="customCateg"></category>`;
       xmlToolbox+= `<category name="Swaggers" id="catSwagger" class='.stepTourSwagger' expanded='false' > '        
       <button text="Add Swagger" callbackKey="addSwagger"></button>
+      <block type="Categ_And_Actions_From_Meta_API"></block>
       ${newSwaggerCategories}
       '</category>  `;
 
@@ -372,6 +373,143 @@ Blockly.setLocale(locale);
   <category name='meta' id='meta_${item.name}'>
   <block type='meta_swagger_controllers_${item.name}'></block>
   <block type='meta_swagger_controllers_actions_${item.name}'></block>
+
+  <block type="controls_forEach" collapsed="true" x="112" y="265">
+    <field name="VAR" id="6eY#Z)h8NGTGTkIpx%Gg">category</field>
+    <comment pinned="true" >Export HTML definition</comment>
+    <value name="LIST">
+      <block type="getproperty">
+        <field name="objectName">object</field>
+        <field name="prop">property</field>
+        <value name="ObjectToChange">
+<block type="meta_swagger_controllers_actions_${item.name}"></block>
+        </value>
+        <value name="PropertyName">
+          <block type="text">
+            <field name="TEXT">categories</field>
+          </block>
+        </value>
+      </block>
+    </value>
+    <statement name="DO">
+      <block type="text_print">
+        <value name="TEXT">
+          <block type="HTMLheaders">
+            <field name="NAME">H1</field>
+            <value name="NAME">
+              <shadow type="text">
+                <field name="TEXT"></field>
+              </shadow>
+              <block type="getproperty">
+                <field name="objectName">object</field>
+                <field name="prop">property</field>
+                <value name="ObjectToChange">
+                  <block type="variables_get">
+                    <field name="VAR" id="6eY#Z)h8NGTGTkIpx%Gg">category</field>
+                  </block>
+                </value>
+                <value name="PropertyName">
+                  <block type="text">
+                    <field name="TEXT">name</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="variables_set">
+            <field name="VAR" id="*n^H$b7MwVpU3OUbOeOe">message</field>
+            <value name="VALUE">
+              <block type="getproperty">
+                <field name="objectName">object</field>
+                <field name="prop">property</field>
+                <value name="ObjectToChange">
+                  <block type="variables_get">
+                    <field name="VAR" id="6eY#Z)h8NGTGTkIpx%Gg">category</field>
+                  </block>
+                </value>
+                <value name="PropertyName">
+                  <block type="text">
+                    <field name="TEXT">ops</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type="text_print">
+                <value name="TEXT">
+                  <shadow type="text">
+                    <field name="TEXT">abc</field>
+                  </shadow>
+                  <block type="text_multiline">
+                    <field name="TEXT">&lt;table border=1&gt;&lt;tr&gt;&lt;td&gt;Operation&lt;/td&gt;&lt;td&gt;Name&lt;/td&gt;&lt;/tr&gt;</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="controls_forEach">
+                    <field name="VAR" id="mj!([vz^/N6I=Fn9MK*q">api</field>
+                    <value name="LIST">
+                      <block type="variables_get">
+                        <field name="VAR" id="*n^H$b7MwVpU3OUbOeOe">message</field>
+                      </block>
+                    </value>
+                    <statement name="DO">
+                      <block type="text_print">
+                        <value name="TEXT">
+                          <shadow type="text">
+                            <field name="TEXT">abc</field>
+                          </shadow>
+                          <block type="converterTemplate">
+                            <value name="object">
+                              <block type="variables_get">
+                                <field name="VAR" id="mj!([vz^/N6I=Fn9MK*q">api</field>
+                              </block>
+                            </value>
+                            <value name="text">
+                              <block type="text_multiline">
+                                <field name="TEXT">&lt;tr&gt;&amp;#10;&lt;td&gt;&lt;img width=50 height=50  src='/blocklyAutomation/assets/httpImages/\${method}.png' /&gt;&lt;/td&gt;&lt;td&gt;\${operation}&lt;/td&gt;&lt;/tr&gt;</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                      </block>
+                    </statement>
+                    <next>
+                      <block type="text_print">
+                        <value name="TEXT">
+                          <shadow type="text">
+                            <field name="TEXT">abc</field>
+                          </shadow>
+                          <block type="text_multiline">
+                            <field name="TEXT">&lt;/table&gt;</field>
+                          </block>
+                        </value>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+  
+
+  
+  <block type="procedures_callnoreturn" >
+  <mutation name="Generate_API_List">
+    <arg name="Categ_And_Actions_From_Meta_API"></arg>
+  </mutation>
+  <value name="ARG0">
+    <block type="meta_swagger_controllers_actions_${item.name}"></block>
+  </value>
+  </block>
+
+
+
   </category>
   
   </category>
@@ -597,6 +735,12 @@ Blockly.setLocale(locale);
                 },
             );
             var workspace = primaryWorkspace.current!;
+            workspace.addChangeListener((ev:any)=>{
+              
+              if (ev.type == Blockly.Events.BLOCK_CREATE ){
+                console.log("event", ev);
+              }
+            });
             (globalThis as any)["VisualAPIworkspace"]=workspace;
             (globalThis as any)["VisualAPIBlocklyXML"]=Blockly.Xml;
             (globalThis as any)["VisualAPIBlockly"]=Blockly;
