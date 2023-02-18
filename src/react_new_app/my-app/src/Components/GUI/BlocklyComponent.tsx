@@ -499,15 +499,7 @@ Blockly.setLocale(locale);
   
 
   
-  <block type="procedures_callnoreturn" >
-  <mutation name="Generate_API_List">
-    <arg name="Categ_And_Actions_From_Meta_API"></arg>
-  </mutation>
-  <value name="ARG0">
-    <block type="meta_swagger_controllers_actions_${item.name}"></block>
-  </value>
-  </block>
-
+  
 
 
   </category>
