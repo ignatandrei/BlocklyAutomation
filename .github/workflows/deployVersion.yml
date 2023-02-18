@@ -37,6 +37,27 @@ jobs:
         cd my-app
         npm i -g npm@8.19.3               
         npm i  
+    - name: build docs 
+      run: |
+        cd src        
+        cd react_new_app
+        cd docs
+        npm i -g npm@8.19.3              
+        npm i  
+        npm run build
+    
+    - name: verify exists docs
+      run: |
+        echo 'docs'
+        ls -l ${{github.workspace}}/src/react_new_app/docs/build      
+
+
+    - name: copy  docs 
+      run: |
+        rm -rf src/react_new_app/my-app/public/help
+        mkdir src/react_new_app/my-app/public/help
+        cp -R src/react_new_app/docs/build/*  src/react_new_app/my-app/public/help/
+          
 
     - name: build with root 
       run: |
@@ -47,28 +68,11 @@ jobs:
         echo "${{github.ref_name}}" > public/version.txt
         npm run build
 
-    - name: build docs 
-      run: |
-        cd src        
-        cd react_new_app
-        cd docs
-        npm i -g npm@8.19.3              
-        npm i  
-        npm run build
 
-    - name: verify exists
+    - name: verify exists app
       run: |
         echo 'main workspace'
         ls -l ${{github.workspace}}/src/react_new_app/my-app/build/      
-        echo 'docs'
-        ls -l ${{github.workspace}}/src/react_new_app/docs/build      
-
-    - name: copy  docs 
-      run: |
-        rm -rf src/react_new_app/my-app/public/help
-        mkdir src/react_new_app/my-app/public/help
-        cp -R src/react_new_app/docs/build/*  src/react_new_app/my-app/public/help/
-          
 
 
     - name: Archive production artifacts main
