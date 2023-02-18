@@ -727,12 +727,12 @@ Blockly.setLocale(locale);
                 },
             );
             var workspace = primaryWorkspace.current!;
-            workspace.addChangeListener((ev:any)=>{
+            // workspace.addChangeListener((ev:any)=>{
               
-              if (ev.type == Blockly.Events.BLOCK_CREATE ){
-                console.log("event", ev);
-              }
-            });
+            //   if (ev.type === Blockly.Events.BLOCK_CREATE ){
+            //     console.log("event", ev);
+            //   }
+            // });
             (globalThis as any)["VisualAPIworkspace"]=workspace;
             (globalThis as any)["VisualAPIBlocklyXML"]=Blockly.Xml;
             (globalThis as any)["VisualAPIBlockly"]=Blockly;
