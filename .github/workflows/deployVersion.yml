@@ -21,9 +21,14 @@ jobs:
       uses: actions/checkout@master
 
     - name: Node ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+        cache-dependency-path: |
+          '**/package-lock.json'
+          '**/package.json'
+          
 
     # - name: put version
     #   run: |
@@ -53,7 +58,7 @@ jobs:
     - name: build docs main blockly
       run: |
         cd src        
-        cd LocalAPI
+        cd Local
         cd docs
         npm i -g npm@8.19.3              
         npm i  
