@@ -1,0 +1,6 @@
+[{
+		"id":"local",
+	"link": "http://localhost:37283/swagger/v1/swagger.json",
+	"enabled": true
+ }	
+]

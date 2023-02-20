@@ -1,0 +1,62 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="5]6HwJX=^,x$tm)9LnW8">product</variable>
+  </variables>
+  <block type="variables_set" x="-180" y="-706">
+    <field name="VAR" id="5]6HwJX=^,x$tm)9LnW8">product</field>
+    <value name="VALUE">
+      <block type="object_create">
+        <mutation xmlns="http://www.w3.org/1999/xhtml" num_fields="3">
+          <field name="title"></field>
+          <field name="body"></field>
+          <field name="userId"></field>
+        </mutation>
+        <field name="field1">title</field>
+        <field name="field2">body</field>
+        <field name="field3">userId</field>
+        <value name="field_input1">
+          <block type="text">
+            <field name="TEXT">NewProduct</field>
+          </block>
+        </value>
+        <value name="field_input2">
+          <block type="text">
+            <field name="TEXT">NewProductBody</field>
+          </block>
+        </value>
+        <value name="field_input3">
+          <block type="math_number">
+            <field name="NUM">4455333</field>
+          </block>
+        </value>
+      </block>
+    </value>
+    <next>
+      <block type="text_print">
+        <value name="TEXT">
+          <block type="converttostring">
+            <value name="ValueToConvert">
+              <block type="httprequest">
+                <field name="TypeOutput">JSON</field>
+                <field name="TypeRequest">POST</field>
+                <value name="TheUrl">
+                  <shadow type="text">
+                    <field name="TEXT">https://httpbin.org/get</field>
+                  </shadow>
+                  <block type="text">
+                    <field name="TEXT">https://jsonplaceholder.typicode.com/posts</field>
+                  </block>
+                </value>
+                <value name="Data">
+                  <block type="variables_get">
+                    <field name="VAR" id="5]6HwJX=^,x$tm)9LnW8">product</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </value>
+      </block>
+    </next>
+  </block>
+</xml>
