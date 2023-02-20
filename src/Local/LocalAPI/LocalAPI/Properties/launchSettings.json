@@ -13,7 +13,7 @@
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
-      "launchUrl": "swagger",
+      "launchUrl": "BlocklyAutomation",
       "applicationUrl": "http://localhost:37283;https://localhost:7291",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
@@ -22,7 +22,7 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "swagger",
+      "launchUrl": "BlocklyAutomation",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

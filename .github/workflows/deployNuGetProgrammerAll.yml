@@ -22,16 +22,16 @@ jobs:
       #   uses: actions/setup-node@v1
       #   with:
       #     node-version: ${{ matrix.node-version }}
-      - name: Download  main
-        id: download-artifact
-        uses: dawidd6/action-download-artifact@v2
-        with:
-          github_token: ${{secrets.GITHUB_TOKEN}}
-          workflow: deployVersion.yml
-          name: releaseBlocklyAutomation
-          workflow_conclusion: success          
-          path: ${{github.workspace}}/src/Local/LocalAPI/LocalAPI/wwwroot/BlocklyAutomation
-          if_no_artifact_found: fail
+      # - name: Download  main
+      #   id: download-artifact
+      #   uses: dawidd6/action-download-artifact@v2
+      #   with:
+      #     github_token: ${{secrets.GITHUB_TOKEN}}
+      #     workflow: deployVersion.yml
+      #     name: releaseBlocklyAutomation
+      #     workflow_conclusion: success          
+      #     path: ${{github.workspace}}/src/Local/LocalAPI/LocalAPI/wwwroot/BlocklyAutomation
+      #     if_no_artifact_found: fail
 
       - name: Download artifact docs local api
         id: download-artifact-docs-localAPI

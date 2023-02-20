@@ -2,6 +2,7 @@ using BrowserTest;
 using LocalTools;
 using Microsoft.Extensions.Options;
 using Microsoft.Playwright;
+using NetCore2BlocklyNew;
 using System.Reflection;
 using UsefullExtensions;
 using WindowsRelated;
@@ -98,7 +99,6 @@ public class LocalAPIStarter
         //   .AddNegotiate();
 
         var app = builder.Build();
-
         app.UseExceptionHandler();
         app.UseStatusCodePages();
 
@@ -133,7 +133,9 @@ public class LocalAPIStarter
         //later: use versioning
         app.MapControllers();
         app.UseAMS();
-        app.MapFallbackToFile("/BlocklyAutomation/{**slug:nonfile}", "BlocklyAutomation/index.html");
+        //app.MapFallbackToFile("/BlocklyAutomation/{**slug:nonfile}", "BlocklyAutomation/index.html");
+        app.UseBlocklyUI(app.Environment);
+        app.UseBlocklyAutomation();
         ManagementController.cts = new();
         app.Urls.Add("http://localhost:37283");
         //while (true)
