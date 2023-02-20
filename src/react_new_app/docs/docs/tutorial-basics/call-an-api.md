@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # Call an API
 
-![Call An API](/img/docusaurus.png)
+![Call An API](@site/static/img/docusaurus.png)
 
 
 

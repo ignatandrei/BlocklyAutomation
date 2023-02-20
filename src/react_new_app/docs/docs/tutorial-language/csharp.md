@@ -47,7 +47,7 @@ Modify file Properties/launchSettings.json in order to show first /BlocklyAutoma
 
 You will see this
 
-![VisualAPI](/img/generated/root.png)
+![VisualAPI](@site/static/img/generated/root.png)
 
 and on _TBD_ image Swaggers section you will see your API's as blocks .
 

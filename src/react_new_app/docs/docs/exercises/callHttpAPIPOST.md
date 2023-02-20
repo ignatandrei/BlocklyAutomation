@@ -21,10 +21,10 @@ Click on <b>Exit</b>
 This looks like this **before click**
 
 
-![Exit](/img/exercises/ex2/Exit-before.png) 
+![Exit](@site/static/img/exercises/ex2/Exit-before.png) 
 
 and **after click**
-![Exit](/img/exercises/ex2/Exit-after.png)
+![Exit](@site/static/img/exercises/ex2/Exit-after.png)
  
 </details><details>
 <summary>
@@ -34,10 +34,10 @@ Click on <b>the menu in right of Save Local</b>
 This looks like this **before click**
 
 
-![the menu in right of Save Local](/img/exercises/ex2/Save-Local-before.png) 
+![the menu in right of Save Local](@site/static/img/exercises/ex2/Save-Local-before.png) 
 
 and **after click**
-![the menu in right of Save Local](/img/exercises/ex2/Save-Local-after.png)
+![the menu in right of Save Local](@site/static/img/exercises/ex2/Save-Local-after.png)
  
 </details><details>
 <summary>
@@ -47,10 +47,10 @@ Click on <b>Clear Blocks</b>
 This looks like this **before click**
 
 
-![Clear Blocks](/img/exercises/ex2/Clear-Blocks-before.png) 
+![Clear Blocks](@site/static/img/exercises/ex2/Clear-Blocks-before.png) 
 
 and **after click**
-![Clear Blocks](/img/exercises/ex2/Clear-Blocks-after.png)
+![Clear Blocks](@site/static/img/exercises/ex2/Clear-Blocks-after.png)
  
 </details><details>
 <summary>
@@ -60,10 +60,10 @@ Click on <b>Object</b>
 This looks like this **before click**
 
 
-![Object](/img/exercises/ex2/Object-before.png) 
+![Object](@site/static/img/exercises/ex2/Object-before.png) 
 
 and **after click**
-![Object](/img/exercises/ex2/Object-after.png)
+![Object](@site/static/img/exercises/ex2/Object-after.png)
  
 </details><details>
 <summary>
@@ -73,10 +73,10 @@ Do <b>drag block with create object</b>
 This looks like this **before click**
 
 
-![drag block with create object](/img/exercises/ex2/drag-block-with-create-object-before.png) 
+![drag block with create object](@site/static/img/exercises/ex2/drag-block-with-create-object-before.png) 
 
 and **after click**
-![drag block with create object](/img/exercises/ex2/drag-block-with-create-object-after.png)
+![drag block with create object](@site/static/img/exercises/ex2/drag-block-with-create-object-after.png)
  
 </details><details>
 <summary>
@@ -86,10 +86,10 @@ Click on <b>REST Requests</b>
 This looks like this **before click**
 
 
-![REST Requests](/img/exercises/ex2/REST-Requests-before.png) 
+![REST Requests](@site/static/img/exercises/ex2/REST-Requests-before.png) 
 
 and **after click**
-![REST Requests](/img/exercises/ex2/REST-Requests-after.png)
+![REST Requests](@site/static/img/exercises/ex2/REST-Requests-after.png)
  
 </details><details>
 <summary>
@@ -99,10 +99,10 @@ Do <b>drag block with httprequest  and modify to post</b>
 This looks like this **before click**
 
 
-![drag block with httprequest  and modify to post](/img/exercises/ex2/drag-block-with-httprequest--and-modify-to-post-before.png) 
+![drag block with httprequest  and modify to post](@site/static/img/exercises/ex2/drag-block-with-httprequest--and-modify-to-post-before.png) 
 
 and **after click**
-![drag block with httprequest  and modify to post](/img/exercises/ex2/drag-block-with-httprequest--and-modify-to-post-after.png)
+![drag block with httprequest  and modify to post](@site/static/img/exercises/ex2/drag-block-with-httprequest--and-modify-to-post-after.png)
  
 </details><details>
 <summary>
@@ -112,10 +112,10 @@ Click on <b>Execute</b>
 This looks like this **before click**
 
 
-![Execute](/img/exercises/ex2/Execute-before.png) 
+![Execute](@site/static/img/exercises/ex2/Execute-before.png) 
 
 and **after click**
-![Execute](/img/exercises/ex2/Execute-after.png)
+![Execute](@site/static/img/exercises/ex2/Execute-after.png)
  
 </details>
 

@@ -65,11 +65,7 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: 'VisualAPI Help',
-        logo: {
-          alt: 'VisuaAPI Logo',
-          src: 'img/logo.svg',
-        },
+        title: 'VisualAPI Help',        
         items: [
           {
             type: 'doc',

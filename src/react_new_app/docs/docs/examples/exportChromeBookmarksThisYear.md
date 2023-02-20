@@ -4,7 +4,7 @@ The example **exportChromeBookmarksThisYear** allows you to export chrome bookma
 
 This looks like this:
 
- ![exportChromeBookmarksThisYear](/img/examples/exportChromeBookmarksThisYear.png) 
+ ![exportChromeBookmarksThisYear](@site/static/img/examples/exportChromeBookmarksThisYear.png) 
 
 Try it at <a href='/../automation/loadexample/exportChromeBookmarksThisYear' target='_blank'>exportChromeBookmarksThisYear</a> !
 
