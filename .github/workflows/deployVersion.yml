@@ -58,9 +58,9 @@ jobs:
         npm i -g npm@8.19.3              
         npm i  
         npm run build            
-        rm -rf src/LocalAPI/docs/build/images/*
+        rm -rf src/Local/docs/build/images/*
         echo 'verify build docs main blockly'
-        ls -l ${{github.workspace}}/src/LocalAPI/docs/build      
+        ls -l ${{github.workspace}}/src/Local/docs/build      
 
     - name: copy  docs to BlocklyMain
       run: |
@@ -96,7 +96,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: localAPIDocs
-        path: 'src/LocalAPI/docs/build/*'
+        path: 'src/Local/docs/build/*'
         retention-days: 3
 
 
@@ -115,8 +115,8 @@ jobs:
       with:
         type: 'zip'
         filename: 'releaseLocalAPIDocs.zip'
-        path: '${{github.workspace}}/src/LocalAPI/docs/build/*'
-        directory: '${{github.workspace}}/src/LocalAPI/docs/build/'
+        path: '${{github.workspace}}/src/Local/docs/build/*'
+        directory: '${{github.workspace}}/src/Local/docs/build/'
         exclusions: '*.git* /*node_modules/* .editorconfig'       
 
     - name: find release 
@@ -133,7 +133,7 @@ jobs:
         draft: false
         prerelease: false
         files:  |
-            ${{github.workspace}}/src/LocalAPI/docs/build/releaseLocalAPIDocs.zip
+            ${{github.workspace}}/src/Local/docs/build/releaseLocalAPIDocs.zip
             version.txt
         # tag: v${{ env.GITHUB_SHA }}
         #tag_name: v${{ env.GITHUB_SHA }}
