@@ -12,6 +12,8 @@
 	"copyFiles": "copy-item LocalAPI/wwwroot/customBlocklyAutomation/* LocalAPI/wwwroot/BlocklyAutomation/ -force -recurse -verbose",
 	"makeZipFile":"Compress-Archive -Path LocalAPI/wwwroot/* -DestinationPath MyProgrammerAllTool/wwwroot/a.zip -Force",
 	"copyFilesToPack": "copy-item LocalAPI/wwwroot/* MyProgrammerAllTool/wwwroot/ -force -recurse -verbose",
-	"buildPack": "dotnet r copyFiles  && dotnet r copyFilesToPack && dotnet r makeZipFile && dotnet pack MyProgrammerAllTool/MyProgrammerAllTool.csproj --include-source  -o PACK"
+	"buildPack_old": "dotnet r copyFiles  && dotnet r copyFilesToPack && dotnet r makeZipFile && dotnet pack MyProgrammerAllTool/MyProgrammerAllTool.csproj --include-source  -o PACK",
+  "buildPack": "dotnet pack MyProgrammerAllTool/MyProgrammerAllTool.csproj --include-source  -o PACK"
+
   }
 }
