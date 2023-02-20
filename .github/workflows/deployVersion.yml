@@ -51,11 +51,11 @@ jobs:
         npm i -g npm@8.19.3              
         npm i  
         npm run build      
-        rm -rf src/react_new_app/docs/build/img/*      
+        rm -rf ${{github.workspace}}/src/react_new_app/docs/build/img/*      
         echo 'verify build docs main blockly'
         ls -l ${{github.workspace}}/src/react_new_app/docs/build      
 
-    - name: build docs main blockly
+    - name: build docs LocalAPI
       run: |
         cd src        
         cd Local
@@ -63,7 +63,7 @@ jobs:
         npm i -g npm@8.19.3              
         npm i  
         npm run build            
-        rm -rf src/Local/docs/build/img/*
+        rm -rf ${{github.workspace}}/src/Local/docs/build/img/*
         echo 'verify build docs main blockly'
         ls -l ${{github.workspace}}/src/Local/docs/build      
 
