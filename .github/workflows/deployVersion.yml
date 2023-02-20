@@ -24,10 +24,10 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-        cache-dependency-path: |
-          '**/package-lock.json'
-          '**/package.json'
+        # cache: 'npm'
+        # cache-dependency-path: |
+        #   '**/package-lock.json'
+        #   '**/package.json'
           
 
     # - name: put version
