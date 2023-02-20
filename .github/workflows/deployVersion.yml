@@ -25,34 +25,44 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
-    - name: put version
-      run: |
-        echo "${{github.ref_name}}" 
-        echo "${{github.ref_name}}" > version.txt
+    # - name: put version
+    #   run: |
+    #     echo "${{github.ref_name}}" 
+    #     echo "${{github.ref_name}}" > version.txt
 
-    - name: npm install
+    - name: npm install main blockly
       run: |
         cd src        
         cd react_new_app
         cd my-app
         npm i -g npm@8.19.3               
         npm i  
-    - name: build docs 
+
+    - name: build docs main blockly
       run: |
         cd src        
         cd react_new_app
         cd docs
         npm i -g npm@8.19.3              
         npm i  
-        npm run build
-    
-    - name: verify exists docs
-      run: |
-        echo 'docs'
+        npm run build      
+        rm -rf src/react_new_app/docs/build/images/*      
+        echo 'verify build docs main blockly'
         ls -l ${{github.workspace}}/src/react_new_app/docs/build      
 
+    - name: build docs main blockly
+      run: |
+        cd src        
+        cd LocalAPI
+        cd docs
+        npm i -g npm@8.19.3              
+        npm i  
+        npm run build            
+        rm -rf src/LocalAPI/docs/build/images/*
+        echo 'verify build docs main blockly'
+        ls -l ${{github.workspace}}/src/LocalAPI/docs/build      
 
-    - name: copy  docs 
+    - name: copy  docs to BlocklyMain
       run: |
         rm -rf src/react_new_app/my-app/public/help
         mkdir src/react_new_app/my-app/public/help
@@ -69,10 +79,10 @@ jobs:
         npm run build
 
 
-    - name: verify exists app
-      run: |
-        echo 'main workspace'
-        ls -l ${{github.workspace}}/src/react_new_app/my-app/build/      
+    # - name: verify exists app
+    #   run: |
+    #     echo 'main workspace'
+    #     ls -l ${{github.workspace}}/src/react_new_app/my-app/build/      
 
 
     - name: Archive production artifacts main
@@ -86,12 +96,12 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: localAPIDocs
-        path: 'src/react_new_app/docs/build/*'
+        path: 'src/LocalAPI/docs/build/*'
         retention-days: 3
 
 
 
-    - name: Archive Release 
+    - name: Archive Release VisualAPI
       uses: thedoctor0/zip-release@master
       with:
         type: 'zip'
@@ -100,21 +110,44 @@ jobs:
         directory: '${{github.workspace}}/src/react_new_app/my-app/build/'
         exclusions: '*.git* /*node_modules/* .editorconfig'       
 
+    - name: Archive Release  LocalAPI Docs
+      uses: thedoctor0/zip-release@master
+      with:
+        type: 'zip'
+        filename: 'releaseLocalAPIDocs.zip'
+        path: '${{github.workspace}}/src/LocalAPI/docs/build/*'
+        directory: '${{github.workspace}}/src/LocalAPI/docs/build/'
+        exclusions: '*.git* /*node_modules/* .editorconfig'       
+
     - name: find release 
       run: |
         find ${{github.workspace}} -type f -name "*.zip"
 
 
 
-    - name: Release
+    - name: ReleaseVisualAPI
       uses: softprops/action-gh-release@v1
       with:
+        body: "Latest Release for Manual Install"
+        generate_release_notes: true
+        draft: false
+        prerelease: false
         files:  |
-            ${{github.workspace}}/src/react_new_app/my-app/build/releaseBlocklyAutomation.zip
+            ${{github.workspace}}/src/LocalAPI/docs/build/releaseLocalAPIDocs.zip
             version.txt
         # tag: v${{ env.GITHUB_SHA }}
         #tag_name: v${{ env.GITHUB_SHA }}
 
+    - name: ReleaseLocalAPI
+      uses: softprops/action-gh-release@v1
+      with:
+        body: "Latest Release for Manual Install"
+        generate_release_notes: true
+        draft: false
+        prerelease: false
+        files:  |
+            ${{github.workspace}}/src/react_new_app/my-app/build/releaseBlocklyAutomation.zip
+            version.txt
 
 
 
@@ -122,7 +155,7 @@ jobs:
       uses: dev-drprasad/delete-older-releases@v0.2.0
       with:
         #repo: <owner>/<repoName> # defaults to current repo
-        keep_latest: 2
+        keep_latest: 4
         #delete_tag_pattern: beta # defaults to ""
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
