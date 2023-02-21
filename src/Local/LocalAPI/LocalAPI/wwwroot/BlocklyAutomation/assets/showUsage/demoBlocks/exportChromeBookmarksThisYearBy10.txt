@@ -46,7 +46,7 @@
               <block type="variables_set">
                 <field name="VAR" id="*n^H$b7MwVpU3OUbOeOe">url</field>
                 <value name="VALUE">
-                  <block type="post__api_v1_Chrome_GetUrlsYear">
+                  <block type="post__api_v__version_Chrome_GetUrlsYear">
                     <value name="val_year">
                       <block type="variables_get">
                         <field name="VAR" id="VodOcE$BLp.WE|un5%zz">year</field>
@@ -194,7 +194,7 @@
                                 <value name="TEXT">
                                   <block type="convertToTable">
                                     <value name="ArrayToConvert">
-                                      <block type="post__api_v1_Chrome_GetUrlsYear">
+                                      <block type="post__api_v__version_Chrome_GetUrlsYear">
                                         <value name="val_year">
                                           <block type="math_number">
                                             <field name="NUM">2023</field>

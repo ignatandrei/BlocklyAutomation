@@ -46,7 +46,7 @@
       <block type="variables_set">
         <field name="VAR" id="VodOcE$BLp.WE|un5%zz">urlBrowser</field>
         <value name="VALUE">
-          <block type="post__api_v1_WebPages_GetBrowserAndPage">
+          <block type="post__api_v__version_WebPages_GetBrowserAndPage">
             <value name="val_headless">
               <block type="logic_boolean">
                 <field name="BOOL">FALSE</field>
@@ -226,7 +226,7 @@
                                         <next>
                                           <block type="text_print">
                                             <value name="TEXT">
-                                              <block type="post__api_v1_WebPagesMouse_ClickFind3">
+                                              <block type="post__api_v__version_WebPagesMouse_ClickFind3">
                                                 <value name="val_values">
                                                   <block type="variables_get">
                                                     <field name="VAR" id="D|wmYw*Kzg|UgPk,8#,#">find</field>
@@ -335,7 +335,7 @@
                                                         <next>
                                                           <block type="text_print">
                                                             <value name="TEXT">
-                                                              <block type="post__api_v1_WebPagesMouse_ClickFind3">
+                                                              <block type="post__api_v__version_WebPagesMouse_ClickFind3">
                                                                 <value name="val_values">
                                                                   <block type="variables_get">
                                                                     <field name="VAR" id="D|wmYw*Kzg|UgPk,8#,#">find</field>
@@ -441,7 +441,7 @@
                                     <next>
                                       <block type="text_print">
                                         <value name="TEXT">
-                                          <block type="post__api_v1_WebPages_CloseBrowser">
+                                          <block type="post__api_v__version_WebPages_CloseBrowser">
                                             <value name="val_id">
                                               <block type="getproperty">
                                                 <field name="objectName">object</field>
@@ -741,7 +741,7 @@
                             <next>
                               <block type="text_print">
                                 <value name="TEXT">
-                                  <block type="post__api_v1_WebPagesScript_InjectScript">
+                                  <block type="post__api_v__version_WebPagesScript_InjectScript">
                                     <value name="val_values">
                                       <block type="variables_get">
                                         <field name="VAR" id="^L|$II%ZOTMM{s5alZ}t">scriptToInject</field>
@@ -825,7 +825,7 @@
           <block type="variables_set">
             <field name="VAR" id="@E*8+C-|RWHGNvp%I3/l">scrFile</field>
             <value name="VALUE">
-              <block type="post__api_v1_WebPagesScreenshot_GetScreenshot">
+              <block type="post__api_v__version_WebPagesScreenshot_GetScreenshot">
                 <value name="val_values">
                   <block type="variables_get">
                     <field name="VAR" id="pr%4%ko;GXIZbR_ouOLB">urlBrowserData</field>
@@ -1016,7 +1016,7 @@
                     <next>
                       <block type="text_print">
                         <value name="TEXT">
-                          <block type="post__api_v1_WebPagesInteraction_IncreaseElement">
+                          <block type="post__api_v__version_WebPagesInteraction_IncreaseElement">
                             <value name="val_values">
                               <block type="variables_get">
                                 <field name="VAR" id="D|wmYw*Kzg|UgPk,8#,#">find</field>
@@ -1037,7 +1037,7 @@
                         <next>
                           <block type="text_print" disabled="true">
                             <value name="TEXT">
-                              <block type="post__api_v1_WebPagesFinder_FindNumberElements3">
+                              <block type="post__api_v__version_WebPagesFinder_FindNumberElements3">
                                 <value name="val_values">
                                   <block type="variables_get">
                                     <field name="VAR" id="D|wmYw*Kzg|UgPk,8#,#">find</field>
@@ -1144,7 +1144,7 @@
                                             <next>
                                               <block type="text_print">
                                                 <value name="TEXT">
-                                                  <block type="post__api_v1_WebPagesMouse_ClickFind3" inline="true">
+                                                  <block type="post__api_v__version_WebPagesMouse_ClickFind3" inline="true">
                                                     <value name="val_values">
                                                       <block type="variables_get">
                                                         <field name="VAR" id="D|wmYw*Kzg|UgPk,8#,#">find</field>
