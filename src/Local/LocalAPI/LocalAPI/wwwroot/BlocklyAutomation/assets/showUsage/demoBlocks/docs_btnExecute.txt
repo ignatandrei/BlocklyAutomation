@@ -54,6 +54,11 @@
                 <field name="VAR" id="j8IV}zWXIPoy:R=8|coS">currentUrl</field>
               </block>
             </value>
+            <value name="val_version">
+              <block type="text">
+                <field name="TEXT">1.0</field>
+              </block>
+            </value>
             <value name="override_Host">
               <block type="text">
                 <field name="TEXT">localhost</field>
@@ -91,7 +96,22 @@
                     <next>
                       <block type="text_print">
                         <value name="TEXT">
-                          <block type="post__api_v__version_WebPages_SendEscape">
+                          <block type="post__api_v__version_WebPages_ClickOn">
+                            <value name="val_criteria">
+                              <block type="SelectCriteria">
+                                <field name="val_SelectCriteria">6</field>
+                              </block>
+                            </value>
+                            <value name="val_selector">
+                              <block type="text">
+                                <field name="TEXT">Exit</field>
+                              </block>
+                            </value>
+                            <value name="val_version">
+                              <block type="text">
+                                <field name="TEXT">1.0</field>
+                              </block>
+                            </value>
                             <value name="val_values">
                               <block type="variables_get">
                                 <field name="VAR" id="VodOcE$BLp.WE|un5%zz">urlBrowser</field>
@@ -124,6 +144,11 @@
                                     <value name="val_selector">
                                       <block type="text">
                                         <field name="TEXT">Execute</field>
+                                      </block>
+                                    </value>
+                                    <value name="val_version">
+                                      <block type="text">
+                                        <field name="TEXT">1.0</field>
                                       </block>
                                     </value>
                                     <value name="val_values">
@@ -163,6 +188,11 @@
                                                     <field name="TEXT">[id='execute']</field>
                                                   </block>
                                                 </value>
+                                                <value name="val_version">
+                                                  <block type="text">
+                                                    <field name="TEXT">1.0</field>
+                                                  </block>
+                                                </value>
                                                 <value name="val_values">
                                                   <block type="variables_get">
                                                     <field name="VAR" id="VodOcE$BLp.WE|un5%zz">urlBrowser</field>
@@ -186,6 +216,11 @@
                                           <block type="text_print">
                                             <value name="TEXT">
                                               <block type="post__api_v__version_File_SaveByte">
+                                                <value name="val_version">
+                                                  <block type="text">
+                                                    <field name="TEXT">1.0</field>
+                                                  </block>
+                                                </value>
                                                 <value name="val_values">
                                                   <block type="recByteSave">
                                                     <value name="val_content">
@@ -257,6 +292,11 @@
                                                                 <field name="TEXT">browserId</field>
                                                               </block>
                                                             </value>
+                                                          </block>
+                                                        </value>
+                                                        <value name="val_version">
+                                                          <block type="text">
+                                                            <field name="TEXT">1.0</field>
                                                           </block>
                                                         </value>
                                                         <value name="override_Host">

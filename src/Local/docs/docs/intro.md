@@ -13,7 +13,7 @@ Get started by running
 dotnet tool update --global programmerall  --no-cache
 ```
 
-## Start your site
+## Start the application
 
 After that , run 
 ```

@@ -6,6 +6,8 @@ sidebar_position: 2
 
 If you have a **Swagger/OpenAPI** definition:
 
+Click on ![catSwaggers](/img/generated/catSwaggers.png) and add your OpenAPI.
+
 <!-- 
 - a **sidebar**
 - **previous/next navigation**

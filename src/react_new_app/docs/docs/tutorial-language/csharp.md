@@ -2,6 +2,8 @@ import TOCInline from '@theme/TOCInline';
 
 
 # Install into  ASP.NET 7
+Or ASP.NET 6 .
+
 
 <TOCInline
   // Only show h2 and h4 headings
@@ -49,7 +51,7 @@ You will see this
 
 ![VisualAPI](@site/static/img/generated/root.png)
 
-and on _TBD_ image Swaggers section you will see your API's as blocks .
+and on ![Swaggers](/img/generated/catSwaggers.png)  section you will see your API's as blocks .
 
 :::tip
 

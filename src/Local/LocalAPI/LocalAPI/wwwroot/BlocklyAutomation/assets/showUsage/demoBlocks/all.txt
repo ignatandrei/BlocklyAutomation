@@ -36,6 +36,12 @@
     "blocks": ""
   },
   {
+    "id": "docs_catSwaggers",
+    "description": "swaggers",
+    "categories": "documentation;",
+    "blocks": ""
+  },
+  {
     "id": "docs_root",
     "description": "show root",
     "categories": "documentation;",

@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # Call an API
 
-![Call An API](@site/static/img/docusaurus.png)
+Please see [Exercise](/docs/exercises/callHttpAPI)
 
 
 
