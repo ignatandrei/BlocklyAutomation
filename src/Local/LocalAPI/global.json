@@ -13,7 +13,7 @@
 	"makeZipFile":"Compress-Archive -Path LocalAPI/wwwroot/* -DestinationPath MyProgrammerAllTool/wwwroot/a.zip -Force",
 	"copyFilesToPack": "copy-item LocalAPI/wwwroot/* MyProgrammerAllTool/wwwroot/ -force -recurse -verbose",
 	"buildPack_old": "dotnet r copyFiles  && dotnet r copyFilesToPack && dotnet r makeZipFile && dotnet pack MyProgrammerAllTool/MyProgrammerAllTool.csproj --include-source  -o PACK",
-  "buildPack": "dotnet pack MyProgrammerAllTool/MyProgrammerAllTool.csproj --include-source  -o PACK"
+  "buildPack": "dotnet r copyFilesToPack && dotnet pack MyProgrammerAllTool/MyProgrammerAllTool.csproj --include-source  -o PACK"
 
   }
 }
