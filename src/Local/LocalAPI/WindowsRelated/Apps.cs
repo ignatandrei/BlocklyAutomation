@@ -1,11 +1,14 @@
 ﻿using Microsoft.Win32;
 namespace WindowsRelated;
-public record App(string Id, string? Name);
+public record IdName(string Id, string? Name);
 public class Apps
 {
-    public App[]? FromRegKey()
+    public IdName[]? FromRegKey()
     {
-        List<App> list = new();
+        if (!OperatingSystem.IsWindows())
+            return null;
+
+        List<IdName> list = new();
         string registry_key = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall";
         using (var key = Registry.LocalMachine.OpenSubKey(registry_key))
         {
@@ -23,7 +26,7 @@ public class Apps
                     {
                         continue;
                     }
-                    var app = new App(subkey_name, name);
+                    var app = new IdName(subkey_name, name);
                     list.Add(app);
                 }
             }

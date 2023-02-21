@@ -1,0 +1,155 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="Uz~+E.s}{EG19ZRkP3#;">servList</variable>
+    <variable id="elU~{_TTXyNRqA@^4@Vz">serv</variable>
+  </variables>
+  <block type="text_print" disabled="true" x="110" y="-153">
+    <value name="TEXT">
+      <block type="get__api_v__version_WindowsOp_GetLocalServices">
+        <value name="val_version">
+          <block type="text">
+            <field name="TEXT">1.0</field>
+          </block>
+        </value>
+        <value name="override_Host">
+          <block type="text">
+            <field name="TEXT">localhost</field>
+          </block>
+        </value>
+        <value name="override_Port">
+          <block type="math_number">
+            <field name="NUM">37283</field>
+          </block>
+        </value>
+      </block>
+    </value>
+    <next>
+      <block type="text_print">
+        <value name="TEXT">
+          <block type="post__api_v__version_WindowsOp_StopService">
+            <value name="val_serviceName">
+              <block type="text">
+                <field name="TEXT">Spooler</field>
+              </block>
+            </value>
+            <value name="val_version">
+              <block type="text">
+                <field name="TEXT">1.0</field>
+              </block>
+            </value>
+            <value name="override_Host">
+              <block type="text">
+                <field name="TEXT">localhost</field>
+              </block>
+            </value>
+            <value name="override_Port">
+              <block type="math_number">
+                <field name="NUM">37283</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="text_print">
+            <value name="TEXT">
+              <block type="post__api_v__version_WindowsOp_StopService">
+                <value name="val_serviceName">
+                  <block type="text">
+                    <field name="TEXT">TeamViewer</field>
+                  </block>
+                </value>
+                <value name="val_version">
+                  <block type="text">
+                    <field name="TEXT">1.0</field>
+                  </block>
+                </value>
+                <value name="override_Host">
+                  <block type="text">
+                    <field name="TEXT">localhost</field>
+                  </block>
+                </value>
+                <value name="override_Port">
+                  <block type="math_number">
+                    <field name="NUM">37283</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type="variables_set">
+                <field name="VAR" id="Uz~+E.s}{EG19ZRkP3#;">servList</field>
+                <value name="VALUE">
+                  <block type="text">
+                    <field name="TEXT">UIFlowLogShipper,UIFlowService, sshd, AGMService, AGSService, UIFlowAgentLauncherService, UIFlowUpdateService,Schedule</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="variables_set">
+                    <field name="VAR" id="Uz~+E.s}{EG19ZRkP3#;">servList</field>
+                    <value name="VALUE">
+                      <block type="lists_split">
+                        <mutation mode="SPLIT"></mutation>
+                        <field name="MODE">SPLIT</field>
+                        <value name="INPUT">
+                          <block type="variables_get">
+                            <field name="VAR" id="Uz~+E.s}{EG19ZRkP3#;">servList</field>
+                          </block>
+                        </value>
+                        <value name="DELIM">
+                          <shadow type="text">
+                            <field name="TEXT">,</field>
+                          </shadow>
+                          <block type="text">
+                            <field name="TEXT">,</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="controls_forEach">
+                        <field name="VAR" id="elU~{_TTXyNRqA@^4@Vz">serv</field>
+                        <value name="LIST">
+                          <block type="variables_get">
+                            <field name="VAR" id="Uz~+E.s}{EG19ZRkP3#;">servList</field>
+                          </block>
+                        </value>
+                        <statement name="DO">
+                          <block type="text_print">
+                            <value name="TEXT">
+                              <block type="post__api_v__version_WindowsOp_StopService">
+                                <value name="val_serviceName">
+                                  <block type="variables_get">
+                                    <field name="VAR" id="elU~{_TTXyNRqA@^4@Vz">serv</field>
+                                  </block>
+                                </value>
+                                <value name="val_version">
+                                  <block type="text">
+                                    <field name="TEXT">1.0</field>
+                                  </block>
+                                </value>
+                                <value name="override_Host">
+                                  <block type="text">
+                                    <field name="TEXT">localhost</field>
+                                  </block>
+                                </value>
+                                <value name="override_Port">
+                                  <block type="math_number">
+                                    <field name="NUM">37283</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                          </block>
+                        </statement>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>

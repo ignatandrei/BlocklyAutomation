@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="System.ServiceProcess.ServiceController" Version="7.0.0" />
+  </ItemGroup>
+
 </Project>

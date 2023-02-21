@@ -20,6 +20,7 @@ import HTMLParserAttributeValue from "./BlocklyNewBlocks/HTML/HTMLParserAttribut
 import windowBlock from "./BlocklyNewBlocks/Browser/windowBlock";
 import converterTemplate from "./BlocklyNewBlocks/converters/convertTemplate";
 import metaShw from "./BlocklyNewBlocks/meta/show";
+import container from "./BlocklyNewBlocks/meta/container";
 
 export default class AllNewBlocks
 {
@@ -62,6 +63,7 @@ export default class AllNewBlocks
         new windowBlock(),
         new converterTemplate(),
         new metaShw(),
+        new container(),
         ];
         return this.nb;
     }

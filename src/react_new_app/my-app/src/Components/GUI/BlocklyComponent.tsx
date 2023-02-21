@@ -373,6 +373,10 @@ Blockly.setLocale(locale);
   <category name='meta' id='meta_${item.name}'>
   <block type='meta_swagger_controllers_${item.name}'></block>
   <block type='meta_swagger_controllers_actions_${item.name}'></block>
+  
+  <block type="container" >
+  <field name="nameContainer">HtmlDocumentation ${item.name}</field>
+  <statement name="Stmts">
 
   <block type="controls_forEach" collapsed="true" x="112" y="265">
     <field name="VAR" id="6eY#Z)h8NGTGTkIpx%Gg">category</field>
@@ -495,8 +499,15 @@ Blockly.setLocale(locale);
         </next>
       </block>
     </statement>
+    <next>
+          <block type="metadisplay">
+            <field name="what">4</field>
+          </block>
+        </next>
   </block>
   
+  </statement>
+  </block>
 
   
   

@@ -4,14 +4,20 @@
 name: Build and deploy to VisualAPI
 
 on:
-  push:
-    tags:
-      - "vAPI*"
+  workflow_run:
+    workflows: ["Build nuget dotnet programmer all"]
+    types:
+      - completed
+# on:
+#   push:
+#     tags:
+#       - "vAPI*"
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     # strategy:
     #   matrix:
     #     node-version: [16.13.0]
@@ -101,6 +107,7 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     needs: build
     environment:
       name: 'Production'
