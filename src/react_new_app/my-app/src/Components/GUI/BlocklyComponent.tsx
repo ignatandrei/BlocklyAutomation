@@ -738,6 +738,10 @@ Blockly.setLocale(locale);
                 },
             );
             var workspace = primaryWorkspace.current!;
+            
+            javascriptGenerator.STATEMENT_PREFIX = 'highlightBlock(%1);\n';
+            javascriptGenerator.addReservedWords('highlightBlock');
+            
             // workspace.addChangeListener((ev:any)=>{
               
             //   if (ev.type === Blockly.Events.BLOCK_CREATE ){
