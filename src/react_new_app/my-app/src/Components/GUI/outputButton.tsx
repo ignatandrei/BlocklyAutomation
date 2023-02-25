@@ -18,12 +18,12 @@ function OutputButton(props: any) {
 
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef<HTMLDivElement>(null);
-    const [selectedIndex, setSelectedIndex] = React.useState(0);
+    const [selectedValue, setselectedValue] = React.useState(ShowCodeAndXML.ShowOutputRaw);
   
     useEffect(()=>{
-      var x=ShowData.getMessage().subscribe((it:any)=>{                        
-          //console.log("received "+it);
-          setSelectedIndex(it);
+      var x=ShowData.getMessage().subscribe((it:ShowCodeAndXML)=>{                        
+          console.log("received "+it);
+          setselectedValue(it);
           
       });
       return ()=>x.unsubscribe();
@@ -35,20 +35,20 @@ function OutputButton(props: any) {
 
 
     const handleClick = () => {
-      ClickOnIndex(selectedIndex);
+      ClickOnIndex(selectedValue);
     };
 
-    const ClickOnIndex=(index:number)=>{
-      var sel=options[index].toString();
-      var e= optionsSave.get(sel) ;
+    const ClickOnIndex=(e:ShowCodeAndXML)=>{
+      // var sel=options[index].toString();
+      // var e= optionsSave.get(sel) ;
       switch(e){
-        case ShowCodeAndXML.ShowBlocksDefinition:
-        case ShowCodeAndXML.ShowCode:
-        case ShowCodeAndXML.ShowOutput:
+        case ShowCodeAndXML.ShowCodeBlocks:
+        case ShowCodeAndXML.ShowCodeJavascript:
+        case ShowCodeAndXML.ShowOutputRaw:
           case ShowCodeAndXML.ShowOutputHtml:
-        case ShowCodeAndXML.ShowXml:  
+        case ShowCodeAndXML.ShowCodeJavascriptXml:  
         case ShowCodeAndXML.ShowOutputJson: 
-        case ShowCodeAndXML.ShowNone:
+        case ShowCodeAndXML.ShowOutputNone:
           // console.log('send'+ e);        
           ShowData.sendMessage(e);
           return;
@@ -62,23 +62,32 @@ function OutputButton(props: any) {
     const handleMenuItemClick = (
       event: React.MouseEvent<HTMLLIElement, MouseEvent>,
       index: number,
+      key: string | ShowCodeAndXML
     ) => {
-      setSelectedIndex(index);
+      var data=ShowCodeAndXML.ShowOutputNone;
+      if(typeof(key)=== "string"){
+        data=Object.values(ShowCodeAndXML).indexOf(key as unknown as ShowCodeAndXML);
+      }
+      else{
+        data=key;
+      }
+      
+      setselectedValue(data);
       setOpen(false);
-      ClickOnIndex(index);
+      ClickOnIndex(data);
     };
   
     const handleToggle = () => {
       setOpen((prevOpen) => !prevOpen);
     };
-    const ReInterpretOpt=(opt:string|ShowCodeAndXML)=>{
-      if(!opt)
-        return opt;
+    const ReInterpretOpt=(opt:string|ShowCodeAndXML):string=>{
       if(typeof opt === "string"){
         const re=/[A-Z][a-z]+|[0-9]+/g;
         return opt.match(re)!.join(" ");
       }
-      return  opt+"!";
+      //it is the enum
+      console.log(opt, typeof(opt),Object.keys(ShowCodeAndXML));
+      return  ReInterpretOpt(ShowCodeAndXML[opt]as string);
     }
     const handleClose = (event: Event) => {
       if (
@@ -94,7 +103,7 @@ function OutputButton(props: any) {
     return (
       <React.Fragment>
         <ButtonGroup className="stepTourOutputButton" variant="contained" ref={anchorRef} aria-label="split button">
-          <Button onClick={handleClick}>{ReInterpretOpt(options[selectedIndex])}</Button>
+          <Button onClick={handleClick}>{ReInterpretOpt(selectedValue)}</Button>
           <Button
             size="small"
             aria-controls={open ? 'split-button-menu' : undefined}
@@ -127,12 +136,12 @@ function OutputButton(props: any) {
               <Paper>
                 <ClickAwayListener onClickAway={handleClose}>
                   <MenuList id="split-button-menu" autoFocusItem>
-                    {options.map((option, index) => (
+                    {options.sort((a,b)=>-a.toLocaleString().localeCompare(b.toLocaleString())).map((option, index)=> (
                       <MenuItem
                         key={option}
                         // disabled={index === 0}
-                        selected={index === selectedIndex}
-                        onClick={(event) => handleMenuItemClick(event, index)}
+                        selected={index === selectedValue}
+                        onClick={(event) => handleMenuItemClick(event, index, option)}
                       >
                          {ReInterpretOpt(option)}
                       </MenuItem>

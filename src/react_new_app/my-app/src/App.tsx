@@ -89,22 +89,22 @@ const [selectedValue, setSelectedValue] = React.useState("");
 const [showDisplay,setShowDisplay]=  React.useState(true); 
 const handleRun = () => {
   //maybe do this only if we are on inner workings?    
-    ShowData.sendMessage(ShowCodeAndXML.ShowOutput);
+    ShowData.sendMessage(ShowCodeAndXML.ShowOutputRaw);
     RunCode.sendMessage({runCodeData:RunCodeData.Start});
   };
 
   useEffect(()=>{
     var x=ShowData.getMessage().subscribe(it=>{            
         switch(it){
-            case ShowCodeAndXML.ShowOutput:
+            case ShowCodeAndXML.ShowOutputRaw:
             case ShowCodeAndXML.ShowOutputHtml:
             case ShowCodeAndXML.ShowOutputJson:
-            case ShowCodeAndXML.ShowCode:
-            case ShowCodeAndXML.ShowXml:
-            case ShowCodeAndXML.ShowBlocksDefinition:
+            case ShowCodeAndXML.ShowCodeJavascript:
+            case ShowCodeAndXML.ShowCodeJavascriptXml:
+            case ShowCodeAndXML.ShowCodeBlocks:
               setShowDisplay(true);
               return;
-            case ShowCodeAndXML.ShowNone:
+            case ShowCodeAndXML.ShowOutputNone:
               setShowDisplay(false);
               return;
             default:     

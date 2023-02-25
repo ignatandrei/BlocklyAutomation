@@ -297,31 +297,31 @@ Blockly.setLocale(locale);
     useEffect(()=>{
         var x=ShowData.getMessage().subscribe(it=>{            
             switch(it){
-                case ShowCodeAndXML.ShowOutput:
+                case ShowCodeAndXML.ShowOutputRaw:
                 case ShowCodeAndXML.ShowOutputHtml:
                 case ShowCodeAndXML.ShowOutputJson:
                   setblocklyWidth('75%');
                   return;
-                case ShowCodeAndXML.ShowNone:
+                case ShowCodeAndXML.ShowOutputNone:
                   setblocklyWidth('100%');
                   setTimeout((d: Blockly.WorkspaceSvg) => {
                     Blockly.svgResize(d);
                   }, 1000, primaryWorkspace.current);
                   return;
-                case ShowCodeAndXML.ShowCode:
+                case ShowCodeAndXML.ShowCodeJavascript:
                     setblocklyWidth('75%');
                     var code = javascriptGenerator.workspaceToCode(primaryWorkspace.current);
                     InnerWorkings.sendMessage(code);     
                     return;
-                case ShowCodeAndXML.ShowXml:
+                case ShowCodeAndXML.ShowCodeJavascriptXml:
                   setblocklyWidth('75%');
                     var xml = Blockly.Xml.workspaceToDom(primaryWorkspace.current!, true);
                     var xml_text = Blockly.Xml.domToPrettyText(xml);
-                    console.log('send' ,xml_text);
+                    // console.log('send' ,xml_text);
                     InnerWorkings.sendMessage(xml_text);                    
                     
                     return;
-                case ShowCodeAndXML.ShowBlocksDefinition:
+                case ShowCodeAndXML.ShowCodeBlocks:
                   setblocklyWidth('75%');
                      var xml1 = Blockly.Xml.workspaceToDom(primaryWorkspace.current!, true);
                      var xml_text1 = Blockly.Xml.domToPrettyText(xml1);

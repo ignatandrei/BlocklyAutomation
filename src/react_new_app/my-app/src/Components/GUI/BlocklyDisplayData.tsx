@@ -15,7 +15,7 @@ function BlocklyDisplayData(){
 
     var optionsSave=new Map<string,ShowCodeAndXML|string>();
     Object.entries(ShowCodeAndXML).map(([number, word]) => ({ number, word })).forEach(it=>optionsSave.set(it.number,it.word));
-    const [state, showState]=useState(ShowCodeAndXML.ShowOutput);
+    const [state, showState]=useState(ShowCodeAndXML.ShowOutputRaw);
     const data ={showData:state};
     useEffect(()=>{
         var x=ShowData.getMessage().subscribe((it:any)=>{                        

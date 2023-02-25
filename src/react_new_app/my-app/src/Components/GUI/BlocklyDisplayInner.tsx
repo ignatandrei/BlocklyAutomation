@@ -6,9 +6,9 @@ import ShowCodeAndXML from "./ShowCodeAndXML";
 
 function BlocklyDisplayInner({showData}: ShowBlocklyOutput){
 
-    var displayInner = (showData === ShowCodeAndXML.ShowBlocksDefinition);
-    displayInner ||=(showData=== ShowCodeAndXML.ShowCode);
-    displayInner ||=(showData=== ShowCodeAndXML.ShowXml);
+    var displayInner = (showData === ShowCodeAndXML.ShowCodeBlocks);
+    displayInner ||=(showData=== ShowCodeAndXML.ShowCodeJavascript);
+    displayInner ||=(showData=== ShowCodeAndXML.ShowCodeJavascriptXml);
 
     const [text,setText]=useState('');
     

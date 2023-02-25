@@ -60,7 +60,7 @@ function BlocklyDisplayText({showData}: ShowBlocklyOutput){
  
     return <> 
     
-    <div hidden={showData !== ShowCodeAndXML.ShowOutput}> 
+    <div hidden={showData !== ShowCodeAndXML.ShowOutputRaw}> 
     <TextareaAutosize id="txtOutput" cols={40} className="stepTourOutput"
     aria-label="output"
     minRows={3}
@@ -68,7 +68,7 @@ function BlocklyDisplayText({showData}: ShowBlocklyOutput){
     value={text}
     
   /></div>
-      <div hidden={showData !== ShowCodeAndXML.ShowOutput}> 
+      <div hidden={showData !== ShowCodeAndXML.ShowOutputRaw}> 
       {(textError.length>0) && 
       <TextareaAutosize cols={40}
     id="disErr"
