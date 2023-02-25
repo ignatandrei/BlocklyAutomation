@@ -3,7 +3,7 @@ import React from "react";
 import './BlocklyDisplayText.css';
 import { useEffect, useState } from "react";
 import { ShowBlocklyOutput } from "../../Common/SimpleDialogProps";
-import { RunCode, RunCodeData } from "../Examples/Messages";
+import { errorMessage, RunCode, RunCodeData } from "../Examples/Messages";
 import ShowCodeAndXML from "./ShowCodeAndXML";
 import { SettingsBA } from "./settings/Settings";
 
@@ -38,7 +38,19 @@ function BlocklyDisplayText({showData}: ShowBlocklyOutput){
                     break;
                     //setText('asdasdasd');
                 case RunCodeData.CodeError:
-                    setTextError(prev=> prev + "\r\n" + it.message);
+                    var s:errorMessage= it.message;
+                    if(s){
+                      var place = '';
+                      var state= s.currrentBlock;
+                      if(state){
+                       place=JSON.stringify(state);
+                      }
+                      setTextError(prev=> prev + "\r\n" + s.errorMessage + "\r\n Error at block:" + "\r\n" + place);
+
+                    }
+                    else
+                      setTextError(prev=> prev + "\r\n" + it.message);
+
                     break;
 
             }

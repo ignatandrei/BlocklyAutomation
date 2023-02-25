@@ -30,6 +30,7 @@ import IBlocks from '../../BlocklyReusable/blocksInterface';
 import { downloadWorkspaceScreenshot } from './screenshot';
 import { delay } from 'rxjs';
 import CustomCategories from '../../Common/customCategs';
+import { State } from 'blockly/core/serialization/blocks';
 
 Blockly.setLocale(locale);
  
@@ -85,15 +86,68 @@ Blockly.setLocale(locale);
     }
     const primaryXmlToolboxRef = useRef('');
     const [primaryXmlToolbox,setPrimaryXmlToolbox]=useState(createXML());
+    const[ HighlightError, showHighlightError] = useState<boolean|null>(null);
 
     useEffect(() => {
       primaryXmlToolboxRef.current = primaryXmlToolbox;
     }, [primaryXmlToolbox]);
-  
+    const displayBlockWithError=useCallback( (x:string )=>{
+      console.log('aaaa', HighlightError,x);
+      if(HighlightError == null) 
+        return;
+        var s=!HighlightError;
+        console.log('bbb', HighlightError,x);
+        showHighlightError(s);
+      primaryWorkspace.current!.highlightBlock(null);
+      
+      if(HighlightError)
+        primaryWorkspace.current!.highlightBlock(x);      
+    },[HighlightError,showHighlightError]);
+    
+    // const [prevIntervalHighlight, setprevIntervalHighlight ]= useState(0);
+
+    const displayError = useCallback( (x: any) =>  {
+
+      //console.error('error is ' ,x);
+      //console.log('block' + runner!.current!.blockExecutedID);   
+      //var xml = Blockly.Xml.workspaceToDom(primaryWorkspace.current!, true);
+      //var xml_text = Blockly.Xml.domToPrettyText(xml);
+      var b=primaryWorkspace.current!.getBlockById(runner!.current!.blockExecutedID);
+      var block: State | null =null;
+      if(b){
+        block= Blockly.serialization.blocks.save(b,undefined);
+
+      }
+      const currentBlockId=runner!.current!.blockExecutedID ;
+      var message: RunCodeMessage ={
+          runCodeData : RunCodeData.CodeError,
+          message:{currrentBlock: block, errorMessage: x, currentBlockId:currentBlockId},
+          messageType:'string'
+      }
+      RunCode.sendMessage(message);
+      // if(prevIntervalHighlight !== 0)
+      //   clearInterval(prevIntervalHighlight);
+      showHighlightError(it=>true);
+      // console.log('beofre setInterval');
+      // var ret = window.setInterval(()=>displayBlockWithError(runner!.current!.blockExecutedID ), 3000);
+      // console.log('after setInterval',ret);
+      
+      //setprevIntervalHighlight(ret);
+      setTimeout(() => {
+        highlightBlockNow(currentBlockId);
+      }, 5000);
+      return true;
+      
+      //console.log('received' +x);
+  },[]);
+    const highlightBlockNow = (blockId:string)=>{
+      primaryWorkspace.current!.highlightBlock(null);
+      primaryWorkspace.current!.highlightBlock(blockId);
+    }
     const generateCode = useCallback(() => {
         runner.current =new InterpreterRunner(primaryWorkspace.current!,javascriptGenerator, displayStatement,finishRun, displayError );
         runner.current.runCode();
-    },[]);
+    },[displayError]);
 
     const finishRun = () =>  {
 
@@ -102,21 +156,6 @@ Blockly.setLocale(locale);
 
         //console.log('received' +x);
     };
-    const displayError = (x: any) =>  {
-
-      console.error('error is ' ,x);
-      console.log('block' + runner!.current!.blockExecutedID);   
-      var message: RunCodeMessage ={
-          runCodeData : RunCodeData.CodeError,
-          message:x,
-          messageType:'string'
-      }
-      RunCode.sendMessage(message);
-      return true;
-      
-      //console.log('received' +x);
-  };
-
     const displayStatement = (x: any) =>  {
 
         //console.log('for display step ' + runner.current!.stepDisplay + ' data is ' +runner.current!.lastData );
@@ -235,6 +274,7 @@ Blockly.setLocale(locale);
         var x= RunCode.getMessage().subscribe(it=>{
             switch(it.runCodeData){
                 case RunCodeData.Start:
+                    showHighlightError(it=>null);
                     generateCode();
                     return;
                 case RunCodeData.Stop:

@@ -1,3 +1,4 @@
+import { State } from 'blockly/core/serialization/blocks';
 import { Subject } from 'rxjs';
 import { SaveLocation } from '../GUI/SaveLocation';
 import { TourSteps } from '../GUI/settings/TourSteps';
@@ -10,10 +11,15 @@ export const enum RunCodeData{
     CodeError
     
 }
+export interface errorMessage{
+    errorMessage:string;
+    currentBlockId:string;
+    currrentBlock: State | null;
+}
 
 export interface RunCodeMessage{
     runCodeData: RunCodeData ;
-    message?: any;
+    message?: errorMessage | string | any;
     messageType? : 'string'|'class' ;
 
 }
