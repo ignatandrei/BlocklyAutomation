@@ -1,4 +1,4 @@
-import { Observable, map, tap, from, forkJoin, switchMap, of } from "rxjs";
+import { Observable, map, tap, from, forkJoin, switchMap, of, filter } from "rxjs";
 import { ajax, AjaxResponse } from "rxjs/ajax";
 import BlocklyReturnSwagger from "../../BlocklyReusable/BlocklyReturnSwagger";
 import { LinksSwagger } from "../../BlocklyReusable/LinkSwagger";
@@ -28,7 +28,9 @@ export default class ExistingSwagger {
         
         switchMap((it) => 
         {
-          return this.obtainSwaggers(it);
+          return this.obtainSwaggers(it).pipe(
+            filter(it=>it !=null)
+          );
           
         })
        
@@ -53,6 +55,7 @@ export default class ExistingSwagger {
     return arr;
   }
   LoadSwaggersFromUrl(l:LinksSwagger): Observable<any> {
+    try{
     var cacheUrl = l.link;
     var name= l.id || l.link;
     const baseUrl=process.env.PUBLIC_URL+'/'; 
@@ -72,6 +75,10 @@ export default class ExistingSwagger {
     ;
 
     return api;
-
+    }
+    catch(e){
+      console.error('swagger error:' ,l, e);
+      return of(null);
+    }
 }
 }

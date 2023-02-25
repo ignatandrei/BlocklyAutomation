@@ -568,8 +568,10 @@ Blockly.setLocale(locale);
     },[setCustomCategs]);
 
     const afterTimeout=useCallback(()=>{
-      console.log('in after timeout');
       var nr = swaggerData.length;
+
+      console.log('in after timeout:', nr);
+
       if(nr > 0)
       if(swaggerData.every(it=>it.hasError))
           {
@@ -623,7 +625,7 @@ Blockly.setLocale(locale);
   },[addToToolboxSwagger,customCategs, idBlock, startBlocks, swaggerData]);
 
 
-  useLayoutEffect (()=>{
+  useEffect (()=>{
       
       try{
         // console.log('this is swagger1');
@@ -634,14 +636,14 @@ Blockly.setLocale(locale);
                 // var url=element.swaggerUrl;
                 var show = !element.hasError;
                 //special condition for local api
-                // console.log("show swagger: "+ url +":"+show);
+                //console.log("show swagger: "+show,element);
                 if(show){
                     LoadSwaggerFromAPI(element);
                 }
                   
               });
             });        
-            var time=window.setTimeout(()=>afterTimeout(), 2000);
+            var time=window.setTimeout(()=>afterTimeout(), 5000);
         return ()=>{
           x.unsubscribe();
           window.clearTimeout(time);
