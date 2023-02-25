@@ -86,23 +86,23 @@ Blockly.setLocale(locale);
     }
     const primaryXmlToolboxRef = useRef('');
     const [primaryXmlToolbox,setPrimaryXmlToolbox]=useState(createXML());
-    const[ HighlightError, showHighlightError] = useState<boolean|null>(null);
+    // const[ HighlightError, showHighlightError] = useState<boolean|null>(null);
 
     useEffect(() => {
       primaryXmlToolboxRef.current = primaryXmlToolbox;
     }, [primaryXmlToolbox]);
-    const displayBlockWithError=useCallback( (x:string )=>{
-      console.log('aaaa', HighlightError,x);
-      if(HighlightError == null) 
-        return;
-        var s=!HighlightError;
-        console.log('bbb', HighlightError,x);
-        showHighlightError(s);
-      primaryWorkspace.current!.highlightBlock(null);
+    // const displayBlockWithError=useCallback( (x:string )=>{
+    //   console.log('aaaa', HighlightError,x);
+    //   if(HighlightError == null) 
+    //     return;
+    //     var s=!HighlightError;
+    //     console.log('bbb', HighlightError,x);
+    //     showHighlightError(s);
+    //   primaryWorkspace.current!.highlightBlock(null);
       
-      if(HighlightError)
-        primaryWorkspace.current!.highlightBlock(x);      
-    },[HighlightError,showHighlightError]);
+    //   if(HighlightError)
+    //     primaryWorkspace.current!.highlightBlock(x);      
+    // },[HighlightError,showHighlightError]);
     
     // const [prevIntervalHighlight, setprevIntervalHighlight ]= useState(0);
 
@@ -127,7 +127,7 @@ Blockly.setLocale(locale);
       RunCode.sendMessage(message);
       // if(prevIntervalHighlight !== 0)
       //   clearInterval(prevIntervalHighlight);
-      showHighlightError(it=>true);
+      // showHighlightError(it=>true);
       // console.log('beofre setInterval');
       // var ret = window.setInterval(()=>displayBlockWithError(runner!.current!.blockExecutedID ), 3000);
       // console.log('after setInterval',ret);
@@ -274,7 +274,7 @@ Blockly.setLocale(locale);
         var x= RunCode.getMessage().subscribe(it=>{
             switch(it.runCodeData){
                 case RunCodeData.Start:
-                    showHighlightError(it=>null);
+                    // showHighlightError(it=>null);
                     generateCode();
                     return;
                 case RunCodeData.Stop:

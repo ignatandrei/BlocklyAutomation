@@ -45,7 +45,7 @@ function BlocklyDisplayText({showData}: ShowBlocklyOutput){
                       if(state){
                        place=JSON.stringify(state);
                       }
-                      setTextError(prev=> prev + "\r\n" + s.errorMessage + "\r\n Error at block:" + "\r\n" + place);
+                      setTextError(prev=> `${prev}\r\n${s.errorMessage}\r\nError at block:\r\n${place}`);
 
                     }
                     else
