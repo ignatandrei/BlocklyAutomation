@@ -52,7 +52,10 @@ definitionBlocksExtMut(blocks: any,javaScript:any,BlocklyExtensions:any,  Blockl
         }
         let fieldInitCode = '';
         for (let i = 1; i <= block.numFields; i++) {
-          const fieldName = block.getFieldValue('field' + i);
+          let fieldName = block.getFieldValue('field' + i);
+          if(fieldName.indexOf(":")>0){
+            fieldName=fieldName.substring(0,fieldName.indexOf(":"))
+          }
           const fieldValue = javaScript.valueToCode(block, 'field_input' + i, ORDER_ATOMIC);
           fieldInitCode += `"${fieldName}": ${fieldValue},`;
         }

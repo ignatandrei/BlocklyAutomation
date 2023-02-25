@@ -335,7 +335,7 @@ export default class BlocklyReturnSwagger {
     }
     return hostname;
   }
-  GenerateShadowField(blockShadowType:any,key:any, defaultValue:any):string {
+  GenerateShadowField(blockShadowType:any,key:any, defaultValue:any,propsObject:any=null):string {
            
     switch (blockShadowType)
     {
@@ -353,10 +353,30 @@ export default class BlocklyReturnSwagger {
             return `<block type='logic_boolean'><field name='BOOL'>${valB}</field></block>`;
         case "array":
             return '<block type="lists_create_with"> <mutation items="0"></mutation></block>';
-        
-        default:
-            
-            return "";
+        case "object":
+          if(!propsObject){
+            return '';
+          }
+          //${it.schema.properties[key].type
+          var fieldsInside='';
+          var fieldsOutside='';
+          var nr=Object.keys(propsObject).length;
+          var iField=0;
+          Object.keys(propsObject).forEach((key) => {
+            iField++;
+            var typeProp=propsObject[key].type;
+            fieldsInside+=`<field name="${key}:${typeProp}"></field>:}`;
+            fieldsOutside+=`<field name="field${iField}">${key}:${typeProp}</field>`
+          });
+          return `<block type='object_create'>
+          <mutation numfields="${nr}">
+          ${fieldsInside}    
+                    </mutation>
+          ${fieldsOutside}            
+          </block>`;
+
+        default:            
+          return '';
     }
 }
 
@@ -379,7 +399,7 @@ export default class BlocklyReturnSwagger {
     //console.log(key);
     //console.log(operationKey);
     // console.log(`assets/httpImages/${operationKey}.png`);
-    // console.log(operation);
+    
 
     var xmlBlockShow=`<block type="text_print"> <value name="TEXT"><block type="${blocklyTypeName}">`;
     if (op.parameters){
@@ -393,7 +413,7 @@ export default class BlocklyReturnSwagger {
         }
         else{
           if(it.schema && it.schema.type){
-            var shadow=self.GenerateShadowField(it.schema.type, it.name,null);
+            var shadow=self.GenerateShadowField(it.schema.type, it.name,null,it.schema.properties);
             if(shadow.length>0){
               xmlBlockShow += `<value name="val_${it.name}">${shadow}</value>`;
             }
@@ -458,7 +478,7 @@ export default class BlocklyReturnSwagger {
               this.setColour(10);
               break;
             default:
-              console.log(`not found ${operationKey}`);
+              console.log(`!!!!not found ${operationKey}`);
               this.setColour(10);
           }
           var str = key;
@@ -509,6 +529,21 @@ export default class BlocklyReturnSwagger {
                       if(val.length>0){
                         val = val.substring(val.lastIndexOf("/")+1);
                         name+=":"+ val;
+                      }
+                      else{
+                        // the object is put with properties
+                        //console.log('NOT $$ref for object',it.schema);
+                        if(it.schema.properties){
+                          
+                          // name+='{';
+                          // Object.keys(it.schema.properties).forEach((key) => {
+                          //     name+=`${key}:${it.schema.properties[key].type},`
+                          // });
+                          // name+='}';
+                    
+                        }
+                        
+                        
                       }
 
                     }
