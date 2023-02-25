@@ -1,4 +1,4 @@
-import { Observable, map, tap, from, forkJoin, switchMap } from "rxjs";
+import { Observable, map, tap, from, forkJoin, switchMap, of } from "rxjs";
 import { ajax, AjaxResponse } from "rxjs/ajax";
 import BlocklyReturnSwagger from "../../BlocklyReusable/BlocklyReturnSwagger";
 import { LinksSwagger } from "../../BlocklyReusable/LinkSwagger";
@@ -44,6 +44,9 @@ export default class ExistingSwagger {
   }
   //public swaggersDict: Map<string, any> = new Map<string, any>();
   obtainSwaggers(l :LinksSwagger[] ): Observable<BlocklyReturnSwagger[]> {
+    if(l == null || l.length === 0)
+      return of([]);
+    
     var self=this;
     var allSwaggers= l.map(link => self.LoadSwaggersFromUrl(link));
     var arr= forkJoin(allSwaggers);

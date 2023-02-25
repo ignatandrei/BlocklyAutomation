@@ -11,6 +11,7 @@ class InterpreterRunner{
     private myCallBackCode :(text:any, me:InterpreterRunner)=>void ;
     public lastData:any;
     public latestCode:string='';
+    public blockExecutedID:string='';
     constructor(private workspace: WorkspaceSvg, private javascriptGenerator: any,private callBackCode:(x:any)=>void | null, private finishRun:()=>void, private interceptError:(e:any)=>boolean){
       
       this.myCallBackCode = (text, me)=>{
@@ -30,7 +31,9 @@ class InterpreterRunner{
         this.stepExecute=0;
         if(this.runnerPid != null)
             clearTimeout(this.runnerPid);
-
+        if(clearOutput){
+          this.blockExecutedID='';
+        }
         this.workspace.highlightBlock('');
         this.highlightPause = false;
         return this.stepDisplay;
@@ -92,6 +95,7 @@ class InterpreterRunner{
     public highlightBlock(id: string) {
         this.workspace.highlightBlock(id);
         this.highlightPause = true;
+        this.blockExecutedID=id;
         this.stepExecute++;
     }
     

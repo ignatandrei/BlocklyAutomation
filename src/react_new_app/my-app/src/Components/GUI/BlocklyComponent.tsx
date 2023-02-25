@@ -77,7 +77,6 @@ Blockly.setLocale(locale);
       xmlToolbox+= `<category name="customCateg"></category>`;
       xmlToolbox+= `<category name="Swaggers" id="catSwagger" class='.stepTourSwagger' expanded='false' > '        
       <button text="Add Swagger" callbackKey="addSwagger"></button>
-      <block type="Categ_And_Actions_From_Meta_API"></block>
       ${newSwaggerCategories}
       '</category>  `;
 
@@ -106,7 +105,7 @@ Blockly.setLocale(locale);
     const displayError = (x: any) =>  {
 
       console.error('error is ' ,x);
-
+      console.log('block' + runner!.current!.blockExecutedID);   
       var message: RunCodeMessage ={
           runCodeData : RunCodeData.CodeError,
           message:x,
@@ -569,6 +568,7 @@ Blockly.setLocale(locale);
     },[setCustomCategs]);
 
     const afterTimeout=useCallback(()=>{
+      console.log('in after timeout');
       var nr = swaggerData.length;
       if(nr > 0)
       if(swaggerData.every(it=>it.hasError))
@@ -585,6 +585,7 @@ Blockly.setLocale(locale);
           var cache=item;  
           xmlToolbox= addToToolboxSwagger(cache,xmlToolbox, index);
       });
+
       //xmlToolbox=xmlToolbox.replace(`<category name="customCateg"></category>`,`<category name="AndreicustomCateg"></category>`);
       xmlToolbox=xmlToolbox.replace(`<category name="customCateg"></category>`,customCategs);
 
@@ -622,10 +623,13 @@ Blockly.setLocale(locale);
   },[addToToolboxSwagger,customCategs, idBlock, startBlocks, swaggerData]);
 
 
-    useEffect(()=>{
-        
+  useLayoutEffect (()=>{
+      
+      try{
+        // console.log('this is swagger1');
         var x= new  ExistingSwagger().getSwagger().subscribe(it=>{
             // console.log('this is swagger', it);
+            if(it && it.length>0)
             it.forEach(element => {
                 // var url=element.swaggerUrl;
                 var show = !element.hasError;
@@ -636,9 +640,17 @@ Blockly.setLocale(locale);
                 }
                   
               });
-              window.setTimeout(()=>afterTimeout(), 2000);
             });        
-        return ()=>x.unsubscribe();
+            var time=window.setTimeout(()=>afterTimeout(), 2000);
+        return ()=>{
+          x.unsubscribe();
+          window.clearTimeout(time);
+        }
+          }
+          catch(e:any){
+            console.log('in get swagger problem',e);
+          }
+
     },[LoadSwaggerFromAPI, afterTimeout]);
 
 
