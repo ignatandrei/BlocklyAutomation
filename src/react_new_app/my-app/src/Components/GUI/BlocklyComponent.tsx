@@ -582,8 +582,8 @@ Blockly.setLocale(locale);
      
       primaryWorkspace.current!.updateToolbox(xmlToolbox);
       if(nr>0)
-      swaggerData.forEach((item, index) => {
-      //  console.log('a_item', item);
+      swaggerData.sort((a,b)=>a.name.localeCompare(b.name)).forEach((item, index) => {
+        //console.log('a_item', item);
           var cache=item;  
           xmlToolbox= addToToolboxSwagger(cache,xmlToolbox, index);
       });

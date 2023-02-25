@@ -335,6 +335,11 @@ export default class BlocklyReturnSwagger {
     }
     return hostname;
   }
+  GenerateShadowFieldOfType(blockShadowType:string):string {
+
+    return `<block type='${blockShadowType}'></block>`;
+  }
+
   GenerateShadowField(blockShadowType:any,key:any, defaultValue:any,propsObject:any=null):string {
            
     switch (blockShadowType)
@@ -402,7 +407,26 @@ export default class BlocklyReturnSwagger {
     
 
     var xmlBlockShow=`<block type="text_print"> <value name="TEXT"><block type="${blocklyTypeName}">`;
-    if (op.parameters){
+    
+    
+      //if(true || blocklyTypeName === 'post__api_DB_Departments'){
+        //this will add for val_values the shadow field
+        if(op.requestBody && op.requestBody.content){
+          //console.log("Andrei!!!", blocklyTypeName, op.requestBody);
+          var jsonResp= op.requestBody.content['application/json'];
+          if(jsonResp && jsonResp.schema){
+            var ref=jsonResp.schema["$$ref"];
+            if(ref){
+              var ofType = ref.substring(ref.lastIndexOf("/")+1);            
+              //console.log("Andrei!!!", ofType);
+              var shadow=self.GenerateShadowFieldOfType(ofType);
+              xmlBlockShow += `<value name="val_values">${shadow}</value>`;          
+              // console.log("Andrei!!!", xmlBlockShow );
+            }
+          }
+        }
+      //}
+      if (op.parameters){
       op.parameters.forEach((it:any) => {        
         if(it.type){
           var shadowField=self.GenerateShadowField(it.type, it.name,null);
@@ -477,6 +501,11 @@ export default class BlocklyReturnSwagger {
               displayOpKey="";
               this.setColour(10);
               break;
+            case "patch":
+                displayOpKey="";
+                this.setColour(40);
+                break;
+              
             default:
               console.log(`!!!!not found ${operationKey}`);
               this.setColour(10);
