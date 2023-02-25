@@ -32,7 +32,7 @@ function BlocklyDisplayJSON({showData}: ShowBlocklyOutput){
                     try{
                         if(it.message){
                             var text='';
-                            console.log('a',typeof it.message );
+                            //console.log('a',typeof it.message );
                             
                             if(typeof it.message === 'object'){
                                 //how to deal with acorn objects?

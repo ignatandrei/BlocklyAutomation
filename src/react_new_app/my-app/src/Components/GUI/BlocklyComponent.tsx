@@ -11,7 +11,7 @@ import { renderToString } from 'react-dom/server'
 import { saveLoadService } from '../../AppFiles/saveLoadService';
 import InterpreterRunner from '../../BlocklyReusable/InterpreterRunner';
 import DemoBlocks from '../Examples/DemoBlocks';
-import { RunCode, RunCodeData, RunCodeMessage, LoadIDService, MustSave, ShowData, InnerWorkings } from '../Examples/Messages';
+import { RunCode, RunCodeData, RunCodeMessage, LoadIDService, MustSave, ShowData, InnerWorkings, ExecuteBlockTimings } from '../Examples/Messages';
 import { SaveLocation } from './SaveLocation';
 import ShowCodeAndXML from './ShowCodeAndXML';
 // import { Category } from '@mui/icons-material';
@@ -150,7 +150,13 @@ Blockly.setLocale(locale);
     },[displayError]);
 
     const finishRun = () =>  {
-
+        console.timeEnd(runner.current?.blockExecutedType +"_"+ runner.current?.blockExecutedID);
+        ExecuteBlockTimings.sendEndBlock({
+          dateEnd: new Date(),
+          dateStart: runner.current!.blockExecutedDateStart!,
+          id : runner.current!.blockExecutedID,
+          typeBlock : runner.current?.blockExecutedType || ''
+        })
         console.log('finish' );
         RunCode.sendMessage({runCodeData:RunCodeData.Stop});
 
@@ -313,7 +319,7 @@ Blockly.setLocale(locale);
                     var code = javascriptGenerator.workspaceToCode(primaryWorkspace.current);
                     InnerWorkings.sendMessage(code);     
                     return;
-                case ShowCodeAndXML.ShowCodeJavascriptXml:
+                case ShowCodeAndXML.ShowCodeXml:
                   setblocklyWidth('75%');
                     var xml = Blockly.Xml.workspaceToDom(primaryWorkspace.current!, true);
                     var xml_text = Blockly.Xml.domToPrettyText(xml);
@@ -793,9 +799,9 @@ Blockly.setLocale(locale);
             );
             var workspace = primaryWorkspace.current!;
             
-            javascriptGenerator.STATEMENT_PREFIX = 'highlightBlock(%1);\n';
-            javascriptGenerator.addReservedWords('highlightBlock');
-            
+            javascriptGenerator.STATEMENT_PREFIX = 'highlightBlock(%1);\n;';
+            // javascriptGenerator.addReservedWords('endhighlightBlock(%1);\n;');
+            // javascriptGenerator.STATEMENT_SUFFIX = 'console.end(%1);\n';
             // workspace.addChangeListener((ev:any)=>{
               
             //   if (ev.type === Blockly.Events.BLOCK_CREATE ){

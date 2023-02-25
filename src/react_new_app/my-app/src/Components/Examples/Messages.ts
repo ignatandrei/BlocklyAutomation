@@ -23,13 +23,19 @@ export interface RunCodeMessage{
     messageType? : 'string'|'class' ;
 
 }
+export interface EndTextBlock{
+    dateStart: Date;
+    dateEnd: Date;
+    id: string;
+    typeBlock: string;
+}
 const subjectID = new Subject<string>();
 const subjectSave = new Subject<SaveLocation>();
 const subjectRun = new Subject<RunCodeMessage>();
 const subjectShow=new Subject<ShowCodeAndXML>();
 const subjectInnerWorking=new Subject<string>();
 const subjectTourSteps=new Subject<TourSteps[]>();
-
+const subjectEndTextBlock=new Subject<EndTextBlock>();
 export const LoadTourSteps = {
     sendTS: (tourSteps:TourSteps[]) => subjectTourSteps.next(tourSteps ),
     getTS: () => subjectTourSteps.asObservable()
@@ -58,5 +64,11 @@ export const ShowData= {
 export const InnerWorkings = {
     sendMessage: (message:string) => subjectInnerWorking.next(message),
     getMessage: () => subjectInnerWorking.asObservable()
+
+}
+
+export const ExecuteBlockTimings={
+    sendEndBlock: (message:EndTextBlock) => subjectEndTextBlock.next(message),
+    getMessage: () => subjectEndTextBlock.asObservable()
 
 }

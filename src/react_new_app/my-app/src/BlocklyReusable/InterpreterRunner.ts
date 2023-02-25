@@ -1,4 +1,5 @@
 import { WorkspaceSvg } from "blockly";
+import { ExecuteBlockTimings } from "../Components/Examples/Messages";
 import AllNewBlocks from "./allNewBlocks";
 declare var Interpreter: any;
 
@@ -12,6 +13,8 @@ class InterpreterRunner{
     public lastData:any;
     public latestCode:string='';
     public blockExecutedID:string='';
+    public blockExecutedType:string|null='';
+    public blockExecutedDateStart:Date|null=null;
     constructor(private workspace: WorkspaceSvg, private javascriptGenerator: any,private callBackCode:(x:any)=>void | null, private finishRun:()=>void, private interceptError:(e:any)=>boolean){
       
       this.myCallBackCode = (text, me)=>{
@@ -95,7 +98,21 @@ class InterpreterRunner{
     public highlightBlock(id: string) {
         this.workspace.highlightBlock(id);
         this.highlightPause = true;
+        var b=this.workspace.getBlockById(id);
+        if(this.blockExecutedID.length>0){
+          console.timeEnd(this.blockExecutedType+"_"+ this.blockExecutedID);  
+          ExecuteBlockTimings.sendEndBlock({
+            dateEnd: new Date(),
+            dateStart: this.blockExecutedDateStart!,
+            id : id,
+            typeBlock : b?.type || ''
+          })  
+        };
         this.blockExecutedID=id;
+        if(b?.type)
+          this.blockExecutedType=b.type;
+        this.blockExecutedDateStart = new Date();   
+        console.time(this.blockExecutedType+"_"+id);
         this.stepExecute++;
     }
     
@@ -232,7 +249,8 @@ class InterpreterRunner{
         };
         interpreter.setProperty(globalObject, 'highlightBlock',
             interpreter.createNativeFunction(wrapper));
-  
+
+            
         // Add an API for the wait block.  See wait_block.js
         //initInterpreterWaitForSeconds(interpreter, globalObject);
       }

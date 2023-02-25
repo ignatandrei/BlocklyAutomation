@@ -100,7 +100,7 @@ const handleRun = () => {
             case ShowCodeAndXML.ShowOutputHtml:
             case ShowCodeAndXML.ShowOutputJson:
             case ShowCodeAndXML.ShowCodeJavascript:
-            case ShowCodeAndXML.ShowCodeJavascriptXml:
+            case ShowCodeAndXML.ShowCodeXml:
             case ShowCodeAndXML.ShowCodeBlocks:
               setShowDisplay(true);
               return;

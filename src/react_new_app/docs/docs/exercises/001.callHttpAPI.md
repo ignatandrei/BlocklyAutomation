@@ -21,10 +21,10 @@ Click on <b>Exit</b>
 This looks like this **before click**
 
 
-![Exit](/img/exercises/ex1/Exit-before.png) 
+![Exit](@site/static/img/exercises/ex1/Exit-before.png) 
 
 and **after click**
-![Exit](/img/exercises/ex1/Exit-after.png)
+![Exit](@site/static/img/exercises/ex1/Exit-after.png)
  
 </details><details>
 <summary>
@@ -34,10 +34,10 @@ Click on <b>the menu in right of Save Local</b>
 This looks like this **before click**
 
 
-![the menu in right of Save Local](/img/exercises/ex1/Save-Local-before.png) 
+![the menu in right of Save Local](@site/static/img/exercises/ex1/Save-Local-before.png) 
 
 and **after click**
-![the menu in right of Save Local](/img/exercises/ex1/Save-Local-after.png)
+![the menu in right of Save Local](@site/static/img/exercises/ex1/Save-Local-after.png)
  
 </details><details>
 <summary>
@@ -47,10 +47,10 @@ Click on <b>Clear Blocks</b>
 This looks like this **before click**
 
 
-![Clear Blocks](/img/exercises/ex1/Clear-Blocks-before.png) 
+![Clear Blocks](@site/static/img/exercises/ex1/Clear-Blocks-before.png) 
 
 and **after click**
-![Clear Blocks](/img/exercises/ex1/Clear-Blocks-after.png)
+![Clear Blocks](@site/static/img/exercises/ex1/Clear-Blocks-after.png)
  
 </details><details>
 <summary>
@@ -60,10 +60,10 @@ Click on <b>Blockly Core</b>
 This looks like this **before click**
 
 
-![Blockly Core](/img/exercises/ex1/Blockly-Core-before.png) 
+![Blockly Core](@site/static/img/exercises/ex1/Blockly-Core-before.png) 
 
 and **after click**
-![Blockly Core](/img/exercises/ex1/Blockly-Core-after.png)
+![Blockly Core](@site/static/img/exercises/ex1/Blockly-Core-after.png)
  
 </details><details>
 <summary>
@@ -73,10 +73,10 @@ Click on <b>Loops</b>
 This looks like this **before click**
 
 
-![Loops](/img/exercises/ex1/Loops-before.png) 
+![Loops](@site/static/img/exercises/ex1/Loops-before.png) 
 
 and **after click**
-![Loops](/img/exercises/ex1/Loops-after.png)
+![Loops](@site/static/img/exercises/ex1/Loops-after.png)
  
 </details><details>
 <summary>
@@ -86,10 +86,10 @@ Do <b>drag block with repeat text</b>
 This looks like this **before click**
 
 
-![drag block with repeat text](/img/exercises/ex1/drag-block-with-repeat-text-before.png) 
+![drag block with repeat text](@site/static/img/exercises/ex1/drag-block-with-repeat-text-before.png) 
 
 and **after click**
-![drag block with repeat text](/img/exercises/ex1/drag-block-with-repeat-text-after.png)
+![drag block with repeat text](@site/static/img/exercises/ex1/drag-block-with-repeat-text-after.png)
  
 </details><details>
 <summary>
@@ -99,10 +99,10 @@ Click on <b>REST Requests</b>
 This looks like this **before click**
 
 
-![REST Requests](/img/exercises/ex1/REST-Requests-before.png) 
+![REST Requests](@site/static/img/exercises/ex1/REST-Requests-before.png) 
 
 and **after click**
-![REST Requests](/img/exercises/ex1/REST-Requests-after.png)
+![REST Requests](@site/static/img/exercises/ex1/REST-Requests-after.png)
  
 </details><details>
 <summary>
@@ -112,10 +112,10 @@ Do <b>drag block with httprequest inside repeat</b>
 This looks like this **before click**
 
 
-![drag block with httprequest inside repeat](/img/exercises/ex1/drag-block-with-httprequest-inside-repeat-before.png) 
+![drag block with httprequest inside repeat](@site/static/img/exercises/ex1/drag-block-with-httprequest-inside-repeat-before.png) 
 
 and **after click**
-![drag block with httprequest inside repeat](/img/exercises/ex1/drag-block-with-httprequest-inside-repeat-after.png)
+![drag block with httprequest inside repeat](@site/static/img/exercises/ex1/drag-block-with-httprequest-inside-repeat-after.png)
  
 </details><details>
 <summary>
@@ -125,10 +125,10 @@ Click on <b>Execute!</b>
 This looks like this **before click**
 
 
-![Execute!](/img/exercises/ex1/Execute-before.png) 
+![Execute!](@site/static/img/exercises/ex1/Execute-before.png) 
 
 and **after click**
-![Execute!](/img/exercises/ex1/Execute-after.png)
+![Execute!](@site/static/img/exercises/ex1/Execute-after.png)
  
 </details>
 
