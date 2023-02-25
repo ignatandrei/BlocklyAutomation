@@ -419,8 +419,8 @@ export default class BlocklyReturnSwagger {
             if(ref){
               var ofType = ref.substring(ref.lastIndexOf("/")+1);            
               //console.log("Andrei!!!", ofType);
-              var shadow=self.GenerateShadowFieldOfType(ofType);
-              xmlBlockShow += `<value name="val_values">${shadow}</value>`;          
+              var shadowBody=self.GenerateShadowFieldOfType(ofType);
+              xmlBlockShow += `<value name="val_values">${shadowBody}</value>`;          
               // console.log("Andrei!!!", xmlBlockShow );
             }
           }
