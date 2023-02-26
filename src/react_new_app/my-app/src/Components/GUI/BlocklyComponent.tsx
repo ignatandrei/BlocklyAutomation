@@ -314,6 +314,13 @@ Blockly.setLocale(locale);
                     Blockly.svgResize(d);
                   }, 1000, primaryWorkspace.current);
                   return;
+                  case ShowCodeAndXML.ShowCodeJson:
+                    setblocklyWidth('75%');
+                    //var code = javascriptGenerator.workspaceToCode(primaryWorkspace.current);
+                    var js=Blockly.serialization.workspaces.save(primaryWorkspace.current!);
+                    var codeJson=JSON.stringify(js);
+                    InnerWorkings.sendMessage(codeJson);     
+                    return;
                 case ShowCodeAndXML.ShowCodeJavascript:
                     setblocklyWidth('75%');
                     var code = javascriptGenerator.workspaceToCode(primaryWorkspace.current);

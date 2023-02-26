@@ -45,10 +45,11 @@ function OutputButton(props: any) {
         case ShowCodeAndXML.ShowCodeBlocks:
         case ShowCodeAndXML.ShowCodeJavascript:
         case ShowCodeAndXML.ShowOutputRaw:
-          case ShowCodeAndXML.ShowOutputHtml:
+        case ShowCodeAndXML.ShowOutputHtml:
         case ShowCodeAndXML.ShowCodeXml:  
         case ShowCodeAndXML.ShowOutputJson: 
         case ShowCodeAndXML.ShowOutputNone:
+        case ShowCodeAndXML.ShowCodeJson:
           // console.log('send'+ e);        
           ShowData.sendMessage(e);
           return;
