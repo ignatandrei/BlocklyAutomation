@@ -306,6 +306,7 @@ Blockly.setLocale(locale);
                 case ShowCodeAndXML.ShowOutputRaw:
                 case ShowCodeAndXML.ShowOutputHtml:
                 case ShowCodeAndXML.ShowOutputJson:
+                case ShowCodeAndXML.ShowOutputTimings:
                   setblocklyWidth('75%');
                   return;
                 case ShowCodeAndXML.ShowOutputNone:
@@ -318,7 +319,7 @@ Blockly.setLocale(locale);
                     setblocklyWidth('75%');
                     //var code = javascriptGenerator.workspaceToCode(primaryWorkspace.current);
                     var js=Blockly.serialization.workspaces.save(primaryWorkspace.current!);
-                    var codeJson=JSON.stringify(js);
+                    var codeJson=JSON.stringify(js, null,2);
                     InnerWorkings.sendMessage(codeJson);     
                     return;
                 case ShowCodeAndXML.ShowCodeJavascript:

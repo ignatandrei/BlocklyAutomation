@@ -5,6 +5,7 @@ import BlocklyDisplayHtml from "./BlocklyDisplayHTML";
 import BlocklyDisplayInner from "./BlocklyDisplayInner";
 import BlocklyDisplayJSON from "./BlocklyDisplayJSON";
 import BlocklyDisplayText from "./BlocklyDisplayText";
+import BlocklyDisplayTimings from "./BlocklyDisplayTimings";
 import OutputButton from "./outputButton";
 import ShowCodeAndXML from "./ShowCodeAndXML";
 
@@ -36,6 +37,7 @@ function BlocklyDisplayData(){
 <BlocklyDisplayInner {...data}></BlocklyDisplayInner>
 <BlocklyDisplayHtml {...data}></BlocklyDisplayHtml>
 <BlocklyDisplayJSON {...data}></BlocklyDisplayJSON>
+<BlocklyDisplayTimings {...data}></BlocklyDisplayTimings>
 
     </>
 }

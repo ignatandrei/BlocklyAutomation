@@ -105,12 +105,14 @@ class InterpreterRunner{
             dateEnd: new Date(),
             dateStart: this.blockExecutedDateStart!,
             id : id,
-            typeBlock : b?.type || ''
+            typeBlock : this.blockExecutedType || ''
           })  
         };
         this.blockExecutedID=id;
         if(b?.type)
           this.blockExecutedType=b.type;
+        else
+          this.blockExecutedType='';
         this.blockExecutedDateStart = new Date();   
         console.time(this.blockExecutedType+"_"+id);
         this.stepExecute++;

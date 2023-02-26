@@ -98,6 +98,7 @@ const handleRun = () => {
         switch(it){
             case ShowCodeAndXML.ShowOutputRaw:
             case ShowCodeAndXML.ShowOutputHtml:
+              case ShowCodeAndXML.ShowOutputTimings:
             case ShowCodeAndXML.ShowOutputJson:
             case ShowCodeAndXML.ShowCodeJavascript:
             case ShowCodeAndXML.ShowCodeXml:

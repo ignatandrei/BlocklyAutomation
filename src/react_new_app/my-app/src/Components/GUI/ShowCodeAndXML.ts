@@ -8,7 +8,7 @@ enum ShowCodeAndXML{
     ShowOutputJson=5,
     ShowOutputNone=6,
     ShowCodeJson=7,
-    //ShowOutputTimigs=8,
+    ShowOutputTimings=8,
     
   }
 
