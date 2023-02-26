@@ -12,7 +12,25 @@ import MenuList from '@mui/material/MenuList';
 import { ShowData } from '../Examples/Messages';
 import ShowCodeAndXML from './ShowCodeAndXML';
 import { useEffect } from 'react';
-const options =Object.values(ShowCodeAndXML).filter(it=> isNaN(Number(it)));
+const options =Object.values(ShowCodeAndXML).filter(it=> isNaN(Number(it)))
+.sort((a,b) => {
+  var a1=a.toLocaleString().toLocaleLowerCase();
+  var b1=b.toLocaleString().toLocaleLowerCase();
+  if(a1.indexOf("showoutput")>-1 && b1.indexOf("showoutput")>-1){
+    return a1.localeCompare(b1);
+  }
+  if(a1.indexOf("showcode")>-1 && b1.indexOf("showcode")>-1){
+    return a1.localeCompare(b1);
+  }
+  if(a1.indexOf("showoutput")>-1 ){
+    return -1;
+  }
+  if(b1.indexOf("showoutput")>-1 ){
+    return 1;
+  }
+  return -1;
+  
+});
 
 function OutputButton(props: any) {
 
@@ -138,7 +156,7 @@ function OutputButton(props: any) {
               <Paper>
                 <ClickAwayListener onClickAway={handleClose}>
                   <MenuList id="split-button-menu" autoFocusItem>
-                    {options.sort((a,b)=>-a.toLocaleString().localeCompare(b.toLocaleString())).map((option, index)=> (
+                    {options.map((option, index)=> (
                       <MenuItem
                         key={option}
                         // disabled={index === 0}
