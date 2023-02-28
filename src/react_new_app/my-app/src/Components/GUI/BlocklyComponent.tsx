@@ -694,13 +694,13 @@ Blockly.setLocale(locale);
                 if(show){
                     LoadSwaggerFromAPI(element);
                 }
-                  
+               afterTimeout();   
               });
             });        
-            var time=window.setTimeout(()=>afterTimeout(), 5000);
+            // var time=window.setTimeout(()=>afterTimeout(), 5000);
         return ()=>{
           x.unsubscribe();
-          window.clearTimeout(time);
+          // window.clearTimeout(time);
         }
           }
           catch(e:any){
