@@ -696,6 +696,9 @@ Blockly.setLocale(locale);
                 }
                afterTimeout();   
               });
+              else{
+                console.log('0 swaggers')
+              }
             });        
             // var time=window.setTimeout(()=>afterTimeout(), 5000);
         return ()=>{
