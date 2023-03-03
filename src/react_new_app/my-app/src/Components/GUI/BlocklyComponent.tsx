@@ -685,7 +685,7 @@ Blockly.setLocale(locale);
         // console.log('this is swagger1');
         var x= new  ExistingSwagger().getSwagger().subscribe(it=>{
             // console.log('this is swagger', it);
-            if(it && it.length>0)
+            if(it && it.length>0){
             it.forEach(element => {
                 // var url=element.swaggerUrl;
                 var show = !element.hasError;
@@ -694,8 +694,10 @@ Blockly.setLocale(locale);
                 if(show){
                     LoadSwaggerFromAPI(element);
                 }
-               afterTimeout();   
+                  
               });
+              afterTimeout();
+              }
               else{
                 console.log('0 swaggers')
               }
@@ -719,7 +721,17 @@ Blockly.setLocale(locale);
         item: any
       )=> {
         var xmlList: Element[] = [];
-        xmlList = item.fieldXMLObjects.map((it: any) => Blockly.Xml.textToDom(it));       
+        xmlList = item.fieldXMLObjects.map((it: any) => {
+          try{
+            return Blockly.Xml.textToDom(it);
+          }
+          catch(e){
+            console.error('parsing error in textToDom', e);
+            return null;
+          }
+        }
+          ).filter((it:any)=>it != null);          
+          ;       
         return xmlList;
        
       };
