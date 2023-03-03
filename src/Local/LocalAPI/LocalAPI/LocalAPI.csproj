@@ -19,7 +19,7 @@
     <PackageReference Include="FluentEmail.Liquid" Version="3.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Negotiate" Version="7.0.2" />
     <PackageReference Include="Asp.Versioning.Mvc.ApiExplorer" Version="7.0.0" />
-    <PackageReference Include="NetCore2Blockly" Version="7.2023.228.1323" />
+    <PackageReference Include="NetCore2Blockly" Version="7.2023.303.820" />
     <PackageReference Include="NetCoreUsefullEndpoints" Version="7.2023.223.1815" />
     <PackageReference Include="SkinnyControllersCommon" Version="2021.25.6.855" />
     <PackageReference Include="SkinnyControllersGenerator" Version="2021.25.6.855" />
