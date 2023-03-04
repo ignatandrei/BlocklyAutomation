@@ -1,5 +1,6 @@
 import { map, Observable,  tap, } from "rxjs";
 import { ajax, AjaxResponse } from "rxjs/ajax";
+import { DetectFramework } from "../../../AppFiles/detectGlobal";
 import { TourSteps } from "./TourSteps";
 
 
@@ -15,7 +16,7 @@ export class SettingsBA {
 
 
     getSettings(): Observable<SettingsBA> {
-        const baseUrl=process.env.PUBLIC_URL+'/'; 
+        const baseUrl=new DetectFramework().baseUrl()+'/'; 
         var dt=new Date().toISOString();
         return ajax.get<SettingsBA>(baseUrl+ `assets/settings.json?${dt}`,{ responseType: 'text' as 'text'})
         .pipe(
@@ -23,7 +24,7 @@ export class SettingsBA {
         );
       }
     getVersion():Observable<string>{
-        const baseUrl=process.env.PUBLIC_URL+'/'; 
+        const baseUrl=new DetectFramework().baseUrl()+'/'; 
         var dt=new Date().toISOString();
         // const headers = new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8');
         

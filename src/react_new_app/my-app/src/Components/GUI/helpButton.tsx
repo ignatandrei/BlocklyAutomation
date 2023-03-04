@@ -9,6 +9,7 @@ import Popper from '@mui/material/Popper';
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 import { useRef, useState } from "react";
+import { DetectFramework } from "../../AppFiles/detectGlobal";
 
 const options = ['Help Tour', 'General Help'];
 
@@ -29,7 +30,7 @@ function HelpButton({tourContext}: ArgHelpButton){
             if(tourContext) tourContext.start(); else window.alert('not tour context');
             return;
         case 1:
-            window.open(`${process.env.PUBLIC_URL}/help/index.html` );            return;
+            window.open(`${new DetectFramework().baseUrl()}/help/index.html` );            return;
         default:
             window.alert('not a good option for help!');
             // window.open(`${process.env.PUBLIC_URL}/help/index.html`);

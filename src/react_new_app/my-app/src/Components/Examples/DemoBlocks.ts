@@ -1,5 +1,6 @@
 import { Observable , map} from "rxjs";
 import { ajax, AjaxResponse } from "rxjs/ajax";
+import { DetectFramework } from "../../AppFiles/detectGlobal";
 
 
 type BlockSource = "None" | "Demos" | "Download" | "LocalAPI" | "Cloud";
@@ -20,8 +21,8 @@ class DemoBlocks {
   public static getDemoBlocks(): Observable<DemoBlocks[]> {
     var dt = new Date().toISOString();
     //process.env.REACT_APP_URL is giving undefined
-    console.log(process.env);    
-    const baseUrl=process.env.PUBLIC_URL+'/'; 
+    // console.log(process.env);    
+    const baseUrl=new DetectFramework().baseUrl()+'/'; 
     
     return ajax
       .get<DemoBlocks[]>(baseUrl+ `assets/showUsage/demoBlocks/all.txt?${dt}`, {responseType: "text" as "text",})
@@ -42,7 +43,7 @@ class DemoBlocks {
 
   public getDemoBlock(id:string): Observable<string> {
     console.log('getDemoBlock');
-    const baseUrl=process.env.PUBLIC_URL+'/'; 
+    const baseUrl=new DetectFramework().baseUrl()+'/'; 
     var dt=new Date().toISOString();
     var q= ajax({ method: 'GET', url:baseUrl+`assets/showUsage/demoBlocks/${id}.txt?${dt}` ,async: false})      
     .pipe(

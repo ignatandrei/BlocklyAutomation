@@ -1,5 +1,6 @@
 import { Observable, map, tap, from, forkJoin, switchMap, of, filter } from "rxjs";
 import { ajax, AjaxResponse } from "rxjs/ajax";
+import { DetectFramework } from "../../AppFiles/detectGlobal";
 import BlocklyReturnSwagger from "../../BlocklyReusable/BlocklyReturnSwagger";
 import { LinksSwagger } from "../../BlocklyReusable/LinkSwagger";
 
@@ -10,8 +11,8 @@ export default class ExistingSwagger {
   public  getSwagger(): Observable<BlocklyReturnSwagger[]> {
     var dt = new Date().toISOString();
     //process.env.REACT_APP_URL is giving undefined
-    console.log(process.env);
-    const baseUrl = process.env.PUBLIC_URL + "/";
+    // console.log(process.env);
+    const baseUrl = new DetectFramework().baseUrl() + "/";
 
     return ajax
       .get<LinksSwagger[]>(baseUrl + `assets/loadAtStartup/swaggers.json?${dt}`, {
@@ -58,7 +59,7 @@ export default class ExistingSwagger {
     try{
     var cacheUrl = l.link;
     var name= l.id || l.link;
-    const baseUrl=process.env.PUBLIC_URL+'/'; 
+    const baseUrl=new DetectFramework().baseUrl()+'/'; 
     var parser = new BlocklyReturnSwagger(cacheUrl,baseUrl);
     var api= from(parser.ParseSwagger() as Promise<any>)
       .pipe(

@@ -38,6 +38,7 @@ import ToolboxBlocksAdvanced from './Components/ToolboxBlocksAdvanced';
 import {  IBlocksExtMut, IBlocksSimple } from './BlocklyReusable/blocksInterface';
 import TourMainPage from './Components/GUI/tour';
 import OutputButton from './Components/GUI/outputButton';
+import { DetectFramework } from './AppFiles/detectGlobal';
 // import darkThemeData from './BlocklyReusable/themeDark';
 function App(props: any) {
 
@@ -125,7 +126,7 @@ const handleClickOpen = () => {
     // window.alert(value);
     
     // LoadIDService.sendID(value);
-    const baseUrl=process.env.PUBLIC_URL+'/';
+    const baseUrl=new DetectFramework().baseUrl()+'/';
     var urlToRedirect= baseUrl+`automation/loadexample/${value}`;
     //window.open(urlToRedirect);
     console.log('send the id to '+value);
@@ -233,7 +234,7 @@ const handleClickOpen = () => {
 
         
           <BlocklyComponent readOnly={false} 
-          trashcan={true} media={`${process.env.PUBLIC_URL}/media/`}
+          trashcan={true} media={`${new DetectFramework().baseUrl()}/media/`}
           renderer={'thrasos'}
         theme={Blockly.Themes.Classic}
         zoom= {{

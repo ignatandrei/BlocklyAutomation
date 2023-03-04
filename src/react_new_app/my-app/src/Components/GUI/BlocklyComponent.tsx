@@ -31,6 +31,7 @@ import { downloadWorkspaceScreenshot } from './screenshot';
 import { delay } from 'rxjs';
 import CustomCategories from '../../Common/customCategs';
 import { State } from 'blockly/core/serialization/blocks';
+import { DetectFramework } from '../../AppFiles/detectGlobal';
 
 Blockly.setLocale(locale);
  
@@ -761,7 +762,7 @@ Blockly.setLocale(locale);
 
     
       const  LoadSwaggerFromUrl=useCallback(async (url: string, name?: string)=> {
-        const baseUrl=process.env.PUBLIC_URL+'/'; 
+        const baseUrl=new DetectFramework().baseUrl()+'/'; 
         var parser = new BlocklyReturnSwagger(url,baseUrl);
         var api = await parser.ParseSwagger();
     
