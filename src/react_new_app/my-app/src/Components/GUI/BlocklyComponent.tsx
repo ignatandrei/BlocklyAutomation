@@ -864,7 +864,8 @@ Blockly.setLocale(locale);
             };
   
             primaryWorkspace.current!.registerButtonCallback("addSwagger",()=>LoadSwagger());
-            new MinimapPlugin(workspace);
+            const minimap=new MinimapPlugin(workspace);
+            minimap.init();
             
             const contentHighlight = new ContentHighlight(primaryWorkspace.current);
             contentHighlight.init();

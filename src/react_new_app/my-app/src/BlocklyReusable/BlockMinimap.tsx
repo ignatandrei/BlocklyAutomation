@@ -1,3 +1,4 @@
+//shameless modified from https://github.com/microsoft/jacdac-docs
 import { useTheme } from "@mui/material"
 import {
     BlockSvg,
@@ -249,10 +250,10 @@ export class MinimapPlugin implements IPositionable {
     private svgGroup_: SVGGElement | undefined
 
     constructor(readonly workspace_: WorkspaceSvg) {
-        this.init()
+        //this.init()
     }
 
-    private init() {
+    public init() {
         const componentManager = this.workspace_.getComponentManager()
         componentManager.addComponent({
             component: this,
