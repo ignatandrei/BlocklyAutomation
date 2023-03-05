@@ -32,6 +32,7 @@ import { delay } from 'rxjs';
 import CustomCategories from '../../Common/customCategs';
 import { State } from 'blockly/core/serialization/blocks';
 import { DetectFramework } from '../../AppFiles/detectGlobal';
+import { MinimapPlugin } from '../../BlocklyReusable/BlockMinimap';
 
 Blockly.setLocale(locale);
  
@@ -863,6 +864,7 @@ Blockly.setLocale(locale);
             };
   
             primaryWorkspace.current!.registerButtonCallback("addSwagger",()=>LoadSwagger());
+            new MinimapPlugin(workspace);
             
             const contentHighlight = new ContentHighlight(primaryWorkspace.current);
             contentHighlight.init();
