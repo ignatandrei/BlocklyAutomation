@@ -34,6 +34,11 @@ export class DetectFramework{
             return this.urlReact!;
 
         if(this.IsViteApp){
+            //for github blocks
+            if((import.meta as any).resolve){
+                return ( import.meta as any).resolve('../../public');
+            }
+            
             if(( import.meta as any).env.BASE_URL)
                 return ( import.meta as any).env.BASE_URL;
 
