@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './App.css';
 import SendIcon from '@mui/icons-material/Send';
 
@@ -39,11 +39,12 @@ import {  IBlocksExtMut, IBlocksSimple } from './BlocklyReusable/blocksInterface
 import TourMainPage from './Components/GUI/tour';
 import OutputButton from './Components/GUI/outputButton';
 import { DetectFramework } from './AppFiles/detectGlobal';
+import NewBlocksContext from './Common/NewBlocksContext';
 // import darkThemeData from './BlocklyReusable/themeDark';
 function App(props: any) {
 
 
-  
+  const newBlocks= useContext(NewBlocksContext);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const [userWantshowLeftMenu, showLeftMenu] = useState(false);
@@ -72,7 +73,11 @@ function App(props: any) {
 //   var httpInstance =new HttpBlocks();
 //   httpInstance.definitionBlocksSimple(blocks: any,javascriptGenerator);
 
-AllNewBlocks.Instance.NewBlocks().forEach(it=>{
+var b= AllNewBlocks.Instance.NewBlocks();
+if(newBlocks !== null && newBlocks.length>0){
+    b.push(...newBlocks);
+}
+b.forEach(it=>{
     if(AllNewBlocks.isSimple(it)){
       (it as IBlocksSimple).definitionBlocksSimple(Blockly.Blocks,javascriptGenerator);
     }
@@ -174,6 +179,31 @@ const handleClickOpen = () => {
     return ()=>x.unsubscribe();
 
   },[]);
+
+  // const [hasLoaded, setHasLoaded] = useState(false)
+
+  const scriptAlreadyExists = () => 
+  document.querySelector('script#acornLoadedScript') !== null
+  const appendScript = () => {
+    var f=new DetectFramework();
+    var url= f.baseUrl();
+    const script = document.createElement('script')
+    script.id = 'acornLoadedScript'
+    script.src = `${url}/BlocklyFiles/acorn_interpreter.js`;
+    console.log('loading!!!',script.src);
+    script.async = true
+    script.defer = true
+    script.crossOrigin = 'anonymous'
+//    script.onload = () => setHasLoaded(true)
+    document.body.append(script)
+  };
+
+  useEffect(() => {
+    if (!scriptAlreadyExists()) {
+      appendScript()
+    }
+  }, []);
+
 
     return <>
 <Snackbar open={showSnack} anchorOrigin= {{ 
