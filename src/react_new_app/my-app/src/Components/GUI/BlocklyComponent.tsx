@@ -33,6 +33,7 @@ import CustomCategories from '../../Common/customCategs';
 import { State } from 'blockly/core/serialization/blocks';
 import { DetectFramework } from '../../AppFiles/detectGlobal';
 import { MinimapPlugin } from '../../BlocklyReusable/BlockMinimap';
+import CustomDialog from '../../Common/custom-dialog';
 
 Blockly.setLocale(locale);
  
@@ -824,6 +825,55 @@ Blockly.setLocale(locale);
             );
             var workspace = primaryWorkspace.current!;
             
+
+            Blockly.dialog.setAlert(function(message, callback) {
+              console.log('Alert: ' + message);
+              var x=new CustomDialog();
+              x.show('Alert', message, {
+                onCancel: callback
+              });
+            });
+            
+            /** Override Blockly.dialog.setConfirm() with custom implementation. */
+            Blockly.dialog.setConfirm(function(message, callback) {
+              console.log('Confirm: ' + message);
+              var x=new CustomDialog();
+              x.show('Confirm', message, {
+                showOkay: true,
+                onOkay: function() {
+                  callback(true);
+                },
+                showCancel: true,
+                onCancel: function() {
+                  callback(false);
+                }
+              });
+            });
+            
+            /** Override Blockly.dialog.setPrompt() with custom implementation. */
+            Blockly.dialog.setPrompt(function(message, defaultValue, callback) {
+              console.log('Prompt: ' + message);
+              var x=new CustomDialog();
+              x.show('Prompt', message, {
+                showInput: true,
+                showOkay: true,
+                onOkay: function() {
+                  callback(x.inputField!.value);
+                },
+                showCancel: true,
+                onCancel: function() {
+                  callback(null);
+                },
+              });
+              x.inputField!.value = defaultValue;
+            });
+            
+
+
+
+
+
+
             javascriptGenerator.STATEMENT_PREFIX = 'highlightBlock(%1);\n;';
             // javascriptGenerator.addReservedWords('endhighlightBlock(%1);\n;');
             // javascriptGenerator.STATEMENT_SUFFIX = 'console.end(%1);\n';
