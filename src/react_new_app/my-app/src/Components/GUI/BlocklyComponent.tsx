@@ -775,9 +775,22 @@ Blockly.setLocale(locale);
           return api;
       },[LoadSwaggerFromAPI]);
 
-      const LoadPrompt=(text:string, callBack: (result:string|null)=>void)=>{
-          var data= window.prompt(text);
-          callBack(data);
+      const LoadPrompt=(message:string, callback: (result:string|null)=>void)=>{
+          //var data= window.prompt(text);
+          //callBack(data);
+
+          var x=new CustomDialog();
+          x.show('Prompt', message, {
+            showInput: true,
+            showOkay: true,
+            onOkay: function() {
+              callback(x.inputField!.value);
+            },
+            showCancel: true,
+            onCancel: function() {
+              callback(null);
+            },
+          });
       }
       const LoadSwagger= useCallback(()=>{
         

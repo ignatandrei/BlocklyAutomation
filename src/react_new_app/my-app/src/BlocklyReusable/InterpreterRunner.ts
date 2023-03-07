@@ -238,6 +238,7 @@ class InterpreterRunner{
   
         // Add an API function for the prompt() block.
         var wrapperPrompt = function prompt(text:any) {
+          //TODO: maybe use custom dialog....
           return window.prompt(text);
         };
         interpreter.setProperty(globalObject, 'prompt',
