@@ -10,6 +10,7 @@ LABEL org.opencontainers.image.title="Blockly Automation" \
     com.docker.extension.publisher-url="https://github.com/ignatandrei/blocklyautomation" \
     com.docker.extension.additional-urls='[{"title":"Main Page","url":"https://github.com/ignatandrei/BlocklyAutomation/wiki/DockerExtension"}]' \
     com.docker.extension.changelog="<ul><li>first version</li></ul>"
+	com.docker.extension.categories="blocklyautomation;visualapi;api;rest;"
 
 COPY ui ./ui
 COPY metadata.json .
