@@ -9,7 +9,7 @@ LABEL org.opencontainers.image.title="Blockly Automation" \
     com.docker.extension.detailed-description="<h1>Description</h1><p>You can automate pretty much every docker command. Press Execute to see in action and LoadBlocks for more examples.</p>" \
     com.docker.extension.publisher-url="https://github.com/ignatandrei/blocklyautomation" \
     com.docker.extension.additional-urls='[{"title":"Main Page","url":"https://github.com/ignatandrei/BlocklyAutomation/wiki/DockerExtension"}]' \
-    com.docker.extension.changelog="<ul><li>first version</li></ul>"
+    com.docker.extension.changelog="<ul><li>first version</li></ul>" \
     com.docker.extension.categories="development,testing-tools,utility-tools"
     
 COPY ui ./ui
