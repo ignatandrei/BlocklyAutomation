@@ -19,6 +19,10 @@ Use the appropiate package:
 
 More details at https://github.com/ignatandrei/BlocklyAutomation/wiki/netcore
 
+## Docker Extension
+
+https://open.docker.com/extensions/marketplace?extensionId=ignatandrei/blockly-automation
+
 
 ### [Node](https://github.com/ignatandrei/BlocklyAutomation/wiki/node) , made by Andrei Ignat
 
