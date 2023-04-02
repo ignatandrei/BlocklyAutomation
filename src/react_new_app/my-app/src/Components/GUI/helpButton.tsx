@@ -11,7 +11,7 @@ import MenuList from '@mui/material/MenuList';
 import { useRef, useState } from "react";
 import { DetectFramework } from "../../AppFiles/detectGlobal";
 
-const options = ['Help Tour', 'General Help'];
+const options = ['Help Tour', 'General Help','Link'];
 
 type ArgHelpButton= {
     tourContext: Tour|null
@@ -30,7 +30,11 @@ function HelpButton({tourContext}: ArgHelpButton){
             if(tourContext) tourContext.start(); else window.alert('not tour context');
             return;
         case 1:
-            window.open(`${new DetectFramework().baseUrl()}/help/index.html` );            return;
+            window.open(`${new DetectFramework().baseUrl()}/help/index.html` ); 
+            return;
+        case 2:
+            window.open(`https://github.com/ignatandrei/blocklyautomation` );
+            return;
         default:
             window.alert('not a good option for help!');
             // window.open(`${process.env.PUBLIC_URL}/help/index.html`);
@@ -100,7 +104,7 @@ function HelpButton({tourContext}: ArgHelpButton){
                     {options.map((option, index) => (
                       <MenuItem
                         key={option}
-                        disabled={index === 2}
+                        disabled={index === 200}
                         selected={index === selectedIndex}
                         onClick={(event) => handleMenuItemClick(event, index)}
                       >
