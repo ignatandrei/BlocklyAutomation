@@ -13,15 +13,20 @@ Blockly Automation :  is a tool for LowCode / automation of sites (Swagger / Ope
 
 Use the appropiate package: 
 
-### [NetCore](https://github.com/ignatandrei/BlocklyAutomation/wiki/netcore)  , made by Andrei Ignat
+### [NetCore](https://github.com/ignatandrei/netcoreblockly/)  , made by Andrei Ignat
 
 .NET Core: [![Nuget](https://img.shields.io/nuget/dt/NetCore2Blockly)](https://www.nuget.org/packages/NetCore2Blockly/)
 
-More details at https://github.com/ignatandrei/BlocklyAutomation/wiki/netcore
+More details at https://github.com/ignatandrei/netcoreblockly/
 
-## Docker Extension
 
-https://open.docker.com/extensions/marketplace?extensionId=ignatandrei/blockly-automation
+### [Java](https://github.com/eciuca/blockly-automation-starter-webmvc-ui) , Full example by Emanuel Ciuca 
+
+Java Spring : [![Maven Central](https://img.shields.io/maven-central/v/io.github.eciuca.blockly/blockly-automation-starter-webmvc-ui)](https://central.sonatype.com/artifact/io.github.eciuca.blockly/blockly-automation-starter-webmvc-ui/)
+
+The Maven is https://central.sonatype.com/artifact/io.github.eciuca.blockly/blockly-automation-starter-webmvc-ui/
+
+The repo with example is https://github.com/eciuca/blockly-automation-starter-webmvc-ui 
 
 
 ### [Node](https://github.com/ignatandrei/BlocklyAutomation/wiki/node) , made by Andrei Ignat
@@ -39,19 +44,23 @@ Packagist : [![php](https://img.shields.io/packagist/v/carolpelu/blockly-automat
 More details at https://github.com/Tynael/laravel-blockly-automation
 
 
-### [Java](https://github.com/cosminpopescu14/math-operations-swagger) , Manual example by Cosmin Popescu 
 
-Not yet ready as a package, you can read to add manually 
 
-Example by Cosmin Popescu at https://github.com/cosminpopescu14/math-operations-swagger
+## Docker Extension
 
-or
+https://open.docker.com/extensions/marketplace?extensionId=ignatandrei/blockly-automation
+
 
 ### Manual
 
 Download the HTML release [BlocklyAutomation](https://github.com/ignatandrei/BlocklyAutomation/releases/latest/download/releaseBlocklyAutomation.zip/) .
 
 Follow the instructions in the wiki file.  
+
+#### [Manual Java](https://github.com/cosminpopescu14/math-operations-swagger) , Manual example by Cosmin Popescu 
+
+Example by Cosmin Popescu at https://github.com/cosminpopescu14/math-operations-swagger
+
 
 
 ## a frontend  developer that finds a bug in a REST / OpenAPI / Swagger enabled site
