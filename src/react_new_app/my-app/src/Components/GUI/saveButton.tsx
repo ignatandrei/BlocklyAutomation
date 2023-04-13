@@ -40,6 +40,7 @@ function SaveButton(props: any) {
           case SaveLocation.LoadBlocks:
           case SaveLocation.Screenshot_Blocks:
           case SaveLocation.Clear_Blocks:
+          case SaveLocation.Save_Output:
             MustSave.sendMessage(e);
             return;
 

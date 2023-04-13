@@ -5,7 +5,13 @@ export class saveLoadService {
     var xml = BlocklyXML.workspaceToDom(workspace, true);
     var xml_text = BlocklyXML.domToPrettyText(xml);
     //window.alert(xml_text);
-    var blob = new Blob([xml_text], { type: "text/plain;charset=utf-16" });
+    // var blob = new Blob([xml_text], { type: "text/plain;charset=utf-16" });
+
+    // FileSaver.saveAs(blob, filename);
+    this.saveText(xml_text, filename);
+  }
+  public saveText(text: string, filename: string) {
+    var blob = new Blob([text], { type: "text/plain;charset=utf-16" });
 
     FileSaver.saveAs(blob, filename);
   }

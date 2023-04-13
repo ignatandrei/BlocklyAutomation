@@ -267,6 +267,9 @@ Blockly.setLocale(locale);
               case SaveLocation.Clear_Blocks:
                 Blockly.getMainWorkspace().clear();
                 return;
+              case SaveLocation.Save_Output:
+                 //do nothing
+                 return;
                 // Blockly.Xml.clearWorkspaceAndLoadFromXml({}, primaryWorkspace.current!);
                 default:
                     window.alert('not yet implemented must save for '+ it);
