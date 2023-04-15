@@ -55,6 +55,7 @@ public class LocalAPIStarter
         builder.Services.AddTransient<Apps>();
         builder.Services.AddTransient<WingetApps>();
         builder.Services.AddTransient<ServiceMgmtLocal>();
+        builder.Services.AddTransient<Clean>();
         builder.Services.AddTransient<dotNetTools>();
         builder.Services.AddTransient<BrowserRun>();
         builder.Services.AddTransient<BrowserActions>();
