@@ -59,7 +59,7 @@ Blockly.setLocale(locale);
   
       var xmlToolbox= '<xml xmlns="https://developers.google.com/blockly/xml" id="toolbox-simple" style="display: none">';
       children.forEach(it=>xmlToolbox+=renderToString(it));
-      xmlToolbox+= '<category name="Advanced" id="catAdv" expanded="true" > ';
+      xmlToolbox+= `<category name="Advanced" id="catAdv"  > `;
       const mapCategoryBlocks = new Map<string, IBlocks[]>();
       AllNewBlocks.Instance.NewBlocks().sort((a,b)=>a.category.localeCompare(b.category)).forEach(it=>{
         const key = it.category;
@@ -83,6 +83,10 @@ Blockly.setLocale(locale);
       <button text="Add Swagger" callbackKey="addSwagger"></button>
       ${newSwaggerCategories}
       '</category>  `;
+
+      xmlToolbox+= `<category name="Examples" id="catExamples"  expanded='false' > `;
+      xmlToolbox+= '</category>  ';
+
 
       xmlToolbox+='    </xml>';
       return xmlToolbox;
