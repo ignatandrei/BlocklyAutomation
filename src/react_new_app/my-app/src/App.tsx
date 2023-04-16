@@ -18,7 +18,7 @@ import { javascriptGenerator } from 'blockly/javascript';
 import FindSavedBlocksComponent from './Components/Examples/FindSavedBlocksComponent';
 import SaveButton from './Components/GUI/saveButton';
 // import DemoBlocks from './Components/Examples/DemoBlocks';
-import { LoadIDService,  LoadTourSteps,  RunCode, RunCodeData, RunCodeMessage, ShowData } from './Components/Examples/Messages';
+import { LoadIDService,  LoadTourSteps,  RunCode, RunCodeData, RunCodeMessage, ShowData, ShowExamples } from './Components/Examples/Messages';
 // import CurrentDateBlock from './BlocklyReusable/BlocklyNewBlocks/dates/CurrentDateBlock';
 // import BlocklyDisplayText from './Components/GUI/BlocklyDisplayText';
 import BlocklyDisplayData from './Components/GUI/BlocklyDisplayData';
@@ -125,6 +125,15 @@ const handleRun = () => {
 const handleClickOpen = () => {
     setOpen(true);
   };
+useEffect(()=>{
+  
+  var x= ShowExamples.getMessage().subscribe(it=>{
+    if(it){
+      handleClickOpen();
+    }
+  });
+  return ()=>x.unsubscribe();
+},[]);
   const handleClose = (value: string) => {
     setOpen(false);
     setSelectedValue(value);

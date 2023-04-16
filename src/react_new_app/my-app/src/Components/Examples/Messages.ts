@@ -36,6 +36,8 @@ const subjectShow=new Subject<ShowCodeAndXML>();
 const subjectInnerWorking=new Subject<string>();
 const subjectTourSteps=new Subject<TourSteps[]>();
 const subjectEndTextBlock=new Subject<EndTextBlock>();
+const subjectShowExamples=new Subject<boolean>();
+
 export const LoadTourSteps = {
     sendTS: (tourSteps:TourSteps[]) => subjectTourSteps.next(tourSteps ),
     getTS: () => subjectTourSteps.asObservable()
@@ -71,4 +73,9 @@ export const ExecuteBlockTimings={
     sendEndBlock: (message:EndTextBlock) => subjectEndTextBlock.next(message),
     getMessage: () => subjectEndTextBlock.asObservable()
 
+}
+
+export const ShowExamples={
+    sendMessage: (message:boolean) => subjectShowExamples.next(message),
+    getMessage: () => subjectShowExamples.asObservable()
 }

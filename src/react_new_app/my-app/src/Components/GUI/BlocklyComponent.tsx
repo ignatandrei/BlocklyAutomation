@@ -11,7 +11,7 @@ import { renderToString } from 'react-dom/server'
 import { saveLoadService } from '../../AppFiles/saveLoadService';
 import InterpreterRunner from '../../BlocklyReusable/InterpreterRunner';
 import DemoBlocks from '../Examples/DemoBlocks';
-import { RunCode, RunCodeData, RunCodeMessage, LoadIDService, MustSave, ShowData, InnerWorkings, ExecuteBlockTimings } from '../Examples/Messages';
+import { RunCode, RunCodeData, RunCodeMessage, LoadIDService, MustSave, ShowData, InnerWorkings, ExecuteBlockTimings, ShowExamples } from '../Examples/Messages';
 import { SaveLocation } from './SaveLocation';
 import ShowCodeAndXML from './ShowCodeAndXML';
 // import { Category } from '@mui/icons-material';
@@ -89,6 +89,7 @@ Blockly.setLocale(locale);
 
       xmlToolbox+= `<category name="Examples" id="catExamples"  expanded='false' > 
       <button text="Show Examples" callbackKey="showExamples"></button>
+      <button text=".NET" callbackKey="showLink"></button>
       '</category>  `;
 
 
@@ -802,11 +803,17 @@ Blockly.setLocale(locale);
               callback(null);
             },
           });
-      }
-
+      };
       const showExamples=useCallback(()=>{
-          window.alert('See Examples! button up');
+          
+        //window.alert('See Examples! button up');
+        ShowExamples.sendMessage(true);
+
       },[]);
+      const showLink=useCallback(()=>{          
+        window.alert('TBD');
+      },[]);
+      
       const LoadSwagger= useCallback(()=>{
         
         //const baseUrl=process.env.PUBLIC_URL+'/'; 
@@ -943,6 +950,7 @@ Blockly.setLocale(locale);
   
             primaryWorkspace.current!.registerButtonCallback("addSwagger",()=>LoadSwagger());
             primaryWorkspace.current!.registerButtonCallback("showExamples",()=>showExamples());
+            primaryWorkspace.current!.registerButtonCallback("showLink",()=>showLink());
             
             const minimap=new MinimapPlugin(workspace);
             minimap.init();
