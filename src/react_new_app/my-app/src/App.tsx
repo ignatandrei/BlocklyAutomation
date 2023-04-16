@@ -190,7 +190,7 @@ const handleClickOpen = () => {
     const script = document.createElement('script')
     script.id = 'acornLoadedScript'
     script.src = `${url}/BlocklyFiles/acorn_interpreter.js`;
-    console.log('loading!!!',script.src);
+    // console.log('loading!!!',script.src);
     script.async = true
     script.defer = true
     script.crossOrigin = 'anonymous'

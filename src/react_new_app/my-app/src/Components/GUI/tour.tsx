@@ -100,7 +100,11 @@ function TourMainPage() {
               
               if(newSteps.length>1) {
                 if(!localStorage.getItem('BA_ShepherdHide')) {
-                  tourContext!.start();
+
+                   window.setTimeout(()=>{
+                    tourContext!.start();
+                   }, 5000);
+                  
                 }      
                   return true;
                 }

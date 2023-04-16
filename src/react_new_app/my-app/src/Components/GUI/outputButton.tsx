@@ -34,7 +34,8 @@ const options =Object.values(ShowCodeAndXML).filter(it=> isNaN(Number(it)))
 
 function OutputButton(props: any) {
 
-    const [open, setOpen] = React.useState(false);
+  
+      const [open, setOpen] = React.useState<boolean>(false);
     const anchorRef = React.useRef<HTMLDivElement>(null);
     const [selectedValue, setselectedValue] = React.useState(ShowCodeAndXML.ShowOutputRaw);
   
@@ -98,7 +99,7 @@ function OutputButton(props: any) {
     };
   
     const handleToggle = () => {
-      setOpen((prevOpen) => !prevOpen);
+      setOpen((prevOpen:boolean) => !prevOpen);
     };
     const ReInterpretOpt=(opt:string|ShowCodeAndXML):string=>{
       if(typeof opt === "string"){
@@ -106,7 +107,7 @@ function OutputButton(props: any) {
         return opt.match(re)!.join(" ");
       }
       //it is the enum
-      console.log(opt, typeof(opt),Object.keys(ShowCodeAndXML));
+      //console.log(opt, typeof(opt),Object.keys(ShowCodeAndXML));
       return  ReInterpretOpt(ShowCodeAndXML[opt]as string);
     }
     const handleClose = (event: Event) => {

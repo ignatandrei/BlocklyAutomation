@@ -9,7 +9,7 @@ export class DetectFramework{
         //console.log("~~!!", process.env );
         try{
             this.urlReact= ((process as any).env as any).PUBLIC_URL;
-            console.log('!!!is create react');
+            // console.log('!!!is create react');
             this.IsCreateReactApp=true;
             
             return;
