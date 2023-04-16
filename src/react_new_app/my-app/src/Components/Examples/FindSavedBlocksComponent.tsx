@@ -57,9 +57,8 @@ function FindSavedBlocksComponent(props:SimpleDialogProps) {
         });
         return ()=>x.unsubscribe();        
     },[demoBlocks]);
-    return <>
 
-    
+    return <>
     <Dialog onClose={handleClose} open={open}>
       <DialogTitle>Examples({demoBlocks.length})</DialogTitle>
       <Autocomplete filterOptions={filterOptions} autoComplete={true}

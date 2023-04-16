@@ -87,8 +87,9 @@ Blockly.setLocale(locale);
       ${newSwaggerCategories}
       '</category>  `;
 
-      xmlToolbox+= `<category name="Examples" id="catExamples"  expanded='false' > `;
-      xmlToolbox+= '</category>  ';
+      xmlToolbox+= `<category name="Examples" id="catExamples"  expanded='false' > 
+      <button text="Show Examples" callbackKey="showExamples"></button>
+      '</category>  `;
 
 
       xmlToolbox+='    </xml>';
@@ -802,6 +803,10 @@ Blockly.setLocale(locale);
             },
           });
       }
+
+      const showExamples=useCallback(()=>{
+          window.alert('See Examples! button up');
+      },[]);
       const LoadSwagger= useCallback(()=>{
         
         //const baseUrl=process.env.PUBLIC_URL+'/'; 
@@ -937,6 +942,8 @@ Blockly.setLocale(locale);
             };
   
             primaryWorkspace.current!.registerButtonCallback("addSwagger",()=>LoadSwagger());
+            primaryWorkspace.current!.registerButtonCallback("showExamples",()=>showExamples());
+            
             const minimap=new MinimapPlugin(workspace);
             minimap.init();
             
