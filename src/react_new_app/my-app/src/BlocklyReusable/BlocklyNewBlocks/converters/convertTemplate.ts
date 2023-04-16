@@ -1,7 +1,7 @@
 import { IBlocksSimple } from '../../blocksInterface';
 export default class converterTemplate implements IBlocksSimple {
     public static nameBlock: string = "converterTemplate";
-    category: string = 'Converters';
+    category: string = 'Converters;Object Funcs';
 
     interpolate = function(template :string, objectToParse:string) {
                 

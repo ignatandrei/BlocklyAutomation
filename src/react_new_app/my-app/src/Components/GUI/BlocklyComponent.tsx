@@ -62,11 +62,14 @@ Blockly.setLocale(locale);
       xmlToolbox+= `<category name="Advanced" id="catAdv"  > `;
       const mapCategoryBlocks = new Map<string, IBlocks[]>();
       AllNewBlocks.Instance.NewBlocks().sort((a,b)=>a.category.localeCompare(b.category)).forEach(it=>{
-        const key = it.category;
-        if(!mapCategoryBlocks.has(key)){
-          mapCategoryBlocks.set(key,[]);
-        }
-        mapCategoryBlocks.get(key)?.push(it);
+        const keys = it.category.split(';');
+        keys.forEach(key => {
+          if(!mapCategoryBlocks.has(key)){
+            mapCategoryBlocks.set(key,[]);
+          }
+          mapCategoryBlocks.get(key)?.push(it);
+        });
+       
       
       });
       
