@@ -3,6 +3,11 @@ namespace LocalTools;
 
 public class Clean
 {
+    public long DeleteNodeModulesFromDesktop()
+    {
+        var docs = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
+        return DeleteNodeModulesFromFolder(docs);
+    }
     public long DeleteNodeModulesFromMyDocuments()
     {
         var docs = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
@@ -12,7 +17,11 @@ public class Clean
     {
         return DeleteFoldersWithName(folder, "node_modules");
     }
-
+    public long DeleteCSharpBinObjFromDesktop()
+    {
+        var docs = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
+        return DeleteCSharpBinObjFromFolder(docs);
+    }
     public long DeleteCSharpBinObjFromMyDocuments()
     {
         var docs = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
