@@ -89,7 +89,11 @@ Blockly.setLocale(locale);
 
       xmlToolbox+= `<category name="Examples" id="catExamples"  expanded='false' > 
       <button text="Show Examples" callbackKey="showExamples"></button>
-      <button text=".NET" callbackKey="showLink"></button>
+      <button text=".NET" callbackKey="showLink" data-point="https://github.com/ignatandrei/netcoreblockly/"></button>
+      <button text="JAVA" callbackKey="showLink" data-point="https://github.com/eciuca/blockly-automation-starter-webmvc-ui"></button>
+      <button text="NODE" callbackKey="showLink" data-point="https://github.com/ignatandrei/BlocklyAutomation/wiki/node"></button>
+      <button text="PHP" callbackKey="showLink" data-point="https://github.com/Tynael/laravel-blockly-automation"></button>
+      
       '</category>  `;
 
 
@@ -810,9 +814,9 @@ Blockly.setLocale(locale);
         ShowExamples.sendMessage(true);
 
       },[]);
-      const showLink=useCallback(()=>{          
-        window.alert('TBD');
-      },[]);
+      const showLink=(button:any)=>{          
+        window.open(button.info['data-point']);
+      };
       
       const LoadSwagger= useCallback(()=>{
         
@@ -950,7 +954,8 @@ Blockly.setLocale(locale);
   
             primaryWorkspace.current!.registerButtonCallback("addSwagger",()=>LoadSwagger());
             primaryWorkspace.current!.registerButtonCallback("showExamples",()=>showExamples());
-            primaryWorkspace.current!.registerButtonCallback("showLink",()=>showLink());
+            primaryWorkspace.current!.registerButtonCallback("showLink",(btn:any)=>showLink(btn));
+
             
             const minimap=new MinimapPlugin(workspace);
             minimap.init();
