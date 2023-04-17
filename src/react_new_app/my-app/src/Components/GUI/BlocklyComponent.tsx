@@ -814,9 +814,10 @@ Blockly.setLocale(locale);
         ShowExamples.sendMessage(true);
 
       },[]);
-      const showLink=(button:any)=>{          
+
+      const showLink=useCallback((button:any)=>{          
         window.open(button.info['data-point']);
-      };
+      },[]);
       
       const LoadSwagger= useCallback(()=>{
         
@@ -994,7 +995,7 @@ Blockly.setLocale(locale);
             // }
             var s=new saveLoadService();
             s.restoreState(primaryWorkspace.current,"save1");
-    }, [primaryWorkspace, toolbox, blocklyDiv, props, LoadSwagger]);
+    }, [primaryWorkspace, toolbox, blocklyDiv, props, LoadSwagger,showExamples,showLink]);
  
     return <>
         <input type='file' id='file' ref={inputFile}  onChange={LoadFile} style={{display: 'none'}}/>
