@@ -11,12 +11,14 @@ namespace LocalAPI.Controllers;
 
 public partial class WindowsOpController : ControllerBase
 {
+    private readonly PSR psr;
     private readonly Apps apps;
     private readonly WingetApps winget;
     private readonly ServiceMgmtLocal localServices;
 
-    public WindowsOpController(Apps  apps, WingetApps winget, ServiceMgmtLocal localServices)
+    public WindowsOpController(PSR psr,Apps  apps, WingetApps winget, ServiceMgmtLocal localServices)
 	{
+        this.psr = psr;
         this.apps = apps;
         this.winget = winget;
         this.localServices = localServices;

@@ -53,6 +53,7 @@ public class LocalAPIStarter
         builder.Services.AddTransient<NuGets>();
         builder.Services.AddTransient<NPMs>();
         builder.Services.AddTransient<Apps>();
+        builder.Services.AddTransient<PSR>();
         builder.Services.AddTransient<WingetApps>();
         builder.Services.AddTransient<ServiceMgmtLocal>();
         builder.Services.AddTransient<Clean>();
