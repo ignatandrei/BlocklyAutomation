@@ -21,6 +21,7 @@ import windowBlock from "./BlocklyNewBlocks/Browser/windowBlock";
 import converterTemplate from "./BlocklyNewBlocks/converters/convertTemplate";
 import metaShw from "./BlocklyNewBlocks/meta/show";
 import container from "./BlocklyNewBlocks/meta/container";
+import { SwitchBlock } from "./BlocklyNewBlocks/switch";
 
 export default class AllNewBlocks
 {
@@ -64,6 +65,7 @@ export default class AllNewBlocks
         new converterTemplate(),
         new metaShw(),
         new container(),
+        new SwitchBlock(),
         ];
         return this.nb;
     }
