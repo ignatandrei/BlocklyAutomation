@@ -19,7 +19,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WindowsRelated", "WindowsRe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyProgrammerAllTool", "MyProgrammerAllTool\MyProgrammerAllTool.csproj", "{51F54D23-426C-4E1C-8792-0FF7A6CA3C3C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrowserTest", "BrowserTest\BrowserTest.csproj", "{6F47CAF4-4687-47B0-9F71-70C12474C882}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BrowserTest", "BrowserTest\BrowserTest.csproj", "{6F47CAF4-4687-47B0-9F71-70C12474C882}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlServerDB", "SqlServerDB\SqlServerDB.csproj", "{DBD26DE3-6E25-4664-BA62-B6909E9AF5CA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,6 +61,10 @@ Global
 		{6F47CAF4-4687-47B0-9F71-70C12474C882}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6F47CAF4-4687-47B0-9F71-70C12474C882}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6F47CAF4-4687-47B0-9F71-70C12474C882}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DBD26DE3-6E25-4664-BA62-B6909E9AF5CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBD26DE3-6E25-4664-BA62-B6909E9AF5CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBD26DE3-6E25-4664-BA62-B6909E9AF5CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBD26DE3-6E25-4664-BA62-B6909E9AF5CA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

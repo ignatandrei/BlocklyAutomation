@@ -36,6 +36,7 @@
     <ProjectReference Include="..\LocalAPIEmail\LocalAPIEmail.csproj" />
     <ProjectReference Include="..\LocalFS\LocalFS.csproj" />
     <ProjectReference Include="..\LocalTools\LocalTools.csproj" />
+    <ProjectReference Include="..\SqlServerDB\SqlServerDB.csproj" />
     <ProjectReference Include="..\WindowsRelated\WindowsRelated.csproj" />
   </ItemGroup>
   <ItemGroup>

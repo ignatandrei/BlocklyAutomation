@@ -3,6 +3,7 @@ using LocalTools;
 using Microsoft.Extensions.Options;
 using Microsoft.Playwright;
 using NetCore2BlocklyNew;
+using SqlServerDB;
 using System.Reflection;
 using UsefullExtensions;
 using WindowsRelated;
@@ -66,6 +67,7 @@ public class LocalAPIStarter
         builder.Services.AddTransient<WebPagesFinder>();
         builder.Services.AddTransient<WebPagesScript>();
         builder.Services.AddTransient<WebPagesInteraction>();
+        builder.Services.AddSingleton<SimpleSqlServer>();
         //builder.Services.AddTransient<WebPages>();
 
         //builder.Configuration.GetDebugView();
