@@ -22,6 +22,8 @@ import converterTemplate from "./BlocklyNewBlocks/converters/convertTemplate";
 import metaShw from "./BlocklyNewBlocks/meta/show";
 import container from "./BlocklyNewBlocks/meta/container";
 import { SwitchBlock } from "./BlocklyNewBlocks/switch";
+import { SpecialCharBlock } from "./BlocklyNewBlocks/specialChar";
+import { MoreOperators } from "./BlocklyNewBlocks/moreOperators";
 
 export default class AllNewBlocks
 {
@@ -66,6 +68,8 @@ export default class AllNewBlocks
         new metaShw(),
         new container(),
         new SwitchBlock(),
+        new SpecialCharBlock(),
+        new MoreOperators(),
         ];
         return this.nb;
     }
