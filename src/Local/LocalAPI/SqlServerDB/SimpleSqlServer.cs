@@ -1,6 +1,9 @@
 ﻿
 using Microsoft.Data.SqlClient;
 using System.Data;
+using System.Dynamic;
+using System.Xml.Linq;
+using static Azure.Core.HttpHeader;
 
 namespace SqlServerDB;
 
@@ -31,7 +34,7 @@ public class SimpleSqlServer: ISimpleSql
         }
     }
 
-    public async Task<RowSimple[]> GetData(long id,string sql)
+    public async Task<RowSimple[]> ExecuteReader(long id,string sql)
     {
         if (!connection.ContainsKey(id))
             throw new ArgumentException($"connection is not found {id}", nameof(id));
@@ -55,8 +58,10 @@ public class SimpleSqlServer: ISimpleSql
         List<RowSimple> ret = new();
         while (await rd.ReadAsync())
         {
-            List<KeyValuePair<string, object?>> row = new();
-
+            //List<ColValue> row = new();
+            Dictionary<string, object?>? row = new();
+            
+                        
             for (int i = 0; i < nrFields; i++)
             {
                 var data=rd.GetValue(i);
@@ -64,10 +69,15 @@ public class SimpleSqlServer: ISimpleSql
                 {
                     data = null;
                 }
-                row.Add(new KeyValuePair<string, object?>( cols[i], data));
+                //Console.WriteLine("data" + data);
+                //row.Add(new ColValue( cols[i], data));
+                row.Add(cols[i], data);
             }
             var rs = new RowSimple();
-            rs.values=row.ToArray();
+            //rs.values=row.ToArray();
+            rs.values = row;
+            //rs.Data=new ExpandoObject();
+            //rs.Data.TryAdd("id", id);
             ret.Add(rs);
         }
         
