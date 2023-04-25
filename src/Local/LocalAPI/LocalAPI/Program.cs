@@ -1,4 +1,5 @@
 using BrowserTest;
+using LocalAPI.converters;
 using LocalTools;
 using Microsoft.Extensions.Options;
 using Microsoft.Playwright;
@@ -32,6 +33,7 @@ public class LocalAPIStarter
 
             {
                 c.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+                c.JsonSerializerOptions.Converters.Add(new DataTableConverter());
                 c.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
                 c.JsonSerializerOptions.IgnoreReadOnlyFields = true;
                 c.JsonSerializerOptions.IgnoreReadOnlyProperties = true;//directory info
