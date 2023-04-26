@@ -42,6 +42,8 @@ public class LocalAPIStarter
         builder.Services.AddApiVersioning();
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
+
+        builder.Services.AddTransient<ZipOps>();
         builder.Services.AddTransient<BrentOzar>();
         builder.Services.AddTransient<RepoBlocksSimple>();
         builder.Services.AddTransient<ChromeData>();
