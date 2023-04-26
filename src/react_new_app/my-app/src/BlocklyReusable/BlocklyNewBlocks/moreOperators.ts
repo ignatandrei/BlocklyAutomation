@@ -1,4 +1,4 @@
-import * as Blockly from "blockly/core";
+// import * as Blockly from "blockly/core";
 import {  IBlocksSimple } from "../blocksInterface";
 //imported from
 //https://github.com/carloslfu/ =>/javascript/blocks/expressions.j
