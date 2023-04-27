@@ -11,7 +11,9 @@ public class ZipOps
 {
     public void UnzipFolder(string filePath)
     {
-        string folder=Path.GetDirectoryName(filePath);
+        ArgumentNullException.ThrowIfNullOrEmpty(filePath);
+        string? folder=Path.GetDirectoryName(filePath);
+        ArgumentNullException.ThrowIfNull(folder);
         ZipFile.ExtractToDirectory(filePath, folder,true);
         return ;
     }

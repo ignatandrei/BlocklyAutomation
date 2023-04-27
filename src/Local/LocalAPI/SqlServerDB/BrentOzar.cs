@@ -21,21 +21,27 @@ public  class BrentOzar : ManageSqlServerConnections
     {
         return base.Disconnect(id);
     }
+    public string[]? SeeResources()
+    {
+        Assembly assembly = this.GetType().Assembly;
+        var mf = assembly.GetManifestResourceNames();
+        return mf;
+    }
     public async Task<int> InstallSpBlitz(long connectionId, BrentOzarInstallBlitz install)
     {
-        var ret = 0;
+
         var nameFile = install.ToString().Replace("_", "-");
         //EmbeddedFileProvider embeddedProvider = new (Assembly.GetExecutingAssembly());
-        var assembly = Assembly.GetExecutingAssembly();
-        var mf=assembly.GetManifestResourceNames();
+        //var mf=assembly.GetManifestResourceNames();
         var name = "SqlServerDB.sql." + nameFile + ".sql";
-        var b = mf[0] == name;
+        //var b = mf[0] == name;
         string data = "";
-        using (Stream stream = assembly.GetManifestResourceStream(name))
-        using (StreamReader reader = new StreamReader(stream))
-        {
-            data = reader.ReadToEnd();
-        }
+        Assembly assembly = this.GetType().Assembly;
+        using Stream? stream = assembly.GetManifestResourceStream(name);
+        ArgumentNullException.ThrowIfNull(stream);
+        using StreamReader reader = new(stream);
+        data = reader.ReadToEnd();
+        
 
 
         //var f = embeddedProvider.GetFileInfo(name);
@@ -66,7 +72,7 @@ public  class BrentOzar : ManageSqlServerConnections
                 cmd.CommandText = str;
                 try
                 {
-                    ret += await cmd.ExecuteNonQueryAsync();
+                    await cmd.ExecuteNonQueryAsync();
                 }catch(SqlException ex)
                 {
                     throw new Exception("error at " + str, ex);
@@ -79,7 +85,7 @@ public  class BrentOzar : ManageSqlServerConnections
             str +="\r\n"+ line;
             
         }
-        return ret;
+        return data?.Length??-1;
     }
 
     public async Task<DataTable> ExecuteSP(long connectionId, BrentOzarSP sp)

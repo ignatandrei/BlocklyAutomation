@@ -5,6 +5,6 @@
     {
         //public partial ISystem_Environment FromStaticEnv();
         public partial ISystem_DateTime FromStaticDate();
-        public partial ISystem_Diagnostics_Process FromStaticProcess(Process p);
+        public partial ISystem_Diagnostics_Process FromStaticProcess(System.Diagnostics.Process doesNotMatter);
     }
 }
