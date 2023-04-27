@@ -20,9 +20,11 @@ function BlocklyDisplayHtml({showData}: ShowBlocklyOutput){
                     setText(prev=>prev + '\r\n<hr />');
                     break;
                 case RunCodeData.UserRequestedPrint:
-                    var msg=encodeHtmlEntities(it.message);
+                    //cannot differentiate transform to table
+                    //and general message
+                    //var msg=encodeHtmlEntities(it.message);
 
-                    setText(prev=> prev + "\r\n" + msg);
+                    setText(prev=> prev + "\r\n" + it.message);
                     //setText('asdasdasd');
                     break;
                 case RunCodeData.CodeError:
@@ -33,11 +35,11 @@ function BlocklyDisplayHtml({showData}: ShowBlocklyOutput){
         return ()=>{ data.unsubscribe();}
     },[]);
 
-    const encodeHtmlEntities=(str: string):string=> {
-        //return str;
-        //<table><tr><td>a <!-- asdas&d <1 --></td></tr></table>
-        return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-    }
+    // const encodeHtmlEntities=(str: string):string=> {
+         //return str;
+         //<table><tr><td>a <!-- asdas&d <1 --></td></tr></table>
+    //     return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    // }
     useEffect(() => {
         // run this command when value changes
         var textArea=document.getElementById("outputHTML");
