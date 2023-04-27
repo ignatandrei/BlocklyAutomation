@@ -52,7 +52,8 @@ public class LocalAPIStarter
         builder.Services.AddTransient<IFileSystem>(_ => new FileSystem());
         builder.Services.AddTransient<IFile>((sp) => new FileSystem().File);
         builder.Services.AddTransient<IDirectory>((sp) => new FileSystem().Directory);
-        builder.Services.AddTransient<clsISystem_Diagnostics_Process>();
+        //builder.Services.AddTransient<clsISystem_Diagnostics_Process>();
+        builder.Services.AddTransient<MyPC>();
         builder.Services.AddTransient<ChromeExtensions>();
         builder.Services.AddTransient<PowershellTools>();
         builder.Services.AddTransient<VSCodeExtensions>();

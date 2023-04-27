@@ -4,7 +4,17 @@
     public partial class MyPC
     {
         //public partial ISystem_Environment FromStaticEnv();
-        public partial ISystem_DateTime FromStaticDate();
-        public partial ISystem_Diagnostics_Process FromStaticProcess(System.Diagnostics.Process doesNotMatter);
+        //public partial ISystem_DateTime FromStaticDate();
+        //public partial ISystem_Diagnostics_Process FromStaticProcess(System.Diagnostics.Process doesNotMatter);
+        
+        public string GetFolder(Environment.SpecialFolder specialFolder)
+        {
+            
+            return Environment.GetFolderPath(specialFolder);
+        }
+        public string Combine(string folderStart, string append)
+        {
+            return Path.Combine(folderStart, append);
+        }
     }
 }
