@@ -13,7 +13,7 @@ public class Clean
         var docs = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         return DeleteNodeModulesFromFolder(docs);
     }
-    private long DeleteNodeModulesFromFolder(string folder)
+    public long DeleteNodeModulesFromFolder(string folder)
     {
         return DeleteFoldersWithName(folder, "node_modules");
     }
@@ -27,14 +27,14 @@ public class Clean
         var docs = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         return DeleteCSharpBinObjFromFolder(docs);
     }
-    private long DeleteCSharpBinObjFromFolder(string folder)
+    public long DeleteCSharpBinObjFromFolder(string folder)
     {
         var ret =DeleteFoldersWithName(folder, "bin");
         ret += DeleteFoldersWithName(folder, "obj");
         return ret;
     }
 
-    private long DeleteFoldersWithName(string folder, string name)
+    public long DeleteFoldersWithName(string folder, string name)
     {
         long nr = 0;
         try
