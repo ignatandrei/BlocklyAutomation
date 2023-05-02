@@ -46,11 +46,11 @@ public  class BrentOzar : ManageSqlServerConnections
         //ArgumentNullException.ThrowIfNull(stream);
         //using StreamReader reader = new(stream);
         //data = reader.ReadToEnd();
-        
+
 
 
         //var f = embeddedProvider.GetFileInfo(name);
-        
+
         //using var reader = f.CreateReadStream();
         //var chunks = Math.Max(2048, f.Length / 3);
         //byte[] buffer = new byte[chunks]; // read in chunks of 2KB
@@ -62,7 +62,9 @@ public  class BrentOzar : ManageSqlServerConnections
         //}
         //byte[] result = stream.ToArray();
         //var data = System.Text.Encoding.UTF8.GetString(result);
-        var lines =data.Split(Environment.NewLine);
+        var lines = data.Split('\r', '\n')
+            .Where(it => it.Length>0)
+            .ToArray();
         var str = "";
         for (int i = 0; i < lines.Length; i++)
         {
@@ -89,6 +91,21 @@ public  class BrentOzar : ManageSqlServerConnections
             //not environment
             str +="\r\n"+ line;
             
+        }
+        //execute the rest
+        if(str?.Length > 0)
+        {
+
+            using var cmd = CreateCommand(connectionId);
+            cmd.CommandText = str;
+            try
+            {
+                await cmd.ExecuteNonQueryAsync();
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception("error at " + str, ex);
+            }
         }
         return data?.Length??-1;
     }
