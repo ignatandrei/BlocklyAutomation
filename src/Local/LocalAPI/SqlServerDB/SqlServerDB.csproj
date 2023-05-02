@@ -14,7 +14,20 @@
     <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.1" />
     <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="7.0.5" />
   </ItemGroup>
-<ItemGroup>
+
+	<!-- <PropertyGroup>
+		<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+		<CompilerGeneratedFilesOutputPath>$(BaseIntermediateOutputPath)\GeneratedX</CompilerGeneratedFilesOutputPath>
+	</PropertyGroup> -->
+
+	<ItemGroup>
+		<PackageReference Include="rscgutils" Version="2023.502.835" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+	</ItemGroup>
+	<ItemGroup>
+		<AdditionalFiles Include="sql/**/*" />
+	</ItemGroup>
+	
+	<!--<ItemGroup>
 		<EmbeddedResource Include="sql\**\*">
 			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		</EmbeddedResource>
@@ -22,5 +35,5 @@
 <ItemGroup>
   <None Remove="sql\Install-Core-Blitz-No-Query-Store.sql" />
 </ItemGroup>
-
+-->
 </Project>

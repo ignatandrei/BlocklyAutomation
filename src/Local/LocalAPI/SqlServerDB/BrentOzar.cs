@@ -21,26 +21,31 @@ public  class BrentOzar : ManageSqlServerConnections
     {
         return base.Disconnect(id);
     }
-    public string[]? SeeResources()
+    //public string[]? SeeResources()
+    //{
+    //    Assembly assembly = this.GetType().Assembly;
+    //    var mf = assembly.GetManifestResourceNames();
+    //    return mf;
+    //}
+    public string SeeData(BrentOzarInstallBlitz install)
     {
-        Assembly assembly = this.GetType().Assembly;
-        var mf = assembly.GetManifestResourceNames();
-        return mf;
+        //does not matter for the moment
+        return MyAdditionalFiles.Install_Core_Blitz_No_Query_Store_gen_sql;
     }
     public async Task<int> InstallSpBlitz(long connectionId, BrentOzarInstallBlitz install)
     {
 
-        var nameFile = install.ToString().Replace("_", "-");
+        //var nameFile = install.ToString().Replace("_", "-");
         //EmbeddedFileProvider embeddedProvider = new (Assembly.GetExecutingAssembly());
         //var mf=assembly.GetManifestResourceNames();
-        var name = "SqlServerDB.sql." + nameFile + ".sql";
+        //var name = "SqlServerDB.sql." + nameFile + ".sql";
         //var b = mf[0] == name;
-        string data = "";
-        Assembly assembly = this.GetType().Assembly;
-        using Stream? stream = assembly.GetManifestResourceStream(name);
-        ArgumentNullException.ThrowIfNull(stream);
-        using StreamReader reader = new(stream);
-        data = reader.ReadToEnd();
+        string data = MyAdditionalFiles.Install_Core_Blitz_No_Query_Store_gen_sql;
+        //Assembly assembly = this.GetType().Assembly;
+        //using Stream? stream = assembly.GetManifestResourceStream(name);
+        //ArgumentNullException.ThrowIfNull(stream);
+        //using StreamReader reader = new(stream);
+        //data = reader.ReadToEnd();
         
 
 
