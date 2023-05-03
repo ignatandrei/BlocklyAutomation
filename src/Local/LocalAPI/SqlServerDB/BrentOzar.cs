@@ -32,39 +32,16 @@ public  class BrentOzar : ManageSqlServerConnections
         //does not matter for the moment
         return MyAdditionalFiles.Install_Core_Blitz_No_Query_Store_gen_sql;
     }
+
     public async Task<int> InstallSpBlitz(long connectionId, BrentOzarInstallBlitz install)
     {
 
-        //var nameFile = install.ToString().Replace("_", "-");
-        //EmbeddedFileProvider embeddedProvider = new (Assembly.GetExecutingAssembly());
-        //var mf=assembly.GetManifestResourceNames();
-        //var name = "SqlServerDB.sql." + nameFile + ".sql";
-        //var b = mf[0] == name;
         string data = MyAdditionalFiles.Install_Core_Blitz_No_Query_Store_gen_sql;
-        //Assembly assembly = this.GetType().Assembly;
-        //using Stream? stream = assembly.GetManifestResourceStream(name);
-        //ArgumentNullException.ThrowIfNull(stream);
-        //using StreamReader reader = new(stream);
-        //data = reader.ReadToEnd();
-
-
-
-        //var f = embeddedProvider.GetFileInfo(name);
-
-        //using var reader = f.CreateReadStream();
-        //var chunks = Math.Max(2048, f.Length / 3);
-        //byte[] buffer = new byte[chunks]; // read in chunks of 2KB
-        //using var stream = new MemoryStream();
-        //int bytesRead;
-        //while ((bytesRead = reader.Read(buffer, 0, buffer.Length)) > 0)
-        //{
-        //    stream.Write(buffer, 0, bytesRead);
-        //}
-        //byte[] result = stream.ToArray();
-        //var data = System.Text.Encoding.UTF8.GetString(result);
         var lines = data.Split('\r', '\n')
             .Where(it => it.Length>0)
             .ToArray();
+        Console.WriteLine($"nr lines {lines.Length}");
+
         var str = "";
         for (int i = 0; i < lines.Length; i++)
         {
@@ -75,6 +52,7 @@ public  class BrentOzar : ManageSqlServerConnections
             {
                 if (str.Replace("\r\n","").Trim().Length == 0) continue;
                 //execute sql
+                Console.WriteLine("execute:" + str);
                 using var cmd = CreateCommand(connectionId);
                 cmd.CommandText = str;
                 try
@@ -95,7 +73,7 @@ public  class BrentOzar : ManageSqlServerConnections
         //execute the rest
         if(str?.Length > 0)
         {
-
+            Console.WriteLine("final execute:" + str);
             using var cmd = CreateCommand(connectionId);
             cmd.CommandText = str;
             try
