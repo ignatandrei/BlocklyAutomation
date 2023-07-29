@@ -125,5 +125,5 @@ jobs:
         with:
           app-name: 'VisualAPI'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_6808215105A946969FD984B31F750930 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_29F69EA3E2E84928B72267B575A267E7 }}
           package: .
