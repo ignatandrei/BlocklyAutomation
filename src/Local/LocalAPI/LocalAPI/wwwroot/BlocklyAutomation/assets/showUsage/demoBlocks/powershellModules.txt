@@ -30,7 +30,7 @@
     <value name="VALUE">
       <block type="converttojson">
         <value name="ValueToConvert">
-          <block type="get__api_v1_MyTools_PowershellModules">
+          <block type="get__api_v__version_MyTools_PowershellModules">
             <value name="override_Host">
               <block type="text">
                 <field name="TEXT">localhost</field>
@@ -370,7 +370,7 @@
                 <value name="ValueToConvert">
                   <block type="htmlParserAttrVal">
                     <value name="html">
-                      <block type="get__api_v1_HttpCalls_GetBasicString">
+                      <block type="get__api_v__version_HttpCalls_GetBasicString">
                         <value name="val_url">
                           <block type="variables_get">
                             <field name="VAR" id=",6`ID-(Z=F*)cN%Or7%o">URL</field>
