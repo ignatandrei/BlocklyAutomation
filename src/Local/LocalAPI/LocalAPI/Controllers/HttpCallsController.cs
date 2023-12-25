@@ -42,7 +42,7 @@ namespace LocalAPI.Controllers
                 await Task.Delay(5000);
                 nrReq--;
             }
-            return "";
+            //return "";
             exOriginal!.Throw();
             throw exOriginal!.SourceException;
 
