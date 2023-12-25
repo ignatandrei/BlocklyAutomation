@@ -10,19 +10,33 @@ public record npmPackage(string Id, string? Name)
     {
         string pac = "pacote:tarball:";
         if (!line.StartsWith(pac))
-            return null;
+        {
+            pac = "make-fetch-happen:request-cache:";
+            if (!line.StartsWith(pac))
+                return null;
+        }
         var package = line.Substring(pac.Length );
         if(string.IsNullOrWhiteSpace(package)) return null;
-        var arond = package.LastIndexOf('@');
-        if(arond>0)
-            package= package.Substring(0, arond);
-        if (package.StartsWith("file:"))
-            return null;
-        if (package.StartsWith("github:"))
-            return null;
+        if (package.StartsWith("https://registry.npmjs.org/"))
+        {
+            package = package.Substring("https://registry.npmjs.org/".Length);
+            string[] parts = package.Split('/');
+            if (parts.Length >= 2)
+            {
 
-        
-        return new npmPackage(package, package);
+                package = parts[0]+"/"+parts[1];
+                return new npmPackage(package, package);
+            }
+        }
+        //var arond = package.LastIndexOf('@');
+        //if(arond>0)
+        //    package= package.Substring(arond);
+        //if (package.StartsWith("file:"))
+        //    return null;
+        //if (package.StartsWith("github:"))
+        //    return null;
+
+        return null;
     }
     public string Url
     {
@@ -51,6 +65,8 @@ public class NPMs
         p.Start();
         p.WaitForExit();
         var output = p.StandardOutput.ReadToEnd();
+        var lines= output.Split(Environment.NewLine);
+        output = lines[0];
         return output;
     }
     public async Task<npmPackage[]?> FindNPMs()

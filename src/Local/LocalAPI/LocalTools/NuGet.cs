@@ -55,8 +55,14 @@ public class NuGets
     {
         var dir = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
         var nuget = Path.Combine(dir, ".nuget", "packages");
+        if(Directory.Exists(nuget) && Directory.GetDirectories(nuget).Length==0)
+        {
+            nuget = @"D:\MyPackages\.nuget\packages";
+        }
         if (!Directory.Exists(nuget))
-            return null;
+        {
+                return null;
+        }
 
         var all = Directory
             .GetDirectories(nuget)
