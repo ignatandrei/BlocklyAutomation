@@ -140,9 +140,9 @@ jobs:
         rm -r src/blockly10/build/*
         cd src
         rm -r Loaders/SimpleSite/AutoBlocklySimple/wwwroot/BlocklyAutomation/*
-        cp -r docs/* Loaders/SimpleSite/AutoBlocklySimple/wwwroot/BlocklyAutomation/
+        cp -r ${{github.workspace}}/docs/* Loaders/SimpleSite/AutoBlocklySimple/wwwroot/BlocklyAutomation/
         rm -r Local/LocalAPI/LocalAPI/wwwroot/BlocklyAutomation/*
-        cp -r docs/* Local/LocalAPI/LocalAPI/wwwroot/BlocklyAutomation/
+        cp -r ${{github.workspace}}/docs/* Local/LocalAPI/LocalAPI/wwwroot/BlocklyAutomation/
         #cp -r Local/LocalAPI/LocalAPI/wwwroot/customBlocklyAutomation/* Local/LocalAPI/LocalAPI/wwwroot/BlocklyAutomation/
         rm -r Local/LocalAPI/LocalAPI/wwwroot/customBlocklyAutomation/*
         cd Loaders
