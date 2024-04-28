@@ -6,8 +6,10 @@ name: CIMain
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    tags:
-      - "v1*"
+     branches:
+      - main
+    # tags:
+    #   - "v1*"
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
