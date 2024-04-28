@@ -33,7 +33,7 @@ function HelpButton({tourContext}: ArgHelpButton){
             window.open(`${new DetectFramework().baseUrl()}/help/index.html` ); 
             return;
         case 2:
-            window.open(`https://github.com/ignatandrei/blocklyautomation` );
+            window.open(`https://github.com/ignatandrei/Blocklyautomation` );
             return;
         default:
             window.alert('not a good option for help!');
