@@ -6,7 +6,7 @@ env:
 on:
   push:    
     tags:
-      - "vAng*"
+      - "vBlockly*"
   
   workflow_dispatch:
 
@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [16.13.0]
+        node-version: [20.9.0]
 
     steps:
     - name: 'Checkout Github Action'
@@ -34,10 +34,17 @@ jobs:
 
     - name: npm install
       run: |
-        cd src        
-        cd AngWorkspace
-        npm i -g npm@8.1.0               
-        npm i  
+        cd src
+        cd blockly10
+        npm i
+        # cd src
+        # cd react_new_app
+        # cd blockly_automation
+        # npm i            
+        # cd src        
+        # cd AngWorkspace
+        # npm i -g npm@8.1.0               
+        # npm i  
         # echo 'install angular'    
         #npm i  @angular/cli@13.3.4
         # cd projects
@@ -62,26 +69,39 @@ jobs:
     - name: npm modify docs
       run: |
         cd src
-        cd AngWorkspace        
-        echo "build"
-        npm run buildGitHubPages  
-        ls -l dist/auto-blockly-app          
+        cd blockly10
+        npm run build
         cd ..
         cd ..
         rm -r docs/*
-        cp -r src/AngWorkspace/dist/auto-blockly-app/* docs/
+        cp -r src/blockly10/build/* docs/
         cp docs/index.html docs/404.html
         cd docs
         echo "${{github.ref_name}}" > version.txt
         cd ..
         ls -l docs/
         
+        # cd src
+        # cd AngWorkspace        
+        # echo "build"
+        # npm run buildGitHubPages  
+        # ls -l dist/auto-blockly-app          
+        # cd ..
+        # cd ..
+        # rm -r docs/*
+        # cp -r src/AngWorkspace/dist/auto-blockly-app/* docs/
+        # cp docs/index.html docs/404.html
+        # cd docs
+        # echo "${{github.ref_name}}" > version.txt
+        # cd ..
+        # ls -l docs/
+        
 
     - name: Archive production artifacts
       uses: actions/upload-artifact@v2
       with:
         name: AutoBlocklyApp
-        path: 'src/AngWorkspace/dist/auto-blockly-app/*'
+        path: 'src/blockly10/build/*'
         retention-days: 1
 
     - name : autocommit
@@ -103,7 +123,7 @@ jobs:
         type: 'zip'
         filename: 'releaseBlocklyAutomation.zip'
         path: 'auto-blockly-app/'
-        directory: '${{github.workspace}}/src/AngWorkspace/dist/'
+        directory: '${{github.workspace}}/src/blockly10/build/'
         exclusions: '*.git* /*node_modules/* .editorconfig'       
 
 
@@ -115,16 +135,16 @@ jobs:
     - name: making releases of loaders
       run: |
         find ${{github.workspace}} -type f -name "*.zip"
-        cp ${{github.workspace}}/src/AngWorkspace/dist/releaseBlocklyAutomation.zip ${{github.workspace}}/releaseBlocklyAutomation.zip        
-        rm -r src/AngWorkspace/dist/*
+        cp ${{github.workspace}}/ssrc/blockly10/build/releaseBlocklyAutomation.zip ${{github.workspace}}/releaseBlocklyAutomation.zip        
+        rm -r src/blockly10/build/*
         cd src
-        cd AngWorkspace
-        npm run buildGitHubPages
+        cd blockly10
+        npm run build
         cd ..
         rm -r Loaders/SimpleSite/AutoBlocklySimple/wwwroot/BlocklyAutomation/*
-        cp -r AngWorkspace/dist/auto-blockly-app/* Loaders/SimpleSite/AutoBlocklySimple/wwwroot/BlocklyAutomation/
+        cp -r src/blockly10/build/* Loaders/SimpleSite/AutoBlocklySimple/wwwroot/BlocklyAutomation/
         rm -r Local/LocalAPI/LocalAPI/wwwroot/BlocklyAutomation/*
-        cp -r AngWorkspace/dist/auto-blockly-app/* Local/LocalAPI/LocalAPI/wwwroot/BlocklyAutomation/
+        cp -r src/blockly10/build/* Local/LocalAPI/LocalAPI/wwwroot/BlocklyAutomation/
         #cp -r Local/LocalAPI/LocalAPI/wwwroot/customBlocklyAutomation/* Local/LocalAPI/LocalAPI/wwwroot/BlocklyAutomation/
         rm -r Local/LocalAPI/LocalAPI/wwwroot/customBlocklyAutomation/*
         cd Loaders
