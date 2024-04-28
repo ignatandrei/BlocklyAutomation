@@ -134,18 +134,15 @@ jobs:
 
     - name: making releases of loaders
       run: |
+        ls -l
         find ${{github.workspace}} -type f -name "*.zip"
         #cp ${{github.workspace}}/src/blockly10/build/releaseBlocklyAutomation.zip ${{github.workspace}}/releaseBlocklyAutomation.zip        
         rm -r src/blockly10/build/*
         cd src
-        cd blockly10
-        npm i
-        npm run build
-        cd ..
         rm -r Loaders/SimpleSite/AutoBlocklySimple/wwwroot/BlocklyAutomation/*
-        cp -r src/blockly10/build/* Loaders/SimpleSite/AutoBlocklySimple/wwwroot/BlocklyAutomation/
+        cp -r docs/* Loaders/SimpleSite/AutoBlocklySimple/wwwroot/BlocklyAutomation/
         rm -r Local/LocalAPI/LocalAPI/wwwroot/BlocklyAutomation/*
-        cp -r src/blockly10/build/* Local/LocalAPI/LocalAPI/wwwroot/BlocklyAutomation/
+        cp -r docs/* Local/LocalAPI/LocalAPI/wwwroot/BlocklyAutomation/
         #cp -r Local/LocalAPI/LocalAPI/wwwroot/customBlocklyAutomation/* Local/LocalAPI/LocalAPI/wwwroot/BlocklyAutomation/
         rm -r Local/LocalAPI/LocalAPI/wwwroot/customBlocklyAutomation/*
         cd Loaders
