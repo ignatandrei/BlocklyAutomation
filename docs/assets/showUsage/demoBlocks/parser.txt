@@ -10,14 +10,7 @@
       </block>
     </value>
     <next>
-      <block type="comment">
-        <field name="NAME"></field>
-        <value name="TEXT">
-          <shadow type="text">
-            <field name="TEXT">Desktop app required for next  block because of CORS </field>
-          </shadow>
-        </value>
-        <next>
+     
           <block type="text_print" disabled="true">
             <value name="TEXT">
               <block type="httprequest">
@@ -114,7 +107,6 @@
             </next>
           </block>
         </next>
-      </block>
-    </next>
+
   </block>
 </xml>
