@@ -281,51 +281,50 @@ jobs:
         dir releaseBlocklyAutomation
         echo 'All releases'
         dir AllReleases/*
-    - name: build wpf
-      shell: pwsh
-      run: |        
-        rm -r src\apps\wpf\WebView2WpfBrowser\dist\
-        cp -r releaseBlocklyAutomation\* src\apps\wpf\WebView2WpfBrowser\dist\
-        ((Get-Content -path src\apps\wpf\WebView2WpfBrowser\dist\index.html -Raw) -replace 'base href="/BlocklyAutomation/"','base href="."') | Set-Content -Path src\apps\wpf\WebView2WpfBrowser\dist\index.html
-        cd src\apps\wpf\WebView2WpfBrowser
-        dotnet publish -r win-x64 -c Release -o ${{env.AZURE_WEBAPP_NAME}}WPF64 --self-contained 
+    # - name: build wpf
+    #   shell: pwsh
+    #   run: |        
+    #     rm -r src\apps\wpf\WebView2WpfBrowser\dist\
+    #     cp -r releaseBlocklyAutomation\* src\apps\wpf\WebView2WpfBrowser\dist\
+    #     ((Get-Content -path src\apps\wpf\WebView2WpfBrowser\dist\index.html -Raw) -replace 'base href="/BlocklyAutomation/"','base href="."') | Set-Content -Path src\apps\wpf\WebView2WpfBrowser\dist\index.html
+    #     cd src\apps\wpf\WebView2WpfBrowser
+    #     dotnet publish -r win-x64 -c Release -o ${{env.AZURE_WEBAPP_NAME}}WPF64 --self-contained 
 
-    - name: zip wpf
-      uses: thedoctor0/zip-release@master
-      with:
-        type: 'zip'
-        filename: 'releaseWPF64.zip'
-        directory: '${{github.workspace}}/src/apps/wpf/WebView2WpfBrowser'
-        path: '${{env.AZURE_WEBAPP_NAME}}WPF64/'
-        exclusions: '*.git* /*node_modules/* .editorconfig'       
+    # - name: zip wpf
+    #   uses: thedoctor0/zip-release@master
+    #   with:
+    #     type: 'zip'
+    #     filename: 'releaseWPF64.zip'
+    #     directory: '${{github.workspace}}/src/apps/wpf/WebView2WpfBrowser'
+    #     path: '${{env.AZURE_WEBAPP_NAME}}WPF64/'
+    #     exclusions: '*.git* /*node_modules/* .editorconfig'       
 
-    - name: copy zip
-      run: |
-        # find ${{github.workspace}} -type f -name "*.zip"
-        cp ${{github.workspace}}\src\apps\wpf\WebView2WpfBrowser\releaseWPF64.zip ${{github.workspace}}/releaseWPF64.zip 
-        cp -r AllReleases/* .
-        echo 'copied'
-        # find ${{github.workspace}} -type f -name "*.zip"
+    # - name: copy zip
+    #   run: |
+    #     # find ${{github.workspace}} -type f -name "*.zip"
+    #     cp ${{github.workspace}}\src\apps\wpf\WebView2WpfBrowser\releaseWPF64.zip ${{github.workspace}}/releaseWPF64.zip 
+    #     cp -r AllReleases/* .
+    #     echo 'copied'
+    #     # find ${{github.workspace}} -type f -name "*.zip"
 
-    - name: Archive wpf
-      uses: actions/upload-artifact@v2
-      with:
-        name: wpf
-        path: |
-            releaseWPF64.zip 
-            # releaseBlocklyAutomation.zip
-            # releaseLin.zip
-            # releaseWin.zip
-            # releaseIISWin.zip
-            # releaseLocalAPI.zip
-            # version.txt
-        retention-days: 1
+    # - name: Archive wpf
+    #   uses: actions/upload-artifact@v2
+    #   with:
+    #     name: wpf
+    #     path: |
+    #         releaseWPF64.zip 
+    #         # releaseBlocklyAutomation.zip
+    #         # releaseLin.zip
+    #         # releaseWin.zip
+    #         # releaseIISWin.zip
+    #         # releaseLocalAPI.zip
+    #         # version.txt
+    #     retention-days: 1
 
     - name: Release
       uses: softprops/action-gh-release@v1
       with:
         files:  |
-            releaseWPF64.zip
             releaseBlocklyAutomation.zip
             releaseLin.zip
             releaseWin.zip
