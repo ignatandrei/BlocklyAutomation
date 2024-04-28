@@ -33,11 +33,10 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Run the build
         run: | 
-          
           cd src
           ls
           cd blockly10
-          cd npm i
+          npm i
           npm run build
           cd build
           ls -l
