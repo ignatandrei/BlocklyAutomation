@@ -11,7 +11,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  buildAngular:
+  buildSite:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -139,6 +139,7 @@ jobs:
         rm -r src/blockly10/build/*
         cd src
         cd blockly10
+        npm i
         npm run build
         cd ..
         rm -r Loaders/SimpleSite/AutoBlocklySimple/wwwroot/BlocklyAutomation/*
