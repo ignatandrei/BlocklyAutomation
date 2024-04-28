@@ -253,7 +253,7 @@ jobs:
 
 
   buildDesktop:
-    needs: buildAngular
+    needs: buildSite
     runs-on: windows-latest
 
     steps:
