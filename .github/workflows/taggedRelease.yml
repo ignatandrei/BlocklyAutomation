@@ -122,8 +122,8 @@ jobs:
       with:
         type: 'zip'
         filename: 'releaseBlocklyAutomation.zip'
-        path: 'auto-blockly-app/'
-        directory: '${{github.workspace}}/src/blockly10/build/'
+        path: 'src/blockly10/build/'
+        directory: '${{github.workspace}}/'
         exclusions: '*.git* /*node_modules/* .editorconfig'       
 
 
@@ -135,7 +135,7 @@ jobs:
     - name: making releases of loaders
       run: |
         find ${{github.workspace}} -type f -name "*.zip"
-        cp ${{github.workspace}}/ssrc/blockly10/build/releaseBlocklyAutomation.zip ${{github.workspace}}/releaseBlocklyAutomation.zip        
+        #cp ${{github.workspace}}/src/blockly10/build/releaseBlocklyAutomation.zip ${{github.workspace}}/releaseBlocklyAutomation.zip        
         rm -r src/blockly10/build/*
         cd src
         cd blockly10
