@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [18.13.0]
+        node-version: [20.9.0]
 
     steps:
     - name: 'Checkout Github Action'
@@ -38,47 +38,26 @@ jobs:
     - name: npm install main blockly
       run: |
         cd src        
-        cd react_new_app
-        cd my-app
-        npm i -g npm@8.19.3               
+        cd blockly10
         npm i  
 
     - name: build docs main blockly
       run: |
         cd src        
-        cd react_new_app
-        cd docs
-        npm i -g npm@8.19.3              
+        cd blockly10
         npm i  
         npm run build      
-        rm -rf ${{github.workspace}}/src/react_new_app/docs/build/img/*      
-        echo 'verify build docs main blockly'
-        ls -l ${{github.workspace}}/src/react_new_app/docs/build      
 
-    - name: build docs LocalAPI
-      run: |
-        cd src        
-        cd Local
-        cd docs
-        npm i -g npm@8.19.3              
-        npm i  
-        npm run build            
-        rm -rf ${{github.workspace}}/src/Local/docs/build/img/*
-        echo 'verify build docs main blockly'
-        ls -l ${{github.workspace}}/src/Local/docs/build      
 
     - name: copy  docs to BlocklyMain
       run: |
-        rm -rf src/react_new_app/my-app/public/help
-        mkdir src/react_new_app/my-app/public/help
-        cp -R src/react_new_app/docs/build/*  src/react_new_app/my-app/public/help/
+        cp -R src/blockly10/build/*  src/react_new_app/my-app/public/help/
           
 
     - name: build with root 
       run: |
         cd src        
-        cd react_new_app
-        cd my-app
+        cd blockly10
         rm public/version.txt
         echo "${{github.ref_name}}" > public/version.txt
         npm run build
@@ -94,55 +73,10 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: releaseBlocklyAutomation
-        path: 'src/react_new_app/my-app/build/*'
+        path: 'src/blockly10/build/*'
         retention-days: 3
         
-    - name: Archive api docs
-      uses: actions/upload-artifact@v2
-      with:
-        name: localAPIDocs
-        path: 'src/Local/docs/build/*'
-        retention-days: 3
-
-
-
-    - name: Archive Release VisualAPI
-      uses: thedoctor0/zip-release@master
-      with:
-        type: 'zip'
-        filename: 'releaseBlocklyAutomation.zip'
-        path: '${{github.workspace}}/src/react_new_app/my-app/build/*'
-        directory: '${{github.workspace}}/src/react_new_app/my-app/build/'
-        exclusions: '*.git* /*node_modules/* .editorconfig'       
-
-    - name: Archive Release  LocalAPI Docs
-      uses: thedoctor0/zip-release@master
-      with:
-        type: 'zip'
-        filename: 'releaseLocalAPIDocs.zip'
-        path: '${{github.workspace}}/src/Local/docs/build/*'
-        directory: '${{github.workspace}}/src/Local/docs/build/'
-        exclusions: '*.git* /*node_modules/* .editorconfig'       
-
-    - name: find release 
-      run: |
-        find ${{github.workspace}} -type f -name "*.zip"
-
-
-
-    - name: ReleaseVisualAPI
-      uses: softprops/action-gh-release@v1
-      with:
-        body: "Latest Release for Manual Install"
-        generate_release_notes: true
-        draft: false
-        prerelease: false
-        files:  |
-            ${{github.workspace}}/src/Local/docs/build/releaseLocalAPIDocs.zip
-            version.txt
-        # tag: v${{ env.GITHUB_SHA }}
-        #tag_name: v${{ env.GITHUB_SHA }}
-
+    
     - name: ReleaseLocalAPI
       uses: softprops/action-gh-release@v1
       with:
@@ -151,7 +85,7 @@ jobs:
         draft: false
         prerelease: false
         files:  |
-            ${{github.workspace}}/src/react_new_app/my-app/build/releaseBlocklyAutomation.zip
+            ${{github.workspace}}/src/blockly10/build/releaseBlocklyAutomation.zip
             version.txt
 
 
