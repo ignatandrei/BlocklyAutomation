@@ -67,7 +67,13 @@
                 <field name="VAR" id="j8IV}zWXIPoy:R=8|coS">currentUrl</field>
               </block>
             </value>
-            <value name="override_Host">
+            <value name="val_version">
+          <block type="text">
+            <field name="TEXT">1.0</field>
+          </block>
+        </value>
+                    <value name="override_Host">
+                    
               <block type="text">
                 <field name="TEXT">localhost</field>
               </block>
@@ -232,7 +238,13 @@
                                                     <field name="VAR" id="D|wmYw*Kzg|UgPk,8#,#">find</field>
                                                   </block>
                                                 </value>
-                                                <value name="override_Host">
+                                                <value name="val_version">
+          <block type="text">
+            <field name="TEXT">1.0</field>
+          </block>
+        </value>
+                    <value name="override_Host">
+                    
                                                   <block type="text">
                                                     <field name="TEXT">localhost</field>
                                                   </block>
@@ -341,7 +353,13 @@
                                                                     <field name="VAR" id="D|wmYw*Kzg|UgPk,8#,#">find</field>
                                                                   </block>
                                                                 </value>
-                                                                <value name="override_Host">
+                                                                <value name="val_version">
+          <block type="text">
+            <field name="TEXT">1.0</field>
+          </block>
+        </value>
+                    <value name="override_Host">
+                    
                                                                   <block type="text">
                                                                     <field name="TEXT">localhost</field>
                                                                   </block>
@@ -461,7 +479,13 @@
                                                 </value>
                                               </block>
                                             </value>
-                                            <value name="override_Host">
+                                            <value name="val_version">
+          <block type="text">
+            <field name="TEXT">1.0</field>
+          </block>
+        </value>
+                    <value name="override_Host">
+                    
                                               <block type="text">
                                                 <field name="TEXT">localhost</field>
                                               </block>
@@ -747,7 +771,13 @@
                                         <field name="VAR" id="^L|$II%ZOTMM{s5alZ}t">scriptToInject</field>
                                       </block>
                                     </value>
-                                    <value name="override_Host">
+                                    <value name="val_version">
+          <block type="text">
+            <field name="TEXT">1.0</field>
+          </block>
+        </value>
+                    <value name="override_Host">
+                    
                                       <block type="text">
                                         <field name="TEXT">localhost</field>
                                       </block>
@@ -831,7 +861,13 @@
                     <field name="VAR" id="pr%4%ko;GXIZbR_ouOLB">urlBrowserData</field>
                   </block>
                 </value>
-                <value name="override_Host">
+                <value name="val_version">
+          <block type="text">
+            <field name="TEXT">1.0</field>
+          </block>
+        </value>
+                    <value name="override_Host">
+                    
                   <block type="text">
                     <field name="TEXT">localhost</field>
                   </block>
@@ -1022,7 +1058,13 @@
                                 <field name="VAR" id="D|wmYw*Kzg|UgPk,8#,#">find</field>
                               </block>
                             </value>
-                            <value name="override_Host">
+                            <value name="val_version">
+          <block type="text">
+            <field name="TEXT">1.0</field>
+          </block>
+        </value>
+                    <value name="override_Host">
+                    
                               <block type="text">
                                 <field name="TEXT">localhost</field>
                               </block>
@@ -1043,7 +1085,13 @@
                                     <field name="VAR" id="D|wmYw*Kzg|UgPk,8#,#">find</field>
                                   </block>
                                 </value>
-                                <value name="override_Host">
+                                <value name="val_version">
+          <block type="text">
+            <field name="TEXT">1.0</field>
+          </block>
+        </value>
+                    <value name="override_Host">
+                    
                                   <block type="text">
                                     <field name="TEXT">localhost</field>
                                   </block>
@@ -1150,7 +1198,13 @@
                                                         <field name="VAR" id="D|wmYw*Kzg|UgPk,8#,#">find</field>
                                                       </block>
                                                     </value>
-                                                    <value name="override_Host">
+                                                    <value name="val_version">
+          <block type="text">
+            <field name="TEXT">1.0</field>
+          </block>
+        </value>
+                    <value name="override_Host">
+                    
                                                       <block type="text">
                                                         <field name="TEXT">localhost</field>
                                                       </block>

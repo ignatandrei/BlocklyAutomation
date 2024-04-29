@@ -12,7 +12,13 @@
       <block type="converttojson">
         <value name="ValueToConvert">
           <block type="get__api_v__version_WindowsOp_WingetAppFromLocalPC">
-            <value name="override_Host">
+            <value name="val_version">
+          <block type="text">
+            <field name="TEXT">1.0</field>
+          </block>
+        </value>
+                    <value name="override_Host">
+                    
               <block type="text">
                 <field name="TEXT">localhost</field>
               </block>

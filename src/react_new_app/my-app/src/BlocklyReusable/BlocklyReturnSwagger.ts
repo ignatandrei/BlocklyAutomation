@@ -465,7 +465,13 @@ export default class BlocklyReturnSwagger {
    
    var shadow=self.GenerateShadowField('string', 'override_host',host);
   //  console.log('X_override_host',shadow);
-    xmlBlockShow += `<value name="override_Host">${shadow}</value>`;          
+    xmlBlockShow += `<value name="val_version">
+          <block type="text">
+            <field name="TEXT">1.0</field>
+          </block>
+        </value>
+                    <value name="override_Host">
+                    ${shadow}</value>`;          
    
     port=port?port:"0";
     var shadowNew=self.GenerateShadowField('integer', 'override_port',port);
