@@ -13,7 +13,7 @@
   <ItemGroup>
     <PackageReference Include="BoilerplateFree" Version="1.3.1" />
     <PackageReference Include="RSCG_Static" Version="2023.8.23.2100" />
-    <PackageReference Include="System.IO.Abstractions" Version="20.0.15" />
+    <PackageReference Include="System.IO.Abstractions" Version="21.0.2" />
   </ItemGroup>
 
 </Project>

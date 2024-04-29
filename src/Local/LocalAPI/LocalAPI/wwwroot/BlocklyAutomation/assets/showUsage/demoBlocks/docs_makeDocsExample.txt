@@ -419,6 +419,11 @@
                         <field name="VAR" id="j8IV}zWXIPoy:R=8|coS">currentUrl</field>
                       </block>
                     </value>
+                    <value name="val_version">
+          <block type="text">
+            <field name="TEXT">1.0</field>
+          </block>
+        </value>
                     <value name="override_Host">
                       <block type="text">
                         <field name="TEXT">localhost</field>
@@ -477,6 +482,11 @@
                                         <field name="TEXT">localhost</field>
                                       </block>
                                     </value>
+                                    <value name="val_version">
+          <block type="text">
+            <field name="TEXT">1.0</field>
+          </block>
+        </value>
                                     <value name="override_Port">
                                       <block type="math_number">
                                         <field name="NUM">37283</field>
@@ -493,6 +503,11 @@
                                             <field name="VAR" id="VodOcE$BLp.WE|un5%zz">urlBrowser</field>
                                           </block>
                                         </value>
+                                        <value name="val_version">
+          <block type="text">
+            <field name="TEXT">1.0</field>
+          </block>
+        </value>
                                         <value name="override_Host">
                                           <block type="text">
                                             <field name="TEXT">localhost</field>
@@ -532,6 +547,11 @@
                                                     <field name="TEXT">localhost</field>
                                                   </block>
                                                 </value>
+                                                <value name="val_version">
+          <block type="text">
+            <field name="TEXT">1.0</field>
+          </block>
+        </value>
                                                 <value name="override_Port">
                                                   <block type="math_number">
                                                     <field name="NUM">37283</field>
@@ -565,6 +585,11 @@
                                                             <field name="TEXT">localhost</field>
                                                           </block>
                                                         </value>
+                                                        <value name="val_version">
+          <block type="text">
+            <field name="TEXT">1.0</field>
+          </block>
+        </value>
                                                         <value name="override_Port">
                                                           <block type="math_number">
                                                             <field name="NUM">37283</field>
@@ -596,6 +621,11 @@
                                                                 <field name="TEXT">localhost</field>
                                                               </block>
                                                             </value>
+                                                            <value name="val_version">
+          <block type="text">
+            <field name="TEXT">1.0</field>
+          </block>
+        </value>
                                                             <value name="override_Port">
                                                               <block type="math_number">
                                                                 <field name="NUM">37283</field>
@@ -623,6 +653,11 @@
                                                                             <field name="TEXT">localhost</field>
                                                                           </block>
                                                                         </value>
+                                                                        <value name="val_version">
+          <block type="text">
+            <field name="TEXT">1.0</field>
+          </block>
+        </value>
                                                                         <value name="override_Port">
                                                                           <block type="math_number">
                                                                             <field name="NUM">37283</field>
@@ -707,6 +742,11 @@
                                                                                     <field name="TEXT">localhost</field>
                                                                                   </block>
                                                                                 </value>
+                                                                                <value name="val_version">
+          <block type="text">
+            <field name="TEXT">1.0</field>
+          </block>
+        </value>
                                                                                 <value name="override_Port">
                                                                                   <block type="math_number">
                                                                                     <field name="NUM">37283</field>
