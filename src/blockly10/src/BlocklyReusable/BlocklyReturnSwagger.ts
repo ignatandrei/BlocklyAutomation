@@ -470,7 +470,9 @@ export default class BlocklyReturnSwagger {
           <block type="text">
             <field name="TEXT">1.0</field>
           </block>
-        </value>
+        </value>`;
+        //https://github.com/ignatandrei/NETCoreBlockly/issues/159        
+        /*xmlBlockShow += `
                     <value name="override_Host">
                     ${shadow}</value>`;          
    
@@ -478,7 +480,7 @@ export default class BlocklyReturnSwagger {
     var shadowNew=self.GenerateShadowField('integer', 'override_port',port);
     //  console.log('X_override_host',shadow);
       xmlBlockShow+= `<value name="override_Port">${shadowNew}</value>`;          
-   
+   */
       xmlBlockShow+=`</block></value>`;
       
       xmlBlockShow+=`</block>`;
@@ -619,14 +621,16 @@ export default class BlocklyReturnSwagger {
               
               
           }
+          /*
+          https://github.com/ignatandrei/NETCoreBlockly/issues/159
           this.appendValueInput('override_Host') 
               .appendField("override Host");
           
           this.appendValueInput('override_Port') 
               .appendField("override Port");
-          // this.appendValueInput('override_Port')
-          //     .appendField("override Port");
-          this.setTooltip(`${operationKey} ${root}${key}`);
+
+          */
+         this.setTooltip(`${operationKey} ${root}${key}`);
           this.setOutput(true, "");
 
           this.setOnChange((changeEvent:any) =>{
@@ -787,17 +791,19 @@ export default class BlocklyReturnSwagger {
         //   code +=`${JSON.stringify(objBody)}`;
         // else
         var urlReplace="url:{notImportant:1";
-        var override_Http = javaScript.valueToCode(block, 'override_Host', /*javascript.*/ ORDER_ATOMIC);
-        override_Http = override_Http||'';
-        //window.alert('x'+override_Http);
-        if(override_Http.length>0)
-          urlReplace+=`,host:${override_Http}`;
+        //https://github.com/ignatandrei/NETCoreBlockly/issues/159
         
-        var override_Port = javaScript.valueToCode(block, 'override_Port', /*javascript.*/ ORDER_ATOMIC);
-        override_Port= override_Port||'';
-        //window.alert('x'+override_Http);
-        if(override_Port.length>0)
-          urlReplace+=`,port:${override_Port}`;
+        // var override_Http = javaScript.valueToCode(block, 'override_Host', /*javascript.*/ ORDER_ATOMIC);
+        // override_Http = override_Http||'';
+        // //window.alert('x'+override_Http);
+        // if(override_Http.length>0)
+        //   urlReplace+=`,host:${override_Http}`;
+        
+        // var override_Port = javaScript.valueToCode(block, 'override_Port', /*javascript.*/ ORDER_ATOMIC);
+        // override_Port= override_Port||'';
+        // //window.alert('x'+override_Http);
+        // if(override_Port.length>0)
+        //   urlReplace+=`,port:${override_Port}`;
   
 
         // var override_PortHttp = javaScript.valueToCode(block, 'override_Port ', /*javascript.*/ ORDER_ATOMIC);
