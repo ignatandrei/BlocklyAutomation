@@ -24,6 +24,7 @@ import container from "./BlocklyNewBlocks/meta/container";
 import { SwitchBlock } from "./BlocklyNewBlocks/switch";
 import { SpecialCharBlock } from "./BlocklyNewBlocks/specialChar";
 import { MoreOperators } from "./BlocklyNewBlocks/moreOperators";
+import { comment } from "./BlocklyNewBlocks/meta/comment";
 
 export default class AllNewBlocks
 {
@@ -70,6 +71,7 @@ export default class AllNewBlocks
         new SwitchBlock(),
         new SpecialCharBlock(),
         new MoreOperators(),
+        new comment()
         ];
         return this.nb;
     }
