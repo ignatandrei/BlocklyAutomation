@@ -455,7 +455,7 @@ export default class BlocklyReturnSwagger {
       var url = new URL(root);
       host=url.hostname;
       port= url.port;
-      // console.log('find root', url, host , port);
+      console.log('find root', url, host , port);
      }
    }
    catch(e){
@@ -464,7 +464,7 @@ export default class BlocklyReturnSwagger {
    }
    host=host?host:" ";
    
-   var shadow=self.GenerateShadowField('string', 'override_host',host);
+  //  var shadow=self.GenerateShadowField('string', 'override_host',host);
   //  console.log('X_override_host',shadow);
     xmlBlockShow += `<value name="val_version">
           <block type="text">
