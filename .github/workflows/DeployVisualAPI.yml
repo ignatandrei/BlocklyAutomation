@@ -46,7 +46,8 @@ jobs:
         with:
           github_token: ${{secrets.GITHUB_TOKEN}}
           workflow: deployVersion.yml
-          name: localAPIDocs
+          #name: localAPIDocs
+          name: releaseBlocklyAutomation
           workflow_conclusion: success
           path: ${{github.workspace}}/src/react_new_app/my-app/build/help/
           if_no_artifact_found: fail
