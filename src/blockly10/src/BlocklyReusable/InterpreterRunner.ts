@@ -150,6 +150,14 @@ class InterpreterRunner{
       interpreter.setProperty(globalObject, 'errHandler',
           interpreter.createNativeFunction(wrapperErrHandler));
 
+          var wrapperDebugger = function(msg:any, id:any, item:any) {
+            self.highlightBlock(id);
+            console.log(msg, id,item);                
+            debugger;
+          };
+          interpreter.setProperty(globalObject, 'startDebugger',
+              interpreter.createNativeFunction(wrapperDebugger));
+
         //thisClass.BlocklyJavaScript.addReservedWords('waitForSeconds');
           
         // var waitBlockInstance=new waitBlock();
