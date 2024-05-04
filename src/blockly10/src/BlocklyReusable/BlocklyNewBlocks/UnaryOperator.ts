@@ -2,27 +2,17 @@
 import {  IBlocksSimple } from "../blocksInterface";
 //imported from
 //https://github.com/carloslfu/ =>/javascript/blocks/expressions.j
-export class MoreOperators implements IBlocksSimple {
+export class UnaryOperator implements IBlocksSimple {
     definitionBlocksSimple(blocks: any, javascriptGenerator: any): void {
-        blocks[MoreOperators.nameBlock] = {
+        blocks[UnaryOperator.nameBlock] = {
             init: function() {
               var OPERATORS = [
-                ['=', '='],
-                ['+=', '+='],
-                ['-=', '-='],
-                ['*=', '*='],
-                ['/=', '/='],
-                ['%=', '%='],
-                ['&=', '&='],
-                ['^=', '^='],
-                ['|=', '|='],
-                ['>>=', '>>='],
-                ['<<=', '<<='],
-                ['>>>=', '>>>=']
-              ];
+                ['++', '++'],
+                ['--', '--'],
+                ];
               this.jsonInit({
-                "id": "js_assignment_expression",
-                "message0": "set %1 %2 %3",
+                "id": UnaryOperator.nameBlock,
+                "message0": "set %1 %2",
                 "args0": [
                   {
                     "type": "input_value",
@@ -32,11 +22,6 @@ export class MoreOperators implements IBlocksSimple {
                     "type": "field_dropdown",
                     "name": "OPERATOR",
                     "options": OPERATORS
-                  },
-                  {
-                    "type": "input_value",
-                    "name": "VALUE",
-                    "align": "RIGHT"
                   }
                 ],
                 "colour": 330,
@@ -48,13 +33,11 @@ export class MoreOperators implements IBlocksSimple {
             }
           };
 
-          javascriptGenerator['js_assignment_expression'] = function(block:any) {
+          javascriptGenerator[UnaryOperator.nameBlock] = function(block:any) {
   var variable = javascriptGenerator.valueToCode(block, 'VAR',
       javascriptGenerator.ORDER_ASSIGNMENT);
   var operator = block.getFieldValue('OPERATOR');
-  var value = javascriptGenerator.valueToCode(block, 'VALUE',
-      javascriptGenerator.ORDER_ASSIGNMENT);
-  var code = variable + ' ' + operator + ' ' + value;
+  var code = variable + ' ' + operator ;
   //If has output returns a tuple with the order of precedence
   if (block.outputConnection) {
     return [code, javascriptGenerator.ORDER_ASSIGNMENT];
@@ -68,9 +51,9 @@ export class MoreOperators implements IBlocksSimple {
         
     }
     fieldXML(): string {
-        return `<block type="${MoreOperators.nameBlock}">
+        return `<block type="${UnaryOperator.nameBlock}">
         </block>`;
     }
     category: string='MoreMath';
-    public static nameBlock: string = "js_assignment_expression";
+    public static nameBlock: string = "unaryOperator";
 }
