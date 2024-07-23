@@ -20,8 +20,8 @@
     <PackageReference Include="FluentEmail.Liquid" Version="3.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Negotiate" Version="8.0.4" />
     <PackageReference Include="Asp.Versioning.Mvc.ApiExplorer" Version="8.1.0" />
-    <PackageReference Include="NetCore2Blockly" Version="8.2024.428.1000" />
-    <PackageReference Include="NetCoreUsefullEndpoints" Version="7.2023.1216.1825" />
+    <PackageReference Include="NetCore2Blockly" Version="8.2024.503.745" />
+    <PackageReference Include="NetCoreUsefullEndpoints" Version="8.2024.627.800" />
     <PackageReference Include="SkinnyControllersCommon" Version="2023.5.14.2055" />
     <PackageReference Include="SkinnyControllersGenerator" Version="2023.5.14.2055" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
@@ -33,6 +33,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BrowserTest\BrowserTest.csproj" />
+    <ProjectReference Include="..\GithubRelated\GithubRelated.csproj" />
     <ProjectReference Include="..\LocalAPIChrome\LocalAPIChrome.csproj" />
     <ProjectReference Include="..\LocalAPIEmail\LocalAPIEmail.csproj" />
     <ProjectReference Include="..\LocalFS\LocalFS.csproj" />

@@ -1,4 +1,5 @@
 using BrowserTest;
+using GithubRelated;
 using LocalAPI.converters;
 using LocalTools;
 using Microsoft.Extensions.Options;
@@ -75,7 +76,7 @@ public class LocalAPIStarter
         builder.Services.AddTransient<WebPagesInteraction>();
         builder.Services.AddSingleton<SimpleSqlServer>();
         //builder.Services.AddTransient<WebPages>();
-
+        builder.Services.AddTransient<GithubReadme>();
         //builder.Configuration.GetDebugView();
         EmailConfig cfgEmail = new();
         builder.Configuration.GetSection("plugins:email").Bind(cfgEmail);
