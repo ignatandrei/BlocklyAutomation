@@ -1,6 +1,12 @@
 [
+
 {
 	"id":"MySite",
+	"link":"/openapi/v1.json"
+},
+
+{
+	"id":"MySite8",
 	"link":"/swagger/v1/swagger.json"
 },
 {
