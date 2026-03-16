@@ -659,6 +659,7 @@ export default class BlocklyReturnSwagger {
         // console.log(blocklyTypeName);
         const ORDER_NONE = javaScript.ORDER_NONE;
         const ORDER_ATOMIC = javaScript.ORDER_ATOMIC;
+        console.log('GenerateFunction for ', key,self.openApiDocument.paths);
         var path = self.openApiDocument.paths[key];
         var operation = path[operationKey];
         // console.log('a' , key);
@@ -726,11 +727,12 @@ export default class BlocklyReturnSwagger {
         
         code +='};\n';
         //  console.log("basepath",self.basePath);
+        var newKey=key;
         if(self.basePath.length>0 && self.basePath.endsWith("/") && key.startsWith("/")){
-          key=key.substring(1);
+          newKey=key.substring(1);
         }
-        var partUrl= self.basePath  + key;
-        console.log("all data",self.basePath, key, partUrl);
+        var partUrl= self.basePath  + newKey;
+        console.log("all data",self.basePath, key,newKey, partUrl);
         if(partUrl.startsWith("//")){
           partUrl=partUrl.replace("//","/");
         }
