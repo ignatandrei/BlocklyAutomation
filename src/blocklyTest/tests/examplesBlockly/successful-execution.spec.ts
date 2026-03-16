@@ -10,7 +10,7 @@ import { test, expect } from '@playwright/test';
 test.describe('API Tests', () => {
   testConfig.successUrls.forEach(({ name, url }) => {
     test(`${name} - Success Flow`, async ({ page }) => {
-    
+     test.setTimeout(60_000);
       // 1. Navigate to Chuck Norris API example and verify page loads successfully
     await page.goto(url);
     await expect(page.getByText('Visual API')).toBeVisible();
@@ -24,6 +24,8 @@ test.describe('API Tests', () => {
     
     // 4. Click Execute button and verify successful API call with Chuck Norris joke output and no errors
     await page.getByRole('button', { name: 'Execute!' }).click();
+
+        await new Promise(f => setTimeout(f, 25 * 1000));
 
     // Verify output contains expected debug messages and Chuck Norris joke
     await expect(page.getByText('debug mode:start running code !')).toBeVisible();

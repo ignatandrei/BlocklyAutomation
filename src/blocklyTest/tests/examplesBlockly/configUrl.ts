@@ -45,7 +45,8 @@ export const testConfig = {
 { name: 'identme', url: 'http://localhost:3000/BlocklyAutomation/automation/loadexample/identme' },
 { name: 'ipify', url: 'http://localhost:3000/BlocklyAutomation/automation/loadexample/ipify' },
 { name: 'ipaddy', url: 'http://localhost:3000/BlocklyAutomation/automation/loadexample/ipaddy' },
-{ name: 'objects', url: 'http://localhost:3000/BlocklyAutomation/automation/loadexample/objects' }
+{ name: 'objects', url: 'http://localhost:3000/BlocklyAutomation/automation/loadexample/objects' },
+{ name: 'wait', url: 'http://localhost:3000/BlocklyAutomation/automation/loadexample/wait' },
   ],
   errorUrls: [
     { name: 'Try Catch Error', url: 'http://localhost:3000/BlocklyAutomation/automation/loadexample/chucktry' },
@@ -66,7 +67,7 @@ export const testConfig = {
 { name: 'reduce', url: 'http://localhost:3000/BlocklyAutomation/automation/loadexample/reduce' },
 { name: 'weatherChart', url: 'http://localhost:3000/BlocklyAutomation/automation/loadexample/weatherChart' },
 { name: 'chart', url: 'http://localhost:3000/BlocklyAutomation/automation/loadexample/chart' },
-{ name: 'wait', url: 'http://localhost:3000/BlocklyAutomation/automation/loadexample/wait' },
+
 { name: 'NetCoreBlockly_DemoImage', url: 'http://localhost:3000/BlocklyAutomation/automation/loadexample/NetCoreBlockly_DemoImage' },
 { name: 'NetCoreBlockly_ConvertCSV', url: 'http://localhost:3000/BlocklyAutomation/automation/loadexample/NetCoreBlockly_ConvertCSV' },
 { name: 'NetCoreBlockly_SaveCSV', url: 'http://localhost:3000/BlocklyAutomation/automation/loadexample/NetCoreBlockly_SaveCSV' },

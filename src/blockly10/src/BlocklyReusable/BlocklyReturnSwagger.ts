@@ -726,7 +726,11 @@ export default class BlocklyReturnSwagger {
         
         code +='};\n';
         //  console.log("basepath",self.basePath);
+        if(self.basePath.length>0 && self.basePath.endsWith("/") && key.startsWith("/")){
+          key=key.substring(1);
+        }
         var partUrl= self.basePath  + key;
+        console.log("all data",self.basePath, key, partUrl);
         if(partUrl.startsWith("//")){
           partUrl=partUrl.replace("//","/");
         }
@@ -735,7 +739,14 @@ export default class BlocklyReturnSwagger {
         if(rootSite.length>0 && partUrl.startsWith(rootSite)){
           code +='\n rootSite="";//the root site is in url;\n';          
         }
+        
+        if(partUrl.startsWith("/")  && rootSite.endsWith("/")){
+          partUrl=partUrl.substring(1);
+        }
+        console.log('final url', rootSite, partUrl);
+
         code += 'var strUrl =rootSite +"'+ partUrl + '";\n';
+        
         var paramsQuery = parameters.filter((it:any) => it.in === "query");
         if(paramsQuery.length>0){
           code += 'strUrl+="?";\n;';

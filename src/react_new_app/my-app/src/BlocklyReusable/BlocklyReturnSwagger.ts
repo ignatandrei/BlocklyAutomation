@@ -721,6 +721,9 @@ export default class BlocklyReturnSwagger {
         
         code +='};\n';
         //  console.log("basepath",self.basePath);
+          if(self.basePath.length>0 && self.basePath.endsWith("/") && key.startsWith("/")){
+          key=key.substring(1);
+        }
         var partUrl= self.basePath  + key;
         if(partUrl.startsWith("//")){
           partUrl=partUrl.replace("//","/");
